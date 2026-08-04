@@ -1,0 +1,46 @@
+@startuml RegWatch_Agent_AsIs
+skinparam backgroundColor #F5F4FA
+skinparam defaultFontName Segoe UI
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #CFCAE1
+  FontColor #16122E
+  ArrowColor #8F89B3
+  DiamondBackgroundColor #EDE9FB
+  DiamondBorderColor #CFCAE1
+  DiamondFontColor #250F6B
+  StartColor #451DC7
+  EndColor #451DC7
+}
+skinparam activityFontSize 13
+skinparam note {
+  BackgroundColor #FFF6DA
+  BorderColor #FFCA4A
+  FontColor #4A3300
+}
+
+title RegWatch — §5.2 Chaîne de traitement de l'agent de collecte existant (état actuel)
+
+start
+:Déclenchement récurrent\nTask Scheduler (Windows), fréquence paramétrable;
+:Collecte\nLecture des sources déclarées dans un onglet Excel (RSS, pages web, API)\n→ récupération des nouveaux contenus;
+:Nettoyage\nSuppression des doublons, contrôle des dates, exclusion des contenus trop anciens;
+:Classification IA — Mistral\nScore de pertinence NIS 2 + justification;
+if (Contenu jugé pertinent ?) then (oui)
+  :Analyse détaillée IA — Mistral\nRésumé, obligations identifiées, impact;
+  :Publication actuelle\nÉcriture directe dans la table Excel de veille (ligne = source + analyse);
+  note right
+    Point d'attention (§5.3) : pas de porte de
+    validation humaine — à rediriger vers la
+    file "pending" de RegWatch avant mise en prod
+  end note
+  :Régénération du dashboard de suivi\n(articles analysés, ajouts, erreurs);
+else (non)
+  :Contenu ignoré;
+endif
+:Découverte de sources\nL'agent peut proposer de nouvelles sources pertinentes;
+:Ajout dans Excel comme « à valider »;
+stop
+
+@enduml

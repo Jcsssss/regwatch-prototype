@@ -1,0 +1,126 @@
+@startuml RegWatch_DataModel
+skinparam backgroundColor #F5F4FA
+skinparam defaultFontName Segoe UI
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam classFontSize 14
+skinparam classFontStyle bold
+
+skinparam class {
+  BorderColor #CFCAE1
+  ArrowColor #8F89B3
+  AttributeFontColor #413B60
+  AttributeFontSize 12
+  AttributeFontName Consolas
+  FontColor #16122E
+  BackgroundColor #FFFFFF
+}
+skinparam class<<hub>> {
+  HeaderBackgroundColor #451DC7
+  FontColor #FFFFFF
+}
+skinparam class<<core>> {
+  HeaderBackgroundColor #EDE9FB
+  FontColor #250F6B
+}
+skinparam class<<ref>> {
+  HeaderBackgroundColor #4682B4
+  FontColor #FFFFFF
+}
+skinparam class<<flow>> {
+  HeaderBackgroundColor #16122E
+  FontColor #FFFFFF
+}
+skinparam class<<child>> {
+  HeaderBackgroundColor #F0EEF8
+  FontColor #250F6B
+}
+
+title RegWatch — Modèle de données\n<size:11><color:#6F6B8C>Générique multi-réglementations (NIS 2, DORA, CER…) — CDC §4, v1.2</color></size>
+
+class Regulation <<hub>> {
+  id : nis2 | dora | cer | cra
+  name, full
+  active : bool
+}
+
+class MaturityScale <<child>> {
+  levels : 1..n
+  label(level) : string
+}
+
+class CountryStatus <<core>> {
+  iso, name, region, eu
+  maturity_level
+  framework_status : final|temporaire|aucun
+  editedOn, editedBy
+  .. kpi_fields (JSON typé) ..
+  loi, dates, retard
+  req_EE, req_IE
+  délais_conformité, audit
+  enregistrement, incident
+}
+
+class Source <<ref>> {
+  name, url
+  type : officielle|non officielle|manuelle
+  scope : UE|pays
+  méthode_de_collecte
+}
+
+class WatchItem <<flow>> {
+  detected_at, country
+  title, résumé
+  source_ref
+  status : pending|validated|rejected
+  flag_interne, action_suggérée
+  validé_par, validé_le, motif_rejet
+  .. agent de collecte (v1.2) ..
+  score_pertinence, justification
+  obligations, impact
+}
+
+class Section <<child>> {
+  key, title
+  bullets : Bullet[] {text, source_ref}
+}
+
+class Event <<child>> {
+  date, texte
+  source_ref
+  origine : pipeline|manuel
+  validated_by, validated_at
+  added : bool
+  _qid
+}
+
+class Authority <<child>> {
+  name
+  role
+}
+
+Regulation "1" *-- "1" MaturityScale
+Regulation "1" *-- "N" CountryStatus : 1 par pays
+Regulation "1" *-- "N" Source
+Regulation "1" *-- "N" WatchItem
+
+CountryStatus "1" *-- "N" Section
+CountryStatus "1" *-- "N" Event
+CountryStatus "1" *-- "N" Authority
+
+Section ..> Source : source_ref
+Event ..> Source : source_ref
+WatchItem ..> Source : source
+
+WatchItem ..> Event : validé → publié\n(event.added=true, _qid)
+
+legend right
+  Composition (1 → N) : trait plein
+  Référence (source_ref / source) : pointillés bleus
+  Flux de publication (WatchItem validé → Event) : pointillés verts
+  --
+  <<hub>> Regulation · <<core>> CountryStatus · <<ref>> Source
+  <<flow>> WatchItem · <<child>> composants enfants de CountryStatus
+endlegend
+
+@enduml

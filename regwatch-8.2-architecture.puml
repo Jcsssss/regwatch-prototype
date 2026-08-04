@@ -1,0 +1,63 @@
+@startuml RegWatch_Architecture_V1V2
+skinparam backgroundColor #F5F4FA
+skinparam defaultFontName Segoe UI
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #CFCAE1
+  FontColor #16122E
+  ArrowColor #8F89B3
+  ArrowFontColor #413B60
+  ArrowFontSize 11
+}
+skinparam database {
+  BackgroundColor #EDE9FB
+  BorderColor #CFCAE1
+  FontColor #250F6B
+}
+skinparam actor {
+  BackgroundColor #451DC7
+  BorderColor #451DC7
+  FontColor #16122E
+}
+skinparam note {
+  BackgroundColor #FFF6DA
+  BorderColor #FFCA4A
+  FontColor #4A3300
+}
+
+title RegWatch — §8.2 Architecture cible V1/V2 (Option A, Azure Wavestone — recommandée)
+
+actor "Lecteur /\nValidateur" as User
+
+component "SPA web\n(même UX que le prototype)" as SPA
+component "API backend (REST)" as API
+database "Base de données\nPostgreSQL" as DB
+component "Agent de collecte existant\nTask Scheduler · sources RSS/web/API\nMistral (score + analyse détaillée)" as Agent
+component "Notifications\nTeams / e-mail (V2)" as Notif
+
+User --> SPA
+SPA --> API : HTTPS + SSO Entra ID
+API --> DB
+Agent --> API : adapté pour écrire dans la file\nde validation RegWatch (au lieu\ndu classeur Excel, cf. §5.3)
+API --> Notif : (V2)
+
+note bottom of Agent
+  **Option A — Azure Wavestone (recommandée)** : App Service ou Container Apps
+  + Azure Database for PostgreSQL + Entra ID ; agent conservé tel quel
+  (poste/scheduler actuel, ou migration vers Azure Functions en V2 si besoin
+  de fiabilité continue) ; Mistral reste le fournisseur IA.
+  Coût infra estimé < 200 €/mois à cette volumétrie.
+  --
+  **Option B — Power Platform** (Power Apps + Dataverse + Power Automate +
+  Copilot Studio) : plus rapide à faire valider par la DSI, mais carte
+  interactive, exports et pipeline multi-sources nettement plus contraints.
+  --
+  **Option C** — mutualisation sur une plateforme interne existante si disponible.
+  --
+  Stack proposée (option A) : front vanilla JS du prototype (portable vers
+  React si standard interne) · API Node.js ou Python (FastAPI) · PostgreSQL · IaC minimal.
+end note
+
+@enduml
