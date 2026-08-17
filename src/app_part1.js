@@ -10,7 +10,10 @@ try { const raw = localStorage.getItem(LS_KEY); if (raw) store = JSON.parse(raw)
 store.overrides = store.overrides || {}; store.manual = store.manual || []; store.edits = store.edits || {};
 function saveStore(){ try { localStorage.setItem(LS_KEY, JSON.stringify(store)); } catch (e) {} }
 
-let queue = WATCH_QUEUE.map(q => ({ ...q }));
+/* Real agent output (src/data_watch.js, generated) when the build included it,
+   otherwise the demo queue shipped in data_c4.js. */
+const WATCH_SOURCE = typeof WATCH_QUEUE_AGENT !== "undefined" ? WATCH_QUEUE_AGENT : WATCH_QUEUE;
+let queue = WATCH_SOURCE.map(q => ({ ...q }));
 (store.manual || []).forEach(m => queue.push({ ...m }));
 queue.forEach(q => { const o = store.overrides[q.id]; if (o) Object.assign(q, o); });
 /* apply saved manual record edits (field-level overrides of the imported data) */
@@ -27,7 +30,7 @@ function applyValidated(){
     const c = byIso[q.iso]; if (!c) return;
     if (((store.edits[q.iso] || {}).removedQids || []).includes(q.id)) return;
     if (!c.timeline.some(t => t._qid === q.id) && !q.preloaded) {
-      if (WATCH_QUEUE.some(w => w.id === q.id && w.status === "validated")) { q.preloaded = true; return; }
+      if (WATCH_SOURCE.some(w => w.id === q.id && w.status === "validated")) { q.preloaded = true; return; }
       c.timeline.push({ date: q.detected, text: q.title, _qid: q.id, added: true });
       c.timeline.sort((a, b) => a.date < b.date ? -1 : 1);
       if (q.validatedOn && q.validatedOn > c.lastUpdate) c.lastUpdate = q.validatedOn;

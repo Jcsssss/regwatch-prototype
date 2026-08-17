@@ -7,7 +7,12 @@
 set -e
 cd "$(dirname "$0")"
 
-cat map_data.js data_meta.js data_c1.js data_c2.js data_c3.js data_c4.js app_part1.js app_part2.js app_part3.js > bundle.js
+# data_watch.js is the watch agent's output (tools/veille_to_watchitems.py).
+# Optional: without it the build falls back to the demo queue in data_c4.js.
+AGENT_DATA=""
+[ -f data_watch.js ] && AGENT_DATA="data_watch.js"
+
+cat map_data.js data_meta.js data_c1.js data_c2.js data_c3.js data_c4.js $AGENT_DATA app_part1.js app_part2.js app_part3.js > bundle.js
 node --check bundle.js
 
 { cat shell_top.html; echo '<script>'; cat bundle.js; echo '</script>'; } > regwatch-artifact.html

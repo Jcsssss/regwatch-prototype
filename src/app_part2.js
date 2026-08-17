@@ -1,5 +1,6 @@
 /* ---------- Countries list ---------- */
 let ctyFilter = { q: "", region: "", lvl: "" };
+let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "" };
 function renderCountries(){
   const el = $("#v-countries");
   el.innerHTML = `
@@ -118,8 +119,17 @@ function renderInbox(){
   <p class="pg-sub">Items detected by the automated collection pipeline (official sources, press, community) plus manual inputs from consultants. Nothing is published to country records until a validator approves it.</p>
   ${isVal ? "" : `<div class="rolenote"><b>Reader mode.</b> Pending items and validation actions are reserved for the NIS 2 core team (switch role to “Validator” in the header to demo the workflow). Below is the log of already-processed items.</div>`}
   ${isVal ? `
-  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>Pending validation (${pending.length})</h2></div><div class="bd" id="pendList">
-    ${pending.length ? pending.map(qCard).join("") : `<p style="color:var(--muted)">Nothing pending — the pipeline will queue new detections here.</p>`}
+  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>Pending validation (${pending.length})</h2></div><div class="bd">
+    <div class="filters">
+      <input type="search" id="qQ" placeholder="Search title or summary…" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
+      <select id="qC" aria-label="Filter by country"><option value="">All countries</option>${inboxCountries(pending).map(o => `<option value="${o.iso}" ${inboxFilter.iso === o.iso ? "selected" : ""}>${esc(o.label)} (${o.n})</option>`).join("")}</select>
+      <select id="qS" aria-label="Minimum AI relevance score"><option value="">Any score</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>Score ≥ ${s}</option>`).join("")}</select>
+      <select id="qD" aria-label="Filter by detection window"><option value="">Any date</option>${[[7, "Last 7 days"], [30, "Last 30 days"], [90, "Last 90 days"]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
+      <select id="qR" aria-label="Filter by source reliability"><option value="">Any source</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>Official only</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>To verify</option></select>
+      <span class="q-note" id="qCount"></span>
+      <button class="btn" id="qReset" type="button">Reset</button>
+    </div>
+    <div id="pendList"></div>
   </div></div>
   <div class="card" style="margin-bottom:16px"><div class="cap"><h2>Add an entry manually</h2></div><div class="bd">
     <p class="q-note" style="margin-top:0">For information gathered outside the pipeline (sector working groups, peer exchanges…). Manual entries join the pending queue with a “Manual” source flag.</p>
@@ -137,7 +147,13 @@ function renderInbox(){
     ${done.length ? done.map(qCard).join("") : `<p style="color:var(--muted)">No processed items yet.</p>`}
   </div></div>`;
   if (isVal) {
-    el.querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
+    paintPending(pending);
+    const rerun = () => paintPending(pending);
+    $("#qQ").addEventListener("input", e => { inboxFilter.q = e.target.value; rerun(); });
+    [["#qC", "iso"], ["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
+      $(sel).addEventListener("change", e => { inboxFilter[key] = e.target.value; rerun(); });
+    });
+    $("#qReset").addEventListener("click", () => { inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "" }; renderInbox(); });
     $("#mAdd").addEventListener("click", () => {
       const title = $("#mTitle").value.trim();
       if (!title) { $("#mMsg").textContent = "A title is required."; return; }
@@ -147,6 +163,47 @@ function renderInbox(){
     });
   }
 }
+/* Countries actually present in the queue, so the picker never offers an empty filter. */
+function inboxCountries(items){
+  const n = {};
+  items.forEach(q => { n[q.iso] = (n[q.iso] || 0) + 1; });
+  return Object.keys(n)
+    .map(iso => ({ iso, n: n[iso], label: byIso[iso] ? byIso[iso].name : iso }))
+    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
+}
+/* A weekly agent run can queue 100+ items; triage keeps the review session workable. */
+function paintPending(pending){
+  const f = inboxFilter;
+  const q = f.q.trim().toLowerCase();
+  const cutoff = f.days ? new Date(Date.now() - f.days * 864e5).toISOString().slice(0, 10) : "";
+  const list = pending
+    .filter(x => !q || (x.title + " " + x.summary).toLowerCase().includes(q))
+    .filter(x => !f.iso || x.iso === f.iso)
+    .filter(x => !f.minScore || ((x.agent || {}).score != null && x.agent.score >= +f.minScore))
+    .filter(x => !cutoff || x.detected >= cutoff)
+    .filter(x => !f.rel || x.source.type === f.rel);
+  $("#qCount").textContent = list.length + " of " + pending.length + " pending";
+  $("#pendList").innerHTML = list.length
+    ? list.map(qCard).join("")
+    : `<p style="color:var(--muted)">No pending item matches these filters.</p>`;
+  $("#pendList").querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
+}
+/* Decision support from the watch agent — shown to the validator, never a publication status. */
+function agentPanel(q){
+  const a = q.agent; if (!a) return "";
+  const rows = [
+    ["Relevance", a.score != null ? `${a.score}/10${a.justification ? " — " + esc(a.justification) : ""}` : ""],
+    ["Obligations", a.obligations ? esc(a.obligations) : ""],
+    ["Impact", a.impact ? esc(a.impact) : ""],
+    ["Entities", a.entities ? esc(a.entities) : ""],
+    ["Published", a.publishedOn ? fmtDate(a.publishedOn) : ""],
+    ["In force", a.inForceOn ? fmtDate(a.inForceOn) : ""]
+  ].filter(r => r[1]);
+  if (!rows.length) return "";
+  return `<details class="q-agent"><summary>AI analysis — decision support, not a decision</summary>
+    ${rows.map(r => `<div class="q-agent-row"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("")}
+  </details>`;
+}
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
@@ -154,6 +211,7 @@ function qCard(q){
     <div class="q-top"><span class="d num">${fmtDate(q.detected)}</span><b>${c ? c.flag + " " + esc(c.name) : esc(q.iso)}</b>${stChip(q.status)}${srcChip(q.source.type)}</div>
     <div class="q-title">${esc(q.title)}</div>
     <div class="q-sum">${esc(q.summary)}</div>
+    ${agentPanel(q)}
     <div class="q-src">Source: ${q.source.url ? `<a href="${esc(q.source.url)}" target="_blank" rel="noopener">${esc(q.source.name)}</a>` : esc(q.source.name)}${q.action ? ` · <span>Suggested action: ${esc(q.action)}</span>` : ""}</div>
     ${q.status === "pending" && isVal ? `<div class="q-actions">
       <button class="btn ok" data-act="validate" data-id="${q.id}">Validate &amp; publish</button>

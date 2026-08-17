@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+
+# Build artifacts — regenerate with src/build.sh
+src/bundle.js
+src/regwatch-artifact.html
+src/regwatch.html
+src/test_*.html
+
+# Knowledge graph — regenerate with `graphify update .`
+graphify-out/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Internal Wavestone material and heavy media — kept local on purpose.
+# Real client data (KPI workbook), internal decks and the brand charter must not
+# be pushed without an explicit go from the team.
+ressources/
+*.mp4
+*.pptx
