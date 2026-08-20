@@ -1,4 +1,4 @@
-# RegWatch — prototype NIS 2 (Wavestone)
+# RegWatch : prototype NIS 2 (Wavestone)
 
 Prototype autonome de l'outil de veille réglementaire NIS 2 (EU-27 + Royaume-Uni + Norvège).
 
