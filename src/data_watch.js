@@ -4,6 +4,1156 @@
    demo WATCH_QUEUE in data_c4.js when it is not. Do not edit by hand. ---- */
 const WATCH_QUEUE_AGENT = [
   {
+    "id": "REG-20260824122950-017-PL",
+    "detected": "2026-08-24",
+    "iso": "PL",
+    "title": "Entrée en vigueur de la directive NIS2 en Pologne avec échéance au 3 octobre pour les entreprises",
+    "summary": "L’article indique que la directive NIS2 entre en vigueur et que les entreprises disposent d’un délai jusqu’au 3 octobre pour se mettre en conformité. La nouveauté opérationnelle porte sur l’échéance proche imposée aux entreprises concernées par NIS2 en Pologne.",
+    "source": {
+      "name": "Union européenne; transposition/communication en Pologne",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQUUJfZHJjZ2M1ZTJqNG00Y1cwaXFYVEM3ZDh6Z3BaWmVKUUtfeFFvb0pLdWNjeFpyTDE4aXdscm80WkJIRlFsX0wtSUZMM1ZXS0ZONHNobWdRQVpoMUd0MHkyNFdIeVdFUGhpTDZsOEhHRjh5NVlyN1I5MjR6ZEMtRVViYnhUNVhoWkxGLXF5Qk92MzdvWm1yUmRTUQ?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Confirmer le périmètre NIS2 de l’entité; lancer un gap analysis de conformité; prioriser les mesures techniques et organisationnelles manquantes; préparer un plan de remédiation avec jalons avant le 3 octobre; documenter les responsabilités internes et le reporting",
+    "agent": {
+      "score": 8,
+      "justification": "Article d’actualité sur l’entrée en vigueur de NIS2 et une échéance pour les entreprises ; sujet directement lié à la veille réglementaire NIS2.",
+      "obligations": "Évaluer l’assujettissement à NIS2; mettre à jour l’analyse de risques et les mesures de sécurité; formaliser les procédures de gestion des incidents; renforcer la gouvernance et la traçabilité de la conformité; préparer les preuves de mise en conformité avant le 3 octobre",
+      "impact": "Fort",
+      "entities": "Entreprises concernées par NIS2 en Pologne; opérateurs de services essentiels et entités importantes; directions cybersécurité et conformité",
+      "publishedOn": "2026-08-11",
+      "inForceOn": "2026-08-11",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I26"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F25"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G25"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122950-017-EU",
+    "detected": "2026-08-24",
+    "iso": "EU",
+    "title": "Entrée en vigueur de la directive NIS2 en Pologne avec échéance au 3 octobre pour les entreprises",
+    "summary": "L’article indique que la directive NIS2 entre en vigueur et que les entreprises disposent d’un délai jusqu’au 3 octobre pour se mettre en conformité. La nouveauté opérationnelle porte sur l’échéance proche imposée aux entreprises concernées par NIS2 en Pologne.",
+    "source": {
+      "name": "Union européenne; transposition/communication en Pologne",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQUUJfZHJjZ2M1ZTJqNG00Y1cwaXFYVEM3ZDh6Z3BaWmVKUUtfeFFvb0pLdWNjeFpyTDE4aXdscm80WkJIRlFsX0wtSUZMM1ZXS0ZONHNobWdRQVpoMUd0MHkyNFdIeVdFUGhpTDZsOEhHRjh5NVlyN1I5MjR6ZEMtRVViYnhUNVhoWkxGLXF5Qk92MzdvWm1yUmRTUQ?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Confirmer le périmètre NIS2 de l’entité; lancer un gap analysis de conformité; prioriser les mesures techniques et organisationnelles manquantes; préparer un plan de remédiation avec jalons avant le 3 octobre; documenter les responsabilités internes et le reporting",
+    "agent": {
+      "score": 8,
+      "justification": "Article d’actualité sur l’entrée en vigueur de NIS2 et une échéance pour les entreprises ; sujet directement lié à la veille réglementaire NIS2.",
+      "obligations": "Évaluer l’assujettissement à NIS2; mettre à jour l’analyse de risques et les mesures de sécurité; formaliser les procédures de gestion des incidents; renforcer la gouvernance et la traçabilité de la conformité; préparer les preuves de mise en conformité avant le 3 octobre",
+      "impact": "Fort",
+      "entities": "Entreprises concernées par NIS2 en Pologne; opérateurs de services essentiels et entités importantes; directions cybersécurité et conformité",
+      "publishedOn": "2026-08-11",
+      "inForceOn": "2026-08-11",
+      "textType": "actualité"
+    },
+    "targetCells": []
+  },
+  {
+    "id": "REG-20260824122944-016",
+    "detected": "2026-08-24",
+    "iso": "PL",
+    "title": "Pologne : NIS2 s’applique aux ports, avec un premier délai impératif à moins de deux mois",
+    "summary": "L’article indique que la directive NIS2 est désormais applicable au secteur portuaire en Pologne et rappelle qu’un premier délai réglementaire contraignant approche rapidement. Le message principal est opérationnel : les acteurs portuaires doivent finaliser leur mise en conformité sans attendre, car l’échéance est proche et concerne des obligations de cybersécurité renforcées.",
+    "source": {
+      "name": "Autorités polonaises compétentes en cybersécurité et secteur portuaire",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbHFzSjlCVDZvWTRpanBkOUdOWVRsbk5jcjJ4dUFBYm13U1NiMHY1WExqbnRubVlHODNjY05HSEFiX2NWSnotbVlHYmhuVGEyNlBKMnk4bzZNeE83dGhvbzB4S3V0UjluVWQ1bGdNQnhQTGFvWlVqQWI3U21ZYVd5Z20xQU5na1BSTDdvT0hsaDUyVnkwYncxRFJCcTlaOGltN3UzZElhMkNORGphTlBrNV9fQVA0ckxSY0dz?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Identifier le périmètre NIS2 des activités portuaires concernées; lancer un gap analysis de conformité; prioriser les mesures techniques et organisationnelles manquantes; vérifier les procédures de gestion d’incident et de notification; préparer un plan de remédiation avant l’échéance; mobiliser les équipes métiers, IT et sécurité",
+    "agent": {
+      "score": 7,
+      "justification": "Article d’actualité sur l’application de NIS2 au secteur portuaire et l’échéance réglementaire à venir ; sujet lié aux obligations NIS2 et potentiellement utile pour la veille.",
+      "obligations": "Mettre en place les mesures de gestion des risques cyber exigées par NIS2; renforcer la gouvernance et la sécurité des systèmes d’information; organiser la préparation à l’échéance réglementaire; documenter la conformité et les contrôles internes; anticiper les obligations de notification et de réponse aux incidents",
+      "impact": "Fort",
+      "entities": "Exploitants de ports; opérateurs d’infrastructures portuaires; prestataires critiques du secteur maritime et logistique; entités polonaises relevant de NIS2",
+      "publishedOn": "2026-08-11",
+      "inForceOn": "2026-08-11",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I26"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D25"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E25"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122939-015",
+    "detected": "2026-08-24",
+    "iso": "PL",
+    "title": "Pologne : NIS2 dans la branche spatiale, nouvelles obligations et préparation des entités concernées",
+    "summary": "L'article explique l'extension des obligations liées à NIS2 au secteur spatial en Pologne et précise quelles organisations pourraient être concernées. Il présente les enjeux de préparation à la conformité, notamment l'anticipation des exigences de cybersécurité, la mise en place de mesures de gestion des risques et l'organisation interne nécessaire pour répondre aux nouvelles obligations.",
+    "source": {
+      "name": "Gov.pl",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPUzZoNFVzOVFiUk1ocUltcWJTaEJvMkhRUThpTjNCMXpIWDNkQTI1Q21IVDExZmFMcjZ3ZnRLdjFQbVg0bFBVWm9DRUx2TUhtMHFaYlJoOGRHLTNpOTl3MjhsNFc3eDQ1WVdOMldQVnVMYnRhOHhkMlFxOHhlbUVoZDhtY0lfbVhTbWVtVmJoSmdjOTZlTnBzM0F6QWdMXzdhMFZkNTFGLUJGLWlMdnJYd21CVzZpZw?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "cartographier les activités spatiales et les dépendances critiques; vérifier le statut NIS2 de l'entité; lancer un gap analysis des mesures de sécurité; préparer un plan de mise en conformité et de réponse à incident; sensibiliser les équipes techniques et de direction",
+    "agent": {
+      "score": 7,
+      "justification": "Contenu lié à NIS2 et aux nouvelles obligations pour un secteur spécifique (branche spatiale) ; peut éclairer le périmètre des entités concernées et la préparation à la conformité. C'est une nouveauté datée (article récent), même si le format est plutôt explicatif/marketing institutionnel.",
+      "obligations": "évaluer l'assujettissement au périmètre NIS2; mettre en place des mesures de gestion des risques cyber; renforcer la gouvernance et la préparation à la conformité; organiser la remontée et le traitement des incidents; documenter les dispositifs de sécurité et de continuité",
+      "impact": "Moyen",
+      "entities": "opérateurs et entreprises de la branche spatiale; fournisseurs de services et d'infrastructures liés au spatial; entités susceptibles d'être qualifiées d'essentielles ou d'importantes au titre de NIS2",
+      "publishedOn": "2026-08-17",
+      "inForceOn": "2026-08-17",
+      "textType": "actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I26"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F25"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G25"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122932-014",
+    "detected": "2026-08-24",
+    "iso": "PL",
+    "title": "Pologne : transposition de la directive NIS2 dans la loi KSC et nouvelles obligations pour les entreprises",
+    "summary": "L’article traite de la transposition de la directive NIS2 en Pologne via la loi KSC et met en avant de nouvelles obligations applicables aux entreprises concernées. Il s’agit d’une évolution réglementaire nationale importante pour les organisations opérant en Pologne ou fournissant des services essentiels et importants.",
+    "source": {
+      "name": "Législateur polonais; loi KSC",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPb2ZpQmpuRElPdWdiUy1VeG5HdzA5a1Fyd09TX3g3Zl8zRjA3T0pmb01sZkF4MWh3WEdjSGZWQWlrb2luQ2xSYjExQVZscE5CdjkwdEhrQUlWTWlkdWRoQ3EwTmMyckRqUDhUYjRKREc3SnRxSUs2R3A5dF9JaVlQVmJ3SDhaTlVncEhLM25LZjlWWnJzQ1hLTnppSTdjdEFGczRsa3dGQi1fNGVQNXZkc1FpUnBsWXdCQTNjZDN3?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier le périmètre d’application en Pologne; comparer les exigences KSC/NIS2 avec l’existant; lancer un plan de mise en conformité cybersécurité; vérifier les procédures de gestion et notification d’incidents; sensibiliser les équipes concernées",
+    "agent": {
+      "score": 6,
+      "justification": "Contenu lié à la transposition de NIS2 en Pologne via la loi KSC et aux nouvelles obligations des entreprises, donc pertinent pour la veille réglementaire.",
+      "obligations": "Se conformer aux nouvelles exigences de la loi KSC transposant NIS2; renforcer la gouvernance et les mesures de cybersécurité; adapter les processus de gestion des incidents et de notification; mettre à jour l’analyse de conformité et les responsabilités internes",
+      "impact": "Fort",
+      "entities": "Entreprises opérant en Pologne; opérateurs de services essentiels et importants; prestataires numériques et fournisseurs critiques entrant dans le champ NIS2",
+      "publishedOn": "2026-08-20",
+      "inForceOn": "2026-08-20",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I26"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F25"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G25"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122922-013",
+    "detected": "2026-08-24",
+    "iso": "FR",
+    "title": "NIS2 : PME agroalimentaires concernées et preuves à préparer avant l’enregistrement ANSSI en 2026 (France)",
+    "summary": "Le contenu explique que certaines PME du secteur agroalimentaire peuvent entrer dans le périmètre NIS2 et qu’elles doivent anticiper l’enregistrement auprès de l’ANSSI en 2026. L’accent est mis sur la préparation des éléments de preuve de conformité et sur l’identification préalable des entités concernées afin d’éviter une mise en défaut lors de la procédure d’enregistrement.",
+    "source": {
+      "name": "ANSSI; Kohen Avocats",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQbDZsakJMcTdZRWN6ZE5SOENYUHFKZ2MtVmwxOFgyRmJsUkM4YlJkQU5Db2dQR1BhYUp4MzRBaUllYS1MT2M4N2tFQjR4WlJablFVS3Fya1dWcHBSeTZwOWJZTVZCVFR6U1o0cVl5TGhVYTBMeDVjbDI1LWZCTG13TXN1RWlhelhqUjY2eGVtX0NmbFRHQU5mOHJ2WVl2dmoxdXg4RzQtNURfTy1jRzl5WGdkLV8zdw?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier les activités et vérifier si l’entreprise relève de NIS2; constituer un dossier de preuves de conformité avant 2026; identifier les écarts de sécurité et lancer un plan de remédiation; préparer l’enregistrement ANSSI et désigner les responsables internes; sensibiliser la direction et les équipes opérationnelles",
+    "agent": {
+      "score": 7,
+      "justification": "Contenu potentiellement utile sur l’application de NIS2 aux PME agroalimentaires et la préparation à l’enregistrement ANSSI en 2026, donc lié à une obligation de transposition/supervision NIS2. C’est une nouveauté datée et non un simple rappel général.",
+      "obligations": "Vérifier l’assujettissement au périmètre NIS2; préparer les preuves et justificatifs de conformité avant l’enregistrement ANSSI; organiser la gouvernance cybersécurité et la documentation associée; anticiper les exigences de traçabilité et de démonstration des mesures de sécurité",
+      "impact": "Fort",
+      "entities": "PME du secteur agroalimentaire; entités potentiellement essentielles ou importantes au sens NIS2; responsables cybersécurité et conformité des entreprises concernées",
+      "publishedOn": "2026-08-18",
+      "inForceOn": "2026-08-18",
+      "textType": "actualité juridique"
+    },
+    "targetCells": [
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration availability",
+        "cell": "D14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Authority in charge of registration",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration deadline",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Method of registration",
+        "cell": "I14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F13"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122915-012",
+    "detected": "2026-08-24",
+    "iso": "FR",
+    "title": "France - Après le piratage du fisc, réflexion sur une nouvelle unité cyber et sur NIS 2 pour renforcer la réponse aux cyberattaques",
+    "summary": "L’article évoque la réaction de l’État français après le piratage du fisc et mentionne la piste d’une nouvelle unité cyber ainsi que NIS 2. Le contenu semble relever d’une réflexion politique et organisationnelle sur le renforcement de la lutte contre les cyberattaques, sans détail explicite sur une nouvelle obligation juridique ou un texte d’application précis.",
+    "source": {
+      "name": "État français; La Tribune",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNZ1lKMW9Pajc2bjNoSzdJLVBIS3lpZThYSEl2LTg4RkpodVhEeGpxVmI4bFBTU3VmWjktc3Rtc2R5N05QakZYVWRrdTZkTnBhNnJOdkRVeTE4YWZNOUxqaFJZaVZfejVVa3Y1SmVjR2tWUVV6bUw5Ty1QQUxKQmdTVTlGWkhEdDBPWGtNbUJhUVdmNURsYW44T2ZFdEkta3MxSURfamtZbFdGQWRLZjZod1JPcjZLOHpsTjFfbXZlYVJIYzZac3QzblZ1ZVpNNjl3OF9QQnUzVHpVaFpFTlRkbW1kMzF6ZWxkZklTSTZ4Wm1YcVRMaFhzS193bmduWDR6dDFZLVZSRzRIdXc2?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Surveiller les annonces officielles françaises relatives à NIS2 et à la gouvernance cyber; vérifier si des mesures opérationnelles ou réglementaires sont publiées; préparer un point d’impact interne si une nouvelle structure de coordination cyber est créée",
+    "agent": {
+      "score": 4,
+      "justification": "Le titre mentionne NIS2 et une réponse de l’État face aux cyberattaques, mais l’extrait ressemble à un article d’actualité généraliste sans mesure réglementaire clairement identifiée. À conserver seulement à titre incertain si l’article détaille une nouvelle unité cyber, une transposition ou une obligation NIS2.",
+      "obligations": "Aucune obligation nouvelle clairement identifiée dans l’extrait; signalement d’un possible renforcement organisationnel de la réponse cyber; veille à maintenir sur les évolutions NIS2 et sur la création éventuelle d’une unité cyber",
+      "impact": "Moyen",
+      "entities": "administrations publiques; opérateurs essentiels et importants potentiellement concernés par NIS2; services de l’État; RSSI des organisations publiques et privées",
+      "publishedOn": "2026-08-23",
+      "inForceOn": "",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122908-011",
+    "detected": "2026-08-24",
+    "iso": "BE",
+    "title": "Belgique - Nouvelle communication de la CCB à l’attention des entités essentielles NIS2",
+    "summary": "La CCB Belgium publie une nouvelle communication destinée aux entités essentielles soumises à NIS2. Le contenu signale une mise à jour ou une précision opérationnelle à prendre en compte par les organisations concernées pour leur conformité cybersécurité.",
+    "source": {
+      "name": "CCB Belgium",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNckl0UFJObDBqUXoxWlZRM0pZUXMwdHVFbWFaZkEzZUpZYmlYSUs3Ym1XVlZQTVNfVndoOUl1aUdxR0lYYzZvSzVxLXA4QjBNWHRfWmpaekpOVkI0a01WUFBrNFplZ2xiUDVzX0VmZml1YkdBdFFTTGVyQ243NjBNMDRKSVF5Nk05cE9VSjRxbG1wdzlESjJDNjJB?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "RSSI: analyser la communication et identifier les écarts éventuels; Direction Conformité: coordonner la revue de conformité NIS2; formaliser les actions correctives si la communication introduit de nouvelles attentes; informer la direction des impacts potentiels",
+    "agent": {
+      "score": 8,
+      "justification": "Communication récente de la CCB Belgium visant explicitement les entités essentielles NIS2 ; contenu potentiellement opérationnel/réglementaire pour la mise en conformité.",
+      "obligations": "Prendre connaissance de la communication de la CCB; vérifier l'impact sur les mesures de cybersécurité et de gouvernance; adapter si nécessaire les procédures internes, la documentation de conformité et le suivi des exigences NIS2",
+      "impact": "Moyen",
+      "entities": "Entités essentielles au sens de NIS2 en Belgique; organisations soumises aux exigences de cybersécurité NIS2",
+      "publishedOn": "2026-08-18",
+      "inForceOn": "2026-08-18",
+      "textType": "communication"
+    },
+    "targetCells": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F5"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G5"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E5"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Number of cyber requirements for EE",
+        "cell": "L5"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E5"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K5"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122903-010",
+    "detected": "2026-08-24",
+    "iso": "SE",
+    "title": "Suède : exigences de mesures de sécurité pour renforcer la cybersécurité au titre de la cybersäkerhetslagen entrée en vigueur en janvier 2026",
+    "summary": "L’actualité indique que la cybersäkerhetslagen, entrée en vigueur en janvier 2026, impose aux entreprises et autorités exerçant une activité d’importance vitale de maintenir un haut niveau de cybersécurité. Le message confirme l’existence d’exigences de mesures de sécurité applicables dans le cadre de la transposition suédoise de NIS2.",
+    "source": {
+      "name": "Myndigheten för civilt försvar",
+      "url": "https://www.mcf.se/sv/aktuellt/nyheter/",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Vérifier le périmètre d’assujettissement NIS2 en Suède; comparer les mesures existantes aux exigences de la cybersäkerhetslagen; lancer un plan de remédiation sur la gouvernance, la gestion des risques, la sécurité technique et la continuité; documenter les écarts et prioriser les actions de mise en conformité",
+    "agent": {
+      "score": 8,
+      "justification": "La page de news contient une actualité datée sur des exigences de cybersécurité liées à la cybersäkerhetslagen entrée en vigueur en janvier 2026, donc potentiellement pertinente pour la transposition NIS2 en Suède.",
+      "obligations": "Mettre en place et maintenir un niveau élevé de cybersécurité; appliquer des mesures de sécurité adaptées aux risques; se conformer aux exigences de la cybersäkerhetslagen; renforcer la protection des systèmes et services critiques",
+      "impact": "Fort",
+      "entities": "Entreprises et autorités exerçant une activité d’importance vitale en Suède; entités potentiellement soumises au régime NIS2 suédois",
+      "publishedOn": "2026-06-26",
+      "inForceOn": "2026-01-01",
+      "textType": "Actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F31"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G31"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E31"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Number of cyber requirements for EE",
+        "cell": "L31"
+      },
+      {
+        "sheet": "Authority - P3",
+        "field": "Consolidated list of authorities",
+        "cell": "E31"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E31"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122848-009",
+    "detected": "2026-08-24",
+    "iso": "LU",
+    "title": "Luxembourg - Publication du modèle NIS 2 « Description des mesures en place » par l’ILR",
+    "summary": "L’ILR publie un guide intitulé « Modèle NIS 2 - Description des mesures en place », daté du 2026-08-03. Le contenu signale la mise à disposition d’un modèle destiné à structurer la description des mesures de cybersécurité en place dans le cadre NIS2 au Luxembourg. La page d’accueil de l’ILR confirme que la cybersécurité/NIS fait partie de ses domaines de supervision.",
+    "source": {
+      "name": "Institut luxembourgeois de régulation (ILR)",
+      "url": "https://www.ilr.lu/",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Télécharger et analyser le modèle publié par l’ILR; comparer les mesures existantes avec la structure demandée; compléter la documentation de sécurité et les preuves associées; vérifier l’alignement avec les exigences NIS2 applicables au Luxembourg; planifier une revue interne RSSI/juridique/conformité",
+    "agent": {
+      "score": 7,
+      "justification": "Page d’accueil de l’ILR mentionnant explicitement la cybersécurité/NIS et une publication récente liée à NIS 2 (« Modèle NIS 2 - Description des mesures en place » datée du 3 août 2026).",
+      "obligations": "Documenter et formaliser les mesures de sécurité en place; disposer d’une description structurée des contrôles et dispositifs NIS2; préparer les éléments de preuve et de conformité attendus par le régulateur; aligner la gouvernance cybersécurité sur le modèle publié",
+      "impact": "Moyen",
+      "entities": "Entités soumises à NIS2 au Luxembourg; opérateurs essentiels et importants; organisations régulées par l’ILR dans le périmètre cybersécurité",
+      "publishedOn": "2026-08-03",
+      "inForceOn": "2026-08-03",
+      "textType": "Publication / guide"
+    },
+    "targetCells": [
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D21"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E21"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Framework used during audit",
+        "cell": "P21"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F21"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G21"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E21"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122823-008",
+    "detected": "2026-08-24",
+    "iso": "NL",
+    "title": "Pays-Bas : la direction devient juridiquement responsable de la cybersécurité",
+    "summary": "L'article indique que la responsabilité finale en matière de cybersécurité est désormais portée par le boardroom. Pour les organisations concernées par NIS2, cela renforce l'obligation de supervision au niveau de la direction, avec un enjeu de pilotage, de validation des mesures de sécurité et de redevabilité en cas de manquement.",
+    "source": {
+      "name": "Dutch IT Channel",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNTWtfMDJPaUkzMVBsLWotc2h4dld2VnUxTnNmTU9RVWEydlItRkh3dEN3YjR6TWswMDBUTXdNTzdhd3UzU2xrNE9jRGFwenF1MlMwWl9RSXlDSmR6RWRXOFVJcTBYdXNwMHRUYU1ON2NCQTY1dFZCQ0pQWlBfbU9SRzg3VGZDYmlDYWNPZ29BQjdzU1ZLRXhBaHQ2ZVlaZw?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Informer la direction générale et le conseil d'administration; vérifier la répartition des responsabilités cybersécurité; mettre à jour la gouvernance, les chartes et les comités de pilotage; préparer des preuves de supervision et de formation de la direction; aligner le dispositif avec les exigences NIS2",
+    "agent": {
+      "score": 6,
+      "justification": "Article lié à la responsabilité de la direction en cybersécurité, sujet cohérent avec les obligations NIS2 pour les entités essentielles/importantes. Le contenu semble être une actualité de transposition/obligation de gouvernance, donc potentiellement utile pour la veille.",
+      "obligations": "Impliquer formellement la direction dans la gouvernance cybersécurité; documenter la supervision des risques et des mesures de sécurité; s'assurer que les décisions de sécurité sont validées au niveau du board; renforcer la traçabilité des responsabilités et des escalades",
+      "impact": "Fort",
+      "entities": "entités essentielles et importantes soumises à NIS2 aux Pays-Bas; directions générales; conseils d'administration; RSSI",
+      "publishedOn": "2026-08-19",
+      "inForceOn": "2026-08-19",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D23"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E23"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Framework used during audit",
+        "cell": "P23"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F23"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G23"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E23"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122814-007",
+    "detected": "2026-08-24",
+    "iso": "DE",
+    "title": "Allemagne : mise en œuvre de NIS2, 1,5 million d’entreprises de la chaîne d’approvisionnement concernées",
+    "summary": "Article d’actualité indiquant que la mise en œuvre de NIS2 en Allemagne pourrait concerner environ 1,5 million d’entreprises de la chaîne d’approvisionnement. Le contenu est journalistique et ne semble pas annoncer un texte normatif précis, mais il signale un impact potentiel très large sur les entreprises indirectement soumises aux exigences de cybersécurité et de gestion des risques fournisseurs.",
+    "source": {
+      "name": "Non précisée ; article de presse relayant la mise en œuvre de NIS2 en Allemagne",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQSnVZbVdQTHNSbmxYVk5NSktNMkVTR2lTNVk0cnRWd056Y2p3M01jUmpyLVlJUGJWU0JnQjNWOGhTLW1rTTYtYUhCeVFjNzJublBZaG1rYzNEMGJnaVAxYXRuNmpLQzBFTUlaT2tEeXN4dHQ4UjhqZWpJVHNVUEJJd0JDMkVpVFpYeGtsLUhSd0tzb3pNbFUzVlZpN09PdllRVzNuNEV0UlBqa0wtMnVWRDZsbWx4R2M?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier les relations fournisseurs et clients concernés ; évaluer l’exposition NIS2 de l’organisation ; mettre à jour les clauses contractuelles cybersécurité ; renforcer les contrôles de sécurité et la documentation de conformité ; suivre les textes de transposition allemands",
+    "agent": {
+      "score": 6,
+      "justification": "Article d’actualité sur la mise en œuvre de NIS2 en Allemagne et l’impact sur les entreprises de la chaîne d’approvisionnement, sujet pertinent pour la veille réglementaire. Le contenu semble toutefois journalistique et non normatif.",
+      "obligations": "Renforcer la gestion des risques liés aux fournisseurs ; vérifier l’exposition NIS2 dans la chaîne d’approvisionnement ; préparer les mesures de sécurité et de gouvernance attendues ; anticiper les demandes contractuelles et de conformité des clients soumis à NIS2",
+      "impact": "Moyen",
+      "entities": "Entreprises opérant en Allemagne ; fournisseurs et sous-traitants de secteurs essentiels ou importants ; entreprises de la chaîne d’approvisionnement exposées aux exigences NIS2",
+      "publishedOn": "2026-08-15",
+      "inForceOn": "2026-08-15",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Number of cyber requirements for EE",
+        "cell": "L14"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122809-006",
+    "detected": "2026-08-24",
+    "iso": "AT",
+    "title": "Autriche - Mise en œuvre de NIS2 : douze nouvelles règles-cadres nationales entrent en vigueur le 2026-08-08",
+    "summary": "L’article indique l’entrée en vigueur de douze nouvelles règles-cadres nationales liées à la mise en œuvre de NIS2 en Autriche. La nouveauté porte sur le cadre national d’application, avec un impact direct sur les organisations soumises aux exigences NIS2 dans le pays.",
+    "source": {
+      "name": "Autorités nationales autrichiennes",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQbWoxZS1lOE1HbURrUmxHdUZ1bWtJeHUwZWpqQ2o4M0Y0SjZBZzlyTHBrSmJmTmhObktPRUt4c3QyelpmeWZDRmEwVXhIaXZ1cG43YWhYTWtERDFWdXdCZ2RRdmp5RDBLVUs0eTdVdEZKdHNSX2d0Q2N0dkhZMHRaNjk1T1FuTkx0dlU1Qm9OUnZiODh0dy1kS3FLN3R4TG1hSkZDQlo5Ym1wTlZtLUNlT3ZsWWM?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier les entités et services concernés en Autriche; comparer les nouvelles règles nationales aux mesures existantes; lancer un plan de mise en conformité NIS2; vérifier les processus de gestion et notification d’incidents; préparer les preuves de conformité et sensibiliser les équipes",
+    "agent": {
+      "score": 8,
+      "justification": "Article sur la mise en œuvre de NIS2 avec l’entrée en vigueur de nouvelles règles nationales ; c’est une nouveauté réglementaire pertinente pour la veille.",
+      "obligations": "Se conformer aux nouvelles règles-cadres nationales de transposition NIS2; vérifier le périmètre d’assujettissement; adapter les mesures de gestion des risques cyber; renforcer les procédures de notification d’incident; mettre à jour la gouvernance et la documentation de conformité",
+      "impact": "Fort",
+      "entities": "Organisations essentielles et importantes relevant de NIS2 en Autriche; opérateurs de services numériques; prestataires et sous-traitants critiques; directions cybersécurité et conformité",
+      "publishedOn": "2026-08-08",
+      "inForceOn": "2026-08-08",
+      "textType": "actualité réglementaire"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F5"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H5"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G5"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I5"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F4"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G4"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122804-005",
+    "detected": "2026-08-24",
+    "iso": "DE",
+    "title": "Allemagne : après 8 mois de NIS2, des difficultés de mise en œuvre sont signalées",
+    "summary": "L’article indique qu’après huit mois de NIS2, un état des lieux d’eco met en évidence des obstacles à la mise en œuvre en Allemagne. Le contenu souligne des difficultés pratiques de transposition et d’application, ce qui peut retarder la conformité des entités concernées et nécessiter des ajustements organisationnels et juridiques.",
+    "source": {
+      "name": "eco (association allemande du numérique)",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQ2t6TWxtZnVaOTBtSThzWnA0SFExdndiOVJBNEVoYUhES2FYaWVGUHgtbERjdkFxb0V0QnR3X0xvQ3RfSE53NDFucVZyN3BkTFVwb0xDRVRIdWcxQXU1MGw3cTBHR0VKQkplaWh4dGRWOXlycFlDdTFMeXRTRnB1aWhrOVZJZkJ1?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Vérifier l’état de transposition allemande et les écarts applicables; mettre à jour le plan de conformité NIS2; prioriser les mesures techniques et organisationnelles manquantes; coordonner RSSI, juridique et conformité pour lever les points bloquants",
+    "agent": {
+      "score": 6,
+      "justification": "Article sur l’état de mise en œuvre de NIS2 en Allemagne et les difficultés d’application après 8 mois ; sujet directement lié à la transposition nationale et aux obstacles réglementaires.",
+      "obligations": "Poursuivre ou accélérer l’analyse d’écart NIS2; adapter les mesures de gestion des risques cyber; préparer la gouvernance, les procédures de notification d’incident et la documentation de conformité; suivre les exigences nationales de transposition",
+      "impact": "Moyen",
+      "entities": "Entreprises et organisations allemandes soumises à NIS2; opérateurs de services essentiels et entités importantes; directions cybersécurité et conformité",
+      "publishedOn": "2026-08-10",
+      "inForceOn": "2026-08-10",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F15"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H15"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G15"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I15"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G14"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122743-004",
+    "detected": "2026-08-24",
+    "iso": "DE",
+    "title": "Allemagne - BSI publie un guide sur les mesures de gestion des risques NIS2 (article 21)",
+    "summary": "Le BSI détaille les mesures de gestion des risques exigées par l'article 21 de la directive NIS2 et par le §30 BSIG pour les entités importantes et essentielles en Allemagne. Le guide précise les critères d'appréciation des mesures (adaptées, efficaces, proportionnées), rappelle les objectifs de confidentialité, intégrité et disponibilité, et insiste sur la nécessité de documenter la mise en œuvre pour pouvoir produire des preuves en cas de demande de l'autorité. Il met aussi l'accent sur l'analyse de risques préalable, la prise en compte de la sécurité physique et de la chaîne d'approvisionnement, ainsi que sur des mesures comme l'Incident Response, le BCM, les sauvegardes, la MFA, la gestion des vulnérabilités, les formations et les tests réguliers.",
+    "source": {
+      "name": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
+      "url": "https://www.bsi.bund.de/DE/Themen/Regulierte-Wirtschaft/NIS-2-regulierte-Unternehmen/NIS-2-Infopakete/NIS-2-Risikomanagementmassnahmen/NIS-2-Risikomanagementmassnahmen_node.html",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Lancer ou mettre à jour l'analyse de risques NIS2; cartographier les mesures existantes face aux exigences du §30 BSIG et de l'article 21 NIS2; renforcer ou formaliser BCM, incident response, MFA, gestion des vulnérabilités et sécurité fournisseurs; vérifier la documentation probante et les procédures de revue/test; aligner le dispositif sur un standard reconnu type ISO 27001 ou BSI IT-Grundschutz; préparer les éléments de preuve pour un contrôle",
+    "agent": {
+      "score": 9,
+      "justification": "Page BSI directement liée aux mesures de gestion des risques exigées par l’article 21 NIS2 et le BSIG allemand, avec contenu de guidance réglementaire utile pour les entités concernées.",
+      "obligations": "Mettre en place des mesures techniques et organisationnelles de gestion des risques adaptées, efficaces et proportionnées; réaliser une analyse de risques préalable; couvrir au minimum la réponse aux incidents, la continuité d'activité, la sécurité de la chaîne d'approvisionnement, la sécurité lors de l'acquisition/développement/maintenance, la gestion des vulnérabilités, l'évaluation de l'efficacité des mesures, la formation, la cryptographie, le contrôle d'accès et l'asset management, ainsi que la MFA ou l'authentification continue; documenter les mesures et leur conformité; être en mesure de fournir des preuves à l'autorité",
+      "impact": "Fort",
+      "entities": "Entités importantes et entités essentielles soumises au BSIG en Allemagne; prestataires et fournisseurs indirectement concernés par les exigences de chaîne d'approvisionnement; organisations opérant des systèmes d'information critiques ou exposés",
+      "publishedOn": "2026-08-24",
+      "inForceOn": "2026-08-24",
+      "textType": "Guide / fiche pratique réglementaire"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F15"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H15"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G15"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I15"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D14"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E14"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122731-003",
+    "detected": "2026-08-24",
+    "iso": "NL",
+    "title": "Pays-Bas : mandat légal du NCSC étendu par la transposition NIS2 (Cbw) et rappel des obligations de signalement",
+    "summary": "La page officielle du NCSC-NL précise le cadre légal de ses missions et met en avant la transposition néerlandaise de NIS2 via le Cybersecurity Act (Cbw). Elle indique que le Cbw n’est pas encore en vigueur mais qu’il étendra le mandat du NCSC à davantage de secteurs et d’organisations. Le contenu rappelle aussi que, depuis le 2024-10-17, les organisations relevant de NIS2 peuvent légalement s’appuyer sur les services CSIRT du NCSC, et que les incidents significatifs doivent être signalés au NCSC via le portail central. La page mentionne enfin des échéances à venir pour le CRA, avec une obligation de signalement des fabricants applicable dès le 2026-09-11.",
+    "source": {
+      "name": "NCSC-NL",
+      "url": "https://www.ncsc.nl/en/about-us/statutory-mandate",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Vérifier si l’organisation entre dans le champ NIS2/Cbw aux Pays-Bas; cartographier les obligations de notification et les circuits internes d’escalade; tester l’accès au portail de signalement du NCSC et les procédures de réponse à incident; suivre la publication et l’entrée en vigueur du Cbw; si concerné par le CRA, préparer le dispositif de reporting fabricant avant septembre 2026",
+    "agent": {
+      "score": 8,
+      "justification": "Page officielle du NCSC-NL décrivant le mandat légal lié à la transposition néerlandaise de NIS2 (Cbw), les obligations de signalement, le CSIRT et les autorités compétentes. Contient des éléments récents sur l’entrée en vigueur et les dates d’application.",
+      "obligations": "Signaler les incidents significatifs au NCSC via le canal central de déclaration; utiliser les services CSIRT du NCSC en cas d’incident ou de menace; se préparer à l’extension du périmètre et des exigences liées au Cbw; pour les fabricants concernés, anticiper l’obligation de signalement prévue par le CRA à compter du 2026-09-11",
+      "impact": "Fort",
+      "entities": "Organisations relevant de NIS2 aux Pays-Bas; secteurs essentiels et entités importantes; opérateurs soumis au futur Cbw; fabricants de produits avec éléments numériques concernés par le CRA",
+      "publishedOn": "2026-08-24",
+      "inForceOn": "2024-10-17",
+      "textType": "page institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I24"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F23"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G23"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122724-002",
+    "detected": "2026-08-24",
+    "iso": "FR",
+    "title": "France - FAQ ANSSI NIS2 : précisions sur les obligations de cybersécurité, l’enregistrement des entités et le périmètre des systèmes d’information",
+    "summary": "La FAQ ANSSI sur NIS2 précise les obligations minimales de gestion des risques prévues aux articles 20 et 21, l’approbation et la supervision par les organes de direction, l’enregistrement en ligne des entités via MonEspaceNIS2, l’application des mesures à l’ensemble des systèmes d’information de l’entité, ainsi que le principe de proportionnalité entre entités essentielles et importantes. Elle rappelle aussi qu’une certification ISO 27001 ne suffit pas à elle seule à démontrer la conformité à NIS2.",
+    "source": {
+      "name": "ANSSI",
+      "url": "https://aide.monespacenis2.cyber.gouv.fr/fr/category/obligations-9vpf70/",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier le statut NIS2 de l’entité et confirmer si elle relève du régime entité essentielle ou importante; préparer les données nécessaires à l’enregistrement MonEspaceNIS2; vérifier que le périmètre de sécurité couvre tous les systèmes d’information; aligner le référentiel interne de cybersécurité sur les exigences NIS2; documenter l’implication de la direction et la gouvernance de supervision; comparer les contrôles existants, y compris ISO 27001, avec les exigences NIS2 pour identifier les écarts",
+    "agent": {
+      "score": 8,
+      "justification": "Page FAQ ANSSI sur les obligations NIS2, l’enregistrement des entités, les exigences de cybersécurité, la proportionnalité et le lien avec ISO 27001 ; contenu utile pour la veille réglementaire même si c’est une page explicative.",
+      "obligations": "Appliquer des mesures minimales de gestion des risques en cybersécurité conformes aux articles 20 et 21 de NIS2; faire approuver ces mesures par les organes de direction et assurer leur supervision; s’enregistrer auprès de l’autorité nationale compétente via la plateforme MonEspaceNIS2; étendre les mesures de sécurité à l’ensemble des systèmes d’information de l’entité; adapter les exigences selon le principe de proportionnalité; ne pas considérer ISO 27001 comme une preuve automatique de conformité NIS2",
+      "impact": "Moyen",
+      "entities": "Entités essentielles; entités importantes; entreprises des secteurs NIS2; ETI potentiellement concernées; organes de direction; responsables cybersécurité",
+      "publishedOn": "2026-08-24",
+      "inForceOn": "2026-08-24",
+      "textType": "FAQ institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration availability",
+        "cell": "D14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Authority in charge of registration",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration deadline",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Method of registration",
+        "cell": "I14"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D13"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122641-001-NL",
+    "detected": "2026-08-24",
+    "iso": "NL",
+    "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition dans chaque pays concerné; vérifier l’impact des retards de transposition sur les obligations applicables aux entités du groupe; anticiper les exigences NIS2 en matière de gouvernance, gestion des risques et notification d’incidents; mettre à jour la veille contentieuse et réglementaire",
+    "agent": {
+      "score": 8,
+      "justification": "Page institutionnelle de la Commission sur le NIS Cooperation Group, avec mention de publications et d’actualités liées à la transposition NIS2 et à la coopération NIS. Contient une nouveauté identifiable: renvoi de plusieurs États membres pour défaut de transposition NIS2.",
+      "obligations": "Notifier et adopter les mesures nationales de transposition de la directive NIS2; assurer la conformité du cadre juridique national avec la directive (UE) 2022/2555; préparer les acteurs concernés aux obligations de cybersécurité, de gouvernance et de notification d’incidents prévues par NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
+      "publishedOn": "2026-06-22",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I24"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F23"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G23"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122641-001-IE",
+    "detected": "2026-08-24",
+    "iso": "IE",
+    "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition dans chaque pays concerné; vérifier l’impact des retards de transposition sur les obligations applicables aux entités du groupe; anticiper les exigences NIS2 en matière de gouvernance, gestion des risques et notification d’incidents; mettre à jour la veille contentieuse et réglementaire",
+    "agent": {
+      "score": 8,
+      "justification": "Page institutionnelle de la Commission sur le NIS Cooperation Group, avec mention de publications et d’actualités liées à la transposition NIS2 et à la coopération NIS. Contient une nouveauté identifiable: renvoi de plusieurs États membres pour défaut de transposition NIS2.",
+      "obligations": "Notifier et adopter les mesures nationales de transposition de la directive NIS2; assurer la conformité du cadre juridique national avec la directive (UE) 2022/2555; préparer les acteurs concernés aux obligations de cybersécurité, de gouvernance et de notification d’incidents prévues par NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
+      "publishedOn": "2026-06-22",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I18"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F17"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G17"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122641-001-FR",
+    "detected": "2026-08-24",
+    "iso": "FR",
+    "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition dans chaque pays concerné; vérifier l’impact des retards de transposition sur les obligations applicables aux entités du groupe; anticiper les exigences NIS2 en matière de gouvernance, gestion des risques et notification d’incidents; mettre à jour la veille contentieuse et réglementaire",
+    "agent": {
+      "score": 8,
+      "justification": "Page institutionnelle de la Commission sur le NIS Cooperation Group, avec mention de publications et d’actualités liées à la transposition NIS2 et à la coopération NIS. Contient une nouveauté identifiable: renvoi de plusieurs États membres pour défaut de transposition NIS2.",
+      "obligations": "Notifier et adopter les mesures nationales de transposition de la directive NIS2; assurer la conformité du cadre juridique national avec la directive (UE) 2022/2555; préparer les acteurs concernés aux obligations de cybersécurité, de gouvernance et de notification d’incidents prévues par NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
+      "publishedOn": "2026-06-22",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F13"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260824122641-001-EU",
+    "detected": "2026-08-24",
+    "iso": "EU",
+    "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition dans chaque pays concerné; vérifier l’impact des retards de transposition sur les obligations applicables aux entités du groupe; anticiper les exigences NIS2 en matière de gouvernance, gestion des risques et notification d’incidents; mettre à jour la veille contentieuse et réglementaire",
+    "agent": {
+      "score": 8,
+      "justification": "Page institutionnelle de la Commission sur le NIS Cooperation Group, avec mention de publications et d’actualités liées à la transposition NIS2 et à la coopération NIS. Contient une nouveauté identifiable: renvoi de plusieurs États membres pour défaut de transposition NIS2.",
+      "obligations": "Notifier et adopter les mesures nationales de transposition de la directive NIS2; assurer la conformité du cadre juridique national avec la directive (UE) 2022/2555; préparer les acteurs concernés aux obligations de cybersécurité, de gouvernance et de notification d’incidents prévues par NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
+      "publishedOn": "2026-06-22",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": []
+  },
+  {
+    "id": "REG-20260824122641-001-ES",
+    "detected": "2026-08-24",
+    "iso": "ES",
+    "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition dans chaque pays concerné; vérifier l’impact des retards de transposition sur les obligations applicables aux entités du groupe; anticiper les exigences NIS2 en matière de gouvernance, gestion des risques et notification d’incidents; mettre à jour la veille contentieuse et réglementaire",
+    "agent": {
+      "score": 8,
+      "justification": "Page institutionnelle de la Commission sur le NIS Cooperation Group, avec mention de publications et d’actualités liées à la transposition NIS2 et à la coopération NIS. Contient une nouveauté identifiable: renvoi de plusieurs États membres pour défaut de transposition NIS2.",
+      "obligations": "Notifier et adopter les mesures nationales de transposition de la directive NIS2; assurer la conformité du cadre juridique national avec la directive (UE) 2022/2555; préparer les acteurs concernés aux obligations de cybersécurité, de gouvernance et de notification d’incidents prévues par NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
+      "publishedOn": "2026-06-22",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I31"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F30"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G30"
+      }
+    ]
+  },
+  {
     "id": "REG-20260814115228-006",
     "detected": "2026-08-14",
     "iso": "SE",
