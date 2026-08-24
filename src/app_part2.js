@@ -128,37 +128,37 @@ function renderInbox(){
   const done = queue.filter(q => q.status !== "pending").sort((a, b) => b.detected < a.detected ? -1 : 1);
   const isVal = role === "validator";
   el.innerHTML = `
-  <h1 class="pg">Watch inbox</h1>
-  <p class="pg-sub">Items detected by the automated collection pipeline (official sources, press, community) plus manual inputs from consultants. Nothing is published to country records until a validator approves it.</p>
-  ${isVal ? "" : `<div class="rolenote"><b>Reader mode.</b> Pending items and validation actions are reserved for the NIS 2 core team (switch role to “Validator” in the header to demo the workflow). Below is the log of already-processed items.</div>`}
+  <h1 class="pg">${t("inbox.title")}</h1>
+  <p class="pg-sub">${t("inbox.sub")}</p>
+  ${isVal ? "" : `<div class="rolenote"><b>${t("role.reader")}.</b> ${t("inbox.sub")}</div>`}
   ${isVal ? `
-  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>Pending validation (${pending.length})</h2></div><div class="bd">
+  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("inbox.pending")} (${pending.length})</h2></div><div class="bd">
     <div class="filters">
-      <input type="search" id="qQ" placeholder="Search title or summary…" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
-      <select id="qC" aria-label="Filter by country"><option value="">All countries</option>${inboxCountries(pending).map(o => `<option value="${o.iso}" ${inboxFilter.iso === o.iso ? "selected" : ""}>${esc(o.label)} (${o.n})</option>`).join("")}</select>
-      <select id="qS" aria-label="Minimum AI relevance score"><option value="">Any score</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>Score ≥ ${s}</option>`).join("")}</select>
-      <select id="qD" aria-label="Filter by detection window"><option value="">Any date</option>${[[7, "Last 7 days"], [30, "Last 30 days"], [90, "Last 90 days"]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
-      <select id="qR" aria-label="Filter by source reliability"><option value="">Any source</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>Official only</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>To verify</option></select>
-      <label class="q-toggle"><input type="checkbox" id="qG" ${inboxFilter.group ? "checked" : ""}> Group by country</label>
+      <input type="search" id="qQ" placeholder="${t("inbox.search")}" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
+      <select id="qC" aria-label="Filter by country"><option value="">${t("inbox.allCountries")}</option>${inboxCountries(pending).map(o => `<option value="${o.iso}" ${inboxFilter.iso === o.iso ? "selected" : ""}>${esc(o.label)} (${o.n})</option>`).join("")}</select>
+      <select id="qS" aria-label="Minimum AI relevance score"><option value="">${t("inbox.anyScore")}</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>${t("inbox.score")} ${s}</option>`).join("")}</select>
+      <select id="qD" aria-label="Filter by detection window"><option value="">${t("inbox.anyDate")}</option>${[[7, t("inbox.last7")], [30, t("inbox.last30")], [90, t("inbox.last90")]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
+      <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>${t("inbox.officialOnly")}</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>${t("inbox.toVerify")}</option></select>
+      <label class="q-toggle"><input type="checkbox" id="qG" ${inboxFilter.group ? "checked" : ""}> ${t("inbox.group")}</label>
       <span class="q-note" id="qCount"></span>
-      <button class="btn" id="qReset" type="button">Reset</button>
+      <button class="btn" id="qReset" type="button">${t("inbox.reset")}</button>
     </div>
     <div id="pendList"></div>
   </div></div>
-  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>Add an entry manually</h2></div><div class="bd">
-    <p class="q-note" style="margin-top:0">For information gathered outside the pipeline (sector working groups, peer exchanges…). Manual entries join the pending queue with a “Manual” source flag.</p>
+  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("manual.title")}</h2></div><div class="bd">
+    <p class="q-note" style="margin-top:0">${t("manual.sub")}</p>
     <div class="form-grid">
-      <label>Country<select id="mCty">${COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
-      <label>Date<input type="date" id="mDate" value="${new Date().toISOString().slice(0, 10)}"></label>
-      <label>Source type<select id="mType"><option value="official">Official</option><option value="unofficial">Unofficial — to verify</option><option value="manual" selected>Manual — consultant input</option></select></label>
-      <label>Source name<input id="mSrc" placeholder="e.g. sector working group"></label>
-      <label class="full">Title<input id="mTitle" placeholder="What happened?"></label>
-      <label class="full">Summary / note<input id="mSum" placeholder="Context, implications, confidentiality flag…"></label>
+      <label>${t("manual.country")}<select id="mCty">${COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
+      <label>${t("manual.date")}<input type="date" id="mDate" value="${new Date().toISOString().slice(0, 10)}"></label>
+      <label>${t("manual.srcType")}<select id="mType"><option value="official">${t("manual.optOfficial")}</option><option value="unofficial">${t("manual.optUnofficial")}</option><option value="manual" selected>${t("manual.optManual")}</option></select></label>
+      <label>${t("manual.srcName")}<input id="mSrc" placeholder="${t("manual.phSrc")}"></label>
+      <label class="full">${t("manual.itemTitle")}<input id="mTitle" placeholder="${t("manual.phTitle")}"></label>
+      <label class="full">${t("manual.summary")}<input id="mSum" placeholder="${t("manual.phSum")}"></label>
     </div>
-    <div class="q-actions"><button class="btn primary" id="mAdd">Add to pending queue</button><span class="q-note" id="mMsg"></span></div>
+    <div class="q-actions"><button class="btn primary" id="mAdd">${t("manual.add")}</button><span class="q-note" id="mMsg"></span></div>
   </div></div>` : ""}
-  <div class="card"><div class="cap"><h2>Processed items</h2></div><div class="bd">
-    ${done.length ? done.map(qCard).join("") : `<p style="color:var(--muted)">No processed items yet.</p>`}
+  <div class="card"><div class="cap"><h2>${t("inbox.processed")}</h2></div><div class="bd">
+    ${done.length ? done.map(qCard).join("") : `<p style="color:var(--muted)">${t("inbox.none")}</p>`}
   </div></div>`;
   if (isVal) {
     paintPending(pending);
@@ -171,7 +171,7 @@ function renderInbox(){
     $("#qReset").addEventListener("click", () => { inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true }; renderInbox(); });
     $("#mAdd").addEventListener("click", () => {
       const title = $("#mTitle").value.trim();
-      if (!title) { $("#mMsg").textContent = "A title is required."; return; }
+      if (!title) { $("#mMsg").textContent = t("manual.needTitle"); return; }
       const item = { id: "m" + Date.now(), detected: $("#mDate").value, iso: $("#mCty").value, title,
         summary: $("#mSum").value.trim() || "Manual entry.", source: { name: $("#mSrc").value.trim() || "Consultant input", url: "", type: $("#mType").value }, status: "pending", action: "Review then add to country timeline" };
       queue.push(item); store.manual.push(item); saveStore(); refreshBadge(); renderInbox();
@@ -205,11 +205,11 @@ function paintPending(pending){
     .filter(x => !f.minScore || ((x.agent || {}).score != null && x.agent.score >= +f.minScore))
     .filter(x => !cutoff || x.detected >= cutoff)
     .filter(x => !f.rel || x.source.type === f.rel);
-  $("#qCount").textContent = list.length + " of " + pending.length + " pending";
+  $("#qCount").textContent = t("inbox.count", { n: list.length, total: pending.length });
 
   let html;
   if (!list.length) {
-    html = `<p style="color:var(--muted)">No pending item matches these filters.</p>`;
+    html = `<p style="color:var(--muted)">${t("inbox.noMatch")}</p>`;
   } else if (inboxFilter.group) {
     /* One section per country — the review is done country by country, and within
        a country official sources outrank press, then the AI relevance score. */
@@ -228,10 +228,10 @@ function paintPending(pending){
         const off = items.filter(x => x.source.type === "official").length;
         const cells = items.filter(x => (x.targetCells || []).length).length;
         return `<details class="q-group" ${c ? "open" : ""}>
-          <summary><b>${c ? c.flag + " " + esc(c.name) : "🇪🇺 EU-wide"}</b>
-            <span class="q-note">${items.length} pending · ${off} official · ${items.length - off} to verify${
-              c ? ` · ${cells} with workbook cells`
-                : " · no country record — nothing to update in the workbook"}</span></summary>
+          <summary><b>${c ? c.flag + " " + esc(c.name) : "🇪🇺 " + t("inbox.euGroup")}</b>
+            <span class="q-note">${items.length} ${t("inbox.grpPending")} · ${off} ${t("inbox.grpOfficial")} · ${items.length - off} ${t("inbox.grpVerify")}${
+              c ? ` · ${cells} ${t("inbox.grpCells")}`
+                : ` · ${t("inbox.grpNoRecord")}`}</span></summary>
           ${items.map(qCard).join("")}
         </details>`;
       }).join("");
@@ -241,55 +241,82 @@ function paintPending(pending){
   $("#pendList").innerHTML = html;
   $("#pendList").querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
 }
-/* The cells of the comparative workbook this source would change.
-   This is the validator's actual worklist, so it sits open on the card. */
+/* The cells of the comparative workbook this source would change — collapsed,
+   like the AI panel, so a long queue stays scannable. */
 function cellsPanel(q){
-  const t = q.targetCells;
-  if (!t || !t.length) return "";
+  const cells = q.targetCells;
+  if (!cells || !cells.length) return "";
   const bySheet = {};
-  t.forEach(x => { (bySheet[x.sheet] = bySheet[x.sheet] || []).push(x); });
-  return `<div class="q-cells">
-    <div class="q-cells-h">Cells to update in the comparative workbook <span>${t.length}</span></div>
-    ${Object.keys(bySheet).map(sheet => `<div class="q-cells-row">
-      <b>${esc(sheet)}</b>
-      <span>${bySheet[sheet].map(x => `<code>${esc(x.cell)}</code> ${esc(x.field)}`).join(" · ")}</span>
-    </div>`).join("")}
-    <div class="q-note">Suggested targets — confirm against the source before editing the workbook.</div>
-  </div>`;
+  cells.forEach(x => { (bySheet[x.sheet] = bySheet[x.sheet] || []).push(x); });
+  return `<details class="q-cells">
+    <summary>${t("card.cells")}<span class="n">${cells.length}</span></summary>
+    <div class="q-cells-body">
+      ${Object.keys(bySheet).map(sheet => `<div class="q-cells-row">
+        <b>${esc(sheet)}</b>
+        <span>${bySheet[sheet].map(x => `<code>${esc(x.cell)}</code> ${esc(x.field)}`).join(" · ")}</span>
+      </div>`).join("")}
+      <div class="q-note">${t("card.cellsNote")}</div>
+    </div>
+  </details>`;
 }
-/* Decision support from the watch agent — shown to the validator, never a publication status. */
+/* The agent's reading of the article: a synthesis, then the points it pulled out.
+   Decision support for the validator — never a publication status. */
 function agentPanel(q){
-  const a = q.agent; if (!a) return "";
-  const rows = [
-    ["Relevance", a.score != null ? `${a.score}/10${a.justification ? " — " + esc(a.justification) : ""}` : ""],
-    ["Obligations", a.obligations ? esc(a.obligations) : ""],
-    ["Impact", a.impact ? esc(a.impact) : ""],
-    ["Entities", a.entities ? esc(a.entities) : ""],
-    ["Published", a.publishedOn ? fmtDate(a.publishedOn) : ""],
-    ["In force", a.inForceOn ? fmtDate(a.inForceOn) : ""],
-    /* Advice aimed at a client company — not what the validator acts on, hence last. */
-    ["Client advice", q.clientAdvice ? esc(q.clientAdvice) : ""]
-  ].filter(r => r[1]);
-  if (!rows.length) return "";
-  return `<details class="q-agent"><summary>AI analysis — decision support, not a decision</summary>
-    ${rows.map(r => `<div class="q-agent-row"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("")}
+  const a = q.agent || {};
+  /* The agent packs several obligations into one ";"-separated string. */
+  const points = String(a.obligations || "")
+    .split(/\s*;\s*/).map(s => s.trim()).filter(s => s.length > 3);
+
+  const blocks = [];
+  if (q.summary) blocks.push(`<div class="q-agent-row"><b>${t("card.aiSynthesis")}</b><span>${esc(q.summary)}</span></div>`);
+  if (points.length) blocks.push(`<div class="q-agent-row"><b>${t("card.aiPoints")}</b>
+    <span><ul class="q-points">${points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></span></div>`);
+  if (a.score != null) blocks.push(`<div class="q-agent-row"><b>${t("card.aiRelevance")}</b>
+    <span>${a.score}/10${a.justification ? " — " + esc(a.justification) : ""}</span></div>`);
+  if (a.impact) blocks.push(`<div class="q-agent-row"><b>${t("card.aiImpact")}</b><span>${esc(a.impact)}</span></div>`);
+  if (a.entities) blocks.push(`<div class="q-agent-row"><b>${t("card.aiEntities")}</b><span>${esc(a.entities)}</span></div>`);
+  if (q.clientAdvice) blocks.push(`<div class="q-agent-row"><b>${t("card.aiAdvice")}</b><span>${esc(q.clientAdvice)}</span></div>`);
+  if (!blocks.length) return "";
+
+  return `<details class="q-agent"><summary>${t("card.ai")}</summary>
+    ${blocks.join("")}
+    <div class="q-agent-row"><b></b><span class="q-note">${t("card.aiNote")}</span></div>
   </details>`;
 }
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
+  const a = q.agent || {};
+  /* Date and link first: they are what a validator reaches for to check a source. */
+  const meta = [
+    a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span></span>` : "",
+    `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
+    a.inForceOn ? `<span><span class="k">${t("card.inForce")}</span> <span class="num">${fmtDateL(a.inForceOn)}</span></span>` : "",
+    q.source.url
+      ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`
+      : `<span class="q-note">${t("card.noLink")}</span>`
+  ].filter(Boolean).join("");
+
+  /* The source's own opening lines when we could fetch them; the agent's
+     summary otherwise, labelled so the two are never confused. */
+  const body = q.excerpt
+    ? `<blockquote class="q-excerpt">${esc(q.excerpt)}</blockquote>`
+    : `<blockquote class="q-excerpt">${esc(q.summary)}
+         <span class="src-note">${t("card.excerptFallback")}</span></blockquote>`;
+
   return `<div class="q-card">
-    <div class="q-top"><span class="d num">${fmtDate(q.detected)}</span><b>${c ? c.flag + " " + esc(c.name) : esc(q.iso)}</b>${stChip(q.status)}${srcChip(q.source.type)}</div>
+    <div class="q-top"><b>${c ? c.flag + " " + esc(c.name) : "🇪🇺 " + esc(q.iso)}</b>${stChip(q.status)}${srcChip(q.source.type)}
+      <span class="q-note">${esc(q.source.name)}</span></div>
     <div class="q-title">${esc(q.title)}</div>
-    <div class="q-sum">${esc(q.summary)}</div>
+    <div class="q-meta">${meta}</div>
+    ${body}
     ${cellsPanel(q)}
     ${agentPanel(q)}
-    <div class="q-src">Source: ${q.source.url ? `<a href="${esc(q.source.url)}" target="_blank" rel="noopener">${esc(q.source.name)}</a>` : esc(q.source.name)}${q.action ? ` · <span>Suggested action: ${esc(q.action)}</span>` : ""}</div>
     ${q.status === "pending" && isVal ? `<div class="q-actions">
-      <button class="btn ok" data-act="validate" data-id="${q.id}">Validate &amp; publish</button>
-      <button class="btn danger" data-act="reject" data-id="${q.id}">Reject</button>
-      <span class="q-note">Validating appends the event to the ${c ? esc(c.name) : ""} timeline and updates its record date.</span></div>` : ""}
-    ${q.status !== "pending" ? `<div class="q-note" style="margin-top:8px">${q.status === "validated" ? "Validated" : "Rejected"} by ${esc(q.validatedBy || "NIS 2 core team")} on ${fmtDate(q.validatedOn || q.detected)}${q.rejectReason ? " — " + esc(q.rejectReason) : ""}</div>` : ""}
+      <button class="btn ok" data-act="validate" data-id="${q.id}">${t("card.validate")}</button>
+      <button class="btn danger" data-act="reject" data-id="${q.id}">${t("card.reject")}</button>
+      <span class="q-note">${t("card.validateNote", { country: c ? esc(c.name) : esc(q.iso) })}</span></div>` : ""}
+    ${q.status !== "pending" ? `<div class="q-note" style="margin-top:8px">${q.status === "validated" ? t("card.validatedBy") : t("card.rejectedBy")} ${t("card.by")} ${esc(q.validatedBy || "NIS 2 core team")} ${t("card.on")} ${fmtDateL(q.validatedOn || q.detected)}${q.rejectReason ? " — " + esc(q.rejectReason) : ""}</div>` : ""}
   </div>`;
 }
 function act(action, id){

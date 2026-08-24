@@ -35,6 +35,10 @@ applyValidated();
 let role = store.role || "reader";
 const roleSel = document.getElementById("roleSel");
 roleSel.value = role;
+initLang();
+document.querySelectorAll(".lang-switch button").forEach(b => {
+  b.addEventListener("click", () => setLang(b.dataset.lang));
+});
 roleSel.addEventListener("change", () => { role = roleSel.value; store.role = role; saveStore(); refreshBadge(); renderCurrent(); });
 
 /* ---------- helpers ---------- */

@@ -71,6 +71,20 @@ CELL_ROUTES = [
 MAX_TARGET_CELLS = 6
 
 
+def load_excerpts():
+    """Opening lines of each article, fetched by tools/fetch_excerpts.py.
+
+    A validator should read the source's own words before trusting a generated
+    summary, so the card leads with this. Missing entries fall back to the AI
+    summary at render time.
+    """
+    path = ROOT / "data" / "excerpt-cache.json"
+    if not path.exists():
+        return {}
+    cache = json.loads(path.read_text(encoding="utf-8"))
+    return {url: v["text"] for url, v in cache.items() if v.get("ok") and v.get("text")}
+
+
 def load_cellmap():
     path = ROOT / "data" / "excel-cellmap.json"
     if not path.exists():
@@ -243,6 +257,10 @@ def first(record, *headers):
 def build_items(rows):
     items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0, "with_cells": 0}
     cellmap = load_cellmap()
+    excerpts = load_excerpts()
+    if not excerpts:
+        print("  note: data/excerpt-cache.json absent — pas d'extraits d'article "
+              "(lance tools/fetch_excerpts.py)")
     if cellmap is None:
         print("  note: data/excel-cellmap.json absent — no target cells "
               "(run tools/excel_cellmap.py first)")
@@ -274,6 +292,9 @@ def build_items(rows):
                 "detected": detected,
                 "iso": code,
                 "title": title,
+                # The source's own opening lines; the card leads with these.
+                "excerpt": excerpts.get(first(record, "URL source"), ""),
+                # The agent's written synthesis — shown inside the AI panel.
                 "summary": first(record, "Résumé") or "No summary provided by the agent.",
                 "source": {
                     "name": first(record, "Autorité émettrice", "Source d'origine") or "Watch agent",

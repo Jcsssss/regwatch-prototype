@@ -8,6 +8,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "PL",
     "title": "Entrée en vigueur de la directive NIS2 en Pologne avec échéance au 3 octobre pour les entreprises",
+    "excerpt": "",
     "summary": "L’article indique que la directive NIS2 entre en vigueur et que les entreprises disposent d’un délai jusqu’au 3 octobre pour se mettre en conformité. La nouveauté opérationnelle porte sur l’échéance proche imposée aux entreprises concernées par NIS2 en Pologne.",
     "source": {
       "name": "Union européenne; transposition/communication en Pologne",
@@ -64,6 +65,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "EU",
     "title": "Entrée en vigueur de la directive NIS2 en Pologne avec échéance au 3 octobre pour les entreprises",
+    "excerpt": "",
     "summary": "L’article indique que la directive NIS2 entre en vigueur et que les entreprises disposent d’un délai jusqu’au 3 octobre pour se mettre en conformité. La nouveauté opérationnelle porte sur l’échéance proche imposée aux entreprises concernées par NIS2 en Pologne.",
     "source": {
       "name": "Union européenne; transposition/communication en Pologne",
@@ -89,6 +91,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "PL",
     "title": "Pologne : NIS2 s’applique aux ports, avec un premier délai impératif à moins de deux mois",
+    "excerpt": "",
     "summary": "L’article indique que la directive NIS2 est désormais applicable au secteur portuaire en Pologne et rappelle qu’un premier délai réglementaire contraignant approche rapidement. Le message principal est opérationnel : les acteurs portuaires doivent finaliser leur mise en conformité sans attendre, car l’échéance est proche et concerne des obligations de cybersécurité renforcées.",
     "source": {
       "name": "Autorités polonaises compétentes en cybersécurité et secteur portuaire",
@@ -145,6 +148,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "PL",
     "title": "Pologne : NIS2 dans la branche spatiale, nouvelles obligations et préparation des entités concernées",
+    "excerpt": "",
     "summary": "L'article explique l'extension des obligations liées à NIS2 au secteur spatial en Pologne et précise quelles organisations pourraient être concernées. Il présente les enjeux de préparation à la conformité, notamment l'anticipation des exigences de cybersécurité, la mise en place de mesures de gestion des risques et l'organisation interne nécessaire pour répondre aux nouvelles obligations.",
     "source": {
       "name": "Gov.pl",
@@ -201,6 +205,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "PL",
     "title": "Pologne : transposition de la directive NIS2 dans la loi KSC et nouvelles obligations pour les entreprises",
+    "excerpt": "",
     "summary": "L’article traite de la transposition de la directive NIS2 en Pologne via la loi KSC et met en avant de nouvelles obligations applicables aux entreprises concernées. Il s’agit d’une évolution réglementaire nationale importante pour les organisations opérant en Pologne ou fournissant des services essentiels et importants.",
     "source": {
       "name": "Législateur polonais; loi KSC",
@@ -257,6 +262,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "FR",
     "title": "NIS2 : PME agroalimentaires concernées et preuves à préparer avant l’enregistrement ANSSI en 2026 (France)",
+    "excerpt": "",
     "summary": "Le contenu explique que certaines PME du secteur agroalimentaire peuvent entrer dans le périmètre NIS2 et qu’elles doivent anticiper l’enregistrement auprès de l’ANSSI en 2026. L’accent est mis sur la préparation des éléments de preuve de conformité et sur l’identification préalable des entités concernées afin d’éviter une mise en défaut lors de la procédure d’enregistrement.",
     "source": {
       "name": "ANSSI; Kohen Avocats",
@@ -313,6 +319,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "FR",
     "title": "France - Après le piratage du fisc, réflexion sur une nouvelle unité cyber et sur NIS 2 pour renforcer la réponse aux cyberattaques",
+    "excerpt": "",
     "summary": "L’article évoque la réaction de l’État français après le piratage du fisc et mentionne la piste d’une nouvelle unité cyber ainsi que NIS 2. Le contenu semble relever d’une réflexion politique et organisationnelle sur le renforcement de la lutte contre les cyberattaques, sans détail explicite sur une nouvelle obligation juridique ou un texte d’application précis.",
     "source": {
       "name": "État français; La Tribune",
@@ -359,6 +366,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "BE",
     "title": "Belgique - Nouvelle communication de la CCB à l’attention des entités essentielles NIS2",
+    "excerpt": "",
     "summary": "La CCB Belgium publie une nouvelle communication destinée aux entités essentielles soumises à NIS2. Le contenu signale une mise à jour ou une précision opérationnelle à prendre en compte par les organisations concernées pour leur conformité cybersécurité.",
     "source": {
       "name": "CCB Belgium",
@@ -415,6 +423,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "SE",
     "title": "Suède : exigences de mesures de sécurité pour renforcer la cybersécurité au titre de la cybersäkerhetslagen entrée en vigueur en janvier 2026",
+    "excerpt": "",
     "summary": "L’actualité indique que la cybersäkerhetslagen, entrée en vigueur en janvier 2026, impose aux entreprises et autorités exerçant une activité d’importance vitale de maintenir un haut niveau de cybersécurité. Le message confirme l’existence d’exigences de mesures de sécurité applicables dans le cadre de la transposition suédoise de NIS2.",
     "source": {
       "name": "Myndigheten för civilt försvar",
@@ -471,6 +480,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "LU",
     "title": "Luxembourg - Publication du modèle NIS 2 « Description des mesures en place » par l’ILR",
+    "excerpt": "",
     "summary": "L’ILR publie un guide intitulé « Modèle NIS 2 - Description des mesures en place », daté du 2026-08-03. Le contenu signale la mise à disposition d’un modèle destiné à structurer la description des mesures de cybersécurité en place dans le cadre NIS2 au Luxembourg. La page d’accueil de l’ILR confirme que la cybersécurité/NIS fait partie de ses domaines de supervision.",
     "source": {
       "name": "Institut luxembourgeois de régulation (ILR)",
@@ -527,6 +537,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "NL",
     "title": "Pays-Bas : la direction devient juridiquement responsable de la cybersécurité",
+    "excerpt": "",
     "summary": "L'article indique que la responsabilité finale en matière de cybersécurité est désormais portée par le boardroom. Pour les organisations concernées par NIS2, cela renforce l'obligation de supervision au niveau de la direction, avec un enjeu de pilotage, de validation des mesures de sécurité et de redevabilité en cas de manquement.",
     "source": {
       "name": "Dutch IT Channel",
@@ -583,6 +594,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "DE",
     "title": "Allemagne : mise en œuvre de NIS2, 1,5 million d’entreprises de la chaîne d’approvisionnement concernées",
+    "excerpt": "",
     "summary": "Article d’actualité indiquant que la mise en œuvre de NIS2 en Allemagne pourrait concerner environ 1,5 million d’entreprises de la chaîne d’approvisionnement. Le contenu est journalistique et ne semble pas annoncer un texte normatif précis, mais il signale un impact potentiel très large sur les entreprises indirectement soumises aux exigences de cybersécurité et de gestion des risques fournisseurs.",
     "source": {
       "name": "Non précisée ; article de presse relayant la mise en œuvre de NIS2 en Allemagne",
@@ -629,6 +641,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "AT",
     "title": "Autriche - Mise en œuvre de NIS2 : douze nouvelles règles-cadres nationales entrent en vigueur le 2026-08-08",
+    "excerpt": "",
     "summary": "L’article indique l’entrée en vigueur de douze nouvelles règles-cadres nationales liées à la mise en œuvre de NIS2 en Autriche. La nouveauté porte sur le cadre national d’application, avec un impact direct sur les organisations soumises aux exigences NIS2 dans le pays.",
     "source": {
       "name": "Autorités nationales autrichiennes",
@@ -685,6 +698,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "DE",
     "title": "Allemagne : après 8 mois de NIS2, des difficultés de mise en œuvre sont signalées",
+    "excerpt": "",
     "summary": "L’article indique qu’après huit mois de NIS2, un état des lieux d’eco met en évidence des obstacles à la mise en œuvre en Allemagne. Le contenu souligne des difficultés pratiques de transposition et d’application, ce qui peut retarder la conformité des entités concernées et nécessiter des ajustements organisationnels et juridiques.",
     "source": {
       "name": "eco (association allemande du numérique)",
@@ -741,6 +755,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "DE",
     "title": "Allemagne - BSI publie un guide sur les mesures de gestion des risques NIS2 (article 21)",
+    "excerpt": "In Anbetracht einer angespannten Cybersicherheitslage sollte jedes Unternehmen bereits aus Eigeninteresse geeignete Risikomanagementmaßnahmen umsetzen. Für vom BSIG betroffene Einrichtungen ist dies Pflicht. Die NIS-2-Richtlinie und deren nationale Umsetzung im BSIG zielen darauf ab, das Niveau der Cybersicherheit in den Mitgliedsstaaten deutlich zu verbessern. In Deutschland werden ca. 29.500 Unternehmen direkt den Verpflichtungen des Gesetzes unterliegen. […]",
     "summary": "Le BSI détaille les mesures de gestion des risques exigées par l'article 21 de la directive NIS2 et par le §30 BSIG pour les entités importantes et essentielles en Allemagne. Le guide précise les critères d'appréciation des mesures (adaptées, efficaces, proportionnées), rappelle les objectifs de confidentialité, intégrité et disponibilité, et insiste sur la nécessité de documenter la mise en œuvre pour pouvoir produire des preuves en cas de demande de l'autorité. Il met aussi l'accent sur l'analyse de risques préalable, la prise en compte de la sécurité physique et de la chaîne d'approvisionnement, ainsi que sur des mesures comme l'Incident Response, le BCM, les sauvegardes, la MFA, la gestion des vulnérabilités, les formations et les tests réguliers.",
     "source": {
       "name": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
@@ -797,6 +812,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "NL",
     "title": "Pays-Bas : mandat légal du NCSC étendu par la transposition NIS2 (Cbw) et rappel des obligations de signalement",
+    "excerpt": "The statutory basis for the NCSC's work is laid down in several pieces of legislation: the Network and Information Systems Security Act (Wbni), the European NIS2 Directive/Cybersecurity Act (Cbw), the Network Code on Cybersecurity (NCCS) and, as of September 2026, the Cyber Resilience Act (CRA). These instruments aim to strengthen the digital resilience of the European Union, and therefore of the Netherlands. In doing so, they help limit the impact of cyber incidents and prevent societal disruption. […]",
     "summary": "La page officielle du NCSC-NL précise le cadre légal de ses missions et met en avant la transposition néerlandaise de NIS2 via le Cybersecurity Act (Cbw). Elle indique que le Cbw n’est pas encore en vigueur mais qu’il étendra le mandat du NCSC à davantage de secteurs et d’organisations. Le contenu rappelle aussi que, depuis le 2024-10-17, les organisations relevant de NIS2 peuvent légalement s’appuyer sur les services CSIRT du NCSC, et que les incidents significatifs doivent être signalés au NCSC via le portail central. La page mentionne enfin des échéances à venir pour le CRA, avec une obligation de signalement des fabricants applicable dès le 2026-09-11.",
     "source": {
       "name": "NCSC-NL",
@@ -853,6 +869,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "FR",
     "title": "France - FAQ ANSSI NIS2 : précisions sur les obligations de cybersécurité, l’enregistrement des entités et le périmètre des systèmes d’information",
+    "excerpt": "Quelles sont les exigences en matière de cybersécurité auxquelles les entités régulées à la directive NIS 2 devront se soumettre ? La directive NIS 2 définit dans son article 20 et dans son article 21 des mesures de gestion des risques en matière de cybersécurité minimales à mettre en œuvre par les futures entités essentielles et importantes. […]",
     "summary": "La FAQ ANSSI sur NIS2 précise les obligations minimales de gestion des risques prévues aux articles 20 et 21, l’approbation et la supervision par les organes de direction, l’enregistrement en ligne des entités via MonEspaceNIS2, l’application des mesures à l’ensemble des systèmes d’information de l’entité, ainsi que le principe de proportionnalité entre entités essentielles et importantes. Elle rappelle aussi qu’une certification ISO 27001 ne suffit pas à elle seule à démontrer la conformité à NIS2.",
     "source": {
       "name": "ANSSI",
@@ -909,6 +926,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "NL",
     "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
     "source": {
       "name": "Commission européenne",
@@ -965,6 +983,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "IE",
     "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
     "source": {
       "name": "Commission européenne",
@@ -1021,6 +1040,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "FR",
     "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
     "source": {
       "name": "Commission européenne",
@@ -1077,6 +1097,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "EU",
     "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
     "source": {
       "name": "Commission européenne",
@@ -1102,6 +1123,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-24",
     "iso": "ES",
     "title": "Renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de renvoyer l’Irlande, l’Espagne, la France et les Pays-Bas devant la Cour de justice de l’Union européenne pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette étape marque une montée en pression sur les États membres retardataires et confirme l’exigence de mise en conformité rapide avec le cadre européen de cybersécurité.",
     "source": {
       "name": "Commission européenne",
@@ -1158,6 +1180,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "SE",
     "title": "Suède : exigences de sécurité renforcées pour la cybersécurité des entreprises et autorités de la fonction vitale au titre de la cybersäkerhetslagen",
+    "excerpt": "",
     "summary": "La mise à jour du 26 juin 2026 rappelle que la cybersäkerhetslagen, entrée en vigueur en janvier 2026, impose aux entreprises et autorités exerçant une activité d’importance vitale de maintenir un niveau élevé de cybersécurité. Le contenu signale une exigence réglementaire déjà applicable en Suède, en lien probable avec la transposition de NIS2, et confirme la nécessité de mesures de sécurité adaptées pour les acteurs concernés.",
     "source": {
       "name": "Myndigheten för civilt försvar",
@@ -1214,6 +1237,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "IT",
     "title": "Italie - ACN publie des FAQ sur le monitoring, la vigilance et l’exécution à l’égard des entités NIS",
+    "excerpt": "In un mondo sempre più digitalizzato e connesso, la cybersicurezza è diventata di fondamentale importanza. Per questo è nata la Strategia Nazionale di Cybersicurezza volta a pianificare, coordinare e attuare misure tese a rendereil Paese più sicuro e resiliente. Scopri di più su Strategia Nazionale di Cybersicurezza Assicurare una transizione digitale cyber resiliente della Pubblica Amministrazione (PA) e del tessuto produttivo Rispondere alle minacce, agli incidenti e alle crisi cyber nazionali, attraverso sistemi di monitoraggio, rilevamento, analisi e attivazione di processi che coinvolgano […]",
     "summary": "L’ACN annonce la publication de FAQ sur ses activités de monitoring, de vigilance et d’exécution à l’égard des sujets NIS. La page rappelle que la nouvelle réglementation NIS est en vigueur en Italie depuis le 2024-10-16 et que l’ACN est l’autorité compétente NIS et le point de contact unique. Le contenu ajouté met aussi en avant des mises à jour connexes sur les mesures de sécurité de la supply chain, les SBOM et plusieurs alertes de vulnérabilités, ce qui confirme un renforcement opérationnel de la supervision et des attentes de conformité.",
     "source": {
       "name": "Agenzia per la Cybersicurezza Nazionale (ACN)",
@@ -1270,6 +1294,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "CZ",
     "title": "République tchèque : appel d’offres NÚKIB pour des services d’expertise en soutien à la mise en œuvre de la directive NIS2",
+    "excerpt": "",
     "summary": "Le NÚKIB a publié le 2026-08-07 un appel à offres pour des services d’expertise destinés à soutenir la mise en œuvre de la directive NIS2 en République tchèque. Cette publication s’inscrit dans le cadre des actions nationales d’implémentation de NIS2 et signale une phase opérationnelle de déploiement avec besoin d’appui externe spécialisé.",
     "source": {
       "name": "Národní úřad pro kybernetickou a informační bezpečnost (NÚKIB)",
@@ -1326,6 +1351,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "EU",
     "title": "ENISA publie NIS360 sur la maturité et la criticité des secteurs critiques NIS dans l’UE",
+    "excerpt": "",
     "summary": "La page d’actualités ENISA met en avant la publication NIS360, centrée sur la maturité et la criticité des secteurs critiques relevant de NIS dans l’Union européenne. Cette nouveauté apporte une vision d’ensemble utile pour la priorisation des risques, l’évaluation des secteurs les plus exposés et l’orientation des efforts de conformité et de résilience.",
     "source": {
       "name": "ENISA",
@@ -1351,6 +1377,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "NL",
     "title": "La Commission européenne renvoie l’Irlande, l’Espagne, la France et les Pays-Bas devant la CJUE pour défaut de notification de la transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. La page rappelle aussi les travaux du NIS Cooperation Group et la publication d’un rapport annuel sur les incidents de sécurité NIS 2024.",
     "source": {
       "name": "Commission européenne",
@@ -1407,6 +1434,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "IE",
     "title": "La Commission européenne renvoie l’Irlande, l’Espagne, la France et les Pays-Bas devant la CJUE pour défaut de notification de la transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. La page rappelle aussi les travaux du NIS Cooperation Group et la publication d’un rapport annuel sur les incidents de sécurité NIS 2024.",
     "source": {
       "name": "Commission européenne",
@@ -1463,6 +1491,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "FR",
     "title": "La Commission européenne renvoie l’Irlande, l’Espagne, la France et les Pays-Bas devant la CJUE pour défaut de notification de la transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. La page rappelle aussi les travaux du NIS Cooperation Group et la publication d’un rapport annuel sur les incidents de sécurité NIS 2024.",
     "source": {
       "name": "Commission européenne",
@@ -1519,6 +1548,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "EU",
     "title": "La Commission européenne renvoie l’Irlande, l’Espagne, la France et les Pays-Bas devant la CJUE pour défaut de notification de la transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. La page rappelle aussi les travaux du NIS Cooperation Group et la publication d’un rapport annuel sur les incidents de sécurité NIS 2024.",
     "source": {
       "name": "Commission européenne",
@@ -1544,6 +1574,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "ES",
     "title": "La Commission européenne renvoie l’Irlande, l’Espagne, la France et les Pays-Bas devant la CJUE pour défaut de notification de la transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. La page rappelle aussi les travaux du NIS Cooperation Group et la publication d’un rapport annuel sur les incidents de sécurité NIS 2024.",
     "source": {
       "name": "Commission européenne",
@@ -1600,6 +1631,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "NL",
     "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
     "source": {
       "name": "Commission européenne",
@@ -1656,6 +1688,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "IE",
     "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
     "source": {
       "name": "Commission européenne",
@@ -1712,6 +1745,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "FR",
     "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
     "source": {
       "name": "Commission européenne",
@@ -1768,6 +1802,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "EU",
     "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
     "source": {
       "name": "Commission européenne",
@@ -1793,6 +1828,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-14",
     "iso": "ES",
     "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
     "source": {
       "name": "Commission européenne",
@@ -1849,6 +1885,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "FR",
     "title": "Retard de transposition de la directive NIS2 en France et attente des pouvoirs de supervision de l'Anssi",
+    "excerpt": "",
     "summary": "La France accuse un retard dans la transposition de la directive NIS2, notamment concernant l'attribution à l'ANSSI de ses pouvoirs de gendarme pour superviser les entités essentielles et importantes. Cette situation impacte directement la capacité de l'ANSSI à appliquer les obligations de sécurité et les sanctions prévues par la directive.",
     "source": {
       "name": "Banque des Territoires; ANSSI",
@@ -1905,6 +1942,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "SE",
     "title": "Entrée en vigueur de la Cybersäkerhetslagen suédoise transposant NIS2 en janvier 2026",
+    "excerpt": "",
     "summary": "La Suède a transposé les obligations de la directive NIS2 dans sa 'Cybersäkerhetslagen' entrée en vigueur en janvier 2026. Cette loi impose aux entités essentielles et importantes du secteur public et privé de maintenir un niveau élevé de cybersécurité. Un article du 26 juin 2026 précise les exigences en matière de mesures de sécurité renforcées pour les entreprises et autorités concernées.",
     "source": {
       "name": "Myndigheten för civilt försvar",
@@ -1961,6 +1999,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "LU",
     "title": "Consultations publiques sur les modalités de notification d'incidents et mesures de sécurité pour entités essentielles au Luxembourg - Juillet 2026",
+    "excerpt": "",
     "summary": "L'ILR a lancé deux consultations publiques (du 6 juillet au 6 août 2026) sur les projets de règlements relatifs aux modalités de notification des incidents ayant un impact important et aux mesures de sécurité prises par les entités essentielles. Ces consultations s'inscrivent dans le cadre de la transposition nationale de la directive NIS2 au Luxembourg. Une publication officielle sur la nouvelle loi NIS2 a également été présentée le 6 juillet 2026.",
     "source": {
       "name": "Institut luxembourgeois de régulation (ILR)",
@@ -2017,6 +2056,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "EU",
     "title": "Plan d'action européen 2026 sur la cybersécurité et l'IA : renforcement de la résilience et intégration de l'IA dans les secteurs critiques",
+    "excerpt": "The European Commission has presented an Action Plan on Cybersecurity and Artificial Intelligence to support the safe and responsible use of AI while strengthening Europe's cybersecurity. Artificial intelligence is rapidly transforming the cybersecurity landscape. AI can help detect vulnerabilities, prevent cyberattacks and strengthen the protection of critical infrastructure. At the same time, it can also be exploited by malicious actors to automate attacks, identify weaknesses and carry out cyber operations at unprecedented speed and scale. […]",
     "summary": "Le plan d'action européen 2026 sur la cybersécurité et l'IA vise à promouvoir un usage sûr et responsable de l'IA tout en renforçant la cybersécurité de l'UE. Il s'articule autour de 3 objectifs : 1) Promouvoir l'usage sûr de l'IA avancée ; 2) Renforcer la cybersécurité et la résilience de l'UE ; 3) Scaler les capacités européennes en IA pour la cybersécurité. Il renforce l'application de la directive NIS2, du Cyber Resilience Act, du DORA et de l'AI Act, et prévoit des mesures concrètes comme un Blueprint européen pour l'accès sécurisé aux systèmes d'IA avancés et un EU Grand Challenge sur l'IA pour la cybersécurité.",
     "source": {
       "name": "Commission européenne",
@@ -2042,6 +2082,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "NL",
     "title": "Saisine de la CJUE par la Commission européenne contre les Pays-Bas pour non-respect des délais de transposition de la directive NIS2",
+    "excerpt": "",
     "summary": "La Commission européenne a saisi la CJUE contre les Pays-Bas pour non-respect des délais de transposition de la directive NIS2. Cette action vise à faire respecter les obligations légales des États membres en matière de cybersécurité.",
     "source": {
       "name": "Commission européenne; Cour de justice de l'Union européenne (CJUE)",
@@ -2098,6 +2139,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "EU",
     "title": "Saisine de la CJUE par la Commission européenne contre les Pays-Bas pour non-respect des délais de transposition de la directive NIS2",
+    "excerpt": "",
     "summary": "La Commission européenne a saisi la CJUE contre les Pays-Bas pour non-respect des délais de transposition de la directive NIS2. Cette action vise à faire respecter les obligations légales des États membres en matière de cybersécurité.",
     "source": {
       "name": "Commission européenne; Cour de justice de l'Union européenne (CJUE)",
@@ -2123,6 +2165,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "IE",
     "title": "Référé de la Commission européenne contre l'Irlande pour non-transposition de la directive NIS2 devant la CJUE",
+    "excerpt": "",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l'Union européenne (CJUE) contre l'Irlande pour non-respect des obligations de transposition de la directive NIS2 (UE 2022/2555) dans les délais impartis. Cette procédure de manquement souligne l'importance de l'application effective de la directive au niveau national.",
     "source": {
       "name": "Commission européenne; Cour de justice de l'Union européenne",
@@ -2169,6 +2212,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "EU",
     "title": "Référé de la Commission européenne contre l'Irlande pour non-transposition de la directive NIS2 devant la CJUE",
+    "excerpt": "",
     "summary": "La Commission européenne a décidé de saisir la Cour de justice de l'Union européenne (CJUE) contre l'Irlande pour non-respect des obligations de transposition de la directive NIS2 (UE 2022/2555) dans les délais impartis. Cette procédure de manquement souligne l'importance de l'application effective de la directive au niveau national.",
     "source": {
       "name": "Commission européenne; Cour de justice de l'Union européenne",
@@ -2194,6 +2238,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "EU",
     "title": "NIS2 : saisine de la CJUE par la Commission européenne pour défaut de transposition",
+    "excerpt": "",
     "summary": "La Commission européenne a saisi la Cour de justice de l'Union européenne (CJUE) contre plusieurs États membres, dont la France, pour non-respect des délais de transposition de la directive NIS2. Cette action vise à garantir l'application uniforme de la directive et à éviter des risques de fragmentation du marché unique numérique.",
     "source": {
       "name": "Commission européenne",
@@ -2219,6 +2264,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "FR",
     "title": "Guide ReCyF sur la conduite de la mise en conformité NIS2 avant la version finale du référentiel",
+    "excerpt": "",
     "summary": "Le guide ReCyF propose des méthodes pour anticiper la mise en conformité avec la directive NIS2, avant même la finalisation du référentiel national ou sectoriel. Il cible les organisations souhaitant se préparer activement malgré l'absence de version définitive, en s'appuyant sur des bonnes pratiques et des retours d'expérience.",
     "source": {
       "name": "ReCyF; it social",
@@ -2270,6 +2316,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "PT",
     "title": "Publication du règlement du CNCS (Portugal) concrétisant le régime juridique de la cybersécurité",
+    "excerpt": "",
     "summary": "Le CNCS portugais publie un règlement qui concrétise le régime juridique de la cybersécurité, incluant des obligations de cybersécurité, des entités concernées et des mesures de supervision conformément à la directive NIS2.",
     "source": {
       "name": "CNCS - Centro Nacional de Cibersegurança",
@@ -2326,6 +2373,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "PL",
     "title": "Guide polonais sur la gestion des incidents de sécurité NIS2/KSC2 : preuves et obligations légales 2026",
+    "excerpt": "",
     "summary": "Guide polonais détaillant les bonnes pratiques pour gérer un incident de sécurité sans compromettre les preuves ni violer les obligations légales imposées par la transposition nationale de la directive NIS2 (KSC2). Focus sur les responsabilités des entités concernées et les risques juridiques associés.",
     "source": {
       "name": "Sekurak",
@@ -2382,6 +2430,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "PL",
     "title": "Bonnes pratiques de due diligence pour les fournisseurs d'IA selon DORA et NIS2 - Analyse 2026",
+    "excerpt": "",
     "summary": "L'article propose des bonnes pratiques pour évaluer les fournisseurs d'IA en intégrant les exigences de DORA (Digital Operational Resilience Act) et de NIS2, notamment pour les entités financières et les opérateurs essentiels/importants. Il met l'accent sur la due diligence en cybersécurité et la résilience opérationnelle dans un contexte d'IA.",
     "source": {
       "name": "Miesięcznik Finansowy BANK",
@@ -2428,6 +2477,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "PL",
     "title": "Application de NIS2 au secteur de l'électromobilité en Pologne - Extension à la chaîne d'approvisionnement",
+    "excerpt": "",
     "summary": "L'article souligne que la directive NIS2 s'appliquera à l'ensemble de la chaîne d'approvisionnement du secteur de l'électromobilité en Pologne, imposant des obligations renforcées en matière de cybersécurité pour les acteurs concernés.",
     "source": {
       "name": "ITwiz; autorité polonaise de cybersécurité (NASK) ou ministère compétent",
@@ -2484,6 +2534,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "LU",
     "title": "Jusqu'à 2000 entités concernées par l'échéance NIS2 au Luxembourg - Paperjam News",
+    "excerpt": "",
     "summary": "Un article de presse luxembourgeois indique qu'entre 1500 et 2000 entités pourraient être concernées par l'échéance de conformité à la directive NIS2 au Luxembourg. L'article souligne l'importance de cette échéance pour les secteurs critiques et importants du pays.",
     "source": {
       "name": "Gouvernement du Luxembourg; Autorité nationale compétente en cybersécurité",
@@ -2540,6 +2591,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "CZ",
     "title": "Nouveau guide NÚKIB pour l'utilisation sécurisée de l'IA par les administrations tchèques - Juin 2026",
+    "excerpt": "",
     "summary": "Le NÚKIB a publié en juin 2026 un nouveau guide méthodologique destiné aux administrations tchèques pour les aider à utiliser l'intelligence artificielle de manière sécurisée et pertinente. Ce guide s'inscrit dans le cadre de la transposition nationale de la directive NIS2 et vise à renforcer la cybersécurité des services publics face aux risques liés à l'IA.",
     "source": {
       "name": "Národní úřad pro kybernetickou a informační bezpečnost (NÚKIB)",
@@ -2596,6 +2648,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "FR",
     "title": "Transposition de la directive NIS2 : examen du texte reporté à septembre 2026 en France",
+    "excerpt": "",
     "summary": "L'examen du projet de transposition de la directive NIS2 en droit français, initialement prévu avant l'été 2026, est désormais reporté à septembre 2026. Ce texte vise à renforcer la cybersécurité des entités critiques et importantes au niveau européen.",
     "source": {
       "name": "Gouvernement français",
@@ -2652,6 +2705,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "SE",
     "title": "Krav på säkerhetsåtgärder som stärker cybersäkerheten - Cybersäkerhetslagen suédoise",
+    "excerpt": "",
     "summary": "La Cybersäkerhetslagen suédoise, entrée en vigueur en janvier 2026, impose aux entreprises et autorités opérant dans des secteurs essentiels de maintenir un niveau élevé de cybersécurité. Cette loi transpose les obligations de la directive NIS2 pour les entités essentielles et importantes en Suède.",
     "source": {
       "name": "Myndigheten för civilt försvar (Suède)",
@@ -2708,6 +2762,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "LU",
     "title": "Consultations publiques sur les modalités de notification et critères des incidents NIS2 au Luxembourg",
+    "excerpt": "",
     "summary": "L'ILR a lancé deux consultations publiques (du 6 juillet au 6 août 2026) concernant : 1) les modalités pratiques et procédurales de communication des incidents NIS2 ayant un impact important ; 2) les modalités de notification des mesures de sécurité prises par les entités essentielles. Une publication sur la nouvelle loi NIS2 a également été présentée le 6 juillet 2026.",
     "source": {
       "name": "Institut luxembourgeois de régulation (ILR)",
@@ -2764,6 +2819,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "IT",
     "title": "Transposition de la directive NIS2 en Italie : obligations, autorités compétentes et modalités opérationnelles - ACN",
+    "excerpt": "In un mondo sempre più digitalizzato e connesso, la cybersicurezza è diventata di fondamentale importanza. Per questo è nata la Strategia Nazionale di Cybersicurezza volta a pianificare, coordinare e attuare misure tese a rendereil Paese più sicuro e resiliente. Scopri di più su Strategia Nazionale di Cybersicurezza Assicurare una transizione digitale cyber resiliente della Pubblica Amministrazione (PA) e del tessuto produttivo Rispondere alle minacce, agli incidenti e alle crisi cyber nazionali, attraverso sistemi di monitoraggio, rilevamento, analisi e attivazione di processi che coinvolgano […]",
     "summary": "L'ACN est l'autorité nationale italienne compétente pour la transposition de la directive NIS2 en Italie, entrée en vigueur le 16 octobre 2024. Elle agit comme point de contact unique et supervise les obligations de registration, la notification des incidents, et la qualification des infrastructures cloud pour la PA. Des mises à jour récentes (juin-juillet 2026) incluent des lignes directrices sur les fonctions cryptographiques et des alertes CSIRT concernant des vulnérabilités critiques (BeyondTrust, WatchGuard, Adobe, SAP, etc.).",
     "source": {
       "name": "Agenzia per la Cybersicurezza Nazionale (ACN)",
@@ -2820,6 +2876,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "EU",
     "title": "Projet UE de soutien à l'implémentation de NIS2 en République tchèque; Publication d'un manuel pour entités à obligations réduites; Simplification du processus de notification des incidents; Mise à jour des obligations légales NIS2",
+    "excerpt": "",
     "summary": "La République tchèque publie plusieurs mesures clés pour l'implémentation de NIS2 : un projet UE financé pour soutenir l'adoption de NIS2; un manuel dédié aux entités soumises à des obligations réduites; une simplification du processus de notification des incidents via un formulaire unique; et des mises à jour légales majeures incluant un nouveau guide sur les services cloud et des clarifications pour les institutions financières. Ces évolutions visent à renforcer la conformité et l'efficacité opérationnelle des entités concernées.",
     "source": {
       "name": "Národní úřad pro kybernetickou a informační bezpečnost (NÚKIB); Gouvernement tchèque; Union européenne",
@@ -2845,6 +2902,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "CZ",
     "title": "Projet UE de soutien à l'implémentation de NIS2 en République tchèque; Publication d'un manuel pour entités à obligations réduites; Simplification du processus de notification des incidents; Mise à jour des obligations légales NIS2",
+    "excerpt": "",
     "summary": "La République tchèque publie plusieurs mesures clés pour l'implémentation de NIS2 : un projet UE financé pour soutenir l'adoption de NIS2; un manuel dédié aux entités soumises à des obligations réduites; une simplification du processus de notification des incidents via un formulaire unique; et des mises à jour légales majeures incluant un nouveau guide sur les services cloud et des clarifications pour les institutions financières. Ces évolutions visent à renforcer la conformité et l'efficacité opérationnelle des entités concernées.",
     "source": {
       "name": "Národní úřad pro kybernetickou a informační bezpečnost (NÚKIB); Gouvernement tchèque; Union européenne",
@@ -2901,6 +2959,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "PL",
     "title": "Nowelizacja ustawy o krajowym systemie cyberbezpieczeństwa (KSC) - transposition nationale de la directive NIS2 en Pologne",
+    "excerpt": "23.08.2026 Transkrypcja zagranicznych aktów małżeństwa - nowe zasady wchodzą w życie 21.08.2026 Sprawdź zasięg internetu w swoim domu - bezpłatny serwis dla każdego 19.08.2026 Zofia i Nikodem - najpopularniejsze imiona nadawane dzieciom w pierwszej połowie 2026 roku 17.08.2026 Chroń swoje dane z mObywatelem. Zastrzeż numer PESEL w aplikacji Projekty realizowane przy wsparciu Unii Europejskiej Krzysztof Gawkowski Wicepremier, Minister cyfryzacji, Pełnomocnik Rządu ds. Cyberbezpieczeństwa",
     "summary": "Amendement de la loi polonaise sur le système national de cybersécurité (KSC) publié le 07.07.2026, alignant le cadre national sur les exigences de la directive NIS2. L'amendement ouvre l'accès à la plateforme S46 Cyber Hub via le registre KSC, renforçant ainsi les capacités de cybersécurité du pays.",
     "source": {
       "name": "Ministerstwo Cyfryzacji (Ministère de la Digitalisation polonais)",
@@ -2957,6 +3016,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "ES",
     "title": "Retard de l'Espagne dans la transposition de la directive NIS2 et ses implications",
+    "excerpt": "",
     "summary": "L'Espagne accuse un retard significatif dans la transposition de la directive NIS2 dans son droit national, ce qui pourrait entraîner des implications réglementaires et opérationnelles pour les entités concernées par la cybersécurité.",
     "source": {
       "name": "Asociación de Internautas",
@@ -3013,6 +3073,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "DE",
     "title": "NIS2-Compliance: Première évaluation en Allemagne - Fin des contrôles le 30 juin 2026 avec identification de lacunes majeures",
+    "excerpt": "",
     "summary": "L'Allemagne finalise les premières évaluations de conformité NIS2 avec une échéance au 30 juin 2026. Les résultats révèlent des lacunes significatives dans la mise en œuvre des mesures de cybersécurité par les entités concernées, soulignant des risques accrus pour les infrastructures critiques.",
     "source": {
       "name": "Autorité fédérale allemande de cybersécurité (BSI - Bundesamt für Sicherheit in der Informationstechnik)",
@@ -3069,6 +3130,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "DE",
     "title": "NIS2-Richtlinie: 29.000 Unternehmen müssen ab 2026 Risikoanalysen vorlegen",
+    "excerpt": "",
     "summary": "La directive NIS2 impose à 29 000 entreprises en Allemagne de fournir des analyses de risques détaillées à partir de 2026, marquant une étape concrète de sa transposition nationale.",
     "source": {
       "name": "Börse Express",
@@ -3125,6 +3187,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "EU",
     "title": "Cinq obstacles majeurs à la mise en œuvre de la directive NIS2 pour les entreprises en Allemagne",
+    "excerpt": "",
     "summary": "L'article identifie cinq obstacles concrets rencontrés par les entreprises allemandes dans la mise en œuvre de la directive NIS2. Il aborde des points critiques tels que les lacunes en matière de gouvernance, les défis liés à la gestion des risques, les difficultés de reporting, les enjeux de coopération entre acteurs publics et privés, et les problèmes de conformité transfrontalière.",
     "source": {
       "name": "Computer Weekly",
@@ -3150,6 +3213,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "DE",
     "title": "Cinq obstacles majeurs à la mise en œuvre de la directive NIS2 pour les entreprises en Allemagne",
+    "excerpt": "",
     "summary": "L'article identifie cinq obstacles concrets rencontrés par les entreprises allemandes dans la mise en œuvre de la directive NIS2. Il aborde des points critiques tels que les lacunes en matière de gouvernance, les défis liés à la gestion des risques, les difficultés de reporting, les enjeux de coopération entre acteurs publics et privés, et les problèmes de conformité transfrontalière.",
     "source": {
       "name": "Computer Weekly",
@@ -3206,6 +3270,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "DE",
     "title": "NIS2-Umsetzung: 29.000 entreprises doivent agir avant le 31 juillet 2026 en Allemagne",
+    "excerpt": "",
     "summary": "L'Allemagne impose à 29 000 entreprises de se conformer aux exigences de la directive NIS2 avant le 31 juillet 2026. Cette échéance marque une étape critique pour la transposition de la directive dans le droit national allemand.",
     "source": {
       "name": "Réglementation allemande (transposition de la directive NIS2)",
@@ -3262,6 +3327,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "EU",
     "title": "Difficultés de mise en œuvre de la NIS2 dans le secteur automobile en Allemagne",
+    "excerpt": "",
     "summary": "Analyse des obstacles rencontrés par l'industrie automobile allemande dans l'application des exigences NIS2, notamment en termes de gestion des risques, de reporting et de conformité réglementaire. L'article met en lumière les spécificités du secteur (chaîne d'approvisionnement complexe, interdépendance des systèmes) et les lacunes identifiées dans les transpositions nationales.",
     "source": {
       "name": "Springer Professional",
@@ -3287,6 +3353,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "DE",
     "title": "Difficultés de mise en œuvre de la NIS2 dans le secteur automobile en Allemagne",
+    "excerpt": "",
     "summary": "Analyse des obstacles rencontrés par l'industrie automobile allemande dans l'application des exigences NIS2, notamment en termes de gestion des risques, de reporting et de conformité réglementaire. L'article met en lumière les spécificités du secteur (chaîne d'approvisionnement complexe, interdépendance des systèmes) et les lacunes identifiées dans les transpositions nationales.",
     "source": {
       "name": "Springer Professional",
@@ -3343,6 +3410,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "FR",
     "title": "Transposition de la directive NIS 2 en France : 15 000 entités concernées d'ici 2026",
+    "excerpt": "",
     "summary": "La France annonce la transposition de la directive NIS 2 avec un objectif de 15 000 entités concernées d'ici 2026. Cette directive élargit le périmètre des entités soumises à des obligations renforcées en cybersécurité, incluant de nouveaux secteurs et des critères de taille étendus.",
     "source": {
       "name": "Gouvernement français; transposition directive UE 2022/2555 (NIS 2)",
@@ -3399,6 +3467,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "EU",
     "title": "Transposition de la directive NIS 2 en France : 15 000 entités concernées d'ici 2026",
+    "excerpt": "",
     "summary": "La France annonce la transposition de la directive NIS 2 avec un objectif de 15 000 entités concernées d'ici 2026. Cette directive élargit le périmètre des entités soumises à des obligations renforcées en cybersécurité, incluant de nouveaux secteurs et des critères de taille étendus.",
     "source": {
       "name": "Gouvernement français; transposition directive UE 2022/2555 (NIS 2)",
@@ -3424,6 +3493,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "DE",
     "title": "BSI - Obligations de transposition nationale de NIS2 pour les entreprises allemandes (BSIG)",
+    "excerpt": "Die gesetzliche Registrierungsfrist ist bereits abgelaufen. Von NIS-2 betroffen und noch nicht registriert? Dann jetzt umgehend im BSI-Portal registrieren! Sie wollen wissen, ob Ihre Einrichtung von NIS-2 betroffen ist? HIER GEHT ES ZUR NIS-2-BETROFFENHEITSPRÜFUNG Beantragen Sie Ihr ELSTER -Organisationszertifikat beim digitalen Dienst \"Mein Unternehmenskonto\". Beantragen Sie Ihr ELSTER -Organisationszertifikat beim digitalen Dienst \"Mein Unternehmenskonto\". Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal . […]",
     "summary": "Le BSI allemand détaille les obligations de transposition nationale de la directive NIS2 via le BSIG, incluant une procédure de registration obligatoire des entités régulées (délai dépassé mais encore applicable pour les retardataires). Fournit des guides pratiques (checklists, FAQ, roadmap en 6 phases), des ressources d'accompagnement (infopakete, vidéos, formations pour la direction) et des références légales (§ 33 Absatz 6 BSIG). Met l'accent sur la responsabilité de la direction dans la mise en œuvre des mesures de gestion des risques cyber et la formation obligatoire.",
     "source": {
       "name": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
@@ -3480,6 +3550,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "NL",
     "title": "Obligation d'utiliser STIX 2.1 et TAXII 2.1 pour les entités publiques néerlandaises à partir du 1er juillet 2026",
+    "excerpt": "Vanaf 1 juli 2026 zijn de standaarden STIX en TAXII versie 2.1 toegevoegd aan de 'Pas toe of leg uit'-lijst. Dit betekent dat Nederlandse gemeenten, provincies, rijk, waterschappen en alle uitvoeringsorganisaties verplicht zijn om deze nieuwe versies toe te passen. Voor alle andere organisaties in de publieke sector geldt een dringend advies om STIX en TAXII versie 2.1 toe te passen. Ook is het functioneel toepassingsgebied bijgewerkt. […]",
     "summary": "Le NCSC néerlandais impose l'utilisation des versions 2.1 de STIX (Structured Threat Information eXpression) et TAXII (Trusted Automated eXchange of Indicator Information) pour toutes les entités publiques (communes, provinces, État, gestionnaires de l'eau, organismes publics) à partir du 1er juillet 2026. Ces normes sont ajoutées à la liste 'Pas toe of leg uit' (appliquer ou expliquer) et deviennent obligatoires. Les autres organisations du secteur public sont fortement encouragées à les adopter. Le périmètre fonctionnel a également été mis à jour.",
     "source": {
       "name": "NCSC (National Cyber Security Centre) Pays-Bas",
@@ -3536,6 +3607,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "FR",
     "title": "Accord de coopération ANSSI-ACPR-Banque de France pour la supervision des entités financières sous NIS2",
+    "excerpt": "Les entités du secteur financier sont des cibles privilégiées en raison de la sensibilité des données qu’elles gèrent et des transactions financières qu’elles réalisent. Afin de soutenir le secteur face à la menace cyber, l’Agence nationale de la sécurité des systèmes d’information (ANSSI), l’Autorité de contrôle prudentiel et de résolution (ACPR) et la Banque de France ont signé, le 3 juillet 2026, un accord qui vise à renforcer l’échange d’informations et la coopération dans le respect de la directive NIS 2 et de la règlementation DORA. […]",
     "summary": "Accord tripartite entre l'ANSSI, l'ACPR et la Banque de France visant à renforcer la supervision des entités financières soumises à la directive NIS2. Cet accord formalise la coordination des contrôles, le partage d'informations et les modalités de réponse aux incidents cyber pour les acteurs du secteur financier.",
     "source": {
       "name": "ANSSI; ACPR; Banque de France",
@@ -3592,6 +3664,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "SE",
     "title": "Cybersäkerhetslagen suédoise : exigences renforcées en cybersécurité pour les secteurs essentiels alignées sur NIS2",
+    "excerpt": "",
     "summary": "La Cybersäkerhetslagen suédoise, entrée en vigueur en janvier 2026, impose des exigences strictes en matière de cybersécurité aux entreprises et autorités opérant dans les secteurs essentiels. Ces obligations sont alignées sur les principes de la directive NIS2 de l'UE, renforçant ainsi la résilience des infrastructures critiques contre les cybermenaces. La loi s'applique à tous les acteurs des secteurs essentiels et vise à garantir un niveau élevé de protection des systèmes d'information.",
     "source": {
       "name": "Myndigheten för civilt försvar (MSB);Riksdag (Parlement suédois)",
@@ -3648,6 +3721,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "LU",
     "title": "Entrée en vigueur de la Loi luxembourgeoise du 5 mai 2026 transposant NIS 2",
+    "excerpt": "",
     "summary": "La Loi luxembourgeoise du 5 mai 2026, entrée en vigueur le 15 mai 2026, transpose la directive européenne NIS2. Elle impose des mesures renforcées de cybersécurité aux entités critiques et importantes dans les secteurs définis par NIS2, avec des obligations de reporting, de gestion des risques et de résilience. L'ILR est l'autorité nationale compétente pour la supervision et l'application de cette loi.",
     "source": {
       "name": "ILR (Institut Luxembourgeois de Régulation); Parlement luxembourgeois",
@@ -3704,6 +3778,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "IT",
     "title": "Transposition italienne de la directive NIS2 : obligations, supervision et rôle de l'ACN",
+    "excerpt": "In un mondo sempre più digitalizzato e connesso, la cybersicurezza è diventata di fondamentale importanza. Per questo è nata la Strategia Nazionale di Cybersicurezza volta a pianificare, coordinare e attuare misure tese a rendereil Paese più sicuro e resiliente. Scopri di più su Strategia Nazionale di Cybersicurezza Assicurare una transizione digitale cyber resiliente della Pubblica Amministrazione (PA) e del tessuto produttivo Rispondere alle minacce, agli incidenti e alle crisi cyber nazionali, attraverso sistemi di monitoraggio, rilevamento, analisi e attivazione di processi che coinvolgano […]",
     "summary": "L'ACN est l'autorité compétente NIS en Italie depuis le 16 octobre 2024 pour la transposition de la directive NIS2. Elle supervise les entités essentielles et importantes, définit les modalités de notification d'incidents, catégorise les services, et assure la conformité au Cybersecurity Act (UE 2019/881). L'ACN est également le point de contact unique et le Centre national de coordination (NCC) pour l'Italie. Elle émet des alertes de vulnérabilités critiques et supervise les certifications de cybersécurité via l'OCSI.",
     "source": {
       "name": "Agenzia per la Cybersicurezza Nazionale - ACN; Autorité nationale italienne pour la cybersécurité",
@@ -3760,6 +3835,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "CZ",
     "title": "Transposition nationale tchèque de la directive NIS2 : guides méthodologiques, simplification des notifications et projets UE",
+    "excerpt": "",
     "summary": "La Tchéquie a transposé la directive NIS2 via une nouvelle loi nationale sur la cybersécurité, publiée en 2025 et effective depuis 2026. NÚKIB a publié des guides méthodologiques (manuel pour entités sous régime allégé, guide cloud computing) et simplifié les procédures de notification d'incidents (un seul formulaire pour les services régulés). Un projet financé par l'UE (National Coordination Centre 2.0) vise à renforcer l'implémentation de NIS2. La coopération internationale est renforcée (Italie, Estonie, Japon, Canada, etc.) et des alertes sur les menaces (APT28, Salt Typhoon) sont publiées.",
     "source": {
       "name": "Národní úřad pro kybernetickou a informační bezpečnost (NÚKIB); Autorité nationale tchèque pour la cybersécurité et la sécurité de l'information",
@@ -3816,6 +3892,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "State of the Digital Decade 2026 - Closing structural gaps and mobilising investments for 2030 and beyond",
+    "excerpt": "The State of the Digital Decade 2026 report assesses the EU’s progress toward the 2030 Digital Decade targets. The 2026 report highlights that, while the foundations of the EU’s digital transformation are in place, the scale, speed and coordination of implementation need to be significantly reinforced. The EU has advanced in several areas, including connectivity, business digitalisation and the deployment of common digital infrastructures. […]",
     "summary": "Le rapport 'State of the Digital Decade 2026' souligne des lacunes structurelles majeures dans la transformation numérique de l'UE, notamment en cybersécurité, capacités de calcul, compétences numériques et déploiement des infrastructures. Il appelle les États membres à renforcer la coordination et à intégrer des mesures concrètes dans leurs plans nationaux d'ici décembre 2026, en alignement avec le prochain Cadre Financier Pluriannuel et le Fonds de Compétitivité de l'UE. Le rapport met en garde contre les risques de discontinuité des investissements liés à la phase progressive du Fonds de Relance et de Résilience.",
     "source": {
       "name": "Commission européenne",
@@ -3841,6 +3918,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "NL",
     "title": "Cyberbeveiligingswet/NIS2: van bestuursverantwoordelijkheid naar contractuelle borging - Inkoperscafe",
+    "excerpt": "",
     "summary": "Analyse de la transposition de la directive NIS2 en Belgique et aux Pays-Bas, mettant en avant les responsabilités de gouvernance des dirigeants et les obligations de sécurisation contractuelle dans les chaînes d'approvisionnement.",
     "source": {
       "name": "Inkoperscafe",
@@ -3897,6 +3975,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "BE",
     "title": "Cyberbeveiligingswet/NIS2: van bestuursverantwoordelijkheid naar contractuelle borging - Inkoperscafe",
+    "excerpt": "",
     "summary": "Analyse de la transposition de la directive NIS2 en Belgique et aux Pays-Bas, mettant en avant les responsabilités de gouvernance des dirigeants et les obligations de sécurisation contractuelle dans les chaînes d'approvisionnement.",
     "source": {
       "name": "Inkoperscafe",
@@ -3953,6 +4032,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "NL",
     "title": "Vote de l'Eerste Kamer le 7 juillet 2026 sur la transposition néerlandaise de la directive NIS2 (Cyberbeveiligingswet et Wet weerbaarheid kritieke entiteiten)",
+    "excerpt": "",
     "summary": "Le Parlement néerlandais (Eerste Kamer) doit voter le 7 juillet 2026 sur deux projets de loi majeurs : la Cyberbeveiligingswet (loi sur la cybersécurité) et la Wet weerbaarheid kritieke entiteiten (loi sur la résilience des entités critiques). Ces textes transposent la directive européenne NIS2 dans le droit néerlandais et introduisent des obligations renforcées pour les opérateurs de services essentiels et les entités importantes.",
     "source": {
       "name": "Eerste Kamer (Parlement néerlandais)",
@@ -4009,6 +4089,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "Retard de l'Espagne dans la transposition de la directive NIS2 : risques juridiques, gouvernance et responsabilité potentielle de l'État",
+    "excerpt": "",
     "summary": "L'Espagne accuse un retard dans la transposition de la directive NIS2, exposant le pays à des risques juridiques et à une possible responsabilité de l'État. L'analyse aborde les implications pour la gouvernance et l'efficacité du droit de l'Union.",
     "source": {
       "name": "Law&Trends",
@@ -4034,6 +4115,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "ES",
     "title": "Retard de l'Espagne dans la transposition de la directive NIS2 : risques juridiques, gouvernance et responsabilité potentielle de l'État",
+    "excerpt": "",
     "summary": "L'Espagne accuse un retard dans la transposition de la directive NIS2, exposant le pays à des risques juridiques et à une possible responsabilité de l'État. L'analyse aborde les implications pour la gouvernance et l'efficacité du droit de l'Union.",
     "source": {
       "name": "Law&Trends",
@@ -4075,6 +4157,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "NIS2-Frist: 29.000 entreprises doivent s'enregistrer avant le 31 juillet en Allemagne",
+    "excerpt": "",
     "summary": "L'Allemagne impose un enregistrement obligatoire avant le 31 juillet 2026 pour 29.000 entreprises concernées par la transposition nationale de la directive NIS2. Cet enregistrement est une étape clé pour le respect des obligations de cybersécurité et l'identification des entités soumises.",
     "source": {
       "name": "Börse Express",
@@ -4131,6 +4214,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "NIS2-Richtlinie: 29.500 Firmen müssen Cybersicherheit neu regeln",
+    "excerpt": "",
     "summary": "L'Allemagne transpose la directive NIS2 avec une obligation pour 29.500 entreprises de revoir leurs mesures de cybersécurité. Cette transposition nationale introduit des exigences renforcées et des contrôles stricts pour les entités concernées.",
     "source": {
       "name": "Allemagne (transposition de la directive NIS2)",
@@ -4187,6 +4271,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "Transposition de la NIS2 en Allemagne : plus de 29 000 entreprises concernées d'ici 2026",
+    "excerpt": "",
     "summary": "L'Allemagne prépare la transposition de la directive NIS2 avec une échéance fixée à 2026. Plus de 29 000 entreprises, couvrant des secteurs critiques, seront soumises à de nouvelles obligations strictes en matière de cybersécurité. Les entités essentielles et importantes devront renforcer leurs mesures de protection et se conformer à des exigences renforcées.",
     "source": {
       "name": "Gouvernement allemand",
@@ -4243,6 +4328,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "NIS2-Richtlinie: 30.000 deutsche Unternehmen müssen bis Juni handeln",
+    "excerpt": "",
     "summary": "L'Allemagne doit transposer la directive NIS2 d'ici juin 2026, imposant à environ 30 000 entreprises de se conformer aux nouvelles obligations de classification des entités et de cybersécurité. Les entreprises concernées doivent agir rapidement pour éviter des sanctions.",
     "source": {
       "name": "Gouvernement allemand; Parlement européen",
@@ -4268,6 +4354,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "NIS2-Richtlinie: 30.000 deutsche Unternehmen müssen bis Juni handeln",
+    "excerpt": "",
     "summary": "L'Allemagne doit transposer la directive NIS2 d'ici juin 2026, imposant à environ 30 000 entreprises de se conformer aux nouvelles obligations de classification des entités et de cybersécurité. Les entreprises concernées doivent agir rapidement pour éviter des sanctions.",
     "source": {
       "name": "Gouvernement allemand; Parlement européen",
@@ -4324,6 +4411,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "NIS2 dans le secteur de l'eau : la cybersécurité devient une mission stratégique de direction - RÖDL",
+    "excerpt": "",
     "summary": "L'article souligne que la directive NIS2 impose aux acteurs du secteur de l'eau une transformation de la cybersécurité en une priorité stratégique de direction. Les entreprises doivent désormais intégrer la sécurité des systèmes d'information dans leur gouvernance globale.",
     "source": {
       "name": "RÖDL;Union Européenne",
@@ -4349,6 +4437,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "NIS2 dans le secteur de l'eau : la cybersécurité devient une mission stratégique de direction - RÖDL",
+    "excerpt": "",
     "summary": "L'article souligne que la directive NIS2 impose aux acteurs du secteur de l'eau une transformation de la cybersécurité en une priorité stratégique de direction. Les entreprises doivent désormais intégrer la sécurité des systèmes d'information dans leur gouvernance globale.",
     "source": {
       "name": "RÖDL;Union Européenne",
@@ -4405,6 +4494,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "NIS2-Gesetz: BSI lance des séminaires gratuits pour la mise en œuvre en Allemagne",
+    "excerpt": "",
     "summary": "Le BSI allemand lance des séminaires gratuits pour accompagner les entités concernées par la transposition nationale de la directive NIS2 (NIS2-Gesetz) dans la mise en œuvre opérationnelle des exigences réglementaires.",
     "source": {
       "name": "BSI (Bundesamt für Sicherheit in der Informationstechnik)",
@@ -4461,6 +4551,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "Nouveau guide européen pour l'application des mesures de sécurité NIS2 - CCB Belgium",
+    "excerpt": "",
     "summary": "Le CCB Belgium publie un nouveau guide européen visant à aider les organisations à appliquer les mesures de sécurité requises par la directive NIS2. Ce document fournit des orientations pratiques pour la mise en œuvre des obligations de cybersécurité.",
     "source": {
       "name": "CCB Belgium",
@@ -4486,6 +4577,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "BE",
     "title": "Nouveau guide européen pour l'application des mesures de sécurité NIS2 - CCB Belgium",
+    "excerpt": "",
     "summary": "Le CCB Belgium publie un nouveau guide européen visant à aider les organisations à appliquer les mesures de sécurité requises par la directive NIS2. Ce document fournit des orientations pratiques pour la mise en œuvre des obligations de cybersécurité.",
     "source": {
       "name": "CCB Belgium",
@@ -4542,6 +4634,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "BE",
     "title": "From directive to reality: implementing NIS2 across complex organisations - CCB Belgium",
+    "excerpt": "",
     "summary": "Guide publié par le Centre pour la Cybersécurité Belgique (CCB) visant à accompagner les organisations dans la transposition concrète de la directive NIS2, notamment pour les structures organisationnelles complexes.",
     "source": {
       "name": "CCB Belgium",
@@ -4598,6 +4691,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "PL",
     "title": "Transposition de la directive NIS2 en Pologne : nouvelles obligations cyber pour les entrepreneurs",
+    "excerpt": "",
     "summary": "La Pologne a transposé la directive NIS2 en adoptant une nouvelle loi ou décret imposant des obligations cyber renforcées pour les entrepreneurs, notamment en matière de gestion des risques, de reporting des incidents et de conformité aux exigences de sécurité. Cette transposition introduit des sanctions en cas de non-respect.",
     "source": {
       "name": "Gouvernement polonais",
@@ -4654,6 +4748,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "NIS2 : le retard de la France pourrait la mener à une sanction",
+    "excerpt": "",
     "summary": "La France accuse un retard dans la transposition de la directive NIS2, ce qui pourrait entraîner des sanctions de la part de l'Union Européenne. Ce retard impacte directement les obligations nationales en matière de cybersécurité et expose le pays à des mesures coercitives.",
     "source": {
       "name": "Union Européenne; Gouvernement français",
@@ -4710,6 +4805,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "NIS2 : le retard de la France pourrait la mener à une sanction",
+    "excerpt": "",
     "summary": "La France accuse un retard dans la transposition de la directive NIS2, ce qui pourrait entraîner des sanctions de la part de l'Union Européenne. Ce retard impacte directement les obligations nationales en matière de cybersécurité et expose le pays à des mesures coercitives.",
     "source": {
       "name": "Union Européenne; Gouvernement français",
@@ -4735,6 +4831,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "Cybersécurité : la transposition de NIS2 continue de traîner des pieds",
+    "excerpt": "",
     "summary": "La transposition de la directive NIS2 en droit national français et européen accuse des retards significatifs, ce qui pourrait impacter la mise en conformité des entités concernées et leur préparation aux obligations renforcées.",
     "source": {
       "name": "next.ink",
@@ -4791,6 +4888,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "Cybersécurité : la transposition de NIS2 continue de traîner des pieds",
+    "excerpt": "",
     "summary": "La transposition de la directive NIS2 en droit national français et européen accuse des retards significatifs, ce qui pourrait impacter la mise en conformité des entités concernées et leur préparation aux obligations renforcées.",
     "source": {
       "name": "next.ink",
@@ -4816,6 +4914,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "BSI - Obligations de transposition nationale de la directive NIS2 (BSIG) pour les entreprises allemandes",
+    "excerpt": "Die gesetzliche Registrierungsfrist ist bereits abgelaufen. Von NIS-2 betroffen und noch nicht registriert? Dann jetzt umgehend im BSI-Portal registrieren! Sie wollen wissen, ob Ihre Einrichtung von NIS-2 betroffen ist? HIER GEHT ES ZUR NIS-2-BETROFFENHEITSPRÜFUNG Beantragen Sie Ihr ELSTER -Organisationszertifikat beim digitalen Dienst \"Mein Unternehmenskonto\". Beantragen Sie Ihr ELSTER -Organisationszertifikat beim digitalen Dienst \"Mein Unternehmenskonto\". Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal . […]",
     "summary": "Le BSI allemand détaille les obligations de transposition nationale de la directive NIS2 (BSIG) pour les entreprises allemandes concernées. La procédure de registration des entités régulées est obligatoire mais la date limite est dépassée. Le guide propose des ressources pratiques (#nis2know-Roadmap, checklists, FAQ, infopackets) pour aider les entreprises à se conformer aux exigences de cybersécurité (gestion des risques, formation des dirigeants, sécurisation des chaînes d'approvisionnement). Le BSI souligne l'importance de la cybersécurité comme responsabilité de la direction.",
     "source": {
       "name": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
@@ -4841,6 +4940,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "BSI - Obligations de transposition nationale de la directive NIS2 (BSIG) pour les entreprises allemandes",
+    "excerpt": "Die gesetzliche Registrierungsfrist ist bereits abgelaufen. Von NIS-2 betroffen und noch nicht registriert? Dann jetzt umgehend im BSI-Portal registrieren! Sie wollen wissen, ob Ihre Einrichtung von NIS-2 betroffen ist? HIER GEHT ES ZUR NIS-2-BETROFFENHEITSPRÜFUNG Beantragen Sie Ihr ELSTER -Organisationszertifikat beim digitalen Dienst \"Mein Unternehmenskonto\". Beantragen Sie Ihr ELSTER -Organisationszertifikat beim digitalen Dienst \"Mein Unternehmenskonto\". Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal . […]",
     "summary": "Le BSI allemand détaille les obligations de transposition nationale de la directive NIS2 (BSIG) pour les entreprises allemandes concernées. La procédure de registration des entités régulées est obligatoire mais la date limite est dépassée. Le guide propose des ressources pratiques (#nis2know-Roadmap, checklists, FAQ, infopackets) pour aider les entreprises à se conformer aux exigences de cybersécurité (gestion des risques, formation des dirigeants, sécurisation des chaînes d'approvisionnement). Le BSI souligne l'importance de la cybersécurité comme responsabilité de la direction.",
     "source": {
       "name": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
@@ -4897,6 +4997,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "DE",
     "title": "BSI - Guide sur les mesures de gestion des risques NIS2 (§30 BSIG)",
+    "excerpt": "In Anbetracht einer angespannten Cybersicherheitslage sollte jedes Unternehmen bereits aus Eigeninteresse geeignete Risikomanagementmaßnahmen umsetzen. Für vom BSIG betroffene Einrichtungen ist dies Pflicht. Die NIS-2-Richtlinie und deren nationale Umsetzung im BSIG zielen darauf ab, das Niveau der Cybersicherheit in den Mitgliedsstaaten deutlich zu verbessern. In Deutschland werden ca. 29.500 Unternehmen direkt den Verpflichtungen des Gesetzes unterliegen. […]",
     "summary": "Le BSI publie un guide détaillé sur les mesures de gestion des risques NIS2 applicables en Allemagne via le §30 BSIG. Il précise les obligations légales pour les entités importantes et critiques (environ 29 500 entreprises concernées), incluant 10 mesures minimales obligatoires (analyse des risques, réponse aux incidents, continuité d'activité, sécurité de la chaîne d'approvisionnement, gestion des vulnérabilités, etc.). Le guide définit les critères de conformité (adéquat, efficace, proportionné) et insiste sur l'approche holistique (sécurité physique et logique). Il détaille aussi les principes CIA (Confidentialité, Intégrité, Disponibilité) et les attentes en matière de documentation et de preuve de conformité.",
     "source": {
       "name": "BSI (Bundesamt für Sicherheit in der Informationstechnik)",
@@ -4953,6 +5054,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "IE",
     "title": "NIS2_Draft_Risk_Management_Measures_Guidance.pdf",
+    "excerpt": "",
     "summary": "Guide officiel publié par le NCSC Irlande détaillant les mesures de gestion des risques à mettre en œuvre dans le cadre de la directive NIS2. Document récent (2026-07-03) indiquant une mise à jour ou une nouveauté réglementaire.",
     "source": {
       "name": "NCSC Irlande",
@@ -5009,6 +5111,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "NL",
     "title": "Statutory mandate | NCSC-NL : Mandat légal du NCSC-NL et transposition néerlandaise de la directive NIS2",
+    "excerpt": "The statutory basis for the NCSC's work is laid down in several pieces of legislation: the Network and Information Systems Security Act (Wbni), the European NIS2 Directive/Cybersecurity Act (Cbw), the Network Code on Cybersecurity (NCCS) and, as of September 2026, the Cyber Resilience Act (CRA). These instruments aim to strengthen the digital resilience of the European Union, and therefore of the Netherlands. In doing so, they help limit the impact of cyber incidents and prevent societal disruption. […]",
     "summary": "Le NCSC-NL détaille son mandat légal issu de plusieurs textes : Wbni (2018, abrogé en 2026), Cbw (transposition néerlandaise de NIS2, entrée en vigueur mi-2026), NCCS (2025 pour les infrastructures électriques), CRA (2026-2027). Le NCSC agit comme CSIRT national pour le reporting des incidents majeurs via mijn.ncsc.nl ou cert@ncsc.nl (24/7). Il est aussi point de contact national pour les incidents transfrontaliers et participe à la stratégie nationale de cybersécurité (NLCS 2022-2028).",
     "source": {
       "name": "National Cyber Security Centre (NCSC-NL); Ministère néerlandais de la Justice et de la Sécurité",
@@ -5065,6 +5168,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "Obligations | FAQ MonEspaceNIS2 Bêta",
+    "excerpt": "Quelles sont les exigences en matière de cybersécurité auxquelles les entités régulées à la directive NIS 2 devront se soumettre ? La directive NIS 2 définit dans son article 20 et dans son article 21 des mesures de gestion des risques en matière de cybersécurité minimales à mettre en œuvre par les futures entités essentielles et importantes. […]",
     "summary": "FAQ officielle de l'ANSSI détaillant les obligations NIS2 pour les entités essentielles et importantes. Inclut des précisions sur la transposition nationale, le périmètre des entités concernées, les mesures de cybersécurité minimales (articles 20 et 21), l'enregistrement obligatoire via MonEspaceNIS2, les liens avec la norme ISO 27001, et les mécanismes de proportionnalité pour les ETI. Aborde également les coûts, l'accompagnement de l'ANSSI et les attentes en matière de cloisonnement et SI ADMIN.",
     "source": {
       "name": "ANSSI",
@@ -5121,6 +5225,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "NL",
     "title": "De Cyberbeveiligingswet in laatste fase van vaststelling",
+    "excerpt": "Op 6 en 7 juli 2026 vergadert de Eerste Kamer over de Cyberbeveiligingswet (Cbw). Dan zal er ook over het wetsvoorstel worden gestemd. Als de Eerste Kamer het wetsvoorstel aanneemt, treedt de Cbw naar verwachting op 15 augustus 2026 in werking. Organisaties die onder de wet vallen, krijgen dan te maken met nieuwe verplichtingen op het gebied van digitale weerbaarheid. De Cbw implementeert de Europese NIS2-richtlijn in Nederland en stelt eisen aan de digitale weerbaarheid van ruim 8.000 organisaties. Organisaties zijn zelf verantwoordelijk om te toetsen of ze onder deze wet vallen . […]",
     "summary": "La Cyberbeveiligingswet (Cbw), projet de loi transposant la directive NIS2 aux Pays-Bas, est en phase finale d'adoption. Un vote est prévu les 6 et 7 juillet 2026 à l'Eerste Kamer. Si adopté, la loi entrera en vigueur le 15 août 2026, imposant de nouvelles obligations en matière de cybersécurité aux entités concernées.",
     "source": {
       "name": "Eerste Kamer des Pays-Bas",
@@ -5177,6 +5282,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "NL",
     "title": "Wissel effectiever dreigingsinformatie uit met STIX/TAXII 2.1",
+    "excerpt": "Cyberaanvallen beperken zich zelden tot één organisatie. Kwaadwillenden vallen in veel gevallen meerdere organisaties tegelijk aan. Om te voorkomen dat meerdere organisaties slachtoffer worden, is snelle en gestandaardiseerde uitwisseling van dreigingsinformatie essentieel. Daarom heeft het Nationaal Cyber Security Centrum (NCSC) een aanvraag ingediend om versie 2.1 van STIX/TAXII, die effectieve en geautomatiseerde uitwisseling van dreigingsinformatie mogelijk maakt, op de 'Pas toe of leg uit'-lijst van Forum Standaardisatie op te laten nemen. […]",
     "summary": "Le NCSC propose d'inclure STIX/TAXII 2.1 dans la liste 'Pas toe of leg uit' pour faciliter l'échange automatisé et standardisé d'informations de menaces entre organisations, aligné sur les exigences de partage renforcées par la directive NIS2. Cette adoption vise à améliorer la détection et la réponse aux cyberattaques multi-organisations.",
     "source": {
       "name": "Nationaal Cyber Security Centrum (NCSC);Forum Standaardisatie",
@@ -5233,6 +5339,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "Appel à manifestation d'intérêt – Sécurité des écosystèmes de cybersécurité",
+    "excerpt": "L'ANSSI ouvre un appel à manifestation d‘intérêt pour le soutien à la création et le développement d’entités chargées de l’accompagnement sectoriel aux enjeux de cybersécurité (AMI SEC), du 16 juin 2026 au 27 juillet 2026 . Le présent appel à manifestation d’intérêt définit l’objet du financement envisagé par l’Agence nationale de la sécurité des systèmes d’information (ANSSI) pour encourager les initiatives permettant de renforcer la capacité de coordination sectorielle en matière de cybersécurité au niveau national . […]",
     "summary": "L'ANSSI lance un appel à manifestation d'intérêt pour soutenir la création et le développement d'entités dédiées à l'accompagnement des acteurs de la cybersécurité. Cet appel s'inscrit dans le cadre des mesures de renforcement des écosystèmes de cybersécurité prévues par la directive NIS2, impactant les obligations de supervision et d'accompagnement des entités concernées.",
     "source": {
       "name": "ANSSI",
@@ -5289,6 +5396,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "L’ANSSI publie un kit d’exercice de crise pour le secteur agroalimentaire",
+    "excerpt": "A l’heure où la menace cyber est omniprésente, les organisations et les entreprises doivent se préparer et réagir rapidement en cas d’attaque informatique afin d’assurer la continuité de leurs activités. Pourtant, l’anticipation et la préparation font encore trop souvent défaut, alors qu’elles s’avèrent essentielles, notamment dans le but de limiter les impacts. Dans ce contexte et alors que tout le monde peut être victime des cyberattaques sans forcément en être la cible, les entités du secteur agroalimentaire ne sont pas épargnées. […]",
     "summary": "L'ANSSI publie un kit d'exercice de crise destiné aux entités du secteur agroalimentaire pour les aider à se préparer et réagir efficacement face aux incidents cyber. Ce guide pratique s'inscrit dans le cadre des obligations de résilience et de gestion des crises prévues par la directive NIS2.",
     "source": {
       "name": "ANSSI",
@@ -5345,6 +5453,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "Publications et initiatives stratégiques de l'ENISA pour la mise en œuvre de NIS2",
+    "excerpt": "",
     "summary": "L'ENISA publie plusieurs documents et initiatives clés pour soutenir l'implémentation de NIS2 : guides NIS360 sur la maturité et la criticité des secteurs critiques; cadre de maturité des capacités nationales; soutien à la gestion des incidents et crises cyber; lancement de la Cybersecurity Reserve avec 36M€; certification des portefeuilles numériques européens; et mise à jour du cadre de certification CVE. Ces actions visent à renforcer la résilience cyber de l'UE et à accompagner les États membres et les entités concernées.",
     "source": {
       "name": "ENISA",
@@ -5370,6 +5479,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "Publications techniques et méthodologiques d'ENISA pour la mise en œuvre de NIS2",
+    "excerpt": "",
     "summary": "ENISA publie une série de documents techniques et méthodologiques essentiels pour la mise en œuvre de NIS2 : NIS360 (guide opérationnel), NIS Investments 2025 (analyse des investissements nécessaires), NIS2 Technical Implementation Guidance (guide technique), Consolidated Annual Activity Report 2025 (bilan des activités), Technology and Innovation Radar Methodology (méthodologie d'innovation), Cybersecurity Market Analysis Framework (cadre d'analyse du marché), Technical Advisory for Secure Use of Package Managers (bonnes pratiques pour gestionnaires de paquets), et Cybersecurity Exercise Methodology (méthodologie d'exercices cyber). Ces publications fournissent des outils concrets pour les entités concernées par NIS2.",
     "source": {
       "name": "ENISA",
@@ -5395,6 +5505,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "BE",
     "title": "NIS2: Enregistrez votre organisation maintenant | CCB Belgium",
+    "excerpt": "",
     "summary": "La loi NIS2 impose aux organisations fournissant des services essentiels de s'enregistrer avant le 18 mars 2025. Le CCB propose des sessions d'information en ligne (27 février et 6 mars 2025) incluant une présentation du 'NIS2 Scope Test Tool', une démonstration d'enregistrement et des espaces de discussion. Le CCB met également à disposition le Framework des CyberFondamentaux (CyFun®) pour les organisations non soumises à NIS2 souhaitant renforcer leur cyber-résilience.",
     "source": {
       "name": "Watch agent",
@@ -5451,6 +5562,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "FR",
     "title": "Distinction des obligations NIS2 selon le niveau de criticité des entités (essentielles vs importantes)",
+    "excerpt": "NIS 2 apporte une évolution majeure, l’inclusion d’un mécanisme de proportionnalité, qui distingue deux catégories d’entités régulées en fonction de leur niveau de criticité : les entités essentielles et les entités importantes. En règle générale et sauf cas particuliers, les entités essentielles sont celles réalisant des activités dans les secteurs catégorisés comme hautement critiques (cf. annexe 1 de la directive NIS 2), et disposant de plus de 250 salariés (en équivalent temps plein) ou avec un chiffre d’affaires supérieur à 50 millions d’euros. […]",
     "summary": "La directive NIS2 introduit une distinction entre entités essentielles et importantes basée sur leur criticité et taille, avec des exigences proportionnées. Les entités essentielles (secteurs hautement critiques + >250 salariés ou CA >50M€) sont soumises à des obligations renforcées. L'ANSSI adaptera les exigences via des référentiels proportionnés. La FAQ clarifie le périmètre d'application, les coûts, les liens avec ISO 27001 et les modalités de notification.",
     "source": {
       "name": "Watch agent",
@@ -5507,6 +5619,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "EU",
     "title": "Distinction des obligations NIS2 selon le niveau de criticité des entités (essentielles vs importantes)",
+    "excerpt": "NIS 2 apporte une évolution majeure, l’inclusion d’un mécanisme de proportionnalité, qui distingue deux catégories d’entités régulées en fonction de leur niveau de criticité : les entités essentielles et les entités importantes. En règle générale et sauf cas particuliers, les entités essentielles sont celles réalisant des activités dans les secteurs catégorisés comme hautement critiques (cf. annexe 1 de la directive NIS 2), et disposant de plus de 250 salariés (en équivalent temps plein) ou avec un chiffre d’affaires supérieur à 50 millions d’euros. […]",
     "summary": "La directive NIS2 introduit une distinction entre entités essentielles et importantes basée sur leur criticité et taille, avec des exigences proportionnées. Les entités essentielles (secteurs hautement critiques + >250 salariés ou CA >50M€) sont soumises à des obligations renforcées. L'ANSSI adaptera les exigences via des référentiels proportionnés. La FAQ clarifie le périmètre d'application, les coûts, les liens avec ISO 27001 et les modalités de notification.",
     "source": {
       "name": "Watch agent",
@@ -5532,6 +5645,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "FR",
     "title": "Liens entre ISO 27001 et exigences NIS 2 : analyse comparative et implications opérationnelles",
+    "excerpt": "Pour transposer et mettre en œuvre la directive NIS 2, il est privilégié une approche de la conformité basée notamment sur la mise en œuvre d’un référentiel de mesures de cybersécurité adapté à la menace cybercriminelle. La norme ISO 27001 et le référentiel de mesures cyber de l’ANSSI poursuivent des objectifs différents. L’obtention d’une certification ISO 27001 ne permet pas, en elle-même, une conformité à NIS 2. Mais cette norme constitue un outil et une méthodologie pour accompagner le déploiement du référentiel de sécurité. […]",
     "summary": "La FAQ clarifie l'articulation entre la norme ISO 27001 et les exigences de la directive NIS 2. Bien que l'ISO 27001 ne garantisse pas une conformité automatique à NIS 2, elle offre une méthodologie structurante pour déployer les mesures de sécurité définies par le référentiel ANSSI, qui transpose les articles 20 et 21 de NIS 2. Le référentiel ANSSI introduit une approche différenciée entre entités essentielles (EE) et importantes (EI), avec un niveau d'exigences plus élevé pour les EE. La norme ISO 27001, centrée sur un SMSI, ne couvre pas cette proportionnalité ni ne prescrit de mesures techniques spécifiques.",
     "source": {
       "name": "Watch agent",
@@ -5588,6 +5702,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "EU",
     "title": "Liens entre ISO 27001 et exigences NIS 2 : analyse comparative et implications opérationnelles",
+    "excerpt": "Pour transposer et mettre en œuvre la directive NIS 2, il est privilégié une approche de la conformité basée notamment sur la mise en œuvre d’un référentiel de mesures de cybersécurité adapté à la menace cybercriminelle. La norme ISO 27001 et le référentiel de mesures cyber de l’ANSSI poursuivent des objectifs différents. L’obtention d’une certification ISO 27001 ne permet pas, en elle-même, une conformité à NIS 2. Mais cette norme constitue un outil et une méthodologie pour accompagner le déploiement du référentiel de sécurité. […]",
     "summary": "La FAQ clarifie l'articulation entre la norme ISO 27001 et les exigences de la directive NIS 2. Bien que l'ISO 27001 ne garantisse pas une conformité automatique à NIS 2, elle offre une méthodologie structurante pour déployer les mesures de sécurité définies par le référentiel ANSSI, qui transpose les articles 20 et 21 de NIS 2. Le référentiel ANSSI introduit une approche différenciée entre entités essentielles (EE) et importantes (EI), avec un niveau d'exigences plus élevé pour les EE. La norme ISO 27001, centrée sur un SMSI, ne couvre pas cette proportionnalité ni ne prescrit de mesures techniques spécifiques.",
     "source": {
       "name": "Watch agent",
@@ -5613,6 +5728,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "FR",
     "title": "Exigences de cybersécurité pour les entités régulées par la directive NIS 2 : obligations détaillées et référentiel en préparation",
+    "excerpt": "La directive NIS 2 définit dans son article 20 et dans son article 21 des mesures de gestion des risques en matière de cybersécurité minimales à mettre en œuvre par les futures entités essentielles et importantes. Conformément à l’article 20, les organes de direction des entités essentielles et importantes approuvent les mesures de gestion des risques en matière de cybersécurité prises par ces entités afin de se conformer à l’article 21 et de superviser sa mise en œuvre. […]",
     "summary": "La directive NIS 2 (articles 20 et 21) impose aux entités essentielles et importantes des mesures de gestion des risques cyber minimales. Les organes de direction doivent approuver ces mesures et suivre une formation dédiée. Les mesures incluent analyse des risques, gestion des incidents, continuité d'activité, sécurité de la chaîne d'approvisionnement, gestion des vulnérabilités, évaluation de l'efficacité, cyberhygiène, cryptographie, contrôle d'accès, authentification multi-facteurs et communication sécurisée. L'ANSSI prépare un référentiel d'exigences (20 objectifs de sécurité) avec des moyens acceptables de mise en œuvre, intégrant le principe de proportionnalité entre entités essentielles et importantes. Les secteurs 'Infrastructures numériques', 'Gestion des services TIC' et 'Fournisseurs numériques' sont soumis à des règles spécifiques via un règlement d'exécution européen.",
     "source": {
       "name": "Watch agent",
@@ -5669,6 +5785,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-11",
     "iso": "EU",
     "title": "Exigences de cybersécurité pour les entités régulées par la directive NIS 2 : obligations détaillées et référentiel en préparation",
+    "excerpt": "La directive NIS 2 définit dans son article 20 et dans son article 21 des mesures de gestion des risques en matière de cybersécurité minimales à mettre en œuvre par les futures entités essentielles et importantes. Conformément à l’article 20, les organes de direction des entités essentielles et importantes approuvent les mesures de gestion des risques en matière de cybersécurité prises par ces entités afin de se conformer à l’article 21 et de superviser sa mise en œuvre. […]",
     "summary": "La directive NIS 2 (articles 20 et 21) impose aux entités essentielles et importantes des mesures de gestion des risques cyber minimales. Les organes de direction doivent approuver ces mesures et suivre une formation dédiée. Les mesures incluent analyse des risques, gestion des incidents, continuité d'activité, sécurité de la chaîne d'approvisionnement, gestion des vulnérabilités, évaluation de l'efficacité, cyberhygiène, cryptographie, contrôle d'accès, authentification multi-facteurs et communication sécurisée. L'ANSSI prépare un référentiel d'exigences (20 objectifs de sécurité) avec des moyens acceptables de mise en œuvre, intégrant le principe de proportionnalité entre entités essentielles et importantes. Les secteurs 'Infrastructures numériques', 'Gestion des services TIC' et 'Fournisseurs numériques' sont soumis à des règles spécifiques via un règlement d'exécution européen.",
     "source": {
       "name": "Watch agent",
@@ -5694,6 +5811,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "EU",
     "title": "Publications | ENISA - Ressources clés pour la mise en œuvre de la NIS2",
+    "excerpt": "",
     "summary": "La page ENISA Publications propose des documents stratégiques et techniques essentiels pour la conformité NIS2, incluant des guides d'implémentation technique, des analyses d'investissements cyber (NIS Investments 2025), des méthodologies d'exercices de cybersécurité, des cadres d'analyse de marché (ECSMAF V3.0) et des conseils techniques pour l'utilisation sécurisée des gestionnaires de paquets. Ces ressources couvrent des aspects critiques comme la gestion des risques, l'innovation technologique et la coordination internationale.",
     "source": {
       "name": "ENISA - Publications",
@@ -5719,6 +5837,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "EU",
     "title": "NIS Cooperation Group | Shaping Europe’s digital future",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
     "summary": "Le NIS Cooperation Group, créé par la directive NIS, assure la coopération et l'échange d'informations entre États membres pour atteindre un haut niveau de sécurité des systèmes d'information en UE. Il s'appuie sur les CSIRTs (Article 12 NIS Directive) et ENISA, publie des rapports annuels (ex: NIS Security Incidents 2024) et des lignes directrices non contraignantes. Il travaille aussi avec le réseau européen sur les élections et publie des outils comme l'ICT Supply Chain Security Toolbox.",
     "source": {
       "name": "Commission européenne - NIS Cooperation Group",
@@ -5744,6 +5863,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "SK",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -5800,6 +5920,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "SI",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -5856,6 +5977,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "SE",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -5912,6 +6034,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "RO",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -5968,6 +6091,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "PT",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6024,6 +6148,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "PL",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6080,6 +6205,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "NL",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6136,6 +6262,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "MT",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6192,6 +6319,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "LV",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6248,6 +6376,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "LU",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6304,6 +6433,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "LT",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6360,6 +6490,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "IT",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6416,6 +6547,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "IE",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6472,6 +6604,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "HU",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6528,6 +6661,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "HR",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6584,6 +6718,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "GR",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6640,6 +6775,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "FR",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6696,6 +6832,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "FI",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6752,6 +6889,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "EU",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6777,6 +6915,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "ES",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6833,6 +6972,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "EE",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6889,6 +7029,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "DK",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -6945,6 +7086,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "DE",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -7001,6 +7143,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "CZ",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -7057,6 +7200,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "CY",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -7113,6 +7257,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "BG",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -7169,6 +7314,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "BE",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -7225,6 +7371,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-09",
     "iso": "AT",
     "title": "Transposition de la directive NIS2 dans les États membres de l'UE - État des lieux et sanctions",
+    "excerpt": "The Commission, together with European Union Agency for Network and Information Security, works closely with the Member States to ensure the transposition of the NIS2 Directive into national legislation. The content represents a state-of-play based on information provided by Member States, and is without prejudice to the formal assessment of the compliance of transposition measures with the requirements of the NIS2 Directive. […]",
     "summary": "La Commission européenne et l'ENISA suivent la transposition de la directive NIS2 dans les États membres. Au 7 mai 2025, 19 États membres (Bulgarie, République tchèque, Danemark, Allemagne, Estonie, Irlande, Espagne, France, Chypre, Lettonie, Luxembourg, Hongrie, Pays-Bas, Autriche, Pologne, Portugal, Slovénie, Finlande, Suède) ont reçu un avis motivé pour non-transposition complète. Ils disposent de 2 mois pour répondre sous peine de saisine de la Cour de justice de l'UE. L'ENISA soutient les États depuis 2012 dans l'élaboration de leurs stratégies nationales de cybersécurité (NCSS). Une carte interactive recense les NCSS de tous les États membres. La directive NIS2 établit un cadre juridique unifié pour 18 secteurs critiques et impose une collaboration transfrontalière.",
     "source": {
       "name": "Commission européenne - Transposition NIS2 par pays",
@@ -7281,6 +7428,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "IE",
     "title": "Guide officiel sur les mesures de gestion des risques NIS2 publié par le NCSC (Irlande)",
+    "excerpt": "",
     "summary": "Document officiel du NCSC irlandais fournissant des lignes directrices détaillées sur les mesures de gestion des risques à mettre en œuvre par les entités essentielles et importantes conformément à la directive NIS2. Le guide aborde les obligations en matière d'identification des risques, de protection, de détection, de réponse et de récupération, ainsi que les bonnes pratiques pour se conformer aux exigences réglementaires.",
     "source": {
       "name": "Watch agent",
@@ -7337,6 +7485,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "NL",
     "title": "Mandat statutaire du NCSC-NL : transposition nationale NIS2, CRA et obligations associées",
+    "excerpt": "The statutory basis for the NCSC's work is laid down in several pieces of legislation: the Network and Information Systems Security Act (Wbni), the European NIS2 Directive/Cybersecurity Act (Cbw), the Network Code on Cybersecurity (NCCS) and, as of September 2026, the Cyber Resilience Act (CRA). These instruments aim to strengthen the digital resilience of the European Union, and therefore of the Netherlands. In doing so, they help limit the impact of cyber incidents and prevent societal disruption. […]",
     "summary": "Le NCSC-NL détaille son mandat statutaire issu de plusieurs textes légaux : le Wbni (en vigueur depuis 2018, abrogé en 2026), le Cbw (transposition néerlandaise de la directive NIS2), le NCCS (règlement délégué européen pour les infrastructures électriques) et le CRA (entrée en vigueur progressive à partir de 2026). Le NCSC-NL agit comme CSIRT national et autorité compétente pour la notification des incidents significatifs. Les organisations concernées doivent signaler les incidents au NCSC-NL via un portail centralisé ou des canaux sécurisés 24/7. Le CRA impose des obligations de reporting anticipées dès septembre 2026 pour les fabricants de produits numériques.",
     "source": {
       "name": "Watch agent",
@@ -7393,6 +7542,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "EU",
     "title": "Mandat statutaire du NCSC-NL : transposition nationale NIS2, CRA et obligations associées",
+    "excerpt": "The statutory basis for the NCSC's work is laid down in several pieces of legislation: the Network and Information Systems Security Act (Wbni), the European NIS2 Directive/Cybersecurity Act (Cbw), the Network Code on Cybersecurity (NCCS) and, as of September 2026, the Cyber Resilience Act (CRA). These instruments aim to strengthen the digital resilience of the European Union, and therefore of the Netherlands. In doing so, they help limit the impact of cyber incidents and prevent societal disruption. […]",
     "summary": "Le NCSC-NL détaille son mandat statutaire issu de plusieurs textes légaux : le Wbni (en vigueur depuis 2018, abrogé en 2026), le Cbw (transposition néerlandaise de la directive NIS2), le NCCS (règlement délégué européen pour les infrastructures électriques) et le CRA (entrée en vigueur progressive à partir de 2026). Le NCSC-NL agit comme CSIRT national et autorité compétente pour la notification des incidents significatifs. Les organisations concernées doivent signaler les incidents au NCSC-NL via un portail centralisé ou des canaux sécurisés 24/7. Le CRA impose des obligations de reporting anticipées dès septembre 2026 pour les fabricants de produits numériques.",
     "source": {
       "name": "Watch agent",
@@ -7418,6 +7568,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "FR",
     "title": "Obligations | FAQ MonEspaceNIS2 Bêta",
+    "excerpt": "Quelles sont les exigences en matière de cybersécurité auxquelles les entités régulées à la directive NIS 2 devront se soumettre ? La directive NIS 2 définit dans son article 20 et dans son article 21 des mesures de gestion des risques en matière de cybersécurité minimales à mettre en œuvre par les futures entités essentielles et importantes. […]",
     "summary": "FAQ officielle de l'ANSSI détaillant les obligations NIS2 pour les entités essentielles et importantes. Couvre les mesures de gestion des risques (art. 20 et 21), l'enregistrement en ligne via MonEspaceNIS2, la déclaration d'incident, le périmètre des systèmes d'information, le mécanisme de proportionnalité, les liens avec ISO 27001, et l'accompagnement de l'ANSSI.",
     "source": {
       "name": "Watch agent",
@@ -7474,6 +7625,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "IE",
     "title": "NCSC: NIS2 FAQ - Guide officiel sur la transposition et les obligations en Irlande",
+    "excerpt": "The purpose of this document is to create awareness about the scope of application of the NIS2 legal framework in Ireland. This document is for awareness purposes only and should not be relied on, as the NIS2 directive has not yet been transposed into Irish law. Readers are advised to seek independent professional advice before acting on anything contained herein. This information supplements the information already available on the NCSC website. 1. What are the objectives of the NIS2 Directive? 1. What are the objectives of the NIS2 Directive? 2. What is the scope of the NIS2 Directive? 2. […]",
     "summary": "FAQ officielle du NCSC irlandais détaillant les objectifs, le champ d'application, les différences entre entités essentielles et importantes, les pouvoirs des autorités compétentes, les méthodes de calcul de taille des entités, les secteurs couverts, les exemptions possibles, le champ territorial et les règles de supervision proactive (ex ante) pour les entités essentielles et réactive (ex post) pour les entités importantes. Inclut des précisions sur les audits, les sanctions administratives, les obligations de reporting et les préparatifs nécessaires avant la transposition nationale prévue.",
     "source": {
       "name": "Watch agent",
@@ -7530,6 +7682,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "BE",
     "title": "NIS2: Échéance du 18 avril 2026 – Obligations pour les entités essentielles en Belgique",
+    "excerpt": "",
     "summary": "Les entités essentielles en Belgique doivent démontrer d'ici le 18 avril 2026 la mise en œuvre effective de mesures de gestion des risques cyber et suivre un parcours de conformité reconnu. Trois voies possibles : CyberFundamentals (CyFun®) avec vérification Basic ou Important ; ISO/IEC 27001 avec certification à finaliser d'ici avril 2027 ; ou inspection directe avec auto-évaluation et documentation. Le non-respect expose à des sanctions administratives, financières ou des mesures de supervision. La loi belge NIS2 est entrée en vigueur le 18 octobre 2024.",
     "source": {
       "name": "Watch agent",
@@ -7586,6 +7739,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-06-02",
     "iso": "BE",
     "title": "Adoption de l’arrêté royal NIS2 en Belgique désignant le CCB comme autorité compétente",
+    "excerpt": "",
     "summary": "L’arrêté royal du 9 juin 2024 transpose la directive NIS2 en Belgique en désignant le CCB comme autorité nationale de cybersécurité et CSIRT national. Il précise les obligations de conformité pour les entités essentielles et importantes, les modalités d’évaluation régulière de la conformité (obligatoire pour les entités essentielles; volontaire pour les entités importantes), et les référentiels applicables (CyberFundamentals ou ISO/IEC 27001). Il fixe également les conditions d’agrément des organismes d’évaluation de la conformité (CAB).",
     "source": {
       "name": "Watch agent",
@@ -7642,6 +7796,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "EU",
     "title": "Action de la Commission européenne pour assurer la transposition complète et en temps utile des directives de l'UE",
+    "excerpt": "",
     "summary": "La Commission européenne engage des actions contre plusieurs États membres pour non-respect des délais de transposition des directives de l'UE, sans préciser les directives concernées dans l'extrait fourni. Cette mesure vise à garantir l'application uniforme du droit de l'UE dans tous les États membres.",
     "source": {
       "name": "Watch agent",
@@ -7667,6 +7822,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "10 bonnes pratiques pour l’utilisation des téléphones mobiles",
+    "excerpt": "Agence nationale de la sÃ©curitÃ© des systÃ¨mes d'information Une gestion de version dÃ©taillÃ©e se trouve Ã la fin de ce document. Dans un contexte de prolifÃ©ration des menaces ciblant les tÃ©lÃ©phones mobiles, lâANSSI prÃ©conise dâadopter 10 rÃ¨gles de bonnes pratiques pour lâutilisation de ces Ã©quipements. TÃ©lÃ©charger les 10 bonnes pratiques",
     "summary": "L'ANSSI publie un guide de 10 bonnes pratiques pour sécuriser l'utilisation des téléphones mobiles face à la prolifération des menaces ciblant ces équipements.",
     "source": {
       "name": "Watch agent",
@@ -7723,6 +7879,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "Renforcement du dispositif national de cybersécurité via des centres de réponse aux incidents aux niveaux territorial, sectoriel et ministériel",
+    "excerpt": "L’écosystème français de la cybersécurité se développe fortement et l’ANSSI est un des acteurs qui encourage cette transformation. Face à une menace cyber en constante évolution, qui cible l’ensemble du tissu économique et social, et face à la vulnérabilité des systèmes d’information (SI), de nouvelles mesures de cyberdéfense doivent être menées. Dans cette perspective, l’Agence a soutenu la mise en place de CSIRT aux niveaux ministériel, sectoriel et territorial, afin d’accompagner le passage à l’échelle de la directive européenne NIS 2. […]",
     "summary": "L'ANSSI annonce le renforcement du dispositif national de cybersécurité en France par la création de centres de réponse aux incidents (CERT) aux niveaux territorial, sectoriel et ministériel. Cette initiative vise à améliorer la résilience des infrastructures critiques et à renforcer la coordination entre les acteurs publics et privés face aux cybermenaces.",
     "source": {
       "name": "Watch agent",
@@ -7779,6 +7936,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "L'ANSSI étoffe le volet opérationnel de son corpus sur la remédiation",
+    "excerpt": "Ces deux documents viennent compléter le volet opérationnel de la remédiation, en particulier pour aider la mise en œuvre ou l'identification des actions figurant parmi les activités du guide « Piloter la remédiation » de cette même collection. Les dégâts financiers et matériels que peuvent occasionner une attaque informatique sont considérables. Si un incident majeur est partiellement ou mal remédié, ses effets peuvent s’étendre dans la durée. […]",
     "summary": "Ces deux documents viennent compléter le volet opérationnel de la remédiation, en particulier pour aider la mise en œuvre des bonnes pratiques en matière de gestion des incidents de sécurité et de correction des vulnérabilités.",
     "source": {
       "name": "Watch agent",
@@ -7835,6 +7993,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "NIS 2 : l’ANSSI poursuit et renforce sa dynamique d’accompagnement",
+    "excerpt": "Dans un contexte marqué par une intensification de la menace cyber qui touche l’ensemble de l’économie et de la société, l’ANSSI a rassemblé mardi 17 mars 2026 au Campus Cyber les acteurs institutionnels, sectoriels et publics concernés par NIS 2 afin de les encourager à s’inscrire dans la dynamique de sécurisation à grande échelle portée par la directive. […]",
     "summary": "L’ANSSI intensifie son accompagnement des entités concernées par la directive NIS 2, dans un contexte d’augmentation des menaces cyber affectant l’économie et la société. L’agence renforce ses actions pour soutenir la conformité et la résilience des acteurs concernés.",
     "source": {
       "name": "Watch agent",
@@ -7891,6 +8050,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "L’ANSSI lance un appel à commentaires sur les architectures de référence de sa nouvelle doctrine de supervision de sécurité",
+    "excerpt": "Cet appel à commentaires est destiné à l’ensemble de l’écosystème que l’ANSSI accompagne, aussi bien les bénéficiaires que les offreurs de services et de produits de supervision de sécurité. Les résultats de cette consultation ont vocation à alimenter la rédaction en cours des documents de doctrine de supervision de l’Agence, au niveau des architectures et des briques techniques qui les composent. La date limite de réponse à l’appel à commentaires est fixée au jeudi 7 mai 2026 inclus . […]",
     "summary": "L'ANSSI sollicite les retours de l'écosystème (bénéficiaires et offreurs) sur les architectures de référence de sa nouvelle doctrine de supervision de sécurité, afin d'affiner et d'enrichir les propositions avant leur mise en œuvre.",
     "source": {
       "name": "Watch agent",
@@ -7947,6 +8107,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "Publication de la feuille de route des efforts prioritaires en matière de sécurité numérique de l’État 2026-2027",
+    "excerpt": "Les feuilles de route de la sécurité numérique de l’État, établies annuellement, fixent les efforts prioritaires que doivent fournir les ministères en matière de sécurité numérique. Dans un contexte de menace élevée et d’une situation géopolitique dégradée, décision a été prise de rendre publique la feuille de route 2026-2027 pour en renforcer sa portée. Les multiples incidents et fuites de données qui ont affecté en 2025 les systèmes d’information des ministères et des établissements dont ils ont la tutelle rappellent la persistance de fragilités dans ces infrastructures. […]",
     "summary": "Document stratégique annuel définissant les priorités et efforts à déployer par les administrations publiques et acteurs clés pour renforcer la cybersécurité de l'État sur la période 2026-2027. Met l'accent sur la résilience des infrastructures critiques, la protection des données sensibles et la coordination interministérielle.",
     "source": {
       "name": "Watch agent",
@@ -8003,6 +8164,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "Publication du rapport d'activité 2025 de l'ANSSI",
+    "excerpt": "L’ANSSI publie son rapport d’activité 2025, ce document revient sur les actions majeures menées par l’Agence dans le but de renforcer le niveau global de cybersécurité en France. L’année 2025 a été marquée par la publication de la Revue nationale Stratégique (RNS) 2025 qui fixe de nouvelles orientations stratégiques nationales en matière de défense et de sécurité nationale. […]",
     "summary": "L’année 2025 a été marquée par la publication de la Revue nationale Stratégique (RNS) 2025 qui fixe de nouvelles orientations en matière de cybersécurité pour la France, incluant des mesures renforcées pour les opérateurs essentiels et importants au regard de la directive NIS 2.",
     "source": {
       "name": "Watch agent",
@@ -8059,6 +8221,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-28",
     "iso": "FR",
     "title": "Mise à jour du référentiel d’exigences PACS en version 2.0",
+    "excerpt": "Le référentiel pour la qualification des prestataires d’accompagnement et de conseil en sécurité des systèmes d’information (PACS) évolue. La nouvelle version du référentiel permet d’adresser un panel plus important de bénéficiaires pour des prestations mieux adaptées à leurs besoins. Les PACS accompagnent les bénéficiaires pour mettre leurs systèmes informatiques en conformité avec des exigences de sécurité spécifiques (LPM, NIS2, etc.) ou pour atteindre un niveau de sécurité déterminé. […]",
     "summary": "Publication de la version 2.0 du référentiel PACS (Prestataires d'Accompagnement et de Conseil en Sécurité des systèmes d'information) par l'ANSSI, définissant les exigences actualisées pour la qualification des prestataires dans le domaine de la cybersécurité.",
     "source": {
       "name": "Watch agent",
@@ -8115,6 +8278,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-05-15",
     "iso": "FR",
     "title": "Décret n°2026-XXX - Transposition NIS 2 : obligations des entités essentielles",
+    "excerpt": "",
     "summary": "Précise les obligations de notification d'incidents et de gestion des risques cyber pour les entités essentielles et importantes au titre de NIS 2.",
     "source": {
       "name": "ANSSI / Premier ministre",
