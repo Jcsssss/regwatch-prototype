@@ -254,7 +254,7 @@ function renderInboxCountry(el, pending, done){
   <button class="btn back-big" id="hubBack" type="button">${t("ctry.back")}</button>
   <h1 class="pg">${t("ctry.title", { country: label })}</h1>
   ${c ? "" : `<div class="rolenote">${t("hub.euNote")}</div>`}
-  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("inbox.pending")} (${mine.length})</h2></div><div class="bd">
+  <div class="card"><div class="cap"><h2>${t("inbox.pending")} (${mine.length})</h2></div><div class="bd">
     <div class="filters">
       <input type="search" id="qQ" placeholder="${t("inbox.search")}" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
       <select id="qS" aria-label="Minimum AI relevance score"><option value="">${t("inbox.anyScore")}</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>${t("inbox.score")} ${s}</option>`).join("")}</select>
