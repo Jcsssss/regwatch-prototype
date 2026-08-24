@@ -22,6 +22,26 @@ import sys
 CHECKS = []
 
 
+def list_deployments(endpoint, key):
+    """Best effort: ask the resource which deployments actually exist.
+
+    Turns "DeploymentNotFound" from a dead end into an answer. The data-plane
+    listing is not served by every api-version, so this is advisory only — a
+    failure here means "could not check", never "no deployments".
+    """
+    try:
+        import json
+        import urllib.request
+        url = "%s/openai/deployments?api-version=2023-03-15-preview" % endpoint
+        req = urllib.request.Request(url, headers={"api-key": key})
+        with urllib.request.urlopen(req, timeout=15) as response:
+            data = json.load(response)
+        names = [d.get("id") or d.get("model") for d in data.get("data", [])]
+        return [n for n in names if n]
+    except Exception:
+        return None
+
+
 def load_env_file(path):
     """Minimal .env reader — avoids depending on python-dotenv for a preflight."""
     for line in open(path, encoding="utf-8"):
@@ -89,7 +109,19 @@ def main():
         if "DeploymentNotFound" in text or "404" in text:
             print("-> Le déploiement %r n'existe pas sur cette ressource." % deployment)
             print("   La clé et l'endpoint sont probablement bons ; c'est le NOM du")
-            print("   déploiement qui est faux. Demande la valeur exacte.")
+            print("   déploiement qui est faux.")
+            available = list_deployments(endpoint, key)
+            if available:
+                print("\n   Déploiements disponibles sur cette ressource :")
+                for name in available:
+                    print("     - %s" % name)
+                print("\n   Reprends l'un de ces noms dans AZURE_OPENAI_DEPLOYMENT.")
+            elif available == []:
+                print("\n   La ressource ne déclare aucun déploiement : il faut en créer un")
+                print("   dans Azure AI Foundry avant que l'agent puisse tourner.")
+            else:
+                print("\n   (listing des déploiements indisponible — demande le nom exact,")
+                print("   onglet Deployments dans Azure AI Foundry)")
         elif "401" in text or "Access denied" in text or "invalid_api_key" in text.lower():
             print("-> Clé refusée (401). Clé erronée, révoquée, ou d'une autre ressource")
             print("   que celle de l'endpoint.")

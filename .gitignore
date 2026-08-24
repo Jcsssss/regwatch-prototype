@@ -16,6 +16,13 @@ venv/
 __pycache__/
 *.pyc
 
+# Credentials — never commit. Azure OpenAI keys for the watch agent live in a
+# .env that stays on the machine that runs the agent.
+.env
+.env.*
+*.env
+!.env.example
+
 # Internal Wavestone material and heavy media — kept local on purpose.
 # Real client data (KPI workbook), internal decks and the brand charter must not
 # be pushed without an explicit go from the team.
@@ -25,3 +32,6 @@ ressources/
 
 # Generated country decks
 out/
+
+# Runtime artifact: importing the watch agent creates this in the CWD
+logs/

@@ -8696,15 +8696,22 @@ function paintPending(pending){
     const by = {};
     list.forEach(x => { (by[x.iso] = by[x.iso] || []).push(x); });
     html = Object.keys(by)
-      .sort((a, b) => by[b].length - by[a].length
+      /* Groups with no country record (EU-wide items) go last: they carry no
+         workbook cells and cannot be published to a record, so leading with them
+         buries the actionable countries below a wall of unactionable cards. */
+      .sort((a, b) => (byIso[a] ? 0 : 1) - (byIso[b] ? 0 : 1)
+        || by[b].length - by[a].length
         || (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b))
       .map(iso => {
         const c = byIso[iso];
         const items = rankItems(by[iso]);
         const off = items.filter(x => x.source.type === "official").length;
-        return `<details class="q-group" open>
-          <summary><b>${c ? c.flag + " " + esc(c.name) : esc(iso)}</b>
-            <span class="q-note">${items.length} pending · ${off} official · ${items.length - off} to verify</span></summary>
+        const cells = items.filter(x => (x.targetCells || []).length).length;
+        return `<details class="q-group" ${c ? "open" : ""}>
+          <summary><b>${c ? c.flag + " " + esc(c.name) : "🇪🇺 EU-wide"}</b>
+            <span class="q-note">${items.length} pending · ${off} official · ${items.length - off} to verify${
+              c ? ` · ${cells} with workbook cells`
+                : " · no country record — nothing to update in the workbook"}</span></summary>
           ${items.map(qCard).join("")}
         </details>`;
       }).join("");
