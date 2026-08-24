@@ -1,0 +1,2881 @@
+{
+  "generatedOn": "2026-08-17",
+  "count": 29,
+  "countries": [
+    {
+      "iso": "BE",
+      "name": "Belgium",
+      "flag": "🇧🇪",
+      "region": "West",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-06-18",
+      "transposed": true,
+      "onTime": true,
+      "delayMonths": 0,
+      "lawInForce": "2024-10-18",
+      "fw": "final",
+      "law": "NIS 2 Act of 26 April 2024 + Royal Decree of 9 June 2024",
+      "fwName": "CyFun 2025 (CyberFundamentals, NIST CSF 2.0-based)",
+      "reqEE": 218,
+      "reqIE": 133,
+      "complianceEE": 18,
+      "complianceIE": 18,
+      "auditBody": "External accredited body",
+      "auditFreqEE": 12,
+      "auditFreqIE": 12,
+      "selfAssessFreq": 12,
+      "regTool": "Platform + guide (atwork.safeonweb.be)",
+      "incidentMethod": "Web platform (CCB)",
+      "summary": "Transposed on time; CyFun 2025 framework; first ex-ante EE checks under way since April 2026.",
+      "authorities": [
+        {
+          "name": "CCB",
+          "role": "Centre for Cybersecurity Belgium — national authority, CyFun certification, incident handling"
+        },
+        {
+          "name": "NCCN",
+          "role": "National Crisis Centre — national cyber crisis management plan (with CCB)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "CyFun framework with three assurance levels (Small ≈25, Basic ≈50, Important ≈75 measures), complemented by NIST CSF, ISO 27001/27002, IEC 62443 and CIS Controls references.",
+          "CyFun 2025 (published 1 Oct 2025, NIST CSF 2.0 + governance category) will be the only accepted version after the transition period.",
+          "Presumption of conformity via the CyFun Conformity Assessment Scheme (CAS) or ISO/IEC 27001 (SoA submitted by 18 Apr 2026, certificate by 18 Apr 2027)."
+        ],
+        "reg": [
+          "Registration on atwork.safeonweb.be was due by 18 Mar 2025 (5 months after entry into force).",
+          "Any change to company information must be notified within 2 weeks."
+        ],
+        "inc": [
+          "Significant incidents reported to the CCB within 24h, full report within 1 month, via the dedicated platform (guide published by the CCB).",
+          "Notification must include detailed description, severity/impact, root cause, mitigation measures and cross-border impact."
+        ],
+        "aud": [
+          "EE: mandatory regular conformity assessment; first control 18 Apr 2026 (18 months after entry into force), then annual checks for EE and IE.",
+          "Ex-ante inspections possible for EE at any time; federal public sector assessed by the Federal Internal Audit Service."
+        ],
+        "scope": [
+          "Sector list can be extended by royal decree; CER-designated critical entities are automatically EE.",
+          "Local authorities not systematically included (case-by-case designation as 'strategic entity' by the CCB); public administration entities exempt from administrative fines."
+        ],
+        "other": [
+          "Financial entities under DORA are exempt from the security rules but must still register with the CCB and notify significant incidents."
+        ],
+        "reco": [
+          "Register with the CCB, choose CyFun vs ISO 27001 (Wavestone recommends CyFun unless ISO 27001 already in place), run gap analysis and remediation plan before the April 2026/2027 milestones."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-04-26",
+          "text": "NIS 2 Act voted in plenary (published 17 May 2024)"
+        },
+        {
+          "date": "2024-10-18",
+          "text": "Law enters into force — on time"
+        },
+        {
+          "date": "2025-10-01",
+          "text": "CyFun 2025 published (NIST CSF 2.0 base, governance category added)"
+        },
+        {
+          "date": "2025-12-19",
+          "text": "CER law adopted; designated critical entities become NIS 2 EE automatically"
+        },
+        {
+          "date": "2026-04-18",
+          "text": "Compliance deadline passed; CCB inspection service starts ex-ante verification of EE"
+        }
+      ],
+      "next": [
+        "By 18 Apr 2027: end of CyFun transition period; general compliance progress report due."
+      ],
+      "sources": [
+        {
+          "name": "CCB — ccb.belgium.be",
+          "url": "https://ccb.belgium.be",
+          "type": "official"
+        },
+        {
+          "name": "Safeonweb for organisations",
+          "url": "https://atwork.safeonweb.be",
+          "type": "official"
+        },
+        {
+          "name": "Belgian Official Gazette (Moniteur belge)",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "HR",
+      "name": "Croatia",
+      "flag": "🇭🇷",
+      "region": "South",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-02",
+      "transposed": true,
+      "onTime": true,
+      "delayMonths": 0,
+      "lawInForce": "2024-02-15",
+      "fw": "final",
+      "law": "Cybersecurity Act NN 14/2024 + Cybersecurity Regulation NN 135/2024",
+      "fwName": "National framework — 13 themes, 145 controls (ISO 27001/2 & NIST 800-53 aligned)",
+      "reqEE": 28,
+      "reqIE": 21,
+      "complianceEE": 12,
+      "complianceIE": 12,
+      "auditBody": "External accredited body",
+      "auditFreqEE": 24,
+      "auditFreqIE": 24,
+      "selfAssessFreq": 24,
+      "regTool": "Authority-driven categorisation (no self-registration)",
+      "incidentMethod": "Web platform (PiXi / CARNET)",
+      "summary": "Transposed on time; authority-driven categorisation; 145-control framework with 3 criticality levels.",
+      "authorities": [
+        {
+          "name": "NCSC-HR",
+          "role": "National Cybersecurity Centre (within SOA) — central authority"
+        },
+        {
+          "name": "ZSIS",
+          "role": "Information Systems Security Bureau — certification schemes, auditor accreditation"
+        },
+        {
+          "name": "CARNET / ZSIS CSIRTs",
+          "role": "Sectoral CSIRTs (banking, digital infrastructure / energy, transport, health, public admin)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "13 main themes, catalogue of 145 controls aligned with ISO 27001/2 and NIST 800-53; measures apply per criticality level (basic / medium / advanced) assigned by national risk assessment.",
+          "Sub-measures tagged A (mandatory), B (conditional), C (recommended); all measures cover both IT and OT.",
+          "Compliance required within 1 year of receiving the categorisation notification."
+        ],
+        "reg": [
+          "Entities do not self-register: competent authorities identify and notify each entity (spring 2025 wave).",
+          "Requested data must be transmitted within 15 days of categorisation; lists verified every 2 years."
+        ],
+        "inc": [
+          "Significant incidents notified to the competent CERT via forms on the PiXi platform (CARNET).",
+          "Beneficiaries must be informed within 72h; note: the Croatian law does not replicate the 24h early-warning explicitly."
+        ],
+        "aud": [
+          "EE: cybersecurity audit at least every 2 years by accredited auditors (ISO 27001, CyFun, KRITIS certifications recognised); conclusions to authorities within 8 days, costs borne by entities.",
+          "IE: self-assessment at least every 2 years; audit only on authority request."
+        ],
+        "scope": [
+          "Any entity supplying a service/good of major societal or economic importance can be designated regardless of size; e-invoicing exchange platforms are EE; public communication network providers are IE.",
+          "Education entities can be IE regardless of size; special physical-security measures for digital infrastructure entities."
+        ],
+        "other": [
+          "DORA provisions integrated (third-party ICT provider definitions); CER directive not referenced."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-02-15",
+          "text": "Cybersecurity Act (NN 14/2024) enters into force — on time"
+        },
+        {
+          "date": "2024-11-30",
+          "text": "Cybersecurity Regulation (NN 135/2024) in force: classification criteria, risk measures, incident notification"
+        },
+        {
+          "date": "2025-03-14",
+          "text": "NCSC-HR: initial categorisation under way; entities notified by mid-April 2025"
+        },
+        {
+          "date": "2025-06-30",
+          "text": "ZSIS publishes self-assessment guidelines (control calculator, risk framework, 145-control catalogue)"
+        },
+        {
+          "date": "2025-08-15",
+          "text": "Public consultation on certification rules for cybersecurity audits closed"
+        }
+      ],
+      "next": [
+        "During 2026: additional implementing regulations and new National Cyber Security Strategy expected."
+      ],
+      "sources": [
+        {
+          "name": "NCSC-HR (SOA)",
+          "url": "",
+          "type": "official"
+        },
+        {
+          "name": "ZSIS",
+          "url": "",
+          "type": "official"
+        },
+        {
+          "name": "Narodne novine (Official Gazette)",
+          "url": "https://narodne-novine.nn.hr",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "CZ",
+      "name": "Czechia",
+      "flag": "🇨🇿",
+      "region": "East",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 12,
+      "lawInForce": "2025-11-01",
+      "fw": "final",
+      "law": "Cybersecurity Act No. 264/2025 Coll. + implementing decrees of 14 Oct 2025",
+      "fwName": "Tiered regime — higher obligations: 14 org. themes (169 measures) + 11 technical (127); lower: 13 themes (81 measures)",
+      "reqEE": 296,
+      "reqIE": 81,
+      "complianceEE": 12,
+      "complianceIE": 12,
+      "auditBody": "National authority (NÚKIB) / independent auditors",
+      "auditFreqEE": 12,
+      "auditFreqIE": 24,
+      "selfAssessFreq": 12,
+      "regTool": "Platform (Portál NÚKIB)",
+      "incidentMethod": "Web platform (NÚKIB / national CERT)",
+      "summary": "In force Nov 2025 (12-month delay); strictest requirement count in the panel (296 EE measures); 6h early warning.",
+      "authorities": [
+        {
+          "name": "NÚKIB",
+          "role": "National Cyber and Information Security Agency — supervision, dedicated portal"
+        },
+        {
+          "name": "National CERT",
+          "role": "Incident response for the lower-obligations regime"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Two regimes: higher obligations (≈EE, ISMS explicitly required) and lower obligations (≈IE).",
+          "OT/industrial control systems: dedicated technical measures (§27).",
+          "Entities have 12 months from registration to implement measures; 'strategically important services' carry extra supply-chain obligations."
+        ],
+        "reg": [
+          "Registration with NÚKIB within 60 days of the law entering into force (by 31 Dec 2025); asset inventory (primary + supporting) must be declared, exclusions justified.",
+          "Provider report within 30 days of registration decision; later changes notified within 90 days."
+        ],
+        "inc": [
+          "Early warning within 6 hours (24h for trust service providers) — stricter than the directive.",
+          "Incidents lasting over 1 month: supplementary reports every 15 days until the final report; reactive counter-measures ordered by the authority must be applied within 72h."
+        ],
+        "aud": [
+          "EE: annual security audits (first required from 1 Nov 2026); other entities every 2 years; independent auditors.",
+          "Cybersecurity audit at least every 2 years and on significant change (§16)."
+        ],
+        "scope": [
+          "Defence industry sector added; sub-sectors added: gas stations, electricity suppliers for data centres, in-flight refuelling, qualified e-ID systems, payment/e-money institutions, research infrastructure.",
+          "Regulator can designate critical exceptions; criticality criteria quantified in decree No. 408/2025."
+        ],
+        "reco": [
+          "Inventory primary and supporting assets required for the regulated service before registration."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-06-11",
+          "text": "Senate approves the bill; signed by the President 26 June 2025"
+        },
+        {
+          "date": "2025-08-04",
+          "text": "Act No. 264/2025 Coll. published in the Collection of Laws"
+        },
+        {
+          "date": "2025-10-14",
+          "text": "Two implementing decrees published (essential / important entities)"
+        },
+        {
+          "date": "2025-11-01",
+          "text": "Law and decrees enter into force"
+        },
+        {
+          "date": "2025-12-31",
+          "text": "Registration deadline (60 days) for regulated services"
+        }
+      ],
+      "next": [
+        "First audits required for essential entities from 1 Nov 2026."
+      ],
+      "sources": [
+        {
+          "name": "NÚKIB",
+          "url": "https://nukib.gov.cz",
+          "type": "official"
+        },
+        {
+          "name": "Portál NÚKIB",
+          "url": "",
+          "type": "official"
+        },
+        {
+          "name": "Collection of Laws (Sbírka zákonů)",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "DE",
+      "name": "Germany",
+      "flag": "🇩🇪",
+      "region": "West",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-06-18",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 13,
+      "lawInForce": "2025-12-06",
+      "fw": "final",
+      "law": "NIS-2 Implementation Act (published 5 Dec 2025) + KRITIS-Dachgesetz (17 Mar 2026, CER)",
+      "fwName": "No single national standard — sector regulations + recognised standards (ISO 27001, BSI 200-3/200-4, B3S, KRITIS)",
+      "reqEE": 93,
+      "reqIE": 93,
+      "complianceEE": 36,
+      "complianceIE": 24,
+      "auditBody": "External accredited body",
+      "auditFreqEE": 12,
+      "auditFreqIE": 36,
+      "selfAssessFreq": 24,
+      "regTool": "Platform + guide (Mein Unternehmenskonto → BSI portal)",
+      "incidentMethod": "Web platform (BSI)",
+      "summary": "In force Dec 2025; ~29,500 entities in scope, enforcement phase running — unregistered entities face fines up to €500k after 31 July 2026.",
+      "authorities": [
+        {
+          "name": "BSI",
+          "role": "Federal Office for Information Security — supervision, registration, incident notification"
+        },
+        {
+          "name": "BBK",
+          "role": "Federal Office for Civil Protection and Disaster Assistance"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "No dedicated NIS 2 standard: entities follow stricter sector regulation where it exists (e.g. DORA, EnWG for energy), otherwise choose recognised standards (ISO 27001, BSI 200-3/200-4, sectoral B3S, KRITIS).",
+          "Compliance required by 6 Dec 2028; proof of compliance renewed every 3 years.",
+          "Two entity categories: critical facilities (KRITIS + essential) and important facilities."
+        ],
+        "reg": [
+          "Registration due 6 Mar 2026 (or within 3 months of qualifying); ≈38.5% of ~29,500 entities registered at the deadline; BSI in active control phase since May 2026.",
+          "Unregistered entities asked to regularise by 31 Jul 2026, fines up to €500,000; registered data must be updated annually.",
+          "Digital-infrastructure and KRITIS entities provide extra data (public IP ranges, critical ICT services)."
+        ],
+        "inc": [
+          "Incidents reported to the BSI since the notification channel opened on 6 Jan 2026; standard NIS 2 deadlines; interim reports on BSI request."
+        ],
+        "aud": [
+          "KRITIS operators transmit audit/certification results and identified vulnerabilities to the BSI; remediation plans can be required.",
+          "Independent audits/inspections can be ordered ex-ante for essential entities, ex-post for others; proof requests possible at the earliest 3 years after the law."
+        ],
+        "scope": [
+          "Public sector = federal administration entities only; municipalities and non-federal administrations not automatically in scope; defence/interior exempt (reporting duties remain).",
+          "Health: major labs, R&D, medical facilities under NIS2+KRITIS; finance under DORA; space = ground infrastructure."
+        ],
+        "other": [
+          "DORA-regulated entities exempt from NIS 2; KRITIS framework recognised; seven-tier penalty scale up to €10M/2% (EE) and €7M/1.4% (IE), €500k tier for registration failures."
+        ],
+        "reco": [
+          "Executive members must complete cybersecurity risk training as soon as possible, then every 3 years; identify applicable standards or select a framework."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-11-13",
+          "text": "Bundestag adopts the NIS 2 transposition law"
+        },
+        {
+          "date": "2025-12-05",
+          "text": "Law published in the Federal Gazette; in force 6 Dec 2025"
+        },
+        {
+          "date": "2026-01-06",
+          "text": "BSI opens registration platform and incident notification form"
+        },
+        {
+          "date": "2026-03-06",
+          "text": "Registration deadline — ≈38.5% of in-scope entities registered"
+        },
+        {
+          "date": "2026-03-17",
+          "text": "KRITIS-Dachgesetz (physical resilience / CER) enters into force"
+        },
+        {
+          "date": "2026-05-15",
+          "text": "BSI enters active enforcement phase; regularisation demanded by 31 July 2026"
+        }
+      ],
+      "next": [
+        "By 6 Dec 2028: all registered entities fully compliant; proofs renewed every 3 years."
+      ],
+      "sources": [
+        {
+          "name": "BSI",
+          "url": "https://www.bsi.bund.de",
+          "type": "official"
+        },
+        {
+          "name": "Federal Gazette (BGBl.)",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "GR",
+      "name": "Greece",
+      "flag": "🇬🇷",
+      "region": "South",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-02",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 1,
+      "lawInForce": "2024-11-27",
+      "fw": "final",
+      "law": "Law 5160/2024 + Ministerial Decision 1689/2025 (national framework)",
+      "fwName": "National framework — 22 mandatory cybersecurity controls (Decision 1689/2025)",
+      "reqEE": 142,
+      "reqIE": 134,
+      "complianceEE": 18,
+      "complianceIE": 18,
+      "auditBody": "National authority (NCSA)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": 12,
+      "regTool": "Platform (NCSA digital platform)",
+      "incidentMethod": "Web platform + email (NCSA portal)",
+      "summary": "Law in force Nov 2024; 22-control national framework since May 2025; 2026-2030 national strategy adopted.",
+      "authorities": [
+        {
+          "name": "NCSA",
+          "role": "National Cybersecurity Authority (cyber.gov.gr) — sole regulator and central contact point"
+        },
+        {
+          "name": "National CSIRT",
+          "role": "Incident management (EYP/NIS CERT for central government and municipalities)"
+        },
+        {
+          "name": "ADAE",
+          "role": "Contact point for electronic communications, with reinforced sectoral powers"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "22 mandatory controls covering technical, organisational and operational aspects; no explicit reliance on an international standard.",
+          "Since 6 May 2025 the national framework is the mandatory reference for NCSA audits and inspections.",
+          "Local-specificity highlights: mandatory internal AND external penetration testing at least annually (or after major incident)."
+        ],
+        "reg": [
+          "Registration on the NCSA digital platform; final deadline extended to 30 Sep 2025.",
+          "Changes notified within 2 weeks (3 months for some digital providers); detailed data set incl. domain names; strict identification of 'critical' entities without size thresholds."
+        ],
+        "inc": [
+          "Online form on the NCSA portal + email; obligation applicable since entry into force.",
+          "Definition includes 'moral harm' and a preventive approach (notifiable as soon as an incident is 'likely' to have serious impact); NCSA can tighten criteria by decision."
+        ],
+        "aud": [
+          "On-site and off-site inspections incl. spot checks; special audits after incidents, complaints or serious indications; supervision of EE and IE security evaluation.",
+          "Appointment of an ICT Security Officer (Υ.Α.Σ.Π.Ε.) mandatory — role incompatible with DPO; full asset inventory classified by criticality required."
+        ],
+        "scope": [
+          "Special regimes: electronic communications (ADAE), energy incl. EV charging operators and hydrogen, space ground infrastructure, health manufacturing, MSP/MSSP essential regardless of size.",
+          "Local authorities in scope since 27 Nov 2025; central government reports incidents to the National CERT (EYP/NIS)."
+        ],
+        "other": [
+          "DORA is lex specialis for finance; NCSA coordination mechanism with sector regulators still maturing."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-11-27",
+          "text": "Law 5160/2024 enters into force"
+        },
+        {
+          "date": "2025-05-06",
+          "text": "Ministerial Decision 1689/2025: national framework of 22 controls published"
+        },
+        {
+          "date": "2025-09-30",
+          "text": "Extended registration deadline for data submission to the NCSA"
+        },
+        {
+          "date": "2025-11-27",
+          "text": "Law applies to local authorities (regions and municipalities)"
+        },
+        {
+          "date": "2025-12-16",
+          "text": "National Cybersecurity Strategy 2026-2030 adopted"
+        }
+      ],
+      "next": [
+        "Alignment with the 2026-2030 strategy: EL-SOC connection, future Cyber Hotline for incident support."
+      ],
+      "sources": [
+        {
+          "name": "NCSA — cyber.gov.gr",
+          "url": "https://cyber.gov.gr",
+          "type": "official"
+        },
+        {
+          "name": "Government Gazette (FEK)",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "HU",
+      "name": "Hungary",
+      "flag": "🇭🇺",
+      "region": "East",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 9,
+      "lawInForce": "2025-01-03",
+      "fw": "final",
+      "law": "Cybersecurity Act LXIX of 2024 + implementing decrees (Jan 2025)",
+      "fwName": "Three security classes — Basic / Significant / High: 120 / 200 / 280 measures",
+      "reqEE": 150,
+      "reqIE": 110,
+      "complianceEE": 24,
+      "complianceIE": 24,
+      "auditBody": "External accredited body",
+      "auditFreqEE": 24,
+      "auditFreqIE": null,
+      "selfAssessFreq": 24,
+      "regTool": "Form (SZTFH 420)",
+      "incidentMethod": "Report to Special Service for National Security",
+      "summary": "In force Jan 2025; classification of IS in 3 security classes; audit deadline extended to 30 June 2026; supervision fee regime.",
+      "authorities": [
+        {
+          "name": "SZTFH / SARA",
+          "role": "National transposition and supervision authority"
+        },
+        {
+          "name": "NKI",
+          "role": "Defence cybersecurity authority"
+        },
+        {
+          "name": "KNBSZ",
+          "role": "CERT and certification authority (intelligence services)"
+        },
+        {
+          "name": "Special Service for National Security",
+          "role": "National cybersecurity incident management centre"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "EE must classify information systems into Basic / Significant / High classes; IE must at least meet the Basic class within 1 year.",
+          "Data hosted on public cloud or abroad must be classified by confidentiality, integrity, availability.",
+          "Compliance demonstrated using ICT services/products/processes certified under a European or national scheme; 2 years granted to EE for security measures."
+        ],
+        "reg": [
+          "Registration via form SZTFH 420 within 30 days; authority reviews and issues a decision; updates within 15 days.",
+          "Annual supervision fee payable to the SZTFH (decree 2/2025)."
+        ],
+        "inc": [
+          "Incidents reported to the Special Service for National Security; incident management plan mandatory; beneficiaries informed within 72h.",
+          "Sectoral variations: reporting requirements can differ by sector and competent incident centre."
+        ],
+        "aud": [
+          "Contract with an SZTFH-approved audit body was due by 31 Aug 2025; first audit by 30 Jun 2026 (extension approved 2 Oct 2025).",
+          "Classification and security policy reviewed at least every 2 years; failed audits trigger a remediation plan within 90 days."
+        ],
+        "scope": [
+          "Cement/lime/gypsum production added to Manufacturing; electronic communications services added as highly critical.",
+          "Banking and financial market infrastructure excluded (DORA); public administration sector not listed; public transport sub-sector added."
+        ],
+        "other": [
+          "Law implements NIS 2 and CER, referencing ENISA and DORA regulations."
+        ],
+        "reco": [
+          "Run the IS risk analysis to determine the security class; contract an approved auditor; start data classification (Basic/Significant/High)."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-01-03",
+          "text": "Cybersecurity Act LXIX in force (government + ministerial decrees Jan 2025)"
+        },
+        {
+          "date": "2025-01-31",
+          "text": "SZTFH decrees on audit procedure and supervision fees published"
+        },
+        {
+          "date": "2025-07-31",
+          "text": "Law XXIII in force; supervision fees due"
+        },
+        {
+          "date": "2025-10-02",
+          "text": "Audit deadlines extended: auditor contract 31 Aug 2025, first audit 30 Jun 2026"
+        }
+      ],
+      "next": [
+        "Several clarifying regulations still expected."
+      ],
+      "sources": [
+        {
+          "name": "SZTFH",
+          "url": "https://sztfh.hu",
+          "type": "official"
+        },
+        {
+          "name": "Magyar Közlöny (Official Gazette)",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "IT",
+      "name": "Italy",
+      "flag": "🇮🇹",
+      "region": "South",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-06-24",
+      "transposed": true,
+      "onTime": true,
+      "delayMonths": 0,
+      "lawInForce": "2024-10-16",
+      "fw": "final",
+      "law": "Legislative Decree 138/2024 + ACN Decision No. 164179 (10 Apr 2025)",
+      "fwName": "NIST CSF 2.0-based framework — EE: 43 measures / 116 req.; IE: 37 measures / 87 req.",
+      "reqEE": 116,
+      "reqIE": 87,
+      "complianceEE": 18,
+      "complianceIE": 18,
+      "auditBody": "National authority (ACN)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (ACN services portal)",
+      "incidentMethod": "Web platform (CSIRT Italia form)",
+      "summary": "Transposed on time; NIST CSF 2.0 framework; incident notification binding since 15 Jan 2026; measures due by 1 Oct 2026.",
+      "authorities": [
+        {
+          "name": "ACN",
+          "role": "Agenzia per la Cybersicurezza Nazionale — national authority"
+        },
+        {
+          "name": "Sector ministries",
+          "role": "Sectoral authorities per NIS 2 sector"
+        },
+        {
+          "name": "CSIRT Italia",
+          "role": "National CSIRT — incident notifications"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Framework built on the 6 NIST CSF 2.0 functions (GV, ID, PR, DE, RS, RC); measures in annexes 1-2 of Decision 164179.",
+          "EE-only additions: periodic vulnerability/penetration testing, secure baseline configurations, secure hardware decommissioning, inbound traffic filtering incl. email.",
+          "Implementation of security measures due by 1 Oct 2026 (18 months after ACN validation)."
+        ],
+        "reg": [
+          "Registration on the ACN portal 1 Dec 2024 – 28 Feb 2025 (17 Jan for digital providers); ACN validation notified 15 Apr 2025 triggering all deadlines; annual updates (activities, NIS contact + substitute).",
+          "Data includes Codice Fiscale, security officers, public IPs/domains, EU member states served; changes within 14 days."
+        ],
+        "inc": [
+          "Notification to CSIRT Italia via form, binding since 15 Jan 2026 (9 months after registration).",
+          "Trigger criteria IS-1 to IS-4 (confidentiality, integrity, service levels, unauthorised access) — IS-4 applies to EE only."
+        ],
+        "aud": [
+          "ACN may review documentation, run on-site/remote inspections incl. random checks; regular or ad-hoc audits after major incidents.",
+          "Self-assessments mandatory for EE and IE; first one from 16 Oct 2026 (no frequency set yet)."
+        ],
+        "scope": [
+          "Public administration broadly covered: constitutional bodies, ministries, tax agencies, independent authorities; via annex, all local/regional authorities and publicly controlled bodies."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-10-16",
+          "text": "Legislative Decree 138/2024 in force — on time"
+        },
+        {
+          "date": "2025-04-10",
+          "text": "ACN decisions 164179 (framework), 136117 (portal), 136118 (info-sharing) published"
+        },
+        {
+          "date": "2025-04-14",
+          "text": "NIS Guidelines (basic technical specifications) published"
+        },
+        {
+          "date": "2025-05-31",
+          "text": "Annual information update + substitute contact designation completed"
+        },
+        {
+          "date": "2026-01-15",
+          "text": "Incident notification to CSIRT Italia becomes enforceable"
+        }
+      ],
+      "next": [
+        "By 1 Oct 2026: security measures of the 2025 Italian framework fully implemented."
+      ],
+      "sources": [
+        {
+          "name": "ACN",
+          "url": "https://www.acn.gov.it",
+          "type": "official"
+        },
+        {
+          "name": "CSIRT Italia",
+          "url": "https://www.csirt.gov.it",
+          "type": "official"
+        },
+        {
+          "name": "Gazzetta Ufficiale",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "LV",
+      "name": "Latvia",
+      "flag": "🇱🇻",
+      "region": "North",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-03",
+      "transposed": true,
+      "onTime": true,
+      "delayMonths": 0,
+      "lawInForce": "2024-09-01",
+      "fw": "final",
+      "law": "National Cybersecurity Law (in force 1 Sep 2024) + Regulation No. 397 + Minimum Cybersecurity Requirements (2 Jul 2025)",
+      "fwName": "Minimum Cybersecurity Requirements — 94 measures, Class A/B/C system",
+      "reqEE": 87,
+      "reqIE": 80,
+      "complianceEE": 12,
+      "complianceIE": 12,
+      "auditBody": "External accredited body",
+      "auditFreqEE": 12,
+      "auditFreqIE": 36,
+      "selfAssessFreq": 12,
+      "regTool": "Form (annex 10, official e-address)",
+      "incidentMethod": "Email forms 1-5 (24h) to national security service",
+      "summary": "Transposed on time; 94-measure framework scaled by A/B/C classes; cybersecurity manager with citizenship rules for critical ICT.",
+      "authorities": [
+        {
+          "name": "NCSC (Ministry of Defence)",
+          "role": "National Cybersecurity Centre — policy and supervision"
+        },
+        {
+          "name": "SAB",
+          "role": "Constitution Protection Bureau — critical ICT oversight"
+        },
+        {
+          "name": "CERT.LV",
+          "role": "Incident response, prevention, SOC supervision"
+        },
+        {
+          "name": "MilCERT",
+          "role": "Defence-sector incident response"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Requirements scaled by confidentiality/integrity/availability class (A/B/C): prescriptive log retention (18/12/6 months, NTP Stratum 2+ timestamps), MFA rules, encryption baselines.",
+          "Cybersecurity manager to be appointed (vetted; Latvian citizen for critical ICT infrastructure); first self-assessment report was due 1 Oct 2025.",
+          "Cybersecurity policy reviewed and communicated to the authority every 3 years; single national Internet traffic bridge for State-linked EE/IE."
+        ],
+        "reg": [
+          "Self-assessment test by 1 Apr 2025 then registration form (annex 10) via official e-address; extra notification for critical ICT owners; changes within 2 weeks."
+        ],
+        "inc": [
+          "Incidents reported within 24h to the specialised national security service via staged forms (early warning → final report); reporting live since 1 Jul 2025.",
+          "Vulnerabilities: report to the authority within 5 days; remediation 90 days (180 if technically impossible)."
+        ],
+        "aud": [
+          "NCSC can run or order compliance audits on suspicion of violations; independent certified auditors (ISO 27001, CISSP, CISA, CISM; ≥2 years experience), costs borne by the entity.",
+          "Annual self-assessment for the most critical classes, every 3 years otherwise."
+        ],
+        "scope": [
+          "EE: institutions directly/indirectly linked to the State, sole providers of a service in Latvia, EU reference labs; IE: mid-size security/education/trust service providers.",
+          "Outsourcing restricted by country/ownership with prior authority opinion; official register of authorised auditors."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-09-01",
+          "text": "National Cybersecurity Law in force — on time"
+        },
+        {
+          "date": "2025-02-02",
+          "text": "Regulation No. 397 on minimum cybersecurity requirements in force"
+        },
+        {
+          "date": "2025-07-02",
+          "text": "'Minimum Cybersecurity Requirements' regulation approved (94 measures)"
+        },
+        {
+          "date": "2025-10-01",
+          "text": "Deadline: cybersecurity manager appointed + first self-assessment report"
+        }
+      ],
+      "next": [
+        "Additional sectoral regulatory texts expected."
+      ],
+      "sources": [
+        {
+          "name": "Ministry of Defence — mod.gov.lv",
+          "url": "https://www.mod.gov.lv",
+          "type": "official"
+        },
+        {
+          "name": "CERT.LV",
+          "url": "https://cert.lv",
+          "type": "official"
+        },
+        {
+          "name": "Likumi.lv (legislation)",
+          "url": "https://likumi.lv",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "LT",
+      "name": "Lithuania",
+      "flag": "🇱🇹",
+      "region": "North",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-03",
+      "transposed": true,
+      "onTime": true,
+      "delayMonths": 0,
+      "lawInForce": "2024-10-18",
+      "fw": "final",
+      "law": "Cybersecurity Law No. XII-1428 + government resolution of 12 Nov 2024",
+      "fwName": "Description of cybersecurity requirements — 12 themes (ISO 27001-based)",
+      "reqEE": 119,
+      "reqIE": 107,
+      "complianceEE": 12,
+      "complianceIE": 12,
+      "auditBody": "National authority (NKSC)",
+      "auditFreqEE": 36,
+      "auditFreqIE": 36,
+      "selfAssessFreq": null,
+      "regTool": "Authority-driven (NKSC registry via KSIS)",
+      "incidentMethod": "Web platform (national plan)",
+      "summary": "Transposed on time; NKSC registered entities by Apr 2025; 12-theme ISO-based framework; audits every 3 years.",
+      "authorities": [
+        {
+          "name": "NKSC",
+          "role": "National Cyber Security Centre — supervision, registry, technical assistance"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "12 main themes combining specific requirements (policies, training, business continuity) and technical requirements (network security, encryption); grounded in ISO/IEC 27001.",
+          "Organisational requirements within 12 months of registry entry, technical measures within 24 months.",
+          "Local specificities: availability thresholds >96%/99% for critical IS; mandatory ISP contracts with response times and DoS protection (incl. 24/7)."
+        ],
+        "reg": [
+          "NKSC selected and registered entities in the KSIS registry by 17 Apr 2025 (authority-driven); entities could contest their categorisation.",
+          "Self-check questionnaire available from the Ministry of Defence; after confirmation, entities connect to KSIS and provide activity data."
+        ],
+        "inc": [
+          "Notifications to the NKSC per the National Cyber Incident Management Plan via the dedicated platform; quantified thresholds (operational, financial, third-party damage, physical security)."
+        ],
+        "aud": [
+          "Independent cybersecurity audit at least every 3 years; targeted audits at entity's cost when high risk detected; audits max 4 months (+2 extension).",
+          "Sectoral and NKSC-led audits start officially in 2027; first ex-post EE compliance assessments due 1 Jan 2029."
+        ],
+        "scope": [
+          "Universities and research institutions added; scientific research for commercial purposes explicitly included.",
+          "Public administration (central, regional, municipal) classified EE — subject to corrective orders and public naming instead of fines."
+        ],
+        "other": [
+          "Explicit links to DORA, eIDAS, GDPR."
+        ],
+        "reco": [
+          "Managers: cybersecurity training every 2 years, documented; vulnerability disclosure embargo 90 days; NKSC can deploy sensors on EE networks."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-10-18",
+          "text": "Cybersecurity Law No. XII-1428 in force — on time"
+        },
+        {
+          "date": "2024-11-12",
+          "text": "Government resolution amending the 2018 implementation text in force"
+        },
+        {
+          "date": "2025-04-17",
+          "text": "NKSC completes initial registry of cybersecurity entities (KSIS)"
+        }
+      ],
+      "next": [
+        "2027: sectoral and NKSC audits begin; 1 Jan 2029: first ex-post EE compliance assessments."
+      ],
+      "sources": [
+        {
+          "name": "NKSC",
+          "url": "https://www.nksc.lt",
+          "type": "official"
+        },
+        {
+          "name": "e-Seimas (legislation)",
+          "url": "https://e-seimas.lrs.lt",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "MT",
+      "name": "Malta",
+      "flag": "🇲🇹",
+      "region": "South",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-03",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 5,
+      "lawInForce": "2025-04-08",
+      "fw": "final",
+      "law": "Legal Notice 71 of 2025 (+ Legal Notice 22 of 2026 — full entry into force)",
+      "fwName": "Belgian CyFun adopted as national framework (Dec 2025)",
+      "reqEE": 218,
+      "reqIE": 133,
+      "complianceEE": 18,
+      "complianceIE": 18,
+      "auditBody": "Multiple (CIPD + sector regulators)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "CIPD national registry (reviewed every 2 years)",
+      "incidentMethod": "Report to CSIRTMalta",
+      "summary": "Law Apr 2025; joined the CyFun Scheme Owner Group and adopted the Belgian framework; fully applicable since 23 Jan 2026.",
+      "authorities": [
+        {
+          "name": "MHSE",
+          "role": "Ministry for Home Affairs, Security and Employment"
+        },
+        {
+          "name": "CIPD",
+          "role": "Critical Infrastructure Protection Department — national supervisory authority"
+        },
+        {
+          "name": "CSIRTMalta",
+          "role": "National CSIRT — incident notifications, coordinated vulnerability disclosure"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Malta officially adopted the Belgian CyFun framework (ISO 27001, IEC 62443, NIST CSF, CIS Controls based) after joining the CyberFundamentals Scheme Owner Group on 12 Dec 2025."
+        ],
+        "reg": [
+          "National self-registration mechanism maintained by the CIPD; registry reviewed at least every 2 years; changes notified within 3 months."
+        ],
+        "inc": [
+          "Incident notifications submitted to CSIRTMalta; National Coordinated Vulnerability Disclosure Policy (NCVDP) in place, CSIRTMalta acting as trusted intermediary."
+        ],
+        "aud": [
+          "CIPD powers: on-site inspections, audits, security scans, information requests, data access; sector regulators (MCA for ICT, MFSA for finance) also supervise.",
+          "Entities must appoint a qualified auditor approved by the authority (valid international/EU certification or background check)."
+        ],
+        "scope": [
+          "Public administration incl. central government and, after risk assessment, regional entities; national security/defence/law-enforcement excluded.",
+          "Criminal Code (Computer Misuse) being revised to align vulnerability-reporting frameworks."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-04-08",
+          "text": "Legal Notice 71 of 2025 transposes NIS 2"
+        },
+        {
+          "date": "2025-12-12",
+          "text": "Malta joins the CyberFundamentals Scheme Owner Group — Belgian CyFun adopted"
+        },
+        {
+          "date": "2026-01-23",
+          "text": "Full entry into force of all provisions (Legal Notice 22 of 2026)"
+        }
+      ],
+      "next": [
+        "Practical implementation depends on upcoming CIPD decisions on registration modalities and requirements."
+      ],
+      "sources": [
+        {
+          "name": "CIPD (MHSE)",
+          "url": "",
+          "type": "official"
+        },
+        {
+          "name": "Malta Government Gazette / legislation.mt",
+          "url": "https://legislation.mt",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "PT",
+      "name": "Portugal",
+      "flag": "🇵🇹",
+      "region": "South",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-06-25",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 13,
+      "lawInForce": "2026-04-03",
+      "fw": "final",
+      "law": "Regime Jurídico da Cibersegurança — Decreto-Lei 125/2025 + Regulamento 756/2026",
+      "fwName": "QNRCS v2 — 6 objectives, 117 measures, 3 levels (Básico/Substancial/Elevado)",
+      "reqEE": 117,
+      "reqIE": 117,
+      "complianceEE": 26,
+      "complianceIE": 26,
+      "auditBody": "Authority or qualified independent entity",
+      "auditFreqEE": 12,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (MyCiber)",
+      "incidentMethod": "Web platform (MyCiber forms)",
+      "summary": "RJC in force Apr 2026 (~18-month delay); QNRCS v2 framework final since 22 June 2026; compliance deadline 22 June 2028.",
+      "authorities": [
+        {
+          "name": "CNCS",
+          "role": "Centro Nacional de Cibersegurança — national authority (sector authorities may supplement)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "QNRCS v2 adopted as national framework: 6 objectives (Govern, Identify, Protect, Detect, Respond, Recover), 117 measures; levels Básico/Substancial/Elevado for private entities, groups A/B for public.",
+          "Based on NIST CSF 2.0, ISO 27001 and CIS CSC v8.1; voluntary certification via EC QNRCS, ISO/IEC 27001 or DNP TS 4577-1 (Selo Digital) gives presumption of conformity.",
+          "Compliance deadline: 22 June 2028."
+        ],
+        "reg": [
+          "Registration on MyCiber within 60 days of go-live (before 22 Aug 2026) or within 30 days of gaining EE/IE status; provisional then definitive registry with 10-working-day hearing.",
+          "Data: name, tax ID, sector, entity type, addresses, EU member states served, headcount, turnover; cybersecurity officer + permanent 24/7 contact point designated via the platform."
+        ],
+        "inc": [
+          "Notifications via MyCiber forms in three stages (initial, end-of-significant-impact, final/interim); email or phone fallback; NIS 2 deadlines.",
+          "Significant-incident definition per Implementing Regulation (EU) 2024/2690 where applicable; CNCS technical instruction pending for the rest."
+        ],
+        "aud": [
+          "EE: ex-ante supervision (on-site/remote inspections, regular or targeted audits, random checks); IE: ex-post on evidence of non-compliance; targeted audit costs borne by the entity."
+        ],
+        "scope": [
+          "'Relevant public entities' — Portuguese specificity: Group A (≥250 staff, obligations close to IE) and Group B (75-249 staff, lighter obligations)."
+        ],
+        "other": [
+          "Law 46/2018 and Decree-Law 65/2021 repealed; DORA entities notify ICT incidents to DORA authorities but keep RJC officer/contact-point duties."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-12-04",
+          "text": "Decreto-Lei 125/2025 published — transposes NIS 2"
+        },
+        {
+          "date": "2026-04-03",
+          "text": "RJC enters into force (~18 months after the EU deadline)"
+        },
+        {
+          "date": "2026-06-22",
+          "text": "Regulamento 756/2026 published; QNRCS v2 becomes the national framework — regime fully operational"
+        }
+      ],
+      "next": [
+        "Registration on MyCiber before 22 Aug 2026; two CNCS technical instructions pending (significant-incident definition, certification equivalence matrix); compliance by 22 Jun 2028."
+      ],
+      "sources": [
+        {
+          "name": "CNCS",
+          "url": "https://www.cncs.gov.pt",
+          "type": "official"
+        },
+        {
+          "name": "MyCiber",
+          "url": "https://myciber.gov.pt",
+          "type": "official"
+        },
+        {
+          "name": "Diário da República",
+          "url": "https://diariodarepublica.pt",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "SK",
+      "name": "Slovakia",
+      "flag": "🇸🇰",
+      "region": "East",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 2,
+      "lawInForce": "2025-01-01",
+      "fw": "final",
+      "law": "Act 366/2024 amending Act 69/2018 + decrees 226/2025 & 227/2025",
+      "fwName": "19-theme national framework (decree 227/2025), incl. OT measures",
+      "reqEE": 151,
+      "reqIE": 142,
+      "complianceEE": 12,
+      "complianceIE": 12,
+      "auditBody": "National authority (NBÚ)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (JISKB)",
+      "incidentMethod": "Web platform (JISKB)",
+      "summary": "In force Jan 2025; JISKB platform for registration and incidents; 19-theme framework with explicit 3-2-1 backup rule.",
+      "authorities": [
+        {
+          "name": "NBÚ",
+          "role": "National Security Authority — supervision (with sector ministries)"
+        },
+        {
+          "name": "SK-CERT",
+          "role": "National Cybersecurity Centre — 24/7 incident management, coordinated disclosure"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Decree 227/2025 sets minimum measures across 19 themes: governance, risk, supply chain, IAM, cryptography (annual robustness reassessment), OT safeguards, business continuity.",
+          "Local specificities: explicit 3-2-1 backup rule; incident definition includes averted threats and identified vulnerabilities.",
+          "Scope of measures determined by risk analysis (annex 1 of decree 226/2025); security documentation kept current for NBÚ inspection."
+        ],
+        "reg": [
+          "Registration via JISKB within 60 days of starting activity; law applicable 30 days after registry entry; NBÚ online classification wizard available.",
+          "Entities without EU seat must appoint a representative in Slovakia (cloud, DNS); changes notified within 14 days."
+        ],
+        "inc": [
+          "Significant incidents reported via JISKB since 1 Jan 2025; criteria in annex I of decree 226/2025; annexes II-III define report content."
+        ],
+        "aud": [
+          "EE: mandatory certified audits, first within 2 years of registration; IE: self-assessment via JISKB, certified audit within 5 years.",
+          "NIS 1 entities: 2024 audit deadline extended to 30 Sep 2025, previous audit obligations usable until Dec 2026; full compliance for already-registered entities by 31 Dec 2026."
+        ],
+        "scope": [
+          "Thermal energy sub-sector added; water & atmosphere sector (drinking/waste water, meteorology, hydraulic structures); nuclear energy follows the law in addition to Atomic Act 541/2004.",
+          "Public administration: 3 ministries as competent authorities; large municipalities and regions included if disruption impacts public order/health; public entities face corrective orders, not fines."
+        ],
+        "other": [
+          "NBÚ can temporarily suspend executives on repeated failures (private sector); state of cyber crisis can be declared."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-01-01",
+          "text": "Amendment to Act 69/2018 (Act 366/2024) in force"
+        },
+        {
+          "date": "2025-09-01",
+          "text": "Decrees 226/2025 (incidents) and 227/2025 (minimum requirements) in force"
+        },
+        {
+          "date": "2025-09-30",
+          "text": "Extended audit deadline for former NIS 1 entities"
+        }
+      ],
+      "next": [
+        "Full compliance of registered entities by 31 Dec 2026."
+      ],
+      "sources": [
+        {
+          "name": "NBÚ",
+          "url": "https://www.nbu.gov.sk",
+          "type": "official"
+        },
+        {
+          "name": "SK-CERT",
+          "url": "https://www.sk-cert.sk",
+          "type": "official"
+        },
+        {
+          "name": "Slov-Lex (legislation)",
+          "url": "https://www.slov-lex.sk",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "SI",
+      "name": "Slovenia",
+      "flag": "🇸🇮",
+      "region": "East",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 8,
+      "lawInForce": "2025-06-19",
+      "fw": "final",
+      "law": "Information Security Act ZInfV-1 (adopted 23 May 2025, emergency procedure)",
+      "fwName": "Law-defined measures (art. 21-22) referencing EU/international standards — no dedicated framework planned",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": 18,
+      "complianceIE": 18,
+      "auditBody": "Multiple (URSIV + AKOS)",
+      "auditFreqEE": 24,
+      "auditFreqIE": 24,
+      "selfAssessFreq": 24,
+      "regTool": "Form (URSIV online form / email fallback)",
+      "incidentMethod": "Email to SI-CERT (platform within 1 year)",
+      "summary": "ZInfV-1 in force June 2025; self-registration closed Dec 2025; risk measures due Dec 2026 (Jun 2026 for ex-NIS1).",
+      "authorities": [
+        {
+          "name": "URSIV",
+          "role": "Government Office for Information Security — supervision"
+        },
+        {
+          "name": "AKOS",
+          "role": "Supervisor for electronic communications, media, digital services"
+        },
+        {
+          "name": "SI-CERT",
+          "role": "National CSIRT"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Security documentation (art. 21) and risk-management measures (art. 22) reference European and international standards; decrees pending to map obligations to ISO/IEC 27001.",
+          "Deadlines: 18 months after entry into force (19 Dec 2026); 12 months for entities already essential under the previous law (19 Jun 2026)."
+        ],
+        "reg": [
+          "Self-registration within 6 months (by 19 Dec 2025) via the URSIV online form; data includes MŠ ID, NACE code, security officer, public IP blocks, ASN, domain names."
+        ],
+        "inc": [
+          "Until the dedicated platform ships (within 1 year), notifications by email to SI-CERT; voluntary reporting of cyber threats and near-misses possible."
+        ],
+        "aud": [
+          "Random inspections for EE; IE inspected on evidence of breach; on-site, remote and security audits.",
+          "EE compliance assessment every 2 years; IE self-assessment every 2 years."
+        ],
+        "scope": [
+          "Research institutions added (excluding education); general threshold ≥50 staff AND ≥€10M turnover/balance sheet except listed exceptions.",
+          "Public administration incl. national security/defence/law-enforcement entities (annex III) and urban municipalities; public entities face corrective orders, not fines."
+        ],
+        "other": [
+          "DORA for finance; EU cybersecurity certification framework (Regulation 2019/881) integrated.",
+          "Logs kept ≥6 months (critical entities: on Slovenian territory); board approval of cyber programmes + training every 4 years; background checks allowed for sensitive positions."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-05-23",
+          "text": "ZInfV-1 adopted by the National Assembly (emergency procedure after EC formal notice)"
+        },
+        {
+          "date": "2025-06-19",
+          "text": "Law enters into force"
+        },
+        {
+          "date": "2025-12-19",
+          "text": "Self-registration deadline (6 months)"
+        }
+      ],
+      "next": [
+        "Government decrees mapping risk-management obligations to ISO/IEC 27001 expected; risk measures due 19 Jun / 19 Dec 2026."
+      ],
+      "sources": [
+        {
+          "name": "URSIV (gov.si)",
+          "url": "https://www.gov.si",
+          "type": "official"
+        },
+        {
+          "name": "SI-CERT",
+          "url": "https://www.cert.si",
+          "type": "official"
+        },
+        {
+          "name": "Uradni list (Official Gazette)",
+          "url": "https://www.uradni-list.si",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "EE",
+      "name": "Estonia",
+      "flag": "🇪🇪",
+      "region": "North",
+      "eu": true,
+      "maturity": 4,
+      "lastUpdate": "2026-07-02",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 14,
+      "lawInForce": "2026-01-01",
+      "fw": "final",
+      "law": "Cybersecurity Act amendment (Bill 739-SE), in force 1 Jan 2026",
+      "fwName": "E-ITS — ~1,600 measures in modules (BSI IT-Grundschutz + EVS-ISO/IEC 27001 based), updated every autumn",
+      "reqEE": 100,
+      "reqIE": 100,
+      "complianceEE": 36,
+      "complianceIE": 36,
+      "auditBody": "National authority (RIA) + annual entity audits",
+      "auditFreqEE": 12,
+      "auditFreqIE": 12,
+      "selfAssessFreq": null,
+      "regTool": "Platform (state portal eesti.ee)",
+      "incidentMethod": "Web platform ('Raport', CERT-EE) or email",
+      "summary": "Law in force Jan 2026; registration due 1 Apr 2026 on eesti.ee; E-ITS framework; full compliance by Jan 2029.",
+      "authorities": [
+        {
+          "name": "RIA",
+          "role": "Information System Authority — single point of contact, registry, incidents & crises"
+        },
+        {
+          "name": "NCSC-EE",
+          "role": "National Cybersecurity Centre — controls and audits"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Estonia meets NIS 2 minimums and details them via E-ITS: ~1,600 baseline measures grouped in modules (ISMS, OPS, INF, APP, SYS, DER…), each tagged basic/standard/high; entities apply the measures relevant to their assets.",
+          "E-ITS validation requires a dedicated audit — no automatic EE/IE split inside the framework; compliance with E-ITS also counts for referenced frameworks (e.g. German BSI certification).",
+          "Full compliance within 3 years (by 1 Jan 2029); §31 entities within 3 months; vital-service providers get 5 years from designation."
+        ],
+        "reg": [
+          "Registration within 3 months of the law (by 1 Apr 2026) or of gaining EE/IE status, via eesti.ee with the RIA; changes within 2 weeks (3 months for digital services); non-EU digital providers appoint a representative.",
+          "Note: RIA withdrew its automated scope self-assessment tool early 2026, judged too complex to be reliable."
+        ],
+        "inc": [
+          "First notification within 24h (except national-security entities), report within 72h, final report within 1 month; 'Raport' platform run by CERT-EE, simple email accepted."
+        ],
+        "aud": [
+          "Annual security audits to verify effectiveness; no more than 12 months between two audits; targeted EE audits at entity cost (exceptions by decree); mutual evaluation possible, regular internal audit counts as independent review."
+        ],
+        "scope": [
+          "Size thresholds clarified (≥50 staff + ≥€10M CA for IE; ≥250 staff + ≥€43M balance/€50M CA for some EE); R&D centres added; IS suppliers (IXP, MSP, MSSP, ITS) automatically EE regardless of size.",
+          "Public sector additions: public policy analysis centres, RMK (state forest), local authority associations."
+        ],
+        "other": [
+          "Board member(s) formally responsible for approving security measures, with regular training; absent designation, the whole board is liable; info-sharing between entities regulated (RIA informed)."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-12-10",
+          "text": "Bill 739-SE adopted by the Riigikogu"
+        },
+        {
+          "date": "2025-12-30",
+          "text": "Law published in Riigi Teataja; in force 1 Jan 2026"
+        },
+        {
+          "date": "2026-04-01",
+          "text": "Registration deadline on eesti.ee (3 months after entry into force)"
+        }
+      ],
+      "next": [
+        "During 2026: guidelines completing E-ITS; full compliance by 1 Jan 2029."
+      ],
+      "sources": [
+        {
+          "name": "RIA",
+          "url": "https://www.ria.ee",
+          "type": "official"
+        },
+        {
+          "name": "Riigi Teataja (Official Gazette)",
+          "url": "https://www.riigiteataja.ee",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "RO",
+      "name": "Romania",
+      "flag": "🇷🇴",
+      "region": "East",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 8,
+      "lawInForce": "2024-12-31",
+      "fw": "temporary",
+      "law": "Emergency Ordinance OUG 155/2024 + Law 124/2025 + DNSC orders 1/2025 & 2/2025",
+      "fwName": "DNSC orders on cybersecurity measures; Belgian CyFun officially recognised — further orders pending",
+      "reqEE": 218,
+      "reqIE": 133,
+      "complianceEE": 18,
+      "complianceIE": 18,
+      "auditBody": "National authority (DNSC)",
+      "auditFreqEE": 24,
+      "auditFreqIE": 24,
+      "selfAssessFreq": 12,
+      "regTool": "Offline form → NIS2@RO platform (pending)",
+      "incidentMethod": "Web platform (PNRISC)",
+      "summary": "OUG in force Dec 2024; DNSC orders Aug 2025; recognises Belgian CyFun; annual maturity self-assessment; external audit 1 year after registration.",
+      "authorities": [
+        {
+          "name": "DNSC",
+          "role": "National Cyber Security Directorate — regulator, CVD coordinator"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "DNSC director issued two orders on cybersecurity measures; Romania joined the CyberFundamentals Scheme Owner Group (Oct 2024) and officially recognises Belgian CyFun.",
+          "Annual self-assessment of risk-management maturity submitted to the DNSC; EE remediation plan within 30 days of self-assessment, endorsed by management.",
+          "INFORB project (with Bulgarian MEG): practical guides for the food sector."
+        ],
+        "reg": [
+          "Registration within 30 days of qualifying — effectively enforceable from 20 Aug 2025 (DNSC orders), so ~19/20 Sep 2025; DNSC identification decision within 60 days (EE) / 150 days (IE).",
+          "Interim offline tool (form emailed to the DNSC) until the NIS2@RO platform launches."
+        ],
+        "inc": [
+          "Significant or cross-border incidents notified to the DNSC via the PNRISC platform; 24h warning, 72h initial notification, final report within 1 month."
+        ],
+        "aud": [
+          "External compliance audit mandatory 1 year after registration, then every 2 years; results to the DNSC within 5 days; ad-hoc audits after major incidents or significant changes."
+        ],
+        "scope": [
+          "CDN services, data-centre services and MSSPs explicitly included."
+        ],
+        "other": [
+          "DNSC public 'Blacklist' platform of malicious domains; Romanian translation of the Belgian selection tool published Dec 2025."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-12-31",
+          "text": "OUG 155/2024 adopted and in force — founding text"
+        },
+        {
+          "date": "2025-07-10",
+          "text": "Law 124/2025 approves and strengthens the OUG"
+        },
+        {
+          "date": "2025-08-20",
+          "text": "DNSC orders 1/2025 (registration) and 2/2025 (risk methodology) in force"
+        },
+        {
+          "date": "2025-12-12",
+          "text": "Belgian selection tool published in Romanian"
+        },
+        {
+          "date": "2026-01-05",
+          "text": "Public consultation on risk management and board responsibilities"
+        }
+      ],
+      "next": [
+        "Additional regulations on risk-management measures and incident-reporting standards expected; sector authorities may specify details."
+      ],
+      "sources": [
+        {
+          "name": "DNSC",
+          "url": "https://www.dnsc.ro",
+          "type": "official"
+        },
+        {
+          "name": "Monitorul Oficial",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "AT",
+      "name": "Austria",
+      "flag": "🇦🇹",
+      "region": "East",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-06-22",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 14,
+      "lawInForce": "2026-10-01",
+      "fw": "none",
+      "law": "NISG 2026 (BGBl. 94/2025, published 23 Dec 2025) — in force 1 Oct 2026",
+      "fwName": "Implementing regulations per sector to be issued by the Cybersicherheitsbehörde",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": 6,
+      "complianceIE": 6,
+      "auditBody": "External accredited auditors",
+      "auditFreqEE": 24,
+      "auditFreqIE": 24,
+      "selfAssessFreq": 36,
+      "regTool": "Secure electronic channel (platform TBA)",
+      "incidentMethod": "Web platforms (3, by entity type/sector)",
+      "summary": "NISG 2026 adopted Dec 2025, applies from Oct 2026 (9-month transition); new federal cybersecurity authority; self-declaration by Jan 2028.",
+      "authorities": [
+        {
+          "name": "Bundesamt für Cybersicherheit",
+          "role": "New federal cybersecurity authority (under BMI, organisationally independent) — competent authority, SPOC, national coordination"
+        },
+        {
+          "name": "GovCERT",
+          "role": "Public-administration CSIRT, interim national CSIRT"
+        },
+        {
+          "name": "Austrian HealthCERT",
+          "role": "Health-sector CSIRT"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Risk-management measures cover the 10 NIS 2 areas (risk analysis, incidents, continuity, supply chain, development, hygiene/training, cryptography, access control, MFA); sector implementing regulations pending.",
+          "EU sector rules (incl. DORA) take precedence where equivalent; CER definitions integrated; other recognised certifications may be considered."
+        ],
+        "reg": [
+          "Registration within 3 months of entry into force (by 1 Jan 2027) via a secure electronic channel; changes within 2 weeks (3 months for seat address / EE-IE status)."
+        ],
+        "inc": [
+          "Online notification via 3 platforms (public administration, essential/digital services, energy); NIS 2 deadlines, except trust services: full report within 24h."
+        ],
+        "aud": [
+          "Proactive supervision for EE (on-site/remote inspections, scans, ad-hoc audits); reactive for IE; mandatory self-declaration within 12 months of the registration obligation (by 1 Jan 2028).",
+          "On request: audit by accredited independent auditor (EE: 2 months to prove compliance; IE: 2 years); audit plan notified 1 month ahead; auditors accredited on qualifications (≥3 years, ≥20h/week) and exam.",
+          "From 1 Oct 2028 authorities may request proof of compliance via an independent auditor."
+        ],
+        "scope": [
+          "ICT/DNS grouped as 'digital infrastructure' with requirements beyond NIS 2; health under GTelG 2012; research treated as an activity, not a sector.",
+          "Federal administration = EE regardless of size; Länder administration = IE; municipalities, education, courts, Parliament, national bank excluded."
+        ],
+        "other": [
+          "Fines: EE up to €10M/2%, IE €7M/1.4%; registration/cooperation failures up to €50k (€100k repeat); temporary management bans with companies-register entry."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-07-03",
+          "text": "First bill (NISG 2024) rejected by the National Council"
+        },
+        {
+          "date": "2025-11-20",
+          "text": "NISG 2026 bill presented by the government"
+        },
+        {
+          "date": "2025-12-18",
+          "text": "NISG 2026 adopted (Nationalrat, then Bundesrat)"
+        },
+        {
+          "date": "2025-12-23",
+          "text": "Published in the Federal Gazette (BGBl. 94/2025)"
+        },
+        {
+          "date": "2026-01-30",
+          "text": "Official webinar on NISG 2026 and NIS 2"
+        }
+      ],
+      "next": [
+        "1 Oct 2026: entry into force; 1 Jan 2027: registration deadline; 1 Jan 2028: self-declarations; 1 Oct 2028: auditor-backed proof requests possible."
+      ],
+      "sources": [
+        {
+          "name": "RIS / Federal Gazette",
+          "url": "https://www.ris.bka.gv.at",
+          "type": "official"
+        },
+        {
+          "name": "Federal Chancellery scope guide",
+          "url": "",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "BG",
+      "name": "Bulgaria",
+      "flag": "🇧🇬",
+      "region": "East",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 16,
+      "lawInForce": "2026-02-17",
+      "fw": "none",
+      "law": "Cybersecurity Act amendment — adopted 5 Feb 2026, in force 17 Feb 2026",
+      "fwName": "Framework specifying technical & organisational requirements pending (≥3 ordinances to adopt)",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Authority or accredited external auditor",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Authority-driven registry (platform TBA)",
+      "incidentMethod": "Form + platform (dedicated regulation pending)",
+      "summary": "Law finally in force Feb 2026 (16-month delay); framework and registration modalities still to be set by ordinance.",
+      "authorities": [
+        {
+          "name": "Ministry of e-Government",
+          "role": "Supervision (with sector ministries: transport, energy, finance, health, water)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "At least 3 ordinances pending: minimum cybersecurity measures, telecom entities, national strategy — no technical framework formalised yet.",
+          "INFORB project with the Romanian DNSC provides practical guides for the food sector."
+        ],
+        "reg": [
+          "The authority determines entity status and enters it in a dedicated registry, then notifies the entity; opt-out from the info-sharing registry possible on notification; changes within 2 weeks.",
+          "No registration platform or deadline published yet."
+        ],
+        "inc": [
+          "Via form and platform to be specified in a dedicated regulation; NIS 2 deadlines (24h / 72h / 1 month) and report structure apply."
+        ],
+        "aud": [
+          "Planned or unannounced inspections, on-site or remote; possible after security breaches or suspected illegality; self-assessment with report possible.",
+          "Control authorities also include the Ministry of Defence, Ministry of Interior and State Agency for National Security (DANS)."
+        ],
+        "scope": [
+          "Sectors follow NIS 2 almost verbatim; food sector broader than annex II (any stage of production/processing/distribution).",
+          "Administrative entities (EA) form a third category besides EE and IE; scope automatic by sector and size, no threshold for telecoms, trust services, TLD registries, sole providers."
+        ],
+        "other": [
+          "Restrictions on non-EU ICT products/services under discussion; CER, eIDAS and Cybersecurity Act referenced."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-02-20",
+          "text": "Cybersecurity law adopted at first reading by the National Assembly"
+        },
+        {
+          "date": "2025-05-07",
+          "text": "EC reasoned opinion for failure to notify full transposition"
+        },
+        {
+          "date": "2026-02-05",
+          "text": "Bill adopted at second reading"
+        },
+        {
+          "date": "2026-02-17",
+          "text": "Law enters into force"
+        }
+      ],
+      "next": [
+        "First implementation deadlines; framework ordinance specifying technical and organisational requirements expected."
+      ],
+      "sources": [
+        {
+          "name": "Ministry of e-Government",
+          "url": "",
+          "type": "official"
+        },
+        {
+          "name": "State Gazette",
+          "url": "https://dv.parliament.bg",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "PL",
+      "name": "Poland",
+      "flag": "🇵🇱",
+      "region": "East",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 16,
+      "lawInForce": "2026-04-03",
+      "fw": "none",
+      "law": "UC32 amendment to the National Cybersecurity System Act (signed 19 Feb 2026)",
+      "fwName": "No dedicated framework — ISMS required; PN-EN ISO/IEC 27001 & ISO 22301 recognised",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": 24,
+      "complianceIE": 24,
+      "auditBody": "National authority (Ministry of Digital Affairs + sectoral CERTs)",
+      "auditFreqEE": 24,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (S46 teleinformatics system)",
+      "incidentMethod": "Web platform (S46, sectoral CSIRT)",
+      "summary": "In force Apr 2026; ~42,000 entities in scope (incl. ~28,000 public); everything runs through the S46 platform; first EE audits by Apr 2028.",
+      "authorities": [
+        {
+          "name": "Ministry of Digital Affairs",
+          "role": "Registry (Wykaz), large-scale incidents & crises; Government Plenipotentiary for coordination"
+        },
+        {
+          "name": "Sectoral competent authorities",
+          "role": "Supervision per sector"
+        },
+        {
+          "name": "CSIRT MON / NASK / GOV",
+          "role": "National CSIRTs + sectoral CSIRTs for incident reporting"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "No national framework: entities implement an ISMS within 12 months; PN-EN ISO/IEC 27001 and ISO 22301 designated as comparable standards.",
+          "Full compliance required by 3 Apr 2027 (12 months); compliance audit within 24 months.",
+          "High-risk vendor (HRV) mechanism: designated ICT suppliers must be phased out by regulated entities."
+        ],
+        "reg": [
+          "Registration in the Wykaz registry via the S46 platform; entities already qualified on 3 Apr 2026 must self-assess and register by 3 Oct 2026; new entities within 6 months of meeting criteria.",
+          "Electronic application with qualified e-signature; changes within 14 days; authority can register entities ex officio."
+        ],
+        "inc": [
+          "Alerts to the sectoral CSIRT via the dedicated S46 platform; NIS 2 deadlines and report content; public/banking entities notify under adapted rules.",
+          "Entities must adapt their IS to the platform's technical requirements within 6 months."
+        ],
+        "aud": [
+          "EE: audits every 2 years (recurring every 36 months after first audit at 24 months); ex-ante + ex-post for EE, ex-post for IE; contest window 7 days.",
+          "Authority can require Polish translation of audit documents at the entity's cost; audits at entity's cost; first audits (and first possible fines) from 3 Apr 2028."
+        ],
+        "scope": [
+          "Mining sub-sector and managed cybersecurity providers added to energy; nuclear energy added; more precise sub-sector definitions (e.g. research institutions).",
+          "Public entities split: EE (public finance sector, research institutes) and IE (local budget units, local cultural institutions); ~28,000 public bodies in scope."
+        ],
+        "other": [
+          "DORA entities exempt from cyber rules and notifications; links with CER transposition and sectoral laws; fines up to €24M + daily penalties, payable within 14 days; 2 contact persons with vetted records; annual documented training for CEO and cyber officer."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-10-21",
+          "text": "Government approves the UC32 amendment transposing NIS 2"
+        },
+        {
+          "date": "2025-12-05",
+          "text": "First reading in the Sejm; referred exclusively to the digital affairs committee"
+        },
+        {
+          "date": "2026-02-19",
+          "text": "President Nawrocki signs the law (published 2 Mar 2026)"
+        },
+        {
+          "date": "2026-04-03",
+          "text": "Law enters into force"
+        }
+      ],
+      "next": [
+        "3 Oct 2026: self-assessment + S46 registration deadline; 3 Apr 2027: full compliance; 3 Apr 2028: first EE security audits."
+      ],
+      "sources": [
+        {
+          "name": "Ministry of Digital Affairs",
+          "url": "https://www.gov.pl/web/cyfryzacja",
+          "type": "official"
+        },
+        {
+          "name": "Dziennik Ustaw (Journal of Laws)",
+          "url": "https://dziennikustaw.gov.pl",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "CY",
+      "name": "Cyprus",
+      "flag": "🇨🇾",
+      "region": "South",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 6,
+      "lawInForce": "2025-04-25",
+      "fw": "none",
+      "law": "Law N.60(I)/2025 amending the NIS law (in force 25 Apr 2025)",
+      "fwName": "Framework to be specified by the Digital Security Authority — publication expected",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "National authority (DSA)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "DSA list + online self-assessment tool",
+      "incidentMethod": "Online form or email to CSIRT-CY",
+      "summary": "Law in force Apr 2025; framework pending; notably strict timelines: 6h early warning, 15-day supplementary reports for long incidents.",
+      "authorities": [
+        {
+          "name": "DSA",
+          "role": "Digital Security Authority (dsa.cy) — regulator with functional independence over public bodies"
+        },
+        {
+          "name": "CSIRT-CY",
+          "role": "National CSIRT — incident notifications"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "The law carries the directive's security rules; the DSA may specify them and can require certified ICT products/services under EU cybersecurity certification schemes; national framework expected shortly."
+        ],
+        "reg": [
+          "DSA draws up and maintains the EE/IE list (reviewed every 2 years); entities provide directive-required data once notified; changes within 2 weeks (3 months for DNS/TLD/cloud/data centres/social platforms).",
+          "Online self-assessment tool available to check eligibility."
+        ],
+        "inc": [
+          "First notification within 6 hours of awareness (stricter than the 24h of the directive; 24h kept for trust service providers); initial assessment within 72h, final report within 1 month.",
+          "Incidents lasting over 1 month: progress reports every 15 days until the final report."
+        ],
+        "aud": [
+          "Warnings, binding remediation instructions, cessation orders, publication of violations; ex-ante and ex-post for EE, ex-post for IE."
+        ],
+        "scope": [
+          "Banking stays in scope for national strategy, large-scale incident cooperation and CSIRT assistance, but is not DSA-supervised (DORA).",
+          "Public bodies: certain enforcement measures (certification suspension, management liability) do not apply."
+        ],
+        "other": [
+          "EU-CyCLONe participation enshrined; TLD/DNS databases must answer legitimate access requests within 72h; voluntary notifications accepted; active cyber-protection (network sensors) possible."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-11-28",
+          "text": "EC letter of formal notice for incomplete transposition"
+        },
+        {
+          "date": "2025-04-10",
+          "text": "House of Representatives votes law N.60(I)/2025"
+        },
+        {
+          "date": "2025-04-25",
+          "text": "Law enters into force"
+        },
+        {
+          "date": "2025-05-07",
+          "text": "EC reasoned opinion despite entry into force (incomplete notification)"
+        }
+      ],
+      "next": [
+        "National cybersecurity framework publication expected shortly."
+      ],
+      "sources": [
+        {
+          "name": "DSA — dsa.cy",
+          "url": "https://dsa.cy",
+          "type": "official"
+        },
+        {
+          "name": "CSIRT-CY",
+          "url": "https://csirt.cy",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "DK",
+      "name": "Denmark",
+      "flag": "🇩🇰",
+      "region": "North",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-03",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 8,
+      "lawInForce": "2025-07-01",
+      "fw": "temporary",
+      "law": "NIS 2 Act (L 141 / LOV nr 434) + CER Act + sector laws (energy, telecom)",
+      "fwName": "Temporary framework 'Vejledning til NIS 2-loven' — 19 themes, 129 requirements (EE & IE)",
+      "reqEE": 129,
+      "reqIE": 129,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Sectoral authorities",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (Virk)",
+      "incidentMethod": "Web platform (Virk.dk → CFCS, auto-routed)",
+      "summary": "Main law in force July 2025; temporary 19-theme guidance (ISO 27001 / IEC 62443 / NIST CSF); sector-based supervision.",
+      "authorities": [
+        {
+          "name": "Ministry of Resilience and Preparedness",
+          "role": "Lead for the main act"
+        },
+        {
+          "name": "SAMSIK",
+          "role": "Sector authority for central government, municipalities, parts of manufacturing/chemicals; overall coordination"
+        },
+        {
+          "name": "CFCS",
+          "role": "Centre for Cyber Security — national CSIRT (within FE)"
+        },
+        {
+          "name": "Named sector authorities",
+          "role": "Digital, finance, energy, health, transport, maritime, water, food"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Temporary framework with 19 themes / 129 requirements applying to EE and IE alike, based on ISO 27001, IEC 62443 and NIST CSF; sector guides expected.",
+          "Local specificities: explicit Single-Point-of-Failure identification in risk analysis; OT continuity and detection adapted to operational constraints."
+        ],
+        "reg": [
+          "EE/IE register within 2 weeks of falling in scope; digital service providers within 3 months; global registration deadline was 1 Oct 2025, via the national Virk platform."
+        ],
+        "inc": [
+          "Reports submitted digitally via Virk.dk, automatically routed to competent authorities, CSIRT and SPOC; CFCS offers anonymised pre-notification consultations; declarations since 1 Jul 2025."
+        ],
+        "aud": [
+          "Inspections in various forms (on-site or remote audits, document reviews) by sectoral authorities (energy agency, financial supervisory authority, health agency…)."
+        ],
+        "scope": [
+          "Central government units in scope by law; municipalities and regions as IE when acting commercially as public e-communications providers (>50 staff or >€10M).",
+          "Digital service providers in scope regardless of size."
+        ],
+        "other": [
+          "Financial sector transposition explicitly aligned with DORA under Finanstilsynet; evaluation report to Parliament within 3 years; nis2.dk hub with sector checklists and guides."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-03-07",
+          "text": "Energy sector law (No. 258, NIS 2 + CER) in force"
+        },
+        {
+          "date": "2025-04-29",
+          "text": "Parliament approves L 141 (NIS 2) and L 140 (CER)"
+        },
+        {
+          "date": "2025-06-15",
+          "text": "CFCS publishes implementation guides incl. the temporary framework"
+        },
+        {
+          "date": "2025-07-01",
+          "text": "Main law, CER law and telecom law in force"
+        },
+        {
+          "date": "2025-10-01",
+          "text": "Global registration deadline on Virk"
+        }
+      ],
+      "next": [
+        "Sector-specific guides refining the measures expected; evaluation report within 3 years."
+      ],
+      "sources": [
+        {
+          "name": "CFCS",
+          "url": "https://www.cfcs.dk",
+          "type": "official"
+        },
+        {
+          "name": "nis2.dk portal",
+          "url": "https://nis2.dk",
+          "type": "official"
+        },
+        {
+          "name": "Virk",
+          "url": "https://virk.dk",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "FI",
+      "name": "Finland",
+      "flag": "🇫🇮",
+      "region": "North",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-06",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 5,
+      "lawInForce": "2025-04-08",
+      "fw": "temporary",
+      "law": "Cybersecurity Act (approved 11 Mar 2025, in force 8 Apr 2025)",
+      "fwName": "Traficom recommendation — 12 requirements mapped to ISO 27001, IEC 62443, NIST CSF/SP 800-53",
+      "reqEE": 77,
+      "reqIE": 77,
+      "complianceEE": 3,
+      "complianceIE": 3,
+      "auditBody": "National authority (Traficom) + sector authorities",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (per sector authority, with fees)",
+      "incidentMethod": "Web platform (NCSC-FI CSIRT)",
+      "summary": "Law in force Apr 2025; 12 requirements detailed by Traficom recommendation; registration fees; CER law since July 2025.",
+      "authorities": [
+        {
+          "name": "LVM",
+          "role": "Ministry of Transport and Communications — transposition lead"
+        },
+        {
+          "name": "Traficom / NCSC-FI",
+          "role": "Single national contact point, national CSIRT"
+        },
+        {
+          "name": "Sector authorities",
+          "role": "Energy Authority, Tukes, Valvira, Fimea, Food Authority, ELY centre, FIN-FSA"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "The law defines 12 requirements mirroring the directive; Traficom recommendations detail the associated measures, mapped to the EU directive, the act, ISO and NIST standards.",
+          "Risk-management model due within 3 months of entry into force (risk identification, procedures/responsibilities/objectives, protective measures)."
+        ],
+        "reg": [
+          "Registration within 1 month (May 2025) with the sector supervisory authority (multi-sector entities register with each); registration and annual maintenance fees apply.",
+          "Digital entities (DNS, marketplaces, cloud…) provide extended data."
+        ],
+        "inc": [
+          "Significant incidents to the NCSC-FI CSIRT via the dedicated platform since 8 Apr 2025; 24h early warning, 72h report, final report 1 month later."
+        ],
+        "aud": [
+          "Supervisory authority can inspect premises/IS and require a security audit after a serious incident or substantial negligence."
+        ],
+        "scope": [
+          "Financial sector excluded (DORA); public sector handled via the public administration information management act.",
+          "Fines up to €10M or 2% of global turnover."
+        ],
+        "other": [
+          "FISC published a national NIS 2 application guide; EC reasoned opinion 7 May 2025 (incomplete notification); CER law in force 1 Jul 2025."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-03-11",
+          "text": "Parliament definitively approves the Cybersecurity Act"
+        },
+        {
+          "date": "2025-04-08",
+          "text": "Law in force; Traficom supervision recommendations published"
+        },
+        {
+          "date": "2025-07-01",
+          "text": "Critical infrastructure protection & resilience law (CER) in force"
+        }
+      ],
+      "next": [
+        "Sector technical regulations possible from supervisory authorities."
+      ],
+      "sources": [
+        {
+          "name": "Traficom / NCSC-FI",
+          "url": "https://www.kyberturvallisuuskeskus.fi",
+          "type": "official"
+        },
+        {
+          "name": "Finlex (legislation)",
+          "url": "https://www.finlex.fi",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "SE",
+      "name": "Sweden",
+      "flag": "🇸🇪",
+      "region": "North",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-07-03",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 14,
+      "lawInForce": "2026-01-15",
+      "fw": "none",
+      "law": "Cybersäkerhetslag SFS 2025:1506 (approved 10 Dec 2025, in force 15 Jan 2026)",
+      "fwName": "All-risk measures across the 10 directive areas — additional regulations expected",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Multiple (sectoral + 6 county boards)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (MCF digital service)",
+      "incidentMethod": "IRON tool (provisional) → CERT-SE",
+      "summary": "Law in force Jan 2026 (14-month delay); registration since Feb 2026; provisional IRON incident tool; sector + regional supervision.",
+      "authorities": [
+        {
+          "name": "MCF (Myndigheten för civilt försvar)",
+          "role": "Single point of contact, cyber crisis authority, national CSIRT (CERT-SE)"
+        },
+        {
+          "name": "Sectoral authorities",
+          "role": "PTS, energy agency, Transportstyrelsen, Finansinspektionen, health and food agencies"
+        },
+        {
+          "name": "6 county administrative boards",
+          "role": "Regional supervision (public administration, waste, research, some manufacturing)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Technical, operational and organisational measures on an all-risk basis across the directive's 10 mandatory areas; no national framework published yet — additional regulations expected.",
+          "Lex specialis: Security Protection Act (SFS 2018:585) prevails where applicable; CER coordination — NIS 2 prevails unless CER is stricter."
+        ],
+        "reg": [
+          "Registration as of 2 Feb 2026 via the MCF digital service; supervisory action possible if no notification within 14 days; changes within 14 days; self-assessment of eligibility (registry incl. self-classification EE/IE)."
+        ],
+        "inc": [
+          "MCF is central recipient, reports transmitted to CERT-SE; provisional IRON tool until the new reporting tool ships; 24h/72h/1-month deadlines.",
+          "'Significant' quantified: >€500k or 5% turnover loss, trade-secret exfiltration, death or serious health damage, disruptive unauthorised access (EU implementing regulation)."
+        ],
+        "aud": [
+          "EE: controls any time (regular audits, targeted audits, technical scans, premises access); IE: only on suspicion of non-compliance; no violation found → costs not charged."
+        ],
+        "scope": [
+          "State authorities limited to those whose decisions affect cross-border mobility; regions, municipalities, municipal associations included; government, courts, Riksdag agencies excluded.",
+          "Fines payable within 30 days; uncollected after 5 years → cancelled; 40-year secrecy protection on incident-report information; Cybersäkerhetskollen maturity self-assessment tool."
+        ],
+        "other": [
+          "DORA entities exempt from NIS 2 security/notification duties; IMY informed immediately if personal-data breach found during control."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-06-12",
+          "text": "Government submits the new cybersecurity law proposal"
+        },
+        {
+          "date": "2025-12-10",
+          "text": "Riksdag approves 'en ny cybersäkerhetslag' (SFS 2025:1506)"
+        },
+        {
+          "date": "2026-01-15",
+          "text": "Cybersecurity law and regulation in force"
+        },
+        {
+          "date": "2026-02-02",
+          "text": "Registration opens (14-day duty)"
+        }
+      ],
+      "next": [
+        "Additional regulations (incl. MSB/MCF sector directives) expected."
+      ],
+      "sources": [
+        {
+          "name": "MSB / MCF",
+          "url": "https://www.msb.se",
+          "type": "official"
+        },
+        {
+          "name": "CERT-SE",
+          "url": "https://www.cert.se",
+          "type": "official"
+        },
+        {
+          "name": "Riksdag (legislation)",
+          "url": "https://www.riksdagen.se",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "LU",
+      "name": "Luxembourg",
+      "flag": "🇱🇺",
+      "region": "West",
+      "eu": true,
+      "maturity": 3,
+      "lastUpdate": "2026-06-19",
+      "transposed": true,
+      "onTime": false,
+      "delayMonths": 19,
+      "lawInForce": "2026-05-10",
+      "fw": "none",
+      "law": "NIS 2 law promulgated 5 May 2026 (Mémorial A n°225) + CER law (n°226)",
+      "fwName": "No national framework yet — 10 minimum measures of art. 21 apply ('all-risks')",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "National authority (ILR; CSSF for finance)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (ILR portal)",
+      "incidentMethod": "Web platform (SERIMA)",
+      "summary": "Law in force May 2026 (~19-month delay); ILR self-registration due 10 July 2026; SERIMA platform for incidents & risk assessments.",
+      "authorities": [
+        {
+          "name": "HCPN",
+          "role": "High Commission for National Protection — transposition, cross-border cooperation, major crises"
+        },
+        {
+          "name": "ILR",
+          "role": "Institut Luxembourgeois de Régulation — supervisory authority"
+        },
+        {
+          "name": "CSSF",
+          "role": "Financial sector supervision"
+        },
+        {
+          "name": "CIRCL",
+          "role": "National CSIRT for private EE/IE — notifications, technical assistance, CVD"
+        },
+        {
+          "name": "GOVCERT.lu",
+          "role": "CSIRT for State administrations, public establishments, CER critical entities"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Pending a national framework (temporary or definitive), entities apply the 10 minimum measures of article 21; management bodies approve and supervise risk measures, with mandatory regular training.",
+          "ILR sector regulations already published: transport (12 Nov 2025) and energy (4 Feb 2026), with OT security focus."
+        ],
+        "reg": [
+          "Self-registration on the ILR portal within 2 months of entry into force (by 10 Jul 2026); special-case digital providers had to register by 17 Jan 2025; annual updates and changes within 2 weeks; ILR reviews and confirms status; NIS 1 entities notified automatically."
+        ],
+        "inc": [
+          "Notification via the centralised SERIMA portal (launched 2 May 2025 for NIS/CCEE/GDPR/CER); NIS 2 deadlines; risk assessments standardised with the MONARC method."
+        ],
+        "aud": [
+          "Risk-based approach, no fixed frequency; full ILR controls expected from January 2027."
+        ],
+        "scope": [
+          "CER-designated critical entities automatically EE regardless of size; public entities explicitly EE with dedicated CSIRT; defence/intelligence/army exempt.",
+          "National EE/IE list updated at least every 2 years; authority can prescribe specific ICT products/services/processes."
+        ],
+        "other": [
+          "DORA entities exempt from equivalent provisions but still register with the ILR and notify non-DORA incidents; NIS 2 + GDPR notifications cumulative with anti-cumulation rule on fines."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-05-02",
+          "text": "Centralised incident portal launched on SERIMA"
+        },
+        {
+          "date": "2026-01-17",
+          "text": "Registration deadline for special-case digital providers"
+        },
+        {
+          "date": "2026-04-28",
+          "text": "Chamber of Deputies votes law 8364"
+        },
+        {
+          "date": "2026-05-05",
+          "text": "NIS 2 and CER laws promulgated (Mémorial A n°225-226)"
+        },
+        {
+          "date": "2026-05-10",
+          "text": "Law in force — NIS 1 law of 28 May 2019 repealed"
+        }
+      ],
+      "next": [
+        "10 Jul 2026: EE/IE self-registration deadline; ILR regulations/circulars on notifications and technical requirements; national framework to adopt; full controls from Jan 2027; SERIMA training sessions."
+      ],
+      "sources": [
+        {
+          "name": "ILR",
+          "url": "https://www.ilr.lu",
+          "type": "official"
+        },
+        {
+          "name": "Legilux (legislation)",
+          "url": "https://legilux.public.lu",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "FR",
+      "name": "France",
+      "flag": "🇫🇷",
+      "region": "West",
+      "eu": true,
+      "maturity": 2,
+      "lastUpdate": "2026-06-18",
+      "transposed": false,
+      "onTime": false,
+      "delayMonths": null,
+      "lawInForce": null,
+      "fw": "temporary",
+      "law": "'Résilience' bill (transposes NIS 2, DORA, CER) — awaiting plenary examination",
+      "fwName": "ANSSI ReCyF 2.5 (17 Mar 2026, provisional) — 20 themes, 152 EE / 76 IE measures",
+      "reqEE": 152,
+      "reqIE": 76,
+      "complianceEE": 36,
+      "complianceIE": 36,
+      "auditBody": "Multiple",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (ANSSI pre-registration)",
+      "incidentMethod": "N.C. (NIS 2 timelines expected)",
+      "summary": "Still not transposed — CJEU referral June 2026; ReCyF 2.5 provisional framework; plenary vote hoped for July 2026, ANSSI anticipates S2 2027.",
+      "authorities": [
+        {
+          "name": "ANSSI",
+          "role": "National cybersecurity agency — framework, control and enforcement lead"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "ReCyF 2.5 (17 Mar 2026): 20 themes across governance, protection, defence, resilience; 152 measures for EE, 76 for IE; framework comparison tool published.",
+          "An ephemeral 'NIS2+' variant was floated (excluding some sectors such as cosmetics distribution), shared with selected stakeholders only.",
+          "Presumption of conformity: ISO 27001 certification usable for certain measures; compliance evaluations expected annually internally, EE risk-analysis review every 3 years."
+        ],
+        "reg": [
+          "Pre-registration open on the ANSSI website since 24 Nov 2025 (basic data; more expected in the final law); scope-check tool available (EE/IE classification)."
+        ],
+        "inc": [
+          "Incident notification expected to follow original NIS 2 timelines (24h / 72h / 1 month)."
+        ],
+        "scope": [
+          "Public administrations: local authorities >30,000 inhabitants, their management centres/fire services, State administrations, public industrial establishments, education/research establishments.",
+          "NIS 1 OSE automatically subject; software publishers under debate; OIV classification triggers automatic criticality uplift."
+        ],
+        "other": [
+          "Bill aligns NIS 2, CER (REC) and DORA in a single 'Résilience' law."
+        ],
+        "reco": [
+          "Confirm eligible entities with legal teams; pre-register with ANSSI; brief top management; consider early IS scoping and a gap analysis against the provisional ReCyF framework."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-10-15",
+          "text": "'Résilience' bill presented in Council of Ministers, tabled in the Senate"
+        },
+        {
+          "date": "2025-03-12",
+          "text": "Senate adopts the bill (61 committee amendments, 34 on NIS 2)"
+        },
+        {
+          "date": "2025-09-11",
+          "text": "National Assembly special committee adopts 245 amendments"
+        },
+        {
+          "date": "2025-11-24",
+          "text": "ANSSI opens its NIS 2 pre-registration platform"
+        },
+        {
+          "date": "2026-03-17",
+          "text": "ReCyF 2.5 provisional framework published"
+        },
+        {
+          "date": "2026-06-14",
+          "text": "European Commission refers France to the CJEU for non-transposition"
+        }
+      ],
+      "next": [
+        "Plenary examination in the July 2026 extraordinary session, enactment hoped summer 2026; ANSSI does not anticipate a permanent transposition before S2 2027."
+      ],
+      "sources": [
+        {
+          "name": "ANSSI — cyber.gouv.fr",
+          "url": "https://cyber.gouv.fr",
+          "type": "official"
+        },
+        {
+          "name": "Sénat / Assemblée nationale (dossiers législatifs)",
+          "url": "https://www.assemblee-nationale.fr",
+          "type": "official"
+        },
+        {
+          "name": "Légifrance",
+          "url": "https://www.legifrance.gouv.fr",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "NL",
+      "name": "Netherlands",
+      "flag": "🇳🇱",
+      "region": "West",
+      "eu": true,
+      "maturity": 2,
+      "lastUpdate": "2026-06-22",
+      "transposed": false,
+      "onTime": false,
+      "delayMonths": null,
+      "lawInForce": null,
+      "fw": "final",
+      "law": "Cyberbeveiligingswet (Cbw) — adopted by the Tweede Kamer, before the Senate",
+      "fwName": "Cbw (NIS2) Control Framework — 17 control domains, 26 measures, 5-level maturity model",
+      "reqEE": 130,
+      "reqIE": 130,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Multiple (sector ministries)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Platform (mijn.ncsc.nl — voluntary until in force)",
+      "incidentMethod": "Sectoral CSIRT + competent authority",
+      "summary": "Law targeted for 1 July 2026 (Senate pending); official control framework already published Sept 2025; ~8,000 entities in scope.",
+      "authorities": [
+        {
+          "name": "NCSC-NL",
+          "role": "National Cyber Security Centre — implementation lead"
+        },
+        {
+          "name": "Ministry of Justice and Security",
+          "role": "Coordinating authority"
+        },
+        {
+          "name": "Sector ministries",
+          "role": "Supervisory authorities; sectoral CSIRTs for notifications"
+        },
+        {
+          "name": "NOREA / ADR",
+          "role": "IT auditors body & central government audit service — framework co-authors"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Cbw (NIS2) Control Framework (30 Sep 2025): 17 domains, 26 control measures, 5-category maturity model; not yet binding but expected reference for regulators.",
+          "Cbw sets the general frame; concrete rules come in sector ministerial regulations (6 ministries consulted drafts Nov-Dec 2025; education delayed).",
+          "Duty of care and 24h incident reporting apply immediately at entry into force; board members get a 2-year grace period to certify cybersecurity training."
+        ],
+        "reg": [
+          "Voluntary registration open on mijn.ncsc.nl; obligation starts with the law; NCSC self-assessment, FAQ and preparation recommendations online."
+        ],
+        "inc": [
+          "Multi-level system: notify the sectoral CSIRT AND the competent authority (supervising ministry); practical modalities (single platform vs sector portals) not yet confirmed."
+        ],
+        "aud": [
+          "EE: ex-ante controls; IE: ex-post (on signals or incidents); no violation found → costs not charged to the entity."
+        ],
+        "scope": [
+          "Higher education can be included by ministerial decree; municipalities, provinces and water boards included by default as EE — beyond the NIS 2 minimum."
+        ],
+        "other": [
+          "Ministry of Interior published a mapping NIS 2 measures ↔ ISO 27002; ENISA compliance guide referenced; sector-specific EU acts prevail when equivalent."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-09-30",
+          "text": "NCSC publishes the Cbw (NIS2) Control Framework"
+        },
+        {
+          "date": "2025-12-13",
+          "text": "Entry into force officially postponed to Q2 2026"
+        },
+        {
+          "date": "2026-04-15",
+          "text": "Tweede Kamer (lower house) adopts the law"
+        },
+        {
+          "date": "2026-06-02",
+          "text": "Eerste Kamer publishes its question report; Council of State opinion on the implementing decree"
+        }
+      ],
+      "next": [
+        "Entry into force targeted 1 Jul 2026 (possible slip to Q3); no transition period except governance training."
+      ],
+      "sources": [
+        {
+          "name": "NCSC-NL",
+          "url": "https://www.ncsc.nl",
+          "type": "official"
+        },
+        {
+          "name": "mijn.ncsc.nl",
+          "url": "https://mijn.ncsc.nl",
+          "type": "official"
+        },
+        {
+          "name": "Internetconsultatie (drafts)",
+          "url": "https://www.internetconsultatie.nl",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "ES",
+      "name": "Spain",
+      "flag": "🇪🇸",
+      "region": "South",
+      "eu": true,
+      "maturity": 2,
+      "lastUpdate": "2026-06-24",
+      "transposed": false,
+      "onTime": false,
+      "delayMonths": null,
+      "lawInForce": null,
+      "fw": "none",
+      "law": "Cybersecurity Coordination and Governance bill — in parliamentary procedure",
+      "fwName": "CCN-STIC 892 (PCE-NIS2) withdrawn Mar 2025; updated ENS-based framework in preparation",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Multiple (CCN, State Secretariats, OCC)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "None yet",
+      "incidentMethod": "Plataforma Nacional de Notificación (planned, 24/7)",
+      "summary": "Bill approved in Council of Ministers Jan 2025, still in Parliament; CJEU referral June 2026; ENS mapping as interim guidance.",
+      "authorities": [
+        {
+          "name": "CNC (planned)",
+          "role": "Centro Nacional de Ciberseguridad — future single competent authority & SPOC (to be created within 12 months of the law)"
+        },
+        {
+          "name": "CCN / OCC / Digital Transformation Ministry",
+          "role": "Control authorities per sector and entity category"
+        },
+        {
+          "name": "CCN-CERT / INCIBE-CERT / ESPDEF-CERT",
+          "role": "Reference CSIRTs (public / private / defence)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "CCN-CERT published then withdrew the CCN-STIC 892 compliance profile (PCE-NIS2, ENS-based); an updated framework is in preparation; ENS updates by decree.",
+          "Management bodies responsible for risk measures with periodic training; EE must prove compliance via certification, IE may self-assess; ENS profile counts as compliance evidence (draft)."
+        ],
+        "reg": [
+          "Draft: self-assessment and submission of information to the control authority within 3 months of EE/IE status; changes within 2 weeks; CNC registry of digital providers planned; no platform yet."
+        ],
+        "inc": [
+          "Notifications via the reference CSIRT on the Plataforma Nacional de Notificación y Seguimiento de Ciberincidentes (CCN-CERT run, 24/7); original NIS 2 deadlines."
+        ],
+        "aud": [
+          "EE: ex-ante (on-site inspections, periodic audits by ENS-accredited certification bodies); IE: ex-post on evidence."
+        ],
+        "other": [
+          "DORA financial entities explicitly excluded from risk/notification/supervision provisions; equivalent EU regulations prevail."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-01-14",
+          "text": "Bill approved by the Council of Ministers (urgent procedure)"
+        },
+        {
+          "date": "2025-03-28",
+          "text": "CCN-CERT withdraws CCN-STIC 892 v1; updated framework in progress"
+        },
+        {
+          "date": "2025-05-07",
+          "text": "EC reasoned opinion for failure to notify transposition"
+        },
+        {
+          "date": "2026-06-14",
+          "text": "European Commission refers Spain to the CJEU (with France)"
+        }
+      ],
+      "next": [
+        "Adoption by Parliament and publication in the BOE; new CCN-STIC 892; CNC created by royal decree within 12 months of entry into force."
+      ],
+      "sources": [
+        {
+          "name": "CCN-CERT",
+          "url": "https://www.ccn-cert.cni.es",
+          "type": "official"
+        },
+        {
+          "name": "BOE (Official Gazette)",
+          "url": "https://www.boe.es",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "GB",
+      "name": "United Kingdom",
+      "flag": "🇬🇧",
+      "region": "West",
+      "eu": false,
+      "maturity": 2,
+      "lastUpdate": "2026-06-22",
+      "transposed": false,
+      "onTime": false,
+      "delayMonths": null,
+      "lawInForce": null,
+      "fw": "none",
+      "law": "Cyber Security and Resilience Bill — before the House of Lords (not an EU transposition: updates the NIS Regulations 2018)",
+      "fwName": "Codes of Practice to be issued by the Secretary of State (admissible as compliance evidence)",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Sectoral authorities (12 regulators)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "ICO registry (RDSP/RMSP)",
+      "incidentMethod": "24h initial / 72h full to regulators",
+      "summary": "CS&R Bill in the Lords since June 2026; Royal Assent expected late 2026, full implementation through 2028; two-tier penalty regime.",
+      "authorities": [
+        {
+          "name": "DSIT",
+          "role": "Department for Science, Innovation and Technology — policy lead"
+        },
+        {
+          "name": "NCSC",
+          "role": "National Cyber Security Centre"
+        },
+        {
+          "name": "12 sector regulators + ICO",
+          "role": "Competent authorities; ICO registers digital & managed service providers"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Seven reform pillars: MSPs in scope, two-tier criticality oversight (ex-ante/ex-post), strengthened incident reporting, full cost recovery, decree-based updates, delegated scope extension, 'critical dependency' designations.",
+          "Secretary of State may issue Codes of Practice — breach is not an offence but admissible as evidence of (non-)compliance."
+        ],
+        "reg": [
+          "RDSP/RMSP must register with the ICO within 3 months of section 14 commencement; non-UK entities appoint a local representative; ICO shares registries with GCHQ/NCSC every 12 months; data-centre OES register within 3 months of designation; changes within 7 days."
+        ],
+        "inc": [
+          "Initial alert within 24h, full notification within 72h (OES, RDSP, RMSP); expanded impact criteria; third-party-caused incidents must reference the origin entity."
+        ],
+        "aud": [
+          "Designated authorities and appointed inspectors: premises entry, document seizure, interviews, security testing; Statement of Strategic Priorities aligns supervision with national security."
+        ],
+        "scope": [
+          "Data centres (1 MW / 10 MW thresholds), managed service providers, load controllers ≥300 MW, specific digital services; authorities can designate Critical Suppliers.",
+          "Applies to Crown data-centre services with security-service exceptions."
+        ],
+        "other": [
+          "Penalties: up to £10M/2% standard, £17M/4% serious, £100k/day continuing; mandatory ransomware-payment reporting under separate consideration."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2025-11-12",
+          "text": "CS&R Bill first reading, House of Commons"
+        },
+        {
+          "date": "2026-02-24",
+          "text": "Committee stage completed; amended version published 25 Feb"
+        },
+        {
+          "date": "2026-06-10",
+          "text": "Report stage and third reading — Commons approve the bill"
+        },
+        {
+          "date": "2026-06-17",
+          "text": "First reading in the House of Lords"
+        }
+      ],
+      "next": [
+        "Full Lords sequence then Royal Assent expected late 2026; phased commencement, full implementation expected through 2028."
+      ],
+      "sources": [
+        {
+          "name": "UK Parliament — bills.parliament.uk",
+          "url": "https://bills.parliament.uk",
+          "type": "official"
+        },
+        {
+          "name": "DSIT / gov.uk",
+          "url": "https://www.gov.uk",
+          "type": "official"
+        },
+        {
+          "name": "NCSC UK",
+          "url": "https://www.ncsc.gov.uk",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "IE",
+      "name": "Ireland",
+      "flag": "🇮🇪",
+      "region": "West",
+      "eu": true,
+      "maturity": 1,
+      "lastUpdate": "2026-06-24",
+      "transposed": false,
+      "onTime": false,
+      "delayMonths": null,
+      "lawInForce": null,
+      "fw": "none",
+      "law": "National Cyber Security Bill — General Scheme Aug 2024, before the Oireachtas since early 2026",
+      "fwName": "NCSC Risk Management Measures (16 RMMs, non-binding guidance); CyFun co-ownership, ISO 27001 & NIST CSF accepted",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Sectoral NCAs (8 designated)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "'Am I in Scope?' tool; portal targeted July 2026",
+      "incidentMethod": "National CSIRT (NCSC)",
+      "summary": "Bill still in the Oireachtas; 16 RMMs published as compliance floor; 8 sectoral authorities pre-designated; registration portal targeted July 2026.",
+      "authorities": [
+        {
+          "name": "NCSC (IE)",
+          "role": "Lead competent authority, national CSIRT, single point of contact"
+        },
+        {
+          "name": "8 sectoral NCAs",
+          "role": "CRU (energy/water), ComReg (digital), Central Bank, IAA, CRR, Transport, NTA, Health agency"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "65-page RMM guidance (24 Jun 2025): 16 risk-management measures, non-binding today, compliance floor upon enactment.",
+          "Ireland co-owns the Belgian CyFun framework and is moving to ratify it as national certification scheme; ISO 27001 and NIST CSF 2.0 also accepted; SME-friendly national scheme in development."
+        ],
+        "reg": [
+          "Registration portal targeted for July 2026 with 3-month self-registration window (conditional on enactment); entities will register with their sectoral authority; 'Am I in Scope?' tool online.",
+          "Minimum data: contact details, NACE code, CRO number, sector, member states served."
+        ],
+        "inc": [
+          "Early warning to NCSC/CSIRT-IE within 24h, notification with initial assessment within 72h, final report within 1 month (per public drafts)."
+        ],
+        "aud": [
+          "EE: proactive supervision (regular audits, on-site/off-site inspections, scans); IE: reactive; temporary suspension of EE activities possible on non-compliance."
+        ],
+        "scope": [
+          "Named EE public bodies: Government Ministers, CSO, C&AG, Revenue, OPW, NSSO; all other public bodies default to IE."
+        ],
+        "other": [
+          "NCSC powers beyond NIS 2 (proactive scanning, consent-based sensors, DNS blocking) contested on fundamental-rights grounds; DORA lex specialis with Central Bank as NIS 2 NCA for finance; EC reasoned opinion May 2025."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2024-08-30",
+          "text": "General Scheme of the National Cyber Security Bill published"
+        },
+        {
+          "date": "2025-05-07",
+          "text": "EC reasoned opinion (after Nov 2024 formal notice)"
+        },
+        {
+          "date": "2025-06-24",
+          "text": "NCSC publishes 16 Risk Management Measures (RMM guidance)"
+        },
+        {
+          "date": "2026-01-15",
+          "text": "Bill under renewed examination in the Oireachtas"
+        }
+      ],
+      "next": [
+        "Detailed risk-management and incident-reporting guidelines, national strategy and cyber emergency plan being finalised."
+      ],
+      "sources": [
+        {
+          "name": "NCSC Ireland",
+          "url": "https://www.ncsc.gov.ie",
+          "type": "official"
+        },
+        {
+          "name": "Oireachtas",
+          "url": "https://www.oireachtas.ie",
+          "type": "official"
+        }
+      ]
+    },
+    {
+      "iso": "NO",
+      "name": "Norway",
+      "flag": "🇳🇴",
+      "region": "North",
+      "eu": false,
+      "maturity": 1,
+      "lastUpdate": "2026-06-24",
+      "transposed": false,
+      "onTime": false,
+      "delayMonths": null,
+      "lawInForce": null,
+      "fw": "none",
+      "law": "Digital Security Act (NIS 1) in force 1 Oct 2025; unified NIS 2 + CER bill being finalised",
+      "fwName": "Digital Security Regulation (NIS 1 requirements); NSM Fundamental Principles recommended meanwhile",
+      "reqEE": null,
+      "reqIE": null,
+      "complianceEE": null,
+      "complianceIE": null,
+      "auditBody": "Multiple (sectoral authorities; NSM default)",
+      "auditFreqEE": null,
+      "auditFreqIE": null,
+      "selfAssessFreq": null,
+      "regTool": "Notification to NSM + sector authority",
+      "incidentMethod": "Reports to sector authority, copy to NSM",
+      "summary": "EEA country: NIS 1 regime live since Oct 2025; NIS 2 incorporation planned during 2026, no new official date after slippage.",
+      "authorities": [
+        {
+          "name": "Ministry of Justice and Public Security",
+          "role": "Legislative lead"
+        },
+        {
+          "name": "NSM",
+          "role": "National Security Authority — guidance (Veileder), default supervisor"
+        },
+        {
+          "name": "Sectoral authorities",
+          "role": "Supervision (e.g. NVE for energy)"
+        }
+      ],
+      "sections": {
+        "fw": [
+          "Current regime = NIS 1 via the Digital Security Act and its regulation: all-risk approach, proportionate measures, management personally responsible (art. 20), specific measures list (art. 21).",
+          "Government recommends applying NSM's Fundamental Principles of Cybersecurity while awaiting NIS 2."
+        ],
+        "reg": [
+          "Essential service providers self-identify 'without delay' to the NSM and the competent sector authority."
+        ],
+        "inc": [
+          "Reports to the sectoral supervisory authority with copy to NSM (national contact point)."
+        ],
+        "scope": [
+          "Energy already heavily regulated by NVE (IKT-forskrift) easing transition; NIS 2 scope will add rail, port, airport infrastructure via sector regulations."
+        ],
+        "other": [
+          "National Security Act (Sikkerhetsloven) prevails on national-security conflicts; certified ICT products can be required (CSA); NSM guides on nsm.no."
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2023-12-15",
+          "text": "Storting adopts the Digital Security Act (NIS 1)"
+        },
+        {
+          "date": "2024-12-11",
+          "text": "Public consultation on the implementing regulation closes"
+        },
+        {
+          "date": "2025-10-01",
+          "text": "Digital Security Act and regulation in force (NIS 1)"
+        }
+      ],
+      "next": [
+        "NIS 2 incorporation into Norwegian law planned during 2026; unified NIS2+CER bill being finalised — adoption slipped, no new official date."
+      ],
+      "sources": [
+        {
+          "name": "NSM",
+          "url": "https://nsm.no",
+          "type": "official"
+        },
+        {
+          "name": "Lovdata (legislation)",
+          "url": "https://lovdata.no",
+          "type": "official"
+        }
+      ]
+    }
+  ]
+}

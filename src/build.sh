@@ -12,7 +12,12 @@ cd "$(dirname "$0")"
 AGENT_DATA=""
 [ -f data_watch.js ] && AGENT_DATA="data_watch.js"
 
-cat map_data.js data_meta.js data_c1.js data_c2.js data_c3.js data_c4.js $AGENT_DATA app_part1.js app_part2.js app_part3.js > bundle.js
+# data_template.js is the base64 slide template (tools/embed_deck_template.py).
+# Optional: without it the "Generate country slides" button reports it is absent.
+DECK_TPL=""
+[ -f data_template.js ] && DECK_TPL="data_template.js"
+
+cat map_data.js data_meta.js data_c1.js data_c2.js data_c3.js data_c4.js $AGENT_DATA $DECK_TPL app_part1.js app_part2.js app_deck.js > bundle.js
 node --check bundle.js
 
 { cat shell_top.html; echo '<script>'; cat bundle.js; echo '</script>'; } > regwatch-artifact.html
@@ -38,12 +43,5 @@ node --check bundle.js
   cat regwatch-artifact.html
   echo '</body></html>'
 } > test_val.html
-
-{ echo '<!doctype html><html><head><meta charset="utf-8"></head><body>'
-  echo '<script>localStorage.setItem("regwatch-proto-v1",JSON.stringify({overrides:{},manual:[],role:"validator"}));</script>'
-  cat regwatch-artifact.html
-  echo '<script>route("country","FR");startEdit("FR");</script>'
-  echo '</body></html>'
-} > test_edit.html
 
 ls -la regwatch.html regwatch-artifact.html

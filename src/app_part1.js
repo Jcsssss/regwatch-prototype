@@ -7,7 +7,8 @@ const byIso = Object.fromEntries(COUNTRIES.map(c => [c.iso, c]));
 const LS_KEY = "regwatch-proto-v1";
 let store = { overrides: {}, manual: [] };
 try { const raw = localStorage.getItem(LS_KEY); if (raw) store = JSON.parse(raw); } catch (e) {}
-store.overrides = store.overrides || {}; store.manual = store.manual || []; store.edits = store.edits || {};
+store.overrides = store.overrides || {}; store.manual = store.manual || [];
+delete store.edits; /* country records are read-only: the SharePoint workbook is the source of truth */
 function saveStore(){ try { localStorage.setItem(LS_KEY, JSON.stringify(store)); } catch (e) {} }
 
 /* Real agent output (src/data_watch.js, generated) when the build included it,
@@ -16,19 +17,10 @@ const WATCH_SOURCE = typeof WATCH_QUEUE_AGENT !== "undefined" ? WATCH_QUEUE_AGEN
 let queue = WATCH_SOURCE.map(q => ({ ...q }));
 (store.manual || []).forEach(m => queue.push({ ...m }));
 queue.forEach(q => { const o = store.overrides[q.id]; if (o) Object.assign(q, o); });
-/* apply saved manual record edits (field-level overrides of the imported data) */
-function applyEdits(){
-  Object.entries(store.edits).forEach(([iso, p]) => {
-    const c = byIso[iso]; if (!c) return;
-    Object.entries(p).forEach(([k, v]) => { if (k !== "removedQids" && k !== "editedOn") c[k] = v; });
-  });
-}
-applyEdits();
 /* apply validated items to country timelines */
 function applyValidated(){
   queue.filter(q => q.status === "validated").forEach(q => {
     const c = byIso[q.iso]; if (!c) return;
-    if (((store.edits[q.iso] || {}).removedQids || []).includes(q.id)) return;
     if (!c.timeline.some(t => t._qid === q.id) && !q.preloaded) {
       if (WATCH_SOURCE.some(w => w.id === q.id && w.status === "validated")) { q.preloaded = true; return; }
       c.timeline.push({ date: q.detected, text: q.title, _qid: q.id, added: true });

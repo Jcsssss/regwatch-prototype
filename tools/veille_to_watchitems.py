@@ -27,6 +27,86 @@ EXCEL_EPOCH = date(1899, 12, 30)  # Excel's day 0, with the 1900 leap-year bug b
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# --------------------------------------------------------------------------- #
+# Which cells of the comparative workbook a source would change.
+#
+# A validator's real question is "which cells do I edit?", not "what should a
+# client do?". This router answers it deterministically: theme keywords -> a
+# short list of field labels, resolved to real cell references through
+# data/excel-cellmap.json (country -> row, field -> column).
+#
+# Deliberately rule-based for now. Once the agent runs against RegWatch, the
+# model picks from the SAME catalogue of field labels and the code still
+# resolves the addresses — so a model can never invent a cell reference.
+# --------------------------------------------------------------------------- #
+CELL_ROUTES = [
+    (r"enregistr|registration|inscri|immatricul|déclaration des entités",
+     "Registration - P1",
+     ["Registration availability", "Authority in charge of registration",
+      "Registration deadline", "Method of registration"]),
+    (r"incident|notification|signalement|déclaration d'incident|reporting",
+     "Incident reporting - P1",
+     ["Organism official name to report incident", "Method for incident reporting",
+      "Date of incident reporting becoming mandatory", "Name and link of web platform"]),
+    (r"sanction|amende|pénalit|astreinte|fine",
+     "Sanctions - P2",
+     ["Financial sanctions", "Types of additional penalties",
+      "Addition of penalties not included in the directive"]),
+    (r"audit|contrôle|inspection|certification|supervis|vigilance",
+     "Audit & Controls - P1",
+     ["Audit explicitly planned by the transposition", "Organism in charge of the audit",
+      "Framework used during audit"]),
+    (r"référentiel|framework|exigence|norme|standard|mesures de sécurité|guide",
+     "Cybersecurity frameworks - P1",
+     ["Name and link of framework", "Framework last publication date",
+      "Dedicated framework to NIS 2", "Number of cyber requirements for EE"]),
+    (r"autorité|authority|agence|désignation|point de contact|ANSSI|BSI|NÚKIB|ACN",
+     "Authority - P3",
+     ["Consolidated list of authorities", "Number of  authorities involved in NIS2"]),
+    (r"loi|décret|transposition|journal officiel|entrée en vigueur|arrêté|règlement|ordonnance|publi",
+     "ID - P1",
+     ["Entry into force of the transposition", "Transposition finalized",
+      "Name of principal transposition text", "Additional texts (in support of principal text)"]),
+]
+MAX_TARGET_CELLS = 6
+
+
+def load_cellmap():
+    path = ROOT / "data" / "excel-cellmap.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))["sheets"]
+
+
+def target_cells(cellmap, iso, *texts):
+    """Resolve the workbook cells a source most likely affects, for one country."""
+    if not cellmap or iso == "EU":
+        return []
+    blob = " ".join(t for t in texts if t).lower()
+    out = []
+    for pattern, sheet_name, labels in CELL_ROUTES:
+        if not re.search(pattern, blob, re.I):
+            continue
+        sheet = cellmap.get(sheet_name)
+        if not sheet:
+            continue
+        row = sheet["rows"].get(iso)
+        if not row:
+            continue
+        by_label = {f["label"].strip(): f for f in sheet["fields"]}
+        for label in labels:
+            field = by_label.get(label.strip())
+            if not field or not field["writable"]:
+                continue
+            out.append({
+                "sheet": sheet_name,
+                "field": field["label"].strip(),
+                "cell": "%s%d" % (field["column"], row),
+            })
+            if len(out) >= MAX_TARGET_CELLS:
+                return out
+    return out
+
 # tblVeille writes country names as free French text; RegWatch keys on ISO codes.
 COUNTRY_ISO = {
     "allemagne": "DE", "autriche": "AT", "belgique": "BE", "bulgarie": "BG",
@@ -161,7 +241,11 @@ def first(record, *headers):
 
 
 def build_items(rows):
-    items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0}
+    items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0, "with_cells": 0}
+    cellmap = load_cellmap()
+    if cellmap is None:
+        print("  note: data/excel-cellmap.json absent — no target cells "
+              "(run tools/excel_cellmap.py first)")
 
     for record in rows:
         title = first(record, "Titre")
@@ -197,7 +281,9 @@ def build_items(rows):
                     "type": source_type,
                 },
                 "status": STATUS_MAP.get(fold(record.get("Statut")), "pending"),
-                "action": first(record, "Actions recommandées"),
+                # Advice aimed at a client company — kept, but it is NOT what the
+                # validator acts on; `targetCells` is.
+                "clientAdvice": first(record, "Actions recommandées"),
                 # --- agent context, surfaced to the validator as decision support ---
                 "agent": {
                     "score": int(score) if score.isdigit() else None,
@@ -210,6 +296,11 @@ def build_items(rows):
                     "textType": first(record, "Type de texte"),
                 },
             }
+            item["targetCells"] = target_cells(
+                cellmap, code, title, item["summary"], item["agent"]["textType"],
+                item["agent"]["obligations"])
+            if item["targetCells"]:
+                report["with_cells"] += 1
             items.append(item)
 
     items.sort(key=lambda i: (i["detected"], i["id"]), reverse=True)
@@ -247,6 +338,7 @@ def main():
 
     print("%d watch items -> %s" % (len(items), json_path.relative_to(ROOT)))
     print("%d watch items -> %s" % (len(items), js_path.relative_to(ROOT)))
+    print("  %d item(s) carry target cells in the comparative workbook" % report["with_cells"])
     if report["eu_wide"]:
         print("  note: %d EU-wide item(s) carry iso 'EU' — RegWatch has no EU record yet"
               % report["eu_wide"])

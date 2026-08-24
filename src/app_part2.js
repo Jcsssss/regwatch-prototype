@@ -1,6 +1,6 @@
 /* ---------- Countries list ---------- */
 let ctyFilter = { q: "", region: "", lvl: "" };
-let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "" };
+let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true };
 function renderCountries(){
   const el = $("#v-countries");
   el.innerHTML = `
@@ -54,7 +54,6 @@ function renderCountry(iso){
   const c = byIso[iso];
   const el = $("#v-country");
   if (!c) { el.innerHTML = "<p>Unknown country.</p>"; return; }
-  if (editingIso === iso && role === "validator") { renderCountryEdit(iso); return; }
   const facts = [
     ["Transposition law", c.law],
     ["Cybersecurity framework", `<b>${esc(FW_LABEL[c.fw])}</b> — ${esc(c.fwName)}`],
@@ -75,12 +74,11 @@ function renderCountry(iso){
       <div class="meta">
         ${lvlChip(c)} ${fwChip(c)}
         <span class="chip eu">${c.eu ? "EU member" : "Non-EU — tracked"}</span>
-        ${store.edits[iso] ? `<span class="chip src-manual" title="This record contains manual consultant edits">Edited ${fmtDate(store.edits[iso].editedOn)}</span>` : ""}
         <span class="stepper" title="${esc(LEVELS[c.maturity].label)}">${[1,2,3,4].map(l => `<span class="st ${l <= c.maturity ? "on" + l : ""}"></span>`).join("")}</span>
       </div>
       <p style="margin:9px 0 0;color:var(--ink2);max-width:78ch">${esc(LEVELS[c.maturity].label)}. ${esc(c.summary)}</p>
     </div>
-    <div class="upd">Last update<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${c.transposed ? (c.onTime ? "Transposed on time" : `In force ${fmtDate(c.lawInForce)} (+${c.delayMonths} mo)`) : "Not transposed yet"}${role === "validator" ? `<br><button class="btn" id="editBtn" style="margin-top:9px">✎ Edit record</button>` : ""}</div>
+    <div class="upd">Last update<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${c.transposed ? (c.onTime ? "Transposed on time" : `In force ${fmtDate(c.lawInForce)} (+${c.delayMonths} mo)`) : "Not transposed yet"}${role === "validator" ? `<br><button class="btn" id="deckBtn" style="margin-top:9px">⬇ Generate country slides</button>` : ""}</div>
   </div>
   <div class="facts">${facts.map(f => `<div class="fact"><div class="k">${f[0]}</div><div class="v">${f[1]}</div></div>`).join("")}</div>
   <div class="cty-grid">
@@ -102,10 +100,25 @@ function renderCountry(iso){
         <div class="q-note" style="margin-top:4px">All country-record content is sourced from the documents above or validated by a Wavestone consultant.</div>
       </div></div>
     </div>
+    <div class="rolenote" style="margin:16px 0 0">
+      <b>Read-only record.</b> Country data mirrors the comparative workbook on SharePoint, which stays the single source of truth.
+      To change a fact, edit the workbook — the next sync brings it back here. Validating a Watch inbox item tells you which cells to change.
+    </div>
   </div>`;
-  el.onclick = null; /* clear edit-mode delegation */
-  const eb = $("#editBtn", el);
-  if (eb) eb.addEventListener("click", () => startEdit(iso));
+  const db = $("#deckBtn", el);
+  if (db) db.addEventListener("click", async () => {
+    const label = db.textContent;
+    db.disabled = true; db.textContent = "Generating…";
+    try {
+      await generateCountryDeck(iso);
+      db.textContent = "✓ Downloaded";
+    } catch (err) {
+      db.textContent = "⚠ Failed";
+      console.error(err);
+      alert("Could not generate the deck: " + err.message);
+    }
+    setTimeout(() => { db.disabled = false; db.textContent = label; }, 2500);
+  });
 }
 
 /* ---------- Watch inbox ---------- */
@@ -126,6 +139,7 @@ function renderInbox(){
       <select id="qS" aria-label="Minimum AI relevance score"><option value="">Any score</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>Score ≥ ${s}</option>`).join("")}</select>
       <select id="qD" aria-label="Filter by detection window"><option value="">Any date</option>${[[7, "Last 7 days"], [30, "Last 30 days"], [90, "Last 90 days"]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
       <select id="qR" aria-label="Filter by source reliability"><option value="">Any source</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>Official only</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>To verify</option></select>
+      <label class="q-toggle"><input type="checkbox" id="qG" ${inboxFilter.group ? "checked" : ""}> Group by country</label>
       <span class="q-note" id="qCount"></span>
       <button class="btn" id="qReset" type="button">Reset</button>
     </div>
@@ -153,7 +167,8 @@ function renderInbox(){
     [["#qC", "iso"], ["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
       $(sel).addEventListener("change", e => { inboxFilter[key] = e.target.value; rerun(); });
     });
-    $("#qReset").addEventListener("click", () => { inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "" }; renderInbox(); });
+    $("#qG").addEventListener("change", e => { inboxFilter.group = e.target.checked; rerun(); });
+    $("#qReset").addEventListener("click", () => { inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true }; renderInbox(); });
     $("#mAdd").addEventListener("click", () => {
       const title = $("#mTitle").value.trim();
       if (!title) { $("#mMsg").textContent = "A title is required."; return; }
@@ -171,6 +186,14 @@ function inboxCountries(items){
     .map(iso => ({ iso, n: n[iso], label: byIso[iso] ? byIso[iso].name : iso }))
     .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
 }
+/* Official first, then the strongest AI relevance, then the most recent. */
+function rankItems(list){
+  const rel = t => (t === "official" ? 0 : t === "manual" ? 1 : 2);
+  return list.slice().sort((a, b) =>
+    rel(a.source.type) - rel(b.source.type)
+    || ((b.agent || {}).score || 0) - ((a.agent || {}).score || 0)
+    || (a.detected < b.detected ? 1 : -1));
+}
 /* A weekly agent run can queue 100+ items; triage keeps the review session workable. */
 function paintPending(pending){
   const f = inboxFilter;
@@ -183,10 +206,49 @@ function paintPending(pending){
     .filter(x => !cutoff || x.detected >= cutoff)
     .filter(x => !f.rel || x.source.type === f.rel);
   $("#qCount").textContent = list.length + " of " + pending.length + " pending";
-  $("#pendList").innerHTML = list.length
-    ? list.map(qCard).join("")
-    : `<p style="color:var(--muted)">No pending item matches these filters.</p>`;
+
+  let html;
+  if (!list.length) {
+    html = `<p style="color:var(--muted)">No pending item matches these filters.</p>`;
+  } else if (inboxFilter.group) {
+    /* One section per country — the review is done country by country, and within
+       a country official sources outrank press, then the AI relevance score. */
+    const by = {};
+    list.forEach(x => { (by[x.iso] = by[x.iso] || []).push(x); });
+    html = Object.keys(by)
+      .sort((a, b) => by[b].length - by[a].length
+        || (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b))
+      .map(iso => {
+        const c = byIso[iso];
+        const items = rankItems(by[iso]);
+        const off = items.filter(x => x.source.type === "official").length;
+        return `<details class="q-group" open>
+          <summary><b>${c ? c.flag + " " + esc(c.name) : esc(iso)}</b>
+            <span class="q-note">${items.length} pending · ${off} official · ${items.length - off} to verify</span></summary>
+          ${items.map(qCard).join("")}
+        </details>`;
+      }).join("");
+  } else {
+    html = rankItems(list).map(qCard).join("");
+  }
+  $("#pendList").innerHTML = html;
   $("#pendList").querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
+}
+/* The cells of the comparative workbook this source would change.
+   This is the validator's actual worklist, so it sits open on the card. */
+function cellsPanel(q){
+  const t = q.targetCells;
+  if (!t || !t.length) return "";
+  const bySheet = {};
+  t.forEach(x => { (bySheet[x.sheet] = bySheet[x.sheet] || []).push(x); });
+  return `<div class="q-cells">
+    <div class="q-cells-h">Cells to update in the comparative workbook <span>${t.length}</span></div>
+    ${Object.keys(bySheet).map(sheet => `<div class="q-cells-row">
+      <b>${esc(sheet)}</b>
+      <span>${bySheet[sheet].map(x => `<code>${esc(x.cell)}</code> ${esc(x.field)}`).join(" · ")}</span>
+    </div>`).join("")}
+    <div class="q-note">Suggested targets — confirm against the source before editing the workbook.</div>
+  </div>`;
 }
 /* Decision support from the watch agent — shown to the validator, never a publication status. */
 function agentPanel(q){
@@ -197,7 +259,9 @@ function agentPanel(q){
     ["Impact", a.impact ? esc(a.impact) : ""],
     ["Entities", a.entities ? esc(a.entities) : ""],
     ["Published", a.publishedOn ? fmtDate(a.publishedOn) : ""],
-    ["In force", a.inForceOn ? fmtDate(a.inForceOn) : ""]
+    ["In force", a.inForceOn ? fmtDate(a.inForceOn) : ""],
+    /* Advice aimed at a client company — not what the validator acts on, hence last. */
+    ["Client advice", q.clientAdvice ? esc(q.clientAdvice) : ""]
   ].filter(r => r[1]);
   if (!rows.length) return "";
   return `<details class="q-agent"><summary>AI analysis — decision support, not a decision</summary>
@@ -211,6 +275,7 @@ function qCard(q){
     <div class="q-top"><span class="d num">${fmtDate(q.detected)}</span><b>${c ? c.flag + " " + esc(c.name) : esc(q.iso)}</b>${stChip(q.status)}${srcChip(q.source.type)}</div>
     <div class="q-title">${esc(q.title)}</div>
     <div class="q-sum">${esc(q.summary)}</div>
+    ${cellsPanel(q)}
     ${agentPanel(q)}
     <div class="q-src">Source: ${q.source.url ? `<a href="${esc(q.source.url)}" target="_blank" rel="noopener">${esc(q.source.name)}</a>` : esc(q.source.name)}${q.action ? ` · <span>Suggested action: ${esc(q.action)}</span>` : ""}</div>
     ${q.status === "pending" && isVal ? `<div class="q-actions">

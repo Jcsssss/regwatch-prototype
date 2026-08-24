@@ -22,3 +22,6 @@ __pycache__/
 ressources/
 *.mp4
 *.pptx
+
+# Generated country decks
+out/
