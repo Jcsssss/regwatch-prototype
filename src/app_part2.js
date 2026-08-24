@@ -1,6 +1,6 @@
 /* ---------- Countries list ---------- */
 let ctyFilter = { q: "", region: "", lvl: "" };
-let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true, procSort: "recent" };
+let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", procSort: "recent", hubDays: 7 };
 function renderCountries(){
   const el = $("#v-countries");
   el.innerHTML = `
@@ -121,30 +121,185 @@ function renderCountry(iso){
 }
 
 /* ---------- Watch inbox ---------- */
+/* The Watch inbox is two levels deep.
+ *
+ * Level 1 (hub) answers "where should I look?" — one tile per country with a
+ * pending count, scoped to a detection window. Level 2 is the working view for
+ * one country: filters, the queue, and that country's processed log.
+ *
+ * A single flat list of 160+ cards was the thing nobody could use.
+ */
 function renderInbox(){
   const el = $("#v-inbox");
-  const pending = queue.filter(q => q.status === "pending").sort((a, b) => b.detected < a.detected ? -1 : 1);
-  const done = queue.filter(q => q.status !== "pending").sort((a, b) => b.detected < a.detected ? -1 : 1);
   const isVal = role === "validator";
+  const pending = queue.filter(q => q.status === "pending");
+  const done = queue.filter(q => q.status !== "pending");
+
+  if (!isVal) {
+    el.innerHTML = `
+    <h1 class="pg">${t("inbox.title")}</h1>
+    <p class="pg-sub">${t("inbox.sub")}</p>
+    <div class="rolenote"><b>${t("role.reader")}.</b> ${t("inbox.sub")}</div>
+    <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
+      <div id="procList"></div>
+    </div></div>`;
+    paintProcessed(done);
+    return;
+  }
+  if (inboxFilter.iso) renderInboxCountry(el, pending, done);
+  else renderInboxHub(el, pending, done);
+}
+
+/* Items detected within `days` (0 = no limit). */
+function withinWindow(items, days){
+  if (!days) return items;
+  const cutoff = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  return items.filter(x => x.detected >= cutoff);
+}
+
+function renderInboxHub(el, pending, done){
+  /* The agent runs weekly and the workbook's own lookback is 21 days, so a
+     7-day window goes empty whenever a run slips. Fall back rather than show
+     an empty page that reads as a broken tool — and say that we did. */
+  const WINDOWS = [[7, "hub.w7"], [30, "hub.w30"], [90, "hub.w90"], [0, "hub.wAll"]];
+  let days = inboxFilter.hubDays;
+  let inWindow = withinWindow(pending, days);
+  let fallbackFrom = 0;
+  if (!inWindow.length && pending.length) {
+    fallbackFrom = days;
+    for (const [d] of WINDOWS) {
+      if (d && d <= days) continue;
+      inWindow = withinWindow(pending, d);
+      if (inWindow.length) { days = d; break; }
+    }
+  }
+
+  const byCountry = {};
+  inWindow.forEach(x => { (byCountry[x.iso] = byCountry[x.iso] || []).push(x); });
+  const isos = Object.keys(byCountry).sort((a, b) =>
+    (byIso[a] ? 0 : 1) - (byIso[b] ? 0 : 1)
+    || byCountry[b].length - byCountry[a].length
+    || (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b));
+  const quiet = COUNTRIES.filter(c => !byCountry[c.iso]);
+
+  const tile = iso => {
+    const c = byIso[iso];
+    const items = byCountry[iso];
+    const off = items.filter(x => x.source.type === "official").length;
+    const cells = items.filter(x => (x.targetCells || []).length).length;
+    return `<button class="ctile" data-iso="${esc(iso)}" type="button">
+      <span class="ctile-flag">${c ? c.flag : "🇪🇺"}<span class="ctile-n">${items.length}</span></span>
+      <span class="ctile-name">${c ? esc(c.name) : t("hub.euTile")}</span>
+      <span class="ctile-sub">${off} ${t("hub.official")} · ${items.length - off} ${t("hub.verify")}</span>
+      <span class="ctile-sub">${c ? `${cells} ${t("hub.cells")}` : t("hub.euNote")}</span>
+    </button>`;
+  };
+
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
-  <p class="pg-sub">${t("inbox.sub")}</p>
-  ${isVal ? "" : `<div class="rolenote"><b>${t("role.reader")}.</b> ${t("inbox.sub")}</div>`}
-  ${isVal ? `
-  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("inbox.pending")} (${pending.length})</h2></div><div class="bd">
+  <p class="pg-sub">${t("hub.sub")}</p>
+  <div class="card"><div class="bd">
+    <div class="filters">
+      <label class="q-toggle">${t("hub.window")}
+        <select id="hubW">${WINDOWS.map(([d, k]) =>
+          `<option value="${d}" ${days == d ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+      <span class="q-note">${t("hub.countries", { n: isos.length })}</span>
+      <button class="btn" id="hubAll" type="button">${t("hub.backlog", { n: pending.length })}</button>
+    </div>
+    ${fallbackFrom ? `<div class="rolenote">${t("hub.fallback", {
+        n: fallbackFrom, m: t(WINDOWS.find(w => w[0] === days)[1]).toLowerCase() })}</div>` : ""}
+    ${isos.length ? `<div class="ctiles">${isos.map(tile).join("")}</div>`
+                  : `<p style="color:var(--muted)">${pending.length ? t("hub.empty") : t("hub.noneAtAll")}</p>`}
+    ${quiet.length ? `<details class="q-proc" style="margin-top:14px">
+      <summary>${t("hub.showOthers", { n: quiet.length })}</summary>
+      <div class="ctiles quiet" style="padding:10px 6px">${quiet.map(c =>
+        `<button class="ctile" data-iso="${c.iso}" type="button">
+          <span class="ctile-flag">${c.flag}<span class="ctile-n zero">0</span></span>
+          <span class="ctile-name">${esc(c.name)}</span></button>`).join("")}</div>
+    </details>` : ""}
+  </div></div>
+  ${manualFormHtml()}
+  <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
+    ${done.length ? `<details class="q-proc">
+      <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
+      <div class="filters" style="margin-top:10px">
+        <label class="q-toggle">${t("proc.sort")}
+          <select id="pSort">${[["recent", "proc.sortRecent"], ["country", "proc.sortCountry"], ["status", "proc.sortStatus"]]
+            .map(([v, k]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+      </div>
+      <div id="procList"></div>
+    </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
+  </div></div>`;
+
+  el.querySelectorAll(".ctile").forEach(b => b.addEventListener("click", () => {
+    inboxFilter.iso = b.dataset.iso;
+    inboxFilter.days = "";
+    renderInbox();
+    window.scrollTo({ top: 0 });
+  }));
+  $("#hubW").addEventListener("change", e => { inboxFilter.hubDays = +e.target.value; renderInbox(); });
+  $("#hubAll").addEventListener("click", () => { inboxFilter.hubDays = 0; renderInbox(); });
+  paintProcessed(done);
+  const pSort = $("#pSort");
+  if (pSort) pSort.addEventListener("change", e => { inboxFilter.procSort = e.target.value; paintProcessed(done); });
+  wireManualForm();
+}
+
+function renderInboxCountry(el, pending, done){
+  const iso = inboxFilter.iso;
+  const c = byIso[iso];
+  const label = c ? c.flag + " " + esc(c.name) : "🇪🇺 " + t("hub.euTile");
+  const mine = pending.filter(x => x.iso === iso);
+  const mineDone = done.filter(x => x.iso === iso);
+
+  el.innerHTML = `
+  <a class="back" href="#" id="hubBack">${t("ctry.back")}</a>
+  <h1 class="pg">${t("ctry.title", { country: label })}</h1>
+  ${c ? "" : `<div class="rolenote">${t("hub.euNote")}</div>`}
+  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("inbox.pending")} (${mine.length})</h2></div><div class="bd">
     <div class="filters">
       <input type="search" id="qQ" placeholder="${t("inbox.search")}" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
-      <select id="qC" aria-label="Filter by country"><option value="">${t("inbox.allCountries")}</option>${inboxCountries(pending).map(o => `<option value="${o.iso}" ${inboxFilter.iso === o.iso ? "selected" : ""}>${esc(o.label)} (${o.n})</option>`).join("")}</select>
       <select id="qS" aria-label="Minimum AI relevance score"><option value="">${t("inbox.anyScore")}</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>${t("inbox.score")} ${s}</option>`).join("")}</select>
       <select id="qD" aria-label="Filter by detection window"><option value="">${t("inbox.anyDate")}</option>${[[7, t("inbox.last7")], [30, t("inbox.last30")], [90, t("inbox.last90")]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
       <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>${t("inbox.officialOnly")}</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>${t("inbox.toVerify")}</option></select>
-      <label class="q-toggle"><input type="checkbox" id="qG" ${inboxFilter.group ? "checked" : ""} ${inboxFilter.iso ? "disabled" : ""}> ${t("inbox.group")}</label>
       <span class="q-note" id="qCount"></span>
       <button class="btn" id="qReset" type="button">${t("inbox.reset")}</button>
     </div>
     <div id="pendList"></div>
   </div></div>
-  <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("manual.title")}</h2></div><div class="bd">
+  <div class="card"><div class="cap"><h2>${t("proc.title")} (${mineDone.length})</h2></div><div class="bd">
+    ${mineDone.length ? `<details class="q-proc" open>
+      <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
+      <div class="filters" style="margin-top:10px">
+        <label class="q-toggle">${t("proc.sort")}
+          <select id="pSort">${[["recent", "proc.sortRecent"], ["country", "proc.sortCountry"], ["status", "proc.sortStatus"]]
+            .map(([v, k]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+      </div>
+      <div id="procList"></div>
+    </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
+  </div></div>`;
+
+  const rerun = () => { paintPending(mine); paintProcessed(mineDone); };
+  rerun();
+  $("#hubBack").addEventListener("click", e => {
+    e.preventDefault();
+    inboxFilter.iso = ""; inboxFilter.q = ""; inboxFilter.minScore = ""; inboxFilter.days = ""; inboxFilter.rel = "";
+    renderInbox(); window.scrollTo({ top: 0 });
+  });
+  $("#qQ").addEventListener("input", e => { inboxFilter.q = e.target.value; rerun(); });
+  [["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
+    $(sel).addEventListener("change", e => { inboxFilter[key] = e.target.value; rerun(); });
+  });
+  $("#qReset").addEventListener("click", () => {
+    inboxFilter.q = ""; inboxFilter.minScore = ""; inboxFilter.days = ""; inboxFilter.rel = "";
+    renderInbox();
+  });
+  const pSort = $("#pSort");
+  if (pSort) pSort.addEventListener("change", e => { inboxFilter.procSort = e.target.value; paintProcessed(mineDone); });
+}
+
+function manualFormHtml(){
+  return `<div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("manual.title")}</h2></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("manual.sub")}</p>
     <div class="form-grid">
       <label>${t("manual.country")}<select id="mCty">${COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
@@ -155,66 +310,19 @@ function renderInbox(){
       <label class="full">${t("manual.summary")}<input id="mSum" placeholder="${t("manual.phSum")}"></label>
     </div>
     <div class="q-actions"><button class="btn primary" id="mAdd">${t("manual.add")}</button><span class="q-note" id="mMsg"></span></div>
-  </div></div>` : ""}
-  <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
-    ${done.length ? `
-    <details class="q-proc" ${inboxFilter.iso ? "open" : ""}>
-      <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
-      <div class="filters" style="margin-top:10px">
-        <label class="q-toggle">${t("proc.sort")}
-          <select id="pSort">
-            <option value="recent" ${inboxFilter.procSort === "recent" ? "selected" : ""}>${t("proc.sortRecent")}</option>
-            <option value="country" ${inboxFilter.procSort === "country" ? "selected" : ""}>${t("proc.sortCountry")}</option>
-            <option value="status" ${inboxFilter.procSort === "status" ? "selected" : ""}>${t("proc.sortStatus")}</option>
-          </select></label>
-        <span class="q-note">${t("proc.filterNote")}</span>
-      </div>
-      <div id="procList"></div>
-    </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
   </div></div>`;
-  if (isVal) {
-    const rerun = () => { paintPending(pending); paintProcessed(done); };
-    rerun();
-    $("#qQ").addEventListener("input", e => { inboxFilter.q = e.target.value; rerun(); });
-    [["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
-      $(sel).addEventListener("change", e => { inboxFilter[key] = e.target.value; rerun(); });
-    });
-    /* Grouping by country is pointless once a single country is selected — turn
-       it off rather than render one group holding everything. */
-    $("#qC").addEventListener("change", e => {
-      inboxFilter.iso = e.target.value;
-      if (inboxFilter.iso) {
-        inboxFilter.group = false;
-        const box = $("#qG"); if (box) { box.checked = false; box.disabled = true; }
-      } else {
-        const box = $("#qG"); if (box) box.disabled = false;
-      }
-      rerun();
-    });
-    $("#qG").addEventListener("change", e => { inboxFilter.group = e.target.checked; rerun(); });
-    const pSort = $("#pSort");
-    if (pSort) pSort.addEventListener("change", e => { inboxFilter.procSort = e.target.value; paintProcessed(done); });
-    $("#qReset").addEventListener("click", () => {
-      inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true, procSort: "recent" };
-      renderInbox();
-    });
-    $("#mAdd").addEventListener("click", () => {
-      const title = $("#mTitle").value.trim();
-      if (!title) { $("#mMsg").textContent = t("manual.needTitle"); return; }
-      const item = { id: "m" + Date.now(), detected: $("#mDate").value, iso: $("#mCty").value, title,
-        summary: $("#mSum").value.trim() || "Manual entry.", source: { name: $("#mSrc").value.trim() || "Consultant input", url: "", type: $("#mType").value }, status: "pending", action: "Review then add to country timeline" };
-      queue.push(item); store.manual.push(item); saveStore(); refreshBadge(); renderInbox();
-    });
-  }
 }
-/* Countries actually present in the queue, so the picker never offers an empty filter. */
-function inboxCountries(items){
-  const n = {};
-  items.forEach(q => { n[q.iso] = (n[q.iso] || 0) + 1; });
-  return Object.keys(n)
-    .map(iso => ({ iso, n: n[iso], label: byIso[iso] ? byIso[iso].name : iso }))
-    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
+function wireManualForm(){
+  const add = $("#mAdd"); if (!add) return;
+  add.addEventListener("click", () => {
+    const title = $("#mTitle").value.trim();
+    if (!title) { $("#mMsg").textContent = t("manual.needTitle"); return; }
+    const item = { id: "m" + Date.now(), detected: $("#mDate").value, iso: $("#mCty").value, title,
+      summary: $("#mSum").value.trim() || "Manual entry.", source: { name: $("#mSrc").value.trim() || "Consultant input", url: "", type: $("#mType").value }, status: "pending", action: "Review then add to country timeline" };
+    queue.push(item); store.manual.push(item); saveStore(); refreshBadge(); renderInbox();
+  });
 }
+
 /* Official first, then the strongest AI relevance, then the most recent. */
 function rankItems(list){
   const rel = t => (t === "official" ? 0 : t === "manual" ? 1 : 2);
@@ -241,38 +349,9 @@ function paintPending(pending){
   const list = applyInboxFilter(pending);
   $("#qCount").textContent = t("inbox.count", { n: list.length, total: pending.length });
 
-  let html;
-  if (!list.length) {
-    html = `<p style="color:var(--muted)">${t("inbox.noMatch")}</p>`;
-  } else if (inboxFilter.group) {
-    /* One section per country — the review is done country by country, and within
-       a country official sources outrank press, then the AI relevance score. */
-    const by = {};
-    list.forEach(x => { (by[x.iso] = by[x.iso] || []).push(x); });
-    html = Object.keys(by)
-      /* Groups with no country record (EU-wide items) go last: they carry no
-         workbook cells and cannot be published to a record, so leading with them
-         buries the actionable countries below a wall of unactionable cards. */
-      .sort((a, b) => (byIso[a] ? 0 : 1) - (byIso[b] ? 0 : 1)
-        || by[b].length - by[a].length
-        || (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b))
-      .map(iso => {
-        const c = byIso[iso];
-        const items = rankItems(by[iso]);
-        const off = items.filter(x => x.source.type === "official").length;
-        const cells = items.filter(x => (x.targetCells || []).length).length;
-        return `<details class="q-group" ${c ? "open" : ""}>
-          <summary><b>${c ? c.flag + " " + esc(c.name) : "🇪🇺 " + t("inbox.euGroup")}</b>
-            <span class="q-note">${items.length} ${t("inbox.grpPending")} · ${off} ${t("inbox.grpOfficial")} · ${items.length - off} ${t("inbox.grpVerify")}${
-              c ? ` · ${cells} ${t("inbox.grpCells")}`
-                : ` · ${t("inbox.grpNoRecord")}`}</span></summary>
-          ${items.map(qCard).join("")}
-        </details>`;
-      }).join("");
-  } else {
-    html = rankItems(list).map(qCard).join("");
-  }
-  $("#pendList").innerHTML = html;
+  $("#pendList").innerHTML = list.length
+    ? rankItems(list).map(qCard).join("")
+    : `<p style="color:var(--muted)">${t("inbox.noMatch")}</p>`;
   $("#pendList").querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
 }
 /* The processed log grows every review session, so it gets the same filters as
