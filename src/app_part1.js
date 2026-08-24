@@ -69,7 +69,7 @@ function inkOn(hex){ /* readable text colour for a given fill */
   return lum > 0.45 ? "#241a3d" : "#ffffff";
 }
 const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">Level ${c.maturity}</span>`; };
-const fwChip = c => `<span class="chip fw-${c.fw}">${FW_LABEL[c.fw]}</span>`;
+const fwChip = c => `<span class="chip fw-${c.fw}">${t("fw." + c.fw)}</span>`;
 const srcChip = t => t === "official" ? `<span class="chip src-official">Official</span>` : t === "manual" ? `<span class="chip src-manual">Manual — consultant input</span>` : `<span class="chip src-unofficial">Unofficial — verify</span>`;
 const stChip = s => ({ pending: `<span class="chip st-pending">Pending validation</span>`, validated: `<span class="chip st-validated">Validated</span>`, rejected: `<span class="chip st-rejected">Rejected</span>` }[s] || "");
 
@@ -123,25 +123,25 @@ function renderOverview(){
   COUNTRIES.forEach(c => counts[c.maturity]++);
   const el = $("#v-overview");
   el.innerHTML = `
-  <h1 class="pg">NIS 2 transposition across Europe</h1>
-  <p class="pg-sub">EU-27 plus the United Kingdom and Norway. Every figure below is computed from validated country records; click a country on the map or in the list to open its full record.</p>
+  <h1 class="pg">${t("ov.title")}</h1>
+  <p class="pg-sub">${t("ov.sub")}</p>
   <div class="tiles">
-    <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">EU members with a transposition law adopted</div></div>
-    <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">Transposed on time (17 Oct 2024)</div></div>
-    <div class="tile"><div class="v">~${k.avgDelay}<small> months</small></div><div class="s">Average delay of late transposers</div></div>
-    <div class="tile"><div class="v">${k.fwFinal}<small> final</small> · ${k.fwTemp}<small> temp.</small> · ${k.fwNone}<small> none</small></div><div class="s">Cybersecurity frameworks (EU-27)</div></div>
+    <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileTransposed")}</div></div>
+    <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
+    <div class="tile"><div class="v">~${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
+    <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>
   </div>
   <div class="grid-ov">
     <div class="card">
-      <div class="cap"><h2>Transposition maturity map</h2><button class="btn" id="expMap">Export PNG</button></div>
+      <div class="cap"><h2>${t("ov.map")}</h2><button class="btn" id="expMap">${t("ov.exportPng")}</button></div>
       <div class="bd">
         <div class="map-wrap" id="mapHost"></div>
         <div class="map-legend" id="mapLegend"></div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:18px">
-      <div class="card"><div class="cap"><h2>Latest validated updates</h2></div><div class="bd"><div class="feed" id="feed"></div></div></div>
-      <div class="card"><div class="cap"><h2>Maturity levels</h2></div><div class="bd" id="lvlHelp"></div></div>
+      <div class="card"><div class="cap"><h2>${t("ov.latest")}</h2></div><div class="bd"><div class="feed" id="feed"></div></div></div>
+      <div class="card"><div class="cap"><h2>${t("ov.levels")}</h2></div><div class="bd" id="lvlHelp"></div></div>
     </div>
   </div>`;
   drawMap($("#mapHost"), $("#mapLegend"), counts);
@@ -155,7 +155,7 @@ function renderOverview(){
   $("#lvlHelp").innerHTML = [4, 3, 2, 1].map(l => `
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:9px">
       <span class="leg-sw" style="background:${lvlColor(l)};margin-top:3px"></span>
-      <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">Level ${l}</b> — ${esc(LEVELS[l].label)} <span style="color:var(--muted)">(${counts[l]} countries)</span></div>
+      <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> — ${esc(t("lvl." + l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
     </div>`).join("");
   $("#expMap").addEventListener("click", exportMapPNG);
 }

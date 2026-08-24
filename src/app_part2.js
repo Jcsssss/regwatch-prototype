@@ -4,17 +4,17 @@ let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true
 function renderCountries(){
   const el = $("#v-countries");
   el.innerHTML = `
-  <h1 class="pg">Country records</h1>
-  <p class="pg-sub">One structured record per country: status, authorities, framework, registration, incident notification, audits, event timeline and verified sources.</p>
+  <h1 class="pg">${t("cty.title")}</h1>
+  <p class="pg-sub">${t("cty.sub")}</p>
   <div class="card"><div class="bd">
     <div class="filters">
-      <input type="search" id="fQ" placeholder="Search a country…" value="${esc(ctyFilter.q)}" aria-label="Search country">
-      <select id="fR" aria-label="Filter by region"><option value="">All regions</option>${["West","North","South","East"].map(r => `<option ${ctyFilter.region === r ? "selected" : ""}>${r}</option>`).join("")}</select>
-      <select id="fL" aria-label="Filter by level"><option value="">All levels</option>${[4,3,2,1].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>Level ${l}</option>`).join("")}</select>
+      <input type="search" id="fQ" placeholder="${t("cty.search")}" value="${esc(ctyFilter.q)}" aria-label="Search country">
+      <select id="fR" aria-label="Filter by region"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => `<option value="${r}" ${ctyFilter.region === r ? "selected" : ""}>${t("reg." + r)}</option>`).join("")}</select>
+      <select id="fL" aria-label="Filter by level"><option value="">${t("cty.allLevels")}</option>${[4,3,2,1].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>${t("common.level")} ${l}</option>`).join("")}</select>
       <span class="q-note" id="fCount"></span>
     </div>
     <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Country</th><th>Region</th><th>Maturity</th><th>Law in force</th><th class="num">Delay (mo)</th><th>Framework</th><th class="num">Req. EE</th><th class="num">Req. IE</th><th>Last update</th></tr></thead>
+      <thead><tr><th>${t("cty.thCountry")}</th><th>${t("cty.thRegion")}</th><th>${t("cty.thMaturity")}</th><th>${t("cty.thLaw")}</th><th class="num">${t("cty.thDelay")}</th><th>${t("cty.thFw")}</th><th class="num">${t("cty.thReqEE")}</th><th class="num">${t("cty.thReqIE")}</th><th>${t("cty.thUpd")}</th></tr></thead>
       <tbody id="ctyRows"></tbody>
     </table></div>
   </div></div>`;
@@ -25,14 +25,14 @@ function renderCountries(){
       .filter(c => !ctyFilter.region || c.region === ctyFilter.region)
       .filter(c => !ctyFilter.lvl || c.maturity == ctyFilter.lvl)
       .sort((a, b) => a.name.localeCompare(b.name));
-    $("#fCount").textContent = list.length + " of " + COUNTRIES.length + " countries";
+    $("#fCount").textContent = t("cty.count", { n: list.length, total: COUNTRIES.length });
     rows.innerHTML = list.map(c => `
       <tr class="rowlink" data-iso="${c.iso}" tabindex="0">
-        <td><b>${c.flag} ${esc(c.name)}</b>${c.eu ? "" : ' <span class="chip eu">non-EU</span>'}</td>
-        <td>${c.region}</td>
+        <td><b>${c.flag} ${esc(c.name)}</b>${c.eu ? "" : ` <span class="chip eu">${t("cty.nonEu")}</span>`}</td>
+        <td>${t("reg." + c.region)}</td>
         <td>${lvlChip(c)}</td>
-        <td>${c.lawInForce ? fmtDate(c.lawInForce) : "<span style='color:var(--muted)'>not yet</span>"}</td>
-        <td class="num">${c.onTime ? "on time" : (c.delayMonths != null ? "+" + c.delayMonths : "—")}</td>
+        <td>${c.lawInForce ? fmtDate(c.lawInForce) : `<span style="color:var(--muted)">${t("common.notYet")}</span>`}</td>
+        <td class="num">${c.onTime ? t("common.onTime") : (c.delayMonths != null ? "+" + c.delayMonths : "—")}</td>
         <td>${fwChip(c)}</td>
         <td class="num">${c.reqEE ?? "—"}</td><td class="num">${c.reqIE ?? "—"}</td>
         <td><span class="num">${fmtDate(c.lastUpdate)}</span></td>
@@ -49,60 +49,59 @@ function renderCountries(){
 }
 
 /* ---------- Country page ---------- */
-const SEC_TITLES = { fw: "Cybersecurity framework & requirements", reg: "Registration of entities", inc: "Incident notification", aud: "Audits & controls", scope: "Scope — sector & public-sector specifics", other: "Interplay with other regulations", reco: "Wavestone recommendations" };
+const SEC_KEYS = ["fw", "reg", "inc", "aud", "scope", "other", "reco"];
 function renderCountry(iso){
   const c = byIso[iso];
   const el = $("#v-country");
-  if (!c) { el.innerHTML = "<p>Unknown country.</p>"; return; }
+  if (!c) { el.innerHTML = `<p>${t("cp.unknown")}</p>`; return; }
   const facts = [
-    ["Transposition law", c.law],
-    ["Cybersecurity framework", `<b>${esc(FW_LABEL[c.fw])}</b> — ${esc(c.fwName)}`],
-    ["Requirements", c.reqEE ? `<b>${c.reqEE}</b> for EE · <b>${c.reqIE ?? "—"}</b> for IE` : "Not published / not analysed yet"],
-    ["Compliance deadline", c.complianceEE ? `<b>${c.complianceEE} months</b> (EE)${c.complianceIE && c.complianceIE !== c.complianceEE ? ` · ${c.complianceIE} months (IE)` : ""}` : "Not set"],
-    ["Registration channel", c.regTool],
-    ["Incident channel", c.incidentMethod],
-    ["Audit body", `${esc(c.auditBody)}${c.auditFreqEE ? ` — EE every <b>${c.auditFreqEE} mo</b>` : ""}${c.auditFreqIE ? ` · IE every <b>${c.auditFreqIE} mo</b>` : ""}`]
+    [t("cp.law"), c.law],
+    [t("cp.fw"), `<b>${esc(t("fw." + c.fw))}</b> — ${esc(c.fwName)}`],
+    [t("cp.req"), c.reqEE ? `<b>${c.reqEE}</b> ${t("cp.forEE")} · <b>${c.reqIE ?? "—"}</b> ${t("cp.forIE")}` : t("cp.reqNone")],
+    [t("cp.deadline"), c.complianceEE ? `<b>${c.complianceEE} ${t("common.months")}</b> (EE)${c.complianceIE && c.complianceIE !== c.complianceEE ? ` · ${c.complianceIE} ${t("common.months")} (IE)` : ""}` : t("cp.deadlineNone")],
+    [t("cp.regChannel"), c.regTool],
+    [t("cp.incChannel"), c.incidentMethod],
+    [t("cp.auditBody"), `${esc(c.auditBody)}${c.auditFreqEE ? ` — EE ${t("cp.every")} <b>${c.auditFreqEE} ${t("common.mo")}</b>` : ""}${c.auditFreqIE ? ` · IE ${t("cp.every")} <b>${c.auditFreqIE} ${t("common.mo")}</b>` : ""}`]
   ];
-  const secHtml = Object.keys(SEC_TITLES).filter(k => c.sections[k] && c.sections[k].length).map(k => `
-    <div class="sec"><h3>${SEC_TITLES[k]}</h3><ul>${c.sections[k].map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
+  const secHtml = SEC_KEYS.filter(k => c.sections[k] && c.sections[k].length).map(k => `
+    <div class="sec"><h3>${t("sec." + k)}</h3><ul>${c.sections[k].map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
   el.innerHTML = `
-  <a class="back" href="#/countries">← All countries</a>
+  <a class="back" href="#/countries">${t("cp.back")}</a>
   <div class="cty-head">
     <span class="flag">${c.flag}</span>
     <div>
       <h1>${esc(c.name)}</h1>
       <div class="meta">
         ${lvlChip(c)} ${fwChip(c)}
-        <span class="chip eu">${c.eu ? "EU member" : "Non-EU — tracked"}</span>
-        <span class="stepper" title="${esc(LEVELS[c.maturity].label)}">${[1,2,3,4].map(l => `<span class="st ${l <= c.maturity ? "on" + l : ""}"></span>`).join("")}</span>
+        <span class="chip eu">${c.eu ? t("cp.euMember") : t("cp.nonEu")}</span>
+        <span class="stepper" title="${esc(t("lvl." + c.maturity))}">${[1,2,3,4].map(l => `<span class="st ${l <= c.maturity ? "on" + l : ""}"></span>`).join("")}</span>
       </div>
-      <p style="margin:9px 0 0;color:var(--ink2);max-width:78ch">${esc(LEVELS[c.maturity].label)}. ${esc(c.summary)}</p>
+      <p style="margin:9px 0 0;color:var(--ink2);max-width:78ch">${esc(t("lvl." + c.maturity))}. ${esc(c.summary)}</p>
     </div>
-    <div class="upd">Last update<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${c.transposed ? (c.onTime ? "Transposed on time" : `In force ${fmtDate(c.lawInForce)} (+${c.delayMonths} mo)`) : "Not transposed yet"}${role === "validator" ? `<br><button class="btn" id="deckBtn" style="margin-top:9px">⬇ Generate country slides</button>` : ""}</div>
+    <div class="upd">${t("cp.lastUpdate")}<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${c.transposed ? (c.onTime ? t("cp.onTime") : t("cp.inForce", { date: fmtDateL(c.lawInForce), n: c.delayMonths })) : t("cp.notTransposed")}${role === "validator" ? `<br><button class="btn" id="deckBtn" style="margin-top:9px">${t("cp.genSlides")}</button>` : ""}</div>
   </div>
   <div class="facts">${facts.map(f => `<div class="fact"><div class="k">${f[0]}</div><div class="v">${f[1]}</div></div>`).join("")}</div>
   <div class="cty-grid">
     <div class="card"><div class="bd">${secHtml}
-      ${c.next && c.next.length ? `<div class="sec"><h3>Next steps</h3><ul>${c.next.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      ${c.next && c.next.length ? `<div class="sec"><h3>${t("cp.nextSteps")}</h3><ul>${c.next.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
     </div></div>
     <div style="display:flex;flex-direction:column;gap:18px">
-      <div class="card"><div class="cap"><h2>Event timeline</h2></div><div class="bd">
+      <div class="card"><div class="cap"><h2>${t("cp.timeline")}</h2></div><div class="bd">
         <ul class="tl">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(t => `
-          <li class="${t.added ? "added" : ""}"><span class="pt"></span><div class="d">${fmtDate(t.date)}${t.added ? ' · <span style="color:var(--ok)">added via watch inbox</span>' : ""}</div><div class="x">${esc(t.text)}</div></li>`).join("")}
+          <li class="${t.added ? "added" : ""}"><span class="pt"></span><div class="d">${fmtDate(t.date)}${t.added ? ` · <span style="color:var(--ok)">${t("cp.addedVia")}</span>` : ""}</div><div class="x">${esc(t.text)}</div></li>`).join("")}
         </ul>
-        ${c.timeline.some(t => t.added) ? `<div class="q-note" style="margin-top:8px">Green-dot entries were published automatically after validation in the watch inbox — the rest of the record is maintained by hand.</div>` : ""}
+        ${c.timeline.some(t => t.added) ? `<div class="q-note" style="margin-top:8px">${t("cp.timelineNote")}</div>` : ""}
       </div></div>
-      <div class="card"><div class="cap"><h2>Authorities</h2></div><div class="bd auth">
+      <div class="card"><div class="cap"><h2>${t("cp.authorities")}</h2></div><div class="bd auth">
         ${c.authorities.map(a => `<div class="a"><b>${esc(a.name)}</b><span>${esc(a.role)}</span></div>`).join("")}
       </div></div>
-      <div class="card"><div class="cap"><h2>Sources</h2></div><div class="bd srcs">
+      <div class="card"><div class="cap"><h2>${t("cp.sources")}</h2></div><div class="bd srcs">
         ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
-        <div class="q-note" style="margin-top:4px">All country-record content is sourced from the documents above or validated by a Wavestone consultant.</div>
+        <div class="q-note" style="margin-top:4px">${t("cp.sourcesNote")}</div>
       </div></div>
     </div>
     <div class="rolenote" style="margin:16px 0 0">
-      <b>Read-only record.</b> Country data mirrors the comparative workbook on SharePoint, which stays the single source of truth.
-      To change a fact, edit the workbook — the next sync brings it back here. Validating a Watch inbox item tells you which cells to change.
+      <b>${t("cp.readOnlyT")}</b> ${t("cp.readOnly")}
     </div>
   </div>`;
   const db = $("#deckBtn", el);
@@ -343,30 +342,30 @@ function renderInsights(){
   const el = $("#v-insights");
   const k = kpis();
   el.innerHTML = `
-  <h1 class="pg">Insights &amp; KPIs</h1>
-  <p class="pg-sub">Comparative indicators across the 29 tracked countries — the successor of the KPI workbook. Filter, chart, export.</p>
+  <h1 class="pg">${t("ins.title")}</h1>
+  <p class="pg-sub">${t("ins.sub")}</p>
   <div class="grid-ov" style="margin-bottom:18px">
-    <div class="card"><div class="cap"><h2>Cyber requirements per country — EE vs IE</h2></div><div class="bd">
-      <div class="legend-row"><span class="leg-s"><span class="sw" style="background:var(--ee)"></span>Essential entities</span><span class="leg-s"><span class="sw" style="background:var(--ie)"></span>Important entities</span></div>
-      <p class="chart-note">Number of security requirements in the national framework, where published / analysed. Hover a bar for the exact value.</p>
+    <div class="card"><div class="cap"><h2>${t("ins.reqChart")}</h2></div><div class="bd">
+      <div class="legend-row"><span class="leg-s"><span class="sw" style="background:var(--ee)"></span>${t("ins.ee")}</span><span class="leg-s"><span class="sw" style="background:var(--ie)"></span>${t("ins.ie")}</span></div>
+      <p class="chart-note">${t("ins.reqNote")}</p>
       <div id="chReq"></div>
     </div></div>
-    <div class="card"><div class="cap"><h2>Transposition delay</h2></div><div class="bd">
-      <p class="chart-note">Months after the EU deadline (17 Oct 2024). On-time countries shown at zero; non-transposed countries excluded.</p>
+    <div class="card"><div class="cap"><h2>${t("ins.delayChart")}</h2></div><div class="bd">
+      <p class="chart-note">${t("ins.delayNote")}</p>
       <div id="chDelay"></div>
-      <div class="q-note" style="margin-top:10px">Not transposed yet: ${COUNTRIES.filter(c => !c.transposed).map(c => c.flag + " " + esc(c.name)).join(" · ")}</div>
+      <div class="q-note" style="margin-top:10px">${t("ins.notTransposed")} ${COUNTRIES.filter(c => !c.transposed).map(c => c.flag + " " + esc(c.name)).join(" · ")}</div>
     </div></div>
   </div>
-  <div class="card"><div class="cap"><h2>KPI matrix</h2>
-    <div style="display:flex;gap:8px"><button class="btn" id="csvBtn">Export CSV (;)</button></div></div>
+  <div class="card"><div class="cap"><h2>${t("ins.matrix")}</h2>
+    <div style="display:flex;gap:8px"><button class="btn" id="csvBtn">${t("ins.csv")}</button></div></div>
     <div class="bd">
     <div class="filters">
-      <select id="kR" aria-label="Region filter"><option value="">All regions</option><option>West</option><option>North</option><option>South</option><option>East</option></select>
-      <select id="kL" aria-label="Level filter"><option value="">All levels</option><option value="4">Level 4</option><option value="3">Level 3</option><option value="2">Level 2</option><option value="1">Level 1</option></select>
-      <span class="q-note">Framework: ${k.fwFinal} final · ${k.fwTemp} temporary · ${k.fwNone} none (EU-27)</span>
+      <select id="kR" aria-label="Region filter"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => `<option value="${r}">${t("reg." + r)}</option>`).join("")}</select>
+      <select id="kL" aria-label="Level filter"><option value="">${t("cty.allLevels")}</option>${[4,3,2,1].map(l => `<option value="${l}">${t("common.level")} ${l}</option>`).join("")}</select>
+      <span class="q-note">${t("ins.fwSummary", { final: k.fwFinal, temp: k.fwTemp, none: k.fwNone })}</span>
     </div>
     <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Country</th><th>Region</th><th>Lvl</th><th>Transposed</th><th class="num">Delay</th><th>Framework</th><th class="num">Req EE</th><th class="num">Req IE</th><th class="num">Compl. EE (mo)</th><th class="num">Compl. IE (mo)</th><th class="num">Audit EE (mo)</th><th class="num">Audit IE (mo)</th><th class="num">Self-assess. (mo)</th><th>Audit body</th><th>Registration</th><th>Incident channel</th></tr></thead>
+      <thead><tr><th>${t("cty.thCountry")}</th><th>${t("cty.thRegion")}</th><th>${t("ins.thLvl")}</th><th>${t("ins.thTransposed")}</th><th class="num">${t("ins.thDelay")}</th><th>${t("cty.thFw")}</th><th class="num">${t("cty.thReqEE")}</th><th class="num">${t("cty.thReqIE")}</th><th class="num">${t("ins.thComplEE")}</th><th class="num">${t("ins.thComplIE")}</th><th class="num">${t("ins.thAuditEE")}</th><th class="num">${t("ins.thAuditIE")}</th><th class="num">${t("ins.thSelf")}</th><th>${t("ins.thAuditBody")}</th><th>${t("ins.thReg")}</th><th>${t("ins.thInc")}</th></tr></thead>
       <tbody id="kRows"></tbody></table></div>
   </div></div>`;
   drawReqChart($("#chReq"));
@@ -375,8 +374,8 @@ function renderInsights(){
     const r = $("#kR").value, l = $("#kL").value;
     const list = COUNTRIES.filter(c => (!r || c.region === r) && (!l || c.maturity == l)).sort((a, b) => a.name.localeCompare(b.name));
     $("#kRows").innerHTML = list.map(c => `<tr>
-      <td><b>${c.flag} ${esc(c.name)}</b></td><td>${c.region}</td><td>${lvlChip(c)}</td>
-      <td>${c.transposed ? (c.onTime ? "On time" : fmtDate(c.lawInForce)) : "No"}</td>
+      <td><b>${c.flag} ${esc(c.name)}</b></td><td>${t("reg." + c.region)}</td><td>${lvlChip(c)}</td>
+      <td>${c.transposed ? (c.onTime ? t("common.onTime") : fmtDateL(c.lawInForce)) : t("common.no")}</td>
       <td class="num">${c.onTime ? "0" : (c.delayMonths != null ? "+" + c.delayMonths : "—")}</td>
       <td>${fwChip(c)}</td>
       <td class="num">${c.reqEE ?? "—"}</td><td class="num">${c.reqIE ?? "—"}</td>
@@ -434,16 +433,16 @@ function drawDelayChart(host){
   chartTip(host);
 }
 function exportCSV(){
-  const head = ["Country","ISO","Region","EU","Maturity level","Transposed","On time","Law in force","Delay (months)","Framework status","Framework","Req EE","Req IE","Compliance EE (months)","Compliance IE (months)","Audit body","Audit freq EE (months)","Audit freq IE (months)","Self-assessment freq (months)","Registration","Incident channel","Last update"];
-  const lines = [head.join(";")];
+  /* Headers follow the interface language: a French user exports a French file. */
+  const lines = [t("csv.head")];
   COUNTRIES.forEach(c => {
-    const row = [c.name, c.iso, c.region, c.eu ? "Yes" : "No", c.maturity, c.transposed ? "Yes" : "No", c.onTime ? "Yes" : "No", c.lawInForce || "", c.delayMonths ?? "", FW_LABEL[c.fw], c.fwName, c.reqEE ?? "", c.reqIE ?? "", c.complianceEE ?? "", c.complianceIE ?? "", c.auditBody, c.auditFreqEE ?? "", c.auditFreqIE ?? "", c.selfAssessFreq ?? "", c.regTool, c.incidentMethod, c.lastUpdate];
+    const row = [c.name, c.iso, c.region, c.eu ? t("common.yes") : t("common.no"), c.maturity, c.transposed ? t("common.yes") : t("common.no"), c.onTime ? t("common.yes") : t("common.no"), c.lawInForce || "", c.delayMonths ?? "", t("fw." + c.fw), c.fwName, c.reqEE ?? "", c.reqIE ?? "", c.complianceEE ?? "", c.complianceIE ?? "", c.auditBody, c.auditFreqEE ?? "", c.auditFreqIE ?? "", c.selfAssessFreq ?? "", c.regTool, c.incidentMethod, c.lastUpdate];
     lines.push(row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(";"));
   });
   const blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "regwatch-nis2-kpis.csv";
+  a.download = `regwatch-nis2-kpis-${lang}.csv`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
@@ -455,11 +454,11 @@ function renderSources(){
   GLOBAL_SOURCES.forEach(s => rows.push({ scope: s.scope, name: s.name, url: s.url, type: s.type, note: s.note }));
   COUNTRIES.forEach(c => c.sources.forEach(s => rows.push({ scope: c.flag + " " + c.name, name: s.name, url: s.url, type: s.type, note: "" })));
   el.innerHTML = `
-  <h1 class="pg">Source registry</h1>
-  <p class="pg-sub">Every source monitored by the collection pipeline or cited in a country record. Official sources are trusted; unofficial ones are monitored but require validation by a Wavestone consultant; manual entries come from consultants (e.g. sector working groups) and can be flagged internal.</p>
+  <h1 class="pg">${t("src.title")}</h1>
+  <p class="pg-sub">${t("src.sub")}</p>
   <div class="card"><div class="bd">
     <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>Scope</th><th>Source</th><th>Trust level</th><th>Note</th></tr></thead>
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
         <td style="white-space:nowrap">${esc(r.scope)}</td>
         <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</td>
