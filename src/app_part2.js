@@ -1,6 +1,6 @@
 /* ---------- Countries list ---------- */
 let ctyFilter = { q: "", region: "", lvl: "" };
-let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true };
+let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true, procSort: "recent" };
 function renderCountries(){
   const el = $("#v-countries");
   el.innerHTML = `
@@ -87,10 +87,10 @@ function renderCountry(iso){
     </div></div>
     <div style="display:flex;flex-direction:column;gap:18px">
       <div class="card"><div class="cap"><h2>${t("cp.timeline")}</h2></div><div class="bd">
-        <ul class="tl">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(t => `
-          <li class="${t.added ? "added" : ""}"><span class="pt"></span><div class="d">${fmtDate(t.date)}${t.added ? ` · <span style="color:var(--ok)">${t("cp.addedVia")}</span>` : ""}</div><div class="x">${esc(t.text)}</div></li>`).join("")}
+        <ul class="tl">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(ev => `
+          <li class="${ev.added ? "added" : ""}"><span class="pt"></span><div class="d">${fmtDateL(ev.date)}${ev.added ? ` · <span style="color:var(--ok)">${t("cp.addedVia")}</span>` : ""}</div><div class="x">${esc(ev.text)}</div></li>`).join("")}
         </ul>
-        ${c.timeline.some(t => t.added) ? `<div class="q-note" style="margin-top:8px">${t("cp.timelineNote")}</div>` : ""}
+        ${c.timeline.some(ev => ev.added) ? `<div class="q-note" style="margin-top:8px">${t("cp.timelineNote")}</div>` : ""}
       </div></div>
       <div class="card"><div class="cap"><h2>${t("cp.authorities")}</h2></div><div class="bd auth">
         ${c.authorities.map(a => `<div class="a"><b>${esc(a.name)}</b><span>${esc(a.role)}</span></div>`).join("")}
@@ -138,7 +138,7 @@ function renderInbox(){
       <select id="qS" aria-label="Minimum AI relevance score"><option value="">${t("inbox.anyScore")}</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>${t("inbox.score")} ${s}</option>`).join("")}</select>
       <select id="qD" aria-label="Filter by detection window"><option value="">${t("inbox.anyDate")}</option>${[[7, t("inbox.last7")], [30, t("inbox.last30")], [90, t("inbox.last90")]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
       <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>${t("inbox.officialOnly")}</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>${t("inbox.toVerify")}</option></select>
-      <label class="q-toggle"><input type="checkbox" id="qG" ${inboxFilter.group ? "checked" : ""}> ${t("inbox.group")}</label>
+      <label class="q-toggle"><input type="checkbox" id="qG" ${inboxFilter.group ? "checked" : ""} ${inboxFilter.iso ? "disabled" : ""}> ${t("inbox.group")}</label>
       <span class="q-note" id="qCount"></span>
       <button class="btn" id="qReset" type="button">${t("inbox.reset")}</button>
     </div>
@@ -156,18 +156,48 @@ function renderInbox(){
     </div>
     <div class="q-actions"><button class="btn primary" id="mAdd">${t("manual.add")}</button><span class="q-note" id="mMsg"></span></div>
   </div></div>` : ""}
-  <div class="card"><div class="cap"><h2>${t("inbox.processed")}</h2></div><div class="bd">
-    ${done.length ? done.map(qCard).join("") : `<p style="color:var(--muted)">${t("inbox.none")}</p>`}
+  <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
+    ${done.length ? `
+    <details class="q-proc" ${inboxFilter.iso ? "open" : ""}>
+      <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
+      <div class="filters" style="margin-top:10px">
+        <label class="q-toggle">${t("proc.sort")}
+          <select id="pSort">
+            <option value="recent" ${inboxFilter.procSort === "recent" ? "selected" : ""}>${t("proc.sortRecent")}</option>
+            <option value="country" ${inboxFilter.procSort === "country" ? "selected" : ""}>${t("proc.sortCountry")}</option>
+            <option value="status" ${inboxFilter.procSort === "status" ? "selected" : ""}>${t("proc.sortStatus")}</option>
+          </select></label>
+        <span class="q-note">${t("proc.filterNote")}</span>
+      </div>
+      <div id="procList"></div>
+    </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
   </div></div>`;
   if (isVal) {
-    paintPending(pending);
-    const rerun = () => paintPending(pending);
+    const rerun = () => { paintPending(pending); paintProcessed(done); };
+    rerun();
     $("#qQ").addEventListener("input", e => { inboxFilter.q = e.target.value; rerun(); });
-    [["#qC", "iso"], ["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
+    [["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
       $(sel).addEventListener("change", e => { inboxFilter[key] = e.target.value; rerun(); });
     });
+    /* Grouping by country is pointless once a single country is selected — turn
+       it off rather than render one group holding everything. */
+    $("#qC").addEventListener("change", e => {
+      inboxFilter.iso = e.target.value;
+      if (inboxFilter.iso) {
+        inboxFilter.group = false;
+        const box = $("#qG"); if (box) { box.checked = false; box.disabled = true; }
+      } else {
+        const box = $("#qG"); if (box) box.disabled = false;
+      }
+      rerun();
+    });
     $("#qG").addEventListener("change", e => { inboxFilter.group = e.target.checked; rerun(); });
-    $("#qReset").addEventListener("click", () => { inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true }; renderInbox(); });
+    const pSort = $("#pSort");
+    if (pSort) pSort.addEventListener("change", e => { inboxFilter.procSort = e.target.value; paintProcessed(done); });
+    $("#qReset").addEventListener("click", () => {
+      inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", group: true, procSort: "recent" };
+      renderInbox();
+    });
     $("#mAdd").addEventListener("click", () => {
       const title = $("#mTitle").value.trim();
       if (!title) { $("#mMsg").textContent = t("manual.needTitle"); return; }
@@ -193,17 +223,22 @@ function rankItems(list){
     || ((b.agent || {}).score || 0) - ((a.agent || {}).score || 0)
     || (a.detected < b.detected ? 1 : -1));
 }
-/* A weekly agent run can queue 100+ items; triage keeps the review session workable. */
-function paintPending(pending){
+/* One filter for both lists: picking "France" should narrow the processed log
+   too, otherwise the two halves of the page disagree about what you're looking at. */
+function applyInboxFilter(items){
   const f = inboxFilter;
   const q = f.q.trim().toLowerCase();
   const cutoff = f.days ? new Date(Date.now() - f.days * 864e5).toISOString().slice(0, 10) : "";
-  const list = pending
+  return items
     .filter(x => !q || (x.title + " " + x.summary).toLowerCase().includes(q))
     .filter(x => !f.iso || x.iso === f.iso)
     .filter(x => !f.minScore || ((x.agent || {}).score != null && x.agent.score >= +f.minScore))
     .filter(x => !cutoff || x.detected >= cutoff)
     .filter(x => !f.rel || x.source.type === f.rel);
+}
+/* A weekly agent run can queue 100+ items; triage keeps the review session workable. */
+function paintPending(pending){
+  const list = applyInboxFilter(pending);
   $("#qCount").textContent = t("inbox.count", { n: list.length, total: pending.length });
 
   let html;
@@ -239,6 +274,34 @@ function paintPending(pending){
   }
   $("#pendList").innerHTML = html;
   $("#pendList").querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
+}
+/* The processed log grows every review session, so it gets the same filters as
+   the queue plus its own sort — otherwise ten validations make it unreadable. */
+function paintProcessed(done){
+  const host = $("#procList");
+  if (!host) return;
+  const list = applyInboxFilter(done);
+  const counter = $("#procCount");
+  if (counter) counter.textContent = t("proc.count", { n: list.length, total: done.length });
+
+  if (!list.length) {
+    host.innerHTML = `<p style="color:var(--muted)">${t("proc.noMatch")}</p>`;
+    return;
+  }
+  const when = x => x.validatedOn || x.detected;
+  const name = x => (byIso[x.iso] ? byIso[x.iso].name : x.iso);
+  const sorted = list.slice();
+  if (inboxFilter.procSort === "country") {
+    sorted.sort((a, b) => name(a).localeCompare(name(b)) || (when(a) < when(b) ? 1 : -1));
+  } else if (inboxFilter.procSort === "status") {
+    const rank = s => (s === "validated" ? 0 : 1);
+    sorted.sort((a, b) => rank(a.status) - rank(b.status) || (when(a) < when(b) ? 1 : -1));
+  } else {
+    sorted.sort((a, b) => (when(a) < when(b) ? 1 : -1));
+  }
+  host.innerHTML = sorted.map(qCard).join("");
+  host.querySelectorAll("[data-act]").forEach(b =>
+    b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
 }
 /* The cells of the comparative workbook this source would change — collapsed,
    like the AI panel, so a long queue stays scannable. */
@@ -315,12 +378,34 @@ function qCard(q){
       <button class="btn ok" data-act="validate" data-id="${q.id}">${t("card.validate")}</button>
       <button class="btn danger" data-act="reject" data-id="${q.id}">${t("card.reject")}</button>
       <span class="q-note">${t("card.validateNote", { country: c ? esc(c.name) : esc(q.iso) })}</span></div>` : ""}
-    ${q.status !== "pending" ? `<div class="q-note" style="margin-top:8px">${q.status === "validated" ? t("card.validatedBy") : t("card.rejectedBy")} ${t("card.by")} ${esc(q.validatedBy || "NIS 2 core team")} ${t("card.on")} ${fmtDateL(q.validatedOn || q.detected)}${q.rejectReason ? " — " + esc(q.rejectReason) : ""}</div>` : ""}
+    ${q.status !== "pending" ? `<div class="q-actions">
+      <span class="q-note">${q.status === "validated" ? t("card.validatedBy") : t("card.rejectedBy")} ${t("card.by")} ${esc(q.validatedBy || "NIS 2 core team")} ${t("card.on")} ${fmtDateL(q.validatedOn || q.detected)}${q.rejectReason ? " — " + esc(q.rejectReason) : ""}</span>
+      ${isVal ? `<button class="btn" data-act="reopen" data-id="${q.id}" title="${t("card.reopenHint")}">${t("card.reopen")}</button>` : ""}
+    </div>` : ""}
   </div>`;
 }
 function act(action, id){
   const q = queue.find(x => x.id === id); if (!q) return;
   const today = new Date().toISOString().slice(0, 10);
+
+  /* Undo a decision: a validator who mis-clicks must be able to put an item
+     back in the queue, including undoing what validation published. */
+  if (action === "reopen") {
+    q.status = "pending";
+    delete q.validatedBy; delete q.validatedOn; delete q.rejectReason;
+    const c = byIso[q.iso];
+    if (c) {
+      /* Remove only what this validation added — never a hand-maintained event. */
+      const i = c.timeline.findIndex(t => t._qid === q.id && t.added);
+      if (i >= 0) c.timeline.splice(i, 1);
+    }
+    delete store.overrides[id];
+    const mm = store.manual.find(x => x.id === id);
+    if (mm) { mm.status = "pending"; delete mm.validatedBy; delete mm.validatedOn; delete mm.rejectReason; }
+    saveStore(); refreshBadge(); renderInbox();
+    return;
+  }
+
   q.status = action === "validate" ? "validated" : "rejected";
   q.validatedBy = "You (validator)"; q.validatedOn = today;
   if (action === "reject") q.rejectReason = "Marked as rejected in this demo";
