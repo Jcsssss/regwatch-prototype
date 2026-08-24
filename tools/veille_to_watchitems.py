@@ -85,6 +85,15 @@ def load_excerpts():
     return {url: v["text"] for url, v in cache.items() if v.get("ok") and v.get("text")}
 
 
+def load_translations():
+    """English renderings of the agent's French title/summary, from
+    tools/translate_items.py. Missing entries simply fall back to the original."""
+    path = ROOT / "data" / "translations-cache.json"
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def load_cellmap():
     path = ROOT / "data" / "excel-cellmap.json"
     if not path.exists():
@@ -258,6 +267,10 @@ def build_items(rows):
     items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0, "with_cells": 0}
     cellmap = load_cellmap()
     excerpts = load_excerpts()
+    trans = load_translations()
+    if not trans:
+        print("  note: data/translations-cache.json absent — pas de titres anglais "
+              "(lance tools/translate_items.py)")
     if not excerpts:
         print("  note: data/excerpt-cache.json absent — pas d'extraits d'article "
               "(lance tools/fetch_excerpts.py)")
@@ -296,6 +309,9 @@ def build_items(rows):
                 "excerpt": excerpts.get(first(record, "URL source"), ""),
                 # The agent's written synthesis — shown inside the AI panel.
                 "summary": first(record, "Résumé") or "No summary provided by the agent.",
+                # English renderings; the UI picks by interface language.
+                "titleEn": trans.get(title, ""),
+                "summaryEn": trans.get(first(record, "Résumé"), ""),
                 "source": {
                     "name": first(record, "Autorité émettrice", "Source d'origine") or "Watch agent",
                     "url": first(record, "URL source"),

@@ -28,7 +28,7 @@ function renderCountries(){
     $("#fCount").textContent = t("cty.count", { n: list.length, total: COUNTRIES.length });
     rows.innerHTML = list.map(c => `
       <tr class="rowlink" data-iso="${c.iso}" tabindex="0">
-        <td><b>${c.flag} ${esc(c.name)}</b>${c.eu ? "" : ` <span class="chip eu">${t("cty.nonEu")}</span>`}</td>
+        <td><b><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</b>${c.eu ? "" : ` <span class="chip eu">${t("cty.nonEu")}</span>`}</td>
         <td>${t("reg." + c.region)}</td>
         <td>${lvlChip(c)}</td>
         <td>${c.lawInForce ? fmtDate(c.lawInForce) : `<span style="color:var(--muted)">${t("common.notYet")}</span>`}</td>
@@ -68,7 +68,7 @@ function renderCountry(iso){
   el.innerHTML = `
   <a class="back" href="#/countries">${t("cp.back")}</a>
   <div class="cty-head">
-    <span class="flag">${c.flag}</span>
+    <span class="flag"><i class="fi fi-lg">${flagSvg(c.iso)}</i></span>
     <div>
       <h1>${esc(c.name)}</h1>
       <div class="meta">
@@ -188,7 +188,7 @@ function renderInboxHub(el, pending, done){
     const off = items.filter(x => x.source.type === "official").length;
     const cells = items.filter(x => (x.targetCells || []).length).length;
     return `<button class="ctile" data-iso="${esc(iso)}" type="button">
-      <span class="ctile-flag">${c ? c.flag : "🇪🇺"}<span class="ctile-n">${items.length}</span></span>
+      <span class="ctile-flag">${flagSvg(c ? c.iso : "EU")}<span class="ctile-n">${items.length}</span></span>
       <span class="ctile-name">${c ? esc(c.name) : t("hub.euTile")}</span>
       <span class="ctile-sub">${off} ${t("hub.official")} · ${items.length - off} ${t("hub.verify")}</span>
       <span class="ctile-sub">${c ? `${cells} ${t("hub.cells")}` : t("hub.euNote")}</span>
@@ -214,11 +214,10 @@ function renderInboxHub(el, pending, done){
       <summary>${t("hub.showOthers", { n: quiet.length })}</summary>
       <div class="ctiles quiet" style="padding:10px 6px">${quiet.map(c =>
         `<button class="ctile" data-iso="${c.iso}" type="button">
-          <span class="ctile-flag">${c.flag}<span class="ctile-n zero">0</span></span>
+          <span class="ctile-flag">${flagSvg(c.iso)}<span class="ctile-n zero">0</span></span>
           <span class="ctile-name">${esc(c.name)}</span></button>`).join("")}</div>
     </details>` : ""}
   </div></div>
-  ${manualFormHtml()}
   <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
     ${done.length ? `<details class="q-proc">
       <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
@@ -242,18 +241,17 @@ function renderInboxHub(el, pending, done){
   paintProcessed(done);
   const pSort = $("#pSort");
   if (pSort) pSort.addEventListener("change", e => { inboxFilter.procSort = e.target.value; paintProcessed(done); });
-  wireManualForm();
 }
 
 function renderInboxCountry(el, pending, done){
   const iso = inboxFilter.iso;
   const c = byIso[iso];
-  const label = c ? c.flag + " " + esc(c.name) : "🇪🇺 " + t("hub.euTile");
+  const label = `<i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ` + (c ? esc(c.name) : t("hub.euTile"));
   const mine = pending.filter(x => x.iso === iso);
   const mineDone = done.filter(x => x.iso === iso);
 
   el.innerHTML = `
-  <a class="back" href="#" id="hubBack">${t("ctry.back")}</a>
+  <button class="btn back-big" id="hubBack" type="button">${t("ctry.back")}</button>
   <h1 class="pg">${t("ctry.title", { country: label })}</h1>
   ${c ? "" : `<div class="rolenote">${t("hub.euNote")}</div>`}
   <div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("inbox.pending")} (${mine.length})</h2></div><div class="bd">
@@ -298,30 +296,6 @@ function renderInboxCountry(el, pending, done){
   if (pSort) pSort.addEventListener("change", e => { inboxFilter.procSort = e.target.value; paintProcessed(mineDone); });
 }
 
-function manualFormHtml(){
-  return `<div class="card" style="margin-bottom:16px"><div class="cap"><h2>${t("manual.title")}</h2></div><div class="bd">
-    <p class="q-note" style="margin-top:0">${t("manual.sub")}</p>
-    <div class="form-grid">
-      <label>${t("manual.country")}<select id="mCty">${COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
-      <label>${t("manual.date")}<input type="date" id="mDate" value="${new Date().toISOString().slice(0, 10)}"></label>
-      <label>${t("manual.srcType")}<select id="mType"><option value="official">${t("manual.optOfficial")}</option><option value="unofficial">${t("manual.optUnofficial")}</option><option value="manual" selected>${t("manual.optManual")}</option></select></label>
-      <label>${t("manual.srcName")}<input id="mSrc" placeholder="${t("manual.phSrc")}"></label>
-      <label class="full">${t("manual.itemTitle")}<input id="mTitle" placeholder="${t("manual.phTitle")}"></label>
-      <label class="full">${t("manual.summary")}<input id="mSum" placeholder="${t("manual.phSum")}"></label>
-    </div>
-    <div class="q-actions"><button class="btn primary" id="mAdd">${t("manual.add")}</button><span class="q-note" id="mMsg"></span></div>
-  </div></div>`;
-}
-function wireManualForm(){
-  const add = $("#mAdd"); if (!add) return;
-  add.addEventListener("click", () => {
-    const title = $("#mTitle").value.trim();
-    if (!title) { $("#mMsg").textContent = t("manual.needTitle"); return; }
-    const item = { id: "m" + Date.now(), detected: $("#mDate").value, iso: $("#mCty").value, title,
-      summary: $("#mSum").value.trim() || "Manual entry.", source: { name: $("#mSrc").value.trim() || "Consultant input", url: "", type: $("#mType").value }, status: "pending", action: "Review then add to country timeline" };
-    queue.push(item); store.manual.push(item); saveStore(); refreshBadge(); renderInbox();
-  });
-}
 
 /* Official first, then the strongest AI relevance, then the most recent. */
 function rankItems(list){
@@ -338,7 +312,7 @@ function applyInboxFilter(items){
   const q = f.q.trim().toLowerCase();
   const cutoff = f.days ? new Date(Date.now() - f.days * 864e5).toISOString().slice(0, 10) : "";
   return items
-    .filter(x => !q || (x.title + " " + x.summary).toLowerCase().includes(q))
+    .filter(x => !q || (x.title + " " + (x.titleEn || "") + " " + x.summary).toLowerCase().includes(q))
     .filter(x => !f.iso || x.iso === f.iso)
     .filter(x => !f.minScore || ((x.agent || {}).score != null && x.agent.score >= +f.minScore))
     .filter(x => !cutoff || x.detected >= cutoff)
@@ -382,6 +356,11 @@ function paintProcessed(done){
   host.querySelectorAll("[data-act]").forEach(b =>
     b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
 }
+/* Item text follows the interface language when a translation exists.
+   The original is never discarded — it is what the source actually published. */
+function itemTitle(q){ return (lang === "en" && q.titleEn) ? q.titleEn : q.title; }
+function itemSummary(q){ return (lang === "en" && q.summaryEn) ? q.summaryEn : q.summary; }
+
 /* The cells of the comparative workbook this source would change — collapsed,
    like the AI panel, so a long queue stays scannable. */
 function cellsPanel(q){
@@ -409,7 +388,7 @@ function agentPanel(q){
     .split(/\s*;\s*/).map(s => s.trim()).filter(s => s.length > 3);
 
   const blocks = [];
-  if (q.summary) blocks.push(`<div class="q-agent-row"><b>${t("card.aiSynthesis")}</b><span>${esc(q.summary)}</span></div>`);
+  if (q.summary) blocks.push(`<div class="q-agent-row"><b>${t("card.aiSynthesis")}</b><span>${esc(itemSummary(q))}</span></div>`);
   if (points.length) blocks.push(`<div class="q-agent-row"><b>${t("card.aiPoints")}</b>
     <span><ul class="q-points">${points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></span></div>`);
   if (a.score != null) blocks.push(`<div class="q-agent-row"><b>${t("card.aiRelevance")}</b>
@@ -442,13 +421,13 @@ function qCard(q){
      summary otherwise, labelled so the two are never confused. */
   const body = q.excerpt
     ? `<blockquote class="q-excerpt">${esc(q.excerpt)}</blockquote>`
-    : `<blockquote class="q-excerpt">${esc(q.summary)}
+    : `<blockquote class="q-excerpt">${esc(itemSummary(q))}
          <span class="src-note">${t("card.excerptFallback")}</span></blockquote>`;
 
   return `<div class="q-card">
-    <div class="q-top"><b>${c ? c.flag + " " + esc(c.name) : "🇪🇺 " + esc(q.iso)}</b>${stChip(q.status)}${srcChip(q.source.type)}
+    <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}
       <span class="q-note">${esc(q.source.name)}</span></div>
-    <div class="q-title">${esc(q.title)}</div>
+    <div class="q-title">${esc(itemTitle(q))}</div>
     <div class="q-meta">${meta}</div>
     ${body}
     ${cellsPanel(q)}
@@ -517,7 +496,7 @@ function renderInsights(){
     <div class="card"><div class="cap"><h2>${t("ins.delayChart")}</h2></div><div class="bd">
       <p class="chart-note">${t("ins.delayNote")}</p>
       <div id="chDelay"></div>
-      <div class="q-note" style="margin-top:10px">${t("ins.notTransposed")} ${COUNTRIES.filter(c => !c.transposed).map(c => c.flag + " " + esc(c.name)).join(" · ")}</div>
+      <div class="q-note" style="margin-top:10px">${t("ins.notTransposed")} ${COUNTRIES.filter(c => !c.transposed).map(c => `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}`).join(" · ")}</div>
     </div></div>
   </div>
   <div class="card"><div class="cap"><h2>${t("ins.matrix")}</h2>
@@ -538,7 +517,7 @@ function renderInsights(){
     const r = $("#kR").value, l = $("#kL").value;
     const list = COUNTRIES.filter(c => (!r || c.region === r) && (!l || c.maturity == l)).sort((a, b) => a.name.localeCompare(b.name));
     $("#kRows").innerHTML = list.map(c => `<tr>
-      <td><b>${c.flag} ${esc(c.name)}</b></td><td>${t("reg." + c.region)}</td><td>${lvlChip(c)}</td>
+      <td><b><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</b></td><td>${t("reg." + c.region)}</td><td>${lvlChip(c)}</td>
       <td>${c.transposed ? (c.onTime ? t("common.onTime") : fmtDateL(c.lawInForce)) : t("common.no")}</td>
       <td class="num">${c.onTime ? "0" : (c.delayMonths != null ? "+" + c.delayMonths : "—")}</td>
       <td>${fwChip(c)}</td>
@@ -616,7 +595,7 @@ function renderSources(){
   const el = $("#v-sources");
   const rows = [];
   GLOBAL_SOURCES.forEach(s => rows.push({ scope: s.scope, name: s.name, url: s.url, type: s.type, note: s.note }));
-  COUNTRIES.forEach(c => c.sources.forEach(s => rows.push({ scope: c.flag + " " + c.name, name: s.name, url: s.url, type: s.type, note: "" })));
+  COUNTRIES.forEach(c => c.sources.forEach(s => rows.push({ scope: c.name, iso: c.iso, name: s.name, url: s.url, type: s.type, note: "" })));
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
   <p class="pg-sub">${t("src.sub")}</p>
@@ -624,7 +603,7 @@ function renderSources(){
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th></tr></thead>
       <tbody>${rows.map(r => `<tr>
-        <td style="white-space:nowrap">${esc(r.scope)}</td>
+        <td style="white-space:nowrap">${r.iso ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.scope)}</td>
         <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</td>
         <td>${srcChip(r.type)}</td>
         <td style="color:var(--muted)">${esc(r.note)}</td></tr>`).join("")}

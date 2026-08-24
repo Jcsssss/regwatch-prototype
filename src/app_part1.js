@@ -151,7 +151,7 @@ function renderOverview(){
   events.sort((a, b) => b.date < a.date ? -1 : 1);
   $("#feed").innerHTML = events.slice(0, 7).map(e => `
     <div class="feed-it"><div class="d">${fmtDate(e.date)}</div>
-      <div class="t"><span class="c">${e.c.flag} ${esc(e.c.name)}</span> — ${esc(e.text)}</div></div>`).join("");
+      <div class="t"><span class="c"><i class="fi">${flagSvg(e.c.iso)}</i> ${esc(e.c.name)}</span> — ${esc(e.text)}</div></div>`).join("");
   $("#lvlHelp").innerHTML = [4, 3, 2, 1].map(l => `
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:9px">
       <span class="leg-sw" style="background:${lvlColor(l)};margin-top:3px"></span>
