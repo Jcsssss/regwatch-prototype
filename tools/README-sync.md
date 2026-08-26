@@ -1,0 +1,80 @@
+# Synchronisation classeur comparatif → fiches pays
+
+Sens unique : **le classeur sur SharePoint fait foi**, RegWatch en est un miroir
+en lecture. Rien n'est jamais réécrit dans le classeur — ni par le code, ni par
+l'outil. C'est ce qui garantit que les formules, la mise en forme conditionnelle
+et les slicers du classeur client ne peuvent pas être abîmés par un bug d'ici.
+
+## La chaîne
+
+```
+SharePoint ──(1)──> copie locale ──(2)──> src/data_excel.js ──(3)──> le site
+```
+
+```bash
+# 1. récupérer le classeur depuis SharePoint (Microsoft Graph, lecture seule)
+python3 tools/sharepoint_fetch.py
+
+# 2. l'importer via la cartographie des champs
+python3 tools/excel_to_countries.py data/.cache/comparative.xlsx
+
+# 3. reconstruire le site
+zsh src/build.sh
+```
+
+La copie locale atterrit dans `data/.cache/`, qui est ignoré par git — comme le
+cache de jeton, qui contient un jeton de rafraîchissement.
+
+## Ce qu'il faut obtenir de l'IT avant que ça tourne
+
+`sharepoint_fetch.py` est écrit et son encodage de lien est vérifié, mais il n'a
+pas encore été exécuté contre le vrai SharePoint : cela demande des éléments que
+nous n'avons pas.
+
+| | Pour démarrer (code d'appareil) | Pour planifier (app-only) |
+|---|---|---|
+| Inscription d'application Entra ID | souhaitable | **obligatoire** |
+| Permission `Files.Read.All` | déléguée | **application** |
+| Consentement administrateur | non | **oui** |
+| Intervention humaine | une connexion, puis silence | aucune |
+
+**Commence par le code d'appareil.** Il fonctionne sur un compte ordinaire, sans
+consentement administrateur : tu signes une fois dans le navigateur, le jeton de
+rafraîchissement est mis en cache, les exécutions suivantes sont silencieuses.
+C'est suffisant pour prouver la chaîne de bout en bout.
+
+L'app-only est la cible pour la synchro planifiée, mais il demande une
+inscription d'application et un consentement administrateur — donc l'IT.
+
+### Configuration
+
+```
+SHAREPOINT_FILE_URL=<le lien « Copier le lien » du classeur dans SharePoint>
+GRAPH_TENANT_ID=<identifiant de tenant, ou wavestone.com>
+GRAPH_CLIENT_ID=<inscription d'application>          # optionnel en test
+GRAPH_CLIENT_SECRET=<secret>                         # app-only uniquement
+```
+
+Pas d'identifiant de site ni de drive à chercher : Graph résout le lien de
+partage directement.
+
+En l'absence de `GRAPH_CLIENT_ID`, le script utilise le client public d'Azure
+CLI pour prouver la plomberie. **À remplacer par une inscription Wavestone avant
+toute planification** — un outil interne ne doit pas s'authentifier sous
+l'identité d'un client Microsoft.
+
+## Ce que l'import fait, et ne fait pas
+
+Il **ajoute** ce que la fiche pays n'a pas : sept champs typés et deux sections
+entières (sanctions, autorités détaillées).
+
+Il **n'écrase pas** les champs existants. La comparaison classeur / fiches donne
+145 valeurs concordantes et **132 divergentes**, de deux natures :
+
+- le classeur est plus succinct et la fiche enrichie — écraser perdrait de
+  l'information ;
+- les deux se contredisent sur un fait — quelqu'un doit arbitrer.
+
+Tant que cet arbitrage n'a pas eu lieu, appliquer mécaniquement « le classeur
+fait foi » dégraderait l'outil sur la moitié des champs, sans que personne ne le
+voie. La réconciliation est la seconde moitié du travail.

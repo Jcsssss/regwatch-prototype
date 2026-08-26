@@ -35,3 +35,7 @@ out/
 
 # Runtime artifact: importing the watch agent creates this in the CWD
 logs/
+
+# Graph token cache and the workbook pulled from SharePoint.
+# graph-token.json holds a refresh token — a credential, never commit it.
+data/.cache/
