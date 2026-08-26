@@ -251,6 +251,14 @@ def main():
     if args.help_config:
         print(CONFIG_HELP)
         return 0
+
+    # Config first: --check must see the same .env the real run will use.
+    if args.env and os.path.exists(args.env):
+        load_env_file(args.env)
+    for candidate in (ROOT / ".env", ROOT / "data" / ".cache" / ".env"):
+        if candidate.exists():
+            load_env_file(candidate)
+
     if args.check:
         url = (os.getenv("SHAREPOINT_FILE_URL") or (args.env if args.env and args.env.startswith("http") else "")).strip()
         if not url:
@@ -272,12 +280,6 @@ def main():
         except Exception:
             print("  %-18s non résolu — utilise le domaine tel quel" % "GRAPH_TENANT_ID")
         return 0
-    if args.env and os.path.exists(args.env):
-        load_env_file(args.env)
-    for candidate in (ROOT / ".env", ROOT / "data" / ".cache" / ".env"):
-        if candidate.exists():
-            load_env_file(candidate)
-
     file_url = (os.getenv("SHAREPOINT_FILE_URL") or "").strip()
     tenant = (os.getenv("GRAPH_TENANT_ID") or "").strip()
     client_id = (os.getenv("GRAPH_CLIENT_ID") or "").strip()

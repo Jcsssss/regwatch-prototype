@@ -11,12 +11,17 @@ et les slicers du classeur client ne peuvent pas être abîmés par un bug d'ici
 SharePoint ──(1)──> copie locale ──(2)──> src/data_excel.js ──(3)──> le site
 ```
 
+Tout se lance depuis **le dossier du projet**, dans le Terminal, avec le
+`venv/` du projet — le python du système n'a pas `requests` :
+
 ```bash
+cd ~/Downloads/regwatch-prototype
+
 # 1. récupérer le classeur depuis SharePoint (Microsoft Graph, lecture seule)
-python3 tools/sharepoint_fetch.py
+./venv/bin/python tools/sharepoint_fetch.py
 
 # 2. l'importer via la cartographie des champs
-python3 tools/excel_to_countries.py data/.cache/comparative.xlsx
+./venv/bin/python tools/excel_to_countries.py data/.cache/comparative.xlsx
 
 # 3. reconstruire le site
 zsh src/build.sh
@@ -51,6 +56,18 @@ un administrateur autorise ensuite l'application sur les seuls sites choisis. La
 restriction tient à la configuration du tenant, pas à la bonne conduite du code.
 
 Le brouillon de demande est dans `tools/demande-IT.md`.
+
+### Avant le premier lancement
+
+Le `venv/` du projet et le `.env` sont déjà en place. Si tu repars d'un clone :
+
+```bash
+python3 -m venv venv
+./venv/bin/pip install requests openpyxl
+cp .env.example .env      # puis renseigner l'URL et le tenant
+```
+
+`.env` et `venv/` sont ignorés par git.
 
 **Commence par le code d'appareil.** Il fonctionne sur un compte ordinaire, sans
 consentement administrateur : tu signes une fois dans le navigateur, le jeton de
