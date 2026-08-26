@@ -283,7 +283,15 @@ def build_items(rows):
         if not title:
             continue
 
-        codes, unknown = split_countries(record.get("Pays / Zone"))
+        # Tier 1 : l'agent patché écrit une colonne ISO. On la préfère à la table
+        # de correspondance locale, qui n'est plus qu'un repli pour les lignes
+        # écrites avant le patch.
+        iso_col = first(record, "ISO")
+        if iso_col:
+            codes = [c.strip().upper() for c in iso_col.split(";") if c.strip()]
+            unknown = []
+        else:
+            codes, unknown = split_countries(record.get("Pays / Zone"))
         for label in unknown:
             report["unmapped_countries"][label] = report["unmapped_countries"].get(label, 0) + 1
         if not codes:
@@ -305,8 +313,11 @@ def build_items(rows):
                 "detected": detected,
                 "iso": code,
                 "title": title,
-                # The source's own opening lines; the card leads with these.
-                "excerpt": excerpts.get(first(record, "URL source"), ""),
+                # The source's own opening lines. The patched agent stores them
+                # directly; the re-fetch cache is only a fallback for rows written
+                # before the patch.
+                "excerpt": first(record, "Extrait source")
+                           or excerpts.get(first(record, "URL source"), ""),
                 # The agent's written synthesis — shown inside the AI panel.
                 "summary": first(record, "Résumé") or "No summary provided by the agent.",
                 # English renderings; the UI picks by interface language.
@@ -329,6 +340,8 @@ def build_items(rows):
                     "impact": first(record, "Niveau impact", "Score impact"),
                     "entities": first(record, "Entités concernées"),
                     "publishedOn": to_iso_date(record.get("Date publication")),
+                    # flux | page | ia | inconnue — dit si la date est un fait ou une inférence
+                    "dateOrigin": first(record, "Origine date"),
                     "inForceOn": to_iso_date(record.get("Date entrée en vigueur")),
                     "textType": first(record, "Type de texte"),
                 },

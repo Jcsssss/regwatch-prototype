@@ -226,6 +226,11 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .lang-switch button{border:0;background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:700;padding:5px 10px;cursor:pointer;letter-spacing:.03em}
 .lang-switch button+button{border-left:1px solid var(--line)}
 .lang-switch button.on{background:var(--accent);color:#fff}
+.d-orig{margin-left:6px;font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:999px;white-space:nowrap}
+.d-flux{background:var(--st-ok-bg);color:var(--st-ok-ink)}
+.d-page{background:var(--info-bg);color:var(--info)}
+.d-ia{background:var(--st-warn-bg);color:var(--st-warn-ink)}
+.d-inconnue{background:var(--surface3);color:var(--muted)}
 .q-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:7px 0 9px;font-size:12.5px;color:var(--muted)}
 .q-meta .k{font-weight:600;color:var(--ink2)}
 .q-meta .num{font-family:var(--font-mono)}
@@ -1339,6 +1344,575 @@ const WATCH_QUEUE = [
    demo WATCH_QUEUE in data_c4.js when it is not. Do not edit by hand. ---- */
 const WATCH_QUEUE_AGENT = [
   {
+    "id": "REG-20260826105840-006",
+    "detected": "2026-08-26",
+    "iso": "PL",
+    "title": "Pologne - NIS2 : impact sur les contrats avec les fournisseurs IT, cloud et les outsourcers",
+    "excerpt": "",
+    "summary": "L'article traite de l'effet de NIS2 sur la chaîne d'approvisionnement et explique que les entreprises devront adapter leurs contrats avec les fournisseurs IT, cloud et les prestataires externalisés pour mieux encadrer les exigences de cybersécurité, de continuité et de responsabilité. La nouveauté porte sur le renforcement attendu des clauses contractuelles et des exigences de contrôle des tiers.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Article de presse relayant l'analyse des effets de NIS2 sur les contrats fournisseurs",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTTlVdHBJSG5ldkNRWFhvY1IwbkV6cVFmRGZaV0lOU0NFSHd0eURmLUNJZ3NjM2c2ZkZoTjkwT3lXRURVQ3hibGZJTmNha2VBMVVXaEVxQ2k3X2c4a09fUTVwMHVUR0ttQzE1Q1RQeDV4Y0tXVlhrSlN6RGlWUWItT1cwWnB6MFZsay1TRFJjTkhab1NvVThpMVZIUEFoNXJtMHc4bjdYajAxc2xfQ0tEd2k3eVcyUmRkaHpneDdERkNDWnRCbnVhTjNiYURVMFo3X196X3NTc19NQWtCZ2w3NHFDeVVTZXozN2dRZFhjRUU?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier les fournisseurs critiques; revoir les contrats IT/cloud/outsourcing; intégrer des clauses NIS2 sur sécurité, incident, audit et continuité; mettre à jour le processus de due diligence tiers; préparer un plan de remédiation avec les fournisseurs prioritaires",
+    "agent": {
+      "score": 7,
+      "justification": "Article sur l’impact de NIS2 sur la chaîne d’approvisionnement et les contrats avec fournisseurs IT/cloud/outsourcers, sujet directement lié aux obligations de gestion des risques et de sécurité des fournisseurs. C’est une actualité récente.",
+      "obligations": "Renforcer les clauses de sécurité dans les contrats fournisseurs; imposer des exigences de notification des incidents et de coopération; prévoir des engagements de continuité et de résilience; encadrer l'audit et le contrôle des sous-traitants; vérifier l'alignement des prestataires sur les exigences NIS2",
+      "impact": "Moyen",
+      "entities": "entités essentielles et importantes soumises à NIS2; entreprises clientes de services IT; fournisseurs cloud; outsourcers; prestataires de services numériques",
+      "publishedOn": "2026-08-24",
+      "dateOrigin": "flux",
+      "inForceOn": "2026-08-24",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I26"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D25"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E25"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105834-005",
+    "detected": "2026-08-26",
+    "iso": "PL",
+    "title": "Pologne : application de NIS2/uKSC aux sociétés ferroviaires et identification des entités soumises",
+    "excerpt": "",
+    "summary": "L'article explique quelles sociétés ferroviaires polonaises doivent satisfaire aux exigences issues de NIS2 et de la loi nationale uKSC. La nouveauté porte sur le périmètre des entités du rail potentiellement soumises, avec un focus sur les critères d'assujettissement et les obligations de conformité cyber associées.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Kolejowy Portal; cadre réglementaire NIS2/uKSC",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQM3hhalUtUEkyR1BFNmhCTmYxNmZXTFNPcjlkV0pTcHVCdGFnZDBKcEdRZGw5eFh0aXRlV0FaUDhCRlNXVFBYM1BFXzBFaVhxMWhSQTV3dUlER3NsNUhyNkh0bnRRNl9KQnNCZ1FGYWRZc0JpeEgwbkIwSDNteHE5dDlHY2ZiSlBK?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Cartographier immédiatement les entités et activités ferroviaires entrant potentiellement dans le champ NIS2/uKSC; vérifier les critères de taille, de criticité et de services fournis; lancer un gap analysis des mesures de cybersécurité; préparer la gouvernance de notification d'incident; associer les équipes IT, sécurité, juridique et métiers ferroviaires",
+    "agent": {
+      "score": 7,
+      "justification": "Article récent sur l'application de NIS2/uKSC aux sociétés ferroviaires et sur les entités concernées, sujet directement lié au périmètre de transposition sectorielle NIS2.",
+      "obligations": "Identifier si l'entité relève du champ NIS2/uKSC; mettre en place des mesures de gestion des risques cyber; organiser la notification des incidents significatifs; documenter la conformité et les responsabilités internes; renforcer la sécurité de la chaîne d'approvisionnement et des systèmes d'information",
+      "impact": "Fort",
+      "entities": "Entreprises ferroviaires; gestionnaires d'infrastructure ferroviaire; opérateurs de transport; prestataires numériques critiques du secteur ferroviaire en Pologne",
+      "publishedOn": "2026-08-26",
+      "dateOrigin": "flux",
+      "inForceOn": "2026-08-26",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G26"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I26"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F25"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G25"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105820-004",
+    "detected": "2026-08-26",
+    "iso": "FR",
+    "title": "France : guide de conformité à la directive NIS2 publié en 2026",
+    "excerpt": "",
+    "summary": "Le contenu correspond à un guide de conformité sur la directive NIS2 en France. Il s’agit vraisemblablement d’un article de vulgarisation ou d’accompagnement opérationnel, sans indication d’une nouvelle obligation légale ou d’un texte réglementaire officiel. La nouveauté porte sur la publication d’un guide récent en 2026, utile pour la mise en conformité NIS2.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "tech-insider.org",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE42eXcycFROVjFkdlFHbjlId2VZWUpBSTVKZ3VSdHpCbkY4ZWZZRzZkUWl2T3JGWVJIdkc4bWRGMjdKUDV1T2phd2swVU9tUExXZXhGVlNMNnN6TGNuVnBoNEwzeWZnUXlCcmxLVDdtQnVoTkFK?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Lire le guide pour identifier les écarts de conformité; confirmer le périmètre NIS2 de l’organisation; lancer ou mettre à jour le plan de mise en conformité; prioriser les mesures de sécurité et de notification d’incident; suivre les éventuelles sources officielles françaises sur NIS2",
+    "agent": {
+      "score": 5,
+      "justification": "Le titre évoque un guide de conformité NIS2 en France, potentiellement utile pour la veille, mais l’extrait ne permet pas de vérifier s’il s’agit d’un contenu réglementaire nouveau ou d’un simple article de vulgarisation/marketing.",
+      "obligations": "Vérifier l’assujettissement à NIS2; cartographier les exigences applicables; renforcer les mesures de gestion des risques cyber; formaliser la gouvernance et les procédures de notification d’incident; documenter l’état de conformité",
+      "impact": "Moyen",
+      "entities": "Organisations soumises ou potentiellement soumises à NIS2 en France; RSSI; équipes cybersécurité; direction conformité",
+      "publishedOn": "2026-08-23",
+      "dateOrigin": "flux",
+      "inForceOn": "2026-08-23",
+      "textType": "guide de conformité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F13"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105806-003",
+    "detected": "2026-08-26",
+    "iso": "LU",
+    "title": "Luxembourg - Publication du guide « Modèle NIS 2 - Description des mesures en place » par l’ILR",
+    "excerpt": "Une régulation équitable pour des marchés florissants L'Institut luxembourgeois de régulation (ILR) assure et supervise la régulation dans les domaines économiques suivants : communications électroniques, électricité, gaz naturel, services postaux, transports, fréquences radioélectriques et NIS (Cybersécurité). […]",
+    "summary": "L’ILR publie un guide intitulé « Modèle NIS 2 - Description des mesures en place » dans sa rubrique cybersécurité. Cette publication semble fournir un cadre ou un modèle pour documenter les mesures de sécurité déjà mises en place dans le contexte NIS2 au Luxembourg.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Institut luxembourgeois de régulation (ILR)",
+      "url": "https://www.ilr.lu/",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Télécharger et analyser le modèle publié par l’ILR; comparer le contenu du guide avec l’inventaire interne des mesures NIS2; compléter ou harmoniser la documentation de sécurité; vérifier la traçabilité des contrôles et des responsabilités; préparer une version exploitable pour audit ou demande de l’autorité",
+    "agent": {
+      "score": 8,
+      "justification": "Page d’accueil de l’ILR avec une publication récente liée à la cybersécurité/NIS2 : « Modèle NIS 2 - Description des mesures en place » datée du 3 août 2026. Même si la page est générale, elle renvoie à un guide NIS2 utile pour la veille.",
+      "obligations": "Documenter et formaliser les mesures de cybersécurité en place; structurer la preuve de conformité NIS2; maintenir une description à jour des contrôles techniques et organisationnels; préparer les éléments de justification pour les autorités compétentes",
+      "impact": "Moyen",
+      "entities": "Entités soumises à NIS2 au Luxembourg; opérateurs de services essentiels et entités importantes; organisations gérant des systèmes d’information critiques",
+      "publishedOn": "2026-07-29",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-03",
+      "textType": "Guide"
+    },
+    "targetCells": [
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D21"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E21"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Framework used during audit",
+        "cell": "P21"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F21"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G21"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E21"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105752-002",
+    "detected": "2026-08-26",
+    "iso": "DK",
+    "title": "Danemark : publication d’une alerte sur la menace de cyberattaques destructrices et rappel des dispositifs NIS2/CER",
+    "excerpt": "Pulje er åben: Skal ruste danskerne til kriser Nu kan civilsamfundsorganisationer for andet år i træk søge penge gennem en pulje, der skal styrke danskernes viden om beredskab og gøre dem klar til at handle under en krise. Nyt kursus fra SAMSIK: Krisestyring i egen organisation Kurset giver dig viden og værktøjer til at håndtere kriser og ekstraordinære hændelser på din egen arbejdsplads, og til at opretholde den daglige drift og komme bedre igennem kriser. Alle har et ansvar Totalberedskab Med totalberedskabet samarbejder vi om at øge Danmarks forsvarsevne. […]",
+    "summary": "La page d’actualités de SAMSIK met en avant une nouveauté opérationnelle liée à la cybersécurité : l’autorité indique que la menace de cyberattaques destructrices menées par des hackers étatiques russes est renforcée et appelle les organisations concernées à se préparer. La page renvoie aussi aux dispositifs nationaux de résilience, aux formations de gestion de crise et au cadre NIS2/CER pour les entités critiques.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Styrelsen for Samfundssikkerhed (SAMSIK)",
+      "url": "https://www.cfcs.dk/da/nyheder/",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "RSSI : analyser l’alerte et lancer un point de situation sur les actifs critiques; vérifier les sauvegardes, la segmentation et les procédures de restauration; renforcer la supervision et les scénarios de réponse à incident; sensibiliser la direction et les équipes opérationnelles; documenter les écarts éventuels vis-à-vis de NIS2/CER",
+    "agent": {
+      "score": 7,
+      "justification": "Page d’actualités de l’autorité danoise de sécurité/sécurité civile, avec une rubrique NIS2 et des sujets liés à la cybersécurité, à la supervision et à la résilience des entités critiques. Même si la page est générale, elle peut contenir des nouveautés réglementaires ou opérationnelles pertinentes pour NIS2.",
+      "obligations": "Renforcer la surveillance et la détection des attaques destructrices; vérifier et tester les plans de continuité et de reprise; durcir les mesures de protection des systèmes critiques; préparer les équipes à la gestion de crise; s’aligner sur les exigences de résilience NIS2 et CER; suivre les alertes et recommandations de l’autorité danoise",
+      "impact": "Fort",
+      "entities": "Entités essentielles et importantes au sens NIS2; opérateurs d’infrastructures critiques; organisations exposées aux cybermenaces; responsables cybersécurité et continuité d’activité; administrations et acteurs du totalberedskab",
+      "publishedOn": "2026-08-26",
+      "dateOrigin": "ia",
+      "inForceOn": "2026-08-26",
+      "textType": "page institutionnelle d’actualités"
+    },
+    "targetCells": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F10"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G10"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E10"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Number of cyber requirements for EE",
+        "cell": "L10"
+      },
+      {
+        "sheet": "Authority - P3",
+        "field": "Consolidated list of authorities",
+        "cell": "E10"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E10"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105609-001-NL",
+    "detected": "2026-08-26",
+    "iso": "NL",
+    "title": "Recours de la Commission européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. About the NIS Cooperation Group The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette décision signale un durcissement du suivi de la mise en conformité des États membres et rappelle l’importance des échéances de transposition et de notification des mesures nationales.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans le pays d’implantation; vérifier les impacts des futures mesures nationales sur le périmètre de l’entreprise; anticiper les exigences de gouvernance, gestion des risques et notification d’incidents; renforcer la veille réglementaire et les plans de mise en conformité",
+    "agent": {
+      "score": 8,
+      "justification": "La page concerne le NIS Cooperation Group, organe clé de gouvernance NIS/NIS2, avec des publications et actualités liées à la transposition NIS2 et à la coopération européenne. Elle contient en plus une actualité récente sur les recours contre des États pour défaut de transposition NIS2.",
+      "obligations": "Transposer la directive NIS2 en droit national; notifier à la Commission les mesures de transposition; mettre en place un cadre national de cybersécurité conforme aux exigences de NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de cybersécurité; opérateurs et entités essentielles et importantes relevant de NIS2",
+      "publishedOn": "2026-06-22",
+      "dateOrigin": "ia",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I24"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F23"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G23"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105609-001-IE",
+    "detected": "2026-08-26",
+    "iso": "IE",
+    "title": "Recours de la Commission européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. About the NIS Cooperation Group The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette décision signale un durcissement du suivi de la mise en conformité des États membres et rappelle l’importance des échéances de transposition et de notification des mesures nationales.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans le pays d’implantation; vérifier les impacts des futures mesures nationales sur le périmètre de l’entreprise; anticiper les exigences de gouvernance, gestion des risques et notification d’incidents; renforcer la veille réglementaire et les plans de mise en conformité",
+    "agent": {
+      "score": 8,
+      "justification": "La page concerne le NIS Cooperation Group, organe clé de gouvernance NIS/NIS2, avec des publications et actualités liées à la transposition NIS2 et à la coopération européenne. Elle contient en plus une actualité récente sur les recours contre des États pour défaut de transposition NIS2.",
+      "obligations": "Transposer la directive NIS2 en droit national; notifier à la Commission les mesures de transposition; mettre en place un cadre national de cybersécurité conforme aux exigences de NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de cybersécurité; opérateurs et entités essentielles et importantes relevant de NIS2",
+      "publishedOn": "2026-06-22",
+      "dateOrigin": "ia",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I18"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F17"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G17"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105609-001-FR",
+    "detected": "2026-08-26",
+    "iso": "FR",
+    "title": "Recours de la Commission européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. About the NIS Cooperation Group The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette décision signale un durcissement du suivi de la mise en conformité des États membres et rappelle l’importance des échéances de transposition et de notification des mesures nationales.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans le pays d’implantation; vérifier les impacts des futures mesures nationales sur le périmètre de l’entreprise; anticiper les exigences de gouvernance, gestion des risques et notification d’incidents; renforcer la veille réglementaire et les plans de mise en conformité",
+    "agent": {
+      "score": 8,
+      "justification": "La page concerne le NIS Cooperation Group, organe clé de gouvernance NIS/NIS2, avec des publications et actualités liées à la transposition NIS2 et à la coopération européenne. Elle contient en plus une actualité récente sur les recours contre des États pour défaut de transposition NIS2.",
+      "obligations": "Transposer la directive NIS2 en droit national; notifier à la Commission les mesures de transposition; mettre en place un cadre national de cybersécurité conforme aux exigences de NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de cybersécurité; opérateurs et entités essentielles et importantes relevant de NIS2",
+      "publishedOn": "2026-06-22",
+      "dateOrigin": "ia",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F13"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260826105609-001-EU",
+    "detected": "2026-08-26",
+    "iso": "EU",
+    "title": "Recours de la Commission européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. About the NIS Cooperation Group The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette décision signale un durcissement du suivi de la mise en conformité des États membres et rappelle l’importance des échéances de transposition et de notification des mesures nationales.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans le pays d’implantation; vérifier les impacts des futures mesures nationales sur le périmètre de l’entreprise; anticiper les exigences de gouvernance, gestion des risques et notification d’incidents; renforcer la veille réglementaire et les plans de mise en conformité",
+    "agent": {
+      "score": 8,
+      "justification": "La page concerne le NIS Cooperation Group, organe clé de gouvernance NIS/NIS2, avec des publications et actualités liées à la transposition NIS2 et à la coopération européenne. Elle contient en plus une actualité récente sur les recours contre des États pour défaut de transposition NIS2.",
+      "obligations": "Transposer la directive NIS2 en droit national; notifier à la Commission les mesures de transposition; mettre en place un cadre national de cybersécurité conforme aux exigences de NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de cybersécurité; opérateurs et entités essentielles et importantes relevant de NIS2",
+      "publishedOn": "2026-06-22",
+      "dateOrigin": "ia",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": []
+  },
+  {
+    "id": "REG-20260826105609-001-ES",
+    "detected": "2026-08-26",
+    "iso": "ES",
+    "title": "Recours de la Commission européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour défaut de transposition de la directive NIS2",
+    "excerpt": "The Network and Information Systems Cooperation Group was established by the NIS Directive to ensure cooperation and information exchange among Member States. About the NIS Cooperation Group The Group's overall mission is to achieve a high common level of security for network and information systems in the European Union. It supports and facilitates the strategic cooperation and the exchange of information among EU Member States. The NIS Cooperation Group's tasks are explicitly described in Article 11 of the NIS Directive . […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette décision signale un durcissement du suivi de la mise en conformité des États membres et rappelle l’importance des échéances de transposition et de notification des mesures nationales.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans le pays d’implantation; vérifier les impacts des futures mesures nationales sur le périmètre de l’entreprise; anticiper les exigences de gouvernance, gestion des risques et notification d’incidents; renforcer la veille réglementaire et les plans de mise en conformité",
+    "agent": {
+      "score": 8,
+      "justification": "La page concerne le NIS Cooperation Group, organe clé de gouvernance NIS/NIS2, avec des publications et actualités liées à la transposition NIS2 et à la coopération européenne. Elle contient en plus une actualité récente sur les recours contre des États pour défaut de transposition NIS2.",
+      "obligations": "Transposer la directive NIS2 en droit national; notifier à la Commission les mesures de transposition; mettre en place un cadre national de cybersécurité conforme aux exigences de NIS2",
+      "impact": "Fort",
+      "entities": "États membres de l’UE; autorités nationales de cybersécurité; opérateurs et entités essentielles et importantes relevant de NIS2",
+      "publishedOn": "2026-06-22",
+      "dateOrigin": "ia",
+      "inForceOn": "2026-06-22",
+      "textType": "Décision de la Commission européenne; procédure d’infraction"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I31"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F30"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G30"
+      }
+    ]
+  },
+  {
     "id": "REG-20260824122950-017-PL",
     "detected": "2026-08-24",
     "iso": "PL",
@@ -1361,6 +1935,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises concernées par NIS2 en Pologne; opérateurs de services essentiels et entités importantes; directions cybersécurité et conformité",
       "publishedOn": "2026-08-11",
+      "dateOrigin": "",
       "inForceOn": "2026-08-11",
       "textType": "actualité"
     },
@@ -1420,6 +1995,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises concernées par NIS2 en Pologne; opérateurs de services essentiels et entités importantes; directions cybersécurité et conformité",
       "publishedOn": "2026-08-11",
+      "dateOrigin": "",
       "inForceOn": "2026-08-11",
       "textType": "actualité"
     },
@@ -1448,6 +2024,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Exploitants de ports; opérateurs d’infrastructures portuaires; prestataires critiques du secteur maritime et logistique; entités polonaises relevant de NIS2",
       "publishedOn": "2026-08-11",
+      "dateOrigin": "",
       "inForceOn": "2026-08-11",
       "textType": "actualité"
     },
@@ -1507,6 +2084,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "opérateurs et entreprises de la branche spatiale; fournisseurs de services et d'infrastructures liés au spatial; entités susceptibles d'être qualifiées d'essentielles ou d'importantes au titre de NIS2",
       "publishedOn": "2026-08-17",
+      "dateOrigin": "",
       "inForceOn": "2026-08-17",
       "textType": "actualité institutionnelle"
     },
@@ -1566,6 +2144,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises opérant en Pologne; opérateurs de services essentiels et importants; prestataires numériques et fournisseurs critiques entrant dans le champ NIS2",
       "publishedOn": "2026-08-20",
+      "dateOrigin": "",
       "inForceOn": "2026-08-20",
       "textType": "actualité"
     },
@@ -1625,6 +2204,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "PME du secteur agroalimentaire; entités potentiellement essentielles ou importantes au sens NIS2; responsables cybersécurité et conformité des entreprises concernées",
       "publishedOn": "2026-08-18",
+      "dateOrigin": "",
       "inForceOn": "2026-08-18",
       "textType": "actualité juridique"
     },
@@ -1684,6 +2264,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "administrations publiques; opérateurs essentiels et importants potentiellement concernés par NIS2; services de l’État; RSSI des organisations publiques et privées",
       "publishedOn": "2026-08-23",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "actualité"
     },
@@ -1733,6 +2314,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Entités essentielles au sens de NIS2 en Belgique; organisations soumises aux exigences de cybersécurité NIS2",
       "publishedOn": "2026-08-18",
+      "dateOrigin": "",
       "inForceOn": "2026-08-18",
       "textType": "communication"
     },
@@ -1792,6 +2374,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises et autorités exerçant une activité d’importance vitale en Suède; entités potentiellement soumises au régime NIS2 suédois",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "Actualité institutionnelle"
     },
@@ -1851,6 +2434,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Entités soumises à NIS2 au Luxembourg; opérateurs essentiels et importants; organisations régulées par l’ILR dans le périmètre cybersécurité",
       "publishedOn": "2026-08-03",
+      "dateOrigin": "",
       "inForceOn": "2026-08-03",
       "textType": "Publication / guide"
     },
@@ -1910,6 +2494,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles et importantes soumises à NIS2 aux Pays-Bas; directions générales; conseils d'administration; RSSI",
       "publishedOn": "2026-08-19",
+      "dateOrigin": "",
       "inForceOn": "2026-08-19",
       "textType": "actualité"
     },
@@ -1969,6 +2554,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Entreprises opérant en Allemagne ; fournisseurs et sous-traitants de secteurs essentiels ou importants ; entreprises de la chaîne d’approvisionnement exposées aux exigences NIS2",
       "publishedOn": "2026-08-15",
+      "dateOrigin": "",
       "inForceOn": "2026-08-15",
       "textType": "actualité"
     },
@@ -2018,6 +2604,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Organisations essentielles et importantes relevant de NIS2 en Autriche; opérateurs de services numériques; prestataires et sous-traitants critiques; directions cybersécurité et conformité",
       "publishedOn": "2026-08-08",
+      "dateOrigin": "",
       "inForceOn": "2026-08-08",
       "textType": "actualité réglementaire"
     },
@@ -2077,6 +2664,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Entreprises et organisations allemandes soumises à NIS2; opérateurs de services essentiels et entités importantes; directions cybersécurité et conformité",
       "publishedOn": "2026-08-10",
+      "dateOrigin": "",
       "inForceOn": "2026-08-10",
       "textType": "actualité"
     },
@@ -2136,6 +2724,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités importantes et entités essentielles soumises au BSIG en Allemagne; prestataires et fournisseurs indirectement concernés par les exigences de chaîne d'approvisionnement; organisations opérant des systèmes d'information critiques ou exposés",
       "publishedOn": "2026-08-24",
+      "dateOrigin": "",
       "inForceOn": "2026-08-24",
       "textType": "Guide / fiche pratique réglementaire"
     },
@@ -2195,6 +2784,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Organisations relevant de NIS2 aux Pays-Bas; secteurs essentiels et entités importantes; opérateurs soumis au futur Cbw; fabricants de produits avec éléments numériques concernés par le CRA",
       "publishedOn": "2026-08-24",
+      "dateOrigin": "",
       "inForceOn": "2024-10-17",
       "textType": "page institutionnelle"
     },
@@ -2254,6 +2844,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Entités essentielles; entités importantes; entreprises des secteurs NIS2; ETI potentiellement concernées; organes de direction; responsables cybersécurité",
       "publishedOn": "2026-08-24",
+      "dateOrigin": "",
       "inForceOn": "2026-08-24",
       "textType": "FAQ institutionnelle"
     },
@@ -2313,6 +2904,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2372,6 +2964,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2431,6 +3024,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2490,6 +3084,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2518,6 +3113,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales de transposition; entités essentielles et importantes soumises à NIS2; secteurs critiques",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2577,6 +3173,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises exerçant une activité d’importance vitale en Suède; autorités publiques concernées; opérateurs de services essentiels et entités importantes au sens NIS2",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité institutionnelle"
     },
@@ -2636,6 +3233,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités soumises à la réglementation NIS en Italie; opérateurs essentiels; opérateurs importants; fournisseurs et sous-traitants de la supply chain numérique",
       "publishedOn": "2026-08-11",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "FAQ institutionnelles"
     },
@@ -2695,6 +3293,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Prestataires de services d’expertise cybersécurité; organismes publics impliqués dans la transposition de NIS2; entités tchèques concernées par NIS2; organisations susceptibles d’être soumises aux futures exigences nationales NIS2",
       "publishedOn": "2026-08-07",
+      "dateOrigin": "",
       "inForceOn": "2026-08-07",
       "textType": "appel d’offres"
     },
@@ -2754,6 +3353,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Opérateurs de services essentiels et entités importantes au sens NIS2; organisations des secteurs critiques; autorités nationales compétentes; prestataires de cybersécurité",
       "publishedOn": "2026-08-06",
+      "dateOrigin": "",
       "inForceOn": "2026-05-28",
       "textType": "Publication ENISA; rapport d’analyse sectorielle"
     },
@@ -2782,6 +3382,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales compétentes NIS2; entités essentielles et importantes soumises à la directive NIS2; responsables conformité cybersécurité",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2841,6 +3442,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales compétentes NIS2; entités essentielles et importantes soumises à la directive NIS2; responsables conformité cybersécurité",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2900,6 +3502,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales compétentes NIS2; entités essentielles et importantes soumises à la directive NIS2; responsables conformité cybersécurité",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2959,6 +3562,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales compétentes NIS2; entités essentielles et importantes soumises à la directive NIS2; responsables conformité cybersécurité",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -2987,6 +3591,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’UE; autorités nationales compétentes NIS2; entités essentielles et importantes soumises à la directive NIS2; responsables conformité cybersécurité",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne; procédure d’infraction"
     },
@@ -3046,6 +3651,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
@@ -3105,6 +3711,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
@@ -3164,6 +3771,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
@@ -3223,6 +3831,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
@@ -3251,6 +3860,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
       "publishedOn": "2026-08-14",
+      "dateOrigin": "",
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
@@ -3310,6 +3920,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles; entités importantes; ANSSI; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-07-09",
+      "dateOrigin": "",
       "inForceOn": "2026-10-17",
       "textType": "actualité réglementaire"
     },
@@ -3369,6 +3980,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités essentielles et importantes en Suède; secteurs énergie, transport, santé, numérique, eau potable, infrastructures spatiales; entreprises et autorités publiques suédoises",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire"
     },
@@ -3428,6 +4040,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités essentielles et importantes relevant des secteurs couverts par NIS2 au Luxembourg; Opérateurs de services essentiels; Fournisseurs de services numériques",
       "publishedOn": "2026-07-10",
+      "dateOrigin": "",
       "inForceOn": "2026-07-06",
       "textType": "Consultation publique; Publication officielle"
     },
@@ -3487,6 +4100,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres; Entités essentielles et importantes (secteurs énergie, transport, santé, finance, administration publique); Organismes de normalisation; Fournisseurs de solutions IA; Communautés open-source; Secteur privé et public; Autorités de supervision (ENISA, etc.)",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-07-07",
       "textType": "Plan d'action stratégique"
     },
@@ -3515,6 +4129,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; autorités nationales compétentes en cybersécurité; entités critiques et importantes concernées par NIS2",
       "publishedOn": "2026-07-08",
+      "dateOrigin": "",
       "inForceOn": "2026-07-08",
       "textType": "décision administrative; procédure juridique"
     },
@@ -3574,6 +4189,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; autorités nationales compétentes en cybersécurité; entités critiques et importantes concernées par NIS2",
       "publishedOn": "2026-07-08",
+      "dateOrigin": "",
       "inForceOn": "2026-07-08",
       "textType": "décision administrative; procédure juridique"
     },
@@ -3602,6 +4218,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; autorités nationales compétentes en cybersécurité; entités essentielles et importantes concernées par NIS2",
       "publishedOn": "2026-07-08",
+      "dateOrigin": "",
       "inForceOn": "2026-07-08",
       "textType": "décision de la Commission européenne; procédure de manquement"
     },
@@ -3651,6 +4268,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; autorités nationales compétentes en cybersécurité; entités essentielles et importantes concernées par NIS2",
       "publishedOn": "2026-07-08",
+      "dateOrigin": "",
       "inForceOn": "2026-07-08",
       "textType": "décision de la Commission européenne; procédure de manquement"
     },
@@ -3679,6 +4297,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; autorités nationales compétentes en cybersécurité; opérateurs essentiels et importants concernés par NIS2",
       "publishedOn": "2026-07-08",
+      "dateOrigin": "",
       "inForceOn": "2026-07-08",
       "textType": "décision réglementaire; procédure juridique"
     },
@@ -3707,6 +4326,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "opérateurs de services essentiels; fournisseurs de services numériques; autorités nationales compétentes; RSSI; responsables conformité",
       "publishedOn": "2026-06-25",
+      "dateOrigin": "",
       "inForceOn": "2026-06-25",
       "textType": "guide pratique; bonnes pratiques"
     },
@@ -3761,6 +4381,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités critiques et importantes au sens de la NIS2; Opérateurs de services essentiels; Fournisseurs de services numériques; Autorités nationales de cybersécurité",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "Règlement national"
     },
@@ -3820,6 +4441,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles et importantes (EE et EI) désignées comme opérateurs de services essentiels ou importants sous NIS2/KSC2; entreprises polonaises des secteurs critiques (énergie, transport, santé, numérique, etc.); responsables sécurité et conformité",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-06-26",
       "textType": "guide pratique"
     },
@@ -3879,6 +4501,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités financières; opérateurs essentiels et importants sous NIS2; fournisseurs d'IA; responsables cybersécurité; équipes conformité",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-06-26",
       "textType": "article d'analyse"
     },
@@ -3928,6 +4551,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Fournisseurs de composants pour véhicules électriques; fabricants de batteries; opérateurs de recharge; sous-traitants IT; transporteurs logistiques; centres de données liés au secteur",
       "publishedOn": "2026-06-19",
+      "dateOrigin": "",
       "inForceOn": "2026-06-19",
       "textType": "article de presse spécialisée"
     },
@@ -3987,6 +4611,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "secteurs critiques (énergie, transports, santé, etc.) et secteurs importants (numérique, alimentation, etc.) au Luxembourg; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-07-06",
+      "dateOrigin": "",
       "inForceOn": "2026-10-17",
       "textType": "article de presse"
     },
@@ -4046,6 +4671,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Administrations publiques tchèques; entités régulées par le nouveau cadre légal tchèque sur la cybersécurité",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-06-15",
       "textType": "guide méthodologique"
     },
@@ -4105,6 +4731,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "opérateurs de services essentiels; fournisseurs de services numériques; entités critiques et importantes au sens de la directive NIS2",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-09-01",
       "textType": "actualité réglementaire"
     },
@@ -4164,6 +4791,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises et autorités suédoises des secteurs essentiels et importants (énergie, transports, santé, etc.)",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire"
     },
@@ -4223,6 +4851,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles et importantes relevant du secteur de la cybersécurité au Luxembourg; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-07-06",
       "textType": "consultation publique; publication institutionnelle"
     },
@@ -4282,6 +4911,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Opérateurs de services essentiels (OSE); fournisseurs de services numériques (FSN); administrations publiques; infrastructures critiques; prestataires cloud qualifiés pour la PA; entreprises du secteur ICT",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "page institutionnelle; alertes de vulnérabilités critiques"
     },
@@ -4341,6 +4971,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités critiques et importantes soumises à NIS2; institutions financières; fournisseurs de services cloud; opérateurs de services essentiels; autorités publiques tchèques; entités à obligations réduites",
       "publishedOn": "2026-04-20",
+      "dateOrigin": "",
       "inForceOn": "2025-08-04",
       "textType": "actualité réglementaire; guide pratique; simplification administrative"
     },
@@ -4369,6 +5000,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités critiques et importantes soumises à NIS2; institutions financières; fournisseurs de services cloud; opérateurs de services essentiels; autorités publiques tchèques; entités à obligations réduites",
       "publishedOn": "2026-04-20",
+      "dateOrigin": "",
       "inForceOn": "2025-08-04",
       "textType": "actualité réglementaire; guide pratique; simplification administrative"
     },
@@ -4428,6 +5060,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Opérateurs de services essentiels (OSE) et opérateurs de services importants (OSI) en Pologne; autorités nationales de cybersécurité; plateformes stratégiques comme S46 Cyber Hub",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-07-07",
       "textType": "page institutionnelle; amendement législatif"
     },
@@ -4487,6 +5120,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Opérateurs de services essentiels; fournisseurs de services numériques; autorités nationales compétentes",
       "publishedOn": "2026-07-06",
+      "dateOrigin": "",
       "inForceOn": "2026-07-06",
       "textType": "actualité"
     },
@@ -4546,6 +5180,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs de services essentiels (OSE); fournisseurs de services numériques (FSN); autorités compétentes; entités critiques au sens NIS2",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-06-26",
       "textType": "actualité réglementaire"
     },
@@ -4605,6 +5240,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "29 000 entreprises allemandes concernées par la directive NIS2",
       "publishedOn": "2026-07-06",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire"
     },
@@ -4664,6 +5300,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entreprises critiques et importantes au sens de NIS2; opérateurs de services essentiels; fournisseurs de services numériques; autorités nationales compétentes",
       "publishedOn": "2026-07-05",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "article de presse"
     },
@@ -4692,6 +5329,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entreprises critiques et importantes au sens de NIS2; opérateurs de services essentiels; fournisseurs de services numériques; autorités nationales compétentes",
       "publishedOn": "2026-07-05",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "article de presse"
     },
@@ -4751,6 +5389,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises allemandes classées comme entités essentielles ou importantes selon la directive NIS2",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-07-07",
       "textType": "actualité réglementaire"
     },
@@ -4810,6 +5449,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "fabricants automobiles; équipementiers; sous-traitants; autorités nationales de cybersécurité; fournisseurs de services essentiels",
       "publishedOn": "2026-07-01",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "article d'analyse sectorielle"
     },
@@ -4838,6 +5478,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "fabricants automobiles; équipementiers; sous-traitants; autorités nationales de cybersécurité; fournisseurs de services essentiels",
       "publishedOn": "2026-07-01",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "article d'analyse sectorielle"
     },
@@ -4897,6 +5538,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Opérateurs de services essentiels (OSE); Fournisseurs de services numériques (FSN); Entités des secteurs stratégiques (énergie, transports, santé, etc.); Grandes entreprises et PME selon critères NIS2; Secteurs non couverts par NIS1",
       "publishedOn": "2026-07-05",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire"
     },
@@ -4956,6 +5598,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Opérateurs de services essentiels (OSE); Fournisseurs de services numériques (FSN); Entités des secteurs stratégiques (énergie, transports, santé, etc.); Grandes entreprises et PME selon critères NIS2; Secteurs non couverts par NIS1",
       "publishedOn": "2026-07-05",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire"
     },
@@ -4984,6 +5627,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises allemandes soumises à NIS2; secteurs critiques et importants; entités non encore enregistrées auprès du BSI",
       "publishedOn": "2026-07-07",
+      "dateOrigin": "",
       "inForceOn": "2026-04-17",
       "textType": "guide pratique; FAQ; roadmap; checklist; vidéo; publication"
     },
@@ -5043,6 +5687,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités publiques néerlandaises;communes;provinces;État néerlandais;gestionnaires de l'eau;organismes publics;entités essentielles/importantes au sens de NIS2",
       "publishedOn": "2026-07-06",
+      "dateOrigin": "",
       "inForceOn": "2026-07-01",
       "textType": "texte réglementaire;norme technique;obligation de conformité"
     },
@@ -5102,6 +5747,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Établissements de crédit; Entreprises d'investissement; Sociétés de gestion de portefeuille; Prestataires de services de paiement; Prestataires de services d'actifs numériques; Assureurs; Mutuelles; Institutions de prévoyance; Autres entités financières soumises à NIS2",
       "publishedOn": "2026-07-06",
+      "dateOrigin": "",
       "inForceOn": "2026-07-06",
       "textType": "Accord interinstitutionnel"
     },
@@ -5161,6 +5807,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises des secteurs essentiels;Autorités publiques;Opérateurs de services essentiels;Fournisseurs de services numériques",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire;loi nationale"
     },
@@ -5220,6 +5867,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités critiques et importantes des secteurs : énergie; transports; communications électroniques; services numériques; santé; eau potable; infrastructures spatiales; gestion des déchets; fabrication de produits critiques; alimentation; fabrication de dispositifs médicaux; produits pharmaceutiques; gestion des infrastructures numériques; services postaux; gestion des déchets électroniques",
       "publishedOn": "2026-05-15",
+      "dateOrigin": "",
       "inForceOn": "2026-05-15",
       "textType": "loi nationale; transposition directive NIS2"
     },
@@ -5279,6 +5927,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités essentielles et importantes au sens de NIS2; opérateurs de services cloud pour la PA; fournisseurs de services numériques; secteurs critiques (énergie, transports, santé, etc.); organismes publics et privés nationaux",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "page institutionnelle; directive européenne; réglementation nationale"
     },
@@ -5338,6 +5987,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités critiques et importantes (secteurs énergie, transport, santé, numérique, etc.); fournisseurs de services cloud; institutions publiques; opérateurs de services essentiels; acteurs de la recherche et innovation en cybersécurité",
       "publishedOn": "2026-06-29",
+      "dateOrigin": "",
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire; guide méthodologique; projet financé"
     },
@@ -5397,6 +6047,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; entités critiques et importantes soumises à NIS2; entreprises du secteur numérique; autorités nationales de cybersécurité",
       "publishedOn": "2026-06-17",
+      "dateOrigin": "",
       "inForceOn": "2026-06-17",
       "textType": "rapport"
     },
@@ -5425,6 +6076,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises soumises à NIS2;Directions générales;Services achats;Responsables cybersécurité;Juridique",
       "publishedOn": "2026-07-02",
+      "dateOrigin": "",
       "inForceOn": "2026-07-02",
       "textType": "actualité réglementaire"
     },
@@ -5484,6 +6136,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises soumises à NIS2;Directions générales;Services achats;Responsables cybersécurité;Juridique",
       "publishedOn": "2026-07-02",
+      "dateOrigin": "",
       "inForceOn": "2026-07-02",
       "textType": "actualité réglementaire"
     },
@@ -5543,6 +6196,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs de services essentiels; entités importantes; fournisseurs de services numériques; autorités publiques néerlandaises",
       "publishedOn": "2026-07-01",
+      "dateOrigin": "",
       "inForceOn": "2026-07-07",
       "textType": "actualité réglementaire"
     },
@@ -5602,6 +6256,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE;autorités nationales compétentes en cybersécurité;opérateurs essentiels et importants concernés par NIS2",
       "publishedOn": "2026-07-02",
+      "dateOrigin": "",
       "inForceOn": "2026-07-02",
       "textType": "actualité"
     },
@@ -5630,6 +6285,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE;autorités nationales compétentes en cybersécurité;opérateurs essentiels et importants concernés par NIS2",
       "publishedOn": "2026-07-02",
+      "dateOrigin": "",
       "inForceOn": "2026-07-02",
       "textType": "actualité"
     },
@@ -5674,6 +6330,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entreprises allemandes soumises à NIS2; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-06-19",
+      "dateOrigin": "",
       "inForceOn": "2026-07-31",
       "textType": "actualité réglementaire"
     },
@@ -5733,6 +6390,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "29.500 entreprises allemandes; Secteurs critiques (énergie, transports, santé, etc.)",
       "publishedOn": "2026-06-25",
+      "dateOrigin": "",
       "inForceOn": "2026-06-25",
       "textType": "actualité réglementaire"
     },
@@ -5792,6 +6450,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entreprises des secteurs essentiels et importants; opérateurs de services critiques; fournisseurs de services numériques",
       "publishedOn": "2026-06-13",
+      "dateOrigin": "",
       "inForceOn": "2026-06-13",
       "textType": "actualité réglementaire"
     },
@@ -5851,6 +6510,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises allemandes de taille moyenne et grande; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-06-12",
+      "dateOrigin": "",
       "inForceOn": "2026-06-12",
       "textType": "actualité réglementaire"
     },
@@ -5879,6 +6539,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises allemandes de taille moyenne et grande; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-06-12",
+      "dateOrigin": "",
       "inForceOn": "2026-06-12",
       "textType": "actualité réglementaire"
     },
@@ -5938,6 +6599,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs d'importance vitale (OIV) dans le secteur de l'eau;entreprises de gestion de l'eau;autorités publiques compétentes",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "article d'analyse;actualité réglementaire"
     },
@@ -5966,6 +6628,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs d'importance vitale (OIV) dans le secteur de l'eau;entreprises de gestion de l'eau;autorités publiques compétentes",
       "publishedOn": "2026-06-26",
+      "dateOrigin": "",
       "inForceOn": "2024-10-16",
       "textType": "article d'analyse;actualité réglementaire"
     },
@@ -6025,6 +6688,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "opérateurs de services essentiels; fournisseurs de services numériques; entités critiques désignées par le NIS2-Gesetz",
       "publishedOn": "2026-07-01",
+      "dateOrigin": "",
       "inForceOn": "2026-07-01",
       "textType": "actualité réglementaire"
     },
@@ -6084,6 +6748,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités essentielles et importantes désignées par la directive NIS2;Opérateurs de services essentiels;Fournisseurs de services numériques",
       "publishedOn": "2026-06-17",
+      "dateOrigin": "",
       "inForceOn": "2026-06-17",
       "textType": "guide"
     },
@@ -6112,6 +6777,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités essentielles et importantes désignées par la directive NIS2;Opérateurs de services essentiels;Fournisseurs de services numériques",
       "publishedOn": "2026-06-17",
+      "dateOrigin": "",
       "inForceOn": "2026-06-17",
       "textType": "guide"
     },
@@ -6171,6 +6837,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles et importantes relevant de la NIS2; organisations complexes (secteurs énergie, transport, santé, numérique, etc.); responsables de la cybersécurité; équipes IT et conformité",
       "publishedOn": "2026-06-22",
+      "dateOrigin": "",
       "inForceOn": "2026-06-22",
       "textType": "guide opérationnel"
     },
@@ -6230,6 +6897,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entreprises critiques et importantes au sens de la NIS2; Opérateurs de services essentiels; Fournisseurs de services numériques; Entrepreneurs polonais ou opérant en Pologne",
       "publishedOn": "2026-06-19",
+      "dateOrigin": "",
       "inForceOn": "2026-06-19",
       "textType": "actualité réglementaire"
     },
@@ -6289,6 +6957,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; Autorités nationales compétentes; Opérateurs essentiels et importants concernés par NIS2",
       "publishedOn": "2026-06-12",
+      "dateOrigin": "",
       "inForceOn": "2026-06-12",
       "textType": "actualité"
     },
@@ -6348,6 +7017,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE; Autorités nationales compétentes; Opérateurs essentiels et importants concernés par NIS2",
       "publishedOn": "2026-06-12",
+      "dateOrigin": "",
       "inForceOn": "2026-06-12",
       "textType": "actualité"
     },
@@ -6376,6 +7046,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs de services essentiels;fournisseurs de services numériques;autorités nationales compétentes",
       "publishedOn": "2026-06-16",
+      "dateOrigin": "",
       "inForceOn": "2024-10-17",
       "textType": "actualité"
     },
@@ -6435,6 +7106,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs de services essentiels;fournisseurs de services numériques;autorités nationales compétentes",
       "publishedOn": "2026-06-16",
+      "dateOrigin": "",
       "inForceOn": "2024-10-17",
       "textType": "actualité"
     },
@@ -6463,6 +7135,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entreprises allemandes relevant de la directive NIS2; secteurs critiques et importants; dirigeants et responsables cybersécurité",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2026-07-03",
       "textType": "guide officiel; publication réglementaire; checklist; FAQ; roadmap; infopackets; vidéos; webinaires"
     },
@@ -6491,6 +7164,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entreprises allemandes relevant de la directive NIS2; secteurs critiques et importants; dirigeants et responsables cybersécurité",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2026-07-03",
       "textType": "guide officiel; publication réglementaire; checklist; FAQ; roadmap; infopackets; vidéos; webinaires"
     },
@@ -6550,6 +7224,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités importantes et critiques allemandes soumises au BSIG; Fournisseurs et prestataires indirectement impactés par les exigences transmises par les entités régulées; Entreprises de taille variable (KRITIS, bwE, wE)",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2026-07-03",
       "textType": "guide officiel"
     },
@@ -6609,6 +7284,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles et importantes soumises à NIS2 en Irlande",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2026-07-03",
       "textType": "guide officiel"
     },
@@ -6668,6 +7344,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Organisations des secteurs vitaux; entreprises néerlandaises; fabricants de produits avec éléments numériques; autorités publiques centrales",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "page institutionnelle; texte réglementaire"
     },
@@ -6727,6 +7404,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Entités essentielles; entités importantes; secteurs critiques (annexe 1 NIS2); entreprises de taille intermédiaire (ETI); fournisseurs de services numériques; opérateurs de services essentiels",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2026-07-03",
       "textType": "FAQ officielle"
     },
@@ -6786,6 +7464,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "opérateurs de services essentiels; fournisseurs de services numériques; entités critiques au sens de NIS2",
       "publishedOn": "2026-07-01",
+      "dateOrigin": "",
       "inForceOn": "2026-08-15",
       "textType": "texte réglementaire; projet de loi"
     },
@@ -6845,6 +7524,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles et importantes soumises à NIS2;organisations publiques et privées;secteurs critiques",
       "publishedOn": "2026-07-02",
+      "dateOrigin": "",
       "inForceOn": "2026-07-02",
       "textType": "guide;standard technique"
     },
@@ -6904,6 +7584,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Moyen",
       "entities": "Entités essentielles et importantes soumises à NIS2; prestataires de services de cybersécurité; acteurs publics et privés impliqués dans la cybersécurité",
       "publishedOn": "2026-06-16",
+      "dateOrigin": "",
       "inForceOn": "2026-06-16",
       "textType": "consultation"
     },
@@ -6963,6 +7644,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "entités essentielles ou importantes du secteur agroalimentaire; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-06-25",
+      "dateOrigin": "",
       "inForceOn": "2026-06-25",
       "textType": "guide pratique"
     },
@@ -7022,6 +7704,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "États membres de l'UE;opérateurs de services essentiels;fournisseurs de services numériques;autorités nationales compétentes;entreprises des secteurs critiques",
       "publishedOn": "2026-07-03",
+      "dateOrigin": "",
       "inForceOn": "2025-08-26",
       "textType": "actualité;guide;stratégie"
     },
@@ -7050,6 +7733,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "Fort",
       "entities": "Opérateurs de services essentiels (OSE); Fournisseurs de services numériques (FSN); Autorités nationales compétentes; Organismes publics; Acteurs industriels critiques",
       "publishedOn": "2026-05-28",
+      "dateOrigin": "",
       "inForceOn": "2025-06-25",
       "textType": "guide; méthodologie; rapport d'autorité compétente"
     },
@@ -7078,6 +7762,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles et importantes au sens de la directive NIS2; toutes les organisations belges souhaitant renforcer leur cyber-résilience",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2025-03-18",
       "textType": "page institutionnelle; appel à action; webinaire"
     },
@@ -7137,6 +7822,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités régulées par NIS2; opérateurs de services essentiels; fournisseurs de services numériques; autorités nationales compétentes; entreprises de taille intermédiaire",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2026-10-28",
       "textType": "FAQ officielle; guide pratique"
     },
@@ -7196,6 +7882,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités régulées par NIS2; opérateurs de services essentiels; fournisseurs de services numériques; autorités nationales compétentes; entreprises de taille intermédiaire",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2026-10-28",
       "textType": "FAQ officielle; guide pratique"
     },
@@ -7224,6 +7911,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles (EE);Entités importantes (EI);Opérateurs de services essentiels;Fournisseurs de services numériques;Autorités nationales compétentes",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2026-06-11",
       "textType": "FAQ;guide"
     },
@@ -7283,6 +7971,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles (EE);Entités importantes (EI);Opérateurs de services essentiels;Fournisseurs de services numériques;Autorités nationales compétentes",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2026-06-11",
       "textType": "FAQ;guide"
     },
@@ -7311,6 +8000,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles;Entités importantes;Secteurs 'Infrastructures numériques';Secteurs 'Gestion des services TIC';Secteurs 'Fournisseurs numériques'",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2026-10-14",
       "textType": "FAQ institutionnelle"
     },
@@ -7370,6 +8060,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles;Entités importantes;Secteurs 'Infrastructures numériques';Secteurs 'Gestion des services TIC';Secteurs 'Fournisseurs numériques'",
       "publishedOn": "2026-06-11",
+      "dateOrigin": "",
       "inForceOn": "2026-10-14",
       "textType": "FAQ institutionnelle"
     },
@@ -7398,6 +8089,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles et importantes au sens de la NIS2; fournisseurs de services numériques; opérateurs d'infrastructures critiques; autorités nationales compétentes; responsables de la cybersécurité; équipes techniques; directions stratégiques",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2026-06-09",
       "textType": "page institutionnelle; guide technique; méthodologie; analyse de marché"
     },
@@ -7426,6 +8118,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres UE; Commission européenne; ENISA; CSIRTs nationaux; opérateurs de services essentiels; fournisseurs de services numériques",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2026-06-09",
       "textType": "page institutionnelle"
     },
@@ -7454,6 +8147,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7513,6 +8207,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7572,6 +8267,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7631,6 +8327,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7690,6 +8387,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7749,6 +8447,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7808,6 +8507,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7867,6 +8567,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7926,6 +8627,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -7985,6 +8687,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8044,6 +8747,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8103,6 +8807,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8162,6 +8867,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8221,6 +8927,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8280,6 +8987,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8339,6 +9047,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8398,6 +9107,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8457,6 +9167,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8516,6 +9227,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8544,6 +9256,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8603,6 +9316,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8662,6 +9376,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8721,6 +9436,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8780,6 +9496,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8839,6 +9556,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8898,6 +9616,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -8957,6 +9676,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -9016,6 +9736,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "États membres de l'UE; entités critiques des 18 secteurs NIS2; autorités nationales de cybersécurité; Commission européenne; ENISA",
       "publishedOn": "2026-06-09",
+      "dateOrigin": "",
       "inForceOn": "2025-01-16",
       "textType": "page institutionnelle; communiqué officiel; carte interactive"
     },
@@ -9075,6 +9796,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles et importantes au sens de la directive NIS2; opérateurs de services essentiels; fournisseurs de services numériques; autorités compétentes",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "2026-06-02",
       "textType": "guide"
     },
@@ -9134,6 +9856,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Organisations des secteurs vitaux et importants (NIS2); fabricants de produits avec éléments numériques (CRA); infrastructures critiques (NCCS); entités publiques centrales; entreprises non vitales (Wbdwb)",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "page institutionnelle; acte réglementaire; directive européenne"
     },
@@ -9193,6 +9916,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Organisations des secteurs vitaux et importants (NIS2); fabricants de produits avec éléments numériques (CRA); infrastructures critiques (NCCS); entités publiques centrales; entreprises non vitales (Wbdwb)",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "page institutionnelle; acte réglementaire; directive européenne"
     },
@@ -9221,6 +9945,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles; entités importantes; secteurs critiques (énergie, transport, santé, etc.); organisations de plus de 250 salariés ou avec un chiffre d'affaires élevé; fournisseurs de services numériques",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "2026-06-02",
       "textType": "FAQ"
     },
@@ -9280,6 +10005,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités publiques ou privées établies en Irlande relevant des secteurs des Annexes I ou II de la directive NIS2; entités de taille moyenne ou grande; fournisseurs de services critiques (DNS, communications électroniques, services financiers sous DORA, etc.); administrations publiques locales; opérateurs de services essentiels identifiés sous NIS1",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "2025-01-03",
       "textType": "FAQ officielle; guide de sensibilisation"
     },
@@ -9339,6 +10065,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles au sens de la NIS2 en Belgique; Secteurs critiques (énergie, transport, santé, etc.)",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "2024-10-18",
       "textType": "page institutionnelle"
     },
@@ -9398,6 +10125,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "entités essentielles; entités importantes; organismes d’évaluation de la conformité (CAB); autorités sectorielles; CCB",
       "publishedOn": "2026-06-02",
+      "dateOrigin": "",
       "inForceOn": "2024-06-09",
       "textType": "arrêté royal; texte réglementaire"
     },
@@ -9457,6 +10185,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "5",
       "entities": "États membres de l'UE (non spécifiés)\nEntreprises et secteurs concernés par les directives non transposées (potentiellement NIS 2, DORA, etc.)",
       "publishedOn": "2026-05-28",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "Communiqué de presse"
     },
@@ -9485,6 +10214,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "5",
       "entities": "Toutes les organisations utilisant des téléphones mobiles professionnels\nUtilisateurs finaux (salariés, collaborateurs)\nDépartements IT et sécurité",
       "publishedOn": "2025-04-03",
+      "dateOrigin": "",
       "inForceOn": "2025-04-03",
       "textType": "Guide de bonnes pratiques"
     },
@@ -9544,6 +10274,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Opérateurs de services essentiels (OSE) au sens de la directive NIS 2\nFournisseurs de services numériques\nAdministrations publiques\nCollectivités territoriales\nSecteurs stratégiques (énergie, santé, transports, etc.)",
       "publishedOn": "2026-01-08",
+      "dateOrigin": "",
       "inForceOn": "2026-01-08",
       "textType": "Communication institutionnelle"
     },
@@ -9603,6 +10334,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "6",
       "entities": "Opérateurs de services essentiels (OSE)\nFournisseurs de services numériques (FSN)\nEntreprises critiques\nAdministrations publiques\nPrestataires de services de cybersécurité",
       "publishedOn": "2026-01-13",
+      "dateOrigin": "",
       "inForceOn": "2026-01-13",
       "textType": "Guide opérationnel"
     },
@@ -9662,6 +10394,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Opérateurs de services essentiels (OSE)\nFournisseurs de services numériques (FSN)\nEntités critiques (secteurs énergie, transports, santé, etc.)\nAutorités nationales compétentes",
       "publishedOn": "2026-03-18",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "Communication officielle"
     },
@@ -9721,6 +10454,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "5",
       "entities": "Opérateurs de services essentiels (OSE)\nFournisseurs de services numériques (FSN)\nActeurs publics et privés du secteur de la cybersécurité\nIndustriels et entreprises concernées par la supervision de sécurité",
       "publishedOn": "2026-03-19",
+      "dateOrigin": "",
       "inForceOn": "",
       "textType": "Appel à commentaires"
     },
@@ -9780,6 +10514,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Administrations publiques centrales\nCollectivités territoriales\nOpérateurs d'importance vitale (OIV)\nOpérateurs de services essentiels (OSE)\nPrestataires de services numériques\nEntreprises stratégiques sous tutelle de l'État",
       "publishedOn": "2026-04-09",
+      "dateOrigin": "",
       "inForceOn": "2026-04-09",
       "textType": "Feuille de route stratégique"
     },
@@ -9839,6 +10574,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "6",
       "entities": "Opérateurs essentiels (OSE) et importants (OI) au sens de NIS 2\nAutorités publiques\nEntreprises privées critiques\nFournisseurs de services numériques",
       "publishedOn": "2026-05-04",
+      "dateOrigin": "",
       "inForceOn": "2025-01-01",
       "textType": "Rapport d'activité"
     },
@@ -9898,6 +10634,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "5",
       "entities": "Prestataires d'accompagnement et de conseil en sécurité des systèmes d'information (PACS)\nOrganismes souhaitant se qualifier auprès de l'ANSSI",
       "publishedOn": "2026-05-21",
+      "dateOrigin": "",
       "inForceOn": "2026-05-21",
       "textType": "Référentiel technique"
     },
@@ -9957,6 +10694,7 @@ const WATCH_QUEUE_AGENT = [
       "impact": "9",
       "entities": "Entités essentielles et importantes (>250 salariés ou secteurs critiques)",
       "publishedOn": "2026-05-10",
+      "dateOrigin": "",
       "inForceOn": "2026-10-18",
       "textType": "Décret"
     },
@@ -10228,6 +10966,11 @@ const I18N = {
     "hub.showOthers": "Show the {n} quiet countries",
     "ctry.back": "← Back",
     "ctry.title": "{country} — pending sources",
+    "date.flux": "from the source's feed",
+    "date.page": "read from the page",
+    "date.ia": "inferred by AI — unverified",
+    "date.inconnue": "no publication date",
+    "date.origin": "Date origin",
     "card.reopen": "↩ Undo",
     "card.reopenHint": "Put this item back in the pending queue and undo what validation published.",
     "proc.title": "Processed items",
@@ -10457,6 +11200,11 @@ const I18N = {
     "hub.showOthers": "Afficher les {n} pays silencieux",
     "ctry.back": "← Retour",
     "ctry.title": "{country} — sources en attente",
+    "date.flux": "issue du flux de la source",
+    "date.page": "lue dans la page",
+    "date.ia": "déduite par l'IA — non vérifiée",
+    "date.inconnue": "pas de date de publication",
+    "date.origin": "Origine de la date",
     "card.reopen": "↩ Annuler",
     "card.reopenHint": "Remettre cet élément en attente et défaire ce que la validation a publié.",
     "proc.title": "Éléments traités",
@@ -11160,7 +11908,9 @@ function qCard(q){
   const a = q.agent || {};
   /* Date and link first: they are what a validator reaches for to check a source. */
   const meta = [
-    a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span></span>` : "",
+    /* The date carries its provenance: an inferred date must not read like a fact. */
+    a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span>${
+      a.dateOrigin ? `<span class="d-orig d-${esc(a.dateOrigin)}" title="${t("date.origin")}">${t("date." + a.dateOrigin)}</span>` : ""}</span>` : "",
     `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
     q.source.url
       ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`

@@ -409,7 +409,9 @@ function qCard(q){
   const a = q.agent || {};
   /* Date and link first: they are what a validator reaches for to check a source. */
   const meta = [
-    a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span></span>` : "",
+    /* The date carries its provenance: an inferred date must not read like a fact. */
+    a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span>${
+      a.dateOrigin ? `<span class="d-orig d-${esc(a.dateOrigin)}" title="${t("date.origin")}">${t("date." + a.dateOrigin)}</span>` : ""}</span>` : "",
     `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
     q.source.url
       ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`

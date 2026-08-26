@@ -107,7 +107,9 @@ L'agent télécharge déjà le contenu (`MAX_WEB_CHARS = 12000`), l'envoie à l'
 puis le jette. Ajouter une colonne **`Extrait source`** :
 
 ```python
-row_values["Extrait source"] = source_excerpt(item.get("pending_text"))
+row_values["Extrait source"] = source_excerpt(
+    item.get("pending_text")     # pages web : le texte de la page
+    or item.get("summary"))      # RSS : le resume du flux, ecrit par la source
 ```
 
 Six cents caractères suffisent. Aujourd'hui RegWatch retélécharge chaque article
