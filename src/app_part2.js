@@ -49,6 +49,35 @@ function renderCountries(){
 }
 
 /* ---------- Country page ---------- */
+/* The comparative workbook is the source of truth for country data, but its
+   values are terser than the record's hand-written prose — and the two disagree
+   on 132 of 277 comparable values. So this layer only ADDS what the record
+   lacks: seven typed fields and two whole sections. Reconciling the divergences
+   is a consultant's call, not a silent overwrite. See tools/excel_to_countries.py. */
+const WB_FLAT = ["regAuthority", "regDeadline", "regDeadlineMonths",
+                 "incidentAuthority", "incidentMandatoryFrom", "sanctionMax",
+                 "authorityCount"];
+function wbData(iso){
+  return (typeof EXCEL_DATA !== "undefined" && EXCEL_DATA[iso]) || { flat: {}, sections: {} };
+}
+function wbFacts(c){
+  const flat = wbData(c.iso).flat || {};
+  return WB_FLAT.filter(k => flat[k] !== undefined && flat[k] !== "")
+    .map(k => [t("cp." + k), /Date|From|Deadline$/.test(k) && /^\d{4}-\d{2}-\d{2}$/.test(flat[k])
+      ? fmtDateL(flat[k]) : esc(String(flat[k]))]);
+}
+/* Sections the record never had: sanctions, and the authority detail. */
+function wbSections(c){
+  const sections = wbData(c.iso).sections || {};
+  const keys = ["sanctions", "authorities"].filter(k => (sections[k] || []).length);
+  if (!keys.length) return "";
+  return `<div class="wb-block">
+    <div class="wb-head">${t("cp.fromWorkbook")}</div>
+    ${keys.map(k => `<div class="sec"><h3>${t("sec." + k)}</h3>
+      <ul>${sections[k].map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("")}
+    <div class="q-note">${t("cp.wbNote")}</div>
+  </div>`;
+}
 const SEC_KEYS = ["fw", "reg", "inc", "aud", "scope", "other", "reco"];
 function renderCountry(iso){
   const c = byIso[iso];
@@ -61,6 +90,7 @@ function renderCountry(iso){
     [t("cp.deadline"), c.complianceEE ? `<b>${c.complianceEE} ${t("common.months")}</b> (EE)${c.complianceIE && c.complianceIE !== c.complianceEE ? ` · ${c.complianceIE} ${t("common.months")} (IE)` : ""}` : t("cp.deadlineNone")],
     [t("cp.regChannel"), c.regTool],
     [t("cp.incChannel"), c.incidentMethod],
+    ...wbFacts(c),
     [t("cp.auditBody"), `${esc(c.auditBody)}${c.auditFreqEE ? ` — EE ${t("cp.every")} <b>${c.auditFreqEE} ${t("common.mo")}</b>` : ""}${c.auditFreqIE ? ` · IE ${t("cp.every")} <b>${c.auditFreqIE} ${t("common.mo")}</b>` : ""}`]
   ];
   const secHtml = SEC_KEYS.filter(k => c.sections[k] && c.sections[k].length).map(k => `
@@ -83,6 +113,7 @@ function renderCountry(iso){
   <div class="facts">${facts.map(f => `<div class="fact"><div class="k">${f[0]}</div><div class="v">${f[1]}</div></div>`).join("")}</div>
   <div class="cty-grid">
     <div class="card"><div class="bd">${secHtml}
+      ${wbSections(c)}
       ${c.next && c.next.length ? `<div class="sec"><h3>${t("cp.nextSteps")}</h3><ul>${c.next.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
     </div></div>
     <div style="display:flex;flex-direction:column;gap:18px">
