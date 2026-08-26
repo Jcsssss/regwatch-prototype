@@ -109,3 +109,50 @@ Il **n'écrase pas** les champs existants. La comparaison classeur / fiches donn
 Tant que cet arbitrage n'a pas eu lieu, appliquer mécaniquement « le classeur
 fait foi » dégraderait l'outil sur la moitié des champs, sans que personne ne le
 voie. La réconciliation est la seconde moitié du travail.
+
+---
+
+## Depuis quel poste ? (et faut-il tout cloner ?)
+
+Seule **l'étape 1** a besoin du poste professionnel : c'est la seule qui
+s'authentifie auprès de SharePoint. Les étapes 2 et 3 travaillent sur un fichier
+déjà téléchargé et tournent n'importe où.
+
+### Le plus simple aujourd'hui : pas de Graph du tout
+
+Pour rafraîchir les fiches maintenant, **télécharge le classeur à la main**
+depuis SharePoint (Fichier → Télécharger une copie), pose-le où tu veux, et
+lance l'import dessus :
+
+```bash
+./venv/bin/python tools/excel_to_countries.py ~/Downloads/CYBER\ WATCH5_Technical\ inventory.xlsx
+zsh src/build.sh
+```
+
+C'est légitime : c'est ton fichier, tu y as accès. Dix secondes, aucune
+permission à demander. **Microsoft Graph ne sert qu'à supprimer ce geste manuel**
+— c'est-à-dire pour la synchronisation planifiée, qui doit tourner sans
+personne devant.
+
+### Si tu veux quand même tester Graph depuis le poste pro
+
+Inutile de cloner le dépôt. `sharepoint_fetch.py` est **autonome** : un seul
+fichier, `requests` pour seule dépendance non standard. Vérifié hors du dépôt.
+
+1. Copie `tools/sharepoint_fetch.py` sur le poste pro (mail, clé, Teams).
+2. `pip install requests` (ou `python -m pip install --user requests`).
+3. ```
+   python sharepoint_fetch.py -o classeur.xlsx
+   ```
+   en ayant défini `SHAREPOINT_FILE_URL` et `GRAPH_TENANT_ID`, ou en passant
+   l'URL à `--check` pour vérifier d'abord.
+4. Rapatrie le `.xlsx` obtenu et reprends à l'étape 2 sur ton poste.
+
+Cloner un dépôt GitHub personnel sur une machine d'entreprise peut par ailleurs
+poser une question de politique interne : un fichier copié n'en pose aucune.
+
+### Cloner tout le dépôt, quand ?
+
+Le jour où l'outil sera hébergé et la synchro planifiée, tout tournera côté
+serveur et la question disparaîtra. Cloner sur le poste pro n'a d'intérêt que si
+tu veux y faire du développement.
