@@ -34,9 +34,23 @@ nous n'avons pas.
 | | Pour démarrer (code d'appareil) | Pour planifier (app-only) |
 |---|---|---|
 | Inscription d'application Entra ID | souhaitable | **obligatoire** |
-| Permission `Files.Read.All` | déléguée | **application** |
+| Permission | `Sites.Read.All` **déléguée** | **`Sites.Selected`** (application) |
+| Portée réelle | ce que vous pouvez déjà ouvrir | **un seul site**, autorisé par l'admin |
 | Consentement administrateur | non | **oui** |
 | Intervention humaine | une connexion, puis silence | aucune |
+
+### La permission à demander : `Sites.Selected`, jamais `Files.Read.All`
+
+En **délégué**, l'application agit en votre nom : elle ne peut atteindre aucun
+fichier que vous ne pouvez pas déjà ouvrir. Aucune exposition nouvelle.
+
+En **application**, il n'y a plus d'utilisateur derrière. `Files.Read.All`
+signifierait alors *tous les fichiers du tenant*, sites privés compris — hors de
+question pour lire un classeur. `Sites.Selected` n'accorde **rien** par défaut :
+un administrateur autorise ensuite l'application sur les seuls sites choisis. La
+restriction tient à la configuration du tenant, pas à la bonne conduite du code.
+
+Le brouillon de demande est dans `tools/demande-IT.md`.
 
 **Commence par le code d'appareil.** Il fonctionne sur un compte ordinaire, sans
 consentement administrateur : tu signes une fois dans le navigateur, le jeton de

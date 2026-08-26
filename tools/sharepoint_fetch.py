@@ -9,10 +9,22 @@ that matters lives on SharePoint and is edited by consultants. This fetches it.
     python3 tools/sharepoint_fetch.py
     python3 tools/excel_to_countries.py data/.cache/comparative.xlsx
 
-Read-only by design. `Files.Read.All` is all this asks for, and nothing is ever
+Read-only by design, and scoped as narrowly as Graph allows. Nothing is ever
 written back — the workbook stays the source of truth and RegWatch its mirror.
 Requesting write scope would put the client's formulas, conditional formatting
 and slicers within reach of a bug for no benefit.
+
+On permissions, the distinction that matters to a security reviewer:
+
+  delegated (device code)   The app acts AS the signed-in person and can never
+                            reach a file that person could not already open.
+                            Granting it adds no exposure to the tenant.
+
+  application (unattended)  The app acts as itself, with no user. `Files.Read.All`
+                            here would mean every file in the tenant — not
+                            acceptable for one workbook. Use `Sites.Selected`
+                            instead: it grants NOTHING by default, and an admin
+                            then authorises exactly one site. See README-sync.md.
 
 Two ways to authenticate:
 
@@ -64,7 +76,8 @@ Add to your .env (or export them):
   Device-code sign-in (no admin consent needed):
     GRAPH_CLIENT_ID=<app registration id>      # optional while testing
 
-  Unattended, app-only (needs Files.Read.All APPLICATION + admin consent):
+  Unattended, app-only (needs Sites.Selected APPLICATION + admin consent,
+  then the admin authorises this one site — see tools/README-sync.md):
     GRAPH_CLIENT_ID=<app registration id>
     GRAPH_CLIENT_SECRET=<secret>
 
@@ -152,7 +165,7 @@ def token_client_credentials(tenant, client_id, secret):
 def token_device_code(tenant, client_id):
     """Reuse a cached refresh token when possible; otherwise ask for a sign-in."""
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    scope = "https://graph.microsoft.com/Files.Read.All offline_access"
+    scope = "https://graph.microsoft.com/Sites.Read.All offline_access"
 
     if TOKEN_CACHE.exists():
         cached = json.loads(TOKEN_CACHE.read_text(encoding="utf-8"))
@@ -201,8 +214,9 @@ def fetch(token, file_url, out_path):
 
     meta = requests.get("%s/shares/%s/driveItem" % (GRAPH, tok), headers=headers, timeout=60)
     if meta.status_code == 403:
-        raise SystemExit("accès refusé (403). La permission Files.Read.All est-elle accordée "
-                         "et le consentement administrateur donné ?")
+        raise SystemExit("accès refusé (403). En app-only : la permission Sites.Selected "
+                         "est-elle accordée ET ce site précis autorisé pour l'application ? "
+                         "En délégué : as-tu accès à ce site dans SharePoint ?")
     if meta.status_code == 404:
         raise SystemExit("fichier introuvable (404). Vérifie SHAREPOINT_FILE_URL — "
                          "utilise le lien « Copier le lien » du fichier dans SharePoint.")
