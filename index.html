@@ -10226,7 +10226,7 @@ const I18N = {
     "hub.countries": "{n} countries in this window",
     "hub.otherCountries": "Countries with nothing in this window",
     "hub.showOthers": "Show the {n} quiet countries",
-    "ctry.back": "← All countries",
+    "ctry.back": "← Back",
     "ctry.title": "{country} — pending sources",
     "card.reopen": "↩ Undo",
     "card.reopenHint": "Put this item back in the pending queue and undo what validation published.",
@@ -10455,7 +10455,7 @@ const I18N = {
     "hub.countries": "{n} pays sur cette fenêtre",
     "hub.otherCountries": "Pays sans rien sur cette fenêtre",
     "hub.showOthers": "Afficher les {n} pays silencieux",
-    "ctry.back": "← Tous les pays",
+    "ctry.back": "← Retour",
     "ctry.title": "{country} — sources en attente",
     "card.reopen": "↩ Annuler",
     "card.reopenHint": "Remettre cet élément en attente et défaire ce que la validation a publié.",
@@ -11162,7 +11162,6 @@ function qCard(q){
   const meta = [
     a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span></span>` : "",
     `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
-    a.inForceOn ? `<span><span class="k">${t("card.inForce")}</span> <span class="num">${fmtDateL(a.inForceOn)}</span></span>` : "",
     q.source.url
       ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`
       : `<span class="q-note">${t("card.noLink")}</span>`

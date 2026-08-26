@@ -1,0 +1,1074 @@
+{
+  "workbook": "CYBER WATCH5_Technical inventory.xlsx",
+  "mappedFields": 127,
+  "totalFields": 136,
+  "newFlatFields": [
+    "authorityCount",
+    "incidentAuthority",
+    "incidentMandatoryFrom",
+    "regAuthority",
+    "regDeadline",
+    "regDeadlineMonths",
+    "sanctionMax"
+  ],
+  "newSections": {
+    "sanctions": "Sanctions and enforcement",
+    "authorities": "Authorities (detail)"
+  },
+  "fields": [
+    {
+      "sheet": "ID - P1",
+      "field": "Maturity Level",
+      "column": "D",
+      "kind": "flat",
+      "target": "maturity",
+      "writable": true
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Entry into force of the transposition",
+      "column": "E",
+      "kind": "flat",
+      "target": "lawInForce",
+      "writable": true
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Transposition finalized",
+      "column": "F",
+      "kind": "flat",
+      "target": "transposed",
+      "writable": false
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Transposition (semester)",
+      "column": "G",
+      "kind": "none",
+      "target": "derivable from lawInForce",
+      "writable": false
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Transposition (year)",
+      "column": "H",
+      "kind": "none",
+      "target": "derivable from lawInForce",
+      "writable": false
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Exceeded time from EU deadline (month)",
+      "column": "I",
+      "kind": "flat",
+      "target": "delayMonths",
+      "writable": false
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Type of document for principal transposition text",
+      "column": "J",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Name of principal transposition text",
+      "column": "K",
+      "kind": "flat",
+      "target": "law",
+      "writable": true
+    },
+    {
+      "sheet": "ID - P1",
+      "field": "Additional texts (in support of principal text)",
+      "column": "L",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Maturity Level",
+      "column": "C",
+      "kind": "none",
+      "target": "copy of ID - P1",
+      "writable": false
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Organism type to report incident ANCIENNE COLONNE",
+      "column": "D",
+      "kind": "none",
+      "target": "superseded by the NOUVELLE COLONNE",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Organism type to report incident2 NOUVELLE COLONNE",
+      "column": "E",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Organism official name to report incident",
+      "column": "F",
+      "kind": "flat",
+      "target": "incidentAuthority",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Date of incident reporting becoming mandatory",
+      "column": "G",
+      "kind": "flat",
+      "target": "incidentMandatoryFrom",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Method for incident reporting",
+      "column": "H",
+      "kind": "flat",
+      "target": "incidentMethod",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Name and link of web platform",
+      "column": "I",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Mandatory information required",
+      "column": "J",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Major incident definition in the transposition",
+      "column": "M",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Size thresholds / criteria to consider an incident as major",
+      "column": "N",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Timeline",
+      "column": "Q",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Any other relavant comments",
+      "column": "R",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Timeline Directive NIS2",
+      "column": "U",
+      "kind": "section",
+      "target": "inc",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Maturity Level",
+      "column": "C",
+      "kind": "none",
+      "target": "copy of ID - P1",
+      "writable": false
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Registration availability",
+      "column": "D",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Tools for self assessment",
+      "column": "E",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Authority in charge of registration",
+      "column": "F",
+      "kind": "flat",
+      "target": "regAuthority",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Types of registration",
+      "column": "G",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Registration deadline",
+      "column": "H",
+      "kind": "flat",
+      "target": "regDeadline",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Method of registration",
+      "column": "I",
+      "kind": "flat",
+      "target": "regTool",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Deadline of registration (months)",
+      "column": "J",
+      "kind": "flat",
+      "target": "regDeadlineMonths",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Deadline to submit new information (months)",
+      "column": "K",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Date of reference for registration deadline",
+      "column": "L",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Notification from the authority of the eligibility",
+      "column": "M",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "List of information for registration",
+      "column": "N",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Name",
+      "column": "O",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Address",
+      "column": "P",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Coordinates",
+      "column": "Q",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Classification",
+      "column": "R",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "List of member states where service is provided",
+      "column": "S",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Identity of the main entity",
+      "column": "T",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Single point of contact",
+      "column": "V",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Role of the point of contact",
+      "column": "W",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "IP ranges",
+      "column": "X",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Domain names",
+      "column": "Y",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Classification of sector and subsector (EE/EI)",
+      "column": "Z",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "List of Information Systems",
+      "column": "AA",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Specific law requirements",
+      "column": "AB",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "Contract with providers of cyber services (third party)",
+      "column": "AC",
+      "kind": "section",
+      "target": "reg",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Maturity Level",
+      "column": "C",
+      "kind": "none",
+      "target": "copy of ID - P1",
+      "writable": false
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Cybersecurity framework directives published",
+      "column": "D",
+      "kind": "flat",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Dedicated framework to NIS 2",
+      "column": "E",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Name and link of framework",
+      "column": "F",
+      "kind": "flat",
+      "target": "fwName",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Framework last publication date",
+      "column": "G",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Classification of IS",
+      "column": "H",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Rules of classification",
+      "column": "I",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Number of cyber themes for EE",
+      "column": "J",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Number of cyber themes for EI",
+      "column": "K",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Number of cyber requirements for EE",
+      "column": "L",
+      "kind": "flat",
+      "target": "reqEE",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Number of cyber requirements for EI",
+      "column": "M",
+      "kind": "flat",
+      "target": "reqIE",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Does it rely on other frameworks?",
+      "column": "N",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "ISO 27001/27002",
+      "column": "O",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "IEC 62443",
+      "column": "P",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "NIST CSF",
+      "column": "Q",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "NIST SP 800.53",
+      "column": "R",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "CIS Controls",
+      "column": "S",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "NIS 1",
+      "column": "T",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "CyFun Belge",
+      "column": "U",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Other national regulatory framework",
+      "column": "V",
+      "kind": "section",
+      "target": "other",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Name of national regulatory frameworks",
+      "column": "W",
+      "kind": "section",
+      "target": "other",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Other national guidance / standards",
+      "column": "X",
+      "kind": "section",
+      "target": "other",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Name of other national guidance / standards",
+      "column": "Y",
+      "kind": "section",
+      "target": "other",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Existence of a presumption of compliance",
+      "column": "Z",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Reasons and sectors of presumption",
+      "column": "AA",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Compliance deadline to framework is different between EE and EI",
+      "column": "AB",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Compliance deadline to framework from effective date for EE (months)",
+      "column": "AC",
+      "kind": "flat",
+      "target": "complianceEE",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Compliance deadline to framework from effective date for EI (months)",
+      "column": "AD",
+      "kind": "flat",
+      "target": "complianceIE",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Compliance target level is different between EE and EI",
+      "column": "AE",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "List of compliance levels",
+      "column": "AF",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Level of compliance to reach for EE",
+      "column": "AG",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Level of compliance to reach for EI",
+      "column": "AH",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Gradual compliance to reach target level",
+      "column": "AI",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Maturity Level",
+      "column": "C",
+      "kind": "none",
+      "target": "copy of ID - P1",
+      "writable": false
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Audit explicitly planned by the transposition",
+      "column": "D",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Organism in charge of the audit",
+      "column": "E",
+      "kind": "flat",
+      "target": "auditBody",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Typology of auditor(s)",
+      "column": "F",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Detailed - Organism in charge of the audit",
+      "column": "G",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Audit billing model",
+      "column": "H",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Audit to be conducted by entity (self-assessment)",
+      "column": "I",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "First deadline for self-assessment",
+      "column": "J",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Frequency for next self-assessments (months)",
+      "column": "K",
+      "kind": "flat",
+      "target": "selfAssessFreq",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "First audit deadline expected for EE (from effective date in months)",
+      "column": "L",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Frequency for next audits for EE (from first audit date in months)",
+      "column": "M",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "First audit deadline expected for EI (from effective date in months)",
+      "column": "N",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Frequency for next audits for IE (from first audit date in months)",
+      "column": "O",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Framework used during audit",
+      "column": "P",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Evidence requested during audit",
+      "column": "Q",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Certification requested during audit",
+      "column": "R",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Audit format and deliverable",
+      "column": "S",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Reason of unexpected audit",
+      "column": "U",
+      "kind": "section",
+      "target": "aud",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Maturity Level",
+      "column": "C",
+      "kind": "none",
+      "target": "copy of ID - P1",
+      "writable": false
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Compliance with the sanctions set out in the Directive",
+      "column": "D",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Ban on practicing for legal representative",
+      "column": "E",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Financial sanctions",
+      "column": "F",
+      "kind": "flat",
+      "target": "sanctionMax",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Suspension of cyber certification",
+      "column": "G",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Addition of penalties not included in the directive",
+      "column": "H",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Types of additional penalties",
+      "column": "I",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Reccuring or temporary financial sanctions",
+      "column": "J",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Individual financial sanction",
+      "column": "K",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Individual banishment sanction",
+      "column": "L",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Recidivism aggravating factors",
+      "column": "M",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Public injunction",
+      "column": "N",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Withdrawal of certifications",
+      "column": "O",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Suspension of all or part of the entity's activities",
+      "column": "P",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Corrective control measures",
+      "column": "Q",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Criminal penalties",
+      "column": "R",
+      "kind": "section",
+      "target": "sanctions",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Maturity Level",
+      "column": "C",
+      "kind": "none",
+      "target": "copy of ID - P1",
+      "writable": false
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Number of authorities involved in NIS2",
+      "column": "D",
+      "kind": "flat",
+      "target": "authorityCount",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Consolidated list of authorities",
+      "column": "E",
+      "kind": "flat",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Transposition authority",
+      "column": "F",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Audit authority",
+      "column": "G",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Registration authority",
+      "column": "H",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Incident notification authority",
+      "column": "I",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Multi sectoral authorities",
+      "column": "J",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Number of sectoral authorities",
+      "column": "K",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Authority member of EU Network",
+      "column": "M",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Authority member of NIS Cooperation Group",
+      "column": "N",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "Authority member of EU- CyClone",
+      "column": "O",
+      "kind": "section",
+      "target": "authorities",
+      "writable": true
+    }
+  ],
+  "uncovered": [
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Major incident definition is the same as in the directive ANCIENNE COLONNE"
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Major incident definition is the same as in the directive NOUVELLE COLONNE"
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Specificity on timeline regarding EU directive timeline ANCIENNE COLONNE"
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Specificity on timeline regarding EU directive timeline NOUVELLE COLONNE"
+    },
+    {
+      "sheet": "Incident reporting - P1",
+      "field": "Early warning within 24 hours. Incident report within 72 hours. Interim report with up-to-date information at the request of the Federal Office for Information Security. Final report no later than 1 month after sending the incident report. Progress report (if the incident is still ongoing) no later than 1 month after sending the incident report and a final report within another month after the end of the incident."
+    },
+    {
+      "sheet": "Registration - P1",
+      "field": "National company identification number (tax, SIRET, fical, REGON, ... …)"
+    },
+    {
+      "sheet": "Audit & Controls - P1",
+      "field": "Criteria for externals auditors / accreditation for organisms"
+    },
+    {
+      "sheet": "Sanctions - P2",
+      "field": "Financial penalties for the public sector as provided by law"
+    },
+    {
+      "sheet": "Authority - P3",
+      "field": "List of sectoral authorities (only if yes and optional)"
+    }
+  ]
+}

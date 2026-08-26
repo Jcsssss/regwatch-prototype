@@ -411,7 +411,6 @@ function qCard(q){
   const meta = [
     a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span></span>` : "",
     `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
-    a.inForceOn ? `<span><span class="k">${t("card.inForce")}</span> <span class="num">${fmtDateL(a.inForceOn)}</span></span>` : "",
     q.source.url
       ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`
       : `<span class="q-note">${t("card.noLink")}</span>`
