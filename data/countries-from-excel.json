@@ -16,10 +16,7 @@
     "regDeadline": "2027-01-01",
     "regTool": "Platform",
     "regDeadlineMonths": 3,
-    "fw": "Final",
-    "fwName": "NISG 2026",
-    "reqEE": 10,
-    "reqIE": 10,
+    "fw": "No",
     "complianceEE": 6,
     "complianceIE": 6,
     "auditBody": "External organism accredited",
@@ -31,23 +28,12 @@
    "sections": {
     "fw": [
      "Type of document for principal transposition text : Law",
-     "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
-     "Framework last publication date : 2026-01-10",
-     "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EE : 10",
-     "Number of cyber themes for EI : 10",
-     "Does it rely on other frameworks? : NO",
-     "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
-     "Compliance deadline to framework is different between EE and EI : NO",
-     "Gradual compliance to reach target level : NO"
+     "Compliance deadline to framework is different between EE and EI : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : Sectoral CSIRT",
      "Name and link of web platform : CERT.at",
      "Mandatory information required : What's happening, expected actions and consequences",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : 24 hours after becoming aware: Early warning 72 hours after becoming aware: Incident notification 1 month after the incident notification: Final report",
      "Any other relavant comments : Austrian HealthCERT: A specialised CSIRT has been set up specifically for the healthcare sector Voluntary reporting: Organisations may voluntarily report cyber threats or ‘near-misses’ (Beinahe-Vorfälle) Confidentiality: The authority may inform the public if this is deemed to be in the public interest, after consulting the organisation concerned"
     ],
     "reg": [
@@ -71,9 +57,6 @@
      "Classification of sector and subsector (EE/EI) : YES",
      "List of Information Systems : NO",
      "Specific law requirements : NO"
-    ],
-    "other": [
-     "Other national regulatory framework : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
@@ -146,7 +129,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 6",
-     "Number of cyber themes for EI : 6",
+     "Number of cyber themes for IE : 6",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : YES",
@@ -197,7 +180,6 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
      "Other national guidance / standards : YES",
      "Name of other national guidance / standards : SafeOnWeb"
     ],
@@ -255,10 +237,7 @@
     "regAuthority": "The Minister for e-Government",
     "regDeadline": "For providers of specific digital services (DNS, TLD, cloud, etc.), the information must be provided within two months of their establishment or the appointment of a representative",
     "regDeadlineMonths": 2,
-    "fw": "Final",
-    "fwName": "NIS 2 dedicated framework",
-    "reqEE": 12,
-    "reqIE": 12,
+    "fw": "No",
     "complianceIE": 12,
     "auditBody": "National authority",
     "sanctionMax": "More specific modalities",
@@ -268,26 +247,12 @@
    "sections": {
     "fw": [
      "Type of document for principal transposition text : Law",
-     "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
-     "Framework last publication date : 17/2/2026",
-     "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EE : 12",
-     "Number of cyber themes for EI : 12",
-     "Does it rely on other frameworks? : NO",
-     "Existence of a presumption of compliance : YES",
      "Compliance deadline to framework is different between EE and EI : NO",
-     "Compliance target level is different between EE and EI : NO",
-     "List of compliance levels : Essential, Important",
-     "Level of compliance to reach for EE : Full compliance",
-     "Level of compliance to reach for EI : Full compliance",
-     "Gradual compliance to reach target level : NO"
+     "Compliance target level is different between EE and EI : NO"
     ],
     "inc": [
-     "Name and link of web platform : N. C.",
-     "Mandatory information required : Early warning: Indicates whether the incident is suspected to be of unlawful/malicious origin and whether it may have a cross-border impact Incident notification: Update on the warning, initial assessment (severity, impact) and technical information (indicators of compromise) where available Final report: Detailed description (scope, impact), type of threat or root cause, mitigation measures applied and actual cross-border impact",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : 24 hours after becoming aware: Early warning 72 hours after becoming aware: Incident notification 1 month after notification: Final report 24 hours after the alert: SERIX must send an acknowledgement of receipt and initial feedback to the organisation"
+     "Organism type to report incident NOUVELLE COLONNE : Sectoral CSIRT",
+     "Mandatory information required : Early warning: Indicates whether the incident is suspected to be of unlawful/malicious origin and whether it may have a cross-border impact Incident notification: Update on the warning, initial assessment (severity, impact) and technical information (indicators of compromise) where available Final report: Detailed description (scope, impact), type of threat or root cause, mitigation measures applied and actual cross-border impact"
     ],
     "reg": [
      "Registration availability : NO",
@@ -311,15 +276,11 @@
      "Specific law requirements : NO",
      "Contract with providers of cyber services (third party) : YES"
     ],
-    "other": [
-     "Other national regulatory framework : NO"
-    ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
      "Detailed - Organism in charge of the audit : The audit may be carried out either directly by the authority or by an independent body",
      "Audit billing model : At the expense of the entity",
-     "Audit to be conducted by entity (self-assessment) : Yes, only for EE",
-     "First deadline for self-assessment : N. C"
+     "Audit to be conducted by entity (self-assessment) : Yes, only for EE"
     ],
     "sanctions": [
      "Compliance with the sanctions set out in the Directive : YES",
@@ -461,8 +422,8 @@
     "regDeadlineMonths": 2,
     "fw": "Final",
     "fwName": "NUKIB's Decree",
-    "reqEE": 296,
-    "reqIE": 81,
+    "reqEE": 293,
+    "reqIE": 82,
     "complianceEE": 12,
     "complianceIE": 12,
     "auditBody": "National authority",
@@ -478,21 +439,20 @@
      "Framework last publication date : 2025-09-05",
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
-     "Number of cyber themes for EE : 14",
-     "Number of cyber themes for EI : 13",
+     "Number of cyber themes for EE : 25",
+     "Number of cyber themes for IE : 16",
+     "Comments on the number of cyber themes and cyber requirements : Act 264/2025 splits obligations into a higher regime (EE, Decree 409/2025) and a lower regime (IE, Decree 410/2025). EE face 293 requirements across 25 measure sections; IE face 82 : a +257% gap, the largest in the EU.",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : YES",
      "Compliance target level is different between EE and EI : YES",
      "List of compliance levels : The bill distinguishes between two types of entities: suppliers under the strong obligations regime (≈ EE) and those under the weak obligations regime (≈ EI).",
      "Gradual compliance to reach target level : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : Multiple organisms",
      "Name and link of web platform : NUKIB - https://portal.nukib.gov.cz/chci-vyridit/ohlaseni-regulovane-sluzby",
      "Mandatory information required : What's happening, expected actions and consequences",
-     "Major incident definition in the transposition : NIS2 Criteria An incident shall be considered to be significant if:_x000B_– it has caused or is capable of causing severe operational disruption of the services provided by the entity or the activities it performs or financial loss for the entity_x000B_– it has affected or is capable of affecting other natural or legal persons by causing considerable material or non-material damage.",
-     "Size thresholds / criteria to consider an incident as major : Damage on the life of more than 125k people",
-     "Timeline : The first notification to the authority in the event of a significant incident must be sent within 6 hours of becoming aware of it, and not within 24 hours as stated in the directive. The first notification for a trust service provider remains at 24 hours. Another difference from the directive is that if an incident lasts more than one month, additional progress reports are required every 15 days until the final report is submitted."
+     "Major incident definition in the transposition : A cybersecurity incident has a significant impact on the provision of a regulated service if it has caused or may cause serious operational disruption of services or financial losses to the regulated service provider, or has caused or may cause considerable harm to other persons"
     ],
     "reg": [
      "Registration availability : YES",
@@ -519,7 +479,6 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
      "Other national guidance / standards : NO",
      "Name of other national guidance / standards : NO"
     ],
@@ -588,7 +547,7 @@
      "Additional texts (in support of principal text) : Décret : Act on the Federal Office for Information Security (BSI Act - BSIG)",
      "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
      "Framework last publication date : 2025-12-05",
-     "Classification of IS : Different applicability according to type of IS",
+     "Classification of IS : Different applicability according of IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 10",
      "Does it rely on other frameworks? : YES",
@@ -703,10 +662,8 @@
     "regDeadline": "2025-10-01",
     "regTool": "Platform",
     "regDeadlineMonths": 0.5,
-    "fw": "Final",
+    "fw": "Temporary",
     "fwName": "VEJLEDNING TIL NIS 2-LOVEN – Implementering af cybersikkerhedsforanstaltninger",
-    "reqEE": 129,
-    "reqIE": 129,
     "auditBody": "Sectoral authorities",
     "sanctionMax": "Same modalities as in the directives",
     "authorityCount": 10,
@@ -719,20 +676,13 @@
      "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
      "Framework last publication date : 2025-06-01",
      "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EE : 19",
-     "Number of cyber themes for EI : 19",
-     "Does it rely on other frameworks? : YES",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
-     "Compliance deadline to framework is different between EE and EI : NO",
-     "Gradual compliance to reach target level : NO"
+     "Compliance deadline to framework is different between EE and EI : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : National authority",
      "Name and link of web platform : Virk.dk : governmental platform https://virk.dk Sectoral authorities can also ask complementary informations after reception of the report on Virk.dk",
-     "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)"
+     "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions"
     ],
     "reg": [
      "Registration availability : YES",
@@ -758,15 +708,11 @@
      "Contract with providers of cyber services (third party) : NO"
     ],
     "other": [
-     "Other national regulatory framework : YES",
-     "Name of national regulatory frameworks : Lov om styrket beredskab i energisektoren (energy) Lov om sikkerhed og beredskab i telesektoren (telecom)",
-     "Other national guidance / standards : NO",
-     "Name of other national guidance / standards : N.A"
+     "Other national guidance / standards : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
      "Detailed - Organism in charge of the audit : Sectoral authorities",
-     "Audit to be conducted by entity (self-assessment) : N. C.",
      "Evidence requested during audit : YES",
      "Certification requested during audit : YES",
      "Audit format and deliverable : YES",
@@ -833,7 +779,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 114",
-     "Number of cyber themes for EI : 114",
+     "Number of cyber themes for IE : 114",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : NO",
@@ -949,8 +895,7 @@
    "sections": {
     "fw": [
      "Type of document for principal transposition text : Law",
-     "Framework last publication date : 17/1/2025",
-     "Reasons and sectors of presumption : N.A"
+     "Framework last publication date : 17/1/2025"
     ],
     "inc": [
      "Name and link of web platform : Current interim reporting runs through CCN-CERT and INCIBE-CERT's respective existing incident-reporting channels."
@@ -1033,10 +978,8 @@
     "regDeadline": "2025-05-08",
     "regTool": "Platform",
     "regDeadlineMonths": 1,
-    "fw": "Final",
+    "fw": "Temporary",
     "fwName": "Liikenne- ja viestintäviraston suositus NIS-valvoville viranomaisille kyberturvallisuuden riskienhallinnan toimenpiteistä",
-    "reqEE": 77,
-    "reqIE": 77,
     "auditBody": "National authority",
     "authorityCount": 3,
     "authorities": "LVM (Liikenne-ja viestintäministeri) : Ministry of Transport and Communications NCSC-FI Traficom"
@@ -1047,30 +990,12 @@
      "Additional texts (in support of principal text) : 05/24/2024: the Council of State submitted a draft bill (HE 57/2024) NIS 2 to Parliament",
      "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
      "Framework last publication date : 2025-08-04",
-     "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EE : 12",
-     "Number of cyber themes for EI : 12",
-     "Does it rely on other frameworks? : YES",
-     "ISO 27001/27002 : YES",
-     "IEC 62443 : YES",
-     "NIST CSF : YES",
-     "NIST SP 800.53 : YES",
-     "CIS Controls : NO",
-     "NIS 1 : NO",
-     "CyFun Belge : NO",
-     "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
-     "Compliance deadline to framework is different between EE and EI : NO",
-     "Compliance target level is different between EE and EI : NO",
-     "List of compliance levels : Essential, Important",
-     "Gradual compliance to reach target level : NO"
+     "Classification of IS : Applicable to all IS"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : Multiple organisms",
      "Name and link of web platform : Traficom NIS2 Incident-Notification E-Service https://www.kyberturvallisuuskeskus.fi/en/toimintamme/saantely-ja-valvonta/nis2-euroopan-unionin-kyberturvallisuusdirektiivi/nis2",
      "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
      "Any other relavant comments : Voluntary reporting of non-significant threats is encouraged (not just permitted)"
     ],
     "reg": [
@@ -1095,10 +1020,7 @@
      "Contract with providers of cyber services (third party) : NO"
     ],
     "other": [
-     "Other national regulatory framework : YES",
-     "Name of national regulatory frameworks : Katakri Tiedonhallintalaki (Loi sur la gestion de l'information publique, 906/2019) Loi sur les communications électroniques",
-     "Other national guidance / standards : YES",
-     "Name of other national guidance / standards : Kybermittari (outil de maturité finlandais) Julkri (profil de sécurité organisations publiques)"
+     "Other national guidance / standards : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
@@ -1141,7 +1063,7 @@
     "fw": "Temporary",
     "fwName": "20260317_NIS_V2_ReCyF_v2.5.pdf (provisoire)",
     "reqEE": 152,
-    "reqIE": 74,
+    "reqIE": 76,
     "auditBody": "National authority",
     "selfAssessFreq": 12,
     "sanctionMax": "Same modalities as in the directives",
@@ -1156,7 +1078,8 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Exclusion of IS possible",
      "Number of cyber themes for EE : 20",
-     "Number of cyber themes for EI : 10",
+     "Number of cyber themes for IE : 15",
+     "Comments on the number of cyber themes and cyber requirements : France has not yet enacted its transposition law; ANSSI's ReCyF v2.5 (17/03/2026) is a non-binding working document. It structures NIS2 into 20 security objectives: objectives 1-15 apply to both tiers, 16-20 to essential entities only. Result: EE = 20 themes / 152 measures, IE = 15 themes / 76 measures (+105% gap).",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : NO",
@@ -1172,7 +1095,7 @@
      "Level of compliance to reach for EI : 15"
     ],
     "inc": [
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
+     "Organism type to report incident NOUVELLE COLONNE : National authority",
      "Any other relavant comments : Timeline Directive NIS 2"
     ],
     "reg": [
@@ -1245,12 +1168,11 @@
      "Framework last publication date : 06/17/2026",
      "Classification of IS : Applicable to all IS",
      "Does it rely on other frameworks? : YES",
-     "Compliance deadline to framework is different between EE and EI : NO",
-     "Gradual compliance to reach target level : NO"
+     "Compliance deadline to framework is different between EE and EI : NO"
     ],
     "inc": [
-     "Major incident definition in the transposition : The CS&R Bill states that significant incidents include those involving system compromise, even if service disruption has not yet occurred. The CS&R Bill includes the following criteria: - Incidents causing serious cyber security compromise - Incidents affecting designated critical suppliers - Incidents with major service impact or operational disruption",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)"
+     "Organism type to report incident NOUVELLE COLONNE : Multiple organisms",
+     "Major incident definition in the transposition : The CS&R Bill states that significant incidents include those involving system compromise, even if service disruption has not yet occurred. The CS&R Bill includes the following criteria: - Incidents causing serious cyber security compromise - Incidents affecting designated critical suppliers - Incidents with major service impact or operational disruption"
     ],
     "reg": [
      "Registration availability : NO",
@@ -1270,8 +1192,6 @@
      "Audit explicitly planned by the transposition : For EE and EI",
      "Detailed - Organism in charge of the audit : 12 Competent Authorities",
      "Audit billing model : At the expense of the entity",
-     "Audit to be conducted by entity (self-assessment) : N. C.",
-     "First deadline for self-assessment : N. C.",
      "Framework used during audit : YES",
      "Evidence requested during audit : YES",
      "Certification requested during audit : YES",
@@ -1334,7 +1254,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 22",
-     "Number of cyber themes for EI : 21",
+     "Number of cyber themes for IE : 21",
      "Does it rely on other frameworks? : NO",
      "ISO 27001/27002 : NO",
      "IEC 62443 : NO",
@@ -1344,7 +1264,6 @@
      "NIS 1 : NO",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : NO",
      "List of compliance levels : Essential, Important",
@@ -1383,7 +1302,6 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
      "Other national guidance / standards : YES",
      "Name of other national guidance / standards : Cybersecurity National Strategy 2026-2030"
     ],
@@ -1447,8 +1365,8 @@
     "regDeadlineMonths": 15,
     "fw": "Final",
     "fwName": "Vlada Republike Hrvatske + ISO27001",
-    "reqEE": 10,
-    "reqIE": 10,
+    "reqEE": 99,
+    "reqIE": 99,
     "complianceEE": 12,
     "complianceIE": 12,
     "auditBody": "External organism accredited",
@@ -1464,8 +1382,9 @@
      "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
      "Framework last publication date : 2025-03-02",
      "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EE : 10",
-     "Number of cyber themes for EI : 10",
+     "Number of cyber themes for EE : 13",
+     "Number of cyber themes for IE : 13",
+     "Comments on the number of cyber themes and cyber requirements : The Croatian framework contains 13 general cybersecurity risk-management themes applicable to essential and important entities. Entities in the digital infrastructure sector are subject to an additional set of specific physical security measures under Annex III, bringing the applicable total to 14 themes for those entities.",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : YES",
@@ -1475,7 +1394,6 @@
      "NIS 1 : YES",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : NO",
      "List of compliance levels : Essential, Important",
@@ -1484,11 +1402,9 @@
      "Gradual compliance to reach target level : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : Sectoral CSIRT",
      "Name and link of web platform : PiXi platform : https://pixi.carnet.hr/",
      "Mandatory information required : What's happening, expected actions and consequences",
-     "Major incident definition in the transposition : NIS2 criteria An incident shall be considered to be significant if : – it has caused or is capable of causing severe operational disruption of the services provided by the entity or the activities it performs or financial loss for the entity – it has affected or is capable of affecting other natural or legal persons by causing considerable material or non-material damage.",
-     "Size thresholds / criteria to consider an incident as major : Affect two or more EU countries",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1 month)",
      "Any other relavant comments : Entities must inform their beneficiaries of significant incidents or serious cyber threats without undue delay. The 30-day period specified in the Act is a transitional deadline for entities to commence their reporting obligations once they have been officially notified of their classification.",
      "Timeline Directive NIS2 : Major incident Directive NIS2"
     ],
@@ -1517,7 +1433,6 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
      "Other national guidance / standards : YES",
      "Name of other national guidance / standards : PiXi"
     ],
@@ -1579,8 +1494,6 @@
     "regDeadlineMonths": 1,
     "fw": "Final",
     "fwName": "418/2024. (XII. 23.) Korm. rendelet",
-    "reqEE": 150,
-    "reqIE": 110,
     "complianceEE": 24,
     "complianceIE": 24,
     "auditBody": "External organism accredited",
@@ -1597,8 +1510,9 @@
      "Framework last publication date : 2025-02-10",
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
-     "Number of cyber themes for EE : 18",
-     "Number of cyber themes for EI : 15",
+     "Number of cyber themes for EE : 19",
+     "Number of cyber themes for IE : 19",
+     "Comments on the number of cyber themes and cyber requirements : No fixed EE/EI requirement count. The Hungarian framework (Decree 7/2024 MK, Annex 2) applies a single control catalogue to all entities. The number of applicable controls depends on the security class of each electronic information system (Basic / Significant / High), not on EE/IE status. A single requirement count is therefore only meaningful once a class is fixed.",
      "Does it rely on other frameworks? : YES",
      "NIS 1 : YES",
      "Existence of a presumption of compliance : YES",
@@ -1610,11 +1524,9 @@
      "Gradual compliance to reach target level : YES"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : National authority",
      "Name and link of web platform : https://incidens.nki.gov.hu/",
      "Mandatory information required : Name of the organisation involved in the accident Regulatory authority for the organisation involved in the accident Organisation number of the organisation involved in the incident Name of the person who reported the incident Telephone number of the person reporting Contact email address About Description of the nature of the incident Name of the system involved in the incident Brief description of the incident",
-     "Major incident definition in the transposition : Incident constitutes as: a security incident occurred or imminent in the electronic information system where it causes serious disruption or damage to the operation or provision of services by the supervised entity, or causes significant material or non-material damage to other natural or legal persons.Incident reporting requirements vary by sector, with reporting obligations to the National Defence Cyber Incident Management Centre and sectoral Cyber Incident Management Centres differing for each entity covered by the law.",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
      "Any other relavant comments : Entities must inform their beneficiaries of a significant incident within 72 hours of becoming aware of it",
      "Timeline Directive NIS2 : il a causé ou est susceptible de causer une perturbation opérationnelle grave des services ou des pertes financières pour l’entité concernée;"
     ],
@@ -1646,7 +1558,6 @@
      "Detailed - Organism in charge of the audit : NKI, KNBSZ",
      "Audit billing model : At the expense of the entity",
      "Audit to be conducted by entity (self-assessment) : Yes, for EE and EI",
-     "First deadline for self-assessment : N. C.",
      "First audit deadline expected for EE (from effective date in months) : Around 18",
      "Frequency for next audits for EE (from first audit date in months) : 24",
      "First audit deadline expected for EI (from effective date in months) : 18",
@@ -1702,13 +1613,9 @@
     "fw": [
      "Type of document for principal transposition text : Law",
      "Dedicated framework to NIS 2 : Reference to NIS 2 existing frameworks (e.g. CyFun)",
-     "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EI : 10"
+     "CyFun Belge : YES"
     ],
     "inc": [
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
      "Any other relavant comments : Timeline Directive NIS 2",
      "Timeline Directive NIS2 : il a affecté ou est susceptible d’affecter d’autres personnes physiques ou morales en causant des dommages matériels, corporels ou moraux considérables."
     ],
@@ -1800,7 +1707,7 @@
      "Framework last publication date : 2025-12-19",
      "Classification of IS : Applicable to all IS",
      "Number of cyber themes for EE : 43",
-     "Number of cyber themes for EI : 37",
+     "Number of cyber themes for IE : 37",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : NO",
      "IEC 62443 : NO",
@@ -1810,7 +1717,6 @@
      "NIS 1 : NO",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : NO",
      "List of compliance levels : Essential, Important",
@@ -1850,7 +1756,6 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
      "Other national guidance / standards : YES",
      "Name of other national guidance / standards : Linee Guida NIS - Specifiche di Base"
     ],
@@ -1933,7 +1838,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 14",
-     "Number of cyber themes for EI : 14",
+     "Number of cyber themes for IE : 14",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : NO",
@@ -1943,7 +1848,6 @@
      "NIS 1 : NO",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : NO",
      "List of compliance levels : Essential, Important",
@@ -1964,7 +1868,6 @@
      "Registration availability : YES",
      "Tools for self assessment : Authority",
      "Types of registration : Notification of concerned entities by the authority",
-     "Deadline to submit new information (months) : N.A",
      "Date of reference for registration deadline : From effective date (10/18/2024)",
      "Notification from the authority of the eligibility : YES",
      "List of information for registration : Name and Code: The name of the cybersecurity subject and its legal entity code. Legal Form: The specific legal status of the organization. Addresses: The address of the main office and, for specific digital providers (DNS, cloud, data centers, etc.), the addresses of other legal branches within the European Union. Economic Activities: A description of the types of economic activities performed. Contact Details: Up-to-date contact information for the entity. Representative Information: If an entity is not established in the EU but offers services in Lithuania, it must provide the address and contact details of its designated representative",
@@ -1985,7 +1888,6 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
      "Other national guidance / standards : NO"
     ],
     "aud": [
@@ -2164,7 +2066,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 18",
-     "Number of cyber themes for EI : 18",
+     "Number of cyber themes for IE : 18",
      "Does it rely on other frameworks? : NO",
      "ISO 27001/27002 : NO",
      "IEC 62443 : NO",
@@ -2174,7 +2076,6 @@
      "NIS 1 : NO",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : YES",
      "List of compliance levels : Class A, B and C",
@@ -2211,9 +2112,7 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
-     "Other national guidance / standards : NO",
-     "Name of other national guidance / standards : N.A"
+     "Other national guidance / standards : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
@@ -2290,8 +2189,9 @@
      "Framework last publication date : 29/10/2025",
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
-     "Number of cyber themes for EE : 7",
-     "Number of cyber themes for EI : 9",
+     "Number of cyber themes for EE : 22",
+     "Number of cyber themes for IE : 22",
+     "Comments on the number of cyber themes and cyber requirements : Malta adopted framework (CyFun 2025). Malta did not publish its own catalogue: Legal Notice 71 of 2025 (S.L. 460.41) transposes NIS2 and points to the Belgian CyberFundamentals framework, which Malta co-owns. Requirements follow cumulative assurance levels: Important entities = Important level (133 req.), Essential entities = Essential level (218 req.). The gap reflects the higher assurance tier required for EE, not a different catalogue.",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : YES",
@@ -2301,7 +2201,6 @@
      "NIS 1 : NO",
      "CyFun Belge : YES",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : YES",
      "List of compliance levels : Small level, Basic level, Important level, Essential level",
@@ -2310,11 +2209,9 @@
      "Gradual compliance to reach target level : YES"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
      "Name and link of web platform : CSIRT-Malta (channels provided by CSIRT, thus not publicly published as a unique portal URL)",
      "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
      "Timeline Directive NIS2 : un rapport final au plus tard un mois après la présentation de la notification d’incident visée au point b), comprenant les éléments suivants:"
     ],
     "reg": [
@@ -2339,9 +2236,7 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
-     "Other national guidance / standards : NO",
-     "Name of other national guidance / standards : N.A"
+     "Other national guidance / standards : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
@@ -2414,7 +2309,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 17",
-     "Number of cyber themes for EI : 17",
+     "Number of cyber themes for IE : 17",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : NO",
@@ -2522,7 +2417,7 @@
      "Additional texts (in support of principal text) : The regulations (Digitalsikkerhetsforskriften) of the Digital Security Act (Digitalsikkerhetsloven)"
     ],
     "inc": [
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
+     "Organism type to report incident NOUVELLE COLONNE : National authority",
      "Timeline Directive NIS2 : ii)"
     ],
     "reg": [
@@ -2542,8 +2437,7 @@
      "List of Information Systems : No"
     ],
     "aud": [
-     "Detailed - Organism in charge of the audit : Sectoral authorities NSM (National Security Authority) for entities with no designated sectoral authorities",
-     "Audit to be conducted by entity (self-assessment) : N. C."
+     "Detailed - Organism in charge of the audit : Sectoral authorities NSM (National Security Authority) for entities with no designated sectoral authorities"
     ],
     "sanctions": [
      "Suspension of cyber certification : Same modality as in the directive"
@@ -2693,7 +2587,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 6",
-     "Number of cyber themes for EI : 7",
+     "Number of cyber themes for IE : 7",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : NO",
@@ -2823,7 +2717,7 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 7",
-     "Number of cyber themes for EI : 9",
+     "Number of cyber themes for IE : 9",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "IEC 62443 : YES",
@@ -2833,7 +2727,6 @@
      "NIS 1 : NO",
      "CyFun Belge : YES",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : YES",
      "List of compliance levels : Small level, Basic level, Important level, Essential level",
@@ -2874,9 +2767,7 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
-     "Other national guidance / standards : NO",
-     "Name of other national guidance / standards : N.A"
+     "Other national guidance / standards : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
@@ -2936,10 +2827,8 @@
     "regDeadline": "2026-02-16",
     "regTool": "Platform",
     "regDeadlineMonths": 1,
-    "fw": "Final",
+    "fw": "Temporary",
     "fwName": "Cybersäkerhetslag",
-    "reqEE": 10,
-    "reqIE": 10,
     "auditBody": "Multiple",
     "sanctionMax": "Same modalities as in the directives",
     "authorityCount": 14,
@@ -2950,22 +2839,13 @@
      "Type of document for principal transposition text : Law",
      "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
      "Framework last publication date : 12/17/25",
-     "Classification of IS : Applicable to all IS",
-     "Number of cyber themes for EE : 10",
-     "Number of cyber themes for EI : 10",
-     "Does it rely on other frameworks? : YES",
-     "NIS 1 : YES",
-     "Existence of a presumption of compliance : NO",
-     "Compliance deadline to framework is different between EE and EI : NO",
-     "Compliance target level is different between EE and EI : NO",
-     "List of compliance levels : Essential, Important"
+     "Compliance deadline to framework is different between EE and EI : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
      "Name and link of web platform : Interim official reporting platform (until the new national portal is fully deployed)",
      "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria An incident is considered significant if it causes a financial loss exceeding €500,000 or 5% of annual turnover, if it results in the exfiltration of trade secrets, if it causes a death or serious harm to health, or if it enables unauthorized access that could trigger service disruptions Sweden explicitly ties significance to any event impacting CIA, even before final impact quantification.",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)"
+     "Major incident definition in the transposition : An incident shall be considered significant if it has caused or may cause serious operational disruption of the service provided or financial loss for the affected entity, or if it has affected or may affect other natural or legal persons by causing significant damage."
     ],
     "reg": [
      "Registration availability : YES",
@@ -3037,8 +2917,6 @@
     "regTool": "Electronic mail",
     "regDeadlineMonths": 1,
     "fw": "Final",
-    "reqEE": 17,
-    "reqIE": 17,
     "complianceEE": 18,
     "complianceIE": 18,
     "auditBody": "Multiple",
@@ -3055,24 +2933,20 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 17",
-     "Number of cyber themes for EI : 17",
+     "Number of cyber themes for IE : 17",
+     "Comments on the number of cyber themes and cyber requirements : Slovenia did not issue a stand-alone catalogue; instead the framework is annexed inside the ZInfV-1 law itself. Article 22(2) sets 17 mandatory all-hazards risk-management measures, complemented by the 8-point security-documentation set of Article 21. The 17 measures apply identically to essential (bistveni) and important (pomembni) entities, so the theme count is 17/17. No granular per-tier control count exists: depth is proportionate to entity risk (Art. 22(3)-(5)), and EU Commission implementing acts plus ISO/IEC 27001 add detail. This differs from Malta/Slovakia, which publish tiered, countable control sets.",
      "Does it rely on other frameworks? : YES",
      "NIS 1 : YES",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : NO",
-     "Level of compliance to reach for EE : N.A",
-     "Level of compliance to reach for EI : N.A",
      "Gradual compliance to reach target level : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
      "Name and link of web platform : SI-CERT https://www.cert.si/prijava-incidenta/",
      "Mandatory information required : Detailed incident description Operational impact Mitigation actions taken Technical evidence Secure submission",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)",
      "Any other relavant comments : Timeline Directive NIS 2"
     ],
     "reg": [
@@ -3098,9 +2972,7 @@
     ],
     "other": [
      "Other national regulatory framework : NO",
-     "Name of national regulatory frameworks : N.A",
-     "Other national guidance / standards : NO",
-     "Name of other national guidance / standards : N.A"
+     "Other national guidance / standards : NO"
     ],
     "aud": [
      "Audit explicitly planned by the transposition : For EE and EI",
@@ -3160,8 +3032,8 @@
     "regDeadlineMonths": 2,
     "fw": "Final",
     "fwName": "24 months after registration on KSIS (under certain technical obligations)",
-    "reqEE": 151,
-    "reqIE": 142,
+    "reqEE": 122,
+    "reqIE": 115,
     "complianceEE": 12,
     "complianceIE": 12,
     "auditBody": "National authority",
@@ -3177,25 +3049,22 @@
      "Classification of IS : Applicable to all IS",
      "Rules of classification : Different level of IS",
      "Number of cyber themes for EE : 17",
-     "Number of cyber themes for EI : 17",
+     "Number of cyber themes for IE : 17",
+     "Comments on the number of cyber themes and cyber requirements : Like Malta, Slovakia sets different EE/IE counts. Its 151 measures (17 areas, §20(2) a-q) are each flagged for PZS (essential-service operator = IE) and PKZS (critical operator = EE). On the IT baseline, EE apply 122 measures and IE 115; OT relevance is higher (EE 147 / IE 133).",
      "Does it rely on other frameworks? : YES",
      "ISO 27001/27002 : YES",
      "NIS 1 : YES",
      "CyFun Belge : NO",
      "Existence of a presumption of compliance : NO",
-     "Reasons and sectors of presumption : N.A",
      "Compliance deadline to framework is different between EE and EI : NO",
      "Compliance target level is different between EE and EI : NO",
-     "Level of compliance to reach for EE : N.A",
-     "Level of compliance to reach for EI : N.A",
      "Gradual compliance to reach target level : NO"
     ],
     "inc": [
+     "Organism type to report incident NOUVELLE COLONNE : National authority",
      "Name and link of web platform : JISKB https://www.jiskb.nbu.gov.sk/",
      "Mandatory information required : Incident nature, time of detection Suspected malicious or unlawful origin Impact on essential/important services Indicators of compromise (IOCs) and technical evidence Mitigation actions already implemented",
-     "Major incident definition in the transposition : NIS2 Criteria",
-     "Size thresholds / criteria to consider an incident as major : NIS2 Criteria",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request / final report 1month)"
+     "Major incident definition in the transposition : A major cybersecurity incident is defined as a large-scale cybersecurity incident and a cybersecurity incident that a) has caused, or is likely to cause, serious disruption to the functioning of the essential service operator, or damage, other injury to property or loss of profit on a large scale, b) has affected or is likely to affect other persons by causing them damage, other harm or loss of profit to a significant extent"
     ],
     "reg": [
      "Registration availability : YES",

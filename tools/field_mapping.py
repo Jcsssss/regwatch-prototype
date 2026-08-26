@@ -54,10 +54,15 @@ MAPPING = {
         "Framework last publication date": ("section", "fw"),
         "Classification of IS": ("section", "fw"),
         "Rules of classification": ("section", "fw"),
+        # The workbook has spelled the "important entities" suffix both EI and IE
+        # across revisions; accept either rather than lose the field on a rename.
         "Number of cyber themes for EE": ("section", "fw"),
-        "Number of cyber themes for EI ": ("section", "fw"),
+        "Number of cyber themes for EI": ("section", "fw"),
+        "Number of cyber themes for IE": ("section", "fw"),
         "Number of cyber requirements for EE": ("flat", "reqEE"),
         "Number of cyber requirements for EI": ("flat", "reqIE"),
+        "Number of cyber requirements for IE": ("flat", "reqIE"),
+        "Comments on the number of cyber themes and cyber requirements": ("section", "fw"),
         "Does it rely on other frameworks?": ("section", "fw"),
         "Existence of a presumption of compliance": ("section", "fw"),
         "Reasons and sectors of presumption ": ("section", "fw"),
@@ -88,6 +93,7 @@ MAPPING = {
     },
     "Incident reporting - P1": {
         "Organism type to report incident2 NOUVELLE COLONNE": ("section", "inc"),
+        "Organism type to report incident NOUVELLE COLONNE": ("section", "inc"),
         "Organism official name to report incident": ("flat", "incidentAuthority"),
         "Date of incident reporting becoming mandatory": ("flat", "incidentMandatoryFrom"),
         "Method for incident reporting": ("flat", "incidentMethod"),

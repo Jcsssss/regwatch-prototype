@@ -1,7 +1,7 @@
 {
   "workbook": "CYBER WATCH5_Technical inventory.xlsx",
-  "mappedFields": 127,
-  "totalFields": 136,
+  "mappedFields": 128,
+  "totalFields": 137,
   "newFlatFields": [
     "authorityCount",
     "incidentAuthority",
@@ -106,7 +106,7 @@
     },
     {
       "sheet": "Incident reporting - P1",
-      "field": "Organism type to report incident2 NOUVELLE COLONNE",
+      "field": "Organism type to report incident NOUVELLE COLONNE",
       "column": "E",
       "kind": "section",
       "target": "inc",
@@ -187,7 +187,7 @@
     {
       "sheet": "Incident reporting - P1",
       "field": "Timeline Directive NIS2",
-      "column": "U",
+      "column": "W",
       "kind": "section",
       "target": "inc",
       "writable": true
@@ -466,7 +466,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Number of cyber themes for EI",
+      "field": "Number of cyber themes for IE",
       "column": "K",
       "kind": "section",
       "target": "fw",
@@ -482,7 +482,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Number of cyber requirements for EI",
+      "field": "Number of cyber requirements for IE",
       "column": "M",
       "kind": "flat",
       "target": "reqIE",
@@ -490,7 +490,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Does it rely on other frameworks?",
+      "field": "Comments on the number of cyber themes and cyber requirements",
       "column": "N",
       "kind": "section",
       "target": "fw",
@@ -498,7 +498,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "ISO 27001/27002",
+      "field": "Does it rely on other frameworks?",
       "column": "O",
       "kind": "section",
       "target": "fw",
@@ -506,7 +506,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "IEC 62443",
+      "field": "ISO 27001/27002",
       "column": "P",
       "kind": "section",
       "target": "fw",
@@ -514,7 +514,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "NIST CSF",
+      "field": "IEC 62443",
       "column": "Q",
       "kind": "section",
       "target": "fw",
@@ -522,7 +522,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "NIST SP 800.53",
+      "field": "NIST CSF",
       "column": "R",
       "kind": "section",
       "target": "fw",
@@ -530,7 +530,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "CIS Controls",
+      "field": "NIST SP 800.53",
       "column": "S",
       "kind": "section",
       "target": "fw",
@@ -538,7 +538,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "NIS 1",
+      "field": "CIS Controls",
       "column": "T",
       "kind": "section",
       "target": "fw",
@@ -546,7 +546,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "CyFun Belge",
+      "field": "NIS 1",
       "column": "U",
       "kind": "section",
       "target": "fw",
@@ -554,15 +554,15 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Other national regulatory framework",
+      "field": "CyFun Belge",
       "column": "V",
       "kind": "section",
-      "target": "other",
+      "target": "fw",
       "writable": true
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Name of national regulatory frameworks",
+      "field": "Other national regulatory framework",
       "column": "W",
       "kind": "section",
       "target": "other",
@@ -570,7 +570,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Other national guidance / standards",
+      "field": "Name of national regulatory frameworks",
       "column": "X",
       "kind": "section",
       "target": "other",
@@ -578,7 +578,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Name of other national guidance / standards",
+      "field": "Other national guidance / standards",
       "column": "Y",
       "kind": "section",
       "target": "other",
@@ -586,15 +586,15 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Existence of a presumption of compliance",
+      "field": "Name of other national guidance / standards",
       "column": "Z",
       "kind": "section",
-      "target": "fw",
+      "target": "other",
       "writable": true
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Reasons and sectors of presumption",
+      "field": "Existence of a presumption of compliance",
       "column": "AA",
       "kind": "section",
       "target": "fw",
@@ -602,7 +602,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Compliance deadline to framework is different between EE and EI",
+      "field": "Reasons and sectors of presumption",
       "column": "AB",
       "kind": "section",
       "target": "fw",
@@ -610,8 +610,16 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Compliance deadline to framework from effective date for EE (months)",
+      "field": "Compliance deadline to framework is different between EE and EI",
       "column": "AC",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Compliance deadline to framework from effective date for EE (months)",
+      "column": "AD",
       "kind": "flat",
       "target": "complianceEE",
       "writable": true
@@ -619,7 +627,7 @@
     {
       "sheet": "Cybersecurity frameworks - P1",
       "field": "Compliance deadline to framework from effective date for EI (months)",
-      "column": "AD",
+      "column": "AE",
       "kind": "flat",
       "target": "complianceIE",
       "writable": true
@@ -627,14 +635,6 @@
     {
       "sheet": "Cybersecurity frameworks - P1",
       "field": "Compliance target level is different between EE and EI",
-      "column": "AE",
-      "kind": "section",
-      "target": "fw",
-      "writable": true
-    },
-    {
-      "sheet": "Cybersecurity frameworks - P1",
-      "field": "List of compliance levels",
       "column": "AF",
       "kind": "section",
       "target": "fw",
@@ -642,7 +642,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Level of compliance to reach for EE",
+      "field": "List of compliance levels",
       "column": "AG",
       "kind": "section",
       "target": "fw",
@@ -650,7 +650,7 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Level of compliance to reach for EI",
+      "field": "Level of compliance to reach for EE",
       "column": "AH",
       "kind": "section",
       "target": "fw",
@@ -658,8 +658,16 @@
     },
     {
       "sheet": "Cybersecurity frameworks - P1",
-      "field": "Gradual compliance to reach target level",
+      "field": "Level of compliance to reach for EI",
       "column": "AI",
+      "kind": "section",
+      "target": "fw",
+      "writable": true
+    },
+    {
+      "sheet": "Cybersecurity frameworks - P1",
+      "field": "Gradual compliance to reach target level",
+      "column": "AJ",
       "kind": "section",
       "target": "fw",
       "writable": true

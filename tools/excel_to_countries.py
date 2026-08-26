@@ -37,7 +37,14 @@ OUT_JSON = ROOT / "data" / "countries-from-excel.json"
 OUT_JS = ROOT / "src" / "data_excel.js"
 
 # Values that mean "nothing to say" and should not become a bullet.
-EMPTY = {"", "na", "n/a", "tbc", "tbd", "-", "—", "none", "nc", "n.c."}
+EMPTY = {"", "na", "n/a", "n.a.", "tbc", "tbd", "to be confirmed", "-", "--", "—",
+         "none", "nc", "n.c.", "n. c.", "non communiqué", "not communicated", "?"}
+
+
+def _is_empty(text):
+    """Consultants write "not known" a dozen ways; normalise before deciding."""
+    t = re.sub(r"[\s.]+", " ", text.strip().lower()).strip()
+    return t in EMPTY or t.replace(" ", "") in {x.replace(" ", "").replace(".", "") for x in EMPTY}
 
 
 def clean(value):
@@ -46,7 +53,7 @@ def clean(value):
     if hasattr(value, "isoformat"):
         return value.isoformat()[:10]
     text = re.sub(r"\s+", " ", str(value)).strip()
-    return "" if text.lower() in EMPTY else text
+    return "" if _is_empty(text) else text
 
 
 def as_number(value):
