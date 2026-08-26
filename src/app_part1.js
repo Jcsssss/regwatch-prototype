@@ -8,6 +8,7 @@ const LS_KEY = "regwatch-proto-v1";
 let store = { overrides: {}, manual: [] };
 try { const raw = localStorage.getItem(LS_KEY); if (raw) store = JSON.parse(raw); } catch (e) {}
 store.overrides = store.overrides || {}; store.manual = store.manual || [];
+store.sources = store.sources || [];
 delete store.edits; /* country records are read-only: the SharePoint workbook is the source of truth */
 function saveStore(){ try { localStorage.setItem(LS_KEY, JSON.stringify(store)); } catch (e) {} }
 

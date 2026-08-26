@@ -623,24 +623,104 @@ function exportCSV(){
 }
 
 /* ---------- Sources ---------- */
+let srcFilter = "";
+/* The source registry is what the collection pipeline reads: every RSS feed,
+   page and API the agent monitors. Making it editable here is the point — the
+   quality of the watch is decided by this list, not by the model. Additions are
+   held in this browser and exported to the agent's registry, since RegWatch has
+   no backend yet. */
+function customSources(){ return store.sources || (store.sources = []); }
+
 function renderSources(){
   const el = $("#v-sources");
+  const isVal = role === "validator";
   const rows = [];
-  GLOBAL_SOURCES.forEach(s => rows.push({ scope: s.scope, name: s.name, url: s.url, type: s.type, note: s.note }));
-  COUNTRIES.forEach(c => c.sources.forEach(s => rows.push({ scope: c.name, iso: c.iso, name: s.name, url: s.url, type: s.type, note: "" })));
+  GLOBAL_SOURCES.forEach(x => rows.push({ scope: x.scope, name: x.name, url: x.url,
+                                          type: x.type, note: x.note || "" }));
+  COUNTRIES.forEach(c => c.sources.forEach(x => rows.push({ scope: c.name, iso: c.iso,
+    name: x.name, url: x.url, type: x.type, note: "" })));
+  customSources().forEach((x, n) => rows.push({ ...x, custom: true, idx: n,
+    scope: x.iso === "EU" ? t("src.eu") : (byIso[x.iso] ? byIso[x.iso].name : x.iso) }));
+
+  const scopes = [...new Set(rows.map(r => r.iso || "").filter(Boolean))]
+    .sort((a, b) => (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b));
+
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
   <p class="pg-sub">${t("src.sub")}</p>
+  ${isVal ? `
+  <div class="card"><div class="cap"><h2>${t("src.add")}</h2></div><div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.addSub")}</p>
+    <div class="form-grid">
+      <label class="full">${t("src.fName")}<input id="sName" placeholder="${t("src.phName")}"></label>
+      <label class="full">${t("src.fUrl")}<input id="sUrl" placeholder="${t("src.phUrl")}"></label>
+      <label>${t("src.fCountry")}<select id="sIso"><option value="EU">${t("src.eu")}</option>${
+        COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
+      <label>${t("src.fType")}<select id="sKind"><option value="rss">${t("src.tFeed")}</option><option value="page">${t("src.tPage")}</option><option value="api">${t("src.tApi")}</option></select></label>
+      <label>${t("src.fTrust")}<select id="sType"><option value="official">${t("manual.optOfficial")}</option><option value="unofficial">${t("manual.optUnofficial")}</option></select></label>
+      <label class="full">${t("src.fNote")}<input id="sNote" placeholder="${t("src.phNote")}"></label>
+    </div>
+    <div class="q-actions"><button class="btn primary" id="sAdd">${t("src.save")}</button>
+      <span class="q-note" id="sMsg"></span></div>
+  </div></div>
+  ${customSources().length ? `<div class="card"><div class="cap"><h2>${t("src.pending")} (${customSources().length})</h2>
+    <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
   <div class="card"><div class="bd">
+    <div class="filters">
+      <select id="sFilter" aria-label="Filter by scope"><option value="">${t("src.allScopes")}</option>${
+        scopes.map(iso => `<option value="${iso}" ${srcFilter === iso ? "selected" : ""}>${
+          byIso[iso] ? esc(byIso[iso].name) : esc(iso)}</option>`).join("")}</select>
+      <span class="q-note" id="sCount"></span>
+    </div>
     <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th></tr></thead>
-      <tbody>${rows.map(r => `<tr>
-        <td style="white-space:nowrap">${r.iso ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.scope)}</td>
-        <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}</td>
-        <td>${srcChip(r.type)}</td>
-        <td style="color:var(--muted)">${esc(r.note)}</td></tr>`).join("")}
-      </tbody></table></div>
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th>${isVal ? "<th></th>" : ""}</tr></thead>
+      <tbody id="srcRows"></tbody>
+    </table></div>
   </div></div>`;
+
+  function paint(){
+    const list = rows.filter(r => !srcFilter || r.iso === srcFilter);
+    $("#sCount").textContent = t("src.count", { n: list.length, total: rows.length });
+    $("#srcRows").innerHTML = list.map(r => `<tr>
+      <td style="white-space:nowrap">${r.iso ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.scope)}</td>
+      <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>` : esc(r.name)}${
+        r.custom ? ` <span class="chip src-manual">${t("src.custom")}</span>` : ""}</td>
+      <td>${srcChip(r.type)}</td>
+      <td style="color:var(--muted)">${esc(r.note || "")}</td>
+      ${isVal ? `<td>${r.custom ? `<button class="btn danger" data-rm="${r.idx}">${t("src.remove")}</button>` : ""}</td>` : ""}
+    </tr>`).join("");
+    $("#srcRows").querySelectorAll("[data-rm]").forEach(b => b.addEventListener("click", () => {
+      customSources().splice(+b.dataset.rm, 1); saveStore(); renderSources();
+    }));
+  }
+  paint();
+  $("#sFilter").addEventListener("change", e => { srcFilter = e.target.value; renderSources(); });
+
+  if (!isVal) return;
+  $("#sAdd").addEventListener("click", () => {
+    const name = $("#sName").value.trim(), url = $("#sUrl").value.trim();
+    if (!name || !url) { $("#sMsg").textContent = t("src.needName"); return; }
+    customSources().push({ name, url, iso: $("#sIso").value, kind: $("#sKind").value,
+                           type: $("#sType").value, note: $("#sNote").value.trim() });
+    saveStore(); renderSources();
+    const msg = $("#sMsg"); if (msg) msg.textContent = t("src.added");
+  });
+  const exp = $("#sExport");
+  if (exp) exp.addEventListener("click", () => {
+    /* Shaped like tblSources so the agent's registry can absorb it directly. */
+    const payload = customSources().map(x => ({
+      Source: x.name, Type: { rss: "RSS", page: "Page web", api: "API" }[x.kind] || "RSS",
+      "URL / Endpoint": x.url, Actif: "Oui", "Pays / zone": x.iso,
+      "Fiabilité": x.type === "official" ? "Officielle" : "Non officielle - à vérifier",
+      Note: x.note }));
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "regwatch-sources.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
 }
 
 /* ---------- boot ---------- */

@@ -31,6 +31,7 @@ in an internal tool is one less thing to keep current.
 
 import argparse
 import base64
+import re
 import json
 import os
 import sys
@@ -87,6 +88,55 @@ def share_token(url):
     """
     b64 = base64.b64encode(url.encode("utf-8")).decode("ascii")
     return "u!" + b64.rstrip("=").replace("/", "_").replace("+", "-")
+
+
+
+def parse_sharepoint_url(url):
+    """Pull host, site and file path out of a SharePoint "Copy link" URL.
+
+    A path-based lookup is steadier than a share token: the copied link carries
+    volatile query parameters (`e=`, `csf=`) that belong to the browsing session,
+    not to the file. Resolving host + site + path ignores them entirely.
+    """
+    import urllib.parse as up
+    parsed = up.urlparse(url)
+    path = up.unquote(parsed.path)
+    m = re.match(r"^/:\w:/[a-z]/sites/([^/]+)/(.+)$", path) or \
+        re.match(r"^/sites/([^/]+)/(.+)$", path)
+    if not m:
+        return None
+    rel = m.group(2).split("/")
+    return {"host": parsed.netloc, "site": m.group(1),
+            "library": rel[0], "path": "/".join(rel[1:]),
+            "tenant_hint": parsed.netloc.split(".")[0] + ".onmicrosoft.com"}
+
+
+def fetch_by_path(token, info, out_path):
+    """Resolve site -> drive item by path, rather than by share token."""
+    headers = {"Authorization": "Bearer " + token}
+    site_ref = "%s:/sites/%s" % (info["host"], info["site"])
+    r = requests.get("%s/sites/%s" % (GRAPH, site_ref), headers=headers, timeout=60)
+    if r.status_code != 200:
+        return None, "site %s -> HTTP %d" % (info["site"], r.status_code)
+    site_id = r.json()["id"]
+
+    # The library shows as "Documents partages" in a French UI but Graph's
+    # default drive is the same list, so root-relative addressing works.
+    quoted = requests.utils.quote(info["path"])
+    url = "%s/sites/%s/drive/root:/%s" % (GRAPH, site_id, quoted)
+    meta = requests.get(url, headers=headers, timeout=60)
+    if meta.status_code != 200:
+        return None, "fichier -> HTTP %d" % meta.status_code
+    item = meta.json()
+
+    content = requests.get(url + ":/content", headers=headers, timeout=180)
+    content.raise_for_status()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_bytes(content.content)
+    return {"name": item.get("name"), "size": item.get("size"),
+            "modified": (item.get("lastModifiedDateTime") or "")[:19].replace("T", " "),
+            "by": ((item.get("lastModifiedBy") or {}).get("user") or {}).get("displayName", "?"),
+            "bytes": len(content.content)}, None
 
 
 def token_client_credentials(tenant, client_id, secret):
@@ -180,11 +230,33 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("env", nargs="?", help="path to a .env holding the config")
     ap.add_argument("-o", "--out", default=str(DEFAULT_OUT))
+    ap.add_argument("--check", action="store_true", help="ce qui est déduit du lien, sans authentification")
     ap.add_argument("--help-config", action="store_true", help="show the settings needed")
     args = ap.parse_args()
 
     if args.help_config:
         print(CONFIG_HELP)
+        return 0
+    if args.check:
+        url = (os.getenv("SHAREPOINT_FILE_URL") or (args.env if args.env and args.env.startswith("http") else "")).strip()
+        if not url:
+            raise SystemExit("passe l'URL SharePoint en argument, ou définis SHAREPOINT_FILE_URL.")
+        info = parse_sharepoint_url(url)
+        if not info:
+            raise SystemExit("URL non reconnue. Attendu un lien « Copier le lien » de SharePoint.")
+        print("Déduit du lien, sans aucune authentification :\n")
+        for k, label in [("host", "hôte SharePoint"), ("site", "site"),
+                         ("library", "bibliothèque"), ("path", "chemin du fichier"),
+                         ("tenant_hint", "tenant probable")]:
+            print("  %-18s %s" % (label, info[k]))
+        try:
+            r = requests.get("%s/%s/v2.0/.well-known/openid-configuration"
+                             % (AUTHORITY, info["tenant_hint"]), timeout=20)
+            if r.status_code == 200:
+                guid = r.json()["issuer"].rstrip("/").split("/")[-2]
+                print("  %-18s %s  (découvert publiquement)" % ("GRAPH_TENANT_ID", guid))
+        except Exception:
+            print("  %-18s non résolu — utilise le domaine tel quel" % "GRAPH_TENANT_ID")
         return 0
     if args.env and os.path.exists(args.env):
         load_env_file(args.env)
@@ -196,6 +268,12 @@ def main():
     tenant = (os.getenv("GRAPH_TENANT_ID") or "").strip()
     client_id = (os.getenv("GRAPH_CLIENT_ID") or "").strip()
     secret = (os.getenv("GRAPH_CLIENT_SECRET") or "").strip()
+
+    if file_url and not tenant:
+        guess = parse_sharepoint_url(file_url)
+        if guess:
+            tenant = guess["tenant_hint"]
+            print("note : GRAPH_TENANT_ID déduit du lien -> %s" % tenant)
 
     if not file_url or not tenant:
         print("Configuration incomplète.")
@@ -219,7 +297,14 @@ def main():
         token = token_device_code(tenant, cid)
 
     out = Path(args.out).expanduser()
-    info = fetch(token, file_url, out)
+    parsed = parse_sharepoint_url(file_url)
+    info, why = (None, "lien non analysable")
+    if parsed:
+        info, why = fetch_by_path(token, parsed, out)
+        if info is None:
+            print("  résolution par chemin impossible (%s) — repli sur le lien de partage." % why)
+    if info is None:
+        info = fetch(token, file_url, out)
     print("\nclasseur récupéré depuis SharePoint")
     print("  nom             : %s" % info["name"])
     print("  modifié le      : %s  par %s" % (info["modified"], info["by"]))
