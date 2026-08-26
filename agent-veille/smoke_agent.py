@@ -9,7 +9,7 @@ failure can be attributed before spending a real run:
   - the watch workbook opens and tblSources / tblVeille are readable
   - the declared sources are reachable and parse into items
 
-    python3 tools/smoke_agent.py "<path to agent de veille>" [--feeds N]
+    python3 agent-veille/smoke_agent.py "<path to agent de veille>" [--feeds N]
 
 Reads only. Nothing is written to the workbook, no state.json is touched.
 """
@@ -88,7 +88,7 @@ def main():
     if failures:
         print("Collecte partielle : %d flux en échec sur %d." % (failures, min(args.feeds, len(feeds))))
     print("%d entrées récupérées. La moitié collecte fonctionne." % total)
-    print("Reste à valider la moitié IA : python3 tools/check_azure.py")
+    print("Reste à valider la moitié IA : python3 agent-veille/check_azure.py")
     return 0
 
 

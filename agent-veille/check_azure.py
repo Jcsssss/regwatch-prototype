@@ -8,11 +8,11 @@ the three failure modes look alike from the outside but need different fixes.
     export AZURE_OPENAI_API_KEY="..."
     export AZURE_OPENAI_ENDPOINT="https://xxx.openai.azure.com"
     export AZURE_OPENAI_DEPLOYMENT="the-deployment-name"
-    python3 tools/check_azure.py
+    python3 agent-veille/check_azure.py
 
 Or point it at the agent's own .env:
 
-    python3 tools/check_azure.py "/path/to/agent de veille/.env"
+    python3 agent-veille/check_azure.py "/path/to/agent de veille/.env"
 """
 
 import os

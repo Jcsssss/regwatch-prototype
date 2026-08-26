@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Translate watch-item titles and summaries into English.
 
-    python3 tools/translate_items.py "<path to agent de veille>/.env"
+    python3 agent-veille/translate_items.py "<path to agent de veille>/.env"
 
 The agent writes its analysis in French whatever the source language, so an
 English-speaking reader gets a French interface's worth of content. This
@@ -45,7 +45,7 @@ def main():
     endpoint = (os.getenv("AZURE_OPENAI_ENDPOINT") or "").rstrip("/")
     deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
     if not (key and endpoint and deployment):
-        raise SystemExit("Azure config manquante — voir tools/check_azure.py")
+        raise SystemExit("Azure config manquante — voir agent-veille/check_azure.py")
 
     items = json.loads(ITEMS.read_text(encoding="utf-8"))["items"]
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
