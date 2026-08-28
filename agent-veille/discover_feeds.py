@@ -49,23 +49,40 @@ COMMON = ["/feed", "/feed/", "/rss", "/rss/", "/rss.xml", "/feed.xml", "/atom.xm
 PROVEN = {
     "FR": ["https://cyber.gouv.fr/actualites/rss/", "https://www.cert.ssi.gouv.fr/dur/feed/"],
     "NL": ["https://feeds.ncsc.nl/nieuws.rss"],
-    "DE": ["https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Presse.xml",
-           "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed.xml"],
+    "DE": ["https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_WID.xml",
+           "https://www.bsi.bund.de/SiteGlobals/Functions/RSSFeed/RSSNewsfeed/RSSNewsfeed_Presse.xml",
+           "https://wid.cert-bund.de/content/public/securityAdvisory/rss",
+           "https://www.bsi.bund.de/DE/Service-Navi/Abonnements/RSS-Feed/rss_feed.xml"],
     "GB": ["https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml",
-           "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml"],
-    "IE": ["https://www.ncsc.gov.ie/rss/"],
-    "AT": ["https://www.cert.at/de/aktuelles/feed.xml", "https://cert.at/feed/"],
-    "FI": ["https://www.kyberturvallisuuskeskus.fi/feed/rss/fi"],
-    "EE": ["https://www.ria.ee/rss.xml"],
-    "IT": ["https://www.acn.gov.it/portale/rss"],
-    "SK": ["https://www.sk-cert.sk/feed/index.html"],
-    "PT": ["https://dyn.cncs.gov.pt/pt/rss"],
-    "HU": ["https://nki.gov.hu/feed/"],
-    "BE": ["https://cert.be/en/rss"],
-    "GR": ["https://mindigital.gr/feed"],
-    "LT": ["https://www.nksc.lt/feed/"],
-    "BG": ["https://www.cybersecurity.bg/feed/"],
-    "CY": ["https://dsa.cy/feed/"],
+           "https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml",
+           "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml"],
+    "IE": ["https://www.ncsc.gov.ie/rss/", "https://www.ncsc.gov.ie/feed/",
+           "https://www.gov.ie/en/rss/"],
+    "AT": ["https://cert.at/de/warnungen/feed/", "https://www.cert.at/de/aktuelles/feed.xml",
+           "https://cert.at/feed/", "https://www.wko.at/rss"],
+    "FI": ["https://www.kyberturvallisuuskeskus.fi/feed/rss/fi",
+           "https://www.kyberturvallisuuskeskus.fi/en/feed/rss",
+           "https://www.traficom.fi/en/rss.xml"],
+    "EE": ["https://www.ria.ee/rss.xml", "https://www.ria.ee/en/rss.xml",
+           "https://www.ria.ee/uudised/rss"],
+    "IT": ["https://www.acn.gov.it/portale/rss", "https://www.acn.gov.it/portale/w/rss",
+           "https://www.acn.gov.it/rss", "https://www.garanteprivacy.it/rss"],
+    "SK": ["https://www.sk-cert.sk/feed/index.html", "https://www.sk-cert.sk/rss.xml",
+           "https://www.nbu.gov.sk/rss/"],
+    "PT": ["https://dyn.cncs.gov.pt/pt/rss", "https://www.cncs.gov.pt/feed/",
+           "https://www.cncs.gov.pt/pt/rss/", "https://dyn.cncs.gov.pt/en/rss"],
+    "HU": ["https://nki.gov.hu/feed/", "https://nki.gov.hu/rss",
+           "https://nki.gov.hu/it-biztonsag/hirek/feed/"],
+    "BE": ["https://cert.be/en/rss", "https://cert.be/fr/rss",
+           "https://ccb.belgium.be/en/rss.xml"],
+    "GR": ["https://mindigital.gr/feed", "https://www.ncsa.gov.gr/feed/",
+           "https://mindigital.gr/archives/category/press-releases/feed"],
+    "LT": ["https://www.nksc.lt/feed/", "https://www.cert.lt/feed/",
+           "https://www.nksc.lt/naujienos/rss"],
+    "BG": ["https://www.cybersecurity.bg/feed/", "https://e-gov.bg/rss",
+           "https://www.govcert.bg/feed/"],
+    "CY": ["https://dsa.cy/feed/", "https://dsa.cy/en/feed/",
+           "https://www.cyprus.gov.cy/rss"],
 }
 
 # The national authority designated or acting under NIS 2, per country.
@@ -172,7 +189,10 @@ def main():
                if not args.isos or k in [x.upper() for x in args.isos]]
     print("sonde %d autorité(s)\n" % len(targets))
 
+    # A partial probe must not wipe the countries it did not look at.
     out = {}
+    if OUT.exists():
+        out = json.loads(OUT.read_text(encoding="utf-8")).get("authorities", {})
     with ThreadPoolExecutor(max_workers=6) as pool:
         for iso, rec in pool.map(probe, targets):
             out[iso] = rec

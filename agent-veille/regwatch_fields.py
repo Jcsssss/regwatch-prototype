@@ -127,7 +127,15 @@ def page_date(html):
             if got:
                 return got
     m = re.search(r'<time[^>]+datetime=["\']([^"\']+)', html, re.I)
-    return iso_date(m.group(1)) if m else ""
+    if m:
+        got = iso_date(m.group(1))
+        if got:
+            return got
+    # <time>14 July, 2026</time> - the value is the element's text, not an attribute.
+    m = re.search(r"<time[^>]*>([^<]{4,40})</time>", html, re.I)
+    if m:
+        return iso_date(m.group(1)) or parse_long_date(m.group(1))
+    return ""
 
 
 def resolve_publish_date(source_type, feed_date, html, model_date):
@@ -206,6 +214,51 @@ INDEX_URL = re.compile(
 INDEX_OGTYPE = {"website", "policy", "profile", "object"}
 
 
+
+# Month names, for the "21 mai 2026" form that most institutional sites use in
+# their body copy. Numeric dates are the exception, not the rule, on these sites.
+MONTHS = {}
+for _lang, _names in {
+    "fr": "janvier fevrier mars avril mai juin juillet aout septembre octobre novembre decembre",
+    "en": "january february march april may june july august september october november december",
+    "de": "januar februar marz april mai juni juli august september oktober november dezember",
+    "nl": "januari februari maart april mei juni juli augustus september oktober november december",
+    "es": "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre",
+    "it": "gennaio febbraio marzo aprile maggio giugno luglio agosto settembre ottobre novembre dicembre",
+    "pt": "janeiro fevereiro marco abril maio junho julho agosto setembro outubro novembro dezembro",
+    "pl": "stycznia lutego marca kwietnia maja czerwca lipca sierpnia wrzesnia pazdziernika listopada grudnia",
+    "sv": "januari februari mars april maj juni juli augusti september oktober november december",
+    "da": "januar februar marts april maj juni juli august september oktober november december",
+    "fi": "tammikuuta helmikuuta maaliskuuta huhtikuuta toukokuuta kesakuuta heinakuuta elokuuta syyskuuta lokakuuta marraskuuta joulukuuta",
+    "cs": "ledna unora brezna dubna kvetna cervna cervence srpna zari rijna listopadu prosince",
+    "ro": "ianuarie februarie martie aprilie mai iunie iulie august septembrie octombrie noiembrie decembrie",
+}.items():
+    for _i, _n in enumerate(_names.split(), 1):
+        MONTHS[_n] = _i
+# Short English/German forms seen in <time> elements.
+MONTHS.update({"jan": 1, "feb": 2, "mar": 3, "apr": 4, "jun": 6, "jul": 7,
+               "aug": 8, "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12, "okt": 10, "dez": 12})
+
+_LONG_DATE = re.compile(r"(\d{1,2})(?:er|st|nd|rd|th|\.)?\s+([A-Za-zÀ-ÿ]{3,12})\.?,?\s+(\d{4})")
+
+
+def parse_long_date(text):
+    """'21 mai 2026', '14 July, 2026', '15. Marz 2026' -> ISO, or ''."""
+    for m in _LONG_DATE.finditer(str(text or "")):
+        day, name, year = m.groups()
+        key = _fold_month(name)
+        month = MONTHS.get(key) or MONTHS.get(key[:3])
+        if month and 1 <= int(day) <= 31:
+            return "%s-%02d-%02d" % (year, month, int(day))
+    return ""
+
+
+def _fold_month(name):
+    import unicodedata
+    t = unicodedata.normalize("NFD", name.lower())
+    return "".join(c for c in t if unicodedata.category(c) != "Mn")
+
+
 def page_text_date(html):
     """A date printed in the page body, when the markup carries none."""
     if not html:
@@ -215,7 +268,16 @@ def page_text_date(html):
     for pattern in TEXT_DATE:
         m = re.search(pattern, text)
         if m:
-            got = iso_date(m.group(1))
+            got = iso_date(m.group(1)) or parse_long_date(m.group(1))
+            if got:
+                return got
+    # "Mis à jour le 21 mai 2026" and friends, where the label is followed by a
+    # spelled-out month rather than digits.
+    for label in (r"[Mm]is\s+à\s+jour", r"[Pp]ubli[ée]e?", r"[Ll]ast\s+updated?",
+                  r"[Pp]ublished", r"[Vv]er(?:ö|oe)ffentlicht", r"[Gg]epubliceerd"):
+        m = re.search(label + r"[^.\d]{0,14}(\d{1,2}[^,\d]{2,14}\d{4})", text)
+        if m:
+            got = parse_long_date(m.group(1))
             if got:
                 return got
     return ""

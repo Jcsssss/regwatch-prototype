@@ -26,12 +26,12 @@ const AUTHORITY_FEEDS = [
  {
   "iso": "BG",
   "name": "Bulgarian cybersecurity authority",
-  "url": "https://e-gov.bg",
-  "site": "https://e-gov.bg",
-  "kind": "page",
-  "entries": 0,
-  "feedTitle": "",
-  "lang": ""
+  "url": "https://www.govcert.bg/feed/",
+  "site": "https://www.cybersecurity.bg",
+  "kind": "rss",
+  "entries": 10,
+  "feedTitle": "CERT Bulgaria",
+  "lang": "bg-BG"
  },
  {
   "iso": "CY",
@@ -56,11 +56,11 @@ const AUTHORITY_FEEDS = [
  {
   "iso": "DE",
   "name": "BSI",
-  "url": "https://www.bsi.bund.de",
+  "url": "https://wid.cert-bund.de/content/public/securityAdvisory/rss",
   "site": "https://www.bsi.bund.de",
-  "kind": "page",
-  "entries": 0,
-  "feedTitle": "",
+  "kind": "rss",
+  "entries": 250,
+  "feedTitle": "BSI Warn- und Informationsdienst (WID): Schwachstellen-Informationen (Security A",
   "lang": ""
  },
  {
@@ -146,12 +146,12 @@ const AUTHORITY_FEEDS = [
  {
   "iso": "HU",
   "name": "NBSZ NKI",
-  "url": "https://nki.gov.hu",
+  "url": "https://nki.gov.hu/it-biztonsag/hirek/feed/",
   "site": "https://nki.gov.hu",
-  "kind": "page",
-  "entries": 0,
-  "feedTitle": "",
-  "lang": ""
+  "kind": "rss",
+  "entries": 20,
+  "feedTitle": "IT Biztonsági hírek – Nemzeti Kiberbiztonsági Intézet",
+  "lang": "en-US"
  },
  {
   "iso": "IE",

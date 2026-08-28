@@ -8,6 +8,100 @@
    "entries": 0,
    "dated": 0
   },
+  "BG": {
+   "authority": "Bulgarian cybersecurity authority",
+   "site": "https://www.cybersecurity.bg",
+   "status": "ok",
+   "url": "https://www.govcert.bg/feed/",
+   "title": "CERT Bulgaria",
+   "entries": 10,
+   "dated": 10,
+   "language": "bg-BG"
+  },
+  "CY": {
+   "authority": "DSA - Digital Security Authority",
+   "site": "https://dsa.cy",
+   "status": "page-only",
+   "url": "https://dsa.cy",
+   "entries": 0,
+   "dated": 0
+  },
+  "DE": {
+   "authority": "BSI",
+   "site": "https://www.bsi.bund.de",
+   "status": "ok",
+   "url": "https://wid.cert-bund.de/content/public/securityAdvisory/rss",
+   "title": "BSI Warn- und Informationsdienst (WID): Schwachstellen-Informationen (Security A",
+   "entries": 250,
+   "dated": 250,
+   "language": ""
+  },
+  "EE": {
+   "authority": "RIA - Information System Authority",
+   "site": "https://www.ria.ee",
+   "status": "page-only",
+   "url": "https://www.ria.ee",
+   "entries": 0,
+   "dated": 0
+  },
+  "GR": {
+   "authority": "National Cybersecurity Authority",
+   "site": "https://mindigital.gr",
+   "status": "unreachable",
+   "url": "https://mindigital.gr",
+   "entries": 0,
+   "dated": 0
+  },
+  "HU": {
+   "authority": "NBSZ NKI",
+   "site": "https://nki.gov.hu",
+   "status": "ok",
+   "url": "https://nki.gov.hu/it-biztonsag/hirek/feed/",
+   "title": "IT Biztonsági hírek – Nemzeti Kiberbiztonsági Intézet",
+   "entries": 20,
+   "dated": 20,
+   "language": "en-US"
+  },
+  "IE": {
+   "authority": "NCSC Ireland",
+   "site": "https://www.ncsc.gov.ie",
+   "status": "page-only",
+   "url": "https://www.ncsc.gov.ie",
+   "entries": 0,
+   "dated": 0
+  },
+  "IT": {
+   "authority": "ACN",
+   "site": "https://www.acn.gov.it",
+   "status": "page-only",
+   "url": "https://www.acn.gov.it",
+   "entries": 0,
+   "dated": 0
+  },
+  "LT": {
+   "authority": "NKSC",
+   "site": "https://www.nksc.lt",
+   "status": "unreachable",
+   "url": "https://www.nksc.lt",
+   "entries": 0,
+   "dated": 0
+  },
+  "PT": {
+   "authority": "CNCS",
+   "site": "https://www.cncs.gov.pt",
+   "status": "unreachable",
+   "url": "https://www.cncs.gov.pt",
+   "entries": 0,
+   "dated": 0
+  },
+  "SK": {
+   "authority": "NBU SK",
+   "site": "https://www.nbu.gov.sk",
+   "status": "page-only",
+   "url": "https://www.nbu.gov.sk",
+   "entries": 0,
+   "dated": 0
+  },
   "BE": {
    "authority": "CCB - Centre for Cybersecurity Belgium",
    "site": "https://ccb.belgium.be",
@@ -17,22 +111,6 @@
    "entries": 10,
    "dated": 10,
    "language": "en"
-  },
-  "BG": {
-   "authority": "Bulgarian cybersecurity authority",
-   "site": "https://e-gov.bg",
-   "status": "page-only",
-   "url": "https://e-gov.bg",
-   "entries": 0,
-   "dated": 0
-  },
-  "CY": {
-   "authority": "DSA - Digital Security Authority",
-   "site": "https://dsa.cy",
-   "status": "page-only",
-   "url": "https://dsa.cy",
-   "entries": 0,
-   "dated": 0
   },
   "CZ": {
    "authority": "NUKIB",
@@ -44,14 +122,6 @@
    "dated": 15,
    "language": "cs-cz"
   },
-  "DE": {
-   "authority": "BSI",
-   "site": "https://www.bsi.bund.de",
-   "status": "page-only",
-   "url": "https://www.bsi.bund.de",
-   "entries": 0,
-   "dated": 0
-  },
   "DK": {
    "authority": "CFCS - Center for Cybersikkerhed",
    "site": "https://www.cfcs.dk",
@@ -61,14 +131,6 @@
    "entries": 10,
    "dated": 10,
    "language": "da-DK"
-  },
-  "EE": {
-   "authority": "RIA - Information System Authority",
-   "site": "https://www.ria.ee",
-   "status": "page-only",
-   "url": "https://www.ria.ee",
-   "entries": 0,
-   "dated": 0
   },
   "ES": {
    "authority": "INCIBE",
@@ -110,14 +172,6 @@
    "dated": 20,
    "language": "en"
   },
-  "GR": {
-   "authority": "National Cybersecurity Authority",
-   "site": "https://mindigital.gr",
-   "status": "unreachable",
-   "url": "https://mindigital.gr",
-   "entries": 0,
-   "dated": 0
-  },
   "HR": {
    "authority": "ZSIS / CERT.hr",
    "site": "https://www.cert.hr",
@@ -127,38 +181,6 @@
    "entries": 10,
    "dated": 10,
    "language": "hr"
-  },
-  "HU": {
-   "authority": "NBSZ NKI",
-   "site": "https://nki.gov.hu",
-   "status": "page-only",
-   "url": "https://nki.gov.hu",
-   "entries": 0,
-   "dated": 0
-  },
-  "IE": {
-   "authority": "NCSC Ireland",
-   "site": "https://www.ncsc.gov.ie",
-   "status": "page-only",
-   "url": "https://www.ncsc.gov.ie",
-   "entries": 0,
-   "dated": 0
-  },
-  "IT": {
-   "authority": "ACN",
-   "site": "https://www.acn.gov.it",
-   "status": "page-only",
-   "url": "https://www.acn.gov.it",
-   "entries": 0,
-   "dated": 0
-  },
-  "LT": {
-   "authority": "NKSC",
-   "site": "https://www.nksc.lt",
-   "status": "unreachable",
-   "url": "https://www.nksc.lt",
-   "entries": 0,
-   "dated": 0
   },
   "LU": {
    "authority": "ILR / GOVCERT.LU",
@@ -220,14 +242,6 @@
    "dated": 100,
    "language": ""
   },
-  "PT": {
-   "authority": "CNCS",
-   "site": "https://www.cncs.gov.pt",
-   "status": "unreachable",
-   "url": "https://www.cncs.gov.pt",
-   "entries": 0,
-   "dated": 0
-  },
   "RO": {
    "authority": "DNSC",
    "site": "https://dnsc.ro",
@@ -257,14 +271,6 @@
    "entries": 10,
    "dated": 10,
    "language": "sl-SI"
-  },
-  "SK": {
-   "authority": "NBU SK",
-   "site": "https://www.nbu.gov.sk",
-   "status": "page-only",
-   "url": "https://www.nbu.gov.sk",
-   "entries": 0,
-   "dated": 0
   }
  }
 }

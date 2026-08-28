@@ -116,6 +116,21 @@ def load_translations():
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+
+def load_dates():
+    """Dates re-resolved from the live pages by agent-veille/refresh_dates.py.
+
+    Rows written before the agent stopped inventing dates keep whatever it
+    asserted then. This cache overrides them - and clears a date it cannot
+    establish rather than leaving a false one on screen.
+    """
+    path = ROOT / "data" / "date-cache.json"
+    if not path.exists():
+        return {}
+    return {u: v for u, v in json.loads(path.read_text(encoding="utf-8")).items()
+            if v.get("ok")}
+
+
 def load_cellmap():
     path = ROOT / "data" / "excel-cellmap.json"
     if not path.exists():
@@ -297,6 +312,7 @@ def build_items(rows):
     cellmap = load_cellmap()
     excerpts = load_excerpts()
     trans = load_translations()
+    dates = load_dates()
     if not trans:
         print("  note: data/translations-cache.json absent - pas de titres anglais "
               "(lance tools/translate_items.py)")
@@ -315,6 +331,9 @@ def build_items(rows):
         # A listing page is not a publication; keep it out of the queue.
         page_kind = first(record, "Type de page")
         url = first(record, "URL source")
+        probed = dates.get(url) or {}
+        if not page_kind and probed.get("kind"):
+            page_kind = probed["kind"]
         if page_kind == "index" or (not page_kind and is_index_url(url)):
             report["index_pages"] += 1
             report["index_urls"][url] = report["index_urls"].get(url, 0) + 1
@@ -376,9 +395,13 @@ def build_items(rows):
                     "obligations": first(record, "Obligations principales"),
                     "impact": first(record, "Niveau impact", "Score impact"),
                     "entities": first(record, "Entités concernées"),
-                    "publishedOn": to_iso_date(record.get("Date publication")),
+                    # A date re-read from the live page beats one the agent asserted
+                    # before it could read pages; an unestablished date is left empty.
+                    "publishedOn": (probed.get("date") if probed
+                                    else to_iso_date(record.get("Date publication"))),
                     # flux | page | ia | inconnue - dit si la date est un fait ou une inférence
-                    "dateOrigin": first(record, "Origine date"),
+                    "dateOrigin": (probed.get("origin") if probed
+                                   else first(record, "Origine date")),
                     "inForceOn": to_iso_date(record.get("Date entrée en vigueur")),
                     "textType": first(record, "Type de texte"),
                 },
