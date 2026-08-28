@@ -689,6 +689,23 @@ function renderSources(){
   ${customSources().length ? `<div class="card"><div class="cap"><h2>${t("src.pending")} (${customSources().length})</h2>
     <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
+  ${typeof AUTHORITY_FEEDS !== "undefined" ? `
+  <div class="card"><div class="cap"><h2>${t("src.authTitle")}</h2>
+    <span class="q-note">${t("src.authOk", {
+      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span></div>
+    <div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.authSub")}</p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th><th>${t("src.thFeed")}</th><th>${t("src.thState")}</th><th class="num">${t("src.thEntries")}</th></tr></thead>
+      <tbody>${AUTHORITY_FEEDS.map(a => `<tr>
+        <td style="white-space:nowrap"><i class="fi">${flagSvg(a.iso)}</i> ${esc(byIso[a.iso] ? byIso[a.iso].name : a.iso)}</td>
+        <td>${esc(a.name)}</td>
+        <td><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, "").slice(0, 46))}</a></td>
+        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "page" ? "src-unofficial" : "st-rejected"}">${
+          t(a.kind === "rss" ? "src.kRss" : a.kind === "page" ? "src.kPage" : "src.kDown")}</span></td>
+        <td class="num">${a.entries || "-"}</td></tr>`).join("")}
+      </tbody></table></div>
+  </div></div>` : ""}
   <div class="card"><div class="bd">
     <div class="filters">
       <select id="sFilter" aria-label="Filter by scope"><option value="">${t("src.allScopes")}</option>${

@@ -155,13 +155,46 @@ def resolve_publish_date(source_type, feed_date, html, model_date):
 # in. Metadata is preferred, but plenty of institutional pages carry the date
 # only in the body - the ANSSI NIS 2 help centre is one.
 TEXT_DATE = [
+    # French
     r"[Mm]is\s+à\s+jour\s+le\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
     r"[Dd]erni[èe]re\s+mise\s+à\s+jour\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
-    r"[Pp]ubli[ée]\s+le\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Pp]ubli[ée]e?\s+le\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    # English
     r"[Ll]ast\s+updated?\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
     r"[Ll]ast\s+updated?\s*:?\s*(\d{4}-\d{2}-\d{2})",
+    r"[Pp]ublished\s*(?:on)?\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    # German
     r"[Zz]uletzt\s+aktualisiert\s*:?\s*(\d{1,2}\.\d{1,2}\.\d{4})",
+    r"[Vv]er(?:ö|oe)ffentlicht\s*(?:am)?\s*:?\s*(\d{1,2}\.\d{1,2}\.\d{4})",
+    # Dutch
     r"[Ll]aatst\s+bijgewerkt\s*:?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{4})",
+    r"[Gg]epubliceerd\s*(?:op)?\s*:?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{4})",
+    # Spanish / Portuguese
+    r"[Úú]ltima\s+actualizaci[óo]n\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Úú]ltima\s+atualiza[çc][ãa]o\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Pp]ublicad[oa]\s*(?:el|em)?\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    # Italian
+    r"[Uu]ltimo\s+aggiornamento\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Pp]ubblicato\s*(?:il)?\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    # Polish / Czech / Slovak
+    r"[Oo]statnia\s+aktualizacja\s*:?\s*(\d{1,2}[.\-]\d{1,2}[.\-]\d{4})",
+    r"[Pp]osledn[íi]\s+aktualizace\s*:?\s*(\d{1,2}\.\s?\d{1,2}\.\s?\d{4})",
+    r"[Pp]osledn[áa]\s+aktualiz[áa]cia\s*:?\s*(\d{1,2}\.\s?\d{1,2}\.\s?\d{4})",
+    # Nordics
+    r"[Ss]enast\s+uppdaterad\s*:?\s*(\d{4}-\d{2}-\d{2})",
+    r"[Ss]idst\s+opdateret\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Ss]ist\s+oppdatert\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Pp][äa]ivitetty\s*:?\s*(\d{1,2}\.\d{1,2}\.\d{4})",
+    # Baltics / Hungarian / Romanian / Greek / Bulgarian / Croatian / Slovene
+    r"[Vv]iimati\s+uuendatud\s*:?\s*(\d{1,2}\.\d{1,2}\.\d{4})",
+    r"[Pp][ēe]d[ēe]jo\s+reizi\s+atjaunin[āa]ts\s*:?\s*(\d{1,2}[./]\d{1,2}[./]\d{4})",
+    r"[Aa]tnaujinta\s*:?\s*(\d{4}-\d{2}-\d{2})",
+    r"[Uu]tolj[áa]ra\s+friss[íi]tve\s*:?\s*(\d{4})\.\s?(\d{1,2})\.\s?(\d{1,2})",
+    r"[Uu]ltima\s+actualizare\s*:?\s*(\d{1,2}[./]\d{1,2}[./]\d{4})",
+    r"Τελευταία\s+ενημέρωση\s*:?\s*(\d{1,2}[/.]\d{1,2}[/.]\d{4})",
+    r"[Пп]оследна\s+актуализация\s*:?\s*(\d{1,2}[.\-]\d{1,2}[.\-]\d{4})",
+    r"[Pp]osljednje\s+a[žz]uriranje\s*:?\s*(\d{1,2}\.\s?\d{1,2}\.\s?\d{4})",
+    r"[Zz]adnja\s+posodobitev\s*:?\s*(\d{1,2}\.\s?\d{1,2}\.\s?\d{4})",
 ]
 
 # A page that indexes other pages is not a publication. Treating one as an

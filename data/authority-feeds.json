@@ -1,0 +1,270 @@
+{
+ "authorities": {
+  "AT": {
+   "authority": "nis.gv.at / CERT.at",
+   "site": "https://www.cert.at",
+   "status": "page-only",
+   "url": "https://www.cert.at",
+   "entries": 0,
+   "dated": 0
+  },
+  "BE": {
+   "authority": "CCB - Centre for Cybersecurity Belgium",
+   "site": "https://ccb.belgium.be",
+   "status": "ok",
+   "url": "https://cert.be/en/rss",
+   "title": "CCB Advisories Feed",
+   "entries": 10,
+   "dated": 10,
+   "language": "en"
+  },
+  "BG": {
+   "authority": "Bulgarian cybersecurity authority",
+   "site": "https://e-gov.bg",
+   "status": "page-only",
+   "url": "https://e-gov.bg",
+   "entries": 0,
+   "dated": 0
+  },
+  "CY": {
+   "authority": "DSA - Digital Security Authority",
+   "site": "https://dsa.cy",
+   "status": "page-only",
+   "url": "https://dsa.cy",
+   "entries": 0,
+   "dated": 0
+  },
+  "CZ": {
+   "authority": "NUKIB",
+   "site": "https://nukib.gov.cz",
+   "status": "ok",
+   "url": "https://nukib.gov.cz/rss.xml",
+   "title": "Národní úřad pro kybernetickou a informační bezpečnost",
+   "entries": 15,
+   "dated": 15,
+   "language": "cs-cz"
+  },
+  "DE": {
+   "authority": "BSI",
+   "site": "https://www.bsi.bund.de",
+   "status": "page-only",
+   "url": "https://www.bsi.bund.de",
+   "entries": 0,
+   "dated": 0
+  },
+  "DK": {
+   "authority": "CFCS - Center for Cybersikkerhed",
+   "site": "https://www.cfcs.dk",
+   "status": "ok",
+   "url": "https://samsik.dk/feed/",
+   "title": "Styrelsen for Samfundssikkerhed",
+   "entries": 10,
+   "dated": 10,
+   "language": "da-DK"
+  },
+  "EE": {
+   "authority": "RIA - Information System Authority",
+   "site": "https://www.ria.ee",
+   "status": "page-only",
+   "url": "https://www.ria.ee",
+   "entries": 0,
+   "dated": 0
+  },
+  "ES": {
+   "authority": "INCIBE",
+   "site": "https://www.incibe.es",
+   "status": "ok",
+   "url": "https://www.incibe.es/rss.xml",
+   "title": "INCIBE",
+   "entries": 10,
+   "dated": 10,
+   "language": "es"
+  },
+  "FI": {
+   "authority": "Traficom / NCSC-FI",
+   "site": "https://www.kyberturvallisuuskeskus.fi",
+   "status": "ok",
+   "url": "https://www.kyberturvallisuuskeskus.fi/feed/rss/fi",
+   "title": "www.kyberturvallisuuskeskus.fi RSS",
+   "entries": 500,
+   "dated": 500,
+   "language": ""
+  },
+  "FR": {
+   "authority": "ANSSI",
+   "site": "https://cyber.gouv.fr",
+   "status": "ok",
+   "url": "https://cyber.gouv.fr/actualites/rss/",
+   "title": "Les actualités",
+   "entries": 20,
+   "dated": 20,
+   "language": "fr"
+  },
+  "GB": {
+   "authority": "NCSC UK",
+   "site": "https://www.ncsc.gov.uk",
+   "status": "ok",
+   "url": "https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml",
+   "title": "News Feed",
+   "entries": 20,
+   "dated": 20,
+   "language": "en"
+  },
+  "GR": {
+   "authority": "National Cybersecurity Authority",
+   "site": "https://mindigital.gr",
+   "status": "unreachable",
+   "url": "https://mindigital.gr",
+   "entries": 0,
+   "dated": 0
+  },
+  "HR": {
+   "authority": "ZSIS / CERT.hr",
+   "site": "https://www.cert.hr",
+   "status": "ok",
+   "url": "https://www.cert.hr/feed/",
+   "title": "CERT.hr",
+   "entries": 10,
+   "dated": 10,
+   "language": "hr"
+  },
+  "HU": {
+   "authority": "NBSZ NKI",
+   "site": "https://nki.gov.hu",
+   "status": "page-only",
+   "url": "https://nki.gov.hu",
+   "entries": 0,
+   "dated": 0
+  },
+  "IE": {
+   "authority": "NCSC Ireland",
+   "site": "https://www.ncsc.gov.ie",
+   "status": "page-only",
+   "url": "https://www.ncsc.gov.ie",
+   "entries": 0,
+   "dated": 0
+  },
+  "IT": {
+   "authority": "ACN",
+   "site": "https://www.acn.gov.it",
+   "status": "page-only",
+   "url": "https://www.acn.gov.it",
+   "entries": 0,
+   "dated": 0
+  },
+  "LT": {
+   "authority": "NKSC",
+   "site": "https://www.nksc.lt",
+   "status": "unreachable",
+   "url": "https://www.nksc.lt",
+   "entries": 0,
+   "dated": 0
+  },
+  "LU": {
+   "authority": "ILR / GOVCERT.LU",
+   "site": "https://www.govcert.lu",
+   "status": "ok",
+   "url": "https://www.govcert.lu/index.xml",
+   "title": "GOVCERT.LU",
+   "entries": 191,
+   "dated": 191,
+   "language": "en"
+  },
+  "LV": {
+   "authority": "CERT.LV",
+   "site": "https://cert.lv",
+   "status": "ok",
+   "url": "https://cert.lv/lv/feed/atom/viss",
+   "title": "CERT.LV",
+   "entries": 30,
+   "dated": 30,
+   "language": ""
+  },
+  "MT": {
+   "authority": "MDIA / CIP",
+   "site": "https://mdia.gov.mt",
+   "status": "ok",
+   "url": "https://mdia.gov.mt/feed",
+   "title": "MDIA",
+   "entries": 10,
+   "dated": 10,
+   "language": "en-GB"
+  },
+  "NL": {
+   "authority": "NCSC-NL",
+   "site": "https://www.ncsc.nl",
+   "status": "ok",
+   "url": "https://feeds.ncsc.nl/nieuws.rss",
+   "title": "Nationaal Cyber Security Centrum - Nieuwsberichten",
+   "entries": 328,
+   "dated": 328,
+   "language": "nl"
+  },
+  "NO": {
+   "authority": "NSM",
+   "site": "https://nsm.no",
+   "status": "ok",
+   "url": "https://nsm.no/rss/nyheter-fra-nsm/",
+   "title": "Nyheter fra NSM",
+   "entries": 10,
+   "dated": 10,
+   "language": ""
+  },
+  "PL": {
+   "authority": "CSIRT NASK / CERT Polska",
+   "site": "https://cert.pl",
+   "status": "ok",
+   "url": "https://cert.pl/atom.xml",
+   "title": "CERT Polska",
+   "entries": 100,
+   "dated": 100,
+   "language": ""
+  },
+  "PT": {
+   "authority": "CNCS",
+   "site": "https://www.cncs.gov.pt",
+   "status": "unreachable",
+   "url": "https://www.cncs.gov.pt",
+   "entries": 0,
+   "dated": 0
+  },
+  "RO": {
+   "authority": "DNSC",
+   "site": "https://dnsc.ro",
+   "status": "ok",
+   "url": "https://dnsc.ro/feed",
+   "title": "DNSC",
+   "entries": 10,
+   "dated": 10,
+   "language": "ro-ro"
+  },
+  "SE": {
+   "authority": "MSB / CERT-SE",
+   "site": "https://www.cert.se",
+   "status": "ok",
+   "url": "https://www.cert.se/feed/atom.xml",
+   "title": "CERT-SE",
+   "entries": 20,
+   "dated": 20,
+   "language": "sv-SE"
+  },
+  "SI": {
+   "authority": "SI-CERT / URSIV",
+   "site": "https://www.cert.si",
+   "status": "ok",
+   "url": "https://www.cert.si/feed",
+   "title": "SI CERT",
+   "entries": 10,
+   "dated": 10,
+   "language": "sl-SI"
+  },
+  "SK": {
+   "authority": "NBU SK",
+   "site": "https://www.nbu.gov.sk",
+   "status": "page-only",
+   "url": "https://www.nbu.gov.sk",
+   "entries": 0,
+   "dated": 0
+  }
+ }
+}

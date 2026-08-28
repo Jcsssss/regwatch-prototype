@@ -71,6 +71,28 @@ CELL_ROUTES = [
 MAX_TARGET_CELLS = 6
 
 
+
+# --------------------------------------------------------------------------- #
+# Rows written before the agent learned to tell an article from an index.
+#
+# The agent now refuses to file a listing page, but it only re-examines a page
+# when that page changes - so the rows already in tblVeille stay. Rather than
+# leave a third of the queue pointing at FAQ categories and authority home
+# pages, the same URL test is applied on the way out.
+#
+# URL only, no refetch: the shapes below are unambiguous, and a converter that
+# needed the network would stop being runnable offline.
+# --------------------------------------------------------------------------- #
+INDEX_URL = re.compile(
+    r"/(category|categories|policies|policy|topics?|tags?|search|index)(/|$)"
+    r"|/(news|actualites|aktuelles|nieuws|home)/?$"
+    r"|/portale/home|/web/[a-z-]+/?$", re.I)
+
+
+def is_index_url(url):
+    return bool(INDEX_URL.search(url or ""))
+
+
 def load_excerpts():
     """Opening lines of each article, fetched by tools/fetch_excerpts.py.
 
@@ -271,7 +293,7 @@ def first(record, *headers):
 
 
 def build_items(rows):
-    items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0, "with_cells": 0}
+    items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0, "with_cells": 0, "index_pages": 0, "index_urls": {}}
     cellmap = load_cellmap()
     excerpts = load_excerpts()
     trans = load_translations()
@@ -288,6 +310,14 @@ def build_items(rows):
     for record in rows:
         title = first(record, "Titre")
         if not title:
+            continue
+
+        # A listing page is not a publication; keep it out of the queue.
+        page_kind = first(record, "Type de page")
+        url = first(record, "URL source")
+        if page_kind == "index" or (not page_kind and is_index_url(url)):
+            report["index_pages"] += 1
+            report["index_urls"][url] = report["index_urls"].get(url, 0) + 1
             continue
 
         # Tier 1 : l'agent patché écrit une colonne ISO. On la préfère à la table
@@ -396,6 +426,11 @@ def main():
     print("%d watch items -> %s" % (len(items), json_path.relative_to(ROOT)))
     print("%d watch items -> %s" % (len(items), js_path.relative_to(ROOT)))
     print("  %d item(s) carry target cells in the comparative workbook" % report["with_cells"])
+    if report["index_pages"]:
+        print("  %d ligne(s) écartées : page d'index, pas une publication"
+              % report["index_pages"])
+        for u, n in sorted(report["index_urls"].items(), key=lambda kv: -kv[1])[:8]:
+            print("      %3dx %s" % (n, u[:74]))
     if report["eu_wide"]:
         print("  note: %d EU-wide item(s) carry iso 'EU' - RegWatch has no EU record yet"
               % report["eu_wide"])
