@@ -1,4 +1,4 @@
-<title>RegWatch — NIS 2 Transposition Tracker</title>
+<title>RegWatch - NIS 2 Transposition Tracker</title>
 <style>
 /* ================= Wavestone design tokens =================
    Charte: Background 2 / titles #451DC7 · Accent 1 #04F06A · Accent 2 #CAFEE0
@@ -9,7 +9,7 @@
   --ink:#16122e; --ink2:#413b60; --muted:#6f6b8c; --line:#e4e1f0; --line2:#cfcae1;
   --accent:#451DC7; --accent2:#250F6B; --accent-soft:#ece7fb; --accent-ink:#ffffff;
   --green:#04F06A; --green-soft:#CAFEE0;
-  --m1:#b3a0f4; --m2:#8b64e8; --m3:#5a2fd0; --m4:#250F6B; --untracked:#d4d2e0;
+  --m1:#b3a0f4; --m2:#3d1fd1; --m3:#04F06A; --m4:#00a551; --untracked:#d4d2e0;
   --map-stroke:#f5f4fa; --map-hover:#16122e;
   --ok:#0b6e3d; --warn:#7a5400; --bad:#d5163b;
   --st-ok-bg:#CAFEE0; --st-ok-ink:#0d5c33;
@@ -27,7 +27,7 @@
     --ink:#eceaf7; --ink2:#c2bedd; --muted:#8d89ad; --line:#2e2850; --line2:#3e3766;
     --accent:#a495f5; --accent2:#cbbaff; --accent-soft:#2d2361; --accent-ink:#17102f;
     --green:#04F06A; --green-soft:#143a28;
-    --m1:#584086; --m2:#7a61c4; --m3:#a186ee; --m4:#cbbaff; --untracked:#322c52;
+    --m1:#9c8ae0; --m2:#6b4ae8; --m3:#04F06A; --m4:#12b862; --untracked:#322c52;
     --map-stroke:#131024; --map-hover:#eceaf7;
     --ok:#37e388; --warn:#f0c05a; --bad:#ff7a8f;
     --st-ok-bg:#143a28; --st-ok-ink:#37e388;
@@ -43,7 +43,7 @@
   --ink:#16122e; --ink2:#413b60; --muted:#6f6b8c; --line:#e4e1f0; --line2:#cfcae1;
   --accent:#451DC7; --accent2:#250F6B; --accent-soft:#ece7fb; --accent-ink:#ffffff;
   --green:#04F06A; --green-soft:#CAFEE0;
-  --m1:#b3a0f4; --m2:#8b64e8; --m3:#5a2fd0; --m4:#250F6B; --untracked:#d4d2e0;
+  --m1:#b3a0f4; --m2:#3d1fd1; --m3:#04F06A; --m4:#00a551; --untracked:#d4d2e0;
   --map-stroke:#f5f4fa; --map-hover:#16122e;
   --ok:#0b6e3d; --warn:#7a5400; --bad:#d5163b;
   --st-ok-bg:#CAFEE0; --st-ok-ink:#0d5c33;
@@ -58,7 +58,7 @@
   --ink:#eceaf7; --ink2:#c2bedd; --muted:#8d89ad; --line:#2e2850; --line2:#3e3766;
   --accent:#a495f5; --accent2:#cbbaff; --accent-soft:#2d2361; --accent-ink:#17102f;
   --green:#04F06A; --green-soft:#143a28;
-  --m1:#584086; --m2:#7a61c4; --m3:#a186ee; --m4:#cbbaff; --untracked:#322c52;
+  --m1:#9c8ae0; --m2:#6b4ae8; --m3:#04F06A; --m4:#12b862; --untracked:#322c52;
   --map-stroke:#131024; --map-hover:#eceaf7;
   --ok:#37e388; --warn:#f0c05a; --bad:#ff7a8f;
   --st-ok-bg:#143a28; --st-ok-ink:#37e388;
@@ -84,7 +84,9 @@ button{font-family:inherit}
 header.app{position:sticky;top:0;z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
 header.app::before{content:"";display:block;height:3px;background:linear-gradient(90deg,#451DC7 0%,#250F6B 58%,#04F06A 100%)}
 .hd-row{max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.brand{display:flex;align-items:baseline;gap:10px;margin-right:6px}
+.brand{display:flex;align-items:baseline;gap:10px;margin-right:6px;text-decoration:none;border-radius:6px}
+.brand:hover{text-decoration:none}
+.brand:hover .logo{opacity:.78}
 .brand .logo{font-weight:750;font-size:19px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
 .brand .logo b{color:var(--accent);font-weight:750}
 .brand .by{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.02em;white-space:nowrap}
@@ -340,16 +342,73 @@ footer{max-width:1240px;margin:0 auto;padding:0 24px 40px;color:var(--muted);fon
 footer .line{border-top:1px solid var(--line);padding-top:14px;max-width:none}
 h1.pg{font-size:21px;font-weight:750;letter-spacing:-.01em;margin:2px 0 4px;color:var(--accent)}
 p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
+
+/* ================= Mobile =================
+   Two breakpoints. 760px is the tablet/large-phone fold, where the two-column
+   grids and the header row stop fitting. 520px is the phone, where anything
+   with a fixed first column has to stack and the chrome has to shrink.
+   Tables keep their horizontal scroll rather than being reflowed: a comparison
+   table that wraps stops being comparable. */
+@media(max-width:760px){
+  .hd-row{padding:9px 14px;gap:10px}
+  nav.tabs{padding:0 14px}
+  main{padding:16px 14px 48px}
+  .brand .by{display:none}
+  .reg-pills{order:3;width:100%;overflow-x:auto;padding-bottom:2px}
+  .hd-right{margin-left:auto;gap:8px}
+  .tiles{gap:10px}
+  .facts{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+  .cty-head{gap:12px}
+  .filters input[type=search]{min-width:100%}
+  .filters select,.filters .btn{flex:1 1 auto}
+  .ctiles{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+  .ctile-flag{width:54px;height:41px}
+}
+@media(max-width:520px){
+  .hd-row{padding:8px 12px}
+  nav.tabs{padding:0 12px}
+  nav.tabs a{padding:8px 10px;font-size:13px}
+  main{padding:14px 12px 40px}
+  .brand .logo{font-size:17px}
+  .brand .proto{display:none}
+  .tiles{grid-template-columns:1fr}
+  .tile .v{font-size:23px}
+  .card .bd{padding:11px 12px 14px}
+  .card .cap{padding:11px 12px 0}
+  /* Anything with a fixed label column stacks: 190px of label leaves nothing
+     for the value on a 360px screen. */
+  .q-cells-row,.q-agent-row{grid-template-columns:1fr;gap:2px}
+  .q-agent-row{padding:6px 11px}
+  .q-cells-row b,.q-agent-row b{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+  .q-card{padding:12px 13px}
+  .q-meta{gap:9px;font-size:12px}
+  .q-open{width:100%;justify-content:center;margin-top:2px}
+  .q-actions{gap:7px}
+  .q-actions .btn{flex:1 1 auto;justify-content:center}
+  .form-grid{grid-template-columns:1fr}
+  .ctiles{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}
+  .ctile-sub{display:none}
+  .cty-head .upd{width:100%;text-align:left}
+  .wb-block{padding:11px 12px}
+  .lang-switch{margin-left:6px}
+  .back-big{width:100%;text-align:center}
+}
+/* Touch targets: 44px is the accessibility floor, and a validator tapping
+   Validate/Reject on a phone must not hit the wrong one. */
+@media(hover:none){
+  .btn,.q-open,.lang-switch button{min-height:38px}
+  .ctile{min-height:96px}
+}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
 <header class="app">
   <div class="hd-row">
-    <div class="brand">
+    <a class="brand" href="#/overview" aria-label="RegWatch — accueil">
       <span class="logo">Reg<b>Watch</b></span>
       <span class="by">by Wavestone</span>
       <span class="proto">Prototype</span>
-    </div>
+    </a>
     <div class="reg-pills" role="tablist" aria-label="Regulation">
       <button class="reg-pill active">NIS 2</button>
       <button class="reg-pill soon" title="Planned module — same data model" disabled>DORA</button>
