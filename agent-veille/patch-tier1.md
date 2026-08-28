@@ -168,3 +168,39 @@ de 2024.
 
 `page_text_date()` lit ces mentions en français, anglais, allemand et
 néerlandais. Sur l'exemple ci-dessus, la date remonte correctement à 2024-10-24.
+
+
+---
+
+## 7. Une page d'index devient l'annuaire des articles
+
+Écarter une page de sommaire évite un faux article, mais perd l'information : la
+page a changé parce qu'un vrai article y est paru. `harvest_links()` en lit les
+liens, l'agent va chercher chacun, le classe, et ce sont les ARTICLES qui
+entrent dans la file.
+
+```python
+page_kind, page_why = classify_page(url, response.text)
+if page_kind == "index":
+    web_state[url] = page_hash          # valider tout de suite, sinon on
+    web_texts[url] = page_text          # recolterait la page a chaque run
+    ... harvest_links(...) -> fetch -> classify -> items
+```
+
+Les articles récoltés portent `pending_hash = None` : ils suivent alors le
+dédoublonnage par URL de la boucle principale, exactement comme une entrée de
+flux. `harvested_urls` dans `state.json` évite de re-examiner un lien déjà vu,
+et `HARVEST_MAX_PER_RUN` (8 par défaut) empêche un run de se transformer en
+aspirateur.
+
+C'est aussi ce qui remplace le flux RSS pour les autorités qui n'en publient
+pas : lire les liens de leur page d'actualités revient à fabriquer le flux
+manquant.
+
+Mesuré sur un run réel : 6 pages d'index ont produit 45 liens, dont 5 articles
+retenus - trois du NÚKIB tchèque avec leur vraie date lue sur la page
+(2026-08-21, 2026-08-20, 2026-07-29).
+
+Limite connue : sur nis.gv.at, la récolte ramène des pages de FAQ. Une page de
+FAQ est une feuille avec un slug, donc indistinguable d'un article par la forme
+seule. Le filtre de pertinence IA reste la seconde barrière.

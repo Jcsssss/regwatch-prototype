@@ -4,6 +4,414 @@
    demo WATCH_QUEUE in data_c4.js when it is not. Do not edit by hand. ---- */
 const WATCH_QUEUE_AGENT = [
   {
+    "id": "REG-20260828160929-007",
+    "detected": "2026-08-28",
+    "iso": "FR",
+    "title": "France - Retard de transposition de NIS2 sur fond de cyberattaque de la DGFiP et bilan officiel porté à 678 000 victimes",
+    "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMi6gJBVV95cUxPaF9QaVk0SXVHZ3IzV1JVNTBXUXAwcnhMZGk0U01LQmxOR0k4TGtjVFZKbGZBZlJoaGt2ZjhwWWduWVNVU29vdGFqV04tSW9oOG81Y0dtWnlwd0pwSFJrd0pGUHg5R0FXZkFpZEQtWHdlWXQxM1hxcFBRNjNEQTF2UURld3ZQbnJybnY1ekVLZ0cxbDdWNmlYcjJRY255bE1Pbi1tX3lOV2dIYl9wNm9jQzQtVGZRQklnZWxja0VvalAzbWduTWxWaWl0UHR3V0RRYmdxY2lpMGVPZHl0ekgxeTdIQXloX0FBWmozdDRNUWV3OXQwQjZ4RDB4Yl9FVGhtbDlTaVFrZktqT3dpLTFSNzR6VmI2MThHcUtCbU1sY0xvOVBZWlZ0OFVaS1BSUlpJc0FUUy1yQTVTaldXMlNyUXlxNV9YTVJZY0F4a1BQamY5RXlZdGotek9GUEFxVGs0d2NFS3hsMVlxUQ?oc=5\" target=\"_blank\">Cyberattaque de la DGFiP : le bilan offic […]",
+    "summary": "L'article met en avant un retard dans la transposition de la directive NIS2 en France, dans un contexte de cyberattaque visant la DGFiP. Le bilan officiel évoqué atteint 678 000 victimes, très en deçà des millions de données revendiquées par l'attaquant. La nouveauté réglementaire réside surtout dans l'alerte sur le décalage de mise en conformité nationale avec NIS2, alors que l'incident illustre les enjeux de gouvernance, de notification et de résilience cyber.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Gouvernement français; DGFiP; L'Usine Digitale",
+      "url": "https://news.google.com/rss/articles/CBMi6gJBVV95cUxPaF9QaVk0SXVHZ3IzV1JVNTBXUXAwcnhMZGk0U01LQmxOR0k4TGtjVFZKbGZBZlJoaGt2ZjhwWWduWVNVU29vdGFqV04tSW9oOG81Y0dtWnlwd0pwSFJrd0pGUHg5R0FXZkFpZEQtWHdlWXQxM1hxcFBRNjNEQTF2UURld3ZQbnJybnY1ekVLZ0cxbDdWNmlYcjJRY255bE1Pbi1tX3lOV2dIYl9wNm9jQzQtVGZRQklnZWxja0VvalAzbWduTWxWaWl0UHR3V0RRYmdxY2lpMGVPZHl0ekgxeTdIQXloX0FBWmozdDRNUWV3OXQwQjZ4RDB4Yl9FVGhtbDlTaVFrZktqT3dpLTFSNzR6VmI2MThHcUtCbU1sY0xvOVBZWlZ0OFVaS1BSUlpJc0FUUy1yQTVTaldXMlNyUXlxNV9YTVJZY0F4a1BQamY5RXlZdGotek9GUEFxVGs0d2NFS3hsMVlxUQ?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "Surveiller la publication du texte français de transposition NIS2; cartographier les écarts de conformité actuels; vérifier les procédures de détection, réponse et notification d'incident; sensibiliser les équipes métiers et IT aux futures obligations; suivre les enseignements de l'incident DGFiP pour renforcer la résilience",
+    "agent": {
+      "score": 6,
+      "justification": "L’article traite d’un retard de transposition de NIS2 en France, sujet directement réglementaire pour la veille. Le reste du contenu est surtout une actualité cyber, mais le lien avec la transposition NIS2 le rend pertinent.",
+      "obligations": "Anticiper les exigences de la transposition NIS2 en France; renforcer la gestion des incidents et la capacité de notification; mettre à jour l'analyse de risques et les mesures de sécurité; préparer la gouvernance de crise et la traçabilité des impacts; suivre les obligations nationales à venir dès publication du texte de transposition",
+      "impact": "Moyen",
+      "entities": "Administrations publiques françaises; opérateurs essentiels et entités importantes au sens de NIS2; organismes traitant des données sensibles; directions cybersécurité et conformité",
+      "publishedOn": "",
+      "dateOrigin": "inconnue",
+      "inForceOn": "2026-08-17",
+      "textType": "actualité"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F13"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260828160820-006-EU",
+    "detected": "2026-08-28",
+    "iso": "EU",
+    "title": "NÚKIB soutient les recommandations internationales 2026 sur le SBOM pour améliorer la transparence des composants logiciels",
+    "excerpt": "('NÃ¡rodnÃ\\xad ÃºÅ\\x99ad pro kybernetickou aÂ\\xa0informaÄ\\x8dnÃ\\xad bezpeÄ\\x8dnost - NÃ\\x9aKIB podpoÅ\\x99il mezinÃ¡rodnÃ\\xad doporuÄ\\x8denÃ\\xad pro lepÅ¡Ã\\xad pÅ\\x99ehled o sloÅ¾enÃ\\xad softwaru', 'NÃ\\x9aKIB Infoservis Aktuality NÃ\\x9aKIB podpoÅ\\x99il mezinÃ¡rodnÃ\\xad doporuÄ\\x8denÃ\\xad pro lepÅ¡Ã\\xad pÅ\\x99ehled o sloÅ¾enÃ\\xad softwaru NÃ\\x9aKIB podpoÅ\\x99il mezinÃ¡rodnÃ\\xad doporuÄ\\x8denÃ\\xad pro lepÅ¡Ã\\xad pÅ\\x99ehled o sloÅ¾enÃ\\xad softwaru 29. […]",
+    "summary": "Le NÚKIB annonce son soutien à une initiative internationale menée par la CISA visant à définir des éléments minimaux pour un Software Bill of Materials (SBOM). Le document précise des attentes pratiques sur l'identification des composants, les versions, les licences, l'intégrité, la mise à jour continue, l'exhaustivité et la lisibilité machine. L'objectif est de permettre aux organisations de mieux identifier les vulnérabilités affectant leurs logiciels et de renforcer la gestion des risques de la chaîne d'approvisionnement. Le texte est présenté comme une recommandation de référence, sans caractère juridiquement contraignant, mais utile pour les éditeurs, acheteurs et exploitants de logiciels.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "NÚKIB; CISA",
+      "url": "https://nukib.gov.cz/cs/infoservis/aktuality/2445-nukib-podporil-mezinarodni-doporuceni-pro-lepsi-prehled-o-slozeni-softwaru",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Évaluer la maturité SBOM des logiciels critiques; demander des SBOM aux fournisseurs et les intégrer aux processus d'achat; définir un format et des exigences minimales internes; organiser la veille vulnérabilités à partir des SBOM; aligner les exigences fournisseurs avec les attentes NIS2 et CRA",
+    "agent": {
+      "score": 6,
+      "justification": "Actualité récente d’une autorité nationale (NÚKIB) sur des recommandations SBOM liées à la transparence logicielle et à la gestion des risques de chaîne d’approvisionnement, sujets pertinents pour NIS2 et le CRA.",
+      "obligations": "Pas d'obligation légale immédiate; intégrer ou exiger un SBOM complet, à jour et lisible par machine; identifier clairement les composants, versions, licences et informations d'intégrité; mettre en place un suivi des vulnérabilités basé sur le SBOM; renforcer la gouvernance des risques fournisseurs et de la transparence logicielle",
+      "impact": "Moyen",
+      "entities": "Éditeurs de logiciels; intégrateurs; acheteurs de logiciels; exploitants de systèmes d'information; organisations soumises à NIS2; acteurs de la chaîne d'approvisionnement logicielle; secteur public et privé",
+      "publishedOn": "2026-07-29",
+      "dateOrigin": "page",
+      "inForceOn": "2026-07-29",
+      "textType": "actualité institutionnelle"
+    },
+    "targetCells": []
+  },
+  {
+    "id": "REG-20260828160820-006-CZ",
+    "detected": "2026-08-28",
+    "iso": "CZ",
+    "title": "NÚKIB soutient les recommandations internationales 2026 sur le SBOM pour améliorer la transparence des composants logiciels",
+    "excerpt": "('NÃ¡rodnÃ\\xad ÃºÅ\\x99ad pro kybernetickou aÂ\\xa0informaÄ\\x8dnÃ\\xad bezpeÄ\\x8dnost - NÃ\\x9aKIB podpoÅ\\x99il mezinÃ¡rodnÃ\\xad doporuÄ\\x8denÃ\\xad pro lepÅ¡Ã\\xad pÅ\\x99ehled o sloÅ¾enÃ\\xad softwaru', 'NÃ\\x9aKIB Infoservis Aktuality NÃ\\x9aKIB podpoÅ\\x99il mezinÃ¡rodnÃ\\xad doporuÄ\\x8denÃ\\xad pro lepÅ¡Ã\\xad pÅ\\x99ehled o sloÅ¾enÃ\\xad softwaru NÃ\\x9aKIB podpoÅ\\x99il mezinÃ¡rodnÃ\\xad doporuÄ\\x8denÃ\\xad pro lepÅ¡Ã\\xad pÅ\\x99ehled o sloÅ¾enÃ\\xad softwaru 29. […]",
+    "summary": "Le NÚKIB annonce son soutien à une initiative internationale menée par la CISA visant à définir des éléments minimaux pour un Software Bill of Materials (SBOM). Le document précise des attentes pratiques sur l'identification des composants, les versions, les licences, l'intégrité, la mise à jour continue, l'exhaustivité et la lisibilité machine. L'objectif est de permettre aux organisations de mieux identifier les vulnérabilités affectant leurs logiciels et de renforcer la gestion des risques de la chaîne d'approvisionnement. Le texte est présenté comme une recommandation de référence, sans caractère juridiquement contraignant, mais utile pour les éditeurs, acheteurs et exploitants de logiciels.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "NÚKIB; CISA",
+      "url": "https://nukib.gov.cz/cs/infoservis/aktuality/2445-nukib-podporil-mezinarodni-doporuceni-pro-lepsi-prehled-o-slozeni-softwaru",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Évaluer la maturité SBOM des logiciels critiques; demander des SBOM aux fournisseurs et les intégrer aux processus d'achat; définir un format et des exigences minimales internes; organiser la veille vulnérabilités à partir des SBOM; aligner les exigences fournisseurs avec les attentes NIS2 et CRA",
+    "agent": {
+      "score": 6,
+      "justification": "Actualité récente d’une autorité nationale (NÚKIB) sur des recommandations SBOM liées à la transparence logicielle et à la gestion des risques de chaîne d’approvisionnement, sujets pertinents pour NIS2 et le CRA.",
+      "obligations": "Pas d'obligation légale immédiate; intégrer ou exiger un SBOM complet, à jour et lisible par machine; identifier clairement les composants, versions, licences et informations d'intégrité; mettre en place un suivi des vulnérabilités basé sur le SBOM; renforcer la gouvernance des risques fournisseurs et de la transparence logicielle",
+      "impact": "Moyen",
+      "entities": "Éditeurs de logiciels; intégrateurs; acheteurs de logiciels; exploitants de systèmes d'information; organisations soumises à NIS2; acteurs de la chaîne d'approvisionnement logicielle; secteur public et privé",
+      "publishedOn": "2026-07-29",
+      "dateOrigin": "page",
+      "inForceOn": "2026-07-29",
+      "textType": "actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Authority - P3",
+        "field": "Consolidated list of authorities",
+        "cell": "E9"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E9"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K9"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Additional texts (in support of principal text)",
+        "cell": "L9"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260828160807-005",
+    "detected": "2026-08-28",
+    "iso": "CZ",
+    "title": "Tchéquie : le NÚKIB sollicite des contributions du public pour de futurs supports d’accompagnement sur la cybersécurité",
+    "excerpt": "('NÃ¡rodnÃ\\xad ÃºÅ\\x99ad pro kybernetickou aÂ\\xa0informaÄ\\x8dnÃ\\xad bezpeÄ\\x8dnost - NÃ\\x9aKIB vyzÃ½vÃ¡ veÅ\\x99ejnost k zasÃ\\xadlÃ¡nÃ\\xad podnÄ\\x9btÅ¯ k podpÅ¯rnÃ½m materiÃ¡lÅ¯m', 'NÃ\\x9aKIB Infoservis Aktuality NÃ\\x9aKIB vyzÃ½vÃ¡ veÅ\\x99ejnost k zasÃ\\xadlÃ¡nÃ\\xad podnÄ\\x9btÅ¯ k podpÅ¯rnÃ½m materiÃ¡lÅ¯m NÃ\\x9aKIB vyzÃ½vÃ¡ veÅ\\x99ejnost k zasÃ\\xadlÃ¡nÃ\\xad podnÄ\\x9btÅ¯ k podpÅ¯rnÃ½m materiÃ¡lÅ¯m 20. […]",
+    "summary": "Le NÚKIB annonce vouloir enrichir ses supports d’accompagnement sur les exigences de la réglementation cybersécurité en Tchéquie. L’autorité invite les professionnels et le grand public à signaler les thèmes, questions, méthodologies et exemples pratiques qui leur manquent afin d’orienter la rédaction de futurs guides, recommandations et FAQ. Il s’agit d’une démarche de consultation non normative, sans nouvelle obligation juridique immédiate, mais utile pour anticiper les attentes opérationnelles liées à la mise en œuvre de la réglementation, notamment NIS2.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "NÚKIB (Národní úřad pro kybernetickou a informační bezpečnost)",
+      "url": "https://nukib.gov.cz/cs/infoservis/aktuality/2452-nukib-vyzyva-verejnost-k-zasilani-podnetu-k-podpurnym-materialum",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Identifier les sujets NIS2 ou cybersécurité pour lesquels des clarifications manquent; transmettre, si pertinent, des retours au NÚKIB; suivre la publication des futurs supports pour adapter les प्रक्रédures internes et la documentation de conformité",
+    "agent": {
+      "score": 6,
+      "justification": "Actualité NUKIB liée aux supports d’accompagnement sur la réglementation cybersécurité en Tchéquie, potentiellement utile pour la mise en œuvre NIS2, mais ce n’est pas un texte normatif ni une transposition directe. C’est une demande de contributions pour de futurs guides, donc contenu de veille à surveiller.",
+      "obligations": "Aucune obligation nouvelle n’est créée par cette annonce; possibilité de contribuer en envoyant des retours à l’adresse indiquée par le NÚKIB; surveillance des futurs guides, méthodologies et FAQ qui pourraient préciser les obligations applicables",
+      "impact": "Faible",
+      "entities": "Organisations soumises ou potentiellement soumises aux exigences de cybersécurité en Tchéquie; opérateurs de services essentiels et entités importantes; équipes RSSI et conformité; prestataires de conseil en cybersécurité",
+      "publishedOn": "2026-08-20",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-20",
+      "textType": "actualité institutionnelle; consultation informelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F9"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G9"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E9"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Number of cyber requirements for EE",
+        "cell": "L9"
+      },
+      {
+        "sheet": "Authority - P3",
+        "field": "Consolidated list of authorities",
+        "cell": "E9"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E9"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260828160800-004",
+    "detected": "2026-08-28",
+    "iso": "CZ",
+    "title": "Tchéquie : publication par le NÚKIB du rapport 2025 sur l’état de la cybersécurité et rappel de l’entrée en vigueur de la loi transposant NIS2",
+    "excerpt": "('NÃ¡rodnÃ\\xad ÃºÅ\\x99ad pro kybernetickou aÂ\\xa0informaÄ\\x8dnÃ\\xad bezpeÄ\\x8dnost - NÃ\\x9aKIB vydal ZprÃ¡vu o stavu kybernetickÃ© bezpeÄ\\x8dnosti Ä\\x8cR za rok 2025. IncidentÅ¯ ubylo, sofistikovanost ÃºtoÄ\\x8dnÃ\\xadkÅ¯ roste', 'NÃ\\x9aKIB Infoservis Aktuality NÃ\\x9aKIB vydal ZprÃ¡vu o stavu kybernetickÃ© bezpeÄ\\x8dnosti Ä\\x8cR za rok 2025. IncidentÅ¯ ubylo, sofistikovanost ÃºtoÄ\\x8dnÃ\\xadkÅ¯ roste NÃ\\x9aKIB vydal ZprÃ¡vu o stavu kybernetickÃ© bezpeÄ\\x8dnosti Ä\\x8cR za rok 2025. IncidentÅ¯ ubylo, sofistikovanost ÃºtoÄ\\x8dnÃ\\xadkÅ¯ roste 21. srpen 2026 VlÃ¡da Ä\\x8ceskÃ© republiky dne 17. […]",
+    "summary": "Le NÚKIB publie son rapport 2025 sur l’état de la cybersécurité en République tchèque. Le document constate une baisse du nombre total d’incidents mais une hausse de leur sophistication, avec une forte prévalence du phishing et des attaques visant la disponibilité. Il rappelle surtout un jalon réglementaire majeur : l’entrée en vigueur le 2025-11-01 de la nouvelle loi tchèque sur la cybersécurité, qui transpose NIS2 et élargit fortement le périmètre des entités régulées. Le rapport mentionne aussi le lancement du portail NÚKIB pour centraliser les échanges et le respect des obligations légales des organisations concernées.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "NÚKIB (National Cyber and Information Security Agency)",
+      "url": "https://nukib.gov.cz/cs/infoservis/aktuality/2453-nukib-vydal-zpravu-o-stavu-kyberneticke-bezpecnosti-cr-za-rok-2025-incidentu-ubylo-sofistikovanost-utocniku-roste",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Vérifier si l’organisation entre dans le nouveau périmètre régulé;cartographier les obligations NIS2 applicables en Tchéquie;mettre à jour les procédures de notification et de gestion d’incident;renforcer les campagnes de sensibilisation et les tests anti-phishing;contrôler l’inscription et l’usage du portail NÚKIB;préparer un plan de mise en conformité documentaire et technique",
+    "agent": {
+      "score": 7,
+      "justification": "Actualité récente de l’autorité nationale NUKIB sur l’état de la cybersécurité en Tchéquie, avec mention explicite de la nouvelle loi de cybersécurité transposant NIS2, du portail NUKIB et des obligations des entités régulées. Même si c’est un rapport annuel, il contient des éléments réglementaires et de mise en œuvre NIS2.",
+      "obligations": "Se conformer à la nouvelle loi tchèque de cybersécurité transposant NIS2;utiliser le portail NÚKIB pour les communications et obligations réglementaires;renforcer la prévention du phishing et des attaques de disponibilité;tester et sensibiliser les salariés;adapter la gouvernance des incidents et la préparation opérationnelle",
+      "impact": "Fort",
+      "entities": "Opérateurs et entités régulées en République tchèque;organisations soumises à la nouvelle loi cybersécurité transposant NIS2;secteurs exposés aux obligations de notification et de conformité cyber",
+      "publishedOn": "2026-08-21",
+      "dateOrigin": "page",
+      "inForceOn": "2025-11-01",
+      "textType": "Rapport annuel;actualité réglementaire"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F10"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H10"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G10"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I10"
+      },
+      {
+        "sheet": "Authority - P3",
+        "field": "Consolidated list of authorities",
+        "cell": "E9"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E9"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260828160733-003",
+    "detected": "2026-08-28",
+    "iso": "AT",
+    "title": "Autriche : page d’information sur la directive NIS2 et le NISG",
+    "excerpt": "('NIS-2-Richtlinie - Anlaufstelle NISG', 'NIS-2-Richtlinie Informationen zum Netz- und Informationssystemsicherheitsgesetz (NISG) zur \"NIS-2-Richtlinie\" NIS-2 kurz erklärt Erklärvideos und Statements zur NIS-2-Richtlinie Allgemeine Informationen zu NIS-2 Weitere Informationen und Anlaufstellen zu NIS-2')",
+    "summary": "Page officielle autrichienne présentant des informations générales sur la directive NIS2 et le Netz- und Informationssystemsicherheitsgesetz (NISG). Le contenu renvoie vers des explications, vidéos et points de contact, sans annoncer de nouvelle obligation, échéance ou modification réglementaire précise.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Anlaufstelle NISG / portail officiel NIS.gv.at",
+      "url": "https://www.nis.gv.at/fragen-und-antworten/nis-2-richtlinie.html",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Consulter la page comme point d’entrée officiel; vérifier si l’organisation relève du champ NIS2/NISG en Autriche; suivre les mises à jour nationales et les ressources associées; préparer un suivi interne des obligations NIS2 si l’entité opère en Autriche",
+    "agent": {
+      "score": 7,
+      "justification": "Page d'information officielle autrichienne sur la directive NIS2 et le NISG, utile pour la veille réglementaire. En revanche, le contenu semble surtout général et descriptif, sans nouveauté réglementaire clairement datée.",
+      "obligations": "Aucune obligation nouvelle explicitement formulée dans ce contenu; information générale sur le cadre NIS2 et orientation vers des ressources officielles; nécessité de suivre les exigences nationales de transposition du NISG et les futures consignes applicables",
+      "impact": "Faible",
+      "entities": "Organisations soumises ou potentiellement soumises au cadre NIS2 en Autriche; opérateurs de services essentiels; entités importantes; administrations et acteurs de cybersécurité",
+      "publishedOn": "",
+      "dateOrigin": "inconnue",
+      "inForceOn": "",
+      "textType": "page institutionnelle d’information"
+    },
+    "targetCells": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F4"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G4"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Dedicated framework to NIS 2",
+        "cell": "E4"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Number of cyber requirements for EE",
+        "cell": "L4"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E4"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K4"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260828160726-002",
+    "detected": "2026-08-28",
+    "iso": "AT",
+    "title": "Autriche : FAQ officielle sur le NIS-Gesetz pour les opérateurs de services essentiels, fournisseurs de services numériques, administrations publiques et CSIRTs",
+    "excerpt": "('Fragen und Antworten - Anlaufstelle NISG', 'Fragen und Antworten Allgemeines zum NIS-Gesetz Für Betreiber wesentlicher Dienste Für Anbieter digitaler Dienste Für Einrichtungen der öffentlichen Verwaltung Computer-Notfallteams (CSIRTs) im Sinne des NIS-Gesetzes Qualifizierte Stellen')",
+    "summary": "Page FAQ officielle autrichienne présentant de manière pédagogique le cadre du NIS-Gesetz, les catégories d'entités concernées, les obligations générales, le rôle des CSIRTs et les dispositions applicables aux administrations publiques. Le contenu est surtout explicatif et sert de référence opérationnelle pour comprendre le périmètre et les exigences du dispositif NIS en Autriche.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Anlaufstelle NISG / portail officiel NIS.gv.at",
+      "url": "https://www.nis.gv.at/fragen-und-antworten.html",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Vérifier le rattachement de l'organisation au périmètre NIS2/NIS-Gesetz; comparer les exigences de la FAQ avec les mesures internes existantes; mettre à jour la cartographie des obligations et des interlocuteurs de crise; sensibiliser les équipes sécurité et conformité aux spécificités autrichiennes",
+    "agent": {
+      "score": 7,
+      "justification": "Page FAQ officielle autrichienne sur le NIS-Gesetz, couvrant les obligations, entités concernées, CSIRTs et administration publique. C’est pertinent pour la veille NIS2, même si le contenu semble surtout explicatif et potentiellement ancien/stable.",
+      "obligations": "Identifier si l'organisation relève du champ du NIS-Gesetz; comprendre les obligations de sécurité et de notification applicables; mettre en place les mesures organisationnelles et techniques attendues; coopérer avec les CSIRTs et les autorités compétentes; assurer la conformité des entités publiques concernées",
+      "impact": "Moyen",
+      "entities": "Opérateurs de services essentiels; fournisseurs de services numériques; administrations publiques; CSIRTs; entités qualifiées au sens du NIS-Gesetz",
+      "publishedOn": "",
+      "dateOrigin": "inconnue",
+      "inForceOn": "",
+      "textType": "Page FAQ institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F5"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H5"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G5"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I5"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Name and link of framework",
+        "cell": "F4"
+      },
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "field": "Framework last publication date",
+        "cell": "G4"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260828160538-001",
+    "detected": "2026-08-28",
+    "iso": "EU",
+    "title": "Commission européenne : proposition d’amendements ciblés à la directive NIS2 pour clarifier et simplifier la conformité des entreprises dans l’UE",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne indique, dans une mise à jour du 2026-07-02, avoir proposé le 2026-01-20 des amendements ciblés à la directive NIS2 dans le cadre d’un nouveau paquet cybersécurité. L’objectif affiché est de renforcer la clarté juridique et de simplifier les exigences de conformité et de gestion des risques pour les entreprises opérant dans l’UE, avec un allègement annoncé pour 28 700 entreprises dont 6 200 micro et petites entreprises. La page rappelle aussi les obligations NIS2 de fond, la transposition nationale attendue au 2024-10-17, et les procédures engagées contre plusieurs États membres pour défaut de transposition.",
+    "titleEn": "",
+    "summaryEn": "",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Vérifier le périmètre NIS2 de l’organisation; comparer les exigences nationales applicables avec la directive et les amendements proposés; mettre à jour l’analyse de risques, les procédures de notification d’incident et la gouvernance; suivre les procédures de transposition et les éventuelles clarifications de la Commission; préparer un plan d’adaptation si l’entreprise relève des secteurs concernés",
+    "agent": {
+      "score": 9,
+      "justification": "Page officielle de la Commission européenne sur NIS2, avec rappel du cadre, des obligations, de la transposition et des nouveautés mentionnées (amendements ciblés 2026, procédures contre des États). Contenu pertinent pour la veille réglementaire.",
+      "obligations": "Mettre en œuvre des mesures de gestion des risques cyber adaptées; notifier les incidents significatifs aux autorités compétentes; assurer la conformité aux exigences nationales de transposition NIS2; impliquer la direction dans la supervision de la cybersécurité; suivre les évolutions liées aux amendements ciblés et aux clarifications attendues",
+      "impact": "Fort",
+      "entities": "Entreprises opérant dans l’UE soumises à NIS2; entités essentielles et importantes des secteurs critiques; micro et petites entreprises potentiellement concernées par les simplifications; États membres de l’UE",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2024-10-18",
+      "textType": "page institutionnelle; proposition législative"
+    },
+    "targetCells": []
+  },
+  {
     "id": "REG-20260828152158-003",
     "detected": "2026-08-28",
     "iso": "FR",
@@ -1168,6 +1576,275 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Publication ENISA; rapport d’analyse sectorielle"
     },
     "targetCells": []
+  },
+  {
+    "id": "REG-20260814114913-001-NL",
+    "detected": "2026-08-14",
+    "iso": "NL",
+    "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
+    "titleEn": "European Commission: referral of Ireland, Spain, France and the Netherlands to the CJEU for failure to transpose the NIS2 Directive",
+    "summaryEn": "The European Commission has decided to bring Ireland, Spain, France and the Netherlands before the Court of Justice of the European Union for failing to notify the transposition measures for the NIS2 Directive into their national law. This news item recalls the obligation for Member States to transpose the NIS2 framework and signals a risk of litigation in the event of delay. The page also adds NIS2 resources and guidelines, but the main development is the referral to court for failure to transpose.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans les pays d’implantation ; vérifier l’alignement des politiques internes avec les exigences NIS2 ; anticiper les obligations de gestion des risques et de notification d’incidents ; surveiller les suites contentieuses et les éventuelles mesures nationales d’application",
+    "agent": {
+      "score": 8,
+      "justification": "Page officielle de la Commission sur NIS2 avec mention de nouvelles rubriques/guides et d’une actualité sur le renvoi de plusieurs États pour défaut de transposition. Contenu pertinent pour la veille réglementaire, même si la page est aussi générale.",
+      "obligations": "Transposer la directive NIS2 dans le droit national ; notifier les mesures de transposition à la Commission ; mettre en place le cadre national de cybersécurité ; assurer la conformité des entités concernées aux mesures de gestion des risques et de notification d’incidents",
+      "impact": "Fort",
+      "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-14",
+      "textType": "Décision de la Commission européenne / actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G24"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I24"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E23"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K23"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260814114913-001-IE",
+    "detected": "2026-08-14",
+    "iso": "IE",
+    "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
+    "titleEn": "European Commission: referral of Ireland, Spain, France and the Netherlands to the CJEU for failure to transpose the NIS2 Directive",
+    "summaryEn": "The European Commission has decided to bring Ireland, Spain, France and the Netherlands before the Court of Justice of the European Union for failing to notify the transposition measures for the NIS2 Directive into their national law. This news item recalls the obligation for Member States to transpose the NIS2 framework and signals a risk of litigation in the event of delay. The page also adds NIS2 resources and guidelines, but the main development is the referral to court for failure to transpose.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans les pays d’implantation ; vérifier l’alignement des politiques internes avec les exigences NIS2 ; anticiper les obligations de gestion des risques et de notification d’incidents ; surveiller les suites contentieuses et les éventuelles mesures nationales d’application",
+    "agent": {
+      "score": 8,
+      "justification": "Page officielle de la Commission sur NIS2 avec mention de nouvelles rubriques/guides et d’une actualité sur le renvoi de plusieurs États pour défaut de transposition. Contenu pertinent pour la veille réglementaire, même si la page est aussi générale.",
+      "obligations": "Transposer la directive NIS2 dans le droit national ; notifier les mesures de transposition à la Commission ; mettre en place le cadre national de cybersécurité ; assurer la conformité des entités concernées aux mesures de gestion des risques et de notification d’incidents",
+      "impact": "Fort",
+      "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-14",
+      "textType": "Décision de la Commission européenne / actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G18"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I18"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E17"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K17"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260814114913-001-FR",
+    "detected": "2026-08-14",
+    "iso": "FR",
+    "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
+    "titleEn": "European Commission: referral of Ireland, Spain, France and the Netherlands to the CJEU for failure to transpose the NIS2 Directive",
+    "summaryEn": "The European Commission has decided to bring Ireland, Spain, France and the Netherlands before the Court of Justice of the European Union for failing to notify the transposition measures for the NIS2 Directive into their national law. This news item recalls the obligation for Member States to transpose the NIS2 framework and signals a risk of litigation in the event of delay. The page also adds NIS2 resources and guidelines, but the main development is the referral to court for failure to transpose.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans les pays d’implantation ; vérifier l’alignement des politiques internes avec les exigences NIS2 ; anticiper les obligations de gestion des risques et de notification d’incidents ; surveiller les suites contentieuses et les éventuelles mesures nationales d’application",
+    "agent": {
+      "score": 8,
+      "justification": "Page officielle de la Commission sur NIS2 avec mention de nouvelles rubriques/guides et d’une actualité sur le renvoi de plusieurs États pour défaut de transposition. Contenu pertinent pour la veille réglementaire, même si la page est aussi générale.",
+      "obligations": "Transposer la directive NIS2 dans le droit national ; notifier les mesures de transposition à la Commission ; mettre en place le cadre national de cybersécurité ; assurer la conformité des entités concernées aux mesures de gestion des risques et de notification d’incidents",
+      "impact": "Fort",
+      "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-14",
+      "textType": "Décision de la Commission européenne / actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E13"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K13"
+      }
+    ]
+  },
+  {
+    "id": "REG-20260814114913-001-EU",
+    "detected": "2026-08-14",
+    "iso": "EU",
+    "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
+    "titleEn": "European Commission: referral of Ireland, Spain, France and the Netherlands to the CJEU for failure to transpose the NIS2 Directive",
+    "summaryEn": "The European Commission has decided to bring Ireland, Spain, France and the Netherlands before the Court of Justice of the European Union for failing to notify the transposition measures for the NIS2 Directive into their national law. This news item recalls the obligation for Member States to transpose the NIS2 framework and signals a risk of litigation in the event of delay. The page also adds NIS2 resources and guidelines, but the main development is the referral to court for failure to transpose.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans les pays d’implantation ; vérifier l’alignement des politiques internes avec les exigences NIS2 ; anticiper les obligations de gestion des risques et de notification d’incidents ; surveiller les suites contentieuses et les éventuelles mesures nationales d’application",
+    "agent": {
+      "score": 8,
+      "justification": "Page officielle de la Commission sur NIS2 avec mention de nouvelles rubriques/guides et d’une actualité sur le renvoi de plusieurs États pour défaut de transposition. Contenu pertinent pour la veille réglementaire, même si la page est aussi générale.",
+      "obligations": "Transposer la directive NIS2 dans le droit national ; notifier les mesures de transposition à la Commission ; mettre en place le cadre national de cybersécurité ; assurer la conformité des entités concernées aux mesures de gestion des risques et de notification d’incidents",
+      "impact": "Fort",
+      "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-14",
+      "textType": "Décision de la Commission européenne / actualité institutionnelle"
+    },
+    "targetCells": []
+  },
+  {
+    "id": "REG-20260814114913-001-ES",
+    "detected": "2026-08-14",
+    "iso": "ES",
+    "title": "Commission européenne : renvoi de l’Irlande, de l’Espagne, de la France et des Pays-Bas devant la CJUE pour défaut de transposition de la directive NIS2",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne a décidé de saisir la Cour de justice de l’Union européenne contre l’Irlande, l’Espagne, la France et les Pays-Bas pour ne pas avoir notifié les mesures de transposition de la directive NIS2 dans leur droit national. Cette actualité rappelle l’obligation pour les États membres de transposer le cadre NIS2 et signale un risque de contentieux en cas de retard. La page ajoute aussi des ressources NIS2 et des lignes directrices, mais la nouveauté principale est le renvoi contentieux pour défaut de transposition.",
+    "titleEn": "European Commission: referral of Ireland, Spain, France and the Netherlands to the CJEU for failure to transpose the NIS2 Directive",
+    "summaryEn": "The European Commission has decided to bring Ireland, Spain, France and the Netherlands before the Court of Justice of the European Union for failing to notify the transposition measures for the NIS2 Directive into their national law. This news item recalls the obligation for Member States to transpose the NIS2 framework and signals a risk of litigation in the event of delay. The page also adds NIS2 resources and guidelines, but the main development is the referral to court for failure to transpose.",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Suivre l’état de transposition NIS2 dans les pays d’implantation ; vérifier l’alignement des politiques internes avec les exigences NIS2 ; anticiper les obligations de gestion des risques et de notification d’incidents ; surveiller les suites contentieuses et les éventuelles mesures nationales d’application",
+    "agent": {
+      "score": 8,
+      "justification": "Page officielle de la Commission sur NIS2 avec mention de nouvelles rubriques/guides et d’une actualité sur le renvoi de plusieurs États pour défaut de transposition. Contenu pertinent pour la veille réglementaire, même si la page est aussi générale.",
+      "obligations": "Transposer la directive NIS2 dans le droit national ; notifier les mesures de transposition à la Commission ; mettre en place le cadre national de cybersécurité ; assurer la conformité des entités concernées aux mesures de gestion des risques et de notification d’incidents",
+      "impact": "Fort",
+      "entities": "États membres de l’Union européenne ; autorités nationales de cybersécurité ; entités essentielles et importantes soumises à NIS2 ; secteurs critiques couverts par NIS2",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2026-08-14",
+      "textType": "Décision de la Commission européenne / actualité institutionnelle"
+    },
+    "targetCells": [
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G31"
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I31"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Entry into force of the transposition",
+        "cell": "E30"
+      },
+      {
+        "sheet": "ID - P1",
+        "field": "Name of principal transposition text",
+        "cell": "K30"
+      }
+    ]
   },
   {
     "id": "REG-20260710155535-007",
