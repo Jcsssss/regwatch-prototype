@@ -151,6 +151,7 @@ function renderCountry(iso){
       <div class="card"><div class="cap"><h2>${t("cp.authorities")}</h2></div><div class="bd auth">
         ${c.authorities.map(a => `<div class="a"><b>${esc(a.name)}</b><span>${esc(a.role)}</span></div>`).join("")}
       </div></div>
+      ${docsSection(c)}
       <div class="card"><div class="cap"><h2>${t("cp.sources")}</h2></div><div class="bd srcs">
         ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
         <div class="q-note" style="margin-top:4px">${t("cp.sourcesNote")}</div>
@@ -159,8 +160,7 @@ function renderCountry(iso){
     <div class="rolenote" style="margin:16px 0 0">
       <b>${t("cp.readOnlyT")}</b> ${t("cp.readOnly")}
     </div>
-  </div>
-  ${docsSection(c)}`;
+  </div>`;
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;

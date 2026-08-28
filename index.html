@@ -233,7 +233,10 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .d-page{background:var(--info-bg);color:var(--info)}
 .d-ia{background:var(--st-warn-bg);color:var(--st-warn-ink)}
 .d-inconnue{background:var(--surface3);color:var(--muted)}
-.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}
+/* One per line: the right-hand column is ~470px, and two columns there would
+   squeeze the descriptions to two words a line. */
+.docs{display:grid;grid-template-columns:1fr;gap:9px}
+.docs .doc{padding:10px 12px}
 .doc{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border:1px solid var(--line2);
   border-radius:10px;background:var(--surface2);text-decoration:none;transition:border-color .12s,transform .12s}
 .doc:hover{text-decoration:none;border-color:var(--accent);transform:translateY(-1px)}
@@ -241,7 +244,6 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .doc-d{font-size:12px;color:var(--muted);line-height:1.35}
 .doc-n{font-size:11.5px;font-family:var(--font-mono);color:var(--ink2);margin-top:2px}
 .doc.dead{opacity:.5}
-@media(max-width:520px){.docs{grid-template-columns:1fr}}
 .wb-block{margin-top:18px;border:1px solid var(--line2);border-radius:11px;background:var(--surface2);padding:12px 15px}
 .wb-head{font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:9px}
 .wb-block .sec{margin-bottom:11px}
@@ -15645,6 +15647,7 @@ function renderCountry(iso){
       <div class="card"><div class="cap"><h2>${t("cp.authorities")}</h2></div><div class="bd auth">
         ${c.authorities.map(a => `<div class="a"><b>${esc(a.name)}</b><span>${esc(a.role)}</span></div>`).join("")}
       </div></div>
+      ${docsSection(c)}
       <div class="card"><div class="cap"><h2>${t("cp.sources")}</h2></div><div class="bd srcs">
         ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
         <div class="q-note" style="margin-top:4px">${t("cp.sourcesNote")}</div>
@@ -15653,8 +15656,7 @@ function renderCountry(iso){
     <div class="rolenote" style="margin:16px 0 0">
       <b>${t("cp.readOnlyT")}</b> ${t("cp.readOnly")}
     </div>
-  </div>
-  ${docsSection(c)}`;
+  </div>`;
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;
