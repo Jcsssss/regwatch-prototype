@@ -39,10 +39,12 @@
   "EE": {
    "authority": "RIA - Information System Authority",
    "site": "https://www.ria.ee",
-   "status": "page-only",
-   "url": "https://www.ria.ee",
-   "entries": 0,
-   "dated": 0
+   "status": "ok",
+   "url": "https://www.ria.ee/rss-feeds/rss.xml",
+   "title": "RIA - Loome ja kaitseme koos maailma parimat digitaalset ühiskonda.",
+   "entries": 100,
+   "dated": 100,
+   "language": "et"
   },
   "GR": {
    "authority": "National Cybersecurity Authority",
@@ -65,10 +67,12 @@
   "IE": {
    "authority": "NCSC Ireland",
    "site": "https://www.ncsc.gov.ie",
-   "status": "page-only",
-   "url": "https://www.ncsc.gov.ie",
-   "entries": 0,
-   "dated": 0
+   "status": "ok",
+   "url": "https://www.ncsc.gov.ie/news/alerts.rss",
+   "title": "NCSC Alerts & Advisories",
+   "entries": 233,
+   "dated": 233,
+   "language": ""
   },
   "IT": {
    "authority": "ACN",
@@ -206,7 +210,7 @@
    "authority": "MDIA / CIP",
    "site": "https://mdia.gov.mt",
    "status": "ok",
-   "url": "https://mdia.gov.mt/feed",
+   "url": "https://mdia.gov.mt/feed/",
    "title": "MDIA",
    "entries": 10,
    "dated": 10,

@@ -701,8 +701,8 @@ function renderSources(){
         <td style="white-space:nowrap"><i class="fi">${flagSvg(a.iso)}</i> ${esc(byIso[a.iso] ? byIso[a.iso].name : a.iso)}</td>
         <td>${esc(a.name)}</td>
         <td><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, "").slice(0, 46))}</a></td>
-        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "page" ? "src-unofficial" : "st-rejected"}">${
-          t(a.kind === "rss" ? "src.kRss" : a.kind === "page" ? "src.kPage" : "src.kDown")}</span></td>
+        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "down" ? "st-rejected" : "src-unofficial"}">${
+          t({ rss: "src.kRss", harvest: "src.kHarvest", page: "src.kPage" }[a.kind] || "src.kDown")}</span></td>
         <td class="num">${a.entries || "-"}</td></tr>`).join("")}
       </tbody></table></div>
   </div></div>` : ""}

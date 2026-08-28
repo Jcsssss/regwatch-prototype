@@ -25,9 +25,11 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     import requests
     import feedparser
+    from regwatch_fields import harvest_links
 except ImportError:
     raise SystemExit("pip install requests feedparser")
 
@@ -135,6 +137,13 @@ def candidate_feeds(site, iso=None):
                     found.append(requests.compat.urljoin(site, href.group(1)))
     except Exception:
         pass
+    # Any href that looks like a feed, wherever it sits. NCSC Ireland publishes
+    # /news/alerts.rss - a real feed that no conventional path would have found.
+    try:
+        for m in re.finditer(r'href=["\']([^"\'#]+\.(?:rss|atom|xml))["\']', r.text, re.I):
+            found.append(requests.compat.urljoin(site, m.group(1)))
+    except Exception:
+        pass
     return found + [site.rstrip("/") + p for p in COMMON]
 
 
@@ -157,6 +166,52 @@ def check_feed(url):
         return None
 
 
+
+# When an authority publishes no feed, its news page becomes the feed - provided
+# we find the right one. These are the paths such a page usually sits at.
+NEWS_PATHS = ["/news", "/news/", "/en/news", "/actualites", "/aktuelles", "/de/aktuelles",
+              "/nieuws", "/noticias", "/notizie", "/notizie/", "/nyheter", "/nyheder",
+              "/uutiset", "/aktuality", "/aktuality/", "/hirek", "/stiri", "/vijesti",
+              "/novice", "/naujienos", "/jaunumi", "/uudised", "/wiadomosci",
+              "/press", "/pressroom", "/media", "/blog",
+              "/amet-uudised-ja-kontakt/uudised-pressikontakt",
+              "/portale/notizie-e-media", "/portale/w/notizie",
+              "/en/news-and-events", "/news-events", "/newsroom"]
+
+
+def feeds_linked_from(url, html):
+    """Feed URLs advertised anywhere on a page, not only in its head."""
+    out = []
+    for m in re.finditer(r'href=["\']([^"\'#]+\.(?:rss|atom|xml))["\']', html or "", re.I):
+        out.append(requests.compat.urljoin(url, m.group(1)))
+    return out
+
+
+def find_news_page(site, iso=None):
+    """The page whose links look most like articles - the stand-in for a feed.
+
+    A news page is also the likeliest place to advertise a feed, so any feed it
+    links to is tried first: a real feed always beats harvesting links.
+    """
+    best = None
+    for path in NEWS_PATHS:
+        url = site.rstrip("/") + path
+        try:
+            r = requests.get(url, headers=UA, timeout=12)
+            if r.status_code != 200 or "html" not in r.headers.get("Content-Type", "").lower():
+                continue
+            for cand in feeds_linked_from(url, r.text):
+                got = check_feed(cand)
+                if got and got["dated"]:
+                    return ("feed", cand, got)
+            links = harvest_links(url, r.text)
+            if len(links) >= 3 and (best is None or len(links) > best[2]):
+                best = ("harvest", url, len(links))
+        except Exception:
+            continue
+    return best
+
+
 def probe(item):
     iso, (name, sites) = item
     for site in sites:
@@ -168,8 +223,14 @@ def probe(item):
             got = check_feed(cand)
             if got and got["dated"]:
                 return iso, {"authority": name, "site": site, "status": "ok", **got}
-        # a site that answers but advertises no feed is still worth recording:
-        # it is the page the agent should watch instead
+        # No feed: look for the news page whose links the harvester can read.
+        # That page becomes the feed this authority never published.
+        found = find_news_page(site, iso)
+        if found and found[0] == "feed":
+            return iso, {"authority": name, "site": site, "status": "ok", **found[2]}
+        if found:
+            return iso, {"authority": name, "site": site, "status": "harvest",
+                         "url": found[1], "entries": found[2], "dated": 0}
         try:
             if requests.get(site, headers=UA, timeout=12).status_code == 200:
                 return iso, {"authority": name, "site": site, "status": "page-only",
@@ -196,7 +257,7 @@ def main():
     with ThreadPoolExecutor(max_workers=6) as pool:
         for iso, rec in pool.map(probe, targets):
             out[iso] = rec
-            mark = {"ok": "FLUX", "page-only": "page", "unreachable": "----"}[rec["status"]]
+            mark = {"ok": "FLUX", "harvest": "RECO", "page-only": "page", "unreachable": "----"}[rec["status"]]
             print("  %s %-4s %-30s %s" % (iso, mark, rec["authority"][:30],
                                           rec["url"][:56]))
             if rec["status"] == "ok":
@@ -204,11 +265,12 @@ def main():
                       (rec["entries"], rec["dated"], rec.get("title") or "-"))
 
     ok = sum(1 for r in out.values() if r["status"] == "ok")
+    harv = sum(1 for r in out.values() if r["status"] == "harvest")
     page = sum(1 for r in out.values() if r["status"] == "page-only")
     OUT.write_text(json.dumps({"authorities": out}, ensure_ascii=False, indent=1) + "\n",
                    encoding="utf-8")
-    print("\n%d flux vérifiés, %d sites sans flux, %d injoignables -> %s"
-          % (ok, page, len(out) - ok - page, OUT.relative_to(ROOT)))
+    print("\n%d flux vérifiés, %d pages récoltables, %d sans rien, %d injoignables -> %s"
+          % (ok, harv, page, len(out) - ok - harv - page, OUT.relative_to(ROOT)))
     return 0
 
 

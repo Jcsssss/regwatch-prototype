@@ -333,6 +333,74 @@ def classify_page(url, html):
     return ("article" if positive and not negative else "incertain"), reasons
 
 
+
+# --------------------------------------------------------------------------- #
+# Turning an index page into the feed it never published.
+#
+# A listing page is not an article, but it knows where the articles are. Nine of
+# the twenty-nine authorities publish no RSS at all; for them, reading the links
+# off their news page IS the feed. For the rest it recovers what would otherwise
+# be lost when a summary page is skipped.
+# --------------------------------------------------------------------------- #
+
+# Anchors that are navigation, not content.
+SKIP_LINK = re.compile(
+    r"(^|/)(login|search|contact|about|privacy|cookie|legal|sitemap|rss|feed|"
+    r"accessibilit|mentions-legales|impressum|kontakt)(/|$|\.)|"
+    r"^(mailto:|tel:|javascript:|#)", re.I)
+SKIP_EXT = re.compile(r"\.(css|js|png|jpe?g|gif|svg|ico|zip|xlsx?|docx?)($|\?)", re.I)
+
+
+def harvest_links(base_url, html, limit=25):
+    """Article links found on an index page, best first.
+
+    Deliberately conservative: a link qualifies only if it stays on the same
+    host, goes deeper than the index itself, and carries a multi-word slug -
+    the shape of a publication rather than of a section. Anchor text is kept
+    because it is usually the article's title, which saves a fetch.
+    """
+    if not html:
+        return []
+    try:
+        from urllib.parse import urljoin, urlparse
+    except ImportError:
+        return []
+
+    host = urlparse(base_url).netloc.lower()
+    base_depth = len([p for p in urlparse(base_url).path.split("/") if p])
+    base_path = urlparse(base_url).path.lower().rstrip("/") + "/"
+    seen, out = set(), []
+
+    for m in re.finditer(r'<a\s[^>]*href=["\']([^"\'#]+)["\'][^>]*>(.*?)</a>', html, re.I | re.S):
+        href, label = m.group(1).strip(), m.group(2)
+        if SKIP_LINK.search(href) or SKIP_EXT.search(href):
+            continue
+        url = urljoin(base_url, href)
+        parts = urlparse(url)
+        if parts.scheme not in ("http", "https") or parts.netloc.lower() != host:
+            continue
+        segments = [p for p in parts.path.split("/") if p]
+        if len(segments) <= base_depth:
+            continue                      # same level or above: a sibling section
+        # The decisive signal: an article listed on a news page lives UNDER that
+        # page's path. Without this, /topics/... and /audience/... come back as
+        # articles because they are deep and hyphenated too.
+        if base_depth and not parts.path.lower().startswith(base_path):
+            continue
+        last = segments[-1]
+        if last.count("-") < 2 and not re.search(r"\d{4,}", last):
+            continue                      # not a publication slug
+        clean = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", label)).strip()
+        key = url.rstrip("/")
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"url": url, "title": clean[:180]})
+        if len(out) >= limit:
+            break
+    return out
+
+
 def source_excerpt(page_text):
     """The opening lines the agent already has in hand, trimmed to a readable size."""
     text = re.sub(r"\s+", " ", str(page_text or "")).strip()
