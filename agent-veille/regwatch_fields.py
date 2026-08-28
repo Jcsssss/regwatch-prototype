@@ -141,13 +141,101 @@ def resolve_publish_date(source_type, feed_date, html, model_date):
     feed = iso_date(feed_date)
     if feed:
         return feed, DATE_FROM_FEED
-    parsed = page_date(html)
+    parsed = page_date(html) or page_text_date(html)
     if parsed:
         return parsed, DATE_FROM_PAGE
     guess = iso_date(model_date)
     if guess:
         return guess, DATE_FROM_MODEL
     return "", DATE_NONE
+
+
+
+# Visible "updated on" lines, in the languages the monitored authorities publish
+# in. Metadata is preferred, but plenty of institutional pages carry the date
+# only in the body - the ANSSI NIS 2 help centre is one.
+TEXT_DATE = [
+    r"[Mm]is\s+à\s+jour\s+le\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Dd]erni[èe]re\s+mise\s+à\s+jour\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Pp]ubli[ée]\s+le\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Ll]ast\s+updated?\s*:?\s*(\d{1,2}[/.\-]\d{1,2}[/.\-]\d{4})",
+    r"[Ll]ast\s+updated?\s*:?\s*(\d{4}-\d{2}-\d{2})",
+    r"[Zz]uletzt\s+aktualisiert\s*:?\s*(\d{1,2}\.\d{1,2}\.\d{4})",
+    r"[Ll]aatst\s+bijgewerkt\s*:?\s*(\d{1,2}[-/]\d{1,2}[-/]\d{4})",
+]
+
+# A page that indexes other pages is not a publication. Treating one as an
+# article is how a category listing ends up in the queue dated today.
+INDEX_URL = re.compile(
+    r"/(category|categories|policies|policy|topics?|tags?|search|news/?$|"
+    r"actualites/?$|aktuelles/?$|home/?$|index)(/|$)|/portale/home|/web/[a-z-]+/?$", re.I)
+# og:type values that say outright "this is not an article".
+INDEX_OGTYPE = {"website", "policy", "profile", "object"}
+
+
+def page_text_date(html):
+    """A date printed in the page body, when the markup carries none."""
+    if not html:
+        return ""
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = re.sub(r"\s+", " ", text)[:20000]
+    for pattern in TEXT_DATE:
+        m = re.search(pattern, text)
+        if m:
+            got = iso_date(m.group(1))
+            if got:
+                return got
+    return ""
+
+
+def classify_page(url, html):
+    """Is this an article, or a page that lists other pages?
+
+    Returns (kind, reasons). Deterministic on purpose: the decision to file
+    something as a regulatory publication should not depend on a model's mood,
+    and every signal here is checkable by opening the page.
+    """
+    positive, negative = [], []
+    if INDEX_URL.search(url or ""):
+        negative.append("url d'index")
+    else:
+        # A multi-word slug is how a publication is named; a section is one word.
+        last = [p for p in (url or "").rstrip("/").split("/") if p][-1:]
+        if last and last[0].count("-") >= 2:
+            positive.append("slug d'article")
+
+    if html:
+        m = re.search(r'og:type"[^>]*content="([^"]+)', html, re.I)
+        og = (m.group(1).lower() if m else "")
+        if og == "article":
+            positive.append("og:type=article")
+        elif og in INDEX_OGTYPE:
+            negative.append("og:type=%s" % og)
+
+        # Navigation inflates the link count on any site, so the bar is set where
+        # only a genuine listing clears it - the ANSSI news article sits at 55
+        # links / ratio 115 and must not be caught.
+        links = len(re.findall(r"<a\s[^>]*href=", html))
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+        ratio = len(text) // max(links, 1)
+        if links >= 90 and ratio < 100:
+            negative.append("page de liens (%d liens, ratio %d)" % (links, ratio))
+
+        if page_date(html) or page_text_date(html):
+            positive.append("date lisible")
+        else:
+            negative.append("aucune date")
+
+    reasons = positive + negative
+    if len(positive) >= 2:
+        return "article", reasons
+    # Two independent negatives before refusing to file a page: "no date" alone
+    # is weak, since a dated article can simply omit its metadata.
+    if len(negative) >= 2 and not positive:
+        return "index", negative
+    if len(negative) >= 3:
+        return "index", negative
+    return ("article" if positive and not negative else "incertain"), reasons
 
 
 def source_excerpt(page_text):

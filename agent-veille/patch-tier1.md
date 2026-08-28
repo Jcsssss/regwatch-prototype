@@ -132,3 +132,39 @@ couverture de 51 % à 100 %.
 
 Aucune colonne existante n'est modifiée ni supprimée : le patch est additif, et
 un run non patché continue de fonctionner.
+
+
+---
+
+## 5. Une page d'index n'est pas une publication
+
+Ajouté après vérification de trois items signalés comme faux : une FAQ, une page
+de politique de la Commission, et une catégorie de FAQ - trois pages permanentes
+déposées dans la file comme s'il s'agissait d'articles parus le jour même.
+
+`classify_page(url, html)` tranche sur des signaux vérifiables, pas sur un avis
+de modèle : forme de l'URL, `og:type`, densité de liens, présence d'une date
+lisible. Il rend `article`, `index` ou `incertain` avec ses motifs.
+
+```python
+page_kind, page_why = classify_page(url, item.get("pending_html"))
+if page_kind == "index":
+    continue          # journalisé, compté, jamais écrit dans tblVeille
+```
+
+Mesuré sur six pages réelles, dont les trois signalées : **6/6 conformes**.
+Le seuil de densité de liens est calé pour ne pas attraper un vrai article de
+l'ANSSI (55 liens, ratio 115), qui serait autrement écarté par sa navigation.
+
+Ajouter la colonne **`Type de page`** à `tblVeille` pour garder la trace de la
+décision.
+
+## 6. La date lue dans le corps de la page
+
+`page_date()` ne lisait que les métadonnées. La page d'aide NIS 2 de l'ANSSI
+affiche « Mis à jour le : 24/10/2024 » dans son texte, sans le déclarer en
+métadonnée - l'outil affichait donc « publié le 11 juin 2026 » pour un contenu
+de 2024.
+
+`page_text_date()` lit ces mentions en français, anglais, allemand et
+néerlandais. Sur l'exemple ci-dessus, la date remonte correctement à 2024-10-24.
