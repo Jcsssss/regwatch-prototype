@@ -2,9 +2,9 @@
 """Convert the NIS 2 watch agent's Excel output into RegWatch WatchItems.
 
 Source  : agent_veille_NIS2.xlsx / table `tblVeille`
-          (github.com/aurelienbrun-alt/Agent_mapping — "agent de veille")
-Targets : data/watch-items.json  — the exchange contract, for a hosted RegWatch
-          src/data_watch.js      — `const WATCH_QUEUE = [...]`, for the standalone build
+          (github.com/aurelienbrun-alt/Agent_mapping - "agent de veille")
+Targets : data/watch-items.json  - the exchange contract, for a hosted RegWatch
+          src/data_watch.js      - `const WATCH_QUEUE = [...]`, for the standalone build
 
 Stdlib only: the workbook is read straight from the OOXML zip, so this runs on any
 Python 3 without openpyxl and without touching the agent's repository.
@@ -37,7 +37,7 @@ ROOT = Path(__file__).resolve().parent.parent
 #
 # Deliberately rule-based for now. Once the agent runs against RegWatch, the
 # model picks from the SAME catalogue of field labels and the code still
-# resolves the addresses — so a model can never invent a cell reference.
+# resolves the addresses - so a model can never invent a cell reference.
 # --------------------------------------------------------------------------- #
 CELL_ROUTES = [
     (r"enregistr|registration|inscri|immatricul|déclaration des entités",
@@ -140,7 +140,7 @@ COUNTRY_ISO = {
     "pays-bas": "NL", "pologne": "PL", "portugal": "PT", "republique tcheque": "CZ",
     "tchequie": "CZ", "roumanie": "RO", "royaume-uni": "GB", "slovaquie": "SK",
     "slovenie": "SI", "suede": "SE",
-    # EU-wide items have no country record in RegWatch — see REPORT below.
+    # EU-wide items have no country record in RegWatch - see REPORT below.
     "union europeenne": "EU", "ue": "EU", "europe": "EU", "eu": "EU",
 }
 
@@ -255,11 +255,18 @@ def split_countries(value):
     return codes, unknown
 
 
+def plain_dashes(text):
+    """Em and en dashes render as long strokes and read badly in a link preview;
+    the site uses a plain hyphen throughout, so normalise at the boundary rather
+    than hunting them in the UI afterwards."""
+    return str(text or "").replace("\u2014", "-").replace("\u2013", "-")
+
+
 def first(record, *headers):
     for h in headers:
         v = str(record.get(h, "") or "").strip()
         if v:
-            return v
+            return plain_dashes(v)
     return ""
 
 
@@ -269,13 +276,13 @@ def build_items(rows):
     excerpts = load_excerpts()
     trans = load_translations()
     if not trans:
-        print("  note: data/translations-cache.json absent — pas de titres anglais "
+        print("  note: data/translations-cache.json absent - pas de titres anglais "
               "(lance tools/translate_items.py)")
     if not excerpts:
-        print("  note: data/excerpt-cache.json absent — pas d'extraits d'article "
+        print("  note: data/excerpt-cache.json absent - pas d'extraits d'article "
               "(lance tools/fetch_excerpts.py)")
     if cellmap is None:
-        print("  note: data/excel-cellmap.json absent — no target cells "
+        print("  note: data/excel-cellmap.json absent - no target cells "
               "(run tools/excel_cellmap.py first)")
 
     for record in rows:
@@ -318,7 +325,7 @@ def build_items(rows):
                 # before the patch.
                 "excerpt": first(record, "Extrait source")
                            or excerpts.get(first(record, "URL source"), ""),
-                # The agent's written synthesis — shown inside the AI panel.
+                # The agent's written synthesis - shown inside the AI panel.
                 "summary": first(record, "Résumé") or "No summary provided by the agent.",
                 # English renderings; the UI picks by interface language.
                 "titleEn": trans.get(title, ""),
@@ -329,7 +336,7 @@ def build_items(rows):
                     "type": source_type,
                 },
                 "status": STATUS_MAP.get(fold(record.get("Statut")), "pending"),
-                # Advice aimed at a client company — kept, but it is NOT what the
+                # Advice aimed at a client company - kept, but it is NOT what the
                 # validator acts on; `targetCells` is.
                 "clientAdvice": first(record, "Actions recommandées"),
                 # --- agent context, surfaced to the validator as decision support ---
@@ -340,7 +347,7 @@ def build_items(rows):
                     "impact": first(record, "Niveau impact", "Score impact"),
                     "entities": first(record, "Entités concernées"),
                     "publishedOn": to_iso_date(record.get("Date publication")),
-                    # flux | page | ia | inconnue — dit si la date est un fait ou une inférence
+                    # flux | page | ia | inconnue - dit si la date est un fait ou une inférence
                     "dateOrigin": first(record, "Origine date"),
                     "inForceOn": to_iso_date(record.get("Date entrée en vigueur")),
                     "textType": first(record, "Type de texte"),
@@ -370,7 +377,7 @@ def main():
     json_path.parent.mkdir(exist_ok=True)
     payload = {
         "generatedOn": date.today().isoformat(),
-        "source": "agent de veille NIS2 — tblVeille",
+        "source": "agent de veille NIS2 - tblVeille",
         "count": len(items),
         "items": items,
     }
@@ -378,7 +385,7 @@ def main():
 
     js_path = ROOT / "src" / "data_watch.js"
     js_path.write_text(
-        "/* ---- Watch queue — generated from the NIS 2 watch agent (tblVeille).\n"
+        "/* ---- Watch queue - generated from the NIS 2 watch agent (tblVeille).\n"
         "   Regenerate: python3 tools/veille_to_watchitems.py <agent_veille_NIS2.xlsx>\n"
         "   Picked up by build.sh when present; app_part1.js falls back to the\n"
         "   demo WATCH_QUEUE in data_c4.js when it is not. Do not edit by hand. ---- */\n"
@@ -390,7 +397,7 @@ def main():
     print("%d watch items -> %s" % (len(items), js_path.relative_to(ROOT)))
     print("  %d item(s) carry target cells in the comparative workbook" % report["with_cells"])
     if report["eu_wide"]:
-        print("  note: %d EU-wide item(s) carry iso 'EU' — RegWatch has no EU record yet"
+        print("  note: %d EU-wide item(s) carry iso 'EU' - RegWatch has no EU record yet"
               % report["eu_wide"])
     if report["no_country"]:
         print("  dropped: %d row(s) with no recognisable country" % report["no_country"])

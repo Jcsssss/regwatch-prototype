@@ -1,8 +1,8 @@
 /* Export the country records to data/countries.json.
  *
  * The records live as JS constants in src/data_c*.js because the prototype is a
- * single standalone HTML file. Anything outside the browser — the slide
- * generator today, the API tomorrow — needs them as plain data.
+ * single standalone HTML file. Anything outside the browser - the slide
+ * generator today, the API tomorrow - needs them as plain data.
  *
  *   node tools/export_countries.js
  */

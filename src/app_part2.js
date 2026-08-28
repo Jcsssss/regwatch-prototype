@@ -1,6 +1,6 @@
 /* ---------- Countries list ---------- */
 let ctyFilter = { q: "", region: "", lvl: "" };
-let inboxFilter = { q: "", iso: "", minScore: "", days: "", rel: "", procSort: "recent", hubDays: 7 };
+let inboxFilter = { q: "", iso: "", days: "", rel: "", procSort: "recent", hubDays: 7 };
 function renderCountries(){
   const el = $("#v-countries");
   el.innerHTML = `
@@ -32,9 +32,9 @@ function renderCountries(){
         <td>${t("reg." + c.region)}</td>
         <td>${lvlChip(c)}</td>
         <td>${c.lawInForce ? fmtDate(c.lawInForce) : `<span style="color:var(--muted)">${t("common.notYet")}</span>`}</td>
-        <td class="num">${c.onTime ? t("common.onTime") : (c.delayMonths != null ? "+" + c.delayMonths : "—")}</td>
+        <td class="num">${c.onTime ? t("common.onTime") : (c.delayMonths != null ? "+" + c.delayMonths : "-")}</td>
         <td>${fwChip(c)}</td>
-        <td class="num">${c.reqEE ?? "—"}</td><td class="num">${c.reqIE ?? "—"}</td>
+        <td class="num">${c.reqEE ?? "-"}</td><td class="num">${c.reqIE ?? "-"}</td>
         <td><span class="num">${fmtDate(c.lastUpdate)}</span></td>
       </tr>`).join("");
     rows.querySelectorAll("tr").forEach(tr => {
@@ -50,10 +50,35 @@ function renderCountries(){
 
 /* ---------- Country page ---------- */
 /* The comparative workbook is the source of truth for country data, but its
-   values are terser than the record's hand-written prose — and the two disagree
+   values are terser than the record's hand-written prose - and the two disagree
    on 132 of 277 comparable values. So this layer only ADDS what the record
    lacks: seven typed fields and two whole sections. Reconciling the divergences
    is a consultant's call, not a silent overwrite. See tools/excel_to_countries.py. */
+/* Links to the country's document folders on SharePoint - not copies of the
+   PDFs. A folder link always resolves to what is current, survives a file being
+   replaced, and leaves access control in SharePoint where it belongs. Mirroring
+   the files here would start going stale immediately and would put regulatory
+   documents in a git repository. */
+const DOC_ICON = { legislation: "\u2696", framework: "\u1F6E1", other: "\u1F4CE", old: "\u1F5C4" };
+function docsSection(c){
+  const rec = (typeof COUNTRY_DOCS !== "undefined" && COUNTRY_DOCS[c.iso]) || null;
+  if (!rec) return "";
+  const verified = rec.folders.some(f => f.exists !== undefined);
+  return `<div class="card"><div class="cap"><h2>${t("docs.title")}</h2></div><div class="bd">
+    <p class="q-note" style="margin-top:0">${t("docs.sub")}</p>
+    <div class="docs">
+      ${rec.folders.map(f => {
+        const dead = f.exists === false;
+        return `<a class="doc${dead ? " dead" : ""}" href="${esc(f.url)}" target="_blank" rel="noopener">
+          <span class="doc-t">${t("docs." + f.key)}</span>
+          <span class="doc-d">${t("docs.d" + f.key.charAt(0).toUpperCase() + f.key.slice(1))}</span>
+          ${f.items != null ? `<span class="doc-n">${t("docs.items", { n: f.items })}</span>` : ""}
+        </a>`;
+      }).join("")}
+    </div>
+    ${verified ? "" : `<div class="q-note" style="margin-top:9px">${t("docs.unverified")}</div>`}
+  </div></div>`;
+}
 const WB_FLAT = ["regAuthority", "regDeadline", "regDeadlineMonths",
                  "incidentAuthority", "incidentMandatoryFrom", "sanctionMax",
                  "authorityCount"];
@@ -85,13 +110,13 @@ function renderCountry(iso){
   if (!c) { el.innerHTML = `<p>${t("cp.unknown")}</p>`; return; }
   const facts = [
     [t("cp.law"), c.law],
-    [t("cp.fw"), `<b>${esc(t("fw." + c.fw))}</b> — ${esc(c.fwName)}`],
-    [t("cp.req"), c.reqEE ? `<b>${c.reqEE}</b> ${t("cp.forEE")} · <b>${c.reqIE ?? "—"}</b> ${t("cp.forIE")}` : t("cp.reqNone")],
+    [t("cp.fw"), `<b>${esc(t("fw." + c.fw))}</b> - ${esc(c.fwName)}`],
+    [t("cp.req"), c.reqEE ? `<b>${c.reqEE}</b> ${t("cp.forEE")} · <b>${c.reqIE ?? "-"}</b> ${t("cp.forIE")}` : t("cp.reqNone")],
     [t("cp.deadline"), c.complianceEE ? `<b>${c.complianceEE} ${t("common.months")}</b> (EE)${c.complianceIE && c.complianceIE !== c.complianceEE ? ` · ${c.complianceIE} ${t("common.months")} (IE)` : ""}` : t("cp.deadlineNone")],
     [t("cp.regChannel"), c.regTool],
     [t("cp.incChannel"), c.incidentMethod],
     ...wbFacts(c),
-    [t("cp.auditBody"), `${esc(c.auditBody)}${c.auditFreqEE ? ` — EE ${t("cp.every")} <b>${c.auditFreqEE} ${t("common.mo")}</b>` : ""}${c.auditFreqIE ? ` · IE ${t("cp.every")} <b>${c.auditFreqIE} ${t("common.mo")}</b>` : ""}`]
+    [t("cp.auditBody"), `${esc(c.auditBody)}${c.auditFreqEE ? ` - EE ${t("cp.every")} <b>${c.auditFreqEE} ${t("common.mo")}</b>` : ""}${c.auditFreqIE ? ` · IE ${t("cp.every")} <b>${c.auditFreqIE} ${t("common.mo")}</b>` : ""}`]
   ];
   const secHtml = SEC_KEYS.filter(k => c.sections[k] && c.sections[k].length).map(k => `
     <div class="sec"><h3>${t("sec." + k)}</h3><ul>${c.sections[k].map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
@@ -134,7 +159,8 @@ function renderCountry(iso){
     <div class="rolenote" style="margin:16px 0 0">
       <b>${t("cp.readOnlyT")}</b> ${t("cp.readOnly")}
     </div>
-  </div>`;
+  </div>
+  ${docsSection(c)}`;
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;
@@ -154,7 +180,7 @@ function renderCountry(iso){
 /* ---------- Watch inbox ---------- */
 /* The Watch inbox is two levels deep.
  *
- * Level 1 (hub) answers "where should I look?" — one tile per country with a
+ * Level 1 (hub) answers "where should I look?" - one tile per country with a
  * pending count, scoped to a detection window. Level 2 is the working view for
  * one country: filters, the queue, and that country's processed log.
  *
@@ -191,7 +217,7 @@ function withinWindow(items, days){
 function renderInboxHub(el, pending, done){
   /* The agent runs weekly and the workbook's own lookback is 21 days, so a
      7-day window goes empty whenever a run slips. Fall back rather than show
-     an empty page that reads as a broken tool — and say that we did. */
+     an empty page that reads as a broken tool - and say that we did. */
   const WINDOWS = [[7, "hub.w7"], [30, "hub.w30"], [90, "hub.w90"], [0, "hub.wAll"]];
   let days = inboxFilter.hubDays;
   let inWindow = withinWindow(pending, days);
@@ -288,7 +314,6 @@ function renderInboxCountry(el, pending, done){
   <div class="card"><div class="cap"><h2>${t("inbox.pending")} (${mine.length})</h2></div><div class="bd">
     <div class="filters">
       <input type="search" id="qQ" placeholder="${t("inbox.search")}" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
-      <select id="qS" aria-label="Minimum AI relevance score"><option value="">${t("inbox.anyScore")}</option>${[9, 8, 7].map(s => `<option value="${s}" ${inboxFilter.minScore == s ? "selected" : ""}>${t("inbox.score")} ${s}</option>`).join("")}</select>
       <select id="qD" aria-label="Filter by detection window"><option value="">${t("inbox.anyDate")}</option>${[[7, t("inbox.last7")], [30, t("inbox.last30")], [90, t("inbox.last90")]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
       <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>${t("inbox.officialOnly")}</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>${t("inbox.toVerify")}</option></select>
       <span class="q-note" id="qCount"></span>
@@ -312,15 +337,15 @@ function renderInboxCountry(el, pending, done){
   rerun();
   $("#hubBack").addEventListener("click", e => {
     e.preventDefault();
-    inboxFilter.iso = ""; inboxFilter.q = ""; inboxFilter.minScore = ""; inboxFilter.days = ""; inboxFilter.rel = "";
+    inboxFilter.iso = ""; inboxFilter.q = ""; inboxFilter.days = ""; inboxFilter.rel = "";
     renderInbox(); window.scrollTo({ top: 0 });
   });
   $("#qQ").addEventListener("input", e => { inboxFilter.q = e.target.value; rerun(); });
-  [["#qS", "minScore"], ["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
+  [["#qD", "days"], ["#qR", "rel"]].forEach(([sel, key]) => {
     $(sel).addEventListener("change", e => { inboxFilter[key] = e.target.value; rerun(); });
   });
   $("#qReset").addEventListener("click", () => {
-    inboxFilter.q = ""; inboxFilter.minScore = ""; inboxFilter.days = ""; inboxFilter.rel = "";
+    inboxFilter.q = ""; inboxFilter.days = ""; inboxFilter.rel = "";
     renderInbox();
   });
   const pSort = $("#pSort");
@@ -345,7 +370,6 @@ function applyInboxFilter(items){
   return items
     .filter(x => !q || (x.title + " " + (x.titleEn || "") + " " + x.summary).toLowerCase().includes(q))
     .filter(x => !f.iso || x.iso === f.iso)
-    .filter(x => !f.minScore || ((x.agent || {}).score != null && x.agent.score >= +f.minScore))
     .filter(x => !cutoff || x.detected >= cutoff)
     .filter(x => !f.rel || x.source.type === f.rel);
 }
@@ -360,7 +384,7 @@ function paintPending(pending){
   $("#pendList").querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
 }
 /* The processed log grows every review session, so it gets the same filters as
-   the queue plus its own sort — otherwise ten validations make it unreadable. */
+   the queue plus its own sort - otherwise ten validations make it unreadable. */
 function paintProcessed(done){
   const host = $("#procList");
   if (!host) return;
@@ -388,11 +412,11 @@ function paintProcessed(done){
     b.addEventListener("click", () => act(b.dataset.act, b.dataset.id)));
 }
 /* Item text follows the interface language when a translation exists.
-   The original is never discarded — it is what the source actually published. */
+   The original is never discarded - it is what the source actually published. */
 function itemTitle(q){ return (lang === "en" && q.titleEn) ? q.titleEn : q.title; }
 function itemSummary(q){ return (lang === "en" && q.summaryEn) ? q.summaryEn : q.summary; }
 
-/* The cells of the comparative workbook this source would change — collapsed,
+/* The cells of the comparative workbook this source would change - collapsed,
    like the AI panel, so a long queue stays scannable. */
 function cellsPanel(q){
   const cells = q.targetCells;
@@ -411,7 +435,7 @@ function cellsPanel(q){
   </details>`;
 }
 /* The agent's reading of the article: a synthesis, then the points it pulled out.
-   Decision support for the validator — never a publication status. */
+   Decision support for the validator - never a publication status. */
 function agentPanel(q){
   const a = q.agent || {};
   /* The agent packs several obligations into one ";"-separated string. */
@@ -423,7 +447,7 @@ function agentPanel(q){
   if (points.length) blocks.push(`<div class="q-agent-row"><b>${t("card.aiPoints")}</b>
     <span><ul class="q-points">${points.map(p => `<li>${esc(p)}</li>`).join("")}</ul></span></div>`);
   if (a.score != null) blocks.push(`<div class="q-agent-row"><b>${t("card.aiRelevance")}</b>
-    <span>${a.score}/10${a.justification ? " — " + esc(a.justification) : ""}</span></div>`);
+    <span>${a.score}/10${a.justification ? " - " + esc(a.justification) : ""}</span></div>`);
   if (a.impact) blocks.push(`<div class="q-agent-row"><b>${t("card.aiImpact")}</b><span>${esc(a.impact)}</span></div>`);
   if (a.entities) blocks.push(`<div class="q-agent-row"><b>${t("card.aiEntities")}</b><span>${esc(a.entities)}</span></div>`);
   if (q.clientAdvice) blocks.push(`<div class="q-agent-row"><b>${t("card.aiAdvice")}</b><span>${esc(q.clientAdvice)}</span></div>`);
@@ -469,7 +493,7 @@ function qCard(q){
       <button class="btn danger" data-act="reject" data-id="${q.id}">${t("card.reject")}</button>
       <span class="q-note">${t("card.validateNote", { country: c ? esc(c.name) : esc(q.iso) })}</span></div>` : ""}
     ${q.status !== "pending" ? `<div class="q-actions">
-      <span class="q-note">${q.status === "validated" ? t("card.validatedBy") : t("card.rejectedBy")} ${t("card.by")} ${esc(q.validatedBy || "NIS 2 core team")} ${t("card.on")} ${fmtDateL(q.validatedOn || q.detected)}${q.rejectReason ? " — " + esc(q.rejectReason) : ""}</span>
+      <span class="q-note">${q.status === "validated" ? t("card.validatedBy") : t("card.rejectedBy")} ${t("card.by")} ${esc(q.validatedBy || "NIS 2 core team")} ${t("card.on")} ${fmtDateL(q.validatedOn || q.detected)}${q.rejectReason ? " - " + esc(q.rejectReason) : ""}</span>
       ${isVal ? `<button class="btn" data-act="reopen" data-id="${q.id}" title="${t("card.reopenHint")}">${t("card.reopen")}</button>` : ""}
     </div>` : ""}
   </div>`;
@@ -485,7 +509,7 @@ function act(action, id){
     delete q.validatedBy; delete q.validatedOn; delete q.rejectReason;
     const c = byIso[q.iso];
     if (c) {
-      /* Remove only what this validation added — never a hand-maintained event. */
+      /* Remove only what this validation added - never a hand-maintained event. */
       const i = c.timeline.findIndex(t => t._qid === q.id && t.added);
       if (i >= 0) c.timeline.splice(i, 1);
     }
@@ -551,11 +575,11 @@ function renderInsights(){
     $("#kRows").innerHTML = list.map(c => `<tr>
       <td><b><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</b></td><td>${t("reg." + c.region)}</td><td>${lvlChip(c)}</td>
       <td>${c.transposed ? (c.onTime ? t("common.onTime") : fmtDateL(c.lawInForce)) : t("common.no")}</td>
-      <td class="num">${c.onTime ? "0" : (c.delayMonths != null ? "+" + c.delayMonths : "—")}</td>
+      <td class="num">${c.onTime ? "0" : (c.delayMonths != null ? "+" + c.delayMonths : "-")}</td>
       <td>${fwChip(c)}</td>
-      <td class="num">${c.reqEE ?? "—"}</td><td class="num">${c.reqIE ?? "—"}</td>
-      <td class="num">${c.complianceEE ?? "—"}</td><td class="num">${c.complianceIE ?? "—"}</td>
-      <td class="num">${c.auditFreqEE ?? "—"}</td><td class="num">${c.auditFreqIE ?? "—"}</td><td class="num">${c.selfAssessFreq ?? "—"}</td>
+      <td class="num">${c.reqEE ?? "-"}</td><td class="num">${c.reqIE ?? "-"}</td>
+      <td class="num">${c.complianceEE ?? "-"}</td><td class="num">${c.complianceIE ?? "-"}</td>
+      <td class="num">${c.auditFreqEE ?? "-"}</td><td class="num">${c.auditFreqIE ?? "-"}</td><td class="num">${c.selfAssessFreq ?? "-"}</td>
       <td>${esc(c.auditBody)}</td><td>${esc(c.regTool)}</td><td>${esc(c.incidentMethod)}</td></tr>`).join("");
   };
   paint();
@@ -582,7 +606,7 @@ function drawReqChart(host){
     const y = padT + i * rowH;
     s += `<text class="bar-lbl" x="${padL - 8}" y="${y + 15}" text-anchor="end">${c.name}</text>`;
     s += `<rect x="${padL}" y="${y + 2}" width="${Math.max(2, x(c.reqEE) - padL)}" height="10" rx="3" fill="${ee}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Essential entities: ${c.reqEE} requirements"/>`;
-    s += `<rect x="${padL}" y="${y + 15}" width="${Math.max(2, x(c.reqIE ?? 0) - padL)}" height="10" rx="3" fill="${ie}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Important entities: ${c.reqIE ?? "—"} requirements"/>`;
+    s += `<rect x="${padL}" y="${y + 15}" width="${Math.max(2, x(c.reqIE ?? 0) - padL)}" height="10" rx="3" fill="${ie}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Important entities: ${c.reqIE ?? "-"} requirements"/>`;
   });
   s += `</svg>`;
   host.innerHTML = s;
@@ -601,7 +625,7 @@ function drawDelayChart(host){
     const y = padT + i * rowH;
     s += `<text class="bar-lbl" x="${padL - 8}" y="${y + 13}" text-anchor="end">${c.name}</text>`;
     if (c.delayMonths === 0) s += `<circle cx="${x(0) + 4}" cy="${y + 9}" r="3.5" fill="${cssVar('--ok')}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Transposed on time"/>`;
-    else s += `<rect x="${padL}" y="${y + 3}" width="${Math.max(2, x(c.delayMonths) - padL)}" height="12" rx="3" fill="${fill}" data-tip="<b>${c.flag} ${esc(c.name)}</b>In force ${fmtDate(c.lawInForce)} — ${c.delayMonths} months late"/>`;
+    else s += `<rect x="${padL}" y="${y + 3}" width="${Math.max(2, x(c.delayMonths) - padL)}" height="12" rx="3" fill="${fill}" data-tip="<b>${c.flag} ${esc(c.name)}</b>In force ${fmtDate(c.lawInForce)} - ${c.delayMonths} months late"/>`;
   });
   s += `</svg>`;
   host.innerHTML = s;
@@ -625,7 +649,7 @@ function exportCSV(){
 /* ---------- Sources ---------- */
 let srcFilter = "";
 /* The source registry is what the collection pipeline reads: every RSS feed,
-   page and API the agent monitors. Making it editable here is the point — the
+   page and API the agent monitors. Making it editable here is the point - the
    quality of the watch is decided by this list, not by the model. Additions are
    held in this browser and exported to the agent's registry, since RegWatch has
    no backend yet. */

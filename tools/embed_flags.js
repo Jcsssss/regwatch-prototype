@@ -4,7 +4,7 @@
  *
  * Emoji flags were the previous approach and they fail in two ways that matter
  * for a client demo: they render in the host OS's style (Apple's glossy pills on
- * a Mac), and on Windows they do not render as flags at all — the browser falls
+ * a Mac), and on Windows they do not render as flags at all - the browser falls
  * back to the two regional-indicator letters, so "🇫🇷" shows up as "FR".
  *
  * Real SVGs render identically everywhere and stay sharp at any tile size.

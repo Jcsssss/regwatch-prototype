@@ -8,7 +8,7 @@
     "lawInForce": "2026-10-01",
     "transposed": true,
     "delayMonths": 23,
-    "law": "Netz- und Informationssystem_x0002_sicherheitsgesetz – \"NISG 2026\"",
+    "law": "Netz- und Informationssystem_x0002_sicherheitsgesetz - \"NISG 2026\"",
     "incidentAuthority": "Sectoral CSIRT",
     "incidentMandatoryFrom": "2026-10-01",
     "incidentMethod": "Report on a web platform",
@@ -152,7 +152,7 @@
      "Mandatory information required : What's happening, expected actions and consequences",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — early warning (all entities) 72 hours (or 24 hours for trust service providers) — incident notification On request — intermediate/interim report 1 month after the incident notification — final report If still ongoing at that point — progress report immediately, then final report within 1 month of resolution",
+     "Timeline : 24 hours - early warning (all entities) 72 hours (or 24 hours for trust service providers) - incident notification On request - intermediate/interim report 1 month after the incident notification - final report If still ongoing at that point - progress report immediately, then final report within 1 month of resolution",
      "Any other relavant comments : The CCB requires notifying affected service recipients directly without delay ; individually sub-threshold incidents can be treated collectively as a single significant incident if they meet certain cumulative criteria"
     ],
     "reg": [
@@ -339,7 +339,7 @@
      "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours (per others, matching the directive default) — early warning 72 hours — full/incident notification On request — intermediate report 1 month after incident notification — final report If ongoing — progress report at the 1-month mark, then final report within 1 month of resolution"
+     "Timeline : 24 hours (per others, matching the directive default) - early warning 72 hours - full/incident notification On request - intermediate report 1 month after incident notification - final report If ongoing - progress report at the 1-month mark, then final report within 1 month of resolution"
     ],
     "reg": [
      "Registration availability : YES",
@@ -572,7 +572,7 @@
      "Mandatory information required : What's happening, expected actions and consequences",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — Frühwarnung (early warning) 72 hours — Meldung (incident notification/follow-up) 1 month after the 72-hour notification — Abschlussmeldung (final report), or a progress report if the incident is still ongoing"
+     "Timeline : 24 hours - Frühwarnung (early warning) 72 hours - Meldung (incident notification/follow-up) 1 month after the 72-hour notification - Abschlussmeldung (final report), or a progress report if the incident is still ongoing"
     ],
     "reg": [
      "Registration availability : YES",
@@ -663,11 +663,11 @@
     "regTool": "Platform",
     "regDeadlineMonths": 0.5,
     "fw": "Temporary",
-    "fwName": "VEJLEDNING TIL NIS 2-LOVEN – Implementering af cybersikkerhedsforanstaltninger",
+    "fwName": "VEJLEDNING TIL NIS 2-LOVEN - Implementering af cybersikkerhedsforanstaltninger",
     "auditBody": "Sectoral authorities",
     "sanctionMax": "Same modalities as in the directives",
     "authorityCount": 10,
-    "authorities": "CFCS – Centre for Cyber Security (CSIRT + SPOC) Danish Business Authority (DBA) – DSP Danish Energy Agency Danish Transport, Construction and Housing Authority (air / rail / road / ports) Danish Maritime Authority Danish Financial Supervisory Authority Danish Health Data Authority Ministry of Environment and Food SAMSIK / Danish Agency for Digital Government – OES secteur public numérique (administration) MSSB / Ministry for Resilience and Preparedness – Coordination nationale NIS2"
+    "authorities": "CFCS - Centre for Cyber Security (CSIRT + SPOC) Danish Business Authority (DBA) - DSP Danish Energy Agency Danish Transport, Construction and Housing Authority (air / rail / road / ports) Danish Maritime Authority Danish Financial Supervisory Authority Danish Health Data Authority Ministry of Environment and Food SAMSIK / Danish Agency for Digital Government - OES secteur public numérique (administration) MSSB / Ministry for Resilience and Preparedness - Coordination nationale NIS2"
    },
    "sections": {
     "fw": [
@@ -802,7 +802,7 @@
      "Mandatory information required : The arrangements are identical to those provided for in the directive",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability ; impact is rated at least \"severe\" on the severity scale set out in the entity's system risk analysis, the service cannot continue within the maximum permitted outage time set in the service-level agreement, the incident disrupts another service provider's service continuity",
-     "Timeline : 24 hours — esmane teade (initial notice) 72 hours — intsidenditeade (incident notification) On request / if unresolved — vahearuanne (interim report) 1 month after the intsidenditeade — lõpparuanne (final report)"
+     "Timeline : 24 hours - esmane teade (initial notice) 72 hours - intsidenditeade (incident notification) On request / if unresolved - vahearuanne (interim report) 1 month after the intsidenditeade - lõpparuanne (final report)"
     ],
     "reg": [
      "Registration availability : YES",
@@ -1248,7 +1248,7 @@
    "sections": {
     "fw": [
      "Type of document for principal transposition text : Law",
-     "Additional texts (in support of principal text) : 02/10/2025: Joint Ministerial Decision No. 1381/2025, which specifies the creation of a digital platform and details regarding the submission of information required for the registration of entities 05/06/2025: Joint Ministerial Decision No. 1689/2025, establishing the national framework of cybersecurity requirements 12/16/2025: Adoption of the new National Cybersecurity Strategy 2026–2030, under Law 5160/2024 (replacing the 2020–2025 strategy)",
+     "Additional texts (in support of principal text) : 02/10/2025: Joint Ministerial Decision No. 1381/2025, which specifies the creation of a digital platform and details regarding the submission of information required for the registration of entities 05/06/2025: Joint Ministerial Decision No. 1689/2025, establishing the national framework of cybersecurity requirements 12/16/2025: Adoption of the new National Cybersecurity Strategy 2026-2030, under Law 5160/2024 (replacing the 2020-2025 strategy)",
      "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
      "Framework last publication date : 2025-06-05",
      "Classification of IS : Applicable to all IS",
@@ -1275,7 +1275,7 @@
      "Name and link of web platform : Incident reporting form",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — early warning 72 hours — incident notification On request — interim report 1 month after the incident notification — final report (or progress report + final report within 1 month of resolution, if still ongoing)"
+     "Timeline : 24 hours - early warning 72 hours - incident notification On request - interim report 1 month after the incident notification - final report (or progress report + final report within 1 month of resolution, if still ongoing)"
     ],
     "reg": [
      "Registration availability : YES",
@@ -1729,7 +1729,7 @@
      "Mandatory information required : Severity and impact Type of threat or the original cause Mitigation measures adopted Cross-border impact of the accident",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — pre-notifica (early warning) 72 hours — notifica (incident notification) On request — interim report 1 month after the notifica — relazione finale (final report), or monthly progress reports if the incident is still ongoing"
+     "Timeline : 24 hours - pre-notifica (early warning) 72 hours - notifica (incident notification) On request - interim report 1 month after the notifica - relazione finale (final report), or monthly progress reports if the incident is still ongoing"
     ],
     "reg": [
      "Registration availability : YES",
@@ -1780,7 +1780,7 @@
      "Ban on practicing for legal representative : Same modalities as in the directives",
      "Suspension of cyber certification : Same modalities as in the directives",
      "Addition of penalties not included in the directive : YES",
-     "Types of additional penalties : 1. Public Sector Fines: Flat pecuniary fines specifically targeting public entities. 2. Personal Disciplinary Liability: Violations by public employees can trigger managerial, disciplinary, and administrative-accounting liability. 3. Minor Infractions Tier: Fines up to 0.1% or 0.07% of turnover (or €10k–€50k for public bodies) for registry and service categorization failures. 4. Settlement Tools: Adds an \"invitation to comply\" (invito a conformarsi) and reduced payment settlement options.",
+     "Types of additional penalties : 1. Public Sector Fines: Flat pecuniary fines specifically targeting public entities. 2. Personal Disciplinary Liability: Violations by public employees can trigger managerial, disciplinary, and administrative-accounting liability. 3. Minor Infractions Tier: Fines up to 0.1% or 0.07% of turnover (or €10k-€50k for public bodies) for registry and service categorization failures. 4. Settlement Tools: Adds an \"invitation to comply\" (invito a conformarsi) and reduced payment settlement options.",
      "Reccuring or temporary financial sanctions : NO",
      "Individual financial sanction : NO",
      "Individual banishment sanction : YES",
@@ -1860,7 +1860,7 @@
      "Mandatory information required : Cross-border impact of the accident Severity and impact Type of threat or the original cause Mitigation measures adopted Proves of intrusion Incident stemming from malicious or illegal actions?",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — initial notice (large incidents) 72 hours — severity/impact assessment + IOCs (large incidents); or basic info (minor incidents) 1 month from incident registration — final report",
+     "Timeline : 24 hours - initial notice (large incidents) 72 hours - severity/impact assessment + IOCs (large incidents); or basic info (minor incidents) 1 month from incident registration - final report",
      "Any other relavant comments : Lithuania requires reporting of minor incidents too, not just significant ones",
      "Timeline Directive NIS2 : sans retard injustifié et en tout état de cause dans les 72 heures après avoir eu connaissance de l’incident important, une notification d’incident qui, le cas échéant, met à jour les informations visées au point a) et fournit une évaluation initiale de l’incident important, y compris de sa gravité et de son impact, ainsi que des indicateurs de compromission, lorsqu’ils sont disponibles;"
     ],
@@ -1962,7 +1962,7 @@
      "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — early warning 72 hours — incident notification Interim report — possible, on request 1 month — final report +2 months after the final report — supplementary notification if new important information is discovered",
+     "Timeline : 24 hours - early warning 72 hours - incident notification Interim report - possible, on request 1 month - final report +2 months after the final report - supplementary notification if new important information is discovered",
      "Any other relavant comments : If the operator discovers new information about the incident within 2 months of the final notification it must notify the ILR of that new information as well.",
      "Timeline Directive NIS2 : à la demande d’un CSIRT ou, selon le cas, de l’autorité compétente, un rapport intermédiaire sur les mises à jour pertinentes de la situation;"
     ],
@@ -2085,7 +2085,7 @@
      "Name and link of web platform : By mail (cert@cert.lv, cert@cert.gov.lv) or by phone (+371 67085888)",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — early warning 72 hours — incident notification 30 days — final report",
+     "Timeline : 24 hours - early warning 72 hours - incident notification 30 days - final report",
      "Timeline Directive NIS2 : sans retard injustifié et en tout état de cause dans les 24 heures après avoir eu connaissance de l’incident important, une alerte précoce qui, le cas échéant, indique si l’on suspecte l’incident important d’avoir été causé par des actes illicites ou malveillants ou s’il pourrait avoir un impact transfrontière;"
     ],
     "reg": [
@@ -2326,7 +2326,7 @@
      "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request /24 hours — early warning 72 hours — incident report 1 month — final report final report 1month)",
+     "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request /24 hours - early warning 72 hours - incident report 1 month - final report final report 1month)",
      "Timeline Directive NIS2 : i)"
     ],
     "reg": [
@@ -2409,7 +2409,7 @@
     "fw": "No",
     "auditBody": "Multiple",
     "authorityCount": 8,
-    "authorities": "NSM – Norwegian Security Authority (Nasjonal sikkerhetsmyndighet) Norwegian Communications Authority (NKOM) Norwegian Water Resources and Energy Directorate (NVE) Directorate for Civil Aviation (Luftfartstilsynet) Norwegian Maritime Authority (Sjøfartsdirektoratet) Norwegian Health Directorate (Helsedirektoratet) Financial Supervisory Authority of Norway (Finanstilsynet) NorCERT"
+    "authorities": "NSM - Norwegian Security Authority (Nasjonal sikkerhetsmyndighet) Norwegian Communications Authority (NKOM) Norwegian Water Resources and Energy Directorate (NVE) Directorate for Civil Aviation (Luftfartstilsynet) Norwegian Maritime Authority (Sjøfartsdirektoratet) Norwegian Health Directorate (Helsedirektoratet) Financial Supervisory Authority of Norway (Finanstilsynet) NorCERT"
    },
    "sections": {
     "fw": [
@@ -2483,7 +2483,7 @@
      "Mandatory information required : What's happening, expected actions and consequences",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — early warning 72 hours — full incident notification 1 month — final report",
+     "Timeline : 24 hours - early warning 72 hours - full incident notification 1 month - final report",
      "Timeline Directive NIS2 : iii)"
     ],
     "reg": [
@@ -2609,7 +2609,7 @@
      "Mandatory information required : What's happening, expected actions and consequences",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — initial alert 72 hours — notification (standard NIS2 pattern; not independently confirmed for Portugal but implied) 30 days — progress report, if unresolved Following month — final report, after the incident is resolved/handled",
+     "Timeline : 24 hours - initial alert 72 hours - notification (standard NIS2 pattern; not independently confirmed for Portugal but implied) 30 days - progress report, if unresolved Following month - final report, after the incident is resolved/handled",
      "Timeline Directive NIS2 : iv)"
     ],
     "reg": [
@@ -2739,7 +2739,7 @@
      "Mandatory information required : Identification & entity Classification of the incident Factual descriptiob Indicators & technical proofs Impact assessment Measures of response",
      "Major incident definition in the transposition : YES",
      "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-     "Timeline : 24 hours — early warning 72 hours — incident report On request — interim report 1 month — final report",
+     "Timeline : 24 hours - early warning 72 hours - incident report On request - interim report 1 month - final report",
      "Timeline Directive NIS2 : en cas d’incident en cours au moment de la présentation du rapport final visé au point d), les États membres veillent à ce que les entités concernées fournissent à ce moment-là un rapport d’avancement puis un rapport final dans un délai d’un mois à compter du traitement de l’incident."
     ],
     "reg": [

@@ -45,10 +45,10 @@ roleSel.addEventListener("change", () => { role = roleSel.value; store.role = ro
 /* ---------- helpers ---------- */
 const $ = (s, el) => (el || document).querySelector(s);
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
-const fmtDate = d => { if (!d) return "—"; const [y, m, dd] = d.split("-"); const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m - 1]; return `${+dd} ${M} ${y}`; };
+const fmtDate = d => { if (!d) return "-"; const [y, m, dd] = d.split("-"); const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m - 1]; return `${+dd} ${M} ${y}`; };
 function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 function lvlColor(l){ return cssVar("--m" + l); }
-const LVL_SHORT = { 1: "Level 1 — preliminary work", 2: "Level 2 — bill in parliament", 3: "Level 3 — law approved, framework pending/provisional", 4: "Level 4 — law + final framework" };
+const LVL_SHORT = { 1: "Level 1 - preliminary work", 2: "Level 2 - bill in parliament", 3: "Level 3 - law approved, framework pending/provisional", 4: "Level 4 - law + final framework" };
 
 /* tooltip */
 const tip = document.getElementById("tip");
@@ -71,7 +71,7 @@ function inkOn(hex){ /* readable text colour for a given fill */
 }
 const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">Level ${c.maturity}</span>`; };
 const fwChip = c => `<span class="chip fw-${c.fw}">${t("fw." + c.fw)}</span>`;
-const srcChip = t => t === "official" ? `<span class="chip src-official">Official</span>` : t === "manual" ? `<span class="chip src-manual">Manual — consultant input</span>` : `<span class="chip src-unofficial">Unofficial — verify</span>`;
+const srcChip = t => t === "official" ? `<span class="chip src-official">Official</span>` : t === "manual" ? `<span class="chip src-manual">Manual - consultant input</span>` : `<span class="chip src-unofficial">Unofficial - verify</span>`;
 const stChip = s => ({ pending: `<span class="chip st-pending">Pending validation</span>`, validated: `<span class="chip st-validated">Validated</span>`, rejected: `<span class="chip st-rejected">Rejected</span>` }[s] || "");
 
 /* pending badge */
@@ -152,11 +152,11 @@ function renderOverview(){
   events.sort((a, b) => b.date < a.date ? -1 : 1);
   $("#feed").innerHTML = events.slice(0, 7).map(e => `
     <div class="feed-it"><div class="d">${fmtDate(e.date)}</div>
-      <div class="t"><span class="c"><i class="fi">${flagSvg(e.c.iso)}</i> ${esc(e.c.name)}</span> — ${esc(e.text)}</div></div>`).join("");
+      <div class="t"><span class="c"><i class="fi">${flagSvg(e.c.iso)}</i> ${esc(e.c.name)}</span> - ${esc(e.text)}</div></div>`).join("");
   $("#lvlHelp").innerHTML = [4, 3, 2, 1].map(l => `
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:9px">
       <span class="leg-sw" style="background:${lvlColor(l)};margin-top:3px"></span>
-      <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> — ${esc(t("lvl." + l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
+      <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> - ${esc(t("lvl." + l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
     </div>`).join("");
   $("#expMap").addEventListener("click", exportMapPNG);
 }

@@ -1,4 +1,4 @@
-/* ---- Watch queue — generated from the NIS 2 watch agent (tblVeille).
+/* ---- Watch queue - generated from the NIS 2 watch agent (tblVeille).
    Regenerate: python3 tools/veille_to_watchitems.py <agent_veille_NIS2.xlsx>
    Picked up by build.sh when present; app_part1.js falls back to the
    demo WATCH_QUEUE in data_c4.js when it is not. Do not edit by hand. ---- */
@@ -6225,10 +6225,10 @@ const WATCH_QUEUE_AGENT = [
     "id": "REG-20260703171927-004",
     "detected": "2026-07-03",
     "iso": "FR",
-    "title": "Appel à manifestation d'intérêt – Sécurité des écosystèmes de cybersécurité",
+    "title": "Appel à manifestation d'intérêt - Sécurité des écosystèmes de cybersécurité",
     "excerpt": "L'ANSSI ouvre un appel à manifestation d‘intérêt pour le soutien à la création et le développement d’entités chargées de l’accompagnement sectoriel aux enjeux de cybersécurité (AMI SEC), du 16 juin 2026 au 27 juillet 2026 . Le présent appel à manifestation d’intérêt définit l’objet du financement envisagé par l’Agence nationale de la sécurité des systèmes d’information (ANSSI) pour encourager les initiatives permettant de renforcer la capacité de coordination sectorielle en matière de cybersécurité au niveau national . […]",
     "summary": "L'ANSSI lance un appel à manifestation d'intérêt pour soutenir la création et le développement d'entités dédiées à l'accompagnement des acteurs de la cybersécurité. Cet appel s'inscrit dans le cadre des mesures de renforcement des écosystèmes de cybersécurité prévues par la directive NIS2, impactant les obligations de supervision et d'accompagnement des entités concernées.",
-    "titleEn": "Call for expressions of interest – Security of cybersecurity ecosystems",
+    "titleEn": "",
     "summaryEn": "ANSSI is launching a call for expressions of interest to support the creation and development of entities dedicated to assisting cybersecurity actors. This call forms part of the measures to strengthen cybersecurity ecosystems provided for by the NIS2 Directive, affecting the supervision and support obligations of the entities concerned.",
     "source": {
       "name": "ANSSI",
@@ -8706,10 +8706,10 @@ const WATCH_QUEUE_AGENT = [
     "id": "REG-20260602131521",
     "detected": "2026-06-02",
     "iso": "BE",
-    "title": "NIS2: Échéance du 18 avril 2026 – Obligations pour les entités essentielles en Belgique",
+    "title": "NIS2: Échéance du 18 avril 2026 - Obligations pour les entités essentielles en Belgique",
     "excerpt": "",
     "summary": "Les entités essentielles en Belgique doivent démontrer d'ici le 18 avril 2026 la mise en œuvre effective de mesures de gestion des risques cyber et suivre un parcours de conformité reconnu. Trois voies possibles : CyberFundamentals (CyFun®) avec vérification Basic ou Important ; ISO/IEC 27001 avec certification à finaliser d'ici avril 2027 ; ou inspection directe avec auto-évaluation et documentation. Le non-respect expose à des sanctions administratives, financières ou des mesures de supervision. La loi belge NIS2 est entrée en vigueur le 18 octobre 2024.",
-    "titleEn": "NIS2: Deadline of 18 April 2026 – Obligations for essential entities in Belgium",
+    "titleEn": "",
     "summaryEn": "Essential entities in Belgium must demonstrate by 18 April 2026 the effective implementation of cyber risk management measures and follow a recognized compliance pathway. Three possible routes: CyberFundamentals (CyFun®) with Basic or Important verification; ISO/IEC 27001 with certification to be completed by April 2027; or direct inspection with self-assessment and documentation. Non-compliance exposes them to administrative and financial sanctions or supervisory measures. The Belgian NIS2 law entered into force on 18 October 2024.",
     "source": {
       "name": "Watch agent",
