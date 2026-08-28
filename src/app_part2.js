@@ -63,20 +63,19 @@ const DOC_ICON = { legislation: "\u2696", framework: "\u1F6E1", other: "\u1F4CE"
 function docsSection(c){
   const rec = (typeof COUNTRY_DOCS !== "undefined" && COUNTRY_DOCS[c.iso]) || null;
   if (!rec) return "";
-  const verified = rec.folders.some(f => f.exists !== undefined);
+  const anyApprox = rec.folders.some(f => f.approx);
   return `<div class="card"><div class="cap"><h2>${t("docs.title")}</h2></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("docs.sub")}</p>
     <div class="docs">
-      ${rec.folders.map(f => {
-        const dead = f.exists === false;
-        return `<a class="doc${dead ? " dead" : ""}" href="${esc(f.url)}" target="_blank" rel="noopener">
-          <span class="doc-t">${t("docs." + f.key)}</span>
-          <span class="doc-d">${t("docs.d" + f.key.charAt(0).toUpperCase() + f.key.slice(1))}</span>
-          ${f.items != null ? `<span class="doc-n">${t("docs.items", { n: f.items })}</span>` : ""}
-        </a>`;
-      }).join("")}
+      ${rec.folders.map(f => `<a class="doc${f.approx ? " approx" : ""}" href="${esc(f.url)}"
+          target="_blank" rel="noopener"${f.approx ? ` title="${t("docs.approx")}"` : ""}>
+        <span class="doc-t">${t("docs." + f.key)}${f.approx ? ' <span class="doc-a">\u2197</span>' : ""}</span>
+        <span class="doc-d">${t("docs.d" + f.key.charAt(0).toUpperCase() + f.key.slice(1))}</span>
+        ${f.items != null ? `<span class="doc-n">${t("docs.items", { n: f.items })}</span>` : ""}
+      </a>`).join("")}
     </div>
-    ${verified ? "" : `<div class="q-note" style="margin-top:9px">${t("docs.unverified")}</div>`}
+    <a class="doc-root" href="${esc(rec.folderUrl)}" target="_blank" rel="noopener">${t("docs.folder")}</a>
+    ${anyApprox ? `<div class="q-note" style="margin-top:8px">${t("docs.approxNote")}</div>` : ""}
   </div></div>`;
 }
 const WB_FLAT = ["regAuthority", "regDeadline", "regDeadlineMonths",

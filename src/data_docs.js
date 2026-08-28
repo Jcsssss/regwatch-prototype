@@ -5,726 +5,871 @@
 const COUNTRY_DOCS = {
  "BE": {
   "country": "Belgium",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBelgium&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBelgium%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBelgium&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBelgium%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBelgium&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBelgium%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBelgium%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBelgium%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBelgium&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "HR": {
   "country": "Croatia",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCroatia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCroatia%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCroatia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCroatia%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCroatia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCroatia%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCroatia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCroatia%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCroatia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "CZ": {
   "country": "Czechia",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCzechia%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCzechia%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCzechia%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCzechia%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "DE": {
   "country": "Germany",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGermany&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGermany%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGermany&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGermany%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGermany&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGermany%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGermany%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGermany%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGermany&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "GR": {
   "country": "Greece",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGreece&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGreece%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGreece&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGreece%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGreece&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGreece%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGreece%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FGreece%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FGreece&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "HU": {
   "country": "Hungary",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FHungary&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FHungary%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FHungary&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FHungary%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FHungary&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FHungary%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FHungary%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FHungary%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FHungary&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "IT": {
   "country": "Italy",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FItaly&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FItaly%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FItaly&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FItaly%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FItaly&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FItaly%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FItaly%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FItaly%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FItaly&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "LV": {
   "country": "Latvia",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLatvia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLatvia%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLatvia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLatvia%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLatvia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLatvia%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLatvia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLatvia%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLatvia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "LT": {
   "country": "Lithuania",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLithuania&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLithuania%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLithuania&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLithuania%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLithuania&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLithuania%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLithuania%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLithuania%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLithuania&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "MT": {
   "country": "Malta",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FMalta&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FMalta%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FMalta&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FMalta%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FMalta&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FMalta%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FMalta%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FMalta%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FMalta&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "PT": {
   "country": "Portugal",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPortugal&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPortugal%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPortugal&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPortugal%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPortugal&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPortugal%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPortugal%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPortugal%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPortugal&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "SK": {
   "country": "Slovakia",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovakia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovakia%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovakia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovakia%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovakia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovakia%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovakia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovakia%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovakia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "SI": {
   "country": "Slovenia",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovenia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovenia%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovenia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovenia%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovenia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovenia%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovenia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSlovenia%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSlovenia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "EE": {
   "country": "Estonia",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FEstonia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FEstonia%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FEstonia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FEstonia%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FEstonia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FEstonia%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FEstonia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FEstonia%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FEstonia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "RO": {
   "country": "Romania",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FRomania&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FRomania%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FRomania&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FRomania%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FRomania&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FRomania%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FRomania%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FRomania%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FRomania&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "AT": {
   "country": "Austria",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FAustria&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FAustria%2FApproved%20legislation"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FAustria%2FApproved%20legislation%20%28last%20update%20-%2019%20August%202026%29&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FAustria%2FFramework"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FAustria%2FFramework%20%28last%20update%20-%2019%20August%202026%29&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FAustria%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FAustria%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FAustria%2FOld"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FAustria%2F_old%20%28last%20update%20-%2019%20August%202026%29&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "BG": {
   "country": "Bulgaria",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBulgaria&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBulgaria%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBulgaria&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBulgaria%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBulgaria&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBulgaria%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBulgaria%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FBulgaria%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FBulgaria&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "PL": {
   "country": "Poland",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPoland&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPoland%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPoland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPoland%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPoland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPoland%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPoland%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FPoland%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FPoland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "CY": {
   "country": "Cyprus",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCyprus&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCyprus%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCyprus&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCyprus%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCyprus&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCyprus%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCyprus%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FCyprus%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCyprus&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "DK": {
   "country": "Denmark",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FDenmark&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FDenmark%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FDenmark&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FDenmark%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FDenmark&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FDenmark%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FDenmark%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FDenmark%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FDenmark&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "FI": {
   "country": "Finland",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFinland&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFinland%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFinland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFinland%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFinland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFinland%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFinland%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFinland%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFinland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "SE": {
   "country": "Sweden",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSweden&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSweden%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSweden&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSweden%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSweden&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSweden%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSweden%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSweden%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSweden&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "LU": {
   "country": "Luxembourg",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLuxembourg&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLuxembourg%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLuxembourg&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLuxembourg%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLuxembourg&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLuxembourg%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLuxembourg%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FLuxembourg%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FLuxembourg&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "FR": {
   "country": "France",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFrance&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFrance%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFrance&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFrance%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFrance&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFrance%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFrance%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FFrance%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FFrance&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "NL": {
   "country": "Netherlands",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNetherlands&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNetherlands%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNetherlands&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNetherlands%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNetherlands&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNetherlands%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNetherlands%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNetherlands%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNetherlands&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "ES": {
   "country": "Spain",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSpain&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSpain%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSpain&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSpain%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSpain&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSpain%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSpain%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FSpain%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FSpain&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "GB": {
   "country": "United Kingdom",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FUnited%20Kingdom&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FUnited%20Kingdom%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FUnited%20Kingdom&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FUnited%20Kingdom%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FUnited%20Kingdom&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FUnited%20Kingdom%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FUnited%20Kingdom%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FUnited%20Kingdom%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FUnited%20Kingdom&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "IE": {
   "country": "Ireland",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FIreland&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FIreland%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FIreland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FIreland%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FIreland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FIreland%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FIreland%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FIreland%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FIreland&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },
  "NO": {
   "country": "Norway",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNorway&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNorway%2FApproved%20legislation"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNorway&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNorway%2FFramework"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNorway&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNorway%2FOther%20documents%20relating%20to%20NIS%202"
+    "approx": false,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNorway%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F01%20-%20Cyber%20watch%20EU%2FNorway%2FOld"
+    "approx": true,
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FNorway&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  }
