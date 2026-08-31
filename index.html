@@ -280,6 +280,8 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .q-group>summary::before{content:"▸ ";color:var(--accent)}
 .q-group[open]>summary::before{content:"▾ "}
 .q-group .q-card{margin:0 6px 10px}
+.deck-dl{display:inline-block;text-decoration:none;margin-top:9px}
+.deck-dl:hover{text-decoration:none}
 .back-big{font-size:14px;font-weight:700;padding:9px 18px;border-radius:9px;margin-bottom:14px;
   background:var(--surface);border:1.5px solid var(--accent);color:var(--accent);cursor:pointer}
 .back-big:hover{background:var(--accent);color:#fff}
@@ -402,6 +404,9 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
   .q-actions{gap:7px}
   .q-actions .btn{flex:1 1 auto;justify-content:center}
   .form-grid{grid-template-columns:1fr}
+  /* Two 170px columns still fit at 390px, but labels like REGISTRATION
+     AUTHORITY wrap to three lines in them. One column reads better. */
+  .facts{grid-template-columns:1fr}
   .ctiles{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}
   .ctile-sub{display:none}
   .cty-head .upd{width:100%;text-align:left}
@@ -5370,7 +5375,7 @@ const COUNTRIES_3 = [
     { name:"Ministry of Digital Affairs", url:"https://www.gov.pl/web/cyfryzacja", type:"official" },
     { name:"Dziennik Ustaw (Journal of Laws)", url:"https://dziennikustaw.gov.pl", type:"official" } ] },
 
-{ iso:"CY", name:"Cyprus", flag:"🇨🇾", region:"South", eu:true, maturity:3, lastUpdate:"2026-07-06",
+{ iso:"CY", name:"Cyprus", flag:"🇨🇾", region:"South", eu:true, maturity:4, lastUpdate:"2026-07-06",
   transposed:true, onTime:false, delayMonths:6, lawInForce:"2025-04-25", fw:"none",
   law:"Law N.60(I)/2025 amending the NIS law (in force 25 Apr 2025)",
   fwName:"Framework to be specified by the Digital Security Authority - publication expected",
@@ -5551,7 +5556,7 @@ const COUNTRIES_3 = [
     { name:"Légifrance", url:"https://www.legifrance.gouv.fr", type:"official" } ] }
 ];
 const COUNTRIES_4 = [
-{ iso:"NL", name:"Netherlands", flag:"🇳🇱", region:"West", eu:true, maturity:2, lastUpdate:"2026-06-22",
+{ iso:"NL", name:"Netherlands", flag:"🇳🇱", region:"West", eu:true, maturity:4, lastUpdate:"2026-06-22",
   transposed:false, onTime:false, delayMonths:null, lawInForce:null, fw:"final",
   law:"Cyberbeveiligingswet (Cbw) - adopted by the Tweede Kamer, before the Senate",
   fwName:"Cbw (NIS2) Control Framework - 17 control domains, 26 measures, 5-level maturity model",
@@ -11997,6 +12002,10 @@ const I18N = {
     "cp.onTime": "Transposed on time",
     "cp.inForce": "In force {date} (+{n} mo)",
     "cp.notTransposed": "Not transposed yet",
+    "cp.deckReady": "⬇ Tap to save the deck",
+    "cp.deckHint": "Generated. On iPhone and iPad the browser needs a tap to save the file.",
+    "cp.deckWorking": "Generating…",
+    "cp.deckFailed": "⚠ Generation failed",
     "cp.genSlides": "⬇ Generate country slides",
     "cp.law": "Transposition law",
     "cp.fw": "Cybersecurity framework",
@@ -12271,6 +12280,10 @@ const I18N = {
     "cp.onTime": "Transposé dans les délais",
     "cp.inForce": "En vigueur le {date} (+{n} mois)",
     "cp.notTransposed": "Pas encore transposé",
+    "cp.deckReady": "⬇ Toucher pour enregistrer",
+    "cp.deckHint": "Généré. Sur iPhone et iPad, le navigateur exige un toucher pour enregistrer le fichier.",
+    "cp.deckWorking": "Génération…",
+    "cp.deckFailed": "⚠ Échec de la génération",
     "cp.genSlides": "⬇ Générer les slides du pays",
     "cp.law": "Loi de transposition",
     "cp.fw": "Cadre de cybersécurité",
@@ -12876,16 +12889,34 @@ function renderCountry(iso){
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;
-    db.disabled = true; db.textContent = "Generating…";
+    db.disabled = true; db.textContent = t("cp.deckWorking");
     try {
-      await generateCountryDeck(iso);
-      db.textContent = "✓ Downloaded";
+      const { blob, filename } = await generateCountryDeck(iso);
+      const url = URL.createObjectURL(blob);
+
+      /* A real link the person can tap. On desktop the click below saves the
+         file immediately; on iOS that click is ignored, and this link is what
+         actually works. Either way it stays visible until the page changes. */
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      link.className = "btn primary deck-dl";
+      link.textContent = t("cp.deckReady");
+      db.replaceWith(link);
+      const hint = document.createElement("div");
+      hint.className = "q-note";
+      hint.style.marginTop = "6px";
+      hint.textContent = t("cp.deckHint");
+      link.after(hint);
+
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 120000);
     } catch (err) {
-      db.textContent = "⚠ Failed";
+      db.textContent = t("cp.deckFailed");
       console.error(err);
-      alert("Could not generate the deck: " + err.message);
+      alert(err.message);
+      setTimeout(() => { db.disabled = false; db.textContent = label; }, 2500);
     }
-    setTimeout(() => { db.disabled = false; db.textContent = label; }, 2500);
   });
 }
 
@@ -13838,15 +13869,13 @@ async function generateCountryDeck(iso){
     e.method = 8;
   }
 
-  const blob = writeZip(entries);
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `RegWatch - ${c.name}.pptx`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  /* Return the file rather than triggering the save here.
+     iOS Safari refuses a programmatic download in two ways at once: the user
+     gesture is gone by the time the awaits above resolve, and it ignores the
+     `download` attribute on a blob: URL anyway. Handing the blob back lets the
+     caller offer a real link the person taps - a second, genuine gesture, which
+     is the only thing that works there. */
+  return { blob: writeZip(entries), filename: `RegWatch - ${c.name}.pptx` };
 }
 </script>
 </body></html>

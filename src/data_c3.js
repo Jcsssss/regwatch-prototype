@@ -55,7 +55,7 @@ const COUNTRIES_3 = [
     { name:"Ministry of Digital Affairs", url:"https://www.gov.pl/web/cyfryzacja", type:"official" },
     { name:"Dziennik Ustaw (Journal of Laws)", url:"https://dziennikustaw.gov.pl", type:"official" } ] },
 
-{ iso:"CY", name:"Cyprus", flag:"🇨🇾", region:"South", eu:true, maturity:3, lastUpdate:"2026-07-06",
+{ iso:"CY", name:"Cyprus", flag:"🇨🇾", region:"South", eu:true, maturity:4, lastUpdate:"2026-07-06",
   transposed:true, onTime:false, delayMonths:6, lawInForce:"2025-04-25", fw:"none",
   law:"Law N.60(I)/2025 amending the NIS law (in force 25 Apr 2025)",
   fwName:"Framework to be specified by the Digital Security Authority - publication expected",

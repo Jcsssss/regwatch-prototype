@@ -1,5 +1,5 @@
 {
-  "generatedOn": "2026-08-28",
+  "generatedOn": "2026-08-31",
   "count": 29,
   "countries": [
     {
@@ -1798,7 +1798,7 @@
       "flag": "🇨🇾",
       "region": "South",
       "eu": true,
-      "maturity": 3,
+      "maturity": 4,
       "lastUpdate": "2026-07-06",
       "transposed": true,
       "onTime": false,
@@ -2405,7 +2405,7 @@
       "flag": "🇳🇱",
       "region": "West",
       "eu": true,
-      "maturity": 2,
+      "maturity": 4,
       "lastUpdate": "2026-06-22",
       "transposed": false,
       "onTime": false,

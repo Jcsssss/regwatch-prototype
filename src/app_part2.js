@@ -163,16 +163,34 @@ function renderCountry(iso){
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;
-    db.disabled = true; db.textContent = "Generating…";
+    db.disabled = true; db.textContent = t("cp.deckWorking");
     try {
-      await generateCountryDeck(iso);
-      db.textContent = "✓ Downloaded";
+      const { blob, filename } = await generateCountryDeck(iso);
+      const url = URL.createObjectURL(blob);
+
+      /* A real link the person can tap. On desktop the click below saves the
+         file immediately; on iOS that click is ignored, and this link is what
+         actually works. Either way it stays visible until the page changes. */
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      link.className = "btn primary deck-dl";
+      link.textContent = t("cp.deckReady");
+      db.replaceWith(link);
+      const hint = document.createElement("div");
+      hint.className = "q-note";
+      hint.style.marginTop = "6px";
+      hint.textContent = t("cp.deckHint");
+      link.after(hint);
+
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 120000);
     } catch (err) {
-      db.textContent = "⚠ Failed";
+      db.textContent = t("cp.deckFailed");
       console.error(err);
-      alert("Could not generate the deck: " + err.message);
+      alert(err.message);
+      setTimeout(() => { db.disabled = false; db.textContent = label; }, 2500);
     }
-    setTimeout(() => { db.disabled = false; db.textContent = label; }, 2500);
   });
 }
 

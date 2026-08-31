@@ -278,6 +278,8 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .q-group>summary::before{content:"▸ ";color:var(--accent)}
 .q-group[open]>summary::before{content:"▾ "}
 .q-group .q-card{margin:0 6px 10px}
+.deck-dl{display:inline-block;text-decoration:none;margin-top:9px}
+.deck-dl:hover{text-decoration:none}
 .back-big{font-size:14px;font-weight:700;padding:9px 18px;border-radius:9px;margin-bottom:14px;
   background:var(--surface);border:1.5px solid var(--accent);color:var(--accent);cursor:pointer}
 .back-big:hover{background:var(--accent);color:#fff}
@@ -400,6 +402,9 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
   .q-actions{gap:7px}
   .q-actions .btn{flex:1 1 auto;justify-content:center}
   .form-grid{grid-template-columns:1fr}
+  /* Two 170px columns still fit at 390px, but labels like REGISTRATION
+     AUTHORITY wrap to three lines in them. One column reads better. */
+  .facts{grid-template-columns:1fr}
   .ctiles{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}
   .ctile-sub{display:none}
   .cty-head .upd{width:100%;text-align:left}

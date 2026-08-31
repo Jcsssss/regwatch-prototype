@@ -1,5 +1,5 @@
 const COUNTRIES_4 = [
-{ iso:"NL", name:"Netherlands", flag:"🇳🇱", region:"West", eu:true, maturity:2, lastUpdate:"2026-06-22",
+{ iso:"NL", name:"Netherlands", flag:"🇳🇱", region:"West", eu:true, maturity:4, lastUpdate:"2026-06-22",
   transposed:false, onTime:false, delayMonths:null, lawInForce:null, fw:"final",
   law:"Cyberbeveiligingswet (Cbw) - adopted by the Tweede Kamer, before the Senate",
   fwName:"Cbw (NIS2) Control Framework - 17 control domains, 26 measures, 5-level maturity model",
