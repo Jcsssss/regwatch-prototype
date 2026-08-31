@@ -263,17 +263,50 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .kpi-panel h2{flex:1 1 200px;min-width:0}
 .kpi-panel .btn.icon{padding:4px 8px;line-height:1.1;font-size:11.5px}
 
+/* ---- the builder ---- */
+/* The preview lives directly under the controls: the point of the card is that
+   a change to a control is seen without moving. */
+.kpi-builder{border-color:var(--line2)}
+.kpi-build-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.kpi-build-help{margin:9px 0 0}
+.kpi-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.kpi-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);
+  border:1px solid var(--line2);border-radius:999px;padding:4px 6px 4px 11px;
+  font-size:12.5px;font-weight:600;color:var(--ink)}
+.kpi-chip-x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:11px;
+  line-height:1;padding:3px 4px;border-radius:999px;font-family:inherit}
+.kpi-chip-x:hover{color:var(--bad);background:var(--surface3)}
+.kpi-preview{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.kpi-h3{font-size:12.5px;font-weight:700;margin:0 0 2px;color:var(--ink)}
+.kpi-meta{margin-top:0}
+/* Several indicators are small multiples, never several series on one axis. */
+.kpi-multi{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.kpi-one+.kpi-one{margin-top:0}
+
+/* ---- donuts ---- */
+.kpi-donuts{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;padding:4px 0}
+.kpi-donut{margin:0;text-align:center}
+.kpi-donut figcaption{font-size:11.5px;color:var(--ink2);margin-top:2px;font-weight:600}
+.kpi-hero{fill:var(--ink);font-size:21px;font-weight:750;font-family:var(--font-mono)}
+
+/* ---- one square per country ---- */
+.kpi-cells{display:flex;flex-wrap:wrap;gap:3px;padding:2px 0 4px}
+.kpi-cell{width:var(--cell);height:var(--cell);border-radius:4px;display:inline-flex;
+  align-items:center;justify-content:center;font-size:9.5px;font-weight:700;
+  color:#fff;font-family:var(--font-mono);letter-spacing:-.02em}
+.kpi-grid-h{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:8px}
+
 /* ---- example charts ---- */
-.kpi-sug{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:12px}
-.kpi-sug-tile{display:flex;flex-direction:column;gap:3px;text-align:left;cursor:pointer;
-  background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 11px 9px;
-  color:inherit;font:inherit}
-.kpi-sug-tile:hover{border-color:var(--accent)}
-.kpi-sug-h{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.25}
-.kpi-sug-s{font-size:11px;color:var(--muted);margin-bottom:4px}
-.kpi-sug-add{font-size:11.5px;font-weight:700;color:var(--accent);margin-top:5px}
-.kpi-sug-tile .kpi-lbl{font-size:10px}
-.kpi-sug-tile .kpi-val{font-size:10px}
+.kpi-exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.kpi-ex{display:flex;flex-direction:column;background:var(--surface2);border:1px solid var(--line);
+  border-radius:10px;padding:11px 12px 9px}
+.kpi-ex-h{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.25}
+.kpi-ex-s{font-size:11px;color:var(--muted);margin-bottom:6px}
+.kpi-ex .kpi-legend{font-size:11px;gap:10px;margin:0 0 5px}
+.kpi-ex .kpi-lbl,.kpi-ex .kpi-val{font-size:10px}
+.kpi-ex .kpi-wrap{flex:1}
+.kpi-ex-use{align-self:flex-start;margin-top:6px}
+.kpi-spacer{flex:1 1 auto}
 
 /* ---- dropdowns that always drop down ----
    A native <select> opens its menu upward whenever the control sits near the
@@ -307,7 +340,8 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 
 @media(max-width:520px){
   .kpi-tools{width:100%}
-  .kpi-tools .dd,.kpi-tools .dd-btn{flex:1 1 auto;max-width:none;width:100%}
+  .kpi-tools .dd{flex:1 1 120px;min-width:0}
+  .kpi-tools .dd-btn{width:100%;max-width:none}
   .filters .dd{flex:1 1 auto}
   .filters .dd-btn{width:100%;max-width:none}
   .kpi-sug{grid-template-columns:1fr}

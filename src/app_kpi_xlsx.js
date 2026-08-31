@@ -72,6 +72,7 @@ function xlSheetXml(rows, widths, drawingRel){
    one column; a single-series chart is a plain ranked bar, several series are
    stacked, which is exactly what the board shows on screen. */
 function xlChartXml(spec){
+  if (spec.type === "pie") return xlPieXml(spec);
   const CAT_AX = 111111111, VAL_AX = 222222222;
   const n = spec.categories.length;
   const sheet = "'" + spec.sheet.replace(/'/g, "''") + "'";
@@ -111,6 +112,40 @@ ${series}
 <c:axPos val="b"/><c:majorGridlines/><c:numFmt formatCode="General" sourceLinked="1"/>
 <c:crossAx val="${CAT_AX}"/></c:valAx></c:plotArea>
 ${multi ? '<c:legend><c:legendPos val="b"/><c:overlay val="0"/></c:legend>' : ""}
+<c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart></c:chartSpace>`;
+}
+
+
+/* A donut on screen becomes a pie in Excel - the one chart Excel draws that
+   matches it. Each slice carries its own colour through <c:dPt>, so the export
+   keeps the palette instead of falling back to Excel's default theme. */
+function xlPieXml(spec){
+  const n = spec.categories.length;
+  const sheet = "'" + spec.sheet.replace(/'/g, "''") + "'";
+  const se = spec.series[0];
+  const cats = spec.categories.map((v, j) => `<c:pt idx="${j}"><c:v>${xlEsc(v)}</c:v></c:pt>`).join("");
+  const vals = se.values.map((v, j) => `<c:pt idx="${j}"><c:v>${v}</c:v></c:pt>`).join("");
+  const points = spec.categories.map((v, j) =>
+    `<c:dPt><c:idx val="${j}"/><c:bubble3D val="0"/><c:spPr><a:solidFill><a:srgbClr val="${
+      (se.colours[j] || se.colour).replace("#", "").toUpperCase()}"/></a:solidFill>`
+    + `<a:ln w="19050"><a:solidFill><a:srgbClr val="FFFFFF"/></a:solidFill></a:ln></c:spPr></c:dPt>`).join("");
+
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<c:chartSpace xmlns:c="${XL_NS.c}" xmlns:a="${XL_NS.a}" xmlns:r="${XL_NS.or}"><c:chart>
+<c:title><c:tx><c:rich><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr sz="1200" b="1"/></a:pPr>
+<a:r><a:rPr lang="en-US" sz="1200" b="1"/><a:t>${xlEsc(spec.title)}</a:t></a:r></a:p></c:rich></c:tx>
+<c:overlay val="0"/></c:title><c:autoTitleDeleted val="0"/>
+<c:plotArea><c:layout/>
+<c:pieChart><c:varyColors val="1"/>
+<c:ser><c:idx val="0"/><c:order val="0"/>
+<c:tx><c:strRef><c:f>${sheet}!$B$1</c:f><c:strCache><c:ptCount val="1"/>
+<c:pt idx="0"><c:v>${xlEsc(se.name)}</c:v></c:pt></c:strCache></c:strRef></c:tx>
+${points}
+<c:cat><c:strRef><c:f>${sheet}!$A$2:$A$${n + 1}</c:f><c:strCache><c:ptCount val="${n}"/>${cats}</c:strCache></c:strRef></c:cat>
+<c:val><c:numRef><c:f>${sheet}!$B$2:$B$${n + 1}</c:f>
+<c:numCache><c:formatCode>General</c:formatCode><c:ptCount val="${n}"/>${vals}</c:numCache></c:numRef></c:val>
+</c:ser><c:firstSliceAng val="0"/></c:pieChart></c:plotArea>
+<c:legend><c:legendPos val="b"/><c:overlay val="0"/></c:legend>
 <c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart></c:chartSpace>`;
 }
 
