@@ -554,113 +554,11 @@ function act(action, id){
 }
 
 /* ---------- Insights ---------- */
-function renderInsights(){
-  const el = $("#v-insights");
-  const k = kpis();
-  el.innerHTML = `
-  <h1 class="pg">${t("ins.title")}</h1>
-  <p class="pg-sub">${t("ins.sub")}</p>
-  <div class="grid-ov" style="margin-bottom:18px">
-    <div class="card"><div class="cap"><h2>${t("ins.reqChart")}</h2></div><div class="bd">
-      <div class="legend-row"><span class="leg-s"><span class="sw" style="background:var(--ee)"></span>${t("ins.ee")}</span><span class="leg-s"><span class="sw" style="background:var(--ie)"></span>${t("ins.ie")}</span></div>
-      <p class="chart-note">${t("ins.reqNote")}</p>
-      <div id="chReq"></div>
-    </div></div>
-    <div class="card"><div class="cap"><h2>${t("ins.delayChart")}</h2></div><div class="bd">
-      <p class="chart-note">${t("ins.delayNote")}</p>
-      <div id="chDelay"></div>
-      <div class="q-note" style="margin-top:10px">${t("ins.notTransposed")} ${COUNTRIES.filter(c => !c.transposed).map(c => `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}`).join(" · ")}</div>
-    </div></div>
-  </div>
-  <div class="card"><div class="cap"><h2>${t("ins.matrix")}</h2>
-    <div style="display:flex;gap:8px"><button class="btn" id="csvBtn">${t("ins.csv")}</button></div></div>
-    <div class="bd">
-    <div class="filters">
-      <select id="kR" aria-label="Region filter"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => `<option value="${r}">${t("reg." + r)}</option>`).join("")}</select>
-      <select id="kL" aria-label="Level filter"><option value="">${t("cty.allLevels")}</option>${[4,3,2,1].map(l => `<option value="${l}">${t("common.level")} ${l}</option>`).join("")}</select>
-      <span class="q-note">${t("ins.fwSummary", { final: k.fwFinal, temp: k.fwTemp, none: k.fwNone })}</span>
-    </div>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>${t("cty.thCountry")}</th><th>${t("cty.thRegion")}</th><th>${t("ins.thLvl")}</th><th>${t("ins.thTransposed")}</th><th class="num">${t("ins.thDelay")}</th><th>${t("cty.thFw")}</th><th class="num">${t("cty.thReqEE")}</th><th class="num">${t("cty.thReqIE")}</th><th class="num">${t("ins.thComplEE")}</th><th class="num">${t("ins.thComplIE")}</th><th class="num">${t("ins.thAuditEE")}</th><th class="num">${t("ins.thAuditIE")}</th><th class="num">${t("ins.thSelf")}</th><th>${t("ins.thAuditBody")}</th><th>${t("ins.thReg")}</th><th>${t("ins.thInc")}</th></tr></thead>
-      <tbody id="kRows"></tbody></table></div>
-  </div></div>`;
-  drawReqChart($("#chReq"));
-  drawDelayChart($("#chDelay"));
-  const paint = () => {
-    const r = $("#kR").value, l = $("#kL").value;
-    const list = COUNTRIES.filter(c => (!r || c.region === r) && (!l || c.maturity == l)).sort((a, b) => a.name.localeCompare(b.name));
-    $("#kRows").innerHTML = list.map(c => `<tr>
-      <td><b><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</b></td><td>${t("reg." + c.region)}</td><td>${lvlChip(c)}</td>
-      <td>${c.transposed ? (c.onTime ? t("common.onTime") : fmtDateL(c.lawInForce)) : t("common.no")}</td>
-      <td class="num">${c.onTime ? "0" : (c.delayMonths != null ? "+" + c.delayMonths : "-")}</td>
-      <td>${fwChip(c)}</td>
-      <td class="num">${c.reqEE ?? "-"}</td><td class="num">${c.reqIE ?? "-"}</td>
-      <td class="num">${c.complianceEE ?? "-"}</td><td class="num">${c.complianceIE ?? "-"}</td>
-      <td class="num">${c.auditFreqEE ?? "-"}</td><td class="num">${c.auditFreqIE ?? "-"}</td><td class="num">${c.selfAssessFreq ?? "-"}</td>
-      <td>${esc(c.auditBody)}</td><td>${esc(c.regTool)}</td><td>${esc(c.incidentMethod)}</td></tr>`).join("");
-  };
-  paint();
-  $("#kR").addEventListener("change", paint);
-  $("#kL").addEventListener("change", paint);
-  $("#csvBtn").addEventListener("click", exportCSV);
-}
 function chartTip(el){
   el.querySelectorAll("[data-tip]").forEach(n => {
     n.addEventListener("mousemove", e => showTip(n.dataset.tip, e.clientX, e.clientY));
     n.addEventListener("mouseleave", hideTip);
   });
-}
-function drawReqChart(host){
-  const data = COUNTRIES.filter(c => c.reqEE != null).sort((a, b) => b.reqEE - a.reqEE);
-  const W = 640, rowH = 30, padL = 118, padR = 24, padT = 8;
-  const H = padT + data.length * rowH + 22;
-  const max = Math.max(...data.map(d => d.reqEE)) * 1.05;
-  const x = v => padL + (W - padL - padR) * v / max;
-  const ee = cssVar("--ee"), ie = cssVar("--ie");
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Bar chart of security requirement counts per country">`;
-  for (let g = 0; g <= max; g += 50) s += `<line class="grid-ln" x1="${x(g)}" y1="${padT}" x2="${x(g)}" y2="${H - 20}"/><text class="axis-lbl" x="${x(g)}" y="${H - 7}" text-anchor="middle">${g}</text>`;
-  data.forEach((c, i) => {
-    const y = padT + i * rowH;
-    s += `<text class="bar-lbl" x="${padL - 8}" y="${y + 15}" text-anchor="end">${c.name}</text>`;
-    s += `<rect x="${padL}" y="${y + 2}" width="${Math.max(2, x(c.reqEE) - padL)}" height="10" rx="3" fill="${ee}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Essential entities: ${c.reqEE} requirements"/>`;
-    s += `<rect x="${padL}" y="${y + 15}" width="${Math.max(2, x(c.reqIE ?? 0) - padL)}" height="10" rx="3" fill="${ie}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Important entities: ${c.reqIE ?? "-"} requirements"/>`;
-  });
-  s += `</svg>`;
-  host.innerHTML = s;
-  chartTip(host);
-}
-function drawDelayChart(host){
-  const data = COUNTRIES.filter(c => c.transposed && c.delayMonths != null).sort((a, b) => b.delayMonths - a.delayMonths);
-  const W = 520, rowH = 21, padL = 118, padR = 40, padT = 8;
-  const H = padT + data.length * rowH + 22;
-  const max = Math.max(...data.map(d => d.delayMonths), 1) * 1.08;
-  const x = v => padL + (W - padL - padR) * v / max;
-  const fill = cssVar("--m3");
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Bar chart of transposition delay in months per country">`;
-  for (let g = 0; g <= max; g += 6) s += `<line class="grid-ln" x1="${x(g)}" y1="${padT}" x2="${x(g)}" y2="${H - 20}"/><text class="axis-lbl" x="${x(g)}" y="${H - 7}" text-anchor="middle">${g}</text>`;
-  data.forEach((c, i) => {
-    const y = padT + i * rowH;
-    s += `<text class="bar-lbl" x="${padL - 8}" y="${y + 13}" text-anchor="end">${c.name}</text>`;
-    if (c.delayMonths === 0) s += `<circle cx="${x(0) + 4}" cy="${y + 9}" r="3.5" fill="${cssVar('--ok')}" data-tip="<b>${c.flag} ${esc(c.name)}</b>Transposed on time"/>`;
-    else s += `<rect x="${padL}" y="${y + 3}" width="${Math.max(2, x(c.delayMonths) - padL)}" height="12" rx="3" fill="${fill}" data-tip="<b>${c.flag} ${esc(c.name)}</b>In force ${fmtDate(c.lawInForce)} - ${c.delayMonths} months late"/>`;
-  });
-  s += `</svg>`;
-  host.innerHTML = s;
-  chartTip(host);
-}
-function exportCSV(){
-  /* Headers follow the interface language: a French user exports a French file. */
-  const lines = [t("csv.head")];
-  COUNTRIES.forEach(c => {
-    const row = [c.name, c.iso, c.region, c.eu ? t("common.yes") : t("common.no"), c.maturity, c.transposed ? t("common.yes") : t("common.no"), c.onTime ? t("common.yes") : t("common.no"), c.lawInForce || "", c.delayMonths ?? "", t("fw." + c.fw), c.fwName, c.reqEE ?? "", c.reqIE ?? "", c.complianceEE ?? "", c.complianceIE ?? "", c.auditBody, c.auditFreqEE ?? "", c.auditFreqIE ?? "", c.selfAssessFreq ?? "", c.regTool, c.incidentMethod, c.lastUpdate];
-    lines.push(row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(";"));
-  });
-  const blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `regwatch-nis2-kpis-${lang}.csv`;
-  a.click();
-  URL.revokeObjectURL(a.href);
 }
 
 /* ---------- Sources ---------- */

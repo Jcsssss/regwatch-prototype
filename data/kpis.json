@@ -1,0 +1,7894 @@
+{
+ "workbook": "CYBER WATCH5_Technical inventory.xlsx",
+ "rows": [
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "2"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "4"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "3"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "2"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "2"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "1"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Maturity Level",
+   "value": "1"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "No"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "Yes"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "No"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "No"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "No"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Transposition finalized",
+   "value": "No"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "In time"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "In time"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2025"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2025"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2024"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2025"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "In time"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "In time"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "In time"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2025"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2025"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2025"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2026"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2025"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2025"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2026"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2025"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2026"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2025"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2026"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2026"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2026"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S2 2026"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": "S1 2026"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Transposition (semester)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "In time (2024)"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "In time (2024)"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2024"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "In time (2024)"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "In time (2024)"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "In time (2024)"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2025"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": "2026"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Transposition (year)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "0"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "0"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "12"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "13"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "1"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "2"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "0"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "0"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "0"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "5"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "2"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "8"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "23"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "6"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "8"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "14"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "5"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "16"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "8"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "14"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "16"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "18"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "21"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": "17"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Exceeded time from EU deadline (month)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Order / Legal notice"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Decree-law"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Order / Legal notice"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "ID",
+   "kpi": "Type of national text",
+   "value": "Law"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "NO"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Sectors added",
+   "value": "YES"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "5"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": ""
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "3"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "5"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "4"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "3"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of private sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "3"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "3"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "3"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "1"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "0"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of public sectors added",
+   "value": "2"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "8"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "2"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "9"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "4"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "2"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "8"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "3"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "2"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "8"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "1"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "1"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "3"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Subsectors added",
+   "value": "3"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": "High importance national education entities ;"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": "ICT public entities ;"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": "Indirectly related to public/ government ;"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": "Forrest management entities ;"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of private subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "May be specified"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Operation of a service station, gas marketing, electricity suppliers for data centers, security inspection of freight or mail, in-flight refueling service, administration of a qualified electronic identification system, payment establishments, electronic money establishments, and operation of research infrastructure."
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Banking and financial market infrastructure as subsectors under the finance sector."
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Thermal energy. Banking systems, financial market infrastructure, and public finance management. Drinking water, wastewater, meteorological services, hydraulic structures. Nuclear energy."
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Energy: hydrogen, LNG. Education: research institution, higher-education establishments"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "The list of subsectors covered by the NIS2 law may be expanded by royal decree"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Logistics Insurance Social (social organizations) Local authorities (regions, departments, municipalities, and inter-municipal communities) with more than 30,000 inhabitants Their management centres, fire and rescue services, interdepartmental unions and services State administrations Public industrial establishments Public education and research institutions"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "May be specified"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Transport: airport operators, airlines, railway infrastructure managers, and intelligent transport services (ITS). Energy: electricity/gas producers, transmission operators, suppliers, storage facility operators, and electric vehicle charging point operators"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": ""
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "The mining sub-sector has been added to the energy sector. Managed cybersecurity service providers working for energy players have also been added to the energy sector."
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Railway, port and airport infrastructures"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "May be specified"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "May be specified"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Logistics Insurance Social (social organizations) Local authorities (regions, departments, municipalities, and inter-municipal communities) with more than 30,000 inhabitants Their management centres, fire and rescue services, interdepartmental unions and services State administrations Public industrial establishments Public education and research institutions"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Transport: airport operators, airlines, railway infrastructure managers, and intelligent transport services (ITS). Energy: electricity/gas producers, transmission operators, suppliers, storage facility operators, and electric vehicle charging point operators"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "The mining sub-sector has been added to the energy sector. Managed cybersecurity service providers working for energy players have also been added to the energy sector."
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Data centers (services with an IT load ≥ 10 megawatts) as Operators of Essential Services (OES). Certain specific digital services (cloud computing, online marketplaces, search engines)."
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Data centers (services with an IT load ≥ 10 megawatts) as Operators of Essential Services (OES). Certain specific digital services (cloud computing, online marketplaces, search engines)."
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "0"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Scope",
+   "kpi": "Number of public subsectors added",
+   "value": "Railway, port and airport infrastructures"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform and Guide"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Authority"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform and Guide"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Form"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Form"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Authority"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": ""
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Form"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Authority"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform and Guide"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Platform"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "Guide"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Tools for self assessment",
+   "value": "No tool"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Notification of concerned entities by the authority"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Notification of concerned entities by the authority"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration or Notification depending on entities"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Notification of concerned entities by the authority"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Notification of concerned entities by the authority"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Types of registration",
+   "value": "Self registration by the entity"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "NO"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": "YES"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Notification of the eligibility",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "NO"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "NO"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "YES"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "NO"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "NO"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "NO"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Registration",
+   "kpi": "Registration availability",
+   "value": "NO"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Sectoral authorities"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "External organism accredited"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Sectoral authorities"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "National authority"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Organism in charge of the audit",
+   "value": "Multiple"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of authority"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of entity"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "Entity pays regular compliance audits; regulator-initiated audits billed only if triggered by justified compliance concerns"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "Audited entity bears the cost of independent audits; authority inspections funded via regulatory fees."
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity (annual fees)"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "The costs of checks carried out by ANSSI (inspections, audits by its officers, scans) are borne by ANSSI. However, the cost of audits carried out by an independent body is borne by the entity being audited, unless ANSSI decides otherwise."
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": "At the expense of the entity"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report via email"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report via email"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report via email"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report via email"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": "Report on a web platform"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Incident reporting",
+   "kpi": "Method for incident reporting",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": ""
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "YES"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Major incident definition is the same as in the directive",
+   "value": "NO"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES - Trusted service providers must submit the incident notification (step 2) within 24 hours of detection (instead of 72 hours)"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES - Trusted service providers must submit the incident notification (step 2) within 24 hours of detection (instead of 72 hours) The CSIRT must provide a response and initial feedback to the organisation within 24 hours of receiving the early warning"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES -"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES - The text introduces a specific requirement for trust service providers, who must submit their incident notification (step 2) within 24 hours rather than 72 hours"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "YES - Trusted service providers must submit the incident notification (step 2) within 24 hours rather than 72 hours The CSIRT must provide a response and initial feedback to the organisation within 24 hours of receiving the early warning"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Incident reporting",
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "value": "NO"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Final"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "Temporary"
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Cybersecurity framework directives published",
+   "value": "No"
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "NO"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": "YES"
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Does it rely on other frameworks?",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "NO"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "NO"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": "YES"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "It relies on ISO 27001/27002",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "YES"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "YES"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "NO"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Existence of a presumption of compliance",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "30"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "12"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "12"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "0"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "3"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "24"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "18"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "13"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "12"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "18"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "12"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "18"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "6"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "NO"
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "36"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "24"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": "18"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "30"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "12"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "12"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "0"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "3"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "24"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "18"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "13"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "12"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "18"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "12"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "18"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "6"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "36"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "24"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "18"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": "12"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "YES"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": "NO"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Compliance target level is different between EE and EI",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "218"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "99"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "293"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "110"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "0"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "116"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "87"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "119"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "218"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "122"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "0"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "1750"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "150"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "218"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "152"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": "130"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EE",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "135"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "99"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "82"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "98"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "0"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "87"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "80"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "107"
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "133"
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "115"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "0"
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "1750"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "101"
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "133"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "76"
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": "130"
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Cybersecurity frameworks",
+   "kpi": "Number of cyber requirements for EI",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "18"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "12"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "≥3 years (critical operators); otherwise BSI-triggered"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "NA - risk-based"
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "Around 18"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "NA - ACN-triggered"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "24"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "24"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "NC - compliance required within 36 months"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": "24"
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": "18"
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": "60"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": "24"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": "NC - compliance required within 36 months"
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "value": ""
+  },
+  {
+   "country": "Belgium",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "NA - voluntary and reactive"
+  },
+  {
+   "country": "Croatia",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "24 months after law coming into force"
+  },
+  {
+   "country": "Czechia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "12"
+  },
+  {
+   "country": "Germany",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "No fixed deadline ; ongoing compliance evaluation required"
+  },
+  {
+   "country": "Greece",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Hungary",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Italy",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "NA - set by ACN case-by-cased"
+  },
+  {
+   "country": "Latvia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "01-Oct-2025 (or within 3 months of designation)"
+  },
+  {
+   "country": "Lithuania",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Malta",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Slovakia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "24"
+  },
+  {
+   "country": "Slovenia",
+   "region": "East",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Austria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "12"
+  },
+  {
+   "country": "Cyprus",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Denmark",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Estonia",
+   "region": "North",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Finland",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Portugal",
+   "region": "South",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Romania",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "4 months after registration"
+  },
+  {
+   "country": "Sweden",
+   "region": "North",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Bulgaria",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": "N. C"
+  },
+  {
+   "country": "France",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Luxembourg",
+   "region": "West",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Netherlands",
+   "region": "West",
+   "maturity": 4,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Poland",
+   "region": "East",
+   "maturity": 3,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Spain",
+   "region": "South",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "United Kingdom",
+   "region": "West",
+   "maturity": 2,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Ireland",
+   "region": "West",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  },
+  {
+   "country": "Norway",
+   "region": "North",
+   "maturity": 1,
+   "tab": "Audit & Controls",
+   "kpi": "Frequency for next self-assessments (months)",
+   "value": ""
+  }
+ ],
+ "catalogue": [
+  {
+   "kpi": "Audit to be conducted by entity (self-assessment)",
+   "tab": "Audit & Controls",
+   "type": "categorical",
+   "known": 26,
+   "total": 29
+  },
+  {
+   "kpi": "Frequency for next audits for EE (from first audit date in months)",
+   "tab": "Audit & Controls",
+   "type": "categorical",
+   "known": 10,
+   "total": 29
+  },
+  {
+   "kpi": "Frequency for next audits for EI (from first audit date in months)",
+   "tab": "Audit & Controls",
+   "type": "categorical",
+   "known": 4,
+   "total": 29
+  },
+  {
+   "kpi": "Frequency for next self-assessments (months)",
+   "tab": "Audit & Controls",
+   "type": "text",
+   "known": 10,
+   "total": 29
+  },
+  {
+   "kpi": "Organism in charge of the audit",
+   "tab": "Audit & Controls",
+   "type": "categorical",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Compliance deadline to framework from effective date for EE (months)",
+   "tab": "Cybersecurity frameworks",
+   "type": "numeric",
+   "known": 17,
+   "total": 29
+  },
+  {
+   "kpi": "Compliance deadline to framework from effective date for EI (months)",
+   "tab": "Cybersecurity frameworks",
+   "type": "numeric",
+   "known": 17,
+   "total": 29
+  },
+  {
+   "kpi": "Compliance target level is different between EE and EI",
+   "tab": "Cybersecurity frameworks",
+   "type": "boolean",
+   "known": 18,
+   "total": 29
+  },
+  {
+   "kpi": "Cybersecurity framework directives published",
+   "tab": "Cybersecurity frameworks",
+   "type": "categorical",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Does it rely on other frameworks?",
+   "tab": "Cybersecurity frameworks",
+   "type": "boolean",
+   "known": 17,
+   "total": 29
+  },
+  {
+   "kpi": "Existence of a presumption of compliance",
+   "tab": "Cybersecurity frameworks",
+   "type": "boolean",
+   "known": 17,
+   "total": 29
+  },
+  {
+   "kpi": "It relies on ISO 27001/27002",
+   "tab": "Cybersecurity frameworks",
+   "type": "boolean",
+   "known": 14,
+   "total": 29
+  },
+  {
+   "kpi": "Number of cyber requirements for EE",
+   "tab": "Cybersecurity frameworks",
+   "type": "numeric",
+   "known": 16,
+   "total": 29
+  },
+  {
+   "kpi": "Number of cyber requirements for EI",
+   "tab": "Cybersecurity frameworks",
+   "type": "numeric",
+   "known": 16,
+   "total": 29
+  },
+  {
+   "kpi": "Exceeded time from EU deadline (month)",
+   "tab": "ID",
+   "type": "numeric",
+   "known": 24,
+   "total": 29
+  },
+  {
+   "kpi": "Maturity Level",
+   "tab": "ID",
+   "type": "numeric",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Transposition (semester)",
+   "tab": "ID",
+   "type": "categorical",
+   "known": 24,
+   "total": 29
+  },
+  {
+   "kpi": "Transposition (year)",
+   "tab": "ID",
+   "type": "categorical",
+   "known": 24,
+   "total": 29
+  },
+  {
+   "kpi": "Transposition finalized",
+   "tab": "ID",
+   "type": "boolean",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Type of national text",
+   "tab": "ID",
+   "type": "categorical",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Major incident definition is the same as in the directive",
+   "tab": "Incident reporting",
+   "type": "boolean",
+   "known": 26,
+   "total": 29
+  },
+  {
+   "kpi": "Method for incident reporting",
+   "tab": "Incident reporting",
+   "type": "categorical",
+   "known": 24,
+   "total": 29
+  },
+  {
+   "kpi": "Specificity on timeline regarding EU directive timeline",
+   "tab": "Incident reporting",
+   "type": "categorical",
+   "known": 28,
+   "total": 29
+  },
+  {
+   "kpi": "Notification of the eligibility",
+   "tab": "Registration",
+   "type": "boolean",
+   "known": 22,
+   "total": 29
+  },
+  {
+   "kpi": "Registration availability",
+   "tab": "Registration",
+   "type": "boolean",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Tools for self assessment",
+   "tab": "Registration",
+   "type": "categorical",
+   "known": 25,
+   "total": 29
+  },
+  {
+   "kpi": "Types of registration",
+   "tab": "Registration",
+   "type": "categorical",
+   "known": 28,
+   "total": 29
+  },
+  {
+   "kpi": "Number of private sectors added",
+   "tab": "Scope",
+   "type": "numeric",
+   "known": 28,
+   "total": 29
+  },
+  {
+   "kpi": "Number of private subsectors added",
+   "tab": "Scope",
+   "type": "categorical",
+   "known": 4,
+   "total": 29
+  },
+  {
+   "kpi": "Number of public sectors added",
+   "tab": "Scope",
+   "type": "numeric",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Number of public subsectors added",
+   "tab": "Scope",
+   "type": "text",
+   "known": 22,
+   "total": 29
+  },
+  {
+   "kpi": "Sectors added",
+   "tab": "Scope",
+   "type": "boolean",
+   "known": 29,
+   "total": 29
+  },
+  {
+   "kpi": "Subsectors added",
+   "tab": "Scope",
+   "type": "numeric",
+   "known": 29,
+   "total": 29
+  }
+ ]
+}
