@@ -617,6 +617,17 @@ function kpiBuilderHTML(){
   const byTab = {};
   KPI_CATALOGUE.forEach(k => { (byTab[k.tab] = byTab[k.tab] || []).push(k); });
 
+  const regions = [...new Set(KPI_ROWS.map(r => r.region).filter(Boolean))].sort();
+  const levels = [...new Set(KPI_ROWS.map(r => r.maturity).filter(v => v != null))].sort();
+  /* Scope sits in the same row as the rest: which countries, which indicators
+     and which form are one decision, not a setting and then a chart. */
+  const regionDD = kpiDD("region", s.region, [{ items:
+    [{ v: "", l: t("kpi.allRegions") }].concat(regions.map(r => ({ v: r, l: t("reg." + r) || r })))
+  }], { label: t("kpi.region") });
+  const levelDD = kpiDD("level", String(s.maturity), [{ items:
+    [{ v: "", l: t("kpi.allLevels") }].concat(levels.map(l => ({ v: String(l), l: t("common.level") + " " + l })))
+  }], { label: t("kpi.maturity") });
+
   const chosen = b.kpis.filter(kpiMeta);
   const addDD = kpiDD("bAdd", " ", Object.keys(byTab).sort().map(tab => ({
     g: tab, items: byTab[tab].filter(k => !chosen.includes(k.kpi)).map(k => ({ v: k.kpi, l: k.kpi }))
@@ -639,14 +650,17 @@ function kpiBuilderHTML(){
 
   const d = kpiChart(b, "wide");
   return `<div class="cap"><h2>${t("kpi.buildTitle")}</h2>
-      <button class="btn" id="kXlsx" type="button">${t("kpi.xlsx")}</button></div>
+      <div class="kpi-cap-btns">
+        <button class="btn" id="kXlsx" type="button">${t("kpi.xlsx")}</button>
+        <button class="btn" id="kReset" type="button">${t("inbox.reset")}</button>
+      </div></div>
     <div class="bd">
       <div class="kpi-build-row">
-        ${addDD}${groupDD}${formDD}
+        ${addDD}${regionDD}${levelDD}${groupDD}${formDD}
         ${chosen.length ? `<button class="btn lnk" id="kClear" type="button">${t("kpi.clear")}</button>` : ""}
       </div>
       ${chips ? `<div class="kpi-chips">${chips}</div>` : ""}
-      <p class="q-note kpi-build-help">${chosen.length > 1 ? t("kpi.crossHelp") : t("kpi.buildHelp")}</p>
+      <p class="q-note kpi-build-help">${chosen.length > 1 ? t("kpi.crossHelp") : t("kpi.buildHelp")} ${t("kpi.help")}</p>
       <div class="kpi-preview">
         ${d.note ? `<p class="q-note kpi-meta">${d.note}</p>` : ""}
         ${d.legend}
@@ -662,6 +676,9 @@ function renderBuilder(){
   const s = kpiState(), b = s.builder;
   host.innerHTML = kpiBuilderHTML();
 
+  /* Scope feeds the examples as well, so it redraws the whole view. */
+  KPI_DD.region = v => { s.region = v; saveStore(); renderInsights(); };
+  KPI_DD.level  = v => { s.maturity = v; saveStore(); renderInsights(); };
   KPI_DD.bAdd   = v => { if (!b.kpis.includes(v)) b.kpis.push(v); saveStore(); renderBuilder(); };
   KPI_DD.bGroup = v => { b.group = v; saveStore(); renderBuilder(); };
   KPI_DD.bForm  = v => { b.form = v; saveStore(); renderBuilder(); };
@@ -675,6 +692,7 @@ function renderBuilder(){
   const all = $("#kAll");
   if (all) all.addEventListener("click", () => { b.all = !b.all; saveStore(); renderBuilder(); });
   $("#kXlsx").addEventListener("click", kpiExportXlsx);
+  $("#kReset").addEventListener("click", () => { delete store.kpi; saveStore(); renderInsights(); });
   kpiWireTips(host);
 }
 
@@ -724,40 +742,15 @@ function kpiWireTips(root){
 function renderInsights(){
   const el = $("#v-insights");
   const s = kpiState();
-  const regions = [...new Set(KPI_ROWS.map(r => r.region).filter(Boolean))].sort();
-  const levels = [...new Set(KPI_ROWS.map(r => r.maturity).filter(v => v != null))].sort();
-
-  const regionDD = kpiDD("region", s.region, [{ items:
-    [{ v: "", l: t("kpi.allRegions") }].concat(regions.map(r => ({ v: r, l: t("reg." + r) || r })))
-  }], { label: t("kpi.region") });
-  const levelDD = kpiDD("level", String(s.maturity), [{ items:
-    [{ v: "", l: t("kpi.allLevels") }].concat(levels.map(l => ({ v: String(l), l: t("common.level") + " " + l })))
-  }], { label: t("kpi.maturity") });
-
   el.innerHTML = `
   <h1 class="pg">${t("ins.title")}</h1>
   <p class="pg-sub">${t("kpi.sub")}</p>
-
-  <div class="card"><div class="bd">
-    <div class="filters">
-      ${regionDD}
-      ${levelDD}
-      <span class="kpi-spacer"></span>
-      <button class="btn" id="kReset" type="button">${t("inbox.reset")}</button>
-    </div>
-    <p class="q-note" style="margin:0">${t("kpi.help")}</p>
-  </div></div>
 
   <div class="card kpi-builder" id="kBuild"></div>
 
   ${kpiExamples()}`;
 
-  KPI_DD.region = v => { s.region = v; saveStore(); renderInsights(); };
-  KPI_DD.level  = v => { s.maturity = v; saveStore(); renderInsights(); };
-  kpiWireDD(el);
   renderBuilder();
-
-  $("#kReset").addEventListener("click", () => { delete store.kpi; saveStore(); renderInsights(); });
 
   const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
   const step = n => {
