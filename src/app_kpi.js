@@ -1,73 +1,81 @@
-/* ================= Configurable KPI dashboard =================
+/* ================= KPI chart builder =================
  *
  * The workbook's KPI sheet is a tidy table: one row per country per indicator.
- * This turns it into charts a consultant composes.
+ * This turns it into one chart a consultant composes.
  *
- * The page reads top to bottom as the work does:
- *   1. scope        which countries the whole page is about
- *   2. the builder  compose a chart and watch it redraw as you change it
- *   3. the board    the charts you kept
- *   4. examples     what else the data can be made to say
+ * The page is three things, in the order the work happens:
+ *   1. scope       which countries everything below is about
+ *   2. the chart   compose it and watch it redraw as you change the controls
+ *   3. examples    what else the data can be made to say
  *
- * The builder is the centre of gravity: pick one or more indicators, a
- * grouping and a form, and the preview under the controls updates on every
- * change - nothing is added to the board until it already looks right.
+ * There is one chart, not a board of them. Adding a second indicator crosses it
+ * into the same picture rather than opening another one: countries down the
+ * side, indicators across the top, every cell coloured on its own column's
+ * scale. That is the question a comparison actually asks - "who is where on
+ * these three things at once" - and it is the only single-chart form that takes
+ * a numeric and a categorical indicator side by side without lying about
+ * either. When every chosen indicator is numeric and their ranges are
+ * comparable, grouped bars are offered as well.
  *
- * Several indicators are drawn as small multiples, never as several series on
- * one axis: "months late" and "number of sectors" share no scale, and putting
- * them on the same axis would invent a comparison the data does not support.
- *
- * Chart form follows the indicator's type:
+ * For one indicator the form follows its type:
  *   numeric      a ranked bar - magnitude, single hue
- *   categorical  share bar, donut or a grid of countries - identity, four hues
+ *   categorical  share bar, donut or one square per country - identity
  *
- * Palette: four hues, validated with the dataviz palette checker in both light
- * and dark mode (lightness band, chroma floor, CVD separation, normal-vision
- * floor, contrast). Six hues could not clear CVD separation in the narrow dark
- * band, so anything beyond four folds into "Other" rather than inventing a
- * fifth colour.
+ * Palette: four categorical hues, validated with the dataviz palette checker in
+ * both light and dark mode (lightness band, chroma floor, CVD separation,
+ * normal-vision floor, contrast); anything beyond four folds into "Other"
+ * rather than inventing a fifth. Magnitude uses a sequential ramp of the brand
+ * violet, light to dark, never a second hue.
  */
 "use strict";
 
 const KPI_LIGHT = ["#5b34e0", "#0d9c55", "#3b82c4", "#b8860b"];
 const KPI_DARK  = ["#7c5cf0", "#12a75f", "#4a95d0", "#b8892a"];
 const KPI_MAX_SERIES = 4;
-const KPI_TOP = 12;   /* rows shown before a panel offers "show every country" */
+const KPI_TOP = 12;   /* rows shown before the chart offers "show every country" */
 
-function kpiPalette(){
-  const dark = matchMedia("(prefers-color-scheme: dark)").matches
-    || document.documentElement.dataset.theme === "dark";
-  return (document.documentElement.dataset.theme === "light") ? KPI_LIGHT
-       : dark ? KPI_DARK : KPI_LIGHT;
+/* Sequential ramp for magnitude: one hue, light to dark. `ink` says which steps
+   need light text - a step is unreadable under the wrong one. */
+const KPI_SEQ_LIGHT = { steps: ["#efeafe", "#d6c9fa", "#b09bf3", "#7f5cec", "#4b25c4"], light: [0, 0, 0, 1, 1] };
+const KPI_SEQ_DARK  = { steps: ["#241a4a", "#342267", "#48309b", "#6544d8", "#8f76ec"], light: [1, 1, 1, 1, 0] };
+
+function kpiDarkMode(){
+  return document.documentElement.dataset.theme === "dark"
+    || (document.documentElement.dataset.theme !== "light"
+        && matchMedia("(prefers-color-scheme: dark)").matches);
 }
+function kpiPalette(){ return kpiDarkMode() ? KPI_DARK : KPI_LIGHT; }
+function kpiRamp(){ return kpiDarkMode() ? KPI_SEQ_DARK : KPI_SEQ_LIGHT; }
 
 /* Ready-made examples, each one deliberately a different form so the row shows
-   what the board can draw, not just which indicators exist. */
+   what can be drawn, not just which indicators exist. */
 const KPI_EXAMPLES = [
   { kpis: ["Type of national text"], group: "", form: "donut" },
   { kpis: ["Exceeded time from EU deadline (month)"], group: "region", form: "bars" },
   { kpis: ["Registration availability"], group: "", form: "grid" },
   { kpis: ["Cybersecurity framework directives published"], group: "region", form: "stack" },
+  { kpis: ["Maturity Level", "Exceeded time from EU deadline (month)", "Transposition finalized"], group: "", form: "matrix" },
   { kpis: ["Maturity Level"], group: "", form: "bars" },
   { kpis: ["Method for incident reporting"], group: "", form: "stack" },
+  { kpis: ["Number of cyber requirements for EE", "Number of cyber requirements for EI"], group: "", form: "grouped" },
   { kpis: ["Types of registration"], group: "", form: "donut" },
   { kpis: ["Organism in charge of the audit"], group: "", form: "grid" },
   { kpis: ["Number of private sectors added"], group: "", form: "bars" },
   { kpis: ["Transposition finalized"], group: "maturity", form: "stack" },
   { kpis: ["Sectors added"], group: "region", form: "grid" },
-  { kpis: ["Number of cyber requirements for EE"], group: "", form: "bars" }
+  { kpis: ["Number of public sectors added", "Number of private sectors added"], group: "region", form: "grouped" }
 ];
 
-/* ---------- state, persisted so a board survives a reload ---------- */
+/* ---------- state, persisted so the chart survives a reload ---------- */
 
 function kpiState(){
   const s = store.kpi || (store.kpi = {});
-  if (!Array.isArray(s.panels)) s.panels = [];
-  /* Panels used to carry a single `kpi`; keep those boards readable. */
-  s.panels = s.panels.map(p => p.kpis ? p : { kpis: [p.kpi], group: p.group || "", form: "auto", wide: !!p.wide });
   if (!s.builder || !Array.isArray(s.builder.kpis)) {
     s.builder = { kpis: ["Maturity Level"], group: "region", form: "bars" };
   }
+  /* Earlier versions kept a board of panels; the chart is single now. */
+  delete s.panels;
+  delete s.table;
   s.region = s.region || "";
   s.maturity = s.maturity || "";
   s.exStart = s.exStart || 0;
@@ -96,18 +104,17 @@ function kpiTip(text){
   return ` data-tip="${kpiEsc(text)}"`;
 }
 
-/* Three sizes, one geometry table. A half-width panel keeps the same marks and
-   the same type sizes as a full-width one - it just carries fewer pixels of
-   plot - so nothing has to be re-read at a different scale. */
+/* Two sizes, one geometry table. The small one keeps the same marks and the
+   same type sizes - it just carries fewer pixels of plot - so nothing has to be
+   re-read at a different scale. */
 const KPI_GEOM = {
-  wide:    { W: 720, rowH: 26, padL: 148, padR: 54, grid: true,  minW: 560 },
-  compact: { W: 520, rowH: 24, padL: 118, padR: 46, grid: true,  minW: 380 },
-  mini:    { W: 300, rowH: 18, padL: 96,  padR: 36, grid: false, minW: 0 }
+  wide: { W: 720, rowH: 26, padL: 148, padR: 54, grid: true,  minW: 520 },
+  mini: { W: 300, rowH: 18, padL: 96,  padR: 36, grid: false, minW: 0 }
 };
 
 /* A ranked horizontal bar chart. One series, single hue: magnitude, not identity. */
 function kpiBarChart(items, opts){
-  const o = Object.assign({ unit: "", size: "compact", colour: kpiPalette()[0] }, opts || {});
+  const o = Object.assign({ unit: "", size: "wide", colour: kpiPalette()[0] }, opts || {});
   const g = KPI_GEOM[o.size];
   if (!items.length) return `<p class="q-note">${t("kpi.noData")}</p>`;
   const padT = 6;
@@ -136,10 +143,47 @@ function kpiBarChart(items, opts){
   return svg + `</svg>`;
 }
 
+/* Several numeric indicators, one bar each, grouped per country. Offered only
+   when the ranges are comparable - a shared axis is a claim that they are. */
+function kpiGroupedBars(cols, rows, opts){
+  const pal = kpiPalette();
+  const o = Object.assign({ size: "wide" }, opts || {});
+  const g = KPI_GEOM[o.size];
+  if (!rows.length) return `<p class="q-note">${t("kpi.noData")}</p>`;
+  const barH = o.size === "mini" ? 7 : 11, gap = 2, padT = 6;
+  const blockH = cols.length * (barH + gap) + 12;
+  const W = g.W, H = padT + rows.length * blockH + 10;
+  const max = Math.max(1, ...rows.map(r => Math.max(...r.values.map(v => v == null ? 0 : v))));
+  const span = W - g.padL - g.padR;
+
+  let svg = `<svg class="kpi-svg" style="min-width:${g.minW}px" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMinYMin meet" role="img">`;
+  for (let k = 0; k <= 4; k++) {
+    const gx = g.padL + span * (k / 4);
+    svg += `<line x1="${gx}" y1="${padT}" x2="${gx}" y2="${H - 10}" class="kpi-grid"/>`;
+    svg += `<text x="${gx}" y="${H - 1}" class="kpi-axis" text-anchor="middle">${Math.round(max * k / 4)}</text>`;
+  }
+  rows.forEach((r, i) => {
+    const y0 = padT + i * blockH;
+    svg += `<text x="${g.padL - 8}" y="${y0 + blockH / 2}" class="kpi-lbl" text-anchor="end">${kpiEsc(r.label)}</text>`;
+    r.values.forEach((v, ci) => {
+      const y = y0 + 4 + ci * (barH + gap);
+      if (v == null) {
+        svg += `<text x="${g.padL + 3}" y="${y + barH - 1}" class="kpi-axis">-</text>`;
+        return;
+      }
+      const w = Math.max(2, span * (v / max));
+      svg += `<rect x="${g.padL}" y="${y}" width="${w}" height="${barH}" rx="3"
+               fill="${pal[ci % pal.length]}"${kpiTip(r.label + " - " + cols[ci].name + " : " + v)}/>`;
+      if (o.size !== "mini") svg += `<text x="${g.padL + w + 5}" y="${y + barH - 1}" class="kpi-val">${v}</text>`;
+    });
+  });
+  return svg + `</svg>`;
+}
+
 /* Stacked horizontal bars: one bar per group, segments = the indicator's values. */
 function kpiStackChart(groups, keys, opts){
   const pal = kpiPalette();
-  const o = Object.assign({ size: "compact" }, opts || {});
+  const o = Object.assign({ size: "wide" }, opts || {});
   const g = KPI_GEOM[o.size];
   if (!groups.length) return `<p class="q-note">${t("kpi.noData")}</p>`;
   const rowH = g.rowH + 8, padT = 4;
@@ -176,7 +220,7 @@ function kpiStackChart(groups, keys, opts){
    on judging an angle. */
 function kpiDonutChart(groups, keys, opts){
   const pal = kpiPalette();
-  const o = Object.assign({ size: "compact" }, opts || {});
+  const o = Object.assign({ size: "wide" }, opts || {});
   if (!groups.length) return `<p class="q-note">${t("kpi.noData")}</p>`;
   const R = 54, r = 33, C = 62;         /* outer radius, inner radius, half-box */
   const gap = 0.02;                     /* radians of surface between slices */
@@ -215,7 +259,7 @@ function kpiDonutChart(groups, keys, opts){
    estimates, and can find their own country in the picture. */
 function kpiGridChart(blocks, keys, opts){
   const pal = kpiPalette();
-  const o = Object.assign({ size: "compact" }, opts || {});
+  const o = Object.assign({ size: "wide" }, opts || {});
   const mini = o.size === "mini";
   const cell = mini ? 16 : 26;
   return `<div class="kpi-grid-wrap">${blocks.map(b => `
@@ -227,9 +271,9 @@ function kpiGridChart(blocks, keys, opts){
     }).join("")}</div>`).join("")}</div>`;
 }
 
-function kpiLegend(keys){
+function kpiLegend(keys, title){
   const pal = kpiPalette();
-  return `<div class="kpi-legend">${keys.map((k, i) =>
+  return `<div class="kpi-legend">${title ? `<span class="kpi-leg-t">${kpiEsc(title)}</span>` : ""}${keys.map((k, i) =>
     `<span class="kpi-leg"><span class="sw" style="background:${pal[i % pal.length]}"></span>${kpiEsc(k)}</span>`
   ).join("")}</div>`;
 }
@@ -313,7 +357,7 @@ function kpiWireDD(root){
   });
 }
 
-/* ---------- shaping: an indicator -> categories, series, table ---------- */
+/* ---------- shaping: one indicator -> categories, series, table ---------- */
 
 /* One shape used by every on-screen form and by the Excel export, so they can
    never drift apart. */
@@ -380,6 +424,7 @@ function kpiShape(name, groupBy){
                                         || a.country.localeCompare(b.country)));
   return {
     name, meta, numeric: false, groups: list, keys, known: rows.length, total: all.length,
+    bucket,
     head: [t("kpi.group")].concat(keys),
     table: list.map(g => [g.label].concat(keys.map(k => g.counts[k] || 0))),
     series: keys.map((k, i) => ({ name: k, colour: pal[i % pal.length], values: list.map(g => g.counts[k] || 0) })),
@@ -393,102 +438,179 @@ function kpiIso(country){
   return c ? c.iso : country.slice(0, 2).toUpperCase();
 }
 
-/* Which forms an indicator can honestly take. A ranked bar is the only sound
-   form for a numeric measure across countries; a breakdown can be a share bar,
-   a donut or a grid of countries. */
-function kpiForms(shape){
+/* ---------- crossing several indicators into one chart ---------- */
+
+/* Rows down the side, indicators across the top. Each column is coloured on its
+   own scale - a sequential ramp for a measure, the categorical hues for an
+   answer - because two indicators share no scale and pretending otherwise is
+   the whole trap. */
+function kpiCross(names, groupBy){
+  const shapes = names.map(n => kpiShape(n, groupBy)).filter(Boolean);
+  if (!shapes.length) return null;
+
+  /* Row keys: countries, or the groups when one is chosen. */
+  const rowSet = new Set();
+  names.forEach(n => kpiRowsFor(n).filter(r => r.value)
+    .forEach(r => rowSet.add(groupBy ? kpiGroupOf(r, groupBy) : r.country)));
+  const rowKeys = [...rowSet].sort();
+
+  const cols = shapes.map(shape => {
+    if (shape.numeric) {
+      const byRow = {};
+      shape.items.forEach(i => { byRow[groupBy ? i.label.replace(/ \(\d+\)$/, "") : i.label] = i.value; });
+      const vals = Object.values(byRow);
+      return { name: shape.name, numeric: true, byRow,
+               min: Math.min(...vals), max: Math.max(...vals), keys: [] };
+    }
+    const byRow = {};
+    if (groupBy) {
+      shape.groups.forEach(g => {
+        /* One cell cannot hold a whole breakdown, so it holds the answer most of
+           the group gives, and says how much of the group that is. */
+        const top = shape.keys.reduce((a, k) => (g.counts[k] || 0) > (g.counts[a] || 0) ? k : a, shape.keys[0]);
+        byRow[g.label] = { key: top, note: (g.counts[top] || 0) + "/" + g.total,
+                           tip: shape.keys.filter(k => g.counts[k]).map(k => k + " " + g.counts[k]).join(" · ") };
+      });
+    } else {
+      shape.groups.forEach(g => g.cells.forEach(c => { byRow[c.country] = { key: c.key, note: "", tip: c.key }; }));
+    }
+    return { name: shape.name, numeric: false, byRow, keys: shape.keys };
+  });
+
+  /* Sorted on the first column, because a matrix nobody has ordered is a wall. */
+  const first = cols[0];
+  rowKeys.sort((a, b) => {
+    if (first.numeric) return (first.byRow[b] ?? -Infinity) - (first.byRow[a] ?? -Infinity) || a.localeCompare(b);
+    const ka = first.byRow[a], kb = first.byRow[b];
+    return first.keys.indexOf(ka && ka.key) - first.keys.indexOf(kb && kb.key) || a.localeCompare(b);
+  });
+
+  return { cols, rowKeys, shapes };
+}
+
+function kpiMatrixChart(cross, opts){
+  const o = Object.assign({ size: "wide", all: false }, opts || {});
+  const pal = kpiPalette(), ramp = kpiRamp();
+  const rows = o.all ? cross.rowKeys : cross.rowKeys.slice(0, KPI_TOP);
+
+  const head = `<div class="kpi-mx-r kpi-mx-head"><span class="kpi-mx-lbl"></span>${
+    cross.cols.map(c => `<span class="kpi-mx-h">${kpiEsc(c.name)}</span>`).join("")}</div>`;
+
+  const body = rows.map(rk => `<div class="kpi-mx-r">
+    <span class="kpi-mx-lbl">${kpiEsc(rk)}</span>${cross.cols.map(c => {
+      const v = c.byRow[rk];
+      if (v === undefined || v === null) return `<span class="kpi-mx-c empty"${kpiTip(rk + " - " + c.name + " : " + t("kpi.unknown"))}>-</span>`;
+      if (c.numeric) {
+        const span = c.max - c.min;
+        const step = span ? Math.round((v - c.min) / span * 4) : 4;
+        return `<span class="kpi-mx-c" style="background:${ramp.steps[step]};color:${
+          ramp.light[step] ? "#fff" : "var(--ink)"}"${kpiTip(rk + " - " + c.name + " : " + v)}>${v}</span>`;
+      }
+      const ki = c.keys.indexOf(v.key);
+      return `<span class="kpi-mx-c cat" style="background:${ki < 0 ? "var(--line2)" : pal[ki % pal.length]}"
+        ${kpiTip(rk + " - " + c.name + " : " + v.tip)}>${kpiEsc(v.note || v.key)}</span>`;
+    }).join("")}</div>`).join("");
+
+  return `<div class="kpi-mx" style="--cols:${cross.cols.length}">${head}${body}</div>`;
+}
+
+/* A legend per categorical column, plus a ramp caption per measure - identity
+   is never colour alone, and a ramp without its ends is unreadable. */
+function kpiCrossLegend(cross){
+  const ramp = kpiRamp();
+  return cross.cols.map(c => c.numeric
+    ? `<div class="kpi-legend"><span class="kpi-leg-t">${kpiEsc(c.name)}</span>
+        <span class="kpi-leg"><span class="kpi-ramp">${ramp.steps.map(s =>
+          `<i style="background:${s}"></i>`).join("")}</span>${c.min} → ${c.max}</span></div>`
+    : kpiLegend(c.keys, c.name)).join("");
+}
+
+/* ---------- which forms an indicator selection can honestly take ---------- */
+
+function kpiForms(names, groupBy){
+  if (names.length > 1) {
+    const shapes = names.map(n => kpiShape(n, groupBy)).filter(Boolean);
+    const forms = ["matrix"];
+    /* Grouped bars put several measures on ONE axis, which is a claim that they
+       are comparable. Only offered when they all are: same kind of quantity and
+       ranges within an order of magnitude of each other. */
+    if (shapes.every(s => s.numeric)) {
+      const maxes = shapes.map(s => Math.max(...s.items.map(i => i.value), 1));
+      if (Math.max(...maxes) / Math.min(...maxes) <= 5) forms.push("grouped");
+    }
+    return forms;
+  }
+  const shape = kpiShape(names[0], groupBy);
+  if (!shape) return ["bars"];
   return shape.numeric ? ["bars"] : ["stack", "donut", "grid", "bars"];
 }
-function kpiResolveForm(shape, form){
-  const allowed = kpiForms(shape);
+function kpiResolveForm(names, groupBy, form){
+  const allowed = kpiForms(names, groupBy);
   return allowed.includes(form) ? form : allowed[0];
 }
 
-/* Draw a shape in the requested form. The legend comes back separately because
-   it belongs above the plot, not inside the SVG. */
-function kpiDraw(shape, form, size, opts){
-  const o = opts || {};
-  const f = kpiResolveForm(shape, form);
+/* ---------- draw whatever is selected ---------- */
+
+/* Returns the pieces of a chart: legend above, plot, and the note under it.
+   One entry point for the builder, the examples and nothing else. */
+function kpiChart(sel, size){
+  const names = sel.kpis.filter(kpiMeta);
+  if (!names.length) return { legend: "", chart: `<p class="q-note">${t("kpi.noneChosen")}</p>`, note: "", more: "" };
+  const form = kpiResolveForm(names, sel.group, sel.form);
+
+  if (names.length > 1) {
+    const cross = kpiCross(names, sel.group);
+    if (form === "grouped") {
+      const cols = cross.cols;
+      const rows = cross.rowKeys.map(rk => ({ label: rk, values: cols.map(c => c.byRow[rk] ?? null) }));
+      const shown = sel.all ? rows : rows.slice(0, KPI_TOP);
+      return { legend: kpiLegend(cols.map(c => c.name)),
+               chart: kpiGroupedBars(cols, shown, { size }),
+               note: kpiCrossNote(cross),
+               more: kpiMore(rows.length, sel.all) };
+    }
+    return { legend: kpiCrossLegend(cross),
+             chart: kpiMatrixChart(cross, { size, all: sel.all }),
+             note: kpiCrossNote(cross),
+             more: kpiMore(cross.rowKeys.length, sel.all) };
+  }
+
+  const shape = kpiShape(names[0], sel.group);
+  const note = `${kpiEsc(shape.meta.tab)} · ${t("kpi.type." + shape.meta.type)} · ${t("kpi.coverage", { n: shape.known, total: shape.total })}`;
   if (shape.numeric) {
-    const capped = !o.all && shape.items.length > KPI_TOP;
-    return { chart: kpiBarChart(capped ? shape.items.slice(0, KPI_TOP) : shape.items, { size }),
-             legend: "", capped, rows: shape.items.length };
+    const shown = sel.all ? shape.items : shape.items.slice(0, KPI_TOP);
+    return { legend: "", chart: kpiBarChart(shown, { size }), note,
+             more: kpiMore(shape.items.length, sel.all) };
   }
   const legend = shape.keys.length >= 2 ? kpiLegend(shape.keys) : "";
-  if (f === "donut") return { chart: kpiDonutChart(shape.groups, shape.keys, { size }), legend };
-  if (f === "grid")  return { chart: kpiGridChart(shape.groups, shape.keys, { size }), legend };
-  if (f === "bars") {
+  if (form === "donut") return { legend, chart: kpiDonutChart(shape.groups, shape.keys, { size }), note, more: "" };
+  if (form === "grid")  return { legend, chart: kpiGridChart(shape.groups, shape.keys, { size }), note, more: "" };
+  if (form === "bars") {
     /* Counts per answer, summed over the groups - a plain ranking of answers. */
     const pal = kpiPalette();
     const items = shape.keys.map((k, i) => ({
-      label: k, value: shape.groups.reduce((n, g) => n + (g.counts[k] || 0), 0),
-      colour: pal[i % pal.length]
+      label: k, value: shape.groups.reduce((n, g) => n + (g.counts[k] || 0), 0), colour: pal[i % pal.length]
     })).filter(i => i.value).sort((a, b) => b.value - a.value);
-    return { chart: kpiBarChart(items, { size }), legend: "" };
+    return { legend: "", chart: kpiBarChart(items, { size }), note, more: "" };
   }
-  return { chart: kpiStackChart(shape.groups, shape.keys, { size }), legend };
+  return { legend, chart: kpiStackChart(shape.groups, shape.keys, { size }), note, more: "" };
 }
 
-/* ---------- one panel ---------- */
-
-/* A panel holds one indicator or several. Several are drawn as small multiples,
-   never as several series on one axis: two indicators measured in different
-   units would imply a shared scale they do not have. */
-function kpiPanelBody(panel, size, id){
-  const names = panel.kpis.filter(kpiMeta);
-  if (!names.length) return `<p class="q-note">${t("kpi.noneChosen")}</p>`;
-  const multi = names.length > 1;
-
-  const one = name => {
-    const shape = kpiShape(name, panel.group);
-    const d = kpiDraw(shape, panel.form, multi ? "mini" : size, { all: panel.all });
-    const more = (d.capped !== undefined && d.rows > KPI_TOP && !multi)
-      ? `<button class="btn lnk kpi-all" data-panel="${id}" type="button">${
-          d.capped ? t("kpi.showAll", { n: d.rows }) : t("kpi.showTop", { n: KPI_TOP })}</button>` : "";
-    return `<div class="kpi-one">
-      ${multi ? `<h3 class="kpi-h3">${kpiEsc(name)}</h3>` : ""}
-      <p class="q-note kpi-meta">${kpiEsc(shape.meta.tab)} · ${t("kpi.type." + shape.meta.type)} · ${t("kpi.coverage", { n: shape.known, total: shape.total })}</p>
-      ${d.legend}
-      <div class="kpi-wrap">${d.chart}</div>
-      ${more}
-    </div>`;
-  };
-  return multi ? `<div class="kpi-multi">${names.map(one).join("")}</div>` : one(names[0]);
+function kpiMore(n, all){
+  if (n <= KPI_TOP) return "";
+  return `<button class="btn lnk" id="kAll" type="button">${
+    all ? t("kpi.showTop", { n: KPI_TOP }) : t("kpi.showAll", { n })}</button>`;
 }
-
-function kpiPanelTitle(panel){
-  return panel.kpis.length > 1 ? panel.kpis.join("  ·  ") : (panel.kpis[0] || "");
-}
-
-function kpiPanel(panel, index){
-  const size = panel.wide ? "wide" : "compact";
-  const groupDD = kpiDD("g" + index, panel.group || "", [{ items: [
-    { v: "", l: t("kpi.noGroup") },
-    { v: "region", l: t("kpi.byRegion") },
-    { v: "maturity", l: t("kpi.byMaturity") }
-  ] }], { label: t("kpi.groupBy") });
-
-  return `<div class="card kpi-panel${panel.wide ? " wide" : ""}" data-panel="${index}">
-    <div class="cap">
-      <h2>${kpiEsc(kpiPanelTitle(panel))}</h2>
-      <div class="kpi-tools">
-        ${groupDD}
-        <button class="btn icon kpi-wide" data-panel="${index}" type="button"
-          aria-label="${t(panel.wide ? "kpi.narrow" : "kpi.widen")}"
-          title="${t(panel.wide ? "kpi.narrow" : "kpi.widen")}">${panel.wide ? "½" : "1／1"}</button>
-        <button class="btn icon kpi-remove" data-panel="${index}" type="button"
-          aria-label="${t("kpi.remove")}" title="${t("kpi.remove")}">✕</button>
-      </div>
-    </div>
-    <div class="bd">${kpiPanelBody(panel, size, index)}</div>
-  </div>`;
+function kpiCrossNote(cross){
+  return cross.cols.map(c => kpiEsc(c.name)).join("  ·  ") + "  ·  "
+       + t("kpi.crossRows", { n: cross.rowKeys.length });
 }
 
 /* ---------- the builder ---------- */
 
-/* Everything the builder needs is in `store.kpi.builder`; changing any control
-   rewrites this one card, so the chart redraws under the controls instead of
-   sending the reader to the bottom of the page. */
+/* Everything is in `store.kpi.builder`; changing a control rewrites this one
+   card, so the chart redraws under the controls instead of sending the reader
+   anywhere. */
 function kpiBuilderHTML(){
   const s = kpiState();
   const b = s.builder;
@@ -506,39 +628,38 @@ function kpiBuilderHTML(){
     { v: "maturity", l: t("kpi.byMaturity") }
   ] }], { label: t("kpi.groupBy") });
 
-  /* Only offer forms every chosen indicator can actually take. */
-  const shapes = chosen.map(n => kpiShape(n, b.group)).filter(Boolean);
-  const allowed = shapes.length
-    ? shapes.map(kpiForms).reduce((a, f) => a.filter(x => f.includes(x)))
-    : ["bars"];
-  const formDD = kpiDD("bForm", allowed.includes(b.form) ? b.form : allowed[0],
-    [{ items: allowed.map(f => ({ v: f, l: t("kpi.form." + f) })) }], { label: t("kpi.formLbl") });
+  const allowed = chosen.length ? kpiForms(chosen, b.group) : [];
+  const formDD = allowed.length > 1
+    ? kpiDD("bForm", kpiResolveForm(chosen, b.group, b.form),
+        [{ items: allowed.map(f => ({ v: f, l: t("kpi.form." + f) })) }], { label: t("kpi.formLbl") })
+    : "";
 
   const chips = chosen.map(n => `<span class="kpi-chip">${kpiEsc(n)}
     <button type="button" class="kpi-chip-x" data-kpi="${kpiEsc(n)}" aria-label="${t("kpi.remove")}">✕</button></span>`).join("");
 
-  const preview = chosen.length
-    ? kpiPanelBody({ kpis: chosen, group: b.group, form: b.form, all: true }, "wide", "b")
-    : `<p class="q-note">${t("kpi.noneChosen")}</p>`;
-
+  const d = kpiChart(b, "wide");
   return `<div class="cap"><h2>${t("kpi.buildTitle")}</h2>
-      <button class="btn primary" id="kKeep" type="button" ${chosen.length ? "" : "disabled"}>${t("kpi.keep")}</button></div>
+      <button class="btn" id="kXlsx" type="button">${t("kpi.xlsx")}</button></div>
     <div class="bd">
       <div class="kpi-build-row">
-        ${addDD}${groupDD}${allowed.length > 1 ? formDD : ""}
+        ${addDD}${groupDD}${formDD}
         ${chosen.length ? `<button class="btn lnk" id="kClear" type="button">${t("kpi.clear")}</button>` : ""}
       </div>
       ${chips ? `<div class="kpi-chips">${chips}</div>` : ""}
-      <p class="q-note kpi-build-help">${t("kpi.buildHelp")}</p>
-      <div class="kpi-preview">${preview}</div>
+      <p class="q-note kpi-build-help">${chosen.length > 1 ? t("kpi.crossHelp") : t("kpi.buildHelp")}</p>
+      <div class="kpi-preview">
+        ${d.note ? `<p class="q-note kpi-meta">${d.note}</p>` : ""}
+        ${d.legend}
+        <div class="kpi-wrap">${d.chart}</div>
+        ${d.more}
+      </div>
     </div>`;
 }
 
 function renderBuilder(){
   const host = $("#kBuild");
   if (!host) return;
-  const s = kpiState();
-  const b = s.builder;
+  const s = kpiState(), b = s.builder;
   host.innerHTML = kpiBuilderHTML();
 
   KPI_DD.bAdd   = v => { if (!b.kpis.includes(v)) b.kpis.push(v); saveStore(); renderBuilder(); };
@@ -551,41 +672,42 @@ function renderBuilder(){
   }));
   const clear = $("#kClear");
   if (clear) clear.addEventListener("click", () => { b.kpis = []; saveStore(); renderBuilder(); });
-  $("#kKeep").addEventListener("click", () => {
-    s.panels.push({ kpis: b.kpis.slice(), group: b.group, form: b.form, wide: b.kpis.length > 1 });
-    saveStore();
-    renderInsights();
-    kpiFlash(s.panels.length - 1);
-  });
+  const all = $("#kAll");
+  if (all) all.addEventListener("click", () => { b.all = !b.all; saveStore(); renderBuilder(); });
+  $("#kXlsx").addEventListener("click", kpiExportXlsx);
   kpiWireTips(host);
 }
 
 /* ---------- example charts ---------- */
 
-/* Four worked examples, each a different form and drawn from the live data.
-   A name in a list does not show you the shape of the answer; a chart does. */
+/* Four worked examples at a time, each a different form and drawn from the live
+   data. A name in a list does not show you the shape of the answer; a chart
+   does. The arrows walk the shortlist rather than shuffling it, so a consultant
+   can go back to the one they just saw. */
 function kpiExamples(){
   const s = kpiState();
   const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
   if (!usable.length) return "";
-  const idx = [0, 1, 2, 3].map(i => (s.exStart + i) % usable.length);
+  const page = Math.floor(s.exStart / 4), pages = Math.ceil(usable.length / 4);
 
-  const tiles = idx.map(i => {
-    const ex = usable[i];
-    const shape = kpiShape(ex.kpis[0], ex.group);
-    const d = kpiDraw(shape, ex.form, "mini");
+  const tiles = usable.slice(s.exStart, s.exStart + 4).map((ex, i) => {
+    const d = kpiChart(ex, "mini");
     return `<div class="kpi-ex">
-      <div class="kpi-ex-h">${kpiEsc(ex.kpis[0])}</div>
-      <div class="kpi-ex-s">${kpiEsc(shape.meta.tab)} · ${t("kpi.form." + kpiResolveForm(shape, ex.form))}${
+      <div class="kpi-ex-h">${kpiEsc(ex.kpis.join(" · "))}</div>
+      <div class="kpi-ex-s">${t("kpi.form." + kpiResolveForm(ex.kpis, ex.group, ex.form))}${
         ex.group ? " · " + t(ex.group === "region" ? "kpi.byRegion" : "kpi.byMaturity") : ""}</div>
       ${d.legend}
       <div class="kpi-wrap">${d.chart}</div>
-      <button type="button" class="btn lnk kpi-ex-use" data-ex="${i}">${t("kpi.exUse")}</button>
+      <button type="button" class="btn lnk kpi-ex-use" data-ex="${s.exStart + i}">${t("kpi.exUse")}</button>
     </div>`;
   }).join("");
 
   return `<div class="card" id="kEx"><div class="cap"><h2>${t("kpi.exTitle")}</h2>
-      <button class="btn lnk" id="kExMore" type="button">${t("kpi.exMore")}</button></div>
+      <div class="kpi-ex-nav">
+        <button class="btn icon" id="kExPrev" type="button" aria-label="${t("kpi.exPrev")}" title="${t("kpi.exPrev")}">‹</button>
+        <span class="kpi-ex-pg">${page + 1} / ${pages}</span>
+        <button class="btn icon" id="kExNext" type="button" aria-label="${t("kpi.exNext")}" title="${t("kpi.exNext")}">›</button>
+      </div></div>
     <div class="bd"><p class="q-note" style="margin-top:0">${t("kpi.exHelp")}</p>
     <div class="kpi-exs">${tiles}</div></div></div>`;
 }
@@ -621,7 +743,6 @@ function renderInsights(){
       ${regionDD}
       ${levelDD}
       <span class="kpi-spacer"></span>
-      <button class="btn" id="kXlsx" type="button">${t("kpi.xlsx")}</button>
       <button class="btn" id="kReset" type="button">${t("inbox.reset")}</button>
     </div>
     <p class="q-note" style="margin:0">${t("kpi.help")}</p>
@@ -629,70 +750,48 @@ function renderInsights(){
 
   <div class="card kpi-builder" id="kBuild"></div>
 
-  <div class="kpi-board">${s.panels.map((p, i) => kpiPanel(p, i)).join("")}</div>
-
   ${kpiExamples()}`;
 
   KPI_DD.region = v => { s.region = v; saveStore(); renderInsights(); };
   KPI_DD.level  = v => { s.maturity = v; saveStore(); renderInsights(); };
-  s.panels.forEach((p, i) => {
-    KPI_DD["g" + i] = v => { s.panels[i].group = v; saveStore(); renderInsights(); };
-  });
   kpiWireDD(el);
   renderBuilder();
 
   $("#kReset").addEventListener("click", () => { delete store.kpi; saveStore(); renderInsights(); });
-  $("#kXlsx").addEventListener("click", kpiExportXlsx);
-  const more = $("#kExMore");
-  if (more) more.addEventListener("click", () => {
-    const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
-    s.exStart = (s.exStart + 4) % usable.length; saveStore(); renderInsights();
+
+  const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
+  const step = n => {
+    const pages = Math.ceil(usable.length / 4);
+    s.exStart = ((Math.floor(s.exStart / 4) + n + pages) % pages) * 4;
+    saveStore(); renderInsights();
     const ex = $("#kEx"); if (ex) ex.scrollIntoView({ block: "nearest" });
-  });
+  };
+  const prev = $("#kExPrev"), next = $("#kExNext");
+  if (prev) prev.addEventListener("click", () => step(-1));
+  if (next) next.addEventListener("click", () => step(1));
   el.querySelectorAll(".kpi-ex-use").forEach(b => b.addEventListener("click", () => {
-    const ex = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta))[+b.dataset.ex];
-    /* An example loads into the builder rather than straight onto the board:
-       it is a starting point to adjust, not a finished panel. */
+    const ex = usable[+b.dataset.ex];
     s.builder = { kpis: ex.kpis.slice(), group: ex.group, form: ex.form };
     saveStore(); renderInsights();
     const host = $("#kBuild"); if (host) host.scrollIntoView({ behavior: "smooth", block: "start" });
   }));
-  el.querySelectorAll(".kpi-wide").forEach(b => b.addEventListener("click", () => {
-    const p = s.panels[+b.dataset.panel]; p.wide = !p.wide; saveStore(); renderInsights();
-  }));
-  el.querySelectorAll(".kpi-all").forEach(b => b.addEventListener("click", () => {
-    const p = s.panels[+b.dataset.panel]; if (!p) return;
-    p.all = !p.all; saveStore(); renderInsights();
-  }));
-  el.querySelectorAll(".kpi-remove").forEach(b => b.addEventListener("click", () => {
-    s.panels.splice(+b.dataset.panel, 1); saveStore(); renderInsights();
-  }));
   kpiWireTips(el);
-}
-
-/* The board can be long, so a panel appended at the bottom is invisible from
-   the builder - which reads as "the button did nothing". Scroll to it, flag it. */
-function kpiFlash(index){
-  const node = document.querySelector(`#v-insights .kpi-panel[data-panel="${index}"]`);
-  if (!node) return;
-  node.scrollIntoView({ behavior: "smooth", block: "center" });
-  node.classList.add("flash");
-  setTimeout(() => node.classList.remove("flash"), 1400);
 }
 
 /* ---------- export ---------- */
 
-/* The workbook a consultant actually hands over: one data sheet with the rows
-   behind the charts, then one sheet per indicator carrying its table AND a real
-   Excel chart bound to those cells. */
+/* The workbook a consultant hands over: the rows behind the chart, then one
+   sheet per indicator carrying its table AND a real Excel chart bound to those
+   cells - and, when several indicators are crossed, the crossed table itself. */
 function kpiExportXlsx(){
   const s = kpiState();
+  const b = s.builder;
+  const names = b.kpis.filter(kpiMeta);
+  if (!names.length) return;
   const taken = new Set();
-  /* The builder's chart counts: it is usually the one being worked on. */
-  const panels = s.panels.concat(s.builder.kpis.length ? [s.builder] : []);
-  const wanted = new Set([].concat(...panels.map(p => p.kpis)));
 
   const data = [["KPI", "Tab", "Country", "Region", "Maturity", "Value"]];
+  const wanted = new Set(names);
   KPI_ROWS.filter(r => wanted.has(r.kpi))
     .filter(r => !s.region || r.region === s.region)
     .filter(r => !s.maturity || String(r.maturity) === String(s.maturity))
@@ -701,17 +800,26 @@ function kpiExportXlsx(){
   const sheets = [{ name: xlSheetName(t("kpi.sheetData"), taken), rows: data,
                     widths: [46, 24, 18, 10, 10, 34], chart: null }];
 
-  const done = new Set();
-  panels.forEach(panel => panel.kpis.forEach(kpiName => {
-    const key = kpiName + "|" + (panel.group || "");
-    if (done.has(key)) return;
-    done.add(key);
-    const shape = kpiShape(kpiName, panel.group);
+  if (names.length > 1) {
+    /* The crossed table, exactly as the matrix shows it, so the comparison
+       survives the trip into Excel. */
+    const cross = kpiCross(names, b.group);
+    const head = [b.group ? t("kpi.group") : t("kpi.country")].concat(cross.cols.map(c => c.name));
+    const rows = cross.rowKeys.map(rk => [rk].concat(cross.cols.map(c => {
+      const v = c.byRow[rk];
+      return v === undefined || v === null ? "" : (c.numeric ? v : v.key);
+    })));
+    sheets.push({ name: xlSheetName(t("kpi.sheetCross"), taken), rows: [head].concat(rows),
+                  widths: [26].concat(cross.cols.map(() => 22)), chart: null });
+  }
+
+  names.forEach(kpiName => {
+    const shape = kpiShape(kpiName, b.group);
     if (!shape || !shape.categories.length) return;
     const name = xlSheetName(kpiName, taken);
     /* A donut on screen becomes a pie in Excel; everything else is a bar. */
-    const pie = !shape.numeric && kpiResolveForm(shape, panel.form) === "donut"
-                && shape.groups.length === 1;
+    const pie = !shape.numeric && names.length === 1
+                && kpiResolveForm(names, b.group, b.form) === "donut" && shape.groups.length === 1;
     const pal = kpiPalette();
     sheets.push({
       name,
@@ -730,7 +838,7 @@ function kpiExportXlsx(){
         categories: shape.categories, series: shape.series
       }
     });
-  }));
+  });
 
   kpiSave(xlsxBlob(sheets), `regwatch-kpi-${lang}.xlsx`);
 }
