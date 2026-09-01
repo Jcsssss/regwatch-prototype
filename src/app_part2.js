@@ -655,9 +655,10 @@ function renderSources(){
     <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
   ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
-  <div class="card"><div class="cap"><h2>${t("src.authTitle")}</h2>
+  <details class="card fold"><summary class="cap"><h2>${t("src.authTitle")}</h2>
     <span class="q-note">${t("src.authOk", {
-      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span></div>
+      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span>
+    <span class="fold-car" aria-hidden="true">▾</span></summary>
     <div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.authSub")}</p>
     <div class="tbl-wrap"><table class="tbl">
@@ -670,7 +671,7 @@ function renderSources(){
           t({ rss: "src.kRss", harvest: "src.kHarvest", page: "src.kPage" }[a.kind] || "src.kDown")}</span></td>
         <td class="num">${a.entries || "-"}</td></tr>`).join("")}
       </tbody></table></div>
-  </div></div>` : ""}
+  </div></details>` : ""}
   <div class="card"><div class="bd">
     <div class="filters">
       <select id="sFilter" aria-label="Filter by scope"><option value="">${t("src.allScopes")}</option>${

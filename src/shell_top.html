@@ -300,6 +300,20 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
   color:#fff;font-family:var(--font-mono);letter-spacing:-.02em}
 .kpi-grid-h{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:8px}
 
+/* ---- a card that folds ----
+   Twenty-nine rows of feed registry are reference material, not something to
+   read on the way past. The card keeps its header - which carries the count, so
+   the summary still says something when shut - and hides only the table. */
+details.fold > summary{list-style:none;cursor:pointer;user-select:none}
+details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary:hover h2{text-decoration:underline}
+details.fold > summary .fold-car{margin-left:auto;color:var(--ink2);font-size:13px;line-height:1;
+  border:1px solid var(--line2);border-radius:7px;padding:4px 9px;
+  transition:transform .15s ease;flex:none}
+details.fold > summary:hover .fold-car{border-color:var(--accent);color:var(--accent)}
+details.fold[open] > summary .fold-car{transform:rotate(180deg)}
+details.fold:not([open]) > summary{padding-bottom:13px}
+
 /* ================= The assistant ================= */
 .chat-card .bd{padding-top:6px}
 .chat-log{min-height:280px;max-height:min(62vh,720px);overflow-y:auto;padding:10px 2px 4px;
