@@ -61,6 +61,10 @@ function renderCountries(){
    documents in a git repository. */
 const DOC_ICON = { legislation: "\u2696", framework: "\u1F6E1", other: "\u1F4CE", old: "\u1F5C4" };
 function docsSection(c){
+  /* The folder registry was built for NIS 2 and its labels say so ("the national
+     cybersecurity framework"). Showing it on a REC record would point a reader
+     at the wrong directive's documents. */
+  if (regId() !== "nis2") return "";
   const rec = (typeof COUNTRY_DOCS !== "undefined" && COUNTRY_DOCS[c.iso]) || null;
   if (!rec) return "";
   const anyApprox = rec.folders.some(f => f.approx);
@@ -102,12 +106,11 @@ function wbSections(c){
     <div class="q-note">${t("cp.wbNote")}</div>
   </div>`;
 }
-const SEC_KEYS = ["fw", "reg", "inc", "aud", "scope", "other", "reco"];
-function renderCountry(iso){
-  const c = byIso[iso];
-  const el = $("#v-country");
-  if (!c) { el.innerHTML = `<p>${t("cp.unknown")}</p>`; return; }
-  const facts = [
+/* The NIS 2 fact grid, written out because it is the richest: several of these
+   read two fields at once and none of them survive being generated. REC's is
+   declared in its spec instead - see countryFacts(). */
+function nis2Facts(c){
+  return [
     [t("cp.law"), c.law],
     [t("cp.fw"), `<b>${esc(t("fw." + c.fw))}</b> - ${esc(c.fwName)}`],
     [t("cp.req"), c.reqEE ? `<b>${c.reqEE}</b> ${t("cp.forEE")} · <b>${c.reqIE ?? "-"}</b> ${t("cp.forIE")}` : t("cp.reqNone")],
@@ -117,7 +120,27 @@ function renderCountry(iso){
     ...wbFacts(c),
     [t("cp.auditBody"), `${esc(c.auditBody)}${c.auditFreqEE ? ` - EE ${t("cp.every")} <b>${c.auditFreqEE} ${t("common.mo")}</b>` : ""}${c.auditFreqIE ? ` · IE ${t("cp.every")} <b>${c.auditFreqIE} ${t("common.mo")}</b>` : ""}`]
   ];
-  const secHtml = SEC_KEYS.filter(k => c.sections[k] && c.sections[k].length).map(k => `
+}
+
+/* A regulation whose spec lists `facts` drives the grid from it; a blank field
+   is shown as blank rather than hidden, because on a young workbook "we do not
+   know yet" is itself the finding. */
+function countryFacts(c){
+  if (regId() === "nis2") return nis2Facts(c);
+  return regSpec().facts.map(f => {
+    const raw = f.v(c);
+    if (raw === undefined || raw === null || raw === "") return [t(f.k), `<span class="q-note">${t("cp.notStated")}</span>`];
+    return [t(f.k), f.date && /^\d{4}-\d{2}-\d{2}$/.test(raw) ? `<b>${fmtDateL(raw)}</b>` : esc(String(raw))];
+  });
+}
+
+function renderCountry(iso){
+  const c = byIso[iso];
+  const el = $("#v-country");
+  if (!c) { el.innerHTML = `<p>${t("cp.unknown")}</p>`; return; }
+  const spec = regSpec();
+  const facts = countryFacts(c);
+  const secHtml = spec.sections.filter(k => c.sections[k] && c.sections[k].length).map(k => `
     <div class="sec"><h3>${t("sec." + k)}</h3><ul>${c.sections[k].map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
   el.innerHTML = `
   <a class="back" href="#/countries">${t("cp.back")}</a>
@@ -126,24 +149,25 @@ function renderCountry(iso){
     <div>
       <h1>${esc(c.name)}</h1>
       <div class="meta">
-        ${lvlChip(c)} ${fwChip(c)}
+        ${lvlChip(c)} ${regId() === "nis2" ? fwChip(c) : ""}
         <span class="chip eu">${c.eu ? t("cp.euMember") : t("cp.nonEu")}</span>
-        <span class="stepper" title="${esc(t("lvl." + c.maturity))}">${[1,2,3,4].map(l => `<span class="st ${l <= c.maturity ? "on" + l : ""}"></span>`).join("")}</span>
+        <span class="stepper" title="${esc(regLevelLabel(c.maturity))}">${[1,2,3,4].map(l => `<span class="st ${l <= c.maturity ? "on" + l : ""}"></span>`).join("")}</span>
       </div>
-      <p style="margin:9px 0 0;color:var(--ink2);max-width:78ch">${esc(t("lvl." + c.maturity))}. ${esc(c.summary)}</p>
+      <p style="margin:9px 0 0;color:var(--ink2);max-width:78ch">${esc(regLevelLabel(c.maturity))}. ${esc(c.summary)}</p>
     </div>
-    <div class="upd">${t("cp.lastUpdate")}<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${c.transposed ? (c.onTime ? t("cp.onTime") : t("cp.inForce", { date: fmtDateL(c.lawInForce), n: c.delayMonths })) : t("cp.notTransposed")}${role === "validator" ? `<br><button class="btn" id="deckBtn" style="margin-top:9px">${t("cp.genSlides")}</button>` : ""}</div>
+    <div class="upd">${t("cp.lastUpdate")}<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${regId() !== "nis2" ? (c.transposed ? t("cp.inForceOn", { date: fmtDateL(c.lawInForce) }) : t("cp.notTransposed"))
+        : c.transposed ? (c.onTime ? t("cp.onTime") : t("cp.inForce", { date: fmtDateL(c.lawInForce), n: c.delayMonths })) : t("cp.notTransposed")}${role === "validator" ? `<br><button class="btn" id="deckBtn" style="margin-top:9px">${t("cp.genSlides")}</button>` : ""}</div>
   </div>
   <div class="facts">${facts.map(f => `<div class="fact"><div class="k">${f[0]}</div><div class="v">${f[1]}</div></div>`).join("")}</div>
   <div class="cty-grid">
     <div class="card"><div class="bd">${secHtml}
-      ${wbSections(c)}
+      ${regId() === "nis2" ? wbSections(c) : ""}
       ${c.next && c.next.length ? `<div class="sec"><h3>${t("cp.nextSteps")}</h3><ul>${c.next.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
     </div></div>
     <div style="display:flex;flex-direction:column;gap:18px">
       <div class="card"><div class="cap"><h2>${t("cp.timeline")}</h2></div><div class="bd">
         <ul class="tl">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(ev => `
-          <li class="${ev.added ? "added" : ""}"><span class="pt"></span><div class="d">${fmtDateL(ev.date)}${ev.added ? ` · <span style="color:var(--ok)">${t("cp.addedVia")}</span>` : ""}</div><div class="x">${esc(ev.text)}</div></li>`).join("")}
+          <li class="${ev.added ? "added" : ""}"><span class="pt"></span><div class="d">${fmtDateL(ev.date)}${ev.added ? ` · <span style="color:var(--ok)">${t("cp.addedVia")}</span>` : ""}</div><div class="x">${esc(evText(ev))}</div></li>`).join("")}
         </ul>
         ${c.timeline.some(ev => ev.added) ? `<div class="q-note" style="margin-top:8px">${t("cp.timelineNote")}</div>` : ""}
       </div></div>
@@ -570,12 +594,36 @@ let srcFilter = "";
    no backend yet. */
 function customSources(){ return store.sources || (store.sources = []); }
 
+/* What REC has instead of a feed registry: the authorities its workbook names,
+   and an honest count of the ones it does not. This is not filler - it is the
+   starting list for the day the REC agent gets built, and it shows at a glance
+   how much of that list still has to be found. */
+function recAuthorities(){
+  const named = COUNTRIES.filter(c => (c.authorities || []).length);
+  const missing = COUNTRIES.length - named.length;
+  return `<div class="card"><div class="cap"><h2>${t("src.recAuthTitle")}</h2>
+    <span class="q-note">${t("src.recAuthCount", { n: named.length, total: COUNTRIES.length })}</span></div>
+    <div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.recAuthSub")}</p>
+    ${named.length ? `<div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th></tr></thead>
+      <tbody>${named.map(c => `<tr>
+        <td style="white-space:nowrap"><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</td>
+        <td>${esc(c.authorities[0].name)}</td></tr>`).join("")}</tbody>
+    </table></div>` : ""}
+    ${missing ? `<p class="q-note" style="margin-top:10px">${t("src.recAuthMissing", { n: missing })}</p>` : ""}
+    </div></div>`;
+}
+
 function renderSources(){
   const el = $("#v-sources");
   const isVal = role === "validator";
   const rows = [];
-  GLOBAL_SOURCES.forEach(x => rows.push({ scope: x.scope, name: x.name, url: x.url,
-                                          type: x.type, note: x.note || "" }));
+  /* The global list was written for NIS 2 - ENISA's registry of digital
+     entities is not a REC source - so REC shows only what its own workbook
+     names. */
+  if (regId() === "nis2") GLOBAL_SOURCES.forEach(x => rows.push({ scope: x.scope, name: x.name,
+    url: x.url, type: x.type, note: x.note || "" }));
   COUNTRIES.forEach(c => c.sources.forEach(x => rows.push({ scope: c.name, iso: c.iso,
     name: x.name, url: x.url, type: x.type, note: "" })));
   customSources().forEach((x, n) => rows.push({ ...x, custom: true, idx: n,
@@ -586,7 +634,8 @@ function renderSources(){
 
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
-  <p class="pg-sub">${t("src.sub")}</p>
+  <p class="pg-sub">${regId() === "nis2" ? t("src.sub") : t("src.recSub")}</p>
+  ${regId() === "nis2" ? "" : recAuthorities()}
   ${isVal ? `
   <div class="card"><div class="cap"><h2>${t("src.add")}</h2></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.addSub")}</p>
@@ -605,7 +654,7 @@ function renderSources(){
   ${customSources().length ? `<div class="card"><div class="cap"><h2>${t("src.pending")} (${customSources().length})</h2>
     <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
-  ${typeof AUTHORITY_FEEDS !== "undefined" ? `
+  ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
   <div class="card"><div class="cap"><h2>${t("src.authTitle")}</h2>
     <span class="q-note">${t("src.authOk", {
       n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span></div>
@@ -680,6 +729,12 @@ function renderSources(){
 }
 
 /* ---------- boot ---------- */
+/* Order matters: the active regulation decides which records exist and which
+   tabs are reachable, so it is applied before anything renders. */
+regApply();
+regRenderPills();
+regSyncTabs();
+regFooter();
 refreshBadge();
 const r0 = parseHash();
-route(r0.v, r0.arg);
+route(regHasTab(r0.v) || r0.v === "country" ? r0.v : "overview", r0.arg);

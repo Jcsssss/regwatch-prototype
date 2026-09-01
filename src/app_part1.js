@@ -1,7 +1,9 @@
 /* ================= App logic ================= */
 "use strict";
-const COUNTRIES = [...COUNTRIES_1, ...COUNTRIES_2, ...COUNTRIES_3, ...COUNTRIES_4];
-const byIso = Object.fromEntries(COUNTRIES.map(c => [c.iso, c]));
+/* Filled by regApply() once the store is read: which records these are depends
+   on the active regulation, and every view reads them by name. */
+let COUNTRIES = [];
+let byIso = {};
 
 /* ---------- persisted demo state (localStorage) ---------- */
 const LS_KEY = "regwatch-proto-v1";
@@ -20,6 +22,9 @@ let queue = WATCH_SOURCE.map(q => ({ ...q }));
 queue.forEach(q => { const o = store.overrides[q.id]; if (o) Object.assign(q, o); });
 /* apply validated items to country timelines */
 function applyValidated(){
+  /* Watch items belong to the regulation that produced them - REC has no agent
+     yet, so nothing is grafted onto its timelines. */
+  if (regId() !== "nis2") return;
   queue.filter(q => q.status === "validated").forEach(q => {
     const c = byIso[q.iso]; if (!c) return;
     if (!c.timeline.some(t => t._qid === q.id) && !q.preloaded) {
@@ -48,7 +53,6 @@ const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, m => ({ "&": "&a
 const fmtDate = d => { if (!d) return "-"; const [y, m, dd] = d.split("-"); const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m - 1]; return `${+dd} ${M} ${y}`; };
 function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 function lvlColor(l){ return cssVar("--m" + l); }
-const LVL_SHORT = { 1: "Level 1 - preliminary work", 2: "Level 2 - bill in parliament", 3: "Level 3 - law approved, framework pending/provisional", 4: "Level 4 - law + final framework" };
 
 /* tooltip */
 const tip = document.getElementById("tip");
@@ -69,6 +73,10 @@ function inkOn(hex){ /* readable text colour for a given fill */
   const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
   return lum > 0.45 ? "#241a3d" : "#ffffff";
 }
+/* A generated timeline entry carries a key rather than a sentence: the
+   interface is bilingual and nothing generated should arrive pre-written in
+   one language. Hand-written entries still carry their own text. */
+const evText = ev => ev.textKey ? t(ev.textKey) : (ev.text || "");
 const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">Level ${c.maturity}</span>`; };
 const fwChip = c => `<span class="chip fw-${c.fw}">${t("fw." + c.fw)}</span>`;
 const srcChip = t => t === "official" ? `<span class="chip src-official">Official</span>` : t === "manual" ? `<span class="chip src-manual">Manual - consultant input</span>` : `<span class="chip src-unofficial">Unofficial - verify</span>`;
@@ -123,15 +131,26 @@ function renderOverview(){
   const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
   COUNTRIES.forEach(c => counts[c.maturity]++);
   const el = $("#v-overview");
-  el.innerHTML = `
-  <h1 class="pg">${t("ov.title")}</h1>
-  <p class="pg-sub">${t("ov.sub")}</p>
-  <div class="tiles">
+  const spec = regSpec();
+  /* The tiles are the regulation's own headline numbers. NIS 2 counts lateness
+     against a deadline it has passed; REC's question at this stage is how far
+     each country has got, so it counts levels instead. Reusing the NIS 2 tiles
+     would have shown "0 on time" for 27 countries and meant nothing. */
+  const tiles = regId() === "nis2" ? `
     <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileTransposed")}</div></div>
     <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
     <div class="tile"><div class="v">~${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
-    <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>
-  </div>
+    <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>` : `
+    <div class="tile"><div class="v">${counts[4]}<small> / ${COUNTRIES.length}</small></div><div class="s">${t("ov.recAdopted")}</div></div>
+    <div class="tile"><div class="v">${counts[3]}</div><div class="s">${t("ov.recInParliament")}</div></div>
+    <div class="tile"><div class="v">${counts[1] + counts[2]}</div><div class="s">${t("ov.recEarly")}</div></div>
+    <div class="tile"><div class="v">${COUNTRIES.filter(c => c.lawInForce).length}<small> / ${COUNTRIES.length}</small></div><div class="s">${t("ov.recInForce")}</div></div>`;
+
+  el.innerHTML = `
+  <h1 class="pg">${t(spec.titleKey)}</h1>
+  <p class="pg-sub">${t(spec.subKey)}</p>
+  ${spec.caveat ? `<div class="rolenote">${t(spec.caveat)}</div>` : ""}
+  <div class="tiles">${tiles}</div>
   <div class="grid-ov">
     <div class="card">
       <div class="cap"><h2>${t("ov.map")}</h2><button class="btn" id="expMap">${t("ov.exportPng")}</button></div>
@@ -152,11 +171,11 @@ function renderOverview(){
   events.sort((a, b) => b.date < a.date ? -1 : 1);
   $("#feed").innerHTML = events.slice(0, 7).map(e => `
     <div class="feed-it"><div class="d">${fmtDate(e.date)}</div>
-      <div class="t"><span class="c"><i class="fi">${flagSvg(e.c.iso)}</i> ${esc(e.c.name)}</span> - ${esc(e.text)}</div></div>`).join("");
+      <div class="t"><span class="c"><i class="fi">${flagSvg(e.c.iso)}</i> ${esc(e.c.name)}</span> - ${esc(evText(e))}</div></div>`).join("");
   $("#lvlHelp").innerHTML = [4, 3, 2, 1].map(l => `
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:9px">
       <span class="leg-sw" style="background:${lvlColor(l)};margin-top:3px"></span>
-      <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> - ${esc(t("lvl." + l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
+      <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> - ${esc(regLevelLabel(l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
     </div>`).join("");
   $("#expMap").addEventListener("click", exportMapPNG);
 }
@@ -192,7 +211,7 @@ function drawMap(host, legendHost, counts){
     const t = e.target.closest(".ctry");
     if (!t) { hideTip(); return; }
     const c = byIso[t.dataset.iso];
-    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(LVL_SHORT[c.maturity])}</span><br>${esc(c.summary)}<br><span class="m">Last update ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
+    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">Last update ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
   });
   svgEl.addEventListener("mouseleave", hideTip);
   svgEl.addEventListener("click", e => {

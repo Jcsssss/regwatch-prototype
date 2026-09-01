@@ -4,7 +4,7 @@
 Source  : agent_veille_NIS2.xlsx / table `tblVeille`
           (github.com/aurelienbrun-alt/Agent_mapping - "agent de veille")
 Targets : data/watch-items.json  - the exchange contract, for a hosted RegWatch
-          src/data_watch.js      - `const WATCH_QUEUE = [...]`, for the standalone build
+          src/reg/nis2/data_watch.js      - `const WATCH_QUEUE = [...]`, for the standalone build
 
 Stdlib only: the workbook is read straight from the OOXML zip, so this runs on any
 Python 3 without openpyxl and without touching the agent's repository.
@@ -436,7 +436,7 @@ def main():
     }
     json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    js_path = ROOT / "src" / "data_watch.js"
+    js_path = ROOT / "src" / "reg" / "nis2" / "data_watch.js"
     js_path.write_text(
         "/* ---- Watch queue - generated from the NIS 2 watch agent (tblVeille).\n"
         "   Regenerate: python3 tools/veille_to_watchitems.py <agent_veille_NIS2.xlsx>\n"

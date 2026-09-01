@@ -26,7 +26,7 @@ So, until Graph can enumerate the real names:
 children, matches them by prefix, and writes the exact URLs plus a document
 count. Run it once Graph access exists and the approximation disappears.
 
-Output: data/country-docs.json, src/data_docs.js
+Output: data/country-docs.json, src/reg/nis2/data_docs.js
 """
 
 import argparse
@@ -38,7 +38,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_JSON = ROOT / "data" / "country-docs.json"
-OUT_JS = ROOT / "src" / "data_docs.js"
+OUT_JS = ROOT / "src" / "reg" / "nis2" / "data_docs.js"
 COUNTRIES = ROOT / "data" / "countries.json"
 
 HOST = "https://digiplace.sharepoint.com"

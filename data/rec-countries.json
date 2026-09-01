@@ -1,0 +1,1186 @@
+{
+ "regulation": "rec",
+ "workbook": "VF.Suivi transposition REC en Europe.xlsx",
+ "generated": "2026-09-01",
+ "countries": [
+  {
+   "iso": "AT",
+   "name": "Austria",
+   "nameFr": "Autriche",
+   "flag": "🇦🇹",
+   "region": "East",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi Resilienz kritischer Einrichtungen-Gesetz» (RKEG) a été enregistré au Parlement le 14 janvier 2025 ; il a été transmis pour examen au ministère de l’intérieur le 16 janvier 2025. Le mecredi 9 juillet, le Conseil des ministres a approuvé le projet de loi.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://www.parlament.gv.at/dokument/XXVIII/ME/1/fname_1664167.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "2/4",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "https://www.sn.at/panorama/oesterreich/regierung-gesetz-schutz-infrastruktur-181151368",
+    "unstructured": [
+     "1"
+    ]
+   }
+  },
+  {
+   "iso": "BE",
+   "name": "Belgium",
+   "nameFr": "Belgique",
+   "flag": "🇧🇪",
+   "region": "West",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le 20 décembre 2024, le Conseil des ministres a approuvé en deuxième lecture l’avant-projet de loi. Il doit désormais être transmis à la Chambre des représentants pour examen et adoption.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [
+    {
+     "name": "Le NCCN est le point de contact belge pour l'European Programme for Critical Infrastructure Protection (EPCIP). Dans ce cadre, le NCCN assume les tâches suivantes : Coordonner le recensement et la désignation des infrastructures critiques européennes. Échanger des informations sur les menaces potentielles qui peuvent affecter une infrastructure critique européenne. Rapporter à la Commission européenne. le NCCN peut prendre des mesures de protection externes. À cette fin, il collabore avec la police, l'Organe de Coordination pour l'Evaluation de la Menace (OCAM) et les services de renseignement.",
+     "role": "Le NCCN est le point de contact belge pour l'European Programme for Critical Infrastructure Protection (EPCIP). Dans ce cadre, le NCCN assume les tâches suivantes : Coordonner le recensement et la désignation des infrastructures critiques européennes. Échanger des informations sur les menaces potentielles qui peuvent affecter une infrastructure critique européenne. Rapporter à la Commission européenne. le NCCN peut prendre des mesures de protection externes. À cette fin, il collabore avec la police, l'Organe de Coordination pour l'Evaluation de la Menace (OCAM) et les services de renseignement."
+    }
+   ],
+   "sections": {
+    "reg": [
+     "Les autorités sectorielles (par exemple le SPF Mobilité ou l'IBPT) sont responsables : Du recensement et de la désignation des infrastructures critiques.",
+     "De la détermination des modalités d'exercice, des mesures de sécurité internes que les exploitants doivent mettre en œuvre et des services d'inspection.",
+     "Le NCCN les assiste dans ces tâches."
+    ],
+    "other": [
+     "Des réglementations sectorielles existent : Arrêté royal concernant les infrastructures critiques dans le sous-secteur du transport aérien(voir PDF) Loi établissant un cadre pour la sécurité des réseaux et des systèmes d’information d’intérêt général pour la sécurité publique(voir PDF)"
+    ],
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Transposition de la directive en Belgique",
+     "url": "https://centredecrise.be/fr/newsroom/transposition-de-la-directive-europeenne-sur-la-resilience-des-entites-critiques-directive",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "1/4",
+    "registration": "Les autorités sectorielles (par exemple le SPF Mobilité ou l'IBPT) sont responsables : Du recensement et de la désignation des infrastructures critiques. De la détermination des modalités d'exercice, des mesures de sécurité internes que les exploitants doivent mettre en œuvre et des services d'inspection. Le NCCN les assiste dans ces tâches.",
+    "alignment": "Des réglementations sectorielles existent : Arrêté royal concernant les infrastructures critiques dans le sous-secteur du transport aérien(voir PDF) Loi établissant un cadre pour la sécurité des réseaux et des systèmes d’information d’intérêt général pour la sécurité publique(voir PDF)",
+    "inForceNote": "",
+    "comment": "Contacter le bureau Belge",
+    "unstructured": [
+     "2"
+    ]
+   }
+  },
+  {
+   "iso": "BG",
+   "name": "Bulgaria",
+   "nameFr": "Bulgarie",
+   "flag": "🇧🇬",
+   "region": "East",
+   "eu": true,
+   "maturity": 2,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi « Закон за устойчивост на критичните субекти » a fait l’objet d’une consultation publique du 27 mai au 26 juin 2025. Une analyse de cohérence réglementaire est en cours afin d’en assurer l’alignement avec les autres cadres législatifs en vigueur.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Avancée de la Transposition"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Texte de loi",
+     "url": "https://www.strategy.bg/FileHandler.ashx?fileId=38605",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Avancée de la Transposition",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": [
+     "3",
+     "Dernière consultation ou plusieurs événements à venir dans les prochaines semaines/jours."
+    ]
+   }
+  },
+  {
+   "iso": "HR",
+   "name": "Croatia",
+   "nameFr": "Croatie",
+   "flag": "🇭🇷",
+   "region": "South",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-07-07",
+   "summary": "Le projet de loi « Zakon o kritičnoj infrastrukturi » a été soumis à consultation publique en novembre 2024. Après adoption par le Conseil des ministres, il a été transmis au Parlement le 27 janvier 2025, puis envoyé en deuxième lecture le 15 mai 2025. La loi a été adoptée le 6 juin 2025 et entrée en vigueur le 21 juin 2025.",
+   "transposed": true,
+   "lawInForce": "2025-06-21",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Projet de loi approuvé"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-06-21",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://www.sabor.hr/sites/default/files/uploads/sabor/2025-01-27/112209/PZE_120.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Projet de loi approuvé",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "NON",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "CY",
+   "name": "Cyprus",
+   "nameFr": "Chypre",
+   "flag": "🇨🇾",
+   "region": "South",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de règlement Οι περί Πολιτικής Άμυνας (Ανθεκτικότητα των Κρίσιμων Οντοτήτων) Κανονισμοί του 2024 a été présenté le 26 septembre 2024, a été validé par le conseil des ministres. Le projet de règlement doit maintenat être soumis à la chambre des représentants. Le réglement a été adopté le 3 juillet 2025.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://www.moi.gov.cy/moi/cd/cd.nsf/All/095EC0404F4E43F8C2258CC40037F2E9/$file/%CE%9F%CE%B9%20%CF%80%CE%B5%CF%81%CE%AF%20%CE%A0%CE%BF%CE%BB%CE%B9%CF%84%CE%B9%CE%BA%CE%AE%CF%82%20%CE%86%CE%BC%CF%85%CE%BD%CE%B1%CF%82%20(%CE%91%CE%BD%CE%B8%CE%B5%CE%BA%CF%84%CE%B9%CE%BA%CF%8C%CF%84%CE%B7%CF%84%CE%B1%20%CF%84%CF%89%CE%BD%20%CE%9A%CF%81%CE%AF%CF%83%CE%B9%CE%BC%CF%89%CE%BD%20%CE%9F%CE%BD%CF%84%CE%BF%CF%84%CE%AE%CF%84%CF%89%CE%BD)%20%CE%9A%CE%B1%CE%BD%CE%BF%CE%BD%CE%B9%CF%83%CE%BC%CE%BF%CE%AF%20%CF%84%CE%BF%CF%85%202025.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "1/4",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "texte de loi (aller dans document puis dl le texte)",
+    "unstructured": [
+     "https://www.nomoplatform.cy/bills/oi-peri-politikis-amynas-anthektikotita-ton-krisimon-ontotiton-kanonismoi-tou-2024/"
+    ]
+   }
+  },
+  {
+   "iso": "CZ",
+   "name": "Czechia",
+   "nameFr": "République tchèque",
+   "flag": "🇨🇿",
+   "region": "East",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi « Zákon o kritické infrastruktuře » a été approuvé par le gouvernement le 26 mars 2025.Le projet de loi a été promulgué le 4 août 2025 et est entré en vigueur le 19 août.",
+   "transposed": true,
+   "lawInForce": "2025-08-19",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-08-19",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Discussion au parlement du projet de loi",
+     "url": "https://www.psp.cz/sqw/text/orig2.sqw?idd=246406",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "1/4",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "DK",
+   "name": "Denmark",
+   "nameFr": "Danemark",
+   "flag": "🇩🇰",
+   "region": "North",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-05-06",
+   "summary": "Le projet de loi Lov om kritiske enheders modstandsdygtighed (« CER-loven ») a été approuvé par le Parlement danois en troisième lecture le 29 avril 2025 ; il a été promulgué et entrera en vigueur le 1er juillet 2025.",
+   "transposed": true,
+   "lawInForce": "2025-07-01",
+   "law": "Lov om kritiske enheders modstandsdygtighed (CER-loven)",
+   "authorities": [
+    {
+     "name": "Ministère de la Résilience Sociétale et de la Gestion des Urgences",
+     "role": "Ministère de la Résilience Sociétale et de la Gestion des Urgences"
+    }
+   ],
+   "sections": {
+    "reg": [
+     "Les entités désignées comme critiques doivent s'inscrire et notifier les incidents majeurs auprès des autorités compétentes.",
+     "Au Danemark, cela inclut l'enregistrement auprès de l'autorité de régulation sectorielle, comme le Ministère de la Résilience Sociétale et de la Gestion des Urgences pour certaines catégories, et les autorités financières pour d'autres secteurs."
+    ],
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-07-01",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Proposition de loi",
+     "url": "https://www.ft.dk/samling/20241/lovforslag/L140/som_vedtaget.htm",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "3/4",
+    "registration": "Les entités désignées comme critiques doivent s'inscrire et notifier les incidents majeurs auprès des autorités compétentes. Au Danemark, cela inclut l'enregistrement auprès de l'autorité de régulation sectorielle, comme le Ministère de la Résilience Sociétale et de la Gestion des Urgences pour certaines catégories, et les autorités financières pour d'autres secteurs.",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": [
+     "3",
+     "Dernière consultation ou plusieurs événements à venir dans les prochaines semaines/jours."
+    ]
+   }
+  },
+  {
+   "iso": "EE",
+   "name": "Estonia",
+   "nameFr": "Estonie",
+   "flag": "🇪🇪",
+   "region": "North",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-05-07",
+   "summary": "La loi Hädaolukorra seaduse ja teiste seaduste muutmise seadus a été adoptée par le parlement le 25 septembre 2024. Elle a été publiée au Journal officiel le 8 octobre 2024 et est entrée en vigueur le 18 octobre 2024",
+   "transposed": true,
+   "lawInForce": "2024-10-18",
+   "law": "Hädaolukorra seaduse ja teiste seaduste muutmise seadus",
+   "authorities": [],
+   "sections": {},
+   "timeline": [
+    {
+     "date": "2024-10-18",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "CF : texte final",
+     "url": "https://www.riigikogu.ee/tegevus/eelnoud/eelnou/57e67d9e-ba15-412e-8b25-cda84efca58a/hadaolukorra-seaduse-muutmise-ja-sellega-seonduvalt-teiste-seaduste-muutmise-seadus/",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "FI",
+   "name": "Finland",
+   "nameFr": "Finlande",
+   "flag": "🇫🇮",
+   "region": "North",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-07-07",
+   "summary": "Le projet de loi Lag om skydd av samhällets kritiska infrastruktur och om stärkande av samhällets motståndskraft, a été soumis au Parlement finlandais le 19 décembre 2024. Le projet de loi a été publié le 16 juin et entrera en vigueur le 1 juillet 2025.",
+   "transposed": true,
+   "lawInForce": "2025-07-01",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-07-01",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://www.parliament.fi/SV/vaski/KasittelytiedotValtiopaivaasia/Sidor/RP_205+2024.aspx",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "3/4",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": [
+     "4",
+     "Phase parlementaire avancée, dernière étape avant un vote final pour transposition."
+    ]
+   }
+  },
+  {
+   "iso": "FR",
+   "name": "France",
+   "nameFr": "France",
+   "flag": "🇫🇷",
+   "region": "West",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "En France, un projet de loi regroupant la transposition des directives NIS 2, REC et de la directive sur la résilience du secteur financier a été présenté en Conseil des ministres le 15 octobre 2024. Le texte a ensuite été amendé et adopté par le Sénat le 12 mars 2025, avant d’être transmis à l’Assemblée nationale le 13 mars 2025 pour poursuite de l’examen parlementaire. Une lecture en séance publique est prévue pour la mi-septembre.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [
+    {
+     "name": "ANSSI",
+     "role": "ANSSI = Agence nationale de la sécurité des systèmes d’information"
+    }
+   ],
+   "sections": {
+    "other": [
+     "La directive n'ayant pas été pleinement transposée ni même discutée au Parlement, il n'est à ce jour pas possible d'établir les intéractions futures avec des régulations du même périmètre.",
+     "La transposition de REC devrait s'inscrire dans un cadre plus large, comprenant des textes comme : La loi de programmation militaire et les dispositions relatives à la protection des infrastructures critiques dans le code de la défense.",
+     "Le Code de la sécurité intérieure, qui régit la sécurité des systèmes d'information des opérateurs d'importance vitale (OIV)."
+    ],
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi déposé à l'assemblé",
+     "url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b1112_projet-loi.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "3/4",
+    "registration": "",
+    "alignment": "La directive n'ayant pas été pleinement transposée ni même discutée au Parlement, il n'est à ce jour pas possible d'établir les intéractions futures avec des régulations du même périmètre. La transposition de REC devrait s'inscrire dans un cadre plus large, comprenant des textes comme : La loi de programmation militaire et les dispositions relatives à la protection des infrastructures critiques dans le code de la défense. Le Code de la sécurité intérieure, qui régit la sécurité des systèmes d'information des opérateurs d'importance vitale (OIV).",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "DE",
+   "name": "Germany",
+   "nameFr": "Allemagne",
+   "flag": "🇩🇪",
+   "region": "West",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi Gesetz zur Umsetzung der Richtlinie (EU) 2022/2557 und zur Stärkung der Resilienz kritischer Anlagen est en phase parlementaire. Une consultation publique a été menée, et une première lecture du projet de loi a eu lieu au Bundestag le 5 décembre 2024. Le texte est maintenant en examen par des commissions avant la deuxième et troisième lecture.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [
+    {
+     "name": "BSI",
+     "role": "BSI = Office fédéral de la sécurité des technologies de l’information pour la supervision en charge de la transposition BBK = Office fédéral de la protection de la population et de l’aide en cas de catastrophe en charge de la supervision et de la coordination Les autorités de régulation des Länder"
+    }
+   ],
+   "sections": {
+    "reg": [
+     "BBK = Office fédéral de la protection de la population et de l’aide en cas de catastrophe en charge de la supervision et de la coordination"
+    ],
+    "other": [
+     "il n’existe actuellement aucune réglementation fédérale uniforme pour la protection physique des infrastructures critiques.",
+     "Les réglementations correspondantes sont très hétérogènes selon les secteurs et les industries : elles vont des directives non contraignantes aux réglementations fédérales et étatiques spéciales ou aux normes DIN définies avec précision .",
+     "La loi-cadre KRITIS créer un cadre juridique fédéral uniforme pour la protection physique des infrastructures critiques.",
+     "La Loi compléte les dispositions de la loi BSI sur la sécurité informatique pour KRITIS qui existent depuis plusieurs années avec d'autres aspects centraux."
+    ],
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi en Allemagne",
+     "url": "https://www.bmi.bund.de/SharedDocs/gesetzgebungsverfahren/DE/Downloads/referentenentwuerfe/KM4/Kritis-Dachgesetz.pdf?__blob=publicationFile&v=1",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "1/4",
+    "registration": "BBK = Office fédéral de la protection de la population et de l’aide en cas de catastrophe en charge de la supervision et de la coordination",
+    "alignment": "il n’existe actuellement aucune réglementation fédérale uniforme pour la protection physique des infrastructures critiques. Les réglementations correspondantes sont très hétérogènes selon les secteurs et les industries : elles vont des directives non contraignantes aux réglementations fédérales et étatiques spéciales ou aux normes DIN définies avec précision . La loi-cadre KRITIS créer un cadre juridique fédéral uniforme pour la protection physique des infrastructures critiques. La Loi compléte les dispositions de la loi BSI sur la sécurité informatique pour KRITIS qui existent depuis plusieurs années avec d'autres aspects centraux.",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "GR",
+   "name": "Greece",
+   "nameFr": "Grèce",
+   "flag": "🇬🇷",
+   "region": "South",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi Σχέδιο νόμου για την ανθεκτικότητα των κρίσιμων οντοτήτων a été présenté au Conseil des ministres le 28 avril 2025.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "communiqué du gouvernenement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Ministère de la gouvernance publique",
+     "url": "https://www.opengov.gr/digitalandbrief/",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "communiqué du gouvernenement",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "HU",
+   "name": "Hungary",
+   "nameFr": "Hongrie",
+   "flag": "🇭🇺",
+   "region": "East",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "La Hongrie a promulgué la Loi LXXXIV 2024 le 30 décembre 2024, relative à la résilience des entités critiques.",
+   "transposed": true,
+   "lawInForce": "2024-12-30",
+   "law": "LXXXIV/2024",
+   "authorities": [
+    {
+     "name": "Ministère de l'Intérieur.",
+     "role": "Ministère de l'Intérieur."
+    }
+   ],
+   "sections": {
+    "prog": [
+     "Pas de précision sur la mise en pratique"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2024-12-30",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Texte sur la consultation publique du projet de loi",
+     "url": "https://njt.hu/jogszabaly/2024-84-00-00",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Pas de précision sur la mise en pratique",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "IE",
+   "name": "Ireland",
+   "nameFr": "Irlande",
+   "flag": "🇮🇪",
+   "region": "West",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "La directive REC a été transposé dans le droit irelandais, sous le nom de \"Irish CER Regulations\" et est rentrée en vigueur le 17 octobre 2024.",
+   "transposed": true,
+   "lawInForce": "2024-10-18",
+   "law": "Irish CER Regulations",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Mail envoyé pour une demande d'information sur la potentielle sortie de guide de mise en conformité à https://www.comreg.ie/contact-us"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2024-10-18",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Transposition de la directive CER en Irelande",
+     "url": "https://www.twobirds.com/en/insights/2024/ireland/understanding-the-impact-of-the-transposition-of-the-cer-directive-into-irish-law",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Mail envoyé pour une demande d'information sur la potentielle sortie de guide de mise en conformité à https://www.comreg.ie/contact-us",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "IT",
+   "name": "Italy",
+   "nameFr": "Italie",
+   "flag": "🇮🇹",
+   "region": "South",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "Le décret législatif (instrument juridique utilisé pour transposer les directives européennes en droit italien) transposant la directive REC a été définitivement approuvé par le gouvernement le 4 septembre 2024 et est entré en vigueur le 18 octobre 2024.",
+   "transposed": true,
+   "lawInForce": "2024-10-18",
+   "law": "DECRETO LEGISLATIVO 4 settembre 2024, n. 134",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Pas de précision sur la mise en pratique"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2024-10-18",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Publication au journal de la transposition",
+     "url": "https://www.gazzettaufficiale.it/eli/id/2024/09/23/24G00150/SG",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Pas de précision sur la mise en pratique",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "LV",
+   "name": "Latvia",
+   "nameFr": "Lettonie",
+   "flag": "🇱🇻",
+   "region": "North",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-07-07",
+   "summary": "Le projet de loi Grozījumi Nacionālās drošības likumā (amendements à la loi sur la sécurité nationale) a été approuvé par le Cabinet des ministres le 4 mars 2025, puis transmis au parlement le 20 mars 2025. Il a franchi la deuxième lecture le 29 avril 2025. Le texte a été adopté le 12 juin 2025 et est entré en vigueur le 28 juin 2025.",
+   "transposed": true,
+   "lawInForce": "2025-07-28",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Projet de loi"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-07-28",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Texte de loi et avancement",
+     "url": "https://tapportals.mk.gov.lv/annotation/b00d43aa-c422-4f26-9f57-41c33044756c",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Projet de loi",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "LT",
+   "name": "Lithuania",
+   "nameFr": "Lituanie",
+   "flag": "🇱🇹",
+   "region": "North",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "La directive a été transposée par la loi KRIZIŲ VALDYMO IR CIVILINĖS SAUGOS ĮSTATYMO n° VIII-971, promulguée le 7 novembre, publiée le 14 novembre 2024 et entrée en vigueur le 15 novembre 2024.",
+   "transposed": true,
+   "lawInForce": "2024-11-15",
+   "law": "Lietuvos Respublikos krizių valdymo ir civilinės saugos įstatymas Nr. VIII-971",
+   "authorities": [
+    {
+     "name": "Le Centre national de gestion des crises CNMG, Nacionalinis krizų valdymo centras Les ministères spécifiques Centre national de cybersécurité - NKSC pour la supervision des entités",
+     "role": "Le Centre national de gestion des crises CNMG, Nacionalinis krizų valdymo centras Les ministères spécifiques Centre national de cybersécurité - NKSC pour la supervision des entités"
+    }
+   ],
+   "sections": {
+    "prog": [
+     "Recommandations générales du Centre National de Cybersécurité de Lituanie"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2024-11-15",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Loi tranposant la REC",
+     "url": "https://e-seimas.lrs.lt/portal/legalAct/lt/TAD/62186f509d1411ef955ff95815eb5ce5",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Recommandations générales du Centre National de Cybersécurité de Lituanie",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "LU",
+   "name": "Luxembourg",
+   "nameFr": "Luxembourg",
+   "flag": "🇱🇺",
+   "region": "West",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi n° 8307 a été transmis au Conseil d’État pour avis le 28 janvier 2025. Le gouvernement a transmis le texte amendé le 12 mai 2025. Le conseil d'Etat a rendu un avis posifif le 13 mai 2025.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Avancée du projet de loi"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://wdocs-pub.chd.lu/docs/exped/0144/117/289176.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Avancée du projet de loi",
+    "criticality": "3/4",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "MT",
+   "name": "Malta",
+   "nameFr": "Malte",
+   "flag": "🇲🇹",
+   "region": "South",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2026-03-18",
+   "summary": "Le règlement « L.N. 5 of 2026 - Resilience of Critical Entities and Infrastructures (Identification, Designation and Protection) Order, 2026 » a été publié le 16 janvier 2026 et est entré en vigueur le 23 janvier 2026.",
+   "transposed": true,
+   "lawInForce": "2026-01-23",
+   "law": "L.N. 5 of 2026 - Resilience of Critical Entities and Infrastructures (Identification, Designation and Protection) Order, 2026",
+   "authorities": [],
+   "sections": {},
+   "timeline": [
+    {
+     "date": "2026-01-23",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Texte de loi",
+     "url": "../Projets%20et%20textes%20de%20loi/REC%20Malte.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "NL",
+   "name": "Netherlands",
+   "nameFr": "Pays-Bas",
+   "flag": "🇳🇱",
+   "region": "West",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi Wet weerbaarheid kritieke entiteiten (Wwke) a clôturé sa consultation publique le 1er juillet 2024. Il a reçu l’avis du Conseil d’État le 20 février 2025 et doit désormais être soumis à la Chambre des représentants pour examen.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Etat d'avancement de la transposition"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi Pays-Bas (CER Facture)",
+     "url": "https://www.internetconsultatie.nl/wetweerbaarheidkritiekeentiteiten/b1",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement de la transposition",
+    "criticality": "2/4",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": [
+     "Lien utiles : synthèse, référentiel"
+    ]
+   }
+  },
+  {
+   "iso": "PL",
+   "name": "Poland",
+   "nameFr": "Pologne",
+   "flag": "🇵🇱",
+   "region": "East",
+   "eu": true,
+   "maturity": 2,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi \"Projekt ustawy o zmianie ustawy [...] niektórych innych ustaw\" (UC47), a été élaboré ; il est actuellement en attente d’approbation par le Conseil des ministres.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Projet de loi"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "communiqué",
+     "url": "https://www.gov.pl/web/premier/projekt-ustawy-o-zmianie-ustawy-o-zarzadzaniu-kryzysowym-oraz-niektorych-innych-ustaw5",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Projet de loi",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "PT",
+   "name": "Portugal",
+   "nameFr": "Portugal",
+   "flag": "🇵🇹",
+   "region": "South",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-03-25",
+   "summary": "Le 9 janvier 2025, le Conseil des ministres a approuvé le décret n°22/2025 a été approuvé le 12 mars et a été publié au journal officiel le 19 mars 2025. De plus le décret-loi n°20/2022 du 28 janvier 2022, établit un cadre juridique pour l’identification, la protection et l’amélioration de la résilience des infrastructures critiques nationales et européennes.Il aligne également la réglementation sur des stratégies nationales de sécurité, notamment la Stratégie Nationale de Sécurité dans le Cyberespace et le Système National de Planification Civile d’Urgence.",
+   "transposed": true,
+   "lawInForce": "2025-03-20",
+   "law": "Decreto-Lei n.º 22/2025",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Etats d'avancement"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-03-20",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "décret n°22/2025",
+     "url": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/22-2025-911488699",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etats d'avancement",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "RO",
+   "name": "Romania",
+   "nameFr": "Roumanie",
+   "flag": "🇷🇴",
+   "region": "East",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "La loi du 27 novembre 2024 , Legea nr. 294/2024 privind rezilienţa entităţilor critice, precum şi pentru modificarea unor acte normative , a été publiée au Journal Officiel le 28 novembre 2024, et est entrée en vigueur dans son intégralité le 2 décembre 2024.",
+   "transposed": true,
+   "lawInForce": "2024-12-02",
+   "law": "Legea nr. 294/2024 privind rezilienţa entităţilor critice, precum şi pentru modificarea unor acte normative",
+   "authorities": [
+    {
+     "name": "CNCPIC (Centre National de Coordination pour la Protection des Infrastructures Critiques).",
+     "role": "CNCPIC (Centre National de Coordination pour la Protection des Infrastructures Critiques)."
+    }
+   ],
+   "sections": {
+    "reg": [
+     "Les entités doivent se notifier auprès du CNCPIC, qui supervise la conformité et la mise en œuvre des mesures exigées par la directive."
+    ],
+    "other": [
+     "Complémentarité avec l'Ordonnance d'urgence n° 98/2010 et les lois relatives aux infrastructures critiques nationales et européennes."
+    ],
+    "prog": [
+     "Envoyer un mail Centre National de Coordination de la Protection des Infrastructures Critiques"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2024-12-02",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://www.ces.ro/newlib/PDF/proiecte/2024/Lege-rezilienta-entitati.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Envoyer un mail Centre National de Coordination de la Protection des Infrastructures Critiques",
+    "criticality": "",
+    "registration": "Les entités doivent se notifier auprès du CNCPIC, qui supervise la conformité et la mise en œuvre des mesures exigées par la directive.",
+    "alignment": "Complémentarité avec l'Ordonnance d'urgence n° 98/2010 et les lois relatives aux infrastructures critiques nationales et européennes.",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "SK",
+   "name": "Slovakia",
+   "nameFr": "Slovaquie",
+   "flag": "🇸🇰",
+   "region": "East",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "Promulgué le 19 décembre le projet de loi Zákon o kritickej infraštruktúre a o zmene a doplnení niektorých zákonov. Le texte est entré en vigueur le 1er janvier 2025.",
+   "transposed": true,
+   "lawInForce": "2025-01-01",
+   "law": "Zákon o kritickej infraštruktúre a o zmene a doplnení niektorých zákonov",
+   "authorities": [
+    {
+     "name": "l'Autorité nationale de cybersécurité (Národný bezpečnostný úrad ou NBÚ)",
+     "role": "l'Autorité nationale de cybersécurité (Národný bezpečnostný úrad ou NBÚ)"
+    }
+   ],
+   "sections": {
+    "other": [
+     "La proposition modifie également les règles de protection des informations sensibles, de filtrage des investissements étrangers et améliore le lien avec les réglementations légales dans le domaine de la cybersécurité et du marché financier."
+    ],
+    "prog": [
+     "Avancement"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2025-01-01",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Loi (cf art.XII)",
+     "url": "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2024/367/20250101.html",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Avancement",
+    "criticality": "",
+    "registration": "",
+    "alignment": "La proposition modifie également les règles de protection des informations sensibles, de filtrage des investissements étrangers et améliore le lien avec les réglementations légales dans le domaine de la cybersécurité et du marché financier.",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "SI",
+   "name": "Slovenia",
+   "nameFr": "Slovénie",
+   "flag": "🇸🇮",
+   "region": "East",
+   "eu": true,
+   "maturity": 4,
+   "lastUpdate": "2025-02-13",
+   "summary": "La loi Zakon o kritični infrastrukturi (ZKI-1), publiée au Journal officiel le 3 décembre 2024 et entrée en vigueur le 18 décembre 2024.",
+   "transposed": true,
+   "lawInForce": "2024-12-18",
+   "law": "Zakon o kritični infrastrukturi (ZKI-1)",
+   "authorities": [
+    {
+     "name": "Ministère de l'Intérieur.",
+     "role": "Ministère de l'Intérieur."
+    }
+   ],
+   "sections": {
+    "reg": [
+     "Les entités doivent s'inscrire et notifier les incidents à l'Agence nationale pour la cybersécurité."
+    ],
+    "prog": [
+     "Pas de précision sur la mise en pratique"
+    ]
+   },
+   "timeline": [
+    {
+     "date": "2024-12-18",
+     "textKey": "tl.recInForce"
+    }
+   ],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://pisrs.si/pregledPredpisa?id=ZAKO9003",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Pas de précision sur la mise en pratique",
+    "criticality": "",
+    "registration": "Les entités doivent s'inscrire et notifier les incidents à l'Agence nationale pour la cybersécurité.",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": []
+   }
+  },
+  {
+   "iso": "ES",
+   "name": "Spain",
+   "nameFr": "Espagne",
+   "flag": "🇪🇸",
+   "region": "South",
+   "eu": true,
+   "maturity": 3,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le conseil des ministres a approuvé le le 27 mai, le projet de loi espagnol intitulé provisoirement Ley de medidas para la protección y resiliencia de las entidades críticas.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [],
+   "sections": {
+    "prog": [
+     "Avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi",
+     "url": "https://www.interior.gob.es/opencms/pdf/servicios-al-ciudadano/participacion-ciudadana/Participacion-publica-en-proyectos-normativos/Audiencia-e-informacion-publica/08_2025_Anteproyecto_ley_proteccion_resiliencia_entidades_criticas.pdf",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Avancement",
+    "criticality": "",
+    "registration": "",
+    "alignment": "",
+    "inForceNote": "",
+    "comment": "",
+    "unstructured": [
+     "4"
+    ]
+   }
+  },
+  {
+   "iso": "SE",
+   "name": "Sweden",
+   "nameFr": "Suède",
+   "flag": "🇸🇪",
+   "region": "North",
+   "eu": true,
+   "maturity": 2,
+   "lastUpdate": "2025-09-02",
+   "summary": "Le projet de loi Motståndskraft i samhällsviktiga tjänster (SOU 2024:64) a été publié le 18 septembre 2024 ; une consultation publique lancée le 9 octobre 2024 s’est clôturée le 13 janvier 2025. Le gouvernement analyse actuellement les contributions reçues en vue de soumettre une proposition législative au Parlement.",
+   "transposed": false,
+   "lawInForce": "",
+   "law": "",
+   "authorities": [
+    {
+     "name": "MSB : unité de CSIRT et l'autorité de gestion des crises cybernétiques en Suède. Autorités sectorielles : autorité de contrôle / surveillance",
+     "role": "MSB : unité de CSIRT et l'autorité de gestion des crises cybernétiques en Suède. Autorités sectorielles : autorité de contrôle / surveillance"
+    }
+   ],
+   "sections": {
+    "reg": [
+     "Notification à l'MSB (Agence suédoise de cybersécurité) Sveriges Energimyndighet (Agence suédoise de l'énergie) (à vérifier) Transportstyrelsen (Agence suédoise des transports)( à vérifier) Försvarsmakten (Forces armées suédoises) (à vérifier)"
+    ],
+    "other": [
+     "La directive CER viendra compléter la loi sur la cybersécurité (Lag om informationssäkerhet) en y ajoutant des exigences spécifiques pour les entités critiques, notamment dans le secteur des services essentiels."
+    ],
+    "prog": [
+     "Etat d'avancement"
+    ]
+   },
+   "timeline": [],
+   "sources": [
+    {
+     "name": "Projet de loi : SOU 2024:64",
+     "url": "https://www.regeringen.se/rattsliga-dokument/statens-offentliga-utredningar/2024/09/sou-202464/",
+     "type": "official"
+    }
+   ],
+   "rec": {
+    "progress": "Etat d'avancement",
+    "criticality": "",
+    "registration": "Notification à l'MSB (Agence suédoise de cybersécurité) Sveriges Energimyndighet (Agence suédoise de l'énergie) (à vérifier) Transportstyrelsen (Agence suédoise des transports)( à vérifier) Försvarsmakten (Forces armées suédoises) (à vérifier)",
+    "alignment": "La directive CER viendra compléter la loi sur la cybersécurité (Lag om informationssäkerhet) en y ajoutant des exigences spécifiques pour les entités critiques, notamment dans le secteur des services essentiels.",
+    "inForceNote": "annoncé, 1er août 2025",
+    "comment": "",
+    "unstructured": []
+   }
+  }
+ ]
+}

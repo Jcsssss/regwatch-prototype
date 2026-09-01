@@ -55,9 +55,22 @@ let chatBusy = false;
 
 function chatSystemPrompt(){
   const today = new Date().toISOString().slice(0, 10);
+  const spec = regSpec();
+  const scope = regId() === "nis2"
+    ? ["You are answering about NIS 2, directive (EU) 2022/2555 - cybersecurity of network",
+       "and information systems - across 29 European countries."]
+    : ["You are answering about REC, directive (EU) 2022/2557 - resilience of critical",
+       "entities - across the 27 EU countries. REC is about all-hazards physical resilience",
+       "and the designation of critical entities by the state, NOT about cybersecurity;",
+       "do not answer a REC question with what you know about NIS 2.",
+       "The REC records are a first pass over a younger workbook: many fields are simply",
+       "not recorded yet. Say 'not recorded in RegWatch yet' - never read a blank as 'none'.",
+       "You have no KPI table, no watch items, no charts and no document folders for REC;",
+       "if one of those is asked for, say the REC module does not carry it yet."];
   return [
     "You are the RegWatch assistant. You help Wavestone consultants working on the",
-    "transposition of the NIS 2 directive across 29 European countries.",
+    "transposition of European regulations.",
+    ...scope,
     "Today is " + today + ".",
     "",
     "GROUNDING - this is the rule that matters most:",
@@ -121,7 +134,7 @@ const CHAT_TOOLS = [
     }, required: ["countries"] },
     run: a => corpusGetCountry(a) },
 
-  { name: "query_kpi",
+  { name: "query_kpi", regs: ["nis2"],
     description: "The comparative workbook's indicator table (33 indicators x 29 countries). "
       + "Call with no arguments to list the exact indicator names, then call again with one.",
     parameters: { type: "object", properties: {
@@ -141,7 +154,7 @@ const CHAT_TOOLS = [
     }, required: ["query"] },
     run: a => corpusSearch(a) },
 
-  { name: "watch_items",
+  { name: "watch_items", regs: ["nis2"],
     description: "Recent watch items (regulatory news picked up by the watch agent) for a "
       + "country or for all of them, newest first. Use for 'what is new in...' questions. "
       + "Each item carries publishedOn (when the source published it, with its provenance) "
@@ -161,14 +174,14 @@ const CHAT_TOOLS = [
     }, required: ["countries"] },
     run: a => corpusScopeRules(a) },
 
-  { name: "official_documents",
+  { name: "official_documents", regs: ["nis2"],
     description: "Links to each country's official-document folders (law, framework, other).",
     parameters: { type: "object", properties: {
       countries: { type: "array", items: { type: "string" } }
     }, required: ["countries"] },
     run: a => corpusOfficialDocs(a) },
 
-  { name: "draw_chart",
+  { name: "draw_chart", regs: ["nis2"],
     description: "Render a chart from the workbook indicators and show it to the user under "
       + "your reply. One indicator draws it on its own; several are crossed into one table. "
       + "Call query_kpi with no arguments first if unsure of the exact indicator names.",
@@ -185,7 +198,15 @@ const CHAT_TOOLS = [
     run: a => chatDrawChart(a) }
 ];
 
-const chatToolByName = name => CHAT_TOOLS.find(t => t.name === name);
+/* A tool is offered only where it can answer. The country tools read whichever
+   records are active, so they serve any regulation; the KPI board, the watch
+   items and the folder registry are built from the NIS 2 workbook and would
+   quietly answer a REC question with NIS 2 data - worse than not answering. */
+function chatTools(){
+  const id = regId();
+  return CHAT_TOOLS.filter(t => !t.regs || t.regs.includes(id));
+}
+const chatToolByName = name => chatTools().find(t => t.name === name);
 
 /* Charts produced during the turn currently being answered. */
 let chatPendingCharts = [];
@@ -285,7 +306,7 @@ async function chatPost(messages, extra, cap){
 
 async function chatCall(messages){
   const data = await chatPost(messages, {
-    tools: CHAT_TOOLS.map(t => ({ type: "function",
+    tools: chatTools().map(t => ({ type: "function",
       function: { name: t.name, description: t.description, parameters: t.parameters } })),
     tool_choice: "auto"
   });
@@ -431,9 +452,11 @@ function chatBubble(m, idx){
   return `<div class="chat-m bot"><div class="chat-b">${steps}${chatMarkdown(m.text)}${charts}</div></div>`;
 }
 
-const CHAT_SUGGESTIONS = [
-  "chat.s1", "chat.s2", "chat.s3", "chat.s4"
-];
+const CHAT_SUGGESTIONS_BY_REG = {
+  nis2: ["chat.s1", "chat.s2", "chat.s3", "chat.s4"],
+  rec:  ["chat.r1", "chat.r2", "chat.r3", "chat.r4"]
+};
+const chatSuggestions = () => CHAT_SUGGESTIONS_BY_REG[regId()] || CHAT_SUGGESTIONS_BY_REG.nis2;
 
 function chatRender(){
   const el = $("#v-insights");
@@ -442,13 +465,13 @@ function chatRender(){
     ? chatLog.map(chatBubble).join("")
     : `<div class="chat-empty">
         <p class="chat-hello">${t("chat.hello")}</p>
-        <div class="chat-sugs">${CHAT_SUGGESTIONS.map(k =>
+        <div class="chat-sugs">${chatSuggestions().map(k =>
           `<button type="button" class="chat-sug">${kpiEsc(t(k))}</button>`).join("")}</div>
       </div>`;
 
   el.innerHTML = `
   <h1 class="pg">${t("chat.title")}</h1>
-  <p class="pg-sub">${t("chat.sub")}</p>
+  <p class="pg-sub">${t(regId() === "nis2" ? "chat.sub" : "chat.recSub")}</p>
 
   ${chatReady() ? "" : `<div class="card chat-setup"><div class="bd">
     <p class="chat-setup-t">${t("chat.setupTitle")}</p>

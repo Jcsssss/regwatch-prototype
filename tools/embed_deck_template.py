@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Embed the slide template into the standalone HTML build.
 
-    python3 tools/embed_deck_template.py     # -> src/data_template.js
+    python3 tools/embed_deck_template.py     # -> src/reg/nis2/data_template.js
 
 RegWatch is a single double-clickable file with no backend, so "Generate country
 slides" has to build the .pptx in the browser. That needs the template on board.
@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "ressources" / "template-pays.pptx"
-OUT_JS = ROOT / "src" / "data_template.js"
+OUT_JS = ROOT / "src" / "reg" / "nis2" / "data_template.js"
 
 
 def main():

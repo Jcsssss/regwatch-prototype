@@ -9,7 +9,7 @@ written by hand before the import existed. This says, field by field, where the
 two disagree - starting with the maturity level, which drives the map colour,
 the level chip and the country ordering.
 
-`--apply` rewrites ONLY the maturity level in src/data_c*.js, because that is
+`--apply` rewrites ONLY the maturity level in src/reg/nis2/data_c*.js, because that is
 the one field where the workbook is unambiguously authoritative and the record
 carries no extra nuance. Every other divergence is reported, never overwritten:
 several are cases where the record is richer than the cell, and choosing between
@@ -107,7 +107,7 @@ def main():
     if args.apply and mat_fix:
         changed = 0
         for part in ("data_c1.js", "data_c2.js", "data_c3.js", "data_c4.js"):
-            path = ROOT / "src" / part
+            path = ROOT / "src" / "reg" / "nis2" / part
             text = path.read_text(encoding="utf-8")
             before = text
             for iso, _, was, now in mat_fix:
