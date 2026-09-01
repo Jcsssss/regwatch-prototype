@@ -105,23 +105,83 @@ def share_token(url):
 
 
 def parse_sharepoint_url(url):
-    """Pull host, site and file path out of a SharePoint "Copy link" URL.
+    """Pull host, site and item path out of a SharePoint URL.
 
-    A path-based lookup is steadier than a share token: the copied link carries
+    Two shapes have to work. A "Copy link" on a file gives the path in the URL
+    path itself. A link copied from the browser address bar while looking at a
+    folder gives `.../Forms/AllItems.aspx?id=<server-relative path>` - there the
+    path in the URL is the *view page*, and the real one is in `id=`. Reading the
+    path component alone would resolve to "Forms/AllItems.aspx", which exists and
+    is not what anyone meant.
+
+    A path-based lookup also beats a share token: the copied link carries
     volatile query parameters (`e=`, `csf=`) that belong to the browsing session,
-    not to the file. Resolving host + site + path ignores them entirely.
+    not to the item. Resolving host + site + path ignores them entirely.
     """
     import urllib.parse as up
     parsed = up.urlparse(url)
-    path = up.unquote(parsed.path)
-    m = re.match(r"^/:\w:/[a-z]/sites/([^/]+)/(.+)$", path) or \
-        re.match(r"^/sites/([^/]+)/(.+)$", path)
+    query = up.parse_qs(parsed.query)
+    # A folder view puts the real server-relative path in `id`.
+    raw = up.unquote(query.get("id", [""])[0]) or up.unquote(parsed.path)
+    m = re.match(r"^/:\w:/[a-z]/sites/([^/]+)/(.+)$", raw) or \
+        re.match(r"^/sites/([^/]+)/(.+)$", raw)
     if not m:
         return None
     rel = m.group(2).split("/")
     return {"host": parsed.netloc, "site": m.group(1),
             "library": rel[0], "path": "/".join(rel[1:]),
             "tenant_hint": parsed.netloc.split(".")[0] + ".onmicrosoft.com"}
+
+
+def resolve_site(token, info):
+    headers = {"Authorization": "Bearer " + token}
+    site_ref = "%s:/sites/%s" % (info["host"], info["site"])
+    r = requests.get("%s/sites/%s" % (GRAPH, site_ref), headers=headers, timeout=60)
+    if r.status_code != 200:
+        raise SystemExit("site %s -> HTTP %d\n%s" % (info["site"], r.status_code, r.text[:300]))
+    return r.json()["id"]
+
+
+def list_folder(token, info, depth=2):
+    """Inventory a folder without downloading anything.
+
+    This exists because of bandwidth, not curiosity: the point is to see what a
+    folder holds - names, sizes, dates - and then fetch the one file that
+    matters, rather than pulling a whole knowledge-management folder over a
+    phone connection.
+    """
+    headers = {"Authorization": "Bearer " + token}
+    site_id = resolve_site(token, info)
+
+    def children(path):
+        quoted = requests.utils.quote(path)
+        url = ("%s/sites/%s/drive/root:/%s:/children" % (GRAPH, site_id, quoted)) if path \
+              else ("%s/sites/%s/drive/root/children" % (GRAPH, site_id))
+        out, nxt = [], url + "?$top=200&$select=name,size,folder,file,lastModifiedDateTime"
+        while nxt:
+            r = requests.get(nxt, headers=headers, timeout=60)
+            if r.status_code != 200:
+                raise SystemExit("dossier -> HTTP %d\n%s" % (r.status_code, r.text[:300]))
+            data = r.json()
+            out.extend(data.get("value", []))
+            nxt = data.get("@odata.nextLink")
+        return out
+
+    rows = []
+    def walk(path, level):
+        for it in sorted(children(path), key=lambda x: x["name"].lower()):
+            here = path + "/" + it["name"] if path else it["name"]
+            is_dir = "folder" in it
+            rows.append({"path": here, "name": it["name"], "level": level,
+                         "folder": is_dir,
+                         "count": (it.get("folder") or {}).get("childCount", 0),
+                         "size": it.get("size", 0),
+                         "modified": (it.get("lastModifiedDateTime") or "")[:10]})
+            if is_dir and level + 1 < depth:
+                walk(here, level + 1)
+
+    walk(info["path"], 0)
+    return rows
 
 
 def fetch_by_path(token, info, out_path):
@@ -246,6 +306,10 @@ def main():
     ap.add_argument("-o", "--out", default=str(DEFAULT_OUT))
     ap.add_argument("--check", action="store_true", help="ce qui est déduit du lien, sans authentification")
     ap.add_argument("--help-config", action="store_true", help="show the settings needed")
+    ap.add_argument("--list", action="store_true",
+                    help="inventorier un dossier (noms, tailles, dates) sans rien télécharger")
+    ap.add_argument("--depth", type=int, default=2, help="profondeur d'inventaire (défaut 2)")
+    ap.add_argument("--pick", help="chemin d'un fichier vu par --list, à récupérer")
     args = ap.parse_args()
 
     if args.help_config:
@@ -312,8 +376,32 @@ def main():
         print("authentification par code d'appareil…")
         token = token_device_code(tenant, cid)
 
-    out = Path(args.out).expanduser()
     parsed = parse_sharepoint_url(file_url)
+
+    if args.list:
+        if not parsed:
+            raise SystemExit("lien non analysable.")
+        rows = list_folder(token, parsed, depth=args.depth)
+        files = [r for r in rows if not r["folder"]]
+        print("\n%s  (aucun fichier telecharge)\n" % parsed["path"])
+        for r in rows:
+            pad = "  " * r["level"]
+            if r["folder"]:
+                print("  %-58s %s" % (pad + r["name"] + "/", "%d élément(s)" % r["count"]))
+            else:
+                print("  %-58s %7d Ko   %s" % (pad + r["name"], r["size"] // 1024, r["modified"]))
+        print("\n  %d fichier(s), %.1f Mo au total"
+              % (len(files), sum(r["size"] for r in files) / 1048576.0))
+        xl = [r for r in files if r["name"].lower().endswith((".xlsx", ".xlsm"))]
+        if xl:
+            print("\n  classeurs reperes :")
+            for r in xl:
+                print("    --pick \"%s\"   (%d Ko)" % (r["path"], r["size"] // 1024))
+        return 0
+
+    out = Path(args.out).expanduser()
+    if args.pick:
+        parsed = dict(parsed or {}, path=args.pick)
     info, why = (None, "lien non analysable")
     if parsed:
         info, why = fetch_by_path(token, parsed, out)

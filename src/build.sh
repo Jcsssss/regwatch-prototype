@@ -9,15 +9,26 @@ cd "$(dirname "$0")"
 
 # data_watch.js is the watch agent's output (tools/veille_to_watchitems.py).
 # Optional: without it the build falls back to the demo queue in data_c4.js.
-AGENT_DATA=""
-[ -f data_watch.js ] && AGENT_DATA="data_watch.js"
+AGENT_DATA=()
+[ -f reg/nis2/data_watch.js ] && AGENT_DATA=(reg/nis2/data_watch.js)
 
 # data_template.js is the base64 slide template (tools/embed_deck_template.py).
 # Optional: without it the "Generate country slides" button reports it is absent.
-DECK_TPL=""
-[ -f data_template.js ] && DECK_TPL="data_template.js"
+DECK_TPL=()
+[ -f reg/nis2/data_template.js ] && DECK_TPL=(reg/nis2/data_template.js)
 
-cat map_data.js data_meta.js data_flags.js data_excel.js data_docs.js data_authorities.js data_kpis.js data_c1.js data_c2.js data_c3.js data_c4.js $AGENT_DATA $DECK_TPL app_i18n.js app_part1.js app_part2.js app_kpi.js app_kpi_xlsx.js app_corpus.js app_chat.js app_deck.js > bundle.js
+# Shared shell, then one block per regulation (src/reg/<id>/), then the app.
+# Adding DORA means adding a folder and one line here.
+# Arrays, not strings: zsh does not word-split an unquoted scalar.
+SHARED=(map_data.js data_meta.js data_flags.js)
+NIS2=(reg/nis2/data_excel.js reg/nis2/data_docs.js reg/nis2/data_authorities.js
+      reg/nis2/data_kpis.js
+      reg/nis2/data_c1.js reg/nis2/data_c2.js reg/nis2/data_c3.js reg/nis2/data_c4.js)
+REC=(reg/rec/data_countries.js)
+APP=(app_i18n.js app_reg.js app_part1.js app_part2.js app_kpi.js app_kpi_xlsx.js
+     app_corpus.js app_chat.js app_deck.js)
+
+cat $SHARED $NIS2 $REC $AGENT_DATA $DECK_TPL $APP > bundle.js
 node --check bundle.js
 
 { cat shell_top.html; echo '<script>'; cat bundle.js; echo '</script>'; } > regwatch-artifact.html

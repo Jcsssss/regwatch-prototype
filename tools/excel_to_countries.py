@@ -8,7 +8,7 @@ data/excel-cellmap.json (which cell holds it), and produces the layer the countr
 page renders on top of its hand-written prose:
 
     data/countries-from-excel.json   the exchange format
-    src/data_excel.js                for the standalone build
+    src/reg/nis2/data_excel.js                for the standalone build
 
 Read-only on the workbook - this is the "Excel is the source of truth" direction
 agreed for country data, so nothing is ever written back.
@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MAPPING = ROOT / "data" / "field-mapping.json"
 CELLMAP = ROOT / "data" / "excel-cellmap.json"
 OUT_JSON = ROOT / "data" / "countries-from-excel.json"
-OUT_JS = ROOT / "src" / "data_excel.js"
+OUT_JS = ROOT / "src" / "reg" / "nis2" / "data_excel.js"
 
 # Values that mean "nothing to say" and should not become a bullet.
 EMPTY = {"", "na", "n/a", "n.a.", "tbc", "tbd", "to be confirmed", "-", "--", "-",
