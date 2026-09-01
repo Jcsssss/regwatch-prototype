@@ -15163,36 +15163,73 @@ function chatEndpointUrl(){
     : `${base}/chat/completions`;
 }
 
-async function chatCall(messages){
+/* Deployments disagree about two parameters and there is no way to ask in
+   advance which family a deployment name points at: the reasoning models want
+   `max_completion_tokens` and refuse a temperature, the older chat models want
+   `max_tokens`. So the first 400 that names a parameter is read, remembered
+   against this configuration, and the call is retried once. After that the
+   right shape is sent from the start. */
+function chatQuirks(){
   const c = chatCfg();
+  return c.quirks || (c.quirks = {});
+}
+
+function chatAdapt(detail){
+  const d = String(detail || "").toLowerCase();
+  const q = chatQuirks();
+  let changed = false;
+  if (d.includes("max_tokens") && d.includes("max_completion_tokens") && q.tokenParam !== "max_completion_tokens") {
+    q.tokenParam = "max_completion_tokens"; changed = true;
+  } else if (d.includes("'max_completion_tokens'") && q.tokenParam !== "max_tokens") {
+    q.tokenParam = "max_tokens"; changed = true;
+  }
+  if (d.includes("temperature") && !q.noTemperature) { q.noTemperature = true; changed = true; }
+  if (changed) saveStore();
+  return changed;
+}
+
+/* One place that speaks to the endpoint. `extra` carries whatever the caller
+   wants on top of the messages; `cap` is a token limit if it wants one. */
+async function chatPost(messages, extra, cap){
+  const c = chatCfg(), q = chatQuirks();
   const headers = { "Content-Type": "application/json" };
   if (c.mode === "azure") headers["api-key"] = c.key;
   else headers["Authorization"] = "Bearer " + c.key;
 
-  const body = {
-    messages,
-    temperature: 0.2,
-    tools: CHAT_TOOLS.map(t => ({ type: "function",
-      function: { name: t.name, description: t.description, parameters: t.parameters } })),
-    tool_choice: "auto"
+  const build = () => {
+    const body = Object.assign({ messages }, extra || {});
+    if (c.mode !== "azure") body.model = c.model;
+    if (!q.noTemperature) body.temperature = 0.2;
+    if (cap) body[q.tokenParam || "max_completion_tokens"] = cap;
+    return JSON.stringify(body);
   };
-  if (c.mode !== "azure") body.model = c.model;
 
-  let res;
-  try {
-    res = await fetch(chatEndpointUrl(), { method: "POST", headers, body: JSON.stringify(body) });
-  } catch (e) {
-    /* fetch rejects without a status for exactly one reason worth naming: the
-       browser blocked the request before it left. */
-    throw new Error("NETWORK:" + (e && e.message ? e.message : "failed"));
-  }
-  if (!res.ok) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    let res;
+    try {
+      res = await fetch(chatEndpointUrl(), { method: "POST", headers, body: build() });
+    } catch (e) {
+      /* fetch rejects without a status for exactly one reason worth naming: the
+         browser blocked the request before it left. */
+      throw new Error("NETWORK:" + (e && e.message ? e.message : "failed"));
+    }
+    if (res.ok) return res.json();
+
     let detail = "";
     try { const j = await res.json(); detail = (j.error && (j.error.message || j.error.code)) || JSON.stringify(j).slice(0, 300); }
     catch (e) { detail = await res.text().catch(() => ""); }
+    if (res.status === 400 && chatAdapt(detail)) continue;   /* learned something, try again */
     throw new Error("HTTP:" + res.status + ":" + detail);
   }
-  const data = await res.json();
+  throw new Error("HTTP:400:the endpoint kept rejecting the request parameters");
+}
+
+async function chatCall(messages){
+  const data = await chatPost(messages, {
+    tools: CHAT_TOOLS.map(t => ({ type: "function",
+      function: { name: t.name, description: t.description, parameters: t.parameters } })),
+    tool_choice: "auto"
+  });
   const choice = (data.choices || [])[0];
   if (!choice) throw new Error("HTTP:200:the endpoint returned no choices");
   return choice.message;
@@ -15458,7 +15495,14 @@ function chatWireSettings(){
     if ($("#cfModel")) cfg.model = $("#cfModel").value.trim();
     cfg.key = $("#cfKey").value.trim();
   };
-  $("#cfSave").addEventListener("click", () => { read(); saveStore(); modal.hidden = true; chatRender(); });
+  $("#cfSave").addEventListener("click", () => {
+    const before = cfg.endpoint + "|" + cfg.deployment + "|" + cfg.model;
+    read();
+    /* A different deployment is a different model family: what was learned
+       about the previous one does not carry over. */
+    if (before !== cfg.endpoint + "|" + cfg.deployment + "|" + cfg.model) delete cfg.quirks;
+    saveStore(); modal.hidden = true; chatRender();
+  });
   $("#cfForget").addEventListener("click", () => {
     delete store.ai; saveStore(); chatRender(); chatOpenSettings();
   });
@@ -15469,20 +15513,14 @@ function chatWireSettings(){
     status.className = "q-note";
     try {
       /* One tiny completion, no tools: enough to separate "cannot reach" from
-         "reached and refused". */
-      const c = chatCfg();
-      const headers = { "Content-Type": "application/json" };
-      if (c.mode === "azure") headers["api-key"] = c.key;
-      else headers["Authorization"] = "Bearer " + c.key;
-      const body = { messages: [{ role: "user", content: "ping" }], max_tokens: 5 };
-      if (c.mode !== "azure") body.model = c.model;
-      const res = await fetch(chatEndpointUrl(), { method: "POST", headers, body: JSON.stringify(body) })
-        .catch(e => { throw new Error("NETWORK:" + e.message); });
-      if (!res.ok) {
-        let d = ""; try { const j = await res.json(); d = (j.error && (j.error.message || j.error.code)) || ""; } catch (e) {}
-        throw new Error("HTTP:" + res.status + ":" + d);
-      }
-      status.textContent = t("chat.testOk");
+         "reached and refused" - and it goes through chatPost, so whatever it
+         learns about this deployment's parameters is already known by the time
+         a real question is asked. */
+      await chatPost([{ role: "user", content: "ping" }], {}, 16);
+      const q = chatQuirks();
+      const learned = [q.tokenParam ? "token limit: " + q.tokenParam : "",
+                       q.noTemperature ? "fixed temperature" : ""].filter(Boolean).join(", ");
+      status.textContent = t("chat.testOk") + (learned ? " (" + learned + ")" : "");
       status.className = "q-note chat-ok";
     } catch (err) {
       status.textContent = chatExplainError(err);
