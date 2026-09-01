@@ -594,12 +594,36 @@ let srcFilter = "";
    no backend yet. */
 function customSources(){ return store.sources || (store.sources = []); }
 
+/* What REC has instead of a feed registry: the authorities its workbook names,
+   and an honest count of the ones it does not. This is not filler - it is the
+   starting list for the day the REC agent gets built, and it shows at a glance
+   how much of that list still has to be found. */
+function recAuthorities(){
+  const named = COUNTRIES.filter(c => (c.authorities || []).length);
+  const missing = COUNTRIES.length - named.length;
+  return `<div class="card"><div class="cap"><h2>${t("src.recAuthTitle")}</h2>
+    <span class="q-note">${t("src.recAuthCount", { n: named.length, total: COUNTRIES.length })}</span></div>
+    <div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.recAuthSub")}</p>
+    ${named.length ? `<div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th></tr></thead>
+      <tbody>${named.map(c => `<tr>
+        <td style="white-space:nowrap"><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</td>
+        <td>${esc(c.authorities[0].name)}</td></tr>`).join("")}</tbody>
+    </table></div>` : ""}
+    ${missing ? `<p class="q-note" style="margin-top:10px">${t("src.recAuthMissing", { n: missing })}</p>` : ""}
+    </div></div>`;
+}
+
 function renderSources(){
   const el = $("#v-sources");
   const isVal = role === "validator";
   const rows = [];
-  GLOBAL_SOURCES.forEach(x => rows.push({ scope: x.scope, name: x.name, url: x.url,
-                                          type: x.type, note: x.note || "" }));
+  /* The global list was written for NIS 2 - ENISA's registry of digital
+     entities is not a REC source - so REC shows only what its own workbook
+     names. */
+  if (regId() === "nis2") GLOBAL_SOURCES.forEach(x => rows.push({ scope: x.scope, name: x.name,
+    url: x.url, type: x.type, note: x.note || "" }));
   COUNTRIES.forEach(c => c.sources.forEach(x => rows.push({ scope: c.name, iso: c.iso,
     name: x.name, url: x.url, type: x.type, note: "" })));
   customSources().forEach((x, n) => rows.push({ ...x, custom: true, idx: n,
@@ -610,7 +634,8 @@ function renderSources(){
 
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
-  <p class="pg-sub">${t("src.sub")}</p>
+  <p class="pg-sub">${regId() === "nis2" ? t("src.sub") : t("src.recSub")}</p>
+  ${regId() === "nis2" ? "" : recAuthorities()}
   ${isVal ? `
   <div class="card"><div class="cap"><h2>${t("src.add")}</h2></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.addSub")}</p>
@@ -629,7 +654,7 @@ function renderSources(){
   ${customSources().length ? `<div class="card"><div class="cap"><h2>${t("src.pending")} (${customSources().length})</h2>
     <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
-  ${typeof AUTHORITY_FEEDS !== "undefined" ? `
+  ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
   <div class="card"><div class="cap"><h2>${t("src.authTitle")}</h2>
     <span class="q-note">${t("src.authOk", {
       n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span></div>

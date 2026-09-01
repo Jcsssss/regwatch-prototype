@@ -25,8 +25,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://www.parlament.gv.at/dokument/XXVIII/ME/1/fname_1664167.pdf",
     "type": "official"
    }
   ],
@@ -77,8 +77,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Transposition de la directive en Belgique",
-    "url": "",
+    "name": "Transposition de la directive en Belgique",
+    "url": "https://centredecrise.be/fr/newsroom/transposition-de-la-directive-europeenne-sur-la-resilience-des-entites-critiques-directive",
     "type": "official"
    }
   ],
@@ -116,8 +116,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Texte de loi",
-    "url": "",
+    "name": "Texte de loi",
+    "url": "https://www.strategy.bg/FileHandler.ashx?fileId=38605",
     "type": "official"
    }
   ],
@@ -161,8 +161,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://www.sabor.hr/sites/default/files/uploads/sabor/2025-01-27/112209/PZE_120.pdf",
     "type": "official"
    }
   ],
@@ -198,8 +198,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://www.moi.gov.cy/moi/cd/cd.nsf/All/095EC0404F4E43F8C2258CC40037F2E9/$file/%CE%9F%CE%B9%20%CF%80%CE%B5%CF%81%CE%AF%20%CE%A0%CE%BF%CE%BB%CE%B9%CF%84%CE%B9%CE%BA%CE%AE%CF%82%20%CE%86%CE%BC%CF%85%CE%BD%CE%B1%CF%82%20(%CE%91%CE%BD%CE%B8%CE%B5%CE%BA%CF%84%CE%B9%CE%BA%CF%8C%CF%84%CE%B7%CF%84%CE%B1%20%CF%84%CF%89%CE%BD%20%CE%9A%CF%81%CE%AF%CF%83%CE%B9%CE%BC%CF%89%CE%BD%20%CE%9F%CE%BD%CF%84%CE%BF%CF%84%CE%AE%CF%84%CF%89%CE%BD)%20%CE%9A%CE%B1%CE%BD%CE%BF%CE%BD%CE%B9%CF%83%CE%BC%CE%BF%CE%AF%20%CF%84%CE%BF%CF%85%202025.pdf",
     "type": "official"
    }
   ],
@@ -242,8 +242,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Discussion au parlement du projet de loi",
-    "url": "",
+    "name": "Discussion au parlement du projet de loi",
+    "url": "https://www.psp.cz/sqw/text/orig2.sqw?idd=246406",
     "type": "official"
    }
   ],
@@ -293,8 +293,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Proposition de loi",
-    "url": "",
+    "name": "Proposition de loi",
+    "url": "https://www.ft.dk/samling/20241/lovforslag/L140/som_vedtaget.htm",
     "type": "official"
    }
   ],
@@ -334,8 +334,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "CF : texte final",
-    "url": "",
+    "name": "CF : texte final",
+    "url": "https://www.riigikogu.ee/tegevus/eelnoud/eelnou/57e67d9e-ba15-412e-8b25-cda84efca58a/hadaolukorra-seaduse-muutmise-ja-sellega-seonduvalt-teiste-seaduste-muutmise-seadus/",
     "type": "official"
    }
   ],
@@ -376,8 +376,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://www.parliament.fi/SV/vaski/KasittelytiedotValtiopaivaasia/Sidor/RP_205+2024.aspx",
     "type": "official"
    }
   ],
@@ -426,8 +426,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi déposé à l'assemblé",
-    "url": "",
+    "name": "Projet de loi déposé à l'assemblé",
+    "url": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b1112_projet-loi.pdf",
     "type": "official"
    }
   ],
@@ -477,8 +477,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi en Allemagne",
-    "url": "",
+    "name": "Projet de loi en Allemagne",
+    "url": "https://www.bmi.bund.de/SharedDocs/gesetzgebungsverfahren/DE/Downloads/referentenentwuerfe/KM4/Kritis-Dachgesetz.pdf?__blob=publicationFile&v=1",
     "type": "official"
    }
   ],
@@ -514,8 +514,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Ministère de la gouvernance publique",
-    "url": "",
+    "name": "Ministère de la gouvernance publique",
+    "url": "https://www.opengov.gr/digitalandbrief/",
     "type": "official"
    }
   ],
@@ -561,8 +561,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Texte sur la consultation publique du projet de loi",
-    "url": "",
+    "name": "Texte sur la consultation publique du projet de loi",
+    "url": "https://njt.hu/jogszabaly/2024-84-00-00",
     "type": "official"
    }
   ],
@@ -603,8 +603,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Transposition de la directive CER en Irelande",
-    "url": "",
+    "name": "Transposition de la directive CER en Irelande",
+    "url": "https://www.twobirds.com/en/insights/2024/ireland/understanding-the-impact-of-the-transposition-of-the-cer-directive-into-irish-law",
     "type": "official"
    }
   ],
@@ -645,8 +645,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Publication au journal de la transposition",
-    "url": "",
+    "name": "Publication au journal de la transposition",
+    "url": "https://www.gazzettaufficiale.it/eli/id/2024/09/23/24G00150/SG",
     "type": "official"
    }
   ],
@@ -687,8 +687,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Texte de loi et avancement",
-    "url": "",
+    "name": "Texte de loi et avancement",
+    "url": "https://tapportals.mk.gov.lv/annotation/b00d43aa-c422-4f26-9f57-41c33044756c",
     "type": "official"
    }
   ],
@@ -734,8 +734,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Loi tranposant la REC",
-    "url": "",
+    "name": "Loi tranposant la REC",
+    "url": "https://e-seimas.lrs.lt/portal/legalAct/lt/TAD/62186f509d1411ef955ff95815eb5ce5",
     "type": "official"
    }
   ],
@@ -771,8 +771,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://wdocs-pub.chd.lu/docs/exped/0144/117/289176.pdf",
     "type": "official"
    }
   ],
@@ -809,8 +809,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Texte de loi",
-    "url": "",
+    "name": "Texte de loi",
+    "url": "../Projets%20et%20textes%20de%20loi/REC%20Malte.pdf",
     "type": "official"
    }
   ],
@@ -846,8 +846,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi Pays-Bas (CER Facture)",
-    "url": "",
+    "name": "Projet de loi Pays-Bas (CER Facture)",
+    "url": "https://www.internetconsultatie.nl/wetweerbaarheidkritiekeentiteiten/b1",
     "type": "official"
    }
   ],
@@ -885,8 +885,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "communiqué",
-    "url": "",
+    "name": "communiqué",
+    "url": "https://www.gov.pl/web/premier/projekt-ustawy-o-zmianie-ustawy-o-zarzadzaniu-kryzysowym-oraz-niektorych-innych-ustaw5",
     "type": "official"
    }
   ],
@@ -927,8 +927,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "décret n°22/2025",
-    "url": "",
+    "name": "décret n°22/2025",
+    "url": "https://diariodarepublica.pt/dr/detalhe/decreto-lei/22-2025-911488699",
     "type": "official"
    }
   ],
@@ -980,8 +980,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://www.ces.ro/newlib/PDF/proiecte/2024/Lege-rezilienta-entitati.pdf",
     "type": "official"
    }
   ],
@@ -1030,8 +1030,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Loi (cf art.XII)",
-    "url": "",
+    "name": "Loi (cf art.XII)",
+    "url": "https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2024/367/20250101.html",
     "type": "official"
    }
   ],
@@ -1080,8 +1080,8 @@ const REC_COUNTRIES = [
   ],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://pisrs.si/pregledPredpisa?id=ZAKO9003",
     "type": "official"
    }
   ],
@@ -1117,8 +1117,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi",
-    "url": "",
+    "name": "Projet de loi",
+    "url": "https://www.interior.gob.es/opencms/pdf/servicios-al-ciudadano/participacion-ciudadana/Participacion-publica-en-proyectos-normativos/Audiencia-e-informacion-publica/08_2025_Anteproyecto_ley_proteccion_resiliencia_entidades_criticas.pdf",
     "type": "official"
    }
   ],
@@ -1167,8 +1167,8 @@ const REC_COUNTRIES = [
   "timeline": [],
   "sources": [
    {
-    "label": "Projet de loi : SOU 2024:64",
-    "url": "",
+    "name": "Projet de loi : SOU 2024:64",
+    "url": "https://www.regeringen.se/rattsliga-dokument/statens-offentliga-utredningar/2024/09/sou-202464/",
     "type": "official"
    }
   ],

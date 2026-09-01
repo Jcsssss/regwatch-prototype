@@ -111,9 +111,14 @@ def main():
         raise SystemExit(__doc__)
     path = Path(sys.argv[1]).expanduser()
     wb = openpyxl.load_workbook(path, data_only=True)
+    # The "Lien" column holds a label; the URL is an Excel hyperlink on the cell,
+    # and data_only=True drops hyperlinks. Loading a second time keeps them - all
+    # 27 rows carry one, so skipping this would throw away every official link.
+    wb_links = openpyxl.load_workbook(path)
     if SHEET not in wb.sheetnames:
         raise SystemExit('feuille "%s" absente (présentes : %s)' % (SHEET, ", ".join(wb.sheetnames)))
     ws = wb[SHEET]
+    ws_links = wb_links[SHEET]
 
     by_label = {}
     for cell in ws[1]:
@@ -141,6 +146,11 @@ def main():
             continue
 
         get = lambda key: clean(row[by_label[key] - 1].value) if key in by_label else ""
+        def link(key):
+            if key not in by_label:
+                return ""
+            cell = ws_links.cell(row=row[0].row, column=by_label[key])
+            return cell.hyperlink.target if cell.hyperlink else ""
         raw = lambda key: row[by_label[key] - 1].value if key in by_label else None
 
         in_force, in_force_note = as_date(raw("inForce"))
@@ -191,8 +201,12 @@ def main():
             # A key, not a sentence: the interface is bilingual and this line is
             # generated, so it must not arrive already written in one language.
             "timeline": ([{"date": in_force, "textKey": "tl.recInForce"}] if in_force else []),
-            "sources": ([{"label": get("linkLabel"), "url": "", "type": "official"}]
-                        if get("linkLabel") else []),
+            # `name` and `url`, the shape the source registry renders. A label
+            # with no URL is not a source, so it is left out rather than shown
+            # as a dead link.
+            "sources": ([{"name": get("linkLabel") or "Texte national",
+                          "url": link("linkLabel"), "type": "official"}]
+                        if link("linkLabel") else []),
             # ---- what is specific to REC ----
             "rec": {
                 "progress": get("progress"),
@@ -232,6 +246,7 @@ def main():
     print("  enregistrement     : %d" % filled("registration"))
     print("  cohérence          : %d" % filled("alignment"))
     print("  dates en texte     : %d (conservées comme note, pas converties)" % report["dateNotes"])
+    print("  liens officiels    : %d" % sum(1 for r in records if r["sources"]))
     print("  cellules hors en-tête récupérées : %d" % report["extras"])
     return 0
 

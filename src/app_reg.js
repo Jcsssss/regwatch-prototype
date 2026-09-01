@@ -64,9 +64,12 @@ const REG_SPECS = {
     full: "Directive (EU) 2022/2557 - resilience of critical entities",
     titleKey: "ov.recTitle", subKey: "reg.recSub", footKey: "foot.rec",
     countries: () => (typeof REC_COUNTRIES === "undefined" ? [] : REC_COUNTRIES),
-    /* No watch agent for REC yet, so no inbox and no sources. The assistant and
-       the KPI board read the NIS 2 workbook and are left to it for now. */
-    tabs: ["overview", "countries"],
+    /* No watch agent for REC yet, so no inbox: a validation queue with nothing
+       to validate is a dead end. Sources and the assistant do earn their place -
+       Sources shows the authorities the workbook already names, which is the
+       seed of the future REC registry, and the assistant's country tools read
+       whichever records are active, so they work here unchanged. */
+    tabs: ["overview", "countries", "insights", "sources"],
     levels: {
       1: "recLvl.1", 2: "recLvl.2", 3: "recLvl.3", 4: "recLvl.4"
     },
@@ -113,6 +116,9 @@ function setRegulation(id){
   if (!REG_SPECS[id] || id === regId()) return;
   store.reg = id;
   saveStore();
+  /* A transcript half about one directive and half about another invites the
+     model to blend them. Switching starts a clean conversation. */
+  if (typeof chatLog !== "undefined") { chatLog = []; chatWire = []; }
   regApply();
   regRenderPills();
   regSyncTabs();
