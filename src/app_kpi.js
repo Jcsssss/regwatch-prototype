@@ -1,25 +1,20 @@
-/* ================= KPI chart builder =================
+/* ================= Chart engine over the KPI table =================
  *
  * The workbook's KPI sheet is a tidy table: one row per country per indicator.
- * This turns it into one chart a consultant composes.
+ * This draws it. Nothing here owns a view - the assistant (app_chat.js) asks
+ * for a chart through `kpiChart()` and drops the markup into a message, which
+ * is why every entry point takes its scope as an argument rather than reading
+ * a filter off the page.
  *
- * The page is three things, in the order the work happens:
- *   1. scope       which countries everything below is about
- *   2. the chart   compose it and watch it redraw as you change the controls
- *   3. examples    what else the data can be made to say
- *
- * There is one chart, not a board of them. Adding a second indicator crosses it
- * into the same picture rather than opening another one: countries down the
- * side, indicators across the top, every cell coloured on its own column's
- * scale. That is the question a comparison actually asks - "who is where on
- * these three things at once" - and it is the only single-chart form that takes
- * a numeric and a categorical indicator side by side without lying about
- * either. When every chosen indicator is numeric and their ranges are
- * comparable, grouped bars are offered as well.
- *
- * For one indicator the form follows its type:
+ * One indicator, form following its type:
  *   numeric      a ranked bar - magnitude, single hue
  *   categorical  share bar, donut or one square per country - identity
+ *
+ * Several indicators are crossed into ONE picture: countries down the side,
+ * indicators across the top, every cell coloured on its own column's scale.
+ * That is the only single-chart form that takes a numeric and a categorical
+ * indicator side by side without lying about either. When every indicator is
+ * numeric and their ranges are comparable, grouped bars are offered too.
  *
  * Palette: four categorical hues, validated with the dataviz palette checker in
  * both light and dark mode (lightness band, chroma floor, CVD separation,
@@ -47,46 +42,24 @@ function kpiDarkMode(){
 function kpiPalette(){ return kpiDarkMode() ? KPI_DARK : KPI_LIGHT; }
 function kpiRamp(){ return kpiDarkMode() ? KPI_SEQ_DARK : KPI_SEQ_LIGHT; }
 
-/* Ready-made examples, each one deliberately a different form so the row shows
-   what can be drawn, not just which indicators exist. */
-const KPI_EXAMPLES = [
-  { kpis: ["Type of national text"], group: "", form: "donut" },
-  { kpis: ["Exceeded time from EU deadline (month)"], group: "region", form: "bars" },
-  { kpis: ["Registration availability"], group: "", form: "grid" },
-  { kpis: ["Cybersecurity framework directives published"], group: "region", form: "stack" },
-  { kpis: ["Maturity Level", "Exceeded time from EU deadline (month)", "Transposition finalized"], group: "", form: "matrix" },
-  { kpis: ["Maturity Level"], group: "", form: "bars" },
-  { kpis: ["Method for incident reporting"], group: "", form: "stack" },
-  { kpis: ["Number of cyber requirements for EE", "Number of cyber requirements for EI"], group: "", form: "grouped" },
-  { kpis: ["Types of registration"], group: "", form: "donut" },
-  { kpis: ["Organism in charge of the audit"], group: "", form: "grid" },
-  { kpis: ["Number of private sectors added"], group: "", form: "bars" },
-  { kpis: ["Transposition finalized"], group: "maturity", form: "stack" },
-  { kpis: ["Sectors added"], group: "region", form: "grid" },
-  { kpis: ["Number of public sectors added", "Number of private sectors added"], group: "region", form: "grouped" }
-];
+/* ---------- scope ----------
+ *
+ * A chart is always drawn over a subset: a region, a maturity level, or an
+ * explicit list of countries the assistant pulled out of the question ("in
+ * Italy, Spain and France"). It travels as an argument so the same functions
+ * serve a question about three countries and one about all 29. */
 
-/* ---------- state, persisted so the chart survives a reload ---------- */
-
-function kpiState(){
-  const s = store.kpi || (store.kpi = {});
-  if (!s.builder || !Array.isArray(s.builder.kpis)) {
-    s.builder = { kpis: ["Maturity Level"], group: "region", form: "bars" };
-  }
-  /* Earlier versions kept a board of panels; the chart is single now. */
-  delete s.panels;
-  delete s.table;
-  s.region = s.region || "";
-  s.maturity = s.maturity || "";
-  s.exStart = s.exStart || 0;
-  return s;
+function kpiScoped(rows, scope){
+  const sc = scope || {};
+  const isos = sc.isos && sc.isos.length ? new Set(sc.isos.map(i => String(i).toUpperCase())) : null;
+  return rows
+    .filter(r => !sc.region || r.region === sc.region)
+    .filter(r => !sc.maturity || String(r.maturity) === String(sc.maturity))
+    .filter(r => !isos || isos.has(kpiIso(r.country)));
 }
 
-function kpiRowsFor(name){
-  const s = kpiState();
-  return KPI_ROWS.filter(r => r.kpi === name)
-    .filter(r => !s.region || r.region === s.region)
-    .filter(r => !s.maturity || String(r.maturity) === String(s.maturity));
+function kpiRowsFor(name, scope){
+  return kpiScoped(KPI_ROWS.filter(r => r.kpi === name), scope);
 }
 
 const kpiNum = v => { const m = /^-?\d+(?:[.,]\d+)?$/.exec(String(v).trim()); return m ? parseFloat(m[0].replace(",", ".")) : null; };
@@ -278,93 +251,14 @@ function kpiLegend(keys, title){
   ).join("")}</div>`;
 }
 
-/* ---------- dropdowns that always drop down ----------
- *
- * A native <select> puts its menu wherever the browser likes - near the top of
- * the page that means over the control, hiding the row the person just used.
- * These are a button plus a panel positioned under it, so the list opens
- * downward every time, and the long indicator list gets a search box.
- */
-
-const KPI_DD = {};   /* dropdown id -> callback(value) */
-
-function kpiDD(id, current, groups, opts){
-  const o = Object.assign({ search: false, label: "", cls: "" }, opts || {});
-  const items = [];
-  groups.forEach(g => {
-    if (g.g) items.push(`<div class="dd-g">${kpiEsc(g.g)}</div>`);
-    g.items.forEach(it => items.push(
-      `<button type="button" class="dd-o${it.v === current ? " on" : ""}" role="option"
-        aria-selected="${it.v === current}" data-v="${kpiEsc(it.v)}">${kpiEsc(it.l)}</button>`));
-  });
-  const flat = groups.reduce((a, g) => a.concat(g.items), []);
-  const cur = flat.find(i => i.v === current);
-  return `<div class="dd ${o.cls}" data-dd="${kpiEsc(id)}">
-    <button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false"
-      ${o.label ? `aria-label="${kpiEsc(o.label)}"` : ""}><span>${kpiEsc(cur ? cur.l : (o.label || ""))}</span><i class="dd-car">▾</i></button>
-    <div class="dd-pop" hidden>
-      ${o.search ? `<input type="search" class="dd-q" placeholder="${t("kpi.search")}" aria-label="${t("kpi.search")}">` : ""}
-      <div class="dd-list" role="listbox">${items.join("")}</div>
-    </div>
-  </div>`;
-}
-
-function kpiCloseDD(){
-  document.querySelectorAll(".dd-pop").forEach(p => {
-    if (p.hidden) return;
-    p.hidden = true;
-    const b = p.parentElement.querySelector(".dd-btn");
-    if (b) b.setAttribute("aria-expanded", "false");
-  });
-}
-document.addEventListener("click", kpiCloseDD);
-document.addEventListener("keydown", e => { if (e.key === "Escape") kpiCloseDD(); });
-
-function kpiWireDD(root){
-  root.querySelectorAll(".dd").forEach(dd => {
-    const btn = dd.querySelector(".dd-btn"), pop = dd.querySelector(".dd-pop");
-    btn.addEventListener("click", e => {
-      e.stopPropagation();
-      const wasOpen = !pop.hidden;
-      kpiCloseDD();
-      if (wasOpen) return;
-      pop.hidden = false;
-      btn.setAttribute("aria-expanded", "true");
-      const q = pop.querySelector(".dd-q");
-      if (q) { q.value = ""; q.dispatchEvent(new Event("input")); q.focus(); }
-      const on = pop.querySelector(".dd-o.on");
-      if (on) on.scrollIntoView({ block: "nearest" });
-    });
-    pop.addEventListener("click", e => e.stopPropagation());
-    const q = pop.querySelector(".dd-q");
-    if (q) q.addEventListener("input", () => {
-      const needle = q.value.trim().toLowerCase();
-      pop.querySelectorAll(".dd-o").forEach(o => {
-        o.hidden = !!needle && !o.textContent.toLowerCase().includes(needle);
-      });
-      /* A group heading with nothing left under it is noise. */
-      pop.querySelectorAll(".dd-g").forEach(g => {
-        let n = g.nextElementSibling, any = false;
-        while (n && n.classList.contains("dd-o")) { if (!n.hidden) any = true; n = n.nextElementSibling; }
-        g.hidden = !any;
-      });
-    });
-    pop.querySelectorAll(".dd-o").forEach(o => o.addEventListener("click", () => {
-      kpiCloseDD();
-      const cb = KPI_DD[dd.dataset.dd];
-      if (cb) cb(o.dataset.v);
-    }));
-  });
-}
-
 /* ---------- shaping: one indicator -> categories, series, table ---------- */
 
 /* One shape used by every on-screen form and by the Excel export, so they can
    never drift apart. */
-function kpiShape(name, groupBy){
+function kpiShape(name, groupBy, scope){
   const meta = kpiMeta(name);
   if (!meta) return null;
-  const all = kpiRowsFor(name);
+  const all = kpiRowsFor(name, scope);
   const rows = all.filter(r => r.value);
   const pal = kpiPalette();
 
@@ -444,13 +338,13 @@ function kpiIso(country){
    own scale - a sequential ramp for a measure, the categorical hues for an
    answer - because two indicators share no scale and pretending otherwise is
    the whole trap. */
-function kpiCross(names, groupBy){
-  const shapes = names.map(n => kpiShape(n, groupBy)).filter(Boolean);
+function kpiCross(names, groupBy, scope){
+  const shapes = names.map(n => kpiShape(n, groupBy, scope)).filter(Boolean);
   if (!shapes.length) return null;
 
   /* Row keys: countries, or the groups when one is chosen. */
   const rowSet = new Set();
-  names.forEach(n => kpiRowsFor(n).filter(r => r.value)
+  names.forEach(n => kpiRowsFor(n, scope).filter(r => r.value)
     .forEach(r => rowSet.add(groupBy ? kpiGroupOf(r, groupBy) : r.country)));
   const rowKeys = [...rowSet].sort();
 
@@ -527,9 +421,9 @@ function kpiCrossLegend(cross){
 
 /* ---------- which forms an indicator selection can honestly take ---------- */
 
-function kpiForms(names, groupBy){
+function kpiForms(names, groupBy, scope){
   if (names.length > 1) {
-    const shapes = names.map(n => kpiShape(n, groupBy)).filter(Boolean);
+    const shapes = names.map(n => kpiShape(n, groupBy, scope)).filter(Boolean);
     const forms = ["matrix"];
     /* Grouped bars put several measures on ONE axis, which is a claim that they
        are comparable. Only offered when they all are: same kind of quantity and
@@ -540,12 +434,12 @@ function kpiForms(names, groupBy){
     }
     return forms;
   }
-  const shape = kpiShape(names[0], groupBy);
+  const shape = kpiShape(names[0], groupBy, scope);
   if (!shape) return ["bars"];
   return shape.numeric ? ["bars"] : ["stack", "donut", "grid", "bars"];
 }
-function kpiResolveForm(names, groupBy, form){
-  const allowed = kpiForms(names, groupBy);
+function kpiResolveForm(names, groupBy, form, scope){
+  const allowed = kpiForms(names, groupBy, scope);
   return allowed.includes(form) ? form : allowed[0];
 }
 
@@ -556,10 +450,10 @@ function kpiResolveForm(names, groupBy, form){
 function kpiChart(sel, size){
   const names = sel.kpis.filter(kpiMeta);
   if (!names.length) return { legend: "", chart: `<p class="q-note">${t("kpi.noneChosen")}</p>`, note: "", more: "" };
-  const form = kpiResolveForm(names, sel.group, sel.form);
+  const form = kpiResolveForm(names, sel.group, sel.form, sel.scope);
 
   if (names.length > 1) {
-    const cross = kpiCross(names, sel.group);
+    const cross = kpiCross(names, sel.group, sel.scope);
     if (form === "grouped") {
       const cols = cross.cols;
       const rows = cross.rowKeys.map(rk => ({ label: rk, values: cols.map(c => c.byRow[rk] ?? null) }));
@@ -575,7 +469,7 @@ function kpiChart(sel, size){
              more: kpiMore(cross.rowKeys.length, sel.all) };
   }
 
-  const shape = kpiShape(names[0], sel.group);
+  const shape = kpiShape(names[0], sel.group, sel.scope);
   const note = `${kpiEsc(shape.meta.tab)} · ${t("kpi.type." + shape.meta.type)} · ${t("kpi.coverage", { n: shape.known, total: shape.total })}`;
   if (shape.numeric) {
     const shown = sel.all ? shape.items : shape.items.slice(0, KPI_TOP);
@@ -606,132 +500,8 @@ function kpiCrossNote(cross){
        + t("kpi.crossRows", { n: cross.rowKeys.length });
 }
 
-/* ---------- the builder ---------- */
-
-/* Everything is in `store.kpi.builder`; changing a control rewrites this one
-   card, so the chart redraws under the controls instead of sending the reader
-   anywhere. */
-function kpiBuilderHTML(){
-  const s = kpiState();
-  const b = s.builder;
-  const byTab = {};
-  KPI_CATALOGUE.forEach(k => { (byTab[k.tab] = byTab[k.tab] || []).push(k); });
-
-  const regions = [...new Set(KPI_ROWS.map(r => r.region).filter(Boolean))].sort();
-  const levels = [...new Set(KPI_ROWS.map(r => r.maturity).filter(v => v != null))].sort();
-  /* Scope sits in the same row as the rest: which countries, which indicators
-     and which form are one decision, not a setting and then a chart. */
-  const regionDD = kpiDD("region", s.region, [{ items:
-    [{ v: "", l: t("kpi.allRegions") }].concat(regions.map(r => ({ v: r, l: t("reg." + r) || r })))
-  }], { label: t("kpi.region") });
-  const levelDD = kpiDD("level", String(s.maturity), [{ items:
-    [{ v: "", l: t("kpi.allLevels") }].concat(levels.map(l => ({ v: String(l), l: t("common.level") + " " + l })))
-  }], { label: t("kpi.maturity") });
-
-  const chosen = b.kpis.filter(kpiMeta);
-  const addDD = kpiDD("bAdd", " ", Object.keys(byTab).sort().map(tab => ({
-    g: tab, items: byTab[tab].filter(k => !chosen.includes(k.kpi)).map(k => ({ v: k.kpi, l: k.kpi }))
-  })).filter(g => g.items.length), { label: t("kpi.add"), search: true, cls: "dd-add" });
-
-  const groupDD = kpiDD("bGroup", b.group || "", [{ items: [
-    { v: "", l: t("kpi.noGroup") },
-    { v: "region", l: t("kpi.byRegion") },
-    { v: "maturity", l: t("kpi.byMaturity") }
-  ] }], { label: t("kpi.groupBy") });
-
-  const allowed = chosen.length ? kpiForms(chosen, b.group) : [];
-  const formDD = allowed.length > 1
-    ? kpiDD("bForm", kpiResolveForm(chosen, b.group, b.form),
-        [{ items: allowed.map(f => ({ v: f, l: t("kpi.form." + f) })) }], { label: t("kpi.formLbl") })
-    : "";
-
-  const chips = chosen.map(n => `<span class="kpi-chip">${kpiEsc(n)}
-    <button type="button" class="kpi-chip-x" data-kpi="${kpiEsc(n)}" aria-label="${t("kpi.remove")}">✕</button></span>`).join("");
-
-  const d = kpiChart(b, "wide");
-  return `<div class="cap"><h2>${t("kpi.buildTitle")}</h2>
-      <div class="kpi-cap-btns">
-        <button class="btn" id="kXlsx" type="button">${t("kpi.xlsx")}</button>
-        <button class="btn" id="kReset" type="button">${t("inbox.reset")}</button>
-      </div></div>
-    <div class="bd">
-      <div class="kpi-build-row">
-        ${addDD}${regionDD}${levelDD}${groupDD}${formDD}
-        ${chosen.length ? `<button class="btn lnk" id="kClear" type="button">${t("kpi.clear")}</button>` : ""}
-      </div>
-      ${chips ? `<div class="kpi-chips">${chips}</div>` : ""}
-      <p class="q-note kpi-build-help">${chosen.length > 1 ? t("kpi.crossHelp") : t("kpi.buildHelp")} ${t("kpi.help")}</p>
-      <div class="kpi-preview">
-        ${d.note ? `<p class="q-note kpi-meta">${d.note}</p>` : ""}
-        ${d.legend}
-        <div class="kpi-wrap">${d.chart}</div>
-        ${d.more}
-      </div>
-    </div>`;
-}
-
-function renderBuilder(){
-  const host = $("#kBuild");
-  if (!host) return;
-  const s = kpiState(), b = s.builder;
-  host.innerHTML = kpiBuilderHTML();
-
-  /* Scope feeds the examples as well, so it redraws the whole view. */
-  KPI_DD.region = v => { s.region = v; saveStore(); renderInsights(); };
-  KPI_DD.level  = v => { s.maturity = v; saveStore(); renderInsights(); };
-  KPI_DD.bAdd   = v => { if (!b.kpis.includes(v)) b.kpis.push(v); saveStore(); renderBuilder(); };
-  KPI_DD.bGroup = v => { b.group = v; saveStore(); renderBuilder(); };
-  KPI_DD.bForm  = v => { b.form = v; saveStore(); renderBuilder(); };
-  kpiWireDD(host);
-
-  host.querySelectorAll(".kpi-chip-x").forEach(x => x.addEventListener("click", () => {
-    b.kpis = b.kpis.filter(k => k !== x.dataset.kpi); saveStore(); renderBuilder();
-  }));
-  const clear = $("#kClear");
-  if (clear) clear.addEventListener("click", () => { b.kpis = []; saveStore(); renderBuilder(); });
-  const all = $("#kAll");
-  if (all) all.addEventListener("click", () => { b.all = !b.all; saveStore(); renderBuilder(); });
-  $("#kXlsx").addEventListener("click", kpiExportXlsx);
-  $("#kReset").addEventListener("click", () => { delete store.kpi; saveStore(); renderInsights(); });
-  kpiWireTips(host);
-}
-
-/* ---------- example charts ---------- */
-
-/* Four worked examples at a time, each a different form and drawn from the live
-   data. A name in a list does not show you the shape of the answer; a chart
-   does. The arrows walk the shortlist rather than shuffling it, so a consultant
-   can go back to the one they just saw. */
-function kpiExamples(){
-  const s = kpiState();
-  const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
-  if (!usable.length) return "";
-  const page = Math.floor(s.exStart / 4), pages = Math.ceil(usable.length / 4);
-
-  const tiles = usable.slice(s.exStart, s.exStart + 4).map((ex, i) => {
-    const d = kpiChart(ex, "mini");
-    return `<div class="kpi-ex">
-      <div class="kpi-ex-h">${kpiEsc(ex.kpis.join(" · "))}</div>
-      <div class="kpi-ex-s">${t("kpi.form." + kpiResolveForm(ex.kpis, ex.group, ex.form))}${
-        ex.group ? " · " + t(ex.group === "region" ? "kpi.byRegion" : "kpi.byMaturity") : ""}</div>
-      ${d.legend}
-      <div class="kpi-wrap">${d.chart}</div>
-      <button type="button" class="btn lnk kpi-ex-use" data-ex="${s.exStart + i}">${t("kpi.exUse")}</button>
-    </div>`;
-  }).join("");
-
-  return `<div class="card" id="kEx"><div class="cap"><h2>${t("kpi.exTitle")}</h2>
-      <div class="kpi-ex-nav">
-        <button class="btn icon" id="kExPrev" type="button" aria-label="${t("kpi.exPrev")}" title="${t("kpi.exPrev")}">‹</button>
-        <span class="kpi-ex-pg">${page + 1} / ${pages}</span>
-        <button class="btn icon" id="kExNext" type="button" aria-label="${t("kpi.exNext")}" title="${t("kpi.exNext")}">›</button>
-      </div></div>
-    <div class="bd"><p class="q-note" style="margin-top:0">${t("kpi.exHelp")}</p>
-    <div class="kpi-exs">${tiles}</div></div></div>`;
-}
-
-/* ---------- the view ---------- */
-
+/* Hover tooltips on the marks. Called by whoever drops a chart in the page,
+   because the markup is a string until then and has no listeners. */
 function kpiWireTips(root){
   root.querySelectorAll("[data-tip]").forEach(n => {
     n.addEventListener("mousemove", e => showTip(n.dataset.tip, e.clientX, e.clientY));
@@ -739,56 +509,20 @@ function kpiWireTips(root){
   });
 }
 
-function renderInsights(){
-  const el = $("#v-insights");
-  const s = kpiState();
-  el.innerHTML = `
-  <h1 class="pg">${t("ins.title")}</h1>
-  <p class="pg-sub">${t("kpi.sub")}</p>
-
-  <div class="card kpi-builder" id="kBuild"></div>
-
-  ${kpiExamples()}`;
-
-  renderBuilder();
-
-  const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
-  const step = n => {
-    const pages = Math.ceil(usable.length / 4);
-    s.exStart = ((Math.floor(s.exStart / 4) + n + pages) % pages) * 4;
-    saveStore(); renderInsights();
-    const ex = $("#kEx"); if (ex) ex.scrollIntoView({ block: "nearest" });
-  };
-  const prev = $("#kExPrev"), next = $("#kExNext");
-  if (prev) prev.addEventListener("click", () => step(-1));
-  if (next) next.addEventListener("click", () => step(1));
-  el.querySelectorAll(".kpi-ex-use").forEach(b => b.addEventListener("click", () => {
-    const ex = usable[+b.dataset.ex];
-    s.builder = { kpis: ex.kpis.slice(), group: ex.group, form: ex.form };
-    saveStore(); renderInsights();
-    const host = $("#kBuild"); if (host) host.scrollIntoView({ behavior: "smooth", block: "start" });
-  }));
-  kpiWireTips(el);
-}
-
 /* ---------- export ---------- */
 
 /* The workbook a consultant hands over: the rows behind the chart, then one
    sheet per indicator carrying its table AND a real Excel chart bound to those
-   cells - and, when several indicators are crossed, the crossed table itself. */
-function kpiExportXlsx(){
-  const s = kpiState();
-  const b = s.builder;
-  const names = b.kpis.filter(kpiMeta);
+   cells - and, when several indicators are crossed, the crossed table itself.
+   `sel` is the same object the assistant passed to kpiChart(). */
+function kpiExportXlsx(sel){
+  const names = (sel.kpis || []).filter(kpiMeta);
   if (!names.length) return;
   const taken = new Set();
 
   const data = [["KPI", "Tab", "Country", "Region", "Maturity", "Value"]];
-  const wanted = new Set(names);
-  KPI_ROWS.filter(r => wanted.has(r.kpi))
-    .filter(r => !s.region || r.region === s.region)
-    .filter(r => !s.maturity || String(r.maturity) === String(s.maturity))
-    .forEach(r => data.push([r.kpi, r.tab, r.country, r.region, r.maturity, r.value]));
+  names.forEach(n => kpiRowsFor(n, sel.scope)
+    .forEach(r => data.push([r.kpi, r.tab, r.country, r.region, r.maturity, r.value])));
 
   const sheets = [{ name: xlSheetName(t("kpi.sheetData"), taken), rows: data,
                     widths: [46, 24, 18, 10, 10, 34], chart: null }];
@@ -796,8 +530,8 @@ function kpiExportXlsx(){
   if (names.length > 1) {
     /* The crossed table, exactly as the matrix shows it, so the comparison
        survives the trip into Excel. */
-    const cross = kpiCross(names, b.group);
-    const head = [b.group ? t("kpi.group") : t("kpi.country")].concat(cross.cols.map(c => c.name));
+    const cross = kpiCross(names, sel.group, sel.scope);
+    const head = [sel.group ? t("kpi.group") : t("kpi.country")].concat(cross.cols.map(c => c.name));
     const rows = cross.rowKeys.map(rk => [rk].concat(cross.cols.map(c => {
       const v = c.byRow[rk];
       return v === undefined || v === null ? "" : (c.numeric ? v : v.key);
@@ -807,12 +541,13 @@ function kpiExportXlsx(){
   }
 
   names.forEach(kpiName => {
-    const shape = kpiShape(kpiName, b.group);
+    const shape = kpiShape(kpiName, sel.group, sel.scope);
     if (!shape || !shape.categories.length) return;
     const name = xlSheetName(kpiName, taken);
     /* A donut on screen becomes a pie in Excel; everything else is a bar. */
     const pie = !shape.numeric && names.length === 1
-                && kpiResolveForm(names, b.group, b.form) === "donut" && shape.groups.length === 1;
+                && kpiResolveForm(names, sel.group, sel.form, sel.scope) === "donut"
+                && shape.groups.length === 1;
     const pal = kpiPalette();
     sheets.push({
       name,

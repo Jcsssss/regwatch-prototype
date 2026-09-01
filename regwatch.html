@@ -302,19 +302,68 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
   color:#fff;font-family:var(--font-mono);letter-spacing:-.02em}
 .kpi-grid-h{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:8px}
 
-/* ---- example charts ---- */
-.kpi-exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.kpi-ex{display:flex;flex-direction:column;background:var(--surface2);border:1px solid var(--line);
-  border-radius:10px;padding:11px 12px 9px}
-.kpi-ex-h{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.25}
-.kpi-ex-s{font-size:11px;color:var(--muted);margin-bottom:6px}
-.kpi-ex .kpi-legend{font-size:11px;gap:10px;margin:0 0 5px}
-.kpi-ex .kpi-lbl,.kpi-ex .kpi-val{font-size:10px}
-.kpi-ex .kpi-wrap{flex:1}
-.kpi-ex-use{align-self:flex-start;margin-top:6px}
-.kpi-ex-nav{display:flex;align-items:center;gap:8px;flex:none}
-.kpi-ex-nav .btn.icon{padding:3px 11px;font-size:15px;line-height:1.2}
-.kpi-ex-pg{font-size:11.5px;color:var(--muted);font-family:var(--font-mono);min-width:34px;text-align:center}
+/* ================= The assistant ================= */
+.chat-card .bd{padding-top:6px}
+.chat-log{min-height:280px;max-height:min(62vh,720px);overflow-y:auto;padding:10px 2px 4px;
+  display:flex;flex-direction:column;gap:14px;-webkit-overflow-scrolling:touch}
+.chat-m{display:flex}
+.chat-m.user{justify-content:flex-end}
+.chat-b{max-width:min(760px,92%);border-radius:12px;padding:10px 14px;font-size:13.5px;line-height:1.55}
+.chat-m.user .chat-b{background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px}
+.chat-m.bot .chat-b{background:var(--surface2);border:1px solid var(--line);color:var(--ink);
+  border-bottom-left-radius:4px;max-width:100%;width:100%}
+.chat-b.err{background:var(--st-bad-bg,var(--surface3));border-color:var(--bad);color:var(--ink)}
+.chat-b p{margin:0 0 8px}
+.chat-b p:last-child{margin-bottom:0}
+.chat-b ul{margin:0 0 8px;padding-left:19px}
+.chat-b li{margin-bottom:3px}
+.chat-b code{font-family:var(--font-mono);font-size:12px;background:var(--surface3);
+  padding:1px 5px;border-radius:4px}
+.chat-b a{color:var(--accent)}
+/* Which tools ran, above the answer: the reader can see what it was based on. */
+.chat-steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.chat-step{font-size:10.5px;font-weight:700;font-family:var(--font-mono);color:var(--muted);
+  background:var(--surface3);border-radius:999px;padding:2px 9px}
+.chat-dots{display:inline-flex;gap:4px;align-items:center;height:18px}
+.chat-dots i{width:6px;height:6px;border-radius:50%;background:var(--accent);
+  animation:chatBlink 1.1s infinite ease-in-out}
+.chat-dots i:nth-child(2){animation-delay:.16s}
+.chat-dots i:nth-child(3){animation-delay:.32s}
+@keyframes chatBlink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.chat-chart{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line)}
+.chat-chart figcaption{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.chat-empty{padding:14px 2px}
+.chat-hello{font-size:13.5px;color:var(--ink2);margin:0 0 12px}
+.chat-sugs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:9px}
+.chat-sug{text-align:left;background:var(--surface2);border:1px solid var(--line);border-radius:10px;
+  padding:10px 12px;font:inherit;font-size:12.5px;line-height:1.45;color:var(--ink2);cursor:pointer}
+.chat-sug:hover{border-color:var(--accent);color:var(--ink)}
+.chat-compose{display:flex;gap:9px;align-items:flex-end;margin-top:12px}
+.chat-compose textarea{flex:1;resize:vertical;min-height:44px;background:var(--surface);
+  border:1px solid var(--line2);border-radius:10px;color:var(--ink);padding:10px 12px;
+  font:inherit;font-size:13.5px;line-height:1.45}
+.chat-compose textarea:focus{outline:none;border-color:var(--accent)}
+.chat-compose .btn{height:44px;padding:0 18px}
+.chat-foot{margin:9px 0 0}
+.chat-setup .bd{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.chat-setup-t{margin:0;font-size:13.5px;font-weight:700;color:var(--ink)}
+
+/* ---- settings ---- */
+.chat-modal{position:fixed;inset:0;z-index:200;background:rgba(12,8,32,.55);
+  display:flex;align-items:center;justify-content:center;padding:20px}
+.chat-modal[hidden]{display:none}
+.chat-modal-b{background:var(--surface);border:1px solid var(--line2);border-radius:14px;
+  padding:20px 22px;width:min(460px,100%);max-height:90vh;overflow:auto;box-shadow:0 18px 50px rgba(0,0,0,.3)}
+.chat-modal-b h2{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.chat-f{display:block;margin-top:12px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.chat-f span{display:block;margin-bottom:4px}
+.chat-f input,.chat-f select{width:100%;box-sizing:border-box;background:var(--surface2);
+  border:1px solid var(--line2);border-radius:8px;color:var(--ink);padding:8px 10px;
+  font:inherit;font-size:13px}
+.chat-modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.chat-ok{color:var(--good,#0d9c55);font-weight:600}
+.chat-bad{color:var(--bad);font-weight:600}
+
 .kpi-cap-btns{display:flex;gap:8px;flex:none}
 
 /* ---- dropdowns that always drop down ----
@@ -572,7 +621,7 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
     <a href="#/overview" data-v="overview" data-i18n="nav.overview">Overview</a>
     <a href="#/countries" data-v="countries" data-i18n="nav.countries">Countries</a>
     <a href="#/inbox" data-v="inbox"><span data-i18n="nav.inbox">Watch inbox</span><span class="badge" id="pendingBadge" hidden>0</span></a>
-    <a href="#/insights" data-v="insights" data-i18n="nav.insights">Insights &amp; KPIs</a>
+    <a href="#/insights" data-v="insights" data-i18n="nav.insights">Assistant</a>
     <a href="#/sources" data-v="sources" data-i18n="nav.sources">Sources</a>
   </nav>
 </header>
@@ -12254,7 +12303,7 @@ const I18N = {
     "nav.overview": "Overview",
     "nav.countries": "Countries",
     "nav.inbox": "Watch inbox",
-    "nav.insights": "Insights & KPIs",
+    "nav.insights": "Assistant",
     "nav.sources": "Sources",
 
     "inbox.title": "Watch inbox",
@@ -12417,80 +12466,69 @@ const I18N = {
     "cp.sourcesNote": "All country-record content is sourced from the documents above or validated by a Wavestone consultant.",
     "cp.readOnlyT": "Read-only record.",
     "cp.readOnly": "Country data mirrors the comparative workbook on SharePoint, which stays the single source of truth. To change a fact, edit the workbook - the next sync brings it back here. Validating a Watch inbox item tells you which cells to change.",
-    "kpi.sub": "Indicators from the comparative workbook's KPI sheet. Compose a chart below and watch it redraw, keep the ones worth keeping, export them to Excel.",
-    "kpi.add": "+ Add an indicator",
-    "kpi.groupBy": "Group by",
-    "kpi.noGroup": "All countries",
-    "kpi.byRegion": "By region",
-    "kpi.byMaturity": "By maturity level",
-    "kpi.region": "Region",
-    "kpi.maturity": "Maturity level",
-    "kpi.allRegions": "All regions",
-    "kpi.allLevels": "All levels",
     "kpi.noData": "No data for this selection.",
+    "kpi.noneChosen": "No indicator chosen.",
     "kpi.other": "Other",
     "kpi.allCountries": "All countries",
     "kpi.group": "Group",
     "kpi.value": "Value",
     "kpi.coverage": "{n} of {total} countries answered",
-    "kpi.help": "The chart is saved in this browser. The scope applies to the chart and to the export.",
     "kpi.type.numeric": "numeric",
     "kpi.type.boolean": "yes / no",
     "kpi.type.categorical": "categorical",
     "kpi.type.text": "free text",
     "kpi.type.empty": "empty",
-    "kpi.search": "Search an indicator",
     "kpi.country": "Country",
     "kpi.average": "Average",
     "kpi.showAll": "Show all {n} rows",
     "kpi.showTop": "Show the top {n} only",
     "kpi.xlsx": "Export Excel",
     "kpi.sheetData": "Data",
-    "kpi.remove": "Remove",
-    "kpi.crossHelp": "The indicators are crossed into one chart: countries down the side, indicators across the top, each column coloured on its own scale.",
+    "chat.title": "Assistant",
+    "chat.sub": "Ask about any of the 29 transpositions. The assistant answers from the RegWatch records, the comparative workbook and the watch items - and says so when it cannot.",
+    "chat.assistant": "RegWatch assistant",
+    "chat.hello": "Ask a question, or start from one of these:",
+    "chat.s1": "Quels sont les principaux organismes d'audit en charge de NIS 2 dans les pays européens ?",
+    "chat.s2": "For Croatia, are sector authorities supposed to contact companies subject to NIS 2? What does it mean if a company has not been contacted?",
+    "chat.s3": "Peux-tu me générer le graphique des délais de transposition des différents pays de l'UE ?",
+    "chat.s4": "Which countries require an audit by an externally accredited body, and how often?",
+    "chat.placeholder": "Ask a question - Enter to send, Shift+Enter for a new line",
+    "chat.send": "Send",
+    "chat.clear": "New conversation",
+    "chat.thinking": "Looking it up...",
+    "chat.empty": "(no answer returned)",
+    "chat.tooManyRounds": "I looked through several sources without settling this. Try narrowing the question to one country or one indicator.",
+    "chat.foot": "Answers are drawn from the RegWatch data only, through the tools listed above each reply. Model: {model}. The conversation is not saved - reloading the page clears it.",
+    "chat.settings": "Model settings",
+    "chat.setupTitle": "The assistant needs a model endpoint before it can answer.",
+    "chat.setupHelp": "Your key stays in this browser and is sent only to the endpoint you enter. It is never part of the published file.",
+    "chat.keyNote": "Stored in this browser only (localStorage), sent only to the endpoint below. Do not use a shared key on a shared machine.",
+    "chat.mode": "Mode",
+    "chat.modeCompat": "OpenAI-compatible (incl. local proxy)",
+    "chat.endpoint": "Endpoint",
+    "chat.deployment": "Deployment",
+    "chat.model": "Model",
+    "chat.key": "API key",
+    "chat.test": "Test connection",
+    "chat.testing": "Testing...",
+    "chat.testOk": "Connected - the endpoint answered.",
+    "chat.forget": "Forget key",
+    "chat.save": "Save",
+    "chat.errNetwork": "The browser blocked the request to {endpoint} before it left, or the host is unreachable. Azure OpenAI does not allow direct calls from a web page (CORS), which is what this looks like. Run the local proxy - python3 tools/chat_proxy.py - then set mode to OpenAI-compatible with endpoint http://localhost:8787/v1.",
+    "chat.err401": "The endpoint refused the key (401/403). Check the key, and that it belongs to this resource.",
+    "chat.err404": "The endpoint answered but has no deployment named \"{deployment}\" (404). Check the deployment name in the Azure portal.",
+    "chat.err429": "Rate limit or quota reached (429). Wait a moment, or check the deployment's quota.",
+    "chat.errHttp": "The endpoint answered with an error (HTTP {code}).",
     "kpi.crossRows": "{n} rows",
     "kpi.unknown": "not stated",
     "kpi.form.matrix": "Crossed table",
     "kpi.form.grouped": "Grouped bars",
-    "kpi.exPrev": "Previous examples",
-    "kpi.exNext": "Next examples",
     "kpi.sheetCross": "Crossed",
-    "kpi.buildTitle": "Create a chart",
-    "kpi.buildHelp": "The chart redraws as you change the controls. Add a second indicator to cross it into the same chart.",
-    "kpi.clear": "Clear",
-    "kpi.noneChosen": "Add an indicator to draw a chart.",
-    "kpi.formLbl": "Chart",
     "kpi.form.bars": "Ranked bars",
     "kpi.form.stack": "Share bar",
     "kpi.form.donut": "Donut",
     "kpi.form.grid": "One square per country",
     "kpi.countries": "countries",
-    "kpi.exTitle": "Example charts",
-    "kpi.exHelp": "Drawn from the data currently in scope. Open one above to adjust it.",
-    "kpi.exUse": "Open in the builder",
-    "ins.title": "Insights & KPIs",
-    "ins.sub": "Comparative indicators across the 29 tracked countries - the successor of the KPI workbook. Filter, chart, export.",
-    "ins.reqChart": "Cyber requirements per country - EE vs IE",
-    "ins.ee": "Essential entities",
-    "ins.ie": "Important entities",
-    "ins.reqNote": "Number of security requirements in the national framework, where published / analysed. Hover a bar for the exact value.",
-    "ins.delayChart": "Transposition delay",
-    "ins.delayNote": "Months after the EU deadline (17 Oct 2024). On-time countries shown at zero; non-transposed countries excluded.",
-    "ins.notTransposed": "Not transposed yet:",
-    "ins.matrix": "KPI matrix",
-    "ins.csv": "Export CSV (;)",
-    "ins.fwSummary": "Framework: {final} final · {temp} temporary · {none} none (EU-27)",
-    "ins.thLvl": "Lvl",
-    "ins.thTransposed": "Transposed",
-    "ins.thDelay": "Delay",
-    "ins.thComplEE": "Compl. EE (mo)",
-    "ins.thComplIE": "Compl. IE (mo)",
-    "ins.thAuditEE": "Audit EE (mo)",
-    "ins.thAuditIE": "Audit IE (mo)",
-    "ins.thSelf": "Self-assess. (mo)",
-    "ins.thAuditBody": "Audit body",
-    "ins.thReg": "Registration",
-    "ins.thInc": "Incident channel",
     "src.title": "Source registry",
     "src.sub": "Every source monitored by the collection pipeline or cited in a country record. Official sources are trusted; unofficial ones are monitored but require validation by a Wavestone consultant; manual entries come from consultants (e.g. sector working groups) and can be flagged internal.",
     "src.add": "Add a source",
@@ -12583,7 +12621,7 @@ const I18N = {
     "nav.overview": "Vue d'ensemble",
     "nav.countries": "Pays",
     "nav.inbox": "File de veille",
-    "nav.insights": "Analyses & KPI",
+    "nav.insights": "Assistant",
     "nav.sources": "Sources",
 
     "inbox.title": "File de veille",
@@ -12746,80 +12784,69 @@ const I18N = {
     "cp.sourcesNote": "Tout le contenu des fiches pays provient des documents ci-dessus ou a été validé par un consultant Wavestone.",
     "cp.readOnlyT": "Fiche en lecture seule.",
     "cp.readOnly": "Les données pays reflètent le classeur comparatif sur SharePoint, qui reste la source de vérité unique. Pour corriger un fait, éditez le classeur - la synchronisation suivante le ramène ici. Valider un élément de la file de veille indique quelles cellules modifier.",
-    "kpi.sub": "Indicateurs issus de la feuille KPI du classeur comparatif. Composez un graphique ci-dessous et voyez-le se redessiner, conservez ceux qui comptent, exportez-les vers Excel.",
-    "kpi.add": "+ Ajouter un indicateur",
-    "kpi.groupBy": "Grouper par",
-    "kpi.noGroup": "Tous les pays",
-    "kpi.byRegion": "Par région",
-    "kpi.byMaturity": "Par niveau de maturité",
-    "kpi.region": "Région",
-    "kpi.maturity": "Niveau de maturité",
-    "kpi.allRegions": "Toutes les régions",
-    "kpi.allLevels": "Tous les niveaux",
     "kpi.noData": "Aucune donnée pour cette sélection.",
+    "kpi.noneChosen": "Aucun indicateur choisi.",
     "kpi.other": "Autres",
     "kpi.allCountries": "Tous les pays",
     "kpi.group": "Groupe",
     "kpi.value": "Valeur",
     "kpi.coverage": "{n} pays sur {total} ont répondu",
-    "kpi.help": "Le tableau est enregistré dans ce navigateur. Les filtres s'appliquent à tous les blocs et à l'export.",
     "kpi.type.numeric": "numérique",
     "kpi.type.boolean": "oui / non",
     "kpi.type.categorical": "catégoriel",
     "kpi.type.text": "texte libre",
     "kpi.type.empty": "vide",
-    "kpi.search": "Rechercher un indicateur",
     "kpi.country": "Pays",
     "kpi.average": "Moyenne",
     "kpi.showAll": "Afficher les {n} lignes",
     "kpi.showTop": "N'afficher que le top {n}",
     "kpi.xlsx": "Export Excel",
     "kpi.sheetData": "Données",
-    "kpi.remove": "Retirer",
-    "kpi.crossHelp": "Les indicateurs sont croisés dans un seul graphique : les pays en lignes, les indicateurs en colonnes, chaque colonne colorée sur sa propre échelle.",
+    "chat.title": "Assistant",
+    "chat.sub": "Posez une question sur les 29 transpositions. L'assistant répond à partir des fiches RegWatch, du classeur comparatif et des éléments de veille - et le dit quand il ne peut pas.",
+    "chat.assistant": "Assistant RegWatch",
+    "chat.hello": "Posez une question, ou partez de l'une de celles-ci :",
+    "chat.s1": "Quels sont les principaux organismes d'audit en charge de NIS 2 dans les pays européens ?",
+    "chat.s2": "Pour la Croatie, les autorités sectorielles sont-elles censées contacter les entreprises soumises à NIS 2 ? Que signifie ne pas avoir été contacté ?",
+    "chat.s3": "Peux-tu me générer le graphique des délais de transposition des différents pays de l'UE ?",
+    "chat.s4": "Quels pays imposent un audit par un organisme externe accrédité, et à quelle fréquence ?",
+    "chat.placeholder": "Posez votre question - Entrée pour envoyer, Maj+Entrée pour un retour à la ligne",
+    "chat.send": "Envoyer",
+    "chat.clear": "Nouvelle conversation",
+    "chat.thinking": "Recherche en cours...",
+    "chat.empty": "(aucune réponse renvoyée)",
+    "chat.tooManyRounds": "J'ai consulté plusieurs sources sans trancher. Essayez de restreindre la question à un pays ou à un indicateur.",
+    "chat.foot": "Les réponses sont tirées des seules données RegWatch, via les outils listés au-dessus de chaque réponse. Modèle : {model}. La conversation n'est pas enregistrée - recharger la page l'efface.",
+    "chat.settings": "Configuration du modèle",
+    "chat.setupTitle": "L'assistant a besoin d'un endpoint de modèle pour répondre.",
+    "chat.setupHelp": "Votre clé reste dans ce navigateur et n'est envoyée qu'à l'endpoint que vous saisissez. Elle ne fait jamais partie du fichier publié.",
+    "chat.keyNote": "Stockée dans ce navigateur uniquement (localStorage), envoyée seulement à l'endpoint ci-dessous. N'utilisez pas une clé partagée sur un poste partagé.",
+    "chat.mode": "Mode",
+    "chat.modeCompat": "Compatible OpenAI (dont proxy local)",
+    "chat.endpoint": "Endpoint",
+    "chat.deployment": "Déploiement",
+    "chat.model": "Modèle",
+    "chat.key": "Clé API",
+    "chat.test": "Tester la connexion",
+    "chat.testing": "Test en cours...",
+    "chat.testOk": "Connecté - l'endpoint a répondu.",
+    "chat.forget": "Oublier la clé",
+    "chat.save": "Enregistrer",
+    "chat.errNetwork": "Le navigateur a bloqué la requête vers {endpoint} avant qu'elle ne parte, ou l'hôte est injoignable. Azure OpenAI n'autorise pas les appels directs depuis une page web (CORS), et c'est ce à quoi cela ressemble. Lancez le proxy local - python3 tools/chat_proxy.py - puis passez en mode Compatible OpenAI avec l'endpoint http://localhost:8787/v1.",
+    "chat.err401": "L'endpoint a refusé la clé (401/403). Vérifiez la clé, et qu'elle appartient bien à cette ressource.",
+    "chat.err404": "L'endpoint répond mais n'a pas de déploiement nommé \"{deployment}\" (404). Vérifiez le nom du déploiement dans le portail Azure.",
+    "chat.err429": "Limite de débit ou quota atteint (429). Patientez un instant, ou vérifiez le quota du déploiement.",
+    "chat.errHttp": "L'endpoint a répondu par une erreur (HTTP {code}).",
     "kpi.crossRows": "{n} lignes",
     "kpi.unknown": "non renseigné",
     "kpi.form.matrix": "Tableau croisé",
     "kpi.form.grouped": "Barres groupées",
-    "kpi.exPrev": "Exemples précédents",
-    "kpi.exNext": "Exemples suivants",
     "kpi.sheetCross": "Croisement",
-    "kpi.buildTitle": "Créer un graphique",
-    "kpi.buildHelp": "Le graphique se redessine à chaque changement. Ajoutez un second indicateur pour le croiser dans le même graphique.",
-    "kpi.clear": "Vider",
-    "kpi.noneChosen": "Ajoutez un indicateur pour dessiner un graphique.",
-    "kpi.formLbl": "Graphique",
     "kpi.form.bars": "Barres classées",
     "kpi.form.stack": "Barre de répartition",
     "kpi.form.donut": "Anneau",
     "kpi.form.grid": "Un carré par pays",
     "kpi.countries": "pays",
-    "kpi.exTitle": "Exemples de graphiques",
-    "kpi.exHelp": "Construits sur les données du périmètre actuel. Ouvrez-en un ci-dessus pour l'ajuster.",
-    "kpi.exUse": "Ouvrir dans le compositeur",
-    "ins.title": "Analyses & KPI",
-    "ins.sub": "Indicateurs comparatifs sur les 29 pays suivis - le successeur du classeur KPI. Filtrer, visualiser, exporter.",
-    "ins.reqChart": "Exigences cyber par pays - EE vs EI",
-    "ins.ee": "Entités essentielles",
-    "ins.ie": "Entités importantes",
-    "ins.reqNote": "Nombre d'exigences de sécurité du cadre national, lorsqu'il est publié / analysé. Survolez une barre pour la valeur exacte.",
-    "ins.delayChart": "Retard de transposition",
-    "ins.delayNote": "Mois écoulés après l'échéance européenne (17 oct. 2024). Les pays dans les délais sont à zéro ; les pays non transposés sont exclus.",
-    "ins.notTransposed": "Pas encore transposé :",
-    "ins.matrix": "Matrice KPI",
-    "ins.csv": "Exporter en CSV (;)",
-    "ins.fwSummary": "Cadres : {final} finaux · {temp} provisoires · {none} aucun (UE-27)",
-    "ins.thLvl": "Niv.",
-    "ins.thTransposed": "Transposé",
-    "ins.thDelay": "Retard",
-    "ins.thComplEE": "Conf. EE (mois)",
-    "ins.thComplIE": "Conf. EI (mois)",
-    "ins.thAuditEE": "Audit EE (mois)",
-    "ins.thAuditIE": "Audit EI (mois)",
-    "ins.thSelf": "Auto-éval. (mois)",
-    "ins.thAuditBody": "Organisme d'audit",
-    "ins.thReg": "Enregistrement",
-    "ins.thInc": "Canal d'incident",
     "src.title": "Registre des sources",
     "src.sub": "Toute source surveillée par la chaîne de collecte ou citée dans une fiche pays. Les sources officielles font foi ; les non officielles sont surveillées mais exigent la validation d'un consultant Wavestone ; les saisies manuelles proviennent des consultants (groupes de travail sectoriels par ex.) et peuvent être marquées internes.",
     "src.add": "Ajouter une source",
@@ -13867,28 +13894,23 @@ function renderSources(){
 refreshBadge();
 const r0 = parseHash();
 route(r0.v, r0.arg);
-/* ================= KPI chart builder =================
+/* ================= Chart engine over the KPI table =================
  *
  * The workbook's KPI sheet is a tidy table: one row per country per indicator.
- * This turns it into one chart a consultant composes.
+ * This draws it. Nothing here owns a view - the assistant (app_chat.js) asks
+ * for a chart through `kpiChart()` and drops the markup into a message, which
+ * is why every entry point takes its scope as an argument rather than reading
+ * a filter off the page.
  *
- * The page is three things, in the order the work happens:
- *   1. scope       which countries everything below is about
- *   2. the chart   compose it and watch it redraw as you change the controls
- *   3. examples    what else the data can be made to say
- *
- * There is one chart, not a board of them. Adding a second indicator crosses it
- * into the same picture rather than opening another one: countries down the
- * side, indicators across the top, every cell coloured on its own column's
- * scale. That is the question a comparison actually asks - "who is where on
- * these three things at once" - and it is the only single-chart form that takes
- * a numeric and a categorical indicator side by side without lying about
- * either. When every chosen indicator is numeric and their ranges are
- * comparable, grouped bars are offered as well.
- *
- * For one indicator the form follows its type:
+ * One indicator, form following its type:
  *   numeric      a ranked bar - magnitude, single hue
  *   categorical  share bar, donut or one square per country - identity
+ *
+ * Several indicators are crossed into ONE picture: countries down the side,
+ * indicators across the top, every cell coloured on its own column's scale.
+ * That is the only single-chart form that takes a numeric and a categorical
+ * indicator side by side without lying about either. When every indicator is
+ * numeric and their ranges are comparable, grouped bars are offered too.
  *
  * Palette: four categorical hues, validated with the dataviz palette checker in
  * both light and dark mode (lightness band, chroma floor, CVD separation,
@@ -13916,46 +13938,24 @@ function kpiDarkMode(){
 function kpiPalette(){ return kpiDarkMode() ? KPI_DARK : KPI_LIGHT; }
 function kpiRamp(){ return kpiDarkMode() ? KPI_SEQ_DARK : KPI_SEQ_LIGHT; }
 
-/* Ready-made examples, each one deliberately a different form so the row shows
-   what can be drawn, not just which indicators exist. */
-const KPI_EXAMPLES = [
-  { kpis: ["Type of national text"], group: "", form: "donut" },
-  { kpis: ["Exceeded time from EU deadline (month)"], group: "region", form: "bars" },
-  { kpis: ["Registration availability"], group: "", form: "grid" },
-  { kpis: ["Cybersecurity framework directives published"], group: "region", form: "stack" },
-  { kpis: ["Maturity Level", "Exceeded time from EU deadline (month)", "Transposition finalized"], group: "", form: "matrix" },
-  { kpis: ["Maturity Level"], group: "", form: "bars" },
-  { kpis: ["Method for incident reporting"], group: "", form: "stack" },
-  { kpis: ["Number of cyber requirements for EE", "Number of cyber requirements for EI"], group: "", form: "grouped" },
-  { kpis: ["Types of registration"], group: "", form: "donut" },
-  { kpis: ["Organism in charge of the audit"], group: "", form: "grid" },
-  { kpis: ["Number of private sectors added"], group: "", form: "bars" },
-  { kpis: ["Transposition finalized"], group: "maturity", form: "stack" },
-  { kpis: ["Sectors added"], group: "region", form: "grid" },
-  { kpis: ["Number of public sectors added", "Number of private sectors added"], group: "region", form: "grouped" }
-];
+/* ---------- scope ----------
+ *
+ * A chart is always drawn over a subset: a region, a maturity level, or an
+ * explicit list of countries the assistant pulled out of the question ("in
+ * Italy, Spain and France"). It travels as an argument so the same functions
+ * serve a question about three countries and one about all 29. */
 
-/* ---------- state, persisted so the chart survives a reload ---------- */
-
-function kpiState(){
-  const s = store.kpi || (store.kpi = {});
-  if (!s.builder || !Array.isArray(s.builder.kpis)) {
-    s.builder = { kpis: ["Maturity Level"], group: "region", form: "bars" };
-  }
-  /* Earlier versions kept a board of panels; the chart is single now. */
-  delete s.panels;
-  delete s.table;
-  s.region = s.region || "";
-  s.maturity = s.maturity || "";
-  s.exStart = s.exStart || 0;
-  return s;
+function kpiScoped(rows, scope){
+  const sc = scope || {};
+  const isos = sc.isos && sc.isos.length ? new Set(sc.isos.map(i => String(i).toUpperCase())) : null;
+  return rows
+    .filter(r => !sc.region || r.region === sc.region)
+    .filter(r => !sc.maturity || String(r.maturity) === String(sc.maturity))
+    .filter(r => !isos || isos.has(kpiIso(r.country)));
 }
 
-function kpiRowsFor(name){
-  const s = kpiState();
-  return KPI_ROWS.filter(r => r.kpi === name)
-    .filter(r => !s.region || r.region === s.region)
-    .filter(r => !s.maturity || String(r.maturity) === String(s.maturity));
+function kpiRowsFor(name, scope){
+  return kpiScoped(KPI_ROWS.filter(r => r.kpi === name), scope);
 }
 
 const kpiNum = v => { const m = /^-?\d+(?:[.,]\d+)?$/.exec(String(v).trim()); return m ? parseFloat(m[0].replace(",", ".")) : null; };
@@ -14147,93 +14147,14 @@ function kpiLegend(keys, title){
   ).join("")}</div>`;
 }
 
-/* ---------- dropdowns that always drop down ----------
- *
- * A native <select> puts its menu wherever the browser likes - near the top of
- * the page that means over the control, hiding the row the person just used.
- * These are a button plus a panel positioned under it, so the list opens
- * downward every time, and the long indicator list gets a search box.
- */
-
-const KPI_DD = {};   /* dropdown id -> callback(value) */
-
-function kpiDD(id, current, groups, opts){
-  const o = Object.assign({ search: false, label: "", cls: "" }, opts || {});
-  const items = [];
-  groups.forEach(g => {
-    if (g.g) items.push(`<div class="dd-g">${kpiEsc(g.g)}</div>`);
-    g.items.forEach(it => items.push(
-      `<button type="button" class="dd-o${it.v === current ? " on" : ""}" role="option"
-        aria-selected="${it.v === current}" data-v="${kpiEsc(it.v)}">${kpiEsc(it.l)}</button>`));
-  });
-  const flat = groups.reduce((a, g) => a.concat(g.items), []);
-  const cur = flat.find(i => i.v === current);
-  return `<div class="dd ${o.cls}" data-dd="${kpiEsc(id)}">
-    <button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false"
-      ${o.label ? `aria-label="${kpiEsc(o.label)}"` : ""}><span>${kpiEsc(cur ? cur.l : (o.label || ""))}</span><i class="dd-car">▾</i></button>
-    <div class="dd-pop" hidden>
-      ${o.search ? `<input type="search" class="dd-q" placeholder="${t("kpi.search")}" aria-label="${t("kpi.search")}">` : ""}
-      <div class="dd-list" role="listbox">${items.join("")}</div>
-    </div>
-  </div>`;
-}
-
-function kpiCloseDD(){
-  document.querySelectorAll(".dd-pop").forEach(p => {
-    if (p.hidden) return;
-    p.hidden = true;
-    const b = p.parentElement.querySelector(".dd-btn");
-    if (b) b.setAttribute("aria-expanded", "false");
-  });
-}
-document.addEventListener("click", kpiCloseDD);
-document.addEventListener("keydown", e => { if (e.key === "Escape") kpiCloseDD(); });
-
-function kpiWireDD(root){
-  root.querySelectorAll(".dd").forEach(dd => {
-    const btn = dd.querySelector(".dd-btn"), pop = dd.querySelector(".dd-pop");
-    btn.addEventListener("click", e => {
-      e.stopPropagation();
-      const wasOpen = !pop.hidden;
-      kpiCloseDD();
-      if (wasOpen) return;
-      pop.hidden = false;
-      btn.setAttribute("aria-expanded", "true");
-      const q = pop.querySelector(".dd-q");
-      if (q) { q.value = ""; q.dispatchEvent(new Event("input")); q.focus(); }
-      const on = pop.querySelector(".dd-o.on");
-      if (on) on.scrollIntoView({ block: "nearest" });
-    });
-    pop.addEventListener("click", e => e.stopPropagation());
-    const q = pop.querySelector(".dd-q");
-    if (q) q.addEventListener("input", () => {
-      const needle = q.value.trim().toLowerCase();
-      pop.querySelectorAll(".dd-o").forEach(o => {
-        o.hidden = !!needle && !o.textContent.toLowerCase().includes(needle);
-      });
-      /* A group heading with nothing left under it is noise. */
-      pop.querySelectorAll(".dd-g").forEach(g => {
-        let n = g.nextElementSibling, any = false;
-        while (n && n.classList.contains("dd-o")) { if (!n.hidden) any = true; n = n.nextElementSibling; }
-        g.hidden = !any;
-      });
-    });
-    pop.querySelectorAll(".dd-o").forEach(o => o.addEventListener("click", () => {
-      kpiCloseDD();
-      const cb = KPI_DD[dd.dataset.dd];
-      if (cb) cb(o.dataset.v);
-    }));
-  });
-}
-
 /* ---------- shaping: one indicator -> categories, series, table ---------- */
 
 /* One shape used by every on-screen form and by the Excel export, so they can
    never drift apart. */
-function kpiShape(name, groupBy){
+function kpiShape(name, groupBy, scope){
   const meta = kpiMeta(name);
   if (!meta) return null;
-  const all = kpiRowsFor(name);
+  const all = kpiRowsFor(name, scope);
   const rows = all.filter(r => r.value);
   const pal = kpiPalette();
 
@@ -14313,13 +14234,13 @@ function kpiIso(country){
    own scale - a sequential ramp for a measure, the categorical hues for an
    answer - because two indicators share no scale and pretending otherwise is
    the whole trap. */
-function kpiCross(names, groupBy){
-  const shapes = names.map(n => kpiShape(n, groupBy)).filter(Boolean);
+function kpiCross(names, groupBy, scope){
+  const shapes = names.map(n => kpiShape(n, groupBy, scope)).filter(Boolean);
   if (!shapes.length) return null;
 
   /* Row keys: countries, or the groups when one is chosen. */
   const rowSet = new Set();
-  names.forEach(n => kpiRowsFor(n).filter(r => r.value)
+  names.forEach(n => kpiRowsFor(n, scope).filter(r => r.value)
     .forEach(r => rowSet.add(groupBy ? kpiGroupOf(r, groupBy) : r.country)));
   const rowKeys = [...rowSet].sort();
 
@@ -14396,9 +14317,9 @@ function kpiCrossLegend(cross){
 
 /* ---------- which forms an indicator selection can honestly take ---------- */
 
-function kpiForms(names, groupBy){
+function kpiForms(names, groupBy, scope){
   if (names.length > 1) {
-    const shapes = names.map(n => kpiShape(n, groupBy)).filter(Boolean);
+    const shapes = names.map(n => kpiShape(n, groupBy, scope)).filter(Boolean);
     const forms = ["matrix"];
     /* Grouped bars put several measures on ONE axis, which is a claim that they
        are comparable. Only offered when they all are: same kind of quantity and
@@ -14409,12 +14330,12 @@ function kpiForms(names, groupBy){
     }
     return forms;
   }
-  const shape = kpiShape(names[0], groupBy);
+  const shape = kpiShape(names[0], groupBy, scope);
   if (!shape) return ["bars"];
   return shape.numeric ? ["bars"] : ["stack", "donut", "grid", "bars"];
 }
-function kpiResolveForm(names, groupBy, form){
-  const allowed = kpiForms(names, groupBy);
+function kpiResolveForm(names, groupBy, form, scope){
+  const allowed = kpiForms(names, groupBy, scope);
   return allowed.includes(form) ? form : allowed[0];
 }
 
@@ -14425,10 +14346,10 @@ function kpiResolveForm(names, groupBy, form){
 function kpiChart(sel, size){
   const names = sel.kpis.filter(kpiMeta);
   if (!names.length) return { legend: "", chart: `<p class="q-note">${t("kpi.noneChosen")}</p>`, note: "", more: "" };
-  const form = kpiResolveForm(names, sel.group, sel.form);
+  const form = kpiResolveForm(names, sel.group, sel.form, sel.scope);
 
   if (names.length > 1) {
-    const cross = kpiCross(names, sel.group);
+    const cross = kpiCross(names, sel.group, sel.scope);
     if (form === "grouped") {
       const cols = cross.cols;
       const rows = cross.rowKeys.map(rk => ({ label: rk, values: cols.map(c => c.byRow[rk] ?? null) }));
@@ -14444,7 +14365,7 @@ function kpiChart(sel, size){
              more: kpiMore(cross.rowKeys.length, sel.all) };
   }
 
-  const shape = kpiShape(names[0], sel.group);
+  const shape = kpiShape(names[0], sel.group, sel.scope);
   const note = `${kpiEsc(shape.meta.tab)} · ${t("kpi.type." + shape.meta.type)} · ${t("kpi.coverage", { n: shape.known, total: shape.total })}`;
   if (shape.numeric) {
     const shown = sel.all ? shape.items : shape.items.slice(0, KPI_TOP);
@@ -14475,132 +14396,8 @@ function kpiCrossNote(cross){
        + t("kpi.crossRows", { n: cross.rowKeys.length });
 }
 
-/* ---------- the builder ---------- */
-
-/* Everything is in `store.kpi.builder`; changing a control rewrites this one
-   card, so the chart redraws under the controls instead of sending the reader
-   anywhere. */
-function kpiBuilderHTML(){
-  const s = kpiState();
-  const b = s.builder;
-  const byTab = {};
-  KPI_CATALOGUE.forEach(k => { (byTab[k.tab] = byTab[k.tab] || []).push(k); });
-
-  const regions = [...new Set(KPI_ROWS.map(r => r.region).filter(Boolean))].sort();
-  const levels = [...new Set(KPI_ROWS.map(r => r.maturity).filter(v => v != null))].sort();
-  /* Scope sits in the same row as the rest: which countries, which indicators
-     and which form are one decision, not a setting and then a chart. */
-  const regionDD = kpiDD("region", s.region, [{ items:
-    [{ v: "", l: t("kpi.allRegions") }].concat(regions.map(r => ({ v: r, l: t("reg." + r) || r })))
-  }], { label: t("kpi.region") });
-  const levelDD = kpiDD("level", String(s.maturity), [{ items:
-    [{ v: "", l: t("kpi.allLevels") }].concat(levels.map(l => ({ v: String(l), l: t("common.level") + " " + l })))
-  }], { label: t("kpi.maturity") });
-
-  const chosen = b.kpis.filter(kpiMeta);
-  const addDD = kpiDD("bAdd", " ", Object.keys(byTab).sort().map(tab => ({
-    g: tab, items: byTab[tab].filter(k => !chosen.includes(k.kpi)).map(k => ({ v: k.kpi, l: k.kpi }))
-  })).filter(g => g.items.length), { label: t("kpi.add"), search: true, cls: "dd-add" });
-
-  const groupDD = kpiDD("bGroup", b.group || "", [{ items: [
-    { v: "", l: t("kpi.noGroup") },
-    { v: "region", l: t("kpi.byRegion") },
-    { v: "maturity", l: t("kpi.byMaturity") }
-  ] }], { label: t("kpi.groupBy") });
-
-  const allowed = chosen.length ? kpiForms(chosen, b.group) : [];
-  const formDD = allowed.length > 1
-    ? kpiDD("bForm", kpiResolveForm(chosen, b.group, b.form),
-        [{ items: allowed.map(f => ({ v: f, l: t("kpi.form." + f) })) }], { label: t("kpi.formLbl") })
-    : "";
-
-  const chips = chosen.map(n => `<span class="kpi-chip">${kpiEsc(n)}
-    <button type="button" class="kpi-chip-x" data-kpi="${kpiEsc(n)}" aria-label="${t("kpi.remove")}">✕</button></span>`).join("");
-
-  const d = kpiChart(b, "wide");
-  return `<div class="cap"><h2>${t("kpi.buildTitle")}</h2>
-      <div class="kpi-cap-btns">
-        <button class="btn" id="kXlsx" type="button">${t("kpi.xlsx")}</button>
-        <button class="btn" id="kReset" type="button">${t("inbox.reset")}</button>
-      </div></div>
-    <div class="bd">
-      <div class="kpi-build-row">
-        ${addDD}${regionDD}${levelDD}${groupDD}${formDD}
-        ${chosen.length ? `<button class="btn lnk" id="kClear" type="button">${t("kpi.clear")}</button>` : ""}
-      </div>
-      ${chips ? `<div class="kpi-chips">${chips}</div>` : ""}
-      <p class="q-note kpi-build-help">${chosen.length > 1 ? t("kpi.crossHelp") : t("kpi.buildHelp")} ${t("kpi.help")}</p>
-      <div class="kpi-preview">
-        ${d.note ? `<p class="q-note kpi-meta">${d.note}</p>` : ""}
-        ${d.legend}
-        <div class="kpi-wrap">${d.chart}</div>
-        ${d.more}
-      </div>
-    </div>`;
-}
-
-function renderBuilder(){
-  const host = $("#kBuild");
-  if (!host) return;
-  const s = kpiState(), b = s.builder;
-  host.innerHTML = kpiBuilderHTML();
-
-  /* Scope feeds the examples as well, so it redraws the whole view. */
-  KPI_DD.region = v => { s.region = v; saveStore(); renderInsights(); };
-  KPI_DD.level  = v => { s.maturity = v; saveStore(); renderInsights(); };
-  KPI_DD.bAdd   = v => { if (!b.kpis.includes(v)) b.kpis.push(v); saveStore(); renderBuilder(); };
-  KPI_DD.bGroup = v => { b.group = v; saveStore(); renderBuilder(); };
-  KPI_DD.bForm  = v => { b.form = v; saveStore(); renderBuilder(); };
-  kpiWireDD(host);
-
-  host.querySelectorAll(".kpi-chip-x").forEach(x => x.addEventListener("click", () => {
-    b.kpis = b.kpis.filter(k => k !== x.dataset.kpi); saveStore(); renderBuilder();
-  }));
-  const clear = $("#kClear");
-  if (clear) clear.addEventListener("click", () => { b.kpis = []; saveStore(); renderBuilder(); });
-  const all = $("#kAll");
-  if (all) all.addEventListener("click", () => { b.all = !b.all; saveStore(); renderBuilder(); });
-  $("#kXlsx").addEventListener("click", kpiExportXlsx);
-  $("#kReset").addEventListener("click", () => { delete store.kpi; saveStore(); renderInsights(); });
-  kpiWireTips(host);
-}
-
-/* ---------- example charts ---------- */
-
-/* Four worked examples at a time, each a different form and drawn from the live
-   data. A name in a list does not show you the shape of the answer; a chart
-   does. The arrows walk the shortlist rather than shuffling it, so a consultant
-   can go back to the one they just saw. */
-function kpiExamples(){
-  const s = kpiState();
-  const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
-  if (!usable.length) return "";
-  const page = Math.floor(s.exStart / 4), pages = Math.ceil(usable.length / 4);
-
-  const tiles = usable.slice(s.exStart, s.exStart + 4).map((ex, i) => {
-    const d = kpiChart(ex, "mini");
-    return `<div class="kpi-ex">
-      <div class="kpi-ex-h">${kpiEsc(ex.kpis.join(" · "))}</div>
-      <div class="kpi-ex-s">${t("kpi.form." + kpiResolveForm(ex.kpis, ex.group, ex.form))}${
-        ex.group ? " · " + t(ex.group === "region" ? "kpi.byRegion" : "kpi.byMaturity") : ""}</div>
-      ${d.legend}
-      <div class="kpi-wrap">${d.chart}</div>
-      <button type="button" class="btn lnk kpi-ex-use" data-ex="${s.exStart + i}">${t("kpi.exUse")}</button>
-    </div>`;
-  }).join("");
-
-  return `<div class="card" id="kEx"><div class="cap"><h2>${t("kpi.exTitle")}</h2>
-      <div class="kpi-ex-nav">
-        <button class="btn icon" id="kExPrev" type="button" aria-label="${t("kpi.exPrev")}" title="${t("kpi.exPrev")}">‹</button>
-        <span class="kpi-ex-pg">${page + 1} / ${pages}</span>
-        <button class="btn icon" id="kExNext" type="button" aria-label="${t("kpi.exNext")}" title="${t("kpi.exNext")}">›</button>
-      </div></div>
-    <div class="bd"><p class="q-note" style="margin-top:0">${t("kpi.exHelp")}</p>
-    <div class="kpi-exs">${tiles}</div></div></div>`;
-}
-
-/* ---------- the view ---------- */
-
+/* Hover tooltips on the marks. Called by whoever drops a chart in the page,
+   because the markup is a string until then and has no listeners. */
 function kpiWireTips(root){
   root.querySelectorAll("[data-tip]").forEach(n => {
     n.addEventListener("mousemove", e => showTip(n.dataset.tip, e.clientX, e.clientY));
@@ -14608,56 +14405,20 @@ function kpiWireTips(root){
   });
 }
 
-function renderInsights(){
-  const el = $("#v-insights");
-  const s = kpiState();
-  el.innerHTML = `
-  <h1 class="pg">${t("ins.title")}</h1>
-  <p class="pg-sub">${t("kpi.sub")}</p>
-
-  <div class="card kpi-builder" id="kBuild"></div>
-
-  ${kpiExamples()}`;
-
-  renderBuilder();
-
-  const usable = KPI_EXAMPLES.filter(e => e.kpis.every(kpiMeta));
-  const step = n => {
-    const pages = Math.ceil(usable.length / 4);
-    s.exStart = ((Math.floor(s.exStart / 4) + n + pages) % pages) * 4;
-    saveStore(); renderInsights();
-    const ex = $("#kEx"); if (ex) ex.scrollIntoView({ block: "nearest" });
-  };
-  const prev = $("#kExPrev"), next = $("#kExNext");
-  if (prev) prev.addEventListener("click", () => step(-1));
-  if (next) next.addEventListener("click", () => step(1));
-  el.querySelectorAll(".kpi-ex-use").forEach(b => b.addEventListener("click", () => {
-    const ex = usable[+b.dataset.ex];
-    s.builder = { kpis: ex.kpis.slice(), group: ex.group, form: ex.form };
-    saveStore(); renderInsights();
-    const host = $("#kBuild"); if (host) host.scrollIntoView({ behavior: "smooth", block: "start" });
-  }));
-  kpiWireTips(el);
-}
-
 /* ---------- export ---------- */
 
 /* The workbook a consultant hands over: the rows behind the chart, then one
    sheet per indicator carrying its table AND a real Excel chart bound to those
-   cells - and, when several indicators are crossed, the crossed table itself. */
-function kpiExportXlsx(){
-  const s = kpiState();
-  const b = s.builder;
-  const names = b.kpis.filter(kpiMeta);
+   cells - and, when several indicators are crossed, the crossed table itself.
+   `sel` is the same object the assistant passed to kpiChart(). */
+function kpiExportXlsx(sel){
+  const names = (sel.kpis || []).filter(kpiMeta);
   if (!names.length) return;
   const taken = new Set();
 
   const data = [["KPI", "Tab", "Country", "Region", "Maturity", "Value"]];
-  const wanted = new Set(names);
-  KPI_ROWS.filter(r => wanted.has(r.kpi))
-    .filter(r => !s.region || r.region === s.region)
-    .filter(r => !s.maturity || String(r.maturity) === String(s.maturity))
-    .forEach(r => data.push([r.kpi, r.tab, r.country, r.region, r.maturity, r.value]));
+  names.forEach(n => kpiRowsFor(n, sel.scope)
+    .forEach(r => data.push([r.kpi, r.tab, r.country, r.region, r.maturity, r.value])));
 
   const sheets = [{ name: xlSheetName(t("kpi.sheetData"), taken), rows: data,
                     widths: [46, 24, 18, 10, 10, 34], chart: null }];
@@ -14665,8 +14426,8 @@ function kpiExportXlsx(){
   if (names.length > 1) {
     /* The crossed table, exactly as the matrix shows it, so the comparison
        survives the trip into Excel. */
-    const cross = kpiCross(names, b.group);
-    const head = [b.group ? t("kpi.group") : t("kpi.country")].concat(cross.cols.map(c => c.name));
+    const cross = kpiCross(names, sel.group, sel.scope);
+    const head = [sel.group ? t("kpi.group") : t("kpi.country")].concat(cross.cols.map(c => c.name));
     const rows = cross.rowKeys.map(rk => [rk].concat(cross.cols.map(c => {
       const v = c.byRow[rk];
       return v === undefined || v === null ? "" : (c.numeric ? v : v.key);
@@ -14676,12 +14437,13 @@ function kpiExportXlsx(){
   }
 
   names.forEach(kpiName => {
-    const shape = kpiShape(kpiName, b.group);
+    const shape = kpiShape(kpiName, sel.group, sel.scope);
     if (!shape || !shape.categories.length) return;
     const name = xlSheetName(kpiName, taken);
     /* A donut on screen becomes a pie in Excel; everything else is a bar. */
     const pie = !shape.numeric && names.length === 1
-                && kpiResolveForm(names, b.group, b.form) === "donut" && shape.groups.length === 1;
+                && kpiResolveForm(names, sel.group, sel.form, sel.scope) === "donut"
+                && shape.groups.length === 1;
     const pal = kpiPalette();
     sheets.push({
       name,
@@ -14946,6 +14708,791 @@ ${overrides.join("\n")}</Types>`);
     crc: crc32(f.bytes), rawSize: f.bytes.length, data: f.bytes
   })), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 }
+/* ================= What the assistant is allowed to know =================
+ *
+ * The model never sees the corpus in its prompt. It calls these functions and
+ * reads what comes back - which is the whole safety story: an answer can only
+ * repeat something a tool returned, and every returned item carries where it
+ * came from, so a claim about Croatian audit frequency can be traced to the
+ * Croatian record rather than to the model's memory of the directive.
+ *
+ * The corpus is small enough that none of this needs embeddings or a vector
+ * store: 29 country records (~27k tokens all told), 957 KPI rows, 118 watch
+ * items. A question naming one country pulls about a thousand tokens.
+ *
+ * Every function returns a plain object. app_chat.js serialises it to JSON and
+ * hands it back to the model as a tool result.
+ */
+"use strict";
+
+/* Returned lists are capped: a tool result that fills the context window
+   crowds out the conversation and costs more than it explains. */
+const CORPUS_MAX_HITS = 24;
+
+const SECTION_NAMES = {
+  fw: "Cybersecurity framework", reg: "Registration", inc: "Incident reporting",
+  aud: "Audit and controls", scope: "Scope", other: "Other", reco: "Recommendations"
+};
+
+const CORPUS_LEVELS = {
+  1: "Transposition not finalised, no cyber framework available",
+  2: "Transposition under way, framework still partial",
+  3: "Law adopted, cyber framework being finalised",
+  4: "Law approved and cyber framework available in its latest version"
+};
+
+/* Country names, ISO codes and the spellings a consultant actually types.
+   "Czech Republic" and "Tchéquie" have to reach the same record. */
+const CORPUS_ALIASES = {
+  FR: ["france"], DE: ["germany", "allemagne", "deutschland"], IT: ["italy", "italie", "italia"],
+  ES: ["spain", "espagne", "españa"], BE: ["belgium", "belgique"], NL: ["netherlands", "pays-bas", "holland"],
+  PT: ["portugal"], PL: ["poland", "pologne"], CZ: ["czechia", "czech republic", "tchequie", "tchéquie"],
+  AT: ["austria", "autriche"], HR: ["croatia", "croatie", "hrvatska"], GR: ["greece", "grece", "grèce"],
+  HU: ["hungary", "hongrie"], IE: ["ireland", "irlande"], SE: ["sweden", "suede", "suède"],
+  DK: ["denmark", "danemark"], FI: ["finland", "finlande"], NO: ["norway", "norvege", "norvège"],
+  EE: ["estonia", "estonie"], LV: ["latvia", "lettonie"], LT: ["lithuania", "lituanie"],
+  LU: ["luxembourg"], MT: ["malta", "malte"], CY: ["cyprus", "chypre"], BG: ["bulgaria", "bulgarie"],
+  RO: ["romania", "roumanie"], SK: ["slovakia", "slovaquie"], SI: ["slovenia", "slovenie", "slovénie"],
+  GB: ["united kingdom", "uk", "royaume-uni", "great britain"]
+};
+
+function corpusResolveIso(term){
+  const q = String(term || "").trim().toLowerCase();
+  if (!q) return null;
+  if (byIso[q.toUpperCase()]) return q.toUpperCase();
+  for (const iso in CORPUS_ALIASES) {
+    if (CORPUS_ALIASES[iso].some(a => a === q)) return iso;
+  }
+  const c = COUNTRIES.find(x => x.name.toLowerCase() === q);
+  if (c) return c.iso;
+  /* Last resort, a prefix match: "Neth" should still find the Netherlands. */
+  const p = COUNTRIES.find(x => x.name.toLowerCase().startsWith(q))
+    || Object.keys(CORPUS_ALIASES).find(iso => CORPUS_ALIASES[iso].some(a => a.startsWith(q)));
+  return p ? (p.iso || p) : null;
+}
+
+function corpusIsos(list){
+  if (!list || !list.length) return COUNTRIES.map(c => c.iso);
+  return [...new Set(list.map(corpusResolveIso).filter(Boolean))];
+}
+
+/* ---------- the tools ---------- */
+
+/* One line per country: enough to answer "who is late" or "which countries use
+   an accredited body" without pulling 29 full records. */
+function corpusListCountries(){
+  return {
+    note: "One line per country. Call get_country for the detail behind any of these.",
+    countries: COUNTRIES.map(c => ({
+      iso: c.iso, country: c.name, region: c.region, inEU: c.eu,
+      maturity: c.maturity, maturityMeans: CORPUS_LEVELS[c.maturity],
+      transposed: c.transposed, lawInForce: c.lawInForce || null,
+      monthsLate: c.delayMonths ?? null,
+      frameworkStatus: c.fw, auditBody: c.auditBody || null,
+      lastUpdate: c.lastUpdate
+    }))
+  };
+}
+
+/* The full record. This is where the real answers live - the sections carry the
+   sentences a consultant needs to quote. */
+function corpusGetCountry(args){
+  const isos = corpusIsos(args && args.countries);
+  const want = (args && args.sections && args.sections.length) ? args.sections : null;
+  const out = isos.slice(0, 8).map(iso => {
+    const c = byIso[iso];
+    if (!c) return { iso, error: "unknown country" };
+    const sections = {};
+    Object.keys(c.sections || {}).forEach(k => {
+      if (want && !want.includes(k)) return;
+      sections[SECTION_NAMES[k] || k] = c.sections[k];
+    });
+    return {
+      iso: c.iso, country: c.name, region: c.region,
+      source: "RegWatch country record - " + c.name + " (last update " + c.lastUpdate + ")",
+      maturity: c.maturity, maturityMeans: CORPUS_LEVELS[c.maturity],
+      summary: c.summary,
+      transposed: c.transposed, lawInForce: c.lawInForce || null, monthsLate: c.delayMonths ?? null,
+      nationalLaw: c.law || null,
+      frameworkStatus: c.fw, frameworkName: c.fwName || null,
+      requirementsEssential: c.reqEE ?? null, requirementsImportant: c.reqIE ?? null,
+      complianceDeadlineEssentialMonths: c.complianceEE ?? null,
+      complianceDeadlineImportantMonths: c.complianceIE ?? null,
+      auditBody: c.auditBody || null,
+      auditFrequencyEssentialMonths: c.auditFreqEE ?? null,
+      auditFrequencyImportantMonths: c.auditFreqIE ?? null,
+      selfAssessmentFrequencyMonths: c.selfAssessFreq ?? null,
+      registrationTool: c.regTool || null, incidentMethod: c.incidentMethod || null,
+      authorities: c.authorities || [],
+      sections,
+      timeline: c.timeline || [],
+      nextSteps: c.next || null,
+      officialSources: c.sources || []
+    };
+  });
+  return { countries: out,
+           truncated: isos.length > 8 ? isos.length - 8 : 0,
+           note: "Quote these sections rather than general knowledge of the directive." };
+}
+
+/* The comparative workbook's indicator table. With no `indicator`, it lists
+   what exists - the model needs the exact wording before it can ask for one. */
+function corpusQueryKpi(args){
+  const a = args || {};
+  if (!a.indicator) {
+    return { note: "Pass one of these exact `indicator` strings to get its values.",
+             indicators: KPI_CATALOGUE.map(k => ({
+               indicator: k.kpi, workbookTab: k.tab, type: k.type,
+               countriesAnswered: k.known + "/" + k.total })) };
+  }
+  const meta = KPI_CATALOGUE.find(k => k.kpi.toLowerCase() === String(a.indicator).toLowerCase())
+    || KPI_CATALOGUE.find(k => k.kpi.toLowerCase().includes(String(a.indicator).toLowerCase()));
+  if (!meta) {
+    return { error: "no such indicator",
+             didYouMean: KPI_CATALOGUE.map(k => k.kpi).slice(0, 33) };
+  }
+  const isos = a.countries && a.countries.length ? new Set(corpusIsos(a.countries)) : null;
+  const rows = KPI_ROWS.filter(r => r.kpi === meta.kpi)
+    .filter(r => !isos || isos.has(kpiIso(r.country)))
+    .map(r => ({ country: r.country, region: r.region, maturity: r.maturity,
+                 value: r.value || null }));
+  return { indicator: meta.kpi, workbookTab: meta.tab, type: meta.type,
+           source: 'Comparative workbook, sheet "KPIs - WID"',
+           values: rows };
+}
+
+/* Keyword search across the country sections and the watch items. Plain word
+   matching, not semantics: with a corpus this size the failure mode that
+   matters is inventing an answer, not missing a synonym, and a hit that quotes
+   its own sentence can be checked by the reader. */
+function corpusSearch(args){
+  const a = args || {};
+  const terms = String(a.query || "").toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u).filter(w => w.length > 2);
+  if (!terms.length) return { error: "query too short" };
+  const isos = a.countries && a.countries.length ? new Set(corpusIsos(a.countries)) : null;
+  const score = text => {
+    const low = String(text).toLowerCase();
+    return terms.reduce((n, w) => n + (low.includes(w) ? 1 : 0), 0);
+  };
+
+  const hits = [];
+  COUNTRIES.forEach(c => {
+    if (isos && !isos.has(c.iso)) return;
+    Object.keys(c.sections || {}).forEach(k => {
+      c.sections[k].forEach(line => {
+        const n = score(line);
+        if (n) hits.push({ score: n, country: c.name, iso: c.iso,
+                           section: SECTION_NAMES[k] || k, text: line,
+                           source: "RegWatch country record - " + c.name });
+      });
+    });
+    [["summary", c.summary], ["national law", c.law], ["framework", c.fwName],
+     ["registration tool", c.regTool], ["incident method", c.incidentMethod]].forEach(([f, v]) => {
+      if (!v) return;
+      const n = score(v);
+      if (n) hits.push({ score: n, country: c.name, iso: c.iso, section: f, text: v,
+                         source: "RegWatch country record - " + c.name });
+    });
+    (c.authorities || []).forEach(au => {
+      const n = score(au.name + " " + au.role);
+      if (n) hits.push({ score: n, country: c.name, iso: c.iso, section: "authority",
+                         text: au.name + " - " + au.role,
+                         source: "RegWatch country record - " + c.name });
+    });
+  });
+
+  /* Watch items are dated news, not settled fact - they are labelled as such so
+     the model does not present a press item as the state of the law. */
+  if (a.includeWatch !== false && typeof WATCH_SOURCE !== "undefined") {
+    WATCH_SOURCE.forEach(w => {
+      if (isos && !isos.has(w.iso)) return;
+      const text = [w.title, w.titleEn, w.summary, w.summaryEn].filter(Boolean).join(" ");
+      const n = score(text);
+      if (n) hits.push({ score: n, country: (byIso[w.iso] || {}).name || w.iso, iso: w.iso,
+                         section: "watch item (news, not settled law)",
+                         date: w.detected, text: (w.titleEn || w.title),
+                         source: w.source || "watch agent" });
+    });
+  }
+
+  hits.sort((a2, b2) => b2.score - a2.score);
+  return { query: a.query, matches: hits.length,
+           hits: hits.slice(0, Math.min(a.limit || CORPUS_MAX_HITS, CORPUS_MAX_HITS))
+                     .map(h => { const { score: _s, ...rest } = h; return rest; }) };
+}
+
+/* Which sectors and thresholds each country put in scope. Split out from
+   get_country because it is the question behind "is my site concerned", and
+   because it deserves its own warning: the records carry the national scoping
+   rules, never a list of companies. */
+function corpusScopeRules(args){
+  const isos = corpusIsos(args && args.countries).slice(0, 8);
+  return {
+    warning: "These are the national scoping rules. RegWatch holds no company or "
+           + "site inventory, so an in-scope conclusion about a specific site is a "
+           + "hypothesis for the consultant to confirm, never a determination.",
+    countries: isos.map(iso => {
+      const c = byIso[iso];
+      if (!c) return { iso, error: "unknown country" };
+      return { iso: c.iso, country: c.name,
+               source: "RegWatch country record - " + c.name,
+               transposed: c.transposed, lawInForce: c.lawInForce || null,
+               nationalLaw: c.law || null,
+               scopeRules: (c.sections || {}).scope || [],
+               registration: (c.sections || {}).reg || [],
+               registrationTool: c.regTool || null,
+               authorities: c.authorities || [] };
+    })
+  };
+}
+
+/* The document folders, so an answer can point at the source text. */
+function corpusOfficialDocs(args){
+  const isos = corpusIsos(args && args.countries).slice(0, 8);
+  return { countries: isos.map(iso => {
+    const d = typeof COUNTRY_DOCS !== "undefined" ? COUNTRY_DOCS[iso] : null;
+    const c = byIso[iso];
+    if (!d) return { iso, country: c ? c.name : iso, folders: [], note: "no folder recorded" };
+    return { iso, country: d.country, folderUrl: d.folderUrl || null, folders: d.folders || [] };
+  }) };
+}
+/* ================= The assistant =================
+ *
+ * A consultant asks a question in their own words; the model answers using the
+ * tools in app_corpus.js and nothing else.
+ *
+ * Three decisions shape this file.
+ *
+ * 1. The key belongs to the person, not to the page. RegWatch is a static file
+ *    served publicly, so a shared key baked into it would be a published key.
+ *    Each consultant pastes their own; it lives in this browser's localStorage
+ *    and is never sent anywhere but their own model endpoint. When the team
+ *    moves to a proxy, only the endpoint field changes - `compat` mode already
+ *    speaks to one (tools/chat_proxy.py).
+ *
+ * 2. The model reads the corpus through tools, never through the prompt. So an
+ *    answer can only repeat what a tool returned, every item carries its
+ *    source, and the transcript shows which tools ran. That is what makes the
+ *    answer checkable, which is the whole point for regulatory content.
+ *
+ * 3. The conversation stays in memory. A consultant will paste client detail
+ *    into it ("our sites in Italy and Spain"); that has no business being
+ *    written to disk by a prototype, so a reload starts clean.
+ *
+ * Failures are reported as what they are. Called straight from a browser, the
+ * three ways this breaks - CORS, a bad key, a wrong deployment name - look
+ * identical from the outside and need completely different fixes, which is the
+ * same reason agent-veille/check_azure.py exists.
+ */
+"use strict";
+
+const CHAT_MAX_ROUNDS = 6;    /* tool round-trips before we stop and answer */
+const CHAT_API_VERSION = "2024-10-21";
+
+/* ---------- configuration ---------- */
+
+function chatCfg(){
+  const c = store.ai || (store.ai = {});
+  c.mode = c.mode || "azure";
+  c.endpoint = c.endpoint || "";
+  c.deployment = c.deployment || "";
+  c.model = c.model || "gpt-4o";
+  c.key = c.key || "";
+  return c;
+}
+const chatReady = () => {
+  const c = chatCfg();
+  return !!c.key && !!c.endpoint && (c.mode !== "azure" || !!c.deployment);
+};
+
+/* ---------- the conversation, in memory only ---------- */
+
+let chatLog = [];        /* {role, text, charts?, tools?, error?} shown on screen */
+let chatWire = [];       /* the message array actually sent to the model */
+let chatBusy = false;
+
+function chatSystemPrompt(){
+  const today = new Date().toISOString().slice(0, 10);
+  return [
+    "You are the RegWatch assistant. You help Wavestone consultants working on the",
+    "transposition of the NIS 2 directive across 29 European countries.",
+    "Today is " + today + ".",
+    "",
+    "GROUNDING - this is the rule that matters most:",
+    "- Answer only from what the tools return. You have no reliable memory of any",
+    "  national transposition; the records are more recent and more specific than",
+    "  anything you recall, and they are what the client is paying for.",
+    "- Call a tool before answering any factual question. If you are unsure of the",
+    "  exact indicator or country wording, call query_kpi or list_countries with no",
+    "  arguments first to see what exists.",
+    "- Cite what you used: name the country record, the workbook indicator or the",
+    "  watch item behind each claim.",
+    "- If the tools do not cover something, say so plainly and say what RegWatch",
+    "  would need in order to answer. Never fill the gap from general knowledge of",
+    "  the directive, and never guess a number.",
+    "- A watch item is dated news, not settled law. Label it as such.",
+    "",
+    "SCOPE QUESTIONS about a client's own sites or entities:",
+    "- RegWatch holds no company or site inventory. You can set out the national",
+    "  scoping rules and walk through them, but any conclusion about a specific",
+    "  site is a hypothesis for the consultant to confirm - say that, once, plainly.",
+    "- Ask for the sites' country, sector and size when they have not been given;",
+    "  that is what the rules turn on.",
+    "",
+    "STYLE:",
+    "- Reply in the language of the question.",
+    "- Lead with the answer, then the detail. Short paragraphs, no preamble.",
+    "- Give figures with their unit and their country.",
+    "- When a comparison across countries would read better as a chart, call",
+    "  draw_chart. It renders under your reply; refer to it, do not describe it.",
+    "- Plain markdown only: paragraphs, - bullets, **bold**. No headings, no tables."
+  ].join("\n");
+}
+
+/* ---------- what the model may call ---------- */
+
+const CHAT_TOOLS = [
+  { name: "list_countries",
+    description: "One line per country: maturity level, whether NIS 2 is transposed, "
+      + "date the law entered into force, months late, framework status, audit body. "
+      + "Use for overviews, rankings and 'which countries...' questions.",
+    parameters: { type: "object", properties: {} },
+    run: () => corpusListCountries() },
+
+  { name: "get_country",
+    description: "The full RegWatch record for up to 8 countries: national law, framework, "
+      + "requirement counts, audit and self-assessment frequencies, registration, incident "
+      + "reporting, authorities, timeline, and the written sections a consultant can quote. "
+      + "This is the main tool - prefer it whenever a question names a country.",
+    parameters: { type: "object", properties: {
+      countries: { type: "array", items: { type: "string" },
+        description: "Country names or ISO codes, e.g. ['Croatia'] or ['FR','IT','ES']" },
+      sections: { type: "array", items: { type: "string", enum: ["fw", "reg", "inc", "aud", "scope", "other", "reco"] },
+        description: "Optional: restrict to some sections. fw=framework, reg=registration, "
+          + "inc=incident reporting, aud=audit, scope=scope, reco=recommendations" }
+    }, required: ["countries"] },
+    run: a => corpusGetCountry(a) },
+
+  { name: "query_kpi",
+    description: "The comparative workbook's indicator table (33 indicators x 29 countries). "
+      + "Call with no arguments to list the exact indicator names, then call again with one.",
+    parameters: { type: "object", properties: {
+      indicator: { type: "string", description: "Exact indicator name from the catalogue" },
+      countries: { type: "array", items: { type: "string" }, description: "Optional country filter" }
+    } },
+    run: a => corpusQueryKpi(a) },
+
+  { name: "search_corpus",
+    description: "Keyword search across every country's written sections and the watch items. "
+      + "Use when the question is about a topic rather than a country - 'penalties', "
+      + "'presumption of conformity', 'OT systems'.",
+    parameters: { type: "object", properties: {
+      query: { type: "string" },
+      countries: { type: "array", items: { type: "string" }, description: "Optional country filter" },
+      includeWatch: { type: "boolean", description: "Include watch items (default true)" }
+    }, required: ["query"] },
+    run: a => corpusSearch(a) },
+
+  { name: "scope_rules",
+    description: "The national scoping rules for up to 8 countries: which entities are caught, "
+      + "designation and registration. Use for 'is my site concerned' questions.",
+    parameters: { type: "object", properties: {
+      countries: { type: "array", items: { type: "string" } }
+    }, required: ["countries"] },
+    run: a => corpusScopeRules(a) },
+
+  { name: "official_documents",
+    description: "Links to each country's official-document folders (law, framework, other).",
+    parameters: { type: "object", properties: {
+      countries: { type: "array", items: { type: "string" } }
+    }, required: ["countries"] },
+    run: a => corpusOfficialDocs(a) },
+
+  { name: "draw_chart",
+    description: "Render a chart from the workbook indicators and show it to the user under "
+      + "your reply. One indicator draws it on its own; several are crossed into one table. "
+      + "Call query_kpi with no arguments first if unsure of the exact indicator names.",
+    parameters: { type: "object", properties: {
+      indicators: { type: "array", items: { type: "string" },
+        description: "Exact indicator names, e.g. ['Exceeded time from EU deadline (month)']" },
+      countries: { type: "array", items: { type: "string" }, description: "Optional: limit to these countries" },
+      groupBy: { type: "string", enum: ["", "region", "maturity"], description: "Optional grouping" },
+      form: { type: "string", enum: ["bars", "stack", "donut", "grid", "matrix", "grouped"],
+        description: "Optional. bars=ranked bars, stack=share bar, donut, grid=one square per "
+          + "country, matrix=crossed table, grouped=grouped bars. Leave empty to let RegWatch pick." },
+      title: { type: "string", description: "Short title for the chart" }
+    }, required: ["indicators"] },
+    run: a => chatDrawChart(a) }
+];
+
+const chatToolByName = name => CHAT_TOOLS.find(t => t.name === name);
+
+/* Charts produced during the turn currently being answered. */
+let chatPendingCharts = [];
+
+function chatDrawChart(a){
+  const names = (a.indicators || []).map(n =>
+    (KPI_CATALOGUE.find(k => k.kpi.toLowerCase() === String(n).toLowerCase())
+      || KPI_CATALOGUE.find(k => k.kpi.toLowerCase().includes(String(n).toLowerCase())) || {}).kpi
+  ).filter(Boolean);
+  if (!names.length) {
+    return { error: "no matching indicator", knownIndicators: KPI_CATALOGUE.map(k => k.kpi) };
+  }
+  const sel = {
+    kpis: names,
+    group: a.groupBy || "",
+    form: a.form || "",
+    all: true,
+    scope: { isos: a.countries && a.countries.length ? corpusIsos(a.countries) : null }
+  };
+  chatPendingCharts.push({ sel, title: a.title || names.join(" · ") });
+  return { rendered: true, indicators: names,
+           form: kpiResolveForm(names, sel.group, sel.form, sel.scope),
+           note: "The chart is displayed to the user under your reply. Refer to it; do not "
+               + "repeat its numbers row by row." };
+}
+
+/* ---------- talking to the model ---------- */
+
+function chatEndpointUrl(){
+  const c = chatCfg();
+  const base = c.endpoint.replace(/\/+$/, "");
+  return c.mode === "azure"
+    ? `${base}/openai/deployments/${encodeURIComponent(c.deployment)}/chat/completions?api-version=${CHAT_API_VERSION}`
+    : `${base}/chat/completions`;
+}
+
+async function chatCall(messages){
+  const c = chatCfg();
+  const headers = { "Content-Type": "application/json" };
+  if (c.mode === "azure") headers["api-key"] = c.key;
+  else headers["Authorization"] = "Bearer " + c.key;
+
+  const body = {
+    messages,
+    temperature: 0.2,
+    tools: CHAT_TOOLS.map(t => ({ type: "function",
+      function: { name: t.name, description: t.description, parameters: t.parameters } })),
+    tool_choice: "auto"
+  };
+  if (c.mode !== "azure") body.model = c.model;
+
+  let res;
+  try {
+    res = await fetch(chatEndpointUrl(), { method: "POST", headers, body: JSON.stringify(body) });
+  } catch (e) {
+    /* fetch rejects without a status for exactly one reason worth naming: the
+       browser blocked the request before it left. */
+    throw new Error("NETWORK:" + (e && e.message ? e.message : "failed"));
+  }
+  if (!res.ok) {
+    let detail = "";
+    try { const j = await res.json(); detail = (j.error && (j.error.message || j.error.code)) || JSON.stringify(j).slice(0, 300); }
+    catch (e) { detail = await res.text().catch(() => ""); }
+    throw new Error("HTTP:" + res.status + ":" + detail);
+  }
+  const data = await res.json();
+  const choice = (data.choices || [])[0];
+  if (!choice) throw new Error("HTTP:200:the endpoint returned no choices");
+  return choice.message;
+}
+
+/* Explain the failure rather than showing its stack. The three failure modes
+   look alike from the browser and need different fixes. */
+function chatExplainError(err){
+  const msg = String(err && err.message || err);
+  const c = chatCfg();
+  if (msg.startsWith("NETWORK:")) {
+    return t("chat.errNetwork", { endpoint: c.endpoint });
+  }
+  const m = /^HTTP:(\d+):([\s\S]*)$/.exec(msg);
+  if (m) {
+    const code = +m[1], detail = m[2].trim();
+    if (code === 401 || code === 403) return t("chat.err401") + (detail ? " (" + detail + ")" : "");
+    if (code === 404) return t("chat.err404", { deployment: c.deployment }) + (detail ? " (" + detail + ")" : "");
+    if (code === 429) return t("chat.err429") + (detail ? " (" + detail + ")" : "");
+    return t("chat.errHttp", { code: code }) + (detail ? " " + detail : "");
+  }
+  return msg;
+}
+
+/* ---------- the turn ---------- */
+
+async function chatAsk(question){
+  if (chatBusy || !question.trim()) return;
+  if (!chatReady()) { chatOpenSettings(); return; }
+  chatBusy = true;
+  chatPendingCharts = [];
+
+  chatLog.push({ role: "user", text: question });
+  chatLog.push({ role: "pending", text: t("chat.thinking"), tools: [] });
+  chatRender();
+
+  if (!chatWire.length) chatWire.push({ role: "system", content: chatSystemPrompt() });
+  chatWire.push({ role: "user", content: question });
+  const pending = chatLog[chatLog.length - 1];
+
+  try {
+    for (let round = 0; round < CHAT_MAX_ROUNDS; round++) {
+      const msg = await chatCall(chatWire);
+      const calls = msg.tool_calls || [];
+      chatWire.push({ role: "assistant", content: msg.content || null,
+                      tool_calls: calls.length ? calls : undefined });
+
+      if (!calls.length) {
+        chatLog.pop();
+        chatLog.push({ role: "assistant", text: msg.content || t("chat.empty"),
+                       charts: chatPendingCharts.slice(), tools: pending.tools });
+        break;
+      }
+
+      for (const call of calls) {
+        const tool = chatToolByName(call.function.name);
+        let result;
+        if (!tool) result = { error: "unknown tool " + call.function.name };
+        else {
+          let args = {};
+          try { args = JSON.parse(call.function.arguments || "{}"); }
+          catch (e) { args = {}; }
+          pending.tools.push({ name: tool.name, args });
+          chatRender();
+          try { result = tool.run(args); }
+          catch (e) { result = { error: String(e && e.message || e) }; }
+        }
+        chatWire.push({ role: "tool", tool_call_id: call.id,
+                        content: JSON.stringify(result).slice(0, 60000) });
+      }
+
+      if (round === CHAT_MAX_ROUNDS - 1) {
+        chatLog.pop();
+        chatLog.push({ role: "assistant", text: t("chat.tooManyRounds"),
+                       charts: chatPendingCharts.slice(), tools: pending.tools });
+      }
+    }
+  } catch (err) {
+    chatLog.pop();
+    chatLog.push({ role: "error", text: chatExplainError(err) });
+    /* A failed round leaves a dangling assistant turn; drop back to the last
+       clean user message so the next attempt is not sent a broken transcript. */
+    while (chatWire.length && chatWire[chatWire.length - 1].role !== "user") chatWire.pop();
+    chatWire.pop();
+  }
+  chatBusy = false;
+  chatRender();
+}
+
+/* ---------- rendering ---------- */
+
+/* A deliberately small markdown subset - paragraphs, bullets, bold, code - both
+   because the prompt asks for no more, and because anything the model emits is
+   escaped first and only these shapes are then turned back into markup. */
+function chatMarkdown(text){
+  const esc = kpiEsc(text);
+  const lines = esc.split("\n");
+  let html = "", list = false;
+  const inline = s => s
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/(https?:\/\/[^\s<)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  lines.forEach(raw => {
+    const line = raw.trim();
+    if (/^[-*]\s+/.test(line)) {
+      if (!list) { html += "<ul>"; list = true; }
+      html += "<li>" + inline(line.replace(/^[-*]\s+/, "")) + "</li>";
+      return;
+    }
+    if (list) { html += "</ul>"; list = false; }
+    if (line) html += "<p>" + inline(line) + "</p>";
+  });
+  if (list) html += "</ul>";
+  return html || "<p></p>";
+}
+
+function chatChartHTML(entry, i){
+  const d = kpiChart(entry.sel, "wide");
+  return `<figure class="chat-chart" data-chart="${i}">
+    <figcaption>${kpiEsc(entry.title)}</figcaption>
+    ${d.note ? `<p class="q-note">${d.note}</p>` : ""}
+    ${d.legend}
+    <div class="kpi-wrap">${d.chart}</div>
+    <button type="button" class="btn lnk chat-xlsx" data-chart="${i}">${t("kpi.xlsx")}</button>
+  </figure>`;
+}
+
+function chatBubble(m, idx){
+  if (m.role === "user") return `<div class="chat-m user"><div class="chat-b">${chatMarkdown(m.text)}</div></div>`;
+  if (m.role === "error") return `<div class="chat-m bot"><div class="chat-b err">${chatMarkdown(m.text)}</div></div>`;
+  const steps = (m.tools || []).length
+    ? `<div class="chat-steps">${m.tools.map(s => `<span class="chat-step">${kpiEsc(s.name)}${
+        s.args && s.args.countries ? " · " + kpiEsc([].concat(s.args.countries).join(", ")) : ""}</span>`).join("")}</div>`
+    : "";
+  if (m.role === "pending") {
+    return `<div class="chat-m bot"><div class="chat-b"><span class="chat-dots"><i></i><i></i><i></i></span>
+      ${steps}</div></div>`;
+  }
+  const charts = (m.charts || []).map((c, i) => chatChartHTML(c, idx + "-" + i)).join("");
+  return `<div class="chat-m bot"><div class="chat-b">${steps}${chatMarkdown(m.text)}${charts}</div></div>`;
+}
+
+const CHAT_SUGGESTIONS = [
+  "chat.s1", "chat.s2", "chat.s3", "chat.s4"
+];
+
+function chatRender(){
+  const el = $("#v-insights");
+  const cfg = chatCfg();
+  const body = chatLog.length
+    ? chatLog.map(chatBubble).join("")
+    : `<div class="chat-empty">
+        <p class="chat-hello">${t("chat.hello")}</p>
+        <div class="chat-sugs">${CHAT_SUGGESTIONS.map(k =>
+          `<button type="button" class="chat-sug">${kpiEsc(t(k))}</button>`).join("")}</div>
+      </div>`;
+
+  el.innerHTML = `
+  <h1 class="pg">${t("chat.title")}</h1>
+  <p class="pg-sub">${t("chat.sub")}</p>
+
+  ${chatReady() ? "" : `<div class="card chat-setup"><div class="bd">
+    <p class="chat-setup-t">${t("chat.setupTitle")}</p>
+    <p class="q-note">${t("chat.setupHelp")}</p>
+    <button class="btn primary" id="chatSetup" type="button">${t("chat.settings")}</button>
+  </div></div>`}
+
+  <div class="card chat-card">
+    <div class="cap"><h2>${t("chat.assistant")}</h2>
+      <div class="kpi-cap-btns">
+        <button class="btn" id="chatClear" type="button" ${chatLog.length ? "" : "disabled"}>${t("chat.clear")}</button>
+        <button class="btn icon" id="chatGear" type="button" aria-label="${t("chat.settings")}" title="${t("chat.settings")}">⚙</button>
+      </div></div>
+    <div class="bd">
+      <div class="chat-log" id="chatLog">${body}</div>
+      <form class="chat-compose" id="chatForm">
+        <textarea id="chatIn" rows="2" placeholder="${kpiEsc(t("chat.placeholder"))}"
+          aria-label="${t("chat.placeholder")}" ${chatBusy ? "disabled" : ""}></textarea>
+        <button class="btn primary" type="submit" ${chatBusy ? "disabled" : ""}>${t("chat.send")}</button>
+      </form>
+      <p class="q-note chat-foot">${t("chat.foot", { model: cfg.mode === "azure" ? (cfg.deployment || "-") : (cfg.model || "-") })}</p>
+    </div>
+  </div>
+
+  <div class="chat-modal" id="chatModal" hidden>
+    <div class="chat-modal-b" role="dialog" aria-modal="true" aria-label="${t("chat.settings")}">
+      <h2>${t("chat.settings")}</h2>
+      <p class="q-note">${t("chat.keyNote")}</p>
+      <label class="chat-f"><span>${t("chat.mode")}</span>
+        <select id="cfMode">
+          <option value="azure" ${cfg.mode === "azure" ? "selected" : ""}>Azure OpenAI</option>
+          <option value="compat" ${cfg.mode === "compat" ? "selected" : ""}>${t("chat.modeCompat")}</option>
+        </select></label>
+      <label class="chat-f"><span>${t("chat.endpoint")}</span>
+        <input id="cfEndpoint" type="text" spellcheck="false" value="${kpiEsc(cfg.endpoint)}"
+          placeholder="${cfg.mode === "azure" ? "https://xxx.openai.azure.com" : "http://localhost:8787/v1"}"></label>
+      ${cfg.mode === "azure"
+        ? `<label class="chat-f"><span>${t("chat.deployment")}</span>
+             <input id="cfDeployment" type="text" spellcheck="false" value="${kpiEsc(cfg.deployment)}" placeholder="gpt-4o"></label>`
+        : `<label class="chat-f"><span>${t("chat.model")}</span>
+             <input id="cfModel" type="text" spellcheck="false" value="${kpiEsc(cfg.model)}" placeholder="gpt-4o"></label>`}
+      <label class="chat-f"><span>${t("chat.key")}</span>
+        <input id="cfKey" type="password" spellcheck="false" value="${kpiEsc(cfg.key)}" placeholder="..."></label>
+      <p class="q-note" id="cfStatus"></p>
+      <div class="chat-modal-btns">
+        <button class="btn" id="cfTest" type="button">${t("chat.test")}</button>
+        <button class="btn" id="cfForget" type="button">${t("chat.forget")}</button>
+        <button class="btn primary" id="cfSave" type="button">${t("chat.save")}</button>
+      </div>
+    </div>
+  </div>`;
+
+  chatWire2();
+}
+
+function chatWire2(){
+  const log = $("#chatLog");
+  if (log) log.scrollTop = log.scrollHeight;
+
+  $("#chatForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const input = $("#chatIn");
+    const q = input.value;
+    input.value = "";
+    chatAsk(q);
+  });
+  $("#chatIn").addEventListener("keydown", e => {
+    /* Enter sends, Shift+Enter breaks the line - what a chat box is expected to do. */
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("#chatForm").requestSubmit(); }
+  });
+  $("#chatClear").addEventListener("click", () => { chatLog = []; chatWire = []; chatRender(); });
+  $("#chatGear").addEventListener("click", chatOpenSettings);
+  const setup = $("#chatSetup");
+  if (setup) setup.addEventListener("click", chatOpenSettings);
+  document.querySelectorAll(".chat-sug").forEach(b =>
+    b.addEventListener("click", () => chatAsk(b.textContent)));
+  document.querySelectorAll(".chat-xlsx").forEach(b => b.addEventListener("click", () => {
+    const [mi, ci] = b.dataset.chart.split("-").map(Number);
+    const m = chatLog[mi];
+    if (m && m.charts && m.charts[ci]) kpiExportXlsx(m.charts[ci].sel);
+  }));
+  kpiWireTips($("#v-insights"));
+  chatWireSettings();
+  if (!chatBusy) { const i = $("#chatIn"); if (i && chatLog.length) i.focus(); }
+}
+
+/* ---------- settings ---------- */
+
+function chatOpenSettings(){
+  const m = $("#chatModal");
+  if (m) m.hidden = false;
+}
+
+function chatWireSettings(){
+  const modal = $("#chatModal");
+  const cfg = chatCfg();
+  modal.addEventListener("click", e => { if (e.target === modal) modal.hidden = true; });
+
+  $("#cfMode").addEventListener("change", e => { cfg.mode = e.target.value; saveStore(); chatRender(); chatOpenSettings(); });
+  const read = () => {
+    cfg.endpoint = $("#cfEndpoint").value.trim();
+    if ($("#cfDeployment")) cfg.deployment = $("#cfDeployment").value.trim();
+    if ($("#cfModel")) cfg.model = $("#cfModel").value.trim();
+    cfg.key = $("#cfKey").value.trim();
+  };
+  $("#cfSave").addEventListener("click", () => { read(); saveStore(); modal.hidden = true; chatRender(); });
+  $("#cfForget").addEventListener("click", () => {
+    delete store.ai; saveStore(); chatRender(); chatOpenSettings();
+  });
+  $("#cfTest").addEventListener("click", async () => {
+    read(); saveStore();
+    const status = $("#cfStatus");
+    status.textContent = t("chat.testing");
+    status.className = "q-note";
+    try {
+      /* One tiny completion, no tools: enough to separate "cannot reach" from
+         "reached and refused". */
+      const c = chatCfg();
+      const headers = { "Content-Type": "application/json" };
+      if (c.mode === "azure") headers["api-key"] = c.key;
+      else headers["Authorization"] = "Bearer " + c.key;
+      const body = { messages: [{ role: "user", content: "ping" }], max_tokens: 5 };
+      if (c.mode !== "azure") body.model = c.model;
+      const res = await fetch(chatEndpointUrl(), { method: "POST", headers, body: JSON.stringify(body) })
+        .catch(e => { throw new Error("NETWORK:" + e.message); });
+      if (!res.ok) {
+        let d = ""; try { const j = await res.json(); d = (j.error && (j.error.message || j.error.code)) || ""; } catch (e) {}
+        throw new Error("HTTP:" + res.status + ":" + d);
+      }
+      status.textContent = t("chat.testOk");
+      status.className = "q-note chat-ok";
+    } catch (err) {
+      status.textContent = chatExplainError(err);
+      status.className = "q-note chat-bad";
+    }
+  });
+}
+
+/* The router calls this for the assistant tab. */
+function renderInsights(){ chatRender(); }
 /* ================= Country slide generation, in the browser =================
  *
  * "Generate country slides" has to produce a real .pptx from a page that has no
