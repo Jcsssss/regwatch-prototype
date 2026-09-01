@@ -73,6 +73,12 @@ function chatSystemPrompt(){
     "  would need in order to answer. Never fill the gap from general knowledge of",
     "  the directive, and never guess a number.",
     "- A watch item is dated news, not settled law. Label it as such.",
+    "- Dates on watch items: `publishedOn` is when the source published the item and is",
+    "  the only date to report as its date; `detectedByAgentOn` is when the agent saw it,",
+    "  which is not the same thing and must never be presented as a publication date. If",
+    "  `publishedOn` is null the publication date could not be established - say so; do",
+    "  not substitute the detection date. Carry the provenance when it says a date was",
+    "  inferred rather than read.",
     "",
     "SCOPE QUESTIONS about a client's own sites or entities:",
     "- RegWatch holds no company or site inventory. You can set out the national",
@@ -134,6 +140,18 @@ const CHAT_TOOLS = [
       includeWatch: { type: "boolean", description: "Include watch items (default true)" }
     }, required: ["query"] },
     run: a => corpusSearch(a) },
+
+  { name: "watch_items",
+    description: "Recent watch items (regulatory news picked up by the watch agent) for a "
+      + "country or for all of them, newest first. Use for 'what is new in...' questions. "
+      + "Each item carries publishedOn (when the source published it, with its provenance) "
+      + "and detectedByAgentOn (when the agent saw it) - these are different dates.",
+    parameters: { type: "object", properties: {
+      countries: { type: "array", items: { type: "string" }, description: "Optional country filter" },
+      since: { type: "string", description: "Optional ISO date, e.g. 2026-06-01" },
+      limit: { type: "number", description: "Default 15, max 30" }
+    } },
+    run: a => corpusWatchItems(a) },
 
   { name: "scope_rules",
     description: "The national scoping rules for up to 8 countries: which entities are caught, "

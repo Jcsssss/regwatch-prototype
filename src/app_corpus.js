@@ -66,6 +66,52 @@ function corpusIsos(list){
   return [...new Set(list.map(corpusResolveIso).filter(Boolean))];
 }
 
+/* When was it published, and how do we know?
+ *
+ * A watch item carries two dates and they answer different questions:
+ * `detected` is when the agent saw the item, `agent.publishedOn` is when the
+ * source published it. Only the second one belongs in an answer about when
+ * something happened - reporting the first as a publication date is how "Mis à
+ * jour le 24/10/2024" became "Published 11 Jun 2026" in an earlier version of
+ * the tool.
+ *
+ * 68 of the 118 items have no establishable publication date, so this says so
+ * rather than falling back on the detection date. The provenance travels with
+ * the date because "read off the page" and "asserted by the model" are not the
+ * same claim.
+ */
+const CORPUS_DATE_ORIGIN = {
+  flux: "taken from the source's own RSS feed - reliable",
+  page: "read off the published page - reliable",
+  ia: "inferred by the watch agent - treat with caution",
+  inconnue: "not established"
+};
+
+function corpusItemDate(item){
+  const agent = item.agent || {};
+  const published = (agent.publishedOn || "").trim();
+  const out = { detectedByAgentOn: item.detected };
+  if (published) {
+    out.publishedOn = published;
+    out.publishedOnProvenance = CORPUS_DATE_ORIGIN[agent.dateOrigin] || agent.dateOrigin || "unknown";
+    /* Nothing can be published after it was found. Eight items are, because the
+       date was re-read from a page that had been updated since - so what was
+       captured is the page's "last modified", not the article's publication.
+       Saying so is better than passing a date we can prove wrong. */
+    if (published > item.detected) {
+      out.publishedOnProvenance = "UNRELIABLE - this date is later than the day the agent "
+        + "found the item, which is impossible. It was most likely read from a 'last "
+        + "updated' line on a page revised since. Do not state it as the publication date; "
+        + "say the publication date is uncertain.";
+    }
+  } else {
+    out.publishedOn = null;
+    out.publishedOnProvenance = "no publication date could be established for this item - "
+      + "do not substitute the detection date, say the date is unknown";
+  }
+  return out;
+}
+
 /* ---------- the tools ---------- */
 
 /* One line per country: enough to answer "who is late" or "which countries use
@@ -199,10 +245,12 @@ function corpusSearch(args){
       if (isos && !isos.has(w.iso)) return;
       const text = [w.title, w.titleEn, w.summary, w.summaryEn].filter(Boolean).join(" ");
       const n = score(text);
-      if (n) hits.push({ score: n, country: (byIso[w.iso] || {}).name || w.iso, iso: w.iso,
-                         section: "watch item (news, not settled law)",
-                         date: w.detected, text: (w.titleEn || w.title),
-                         source: w.source || "watch agent" });
+      if (n) hits.push(Object.assign({
+        score: n, country: (byIso[w.iso] || {}).name || w.iso, iso: w.iso,
+        section: "watch item (news, not settled law)",
+        text: (w.titleEn || w.title),
+        source: w.source || "watch agent"
+      }, corpusItemDate(w)));
     });
   }
 
@@ -210,6 +258,42 @@ function corpusSearch(args){
   return { query: a.query, matches: hits.length,
            hits: hits.slice(0, Math.min(a.limit || CORPUS_MAX_HITS, CORPUS_MAX_HITS))
                      .map(h => { const { score: _s, ...rest } = h; return rest; }) };
+}
+
+/* The watch items themselves. search_corpus finds them by keyword; this lists
+   them for a country, newest first, which is what "what is new in Poland"
+   actually asks. Sorted on the publication date when there is one - sorting 68
+   undated items by detection date would quietly rank them as if it were the
+   same thing. */
+function corpusWatchItems(args){
+  const a = args || {};
+  if (typeof WATCH_SOURCE === "undefined") return { items: [], note: "no watch data in this build" };
+  const isos = a.countries && a.countries.length ? new Set(corpusIsos(a.countries)) : null;
+  let items = WATCH_SOURCE.filter(w => !isos || isos.has(w.iso) || w.iso === "EU");
+  if (a.since) items = items.filter(w => {
+    const d = ((w.agent || {}).publishedOn || "").trim() || w.detected;
+    return d >= a.since;
+  });
+  items = items.map(w => Object.assign({
+    country: (byIso[w.iso] || {}).name || w.iso, iso: w.iso,
+    title: w.titleEn || w.title,
+    summary: w.summaryEn || w.summary,
+    source: w.source || null,
+    status: w.status,
+    textType: (w.agent || {}).textType || null,
+    obligations: (w.agent || {}).obligations || null,
+    inForceOn: (w.agent || {}).inForceOn || null
+  }, corpusItemDate(w)));
+  items.sort((x, y) => String(y.publishedOn || "").localeCompare(String(x.publishedOn || ""))
+                    || String(y.detectedByAgentOn).localeCompare(String(x.detectedByAgentOn)));
+  const undated = items.filter(i => !i.publishedOn).length;
+  return {
+    note: "Watch items are dated news, not settled law. `publishedOn` is when the source "
+        + "published it; `detectedByAgentOn` is when the agent saw it - never report the "
+        + "second as if it were the first.",
+    itemsWithoutAPublicationDate: undated,
+    items: items.slice(0, Math.min(a.limit || 15, 30))
+  };
 }
 
 /* Which sectors and thresholds each country put in scope. Split out from
