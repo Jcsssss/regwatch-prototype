@@ -9,8 +9,8 @@ function renderCountries(){
   <div class="card"><div class="bd">
     <div class="filters">
       <input type="search" id="fQ" placeholder="${t("cty.search")}" value="${esc(ctyFilter.q)}" aria-label="Search country">
-      <select id="fR" aria-label="Filter by region"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => `<option value="${r}" ${ctyFilter.region === r ? "selected" : ""}>${t("reg." + r)}</option>`).join("")}</select>
-      <select id="fL" aria-label="Filter by level"><option value="">${t("cty.allLevels")}</option>${[4,3,2,1].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>${t("common.level")} ${l}</option>`).join("")}</select>
+      <select id="fR" aria-label="Filter by region"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => [r, t("reg." + r)]).sort((a, b) => a[1].localeCompare(b[1])).map(([r, label]) => `<option value="${r}" ${ctyFilter.region === r ? "selected" : ""}>${label}</option>`).join("")}</select>
+      <select id="fL" aria-label="Filter by level"><option value="">${t("cty.allLevels")}</option>${[1,2,3,4].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>${t("common.level")} ${l}</option>`).join("")}</select>
       <span class="q-note" id="fCount"></span>
     </div>
     <div class="tbl-wrap"><table class="tbl">
@@ -322,7 +322,8 @@ function renderInboxHub(el, pending, done){
       <div class="filters" style="margin-top:10px">
         <label class="q-toggle">${t("proc.sort")}
           <select id="pSort">${[["recent", "proc.sortRecent"], ["country", "proc.sortCountry"], ["status", "proc.sortStatus"]]
-            .map(([v, k]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+            .map(([v, k]) => [v, t(k)]).sort((a, b) => a[1].localeCompare(b[1]))
+            .map(([v, label]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${label}</option>`).join("")}</select></label>
       </div>
       <div id="procList"></div>
     </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
@@ -356,7 +357,7 @@ function renderInboxCountry(el, pending, done){
     <div class="filters">
       <input type="search" id="qQ" placeholder="${t("inbox.search")}" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
       <select id="qD" aria-label="Filter by detection window"><option value="">${t("inbox.anyDate")}</option>${[[7, t("inbox.last7")], [30, t("inbox.last30")], [90, t("inbox.last90")]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
-      <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>${t("inbox.officialOnly")}</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>${t("inbox.toVerify")}</option></select>
+      <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option>${[["official", t("inbox.officialOnly")], ["unofficial", t("inbox.toVerify")]].sort((a, b) => a[1].localeCompare(b[1])).map(([v, label]) => `<option value="${v}" ${inboxFilter.rel === v ? "selected" : ""}>${label}</option>`).join("")}</select>
       <span class="q-note" id="qCount"></span>
       <button class="btn" id="qReset" type="button">${t("inbox.reset")}</button>
     </div>
@@ -368,7 +369,8 @@ function renderInboxCountry(el, pending, done){
       <div class="filters" style="margin-top:10px">
         <label class="q-toggle">${t("proc.sort")}
           <select id="pSort">${[["recent", "proc.sortRecent"], ["country", "proc.sortCountry"], ["status", "proc.sortStatus"]]
-            .map(([v, k]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+            .map(([v, k]) => [v, t(k)]).sort((a, b) => a[1].localeCompare(b[1]))
+            .map(([v, label]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${label}</option>`).join("")}</select></label>
       </div>
       <div id="procList"></div>
     </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
@@ -515,9 +517,21 @@ function qCard(q){
   ].filter(Boolean).join("");
 
   /* The source's own opening lines when we could fetch them; the agent's
-     summary otherwise, labelled so the two are never confused. */
-  const body = q.excerpt
-    ? `<blockquote class="q-excerpt">${esc(q.excerpt)}</blockquote>`
+     summary otherwise, labelled so the two are never confused.
+
+     The excerpt arrives in the source's language - Polish, Czech, Dutch - which
+     most readers cannot use, so the card shows the interface language's
+     rendering when one exists. The published wording stays one click away:
+     a validator checking a regulatory text has to be able to read it as
+     published, and a translation is not that. */
+  const excerptFor = lang === "fr" ? (q.excerptFr || "") : (q.excerptEn || "");
+  const original = q.excerpt || "";
+  const translatedShown = excerptFor && excerptFor !== original;
+  const body = original
+    ? `<blockquote class="q-excerpt">${esc(translatedShown ? excerptFor : original)}
+        ${translatedShown ? `<span class="src-note">${t("card.excerptTranslated")}</span>
+          <details class="q-orig"><summary>${t("card.excerptShowOriginal")}</summary>
+            <div>${esc(original)}</div></details>` : ""}</blockquote>`
     : `<blockquote class="q-excerpt">${esc(itemSummary(q))}
          <span class="src-note">${t("card.excerptFallback")}</span></blockquote>`;
 
@@ -629,8 +643,9 @@ function renderSources(){
   customSources().forEach((x, n) => rows.push({ ...x, custom: true, idx: n,
     scope: x.iso === "EU" ? t("src.eu") : (byIso[x.iso] ? byIso[x.iso].name : x.iso) }));
 
+  const scopeName = iso => byIso[iso] ? byIso[iso].name : iso;
   const scopes = [...new Set(rows.map(r => r.iso || "").filter(Boolean))]
-    .sort((a, b) => (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b));
+    .sort((a, b) => scopeName(a).localeCompare(scopeName(b)));
 
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
@@ -643,9 +658,9 @@ function renderSources(){
       <label class="full">${t("src.fName")}<input id="sName" placeholder="${t("src.phName")}"></label>
       <label class="full">${t("src.fUrl")}<input id="sUrl" placeholder="${t("src.phUrl")}"></label>
       <label>${t("src.fCountry")}<select id="sIso"><option value="EU">${t("src.eu")}</option>${
-        COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
-      <label>${t("src.fType")}<select id="sKind"><option value="rss">${t("src.tFeed")}</option><option value="page">${t("src.tPage")}</option><option value="api">${t("src.tApi")}</option></select></label>
-      <label>${t("src.fTrust")}<select id="sType"><option value="official">${t("manual.optOfficial")}</option><option value="unofficial">${t("manual.optUnofficial")}</option></select></label>
+        [...COUNTRIES].sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
+      <label>${t("src.fType")}<select id="sKind">${[["rss", t("src.tFeed")], ["page", t("src.tPage")], ["api", t("src.tApi")]].sort((a, b) => a[1].localeCompare(b[1])).map(([v, label]) => `<option value="${v}">${label}</option>`).join("")}</select></label>
+      <label>${t("src.fTrust")}<select id="sType">${[["official", t("manual.optOfficial")], ["unofficial", t("manual.optUnofficial")]].sort((a, b) => a[1].localeCompare(b[1])).map(([v, label]) => `<option value="${v}">${label}</option>`).join("")}</select></label>
       <label class="full">${t("src.fNote")}<input id="sNote" placeholder="${t("src.phNote")}"></label>
     </div>
     <div class="q-actions"><button class="btn primary" id="sAdd">${t("src.save")}</button>

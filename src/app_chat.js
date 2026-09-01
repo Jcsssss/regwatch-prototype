@@ -501,9 +501,9 @@ function chatRender(){
       <h2>${t("chat.settings")}</h2>
       <p class="q-note">${t("chat.keyNote")}</p>
       <label class="chat-f"><span>${t("chat.mode")}</span>
-        <select id="cfMode">
-          <option value="azure" ${cfg.mode === "azure" ? "selected" : ""}>Azure OpenAI</option>
-          <option value="compat" ${cfg.mode === "compat" ? "selected" : ""}>${t("chat.modeCompat")}</option>
+        <select id="cfMode">${[["azure", "Azure OpenAI"], ["compat", t("chat.modeCompat")]]
+          .sort((a, b) => a[1].localeCompare(b[1]))
+          .map(([v, label]) => `<option value="${v}" ${cfg.mode === v ? "selected" : ""}>${kpiEsc(label)}</option>`).join("")}
         </select></label>
       <label class="chat-f"><span>${t("chat.endpoint")}</span>
         <input id="cfEndpoint" type="text" spellcheck="false" value="${kpiEsc(cfg.endpoint)}"

@@ -306,6 +306,12 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
    Twenty-nine rows of feed registry are reference material, not something to
    read on the way past. The card keeps its header - which carries the count, so
    the summary still says something when shut - and hides only the table. */
+.q-orig{margin-top:7px}
+.q-orig > summary{cursor:pointer;font-size:11.5px;color:var(--accent);list-style:none}
+.q-orig > summary::-webkit-details-marker{display:none}
+.q-orig > summary:hover{text-decoration:underline}
+.q-orig > div{margin-top:6px;padding-left:9px;border-left:2px solid var(--line2);
+  font-size:12px;color:var(--ink2);font-style:italic}
 details.fold > summary{list-style:none;cursor:pointer;user-select:none}
 details.fold > summary::-webkit-details-marker{display:none}
 details.fold > summary:hover h2{text-decoration:underline}
@@ -7346,7 +7352,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-28",
     "iso": "FR",
     "title": "France - Retard de transposition de NIS2 sur fond de cyberattaque de la DGFiP et bilan officiel porté à 678 000 victimes",
-    "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMi6gJBVV95cUxPaF9QaVk0SXVHZ3IzV1JVNTBXUXAwcnhMZGk0U01LQmxOR0k4TGtjVFZKbGZBZlJoaGt2ZjhwWWduWVNVU29vdGFqV04tSW9oOG81Y0dtWnlwd0pwSFJrd0pGUHg5R0FXZkFpZEQtWHdlWXQxM1hxcFBRNjNEQTF2UURld3ZQbnJybnY1ekVLZ0cxbDdWNmlYcjJRY255bE1Pbi1tX3lOV2dIYl9wNm9jQzQtVGZRQklnZWxja0VvalAzbWduTWxWaWl0UHR3V0RRYmdxY2lpMGVPZHl0ekgxeTdIQXloX0FBWmozdDRNUWV3OXQwQjZ4RDB4Yl9FVGhtbDlTaVFrZktqT3dpLTFSNzR6VmI2MThHcUtCbU1sY0xvOVBZWlZ0OFVaS1BSUlpJc0FUUy1yQTVTaldXMlNyUXlxNV9YTVJZY0F4a1BQamY5RXlZdGotek9GUEFxVGs0d2NFS3hsMVlxUQ?oc=5\" target=\"_blank\">Cyberattaque de la DGFiP : le bilan offic […]",
+    "excerpt": "Cyberattaque de la DGFiP : le bilan offic […]",
     "summary": "L'article met en avant un retard dans la transposition de la directive NIS2 en France, dans un contexte de cyberattaque visant la DGFiP. Le bilan officiel évoqué atteint 678 000 victimes, très en deçà des millions de données revendiquées par l'attaquant. La nouveauté réglementaire réside surtout dans l'alerte sur le décalage de mise en conformité nationale avec NIS2, alors que l'incident illustre les enjeux de gouvernance, de notification et de résilience cyber.",
     "titleEn": "",
     "summaryEn": "",
@@ -7754,7 +7760,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-28",
     "iso": "FR",
     "title": "France - IT for Business : NIS2 et DORA imposent de passer de la conformité papier à la résilience réelle",
-    "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxObS1GamdkQnd6dWxnQ2FlRmtTdHZiXzhEUXJGYXZLeVRmcDZWbHEzRW5vTnBYdEVmOXA3bWZXUFQ0NXZLMjd2dl9TbUdiZTFaaDZzX08tX3NURG5TbEk0X3VJTDRqZkVpalpOdWpzY05xVFlxcE5VQjNGUktqUy1USlpyejM2Q0hKQm5vdUNKU0lZekRTWXRXYjREZzNfOEo1eWpDdHQzaHlEcDlvc3pNNmRCNms?oc=5\" target=\"_blank\">« NIS2 et DORA imposent de passer de la conformité papier à la résilience réelle »</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">IT for Business</font>",
+    "excerpt": "« NIS2 et DORA imposent de passer de la conformité papier à la résilience réelle » &nbsp;&nbsp; IT for Business",
     "summary": "L’article souligne que NIS2 et DORA ne doivent pas être abordés comme de simples exercices documentaires, mais comme des cadres imposant une résilience opérationnelle réelle. Il met en avant le passage attendu d’une conformité formelle à des dispositifs concrets de préparation, de gestion des incidents et de continuité d’activité.",
     "titleEn": "",
     "summaryEn": "",
@@ -7804,7 +7810,7 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-08-28",
     "iso": "EU",
     "title": "NIS2 : environ 160000 entités soumises aux obligations de cybersécurité dans l’Union européenne",
-    "excerpt": "<a href=\"https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaUh1SjVaNjc4ZXZDbDZGRU5XdXJwU1dQYmdrRVQ5MFdYcUxyR0t0Z3ljLTNVbFZicXY4QXV2a0FJMHdCZjEzRG52eGlnR3BFZXF0VXZDNDFFSHdCc1RJMHQyRWNDVHdmQU9vYWN0ZUxmY3V1d3FEdG92Wll3YTZ4Q04yNldxODdNYkJiZ25XNUt3QWQzZEpxaFNxRllWdEY3c0M3d1RpeXJpSjlfQVJjaFo3QmVfV3U3aGdJcGMwVjU?oc=5\" target=\"_blank\">NIS2-Richtlinie: EU-weit 160.000 Entitäten unter Cybersicherheitspflicht</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Börse Express</font>",
+    "excerpt": "NIS2-Richtlinie: EU-weit 160.000 Entitäten unter Cybersicherheitspflicht &nbsp;&nbsp; Börse Express",
     "summary": "L’article indique qu’environ 160000 entités seraient concernées à l’échelle de l’Union européenne par les obligations de cybersécurité issues de la directive NIS2. Le contenu semble relever d’une information générale de cadrage et ne mentionne pas de nouvelle mesure réglementaire, de délai de transposition ou de guide opérationnel spécifique.",
     "titleEn": "",
     "summaryEn": "",
@@ -13528,6 +13534,8 @@ const I18N = {
     "card.open": "Open source ↗",
     "card.noLink": "No link provided",
     "card.excerptFallback": "Source text unavailable - showing the agent's summary instead.",
+    "card.excerptTranslated": "Translated from the source's language.",
+    "card.excerptShowOriginal": "Show the original wording",
     "card.cells": "Cells to update in the comparative workbook",
     "card.cellsNote": "Suggested targets - confirm against the source before editing the workbook.",
     "card.ai": "AI analysis - synthesis and key points",
@@ -13885,6 +13893,8 @@ const I18N = {
     "card.open": "Ouvrir la source ↗",
     "card.noLink": "Aucun lien fourni",
     "card.excerptFallback": "Texte de la source indisponible - synthèse de l'agent affichée à la place.",
+    "card.excerptTranslated": "Traduit depuis la langue de la source.",
+    "card.excerptShowOriginal": "Afficher le texte d'origine",
     "card.cells": "Cellules à mettre à jour dans le classeur comparatif",
     "card.cellsNote": "Cibles suggérées - à confirmer sur la source avant d'éditer le classeur.",
     "card.ai": "Analyse IA - synthèse et points clés",
@@ -14684,8 +14694,8 @@ function renderCountries(){
   <div class="card"><div class="bd">
     <div class="filters">
       <input type="search" id="fQ" placeholder="${t("cty.search")}" value="${esc(ctyFilter.q)}" aria-label="Search country">
-      <select id="fR" aria-label="Filter by region"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => `<option value="${r}" ${ctyFilter.region === r ? "selected" : ""}>${t("reg." + r)}</option>`).join("")}</select>
-      <select id="fL" aria-label="Filter by level"><option value="">${t("cty.allLevels")}</option>${[4,3,2,1].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>${t("common.level")} ${l}</option>`).join("")}</select>
+      <select id="fR" aria-label="Filter by region"><option value="">${t("cty.allRegions")}</option>${["West","North","South","East"].map(r => [r, t("reg." + r)]).sort((a, b) => a[1].localeCompare(b[1])).map(([r, label]) => `<option value="${r}" ${ctyFilter.region === r ? "selected" : ""}>${label}</option>`).join("")}</select>
+      <select id="fL" aria-label="Filter by level"><option value="">${t("cty.allLevels")}</option>${[1,2,3,4].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>${t("common.level")} ${l}</option>`).join("")}</select>
       <span class="q-note" id="fCount"></span>
     </div>
     <div class="tbl-wrap"><table class="tbl">
@@ -14997,7 +15007,8 @@ function renderInboxHub(el, pending, done){
       <div class="filters" style="margin-top:10px">
         <label class="q-toggle">${t("proc.sort")}
           <select id="pSort">${[["recent", "proc.sortRecent"], ["country", "proc.sortCountry"], ["status", "proc.sortStatus"]]
-            .map(([v, k]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+            .map(([v, k]) => [v, t(k)]).sort((a, b) => a[1].localeCompare(b[1]))
+            .map(([v, label]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${label}</option>`).join("")}</select></label>
       </div>
       <div id="procList"></div>
     </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
@@ -15031,7 +15042,7 @@ function renderInboxCountry(el, pending, done){
     <div class="filters">
       <input type="search" id="qQ" placeholder="${t("inbox.search")}" value="${esc(inboxFilter.q)}" aria-label="Search pending items">
       <select id="qD" aria-label="Filter by detection window"><option value="">${t("inbox.anyDate")}</option>${[[7, t("inbox.last7")], [30, t("inbox.last30")], [90, t("inbox.last90")]].map(([d, l]) => `<option value="${d}" ${inboxFilter.days == d ? "selected" : ""}>${l}</option>`).join("")}</select>
-      <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option><option value="official" ${inboxFilter.rel === "official" ? "selected" : ""}>${t("inbox.officialOnly")}</option><option value="unofficial" ${inboxFilter.rel === "unofficial" ? "selected" : ""}>${t("inbox.toVerify")}</option></select>
+      <select id="qR" aria-label="Filter by source reliability"><option value="">${t("inbox.anySource")}</option>${[["official", t("inbox.officialOnly")], ["unofficial", t("inbox.toVerify")]].sort((a, b) => a[1].localeCompare(b[1])).map(([v, label]) => `<option value="${v}" ${inboxFilter.rel === v ? "selected" : ""}>${label}</option>`).join("")}</select>
       <span class="q-note" id="qCount"></span>
       <button class="btn" id="qReset" type="button">${t("inbox.reset")}</button>
     </div>
@@ -15043,7 +15054,8 @@ function renderInboxCountry(el, pending, done){
       <div class="filters" style="margin-top:10px">
         <label class="q-toggle">${t("proc.sort")}
           <select id="pSort">${[["recent", "proc.sortRecent"], ["country", "proc.sortCountry"], ["status", "proc.sortStatus"]]
-            .map(([v, k]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${t(k)}</option>`).join("")}</select></label>
+            .map(([v, k]) => [v, t(k)]).sort((a, b) => a[1].localeCompare(b[1]))
+            .map(([v, label]) => `<option value="${v}" ${inboxFilter.procSort === v ? "selected" : ""}>${label}</option>`).join("")}</select></label>
       </div>
       <div id="procList"></div>
     </details>` : `<p style="color:var(--muted)">${t("proc.none")}</p>`}
@@ -15190,9 +15202,21 @@ function qCard(q){
   ].filter(Boolean).join("");
 
   /* The source's own opening lines when we could fetch them; the agent's
-     summary otherwise, labelled so the two are never confused. */
-  const body = q.excerpt
-    ? `<blockquote class="q-excerpt">${esc(q.excerpt)}</blockquote>`
+     summary otherwise, labelled so the two are never confused.
+
+     The excerpt arrives in the source's language - Polish, Czech, Dutch - which
+     most readers cannot use, so the card shows the interface language's
+     rendering when one exists. The published wording stays one click away:
+     a validator checking a regulatory text has to be able to read it as
+     published, and a translation is not that. */
+  const excerptFor = lang === "fr" ? (q.excerptFr || "") : (q.excerptEn || "");
+  const original = q.excerpt || "";
+  const translatedShown = excerptFor && excerptFor !== original;
+  const body = original
+    ? `<blockquote class="q-excerpt">${esc(translatedShown ? excerptFor : original)}
+        ${translatedShown ? `<span class="src-note">${t("card.excerptTranslated")}</span>
+          <details class="q-orig"><summary>${t("card.excerptShowOriginal")}</summary>
+            <div>${esc(original)}</div></details>` : ""}</blockquote>`
     : `<blockquote class="q-excerpt">${esc(itemSummary(q))}
          <span class="src-note">${t("card.excerptFallback")}</span></blockquote>`;
 
@@ -15304,8 +15328,9 @@ function renderSources(){
   customSources().forEach((x, n) => rows.push({ ...x, custom: true, idx: n,
     scope: x.iso === "EU" ? t("src.eu") : (byIso[x.iso] ? byIso[x.iso].name : x.iso) }));
 
+  const scopeName = iso => byIso[iso] ? byIso[iso].name : iso;
   const scopes = [...new Set(rows.map(r => r.iso || "").filter(Boolean))]
-    .sort((a, b) => (byIso[a] ? byIso[a].name : a).localeCompare(byIso[b] ? byIso[b].name : b));
+    .sort((a, b) => scopeName(a).localeCompare(scopeName(b)));
 
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
@@ -15318,9 +15343,9 @@ function renderSources(){
       <label class="full">${t("src.fName")}<input id="sName" placeholder="${t("src.phName")}"></label>
       <label class="full">${t("src.fUrl")}<input id="sUrl" placeholder="${t("src.phUrl")}"></label>
       <label>${t("src.fCountry")}<select id="sIso"><option value="EU">${t("src.eu")}</option>${
-        COUNTRIES.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
-      <label>${t("src.fType")}<select id="sKind"><option value="rss">${t("src.tFeed")}</option><option value="page">${t("src.tPage")}</option><option value="api">${t("src.tApi")}</option></select></label>
-      <label>${t("src.fTrust")}<select id="sType"><option value="official">${t("manual.optOfficial")}</option><option value="unofficial">${t("manual.optUnofficial")}</option></select></label>
+        [...COUNTRIES].sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join("")}</select></label>
+      <label>${t("src.fType")}<select id="sKind">${[["rss", t("src.tFeed")], ["page", t("src.tPage")], ["api", t("src.tApi")]].sort((a, b) => a[1].localeCompare(b[1])).map(([v, label]) => `<option value="${v}">${label}</option>`).join("")}</select></label>
+      <label>${t("src.fTrust")}<select id="sType">${[["official", t("manual.optOfficial")], ["unofficial", t("manual.optUnofficial")]].sort((a, b) => a[1].localeCompare(b[1])).map(([v, label]) => `<option value="${v}">${label}</option>`).join("")}</select></label>
       <label class="full">${t("src.fNote")}<input id="sNote" placeholder="${t("src.phNote")}"></label>
     </div>
     <div class="q-actions"><button class="btn primary" id="sAdd">${t("src.save")}</button>
@@ -17064,9 +17089,9 @@ function chatRender(){
       <h2>${t("chat.settings")}</h2>
       <p class="q-note">${t("chat.keyNote")}</p>
       <label class="chat-f"><span>${t("chat.mode")}</span>
-        <select id="cfMode">
-          <option value="azure" ${cfg.mode === "azure" ? "selected" : ""}>Azure OpenAI</option>
-          <option value="compat" ${cfg.mode === "compat" ? "selected" : ""}>${t("chat.modeCompat")}</option>
+        <select id="cfMode">${[["azure", "Azure OpenAI"], ["compat", t("chat.modeCompat")]]
+          .sort((a, b) => a[1].localeCompare(b[1]))
+          .map(([v, label]) => `<option value="${v}" ${cfg.mode === v ? "selected" : ""}>${kpiEsc(label)}</option>`).join("")}
         </select></label>
       <label class="chat-f"><span>${t("chat.endpoint")}</span>
         <input id="cfEndpoint" type="text" spellcheck="false" value="${kpiEsc(cfg.endpoint)}"

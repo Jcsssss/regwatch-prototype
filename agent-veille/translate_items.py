@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
-"""Translate watch-item titles and summaries into English.
+"""Translate watch items into the interface languages.
 
     python3 agent-veille/translate_items.py "<path to agent de veille>/.env"
 
+Two different problems, one pass.
+
 The agent writes its analysis in French whatever the source language, so an
-English-speaking reader gets a French interface's worth of content. This
-translates the two fields a reader scans — title and summary — and caches every
-result, so a re-run only pays for what is new.
+English-speaking reader got a French interface's worth of content: title and
+summary are translated to English.
 
-NOT translated: the article excerpt. That is the source's own wording, and a
-validator checking a regulatory text must read it as published. Same reason the
-original French title is kept alongside the translation rather than replaced.
+The excerpt is a harder case. It is the source's own opening lines, so it
+arrives in Polish, Czech, Dutch or German — unreadable to most of the team in
+either interface language. It is now translated into BOTH English and French,
+and the original is kept: the card shows the reader's language and offers the
+source's own words underneath. That was the reason for not translating it
+before — a validator checking a regulatory text must be able to read it as
+published — and keeping the original satisfies it without leaving fifteen
+items unreadable.
 
-Output: data/translations-cache.json, keyed by source text. veille_to_watchitems.py
-reads it offline and emits `titleEn` / `summaryEn` on each item.
+Cache shape: {source text: {"en": ..., "fr": ...}}, only the languages actually
+requested. Values written by an older version were plain strings meaning
+English, and are read as such.
+
+Output: data/translations-cache.json. veille_to_watchitems.py reads it offline
+and emits titleEn / summaryEn / excerptEn / excerptFr.
 """
 
 import json
@@ -50,15 +60,29 @@ def main():
     items = json.loads(ITEMS.read_text(encoding="utf-8"))["items"]
     cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
 
-    todo = []
-    for item in items:
-        for field in ("title", "summary"):
-            text = (item.get(field) or "").strip()
-            if text and text not in cache and text not in todo:
-                todo.append(text)
+    # An older cache mapped text -> english string; normalise it in place.
+    for text, value in list(cache.items()):
+        if isinstance(value, str):
+            cache[text] = {"en": value}
 
-    print("%d segment(s) à traduire (%d déjà en cache)" % (len(todo), len(cache)))
-    if not todo:
+    def have(text, lang):
+        return isinstance(cache.get(text), dict) and cache[text].get(lang)
+
+    # The agent already writes French, so title and summary only need English.
+    # The excerpt is in the source's language and needs both.
+    want = []
+    for item in items:
+        for field, langs in (("title", ("en",)), ("summary", ("en",)),
+                             ("excerpt", ("en", "fr"))):
+            text = (item.get(field) or "").strip()
+            if not text:
+                continue
+            for lang in langs:
+                if not have(text, lang) and (text, lang) not in want:
+                    want.append((text, lang))
+
+    print("%d segment(s) à traduire (%d déjà en cache)" % (len(want), len(cache)))
+    if not want:
         print("rien à faire.")
         return 0
 
@@ -67,21 +91,32 @@ def main():
                          api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-01"),
                          timeout=90, max_retries=3)
 
-    system = ("You translate EU cybersecurity regulatory watch items into English. "
-              "Translate faithfully and keep the register factual. Keep proper nouns, "
-              "authority names and legal citations as they are (ANSSI, BSI, NÚKIB, "
-              "KRITIS, NIS2, KSC…). Do not summarise, do not add or drop information. "
-              "Reply with a JSON array of translations, in the same order as the input, "
-              "and nothing else.")
+    LANG_NAME = {"en": "English", "fr": "French"}
+    def system_prompt(lang):
+        return ("You translate EU cybersecurity regulatory watch items into %s. "
+                "Translate faithfully and keep the register factual. Keep proper nouns, "
+                "authority names and legal citations as they are (ANSSI, BSI, NÚKIB, "
+                "KRITIS, NIS2, KSC…). Do not summarise, do not add or drop information. "
+                "If a passage is already in %s, return it unchanged. "
+                "Reply with a JSON array of translations, in the same order as the input, "
+                "and nothing else." % (LANG_NAME[lang], LANG_NAME[lang]))
 
-    done = 0
-    for start in range(0, len(todo), BATCH):
-        chunk = todo[start:start + BATCH]
+    # Batched per target language, and the batches are cut inside a language:
+    # a batch straddling two would need two system prompts, and silently
+    # dropping the overflow would leave those segments untranslated for good.
+    batches = []
+    for lang in sorted(by_lang):
+        texts = by_lang[lang]
+        for start in range(0, len(texts), BATCH):
+            batches.append((lang, texts[start:start + BATCH]))
+
+    done, total = 0, len(want)
+    for lang, chunk in batches:
         payload = json.dumps(chunk, ensure_ascii=False)
         try:
             r = client.chat.completions.create(
                 model=deployment,
-                messages=[{"role": "system", "content": system},
+                messages=[{"role": "system", "content": system_prompt(lang)},
                           {"role": "user", "content": payload}],
             )
             raw = (r.choices[0].message.content or "").strip()
@@ -91,13 +126,13 @@ def main():
                 raise ValueError("réponse de longueur %s pour %d entrées"
                                  % (len(out) if isinstance(out, list) else "?", len(chunk)))
             for src, dst in zip(chunk, out):
-                cache[src] = str(dst).strip()
+                cache.setdefault(src, {})[lang] = str(dst).strip()
             done += len(chunk)
-            print("  %d/%d" % (done, len(todo)))
+            print("  %s  %d/%d" % (lang, done, total))
         except Exception as error:
             # A failed batch leaves those segments untranslated; the UI falls back
             # to the original, which is degraded but never wrong.
-            print("  lot %d ignoré : %s" % (start // BATCH + 1, str(error)[:110]))
+            print("  lot %s ignoré : %s" % (lang, str(error)[:110]))
         CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         time.sleep(0.4)
 

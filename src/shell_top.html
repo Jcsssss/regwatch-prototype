@@ -304,6 +304,12 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
    Twenty-nine rows of feed registry are reference material, not something to
    read on the way past. The card keeps its header - which carries the count, so
    the summary still says something when shut - and hides only the table. */
+.q-orig{margin-top:7px}
+.q-orig > summary{cursor:pointer;font-size:11.5px;color:var(--accent);list-style:none}
+.q-orig > summary::-webkit-details-marker{display:none}
+.q-orig > summary:hover{text-decoration:underline}
+.q-orig > div{margin-top:6px;padding-left:9px;border-left:2px solid var(--line2);
+  font-size:12px;color:var(--ink2);font-style:italic}
 details.fold > summary{list-style:none;cursor:pointer;user-select:none}
 details.fold > summary::-webkit-details-marker{display:none}
 details.fold > summary:hover h2{text-decoration:underline}

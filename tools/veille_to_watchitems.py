@@ -108,12 +108,37 @@ def load_excerpts():
 
 
 def load_translations():
-    """English renderings of the agent's French title/summary, from
-    tools/translate_items.py. Missing entries simply fall back to the original."""
+    """Translations from agent-veille/translate_items.py, keyed by source text.
+
+    Two shapes are accepted: {text: "english"} written by the first version, and
+    {text: {"en": ..., "fr": ...}} written since excerpts needed both languages.
+    A missing entry simply falls back to the original.
+    """
     path = ROOT / "data" / "translations-cache.json"
     if not path.exists():
         return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    return {k: ({"en": v} if isinstance(v, str) else v) for k, v in raw.items()}
+
+
+def translated(trans, text, lang):
+    return (trans.get((text or "").strip()) or {}).get(lang, "")
+
+
+TAG = re.compile(r"<[^>]+>")
+WS = re.compile(r"\s+")
+
+
+def plain_excerpt(text):
+    """The source's opening lines as text.
+
+    Some feeds - Google News among them - wrap the excerpt in an anchor, and the
+    card escapes what it renders, so the markup was showing up literally as
+    `<a href="https://news.google.com/...">`. Strip the tags and keep the words.
+    """
+    if not text:
+        return ""
+    return WS.sub(" ", TAG.sub(" ", text)).strip()
 
 
 
@@ -372,13 +397,20 @@ def build_items(rows):
                 # The source's own opening lines. The patched agent stores them
                 # directly; the re-fetch cache is only a fallback for rows written
                 # before the patch.
-                "excerpt": first(record, "Extrait source")
-                           or excerpts.get(first(record, "URL source"), ""),
+                "excerpt": plain_excerpt(first(record, "Extrait source")
+                                         or excerpts.get(first(record, "URL source"), "")),
                 # The agent's written synthesis - shown inside the AI panel.
                 "summary": first(record, "Résumé") or "No summary provided by the agent.",
                 # English renderings; the UI picks by interface language.
-                "titleEn": trans.get(title, ""),
-                "summaryEn": trans.get(first(record, "Résumé"), ""),
+                "titleEn": translated(trans, title, "en"),
+                "summaryEn": translated(trans, first(record, "Résumé"), "en"),
+                # The excerpt arrives in the source's language, so it carries a
+                # rendering for each interface language; the original stays in
+                # `excerpt` for a validator who needs the published wording.
+                "excerptEn": translated(trans, plain_excerpt(
+                    first(record, "Extrait source") or excerpts.get(first(record, "URL source"), "")), "en"),
+                "excerptFr": translated(trans, plain_excerpt(
+                    first(record, "Extrait source") or excerpts.get(first(record, "URL source"), "")), "fr"),
                 "source": {
                     "name": first(record, "Autorité émettrice", "Source d'origine") or "Watch agent",
                     "url": first(record, "URL source"),
