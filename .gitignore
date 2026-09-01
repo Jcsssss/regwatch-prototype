@@ -26,7 +26,13 @@ __pycache__/
 # Internal Wavestone material and heavy media — kept local on purpose.
 # Real client data (KPI workbook), internal decks and the brand charter must not
 # be pushed without an explicit go from the team.
-ressources/
+#
+# The folder itself is tracked (its README says what belongs in it) but nothing
+# inside it is. That matters here more than usual: GitHub Pages serves the whole
+# repository tree, so a file committed under ressources/ would be downloadable
+# at a public URL. To push one deliberately: git add -f ressources/<file>
+ressources/*
+!ressources/README.md
 *.mp4
 *.pptx
 
