@@ -26,7 +26,8 @@ NIS2=(reg/nis2/data_excel.js reg/nis2/data_docs.js reg/nis2/data_authorities.js
       reg/nis2/data_c1.js reg/nis2/data_c2.js reg/nis2/data_c3.js reg/nis2/data_c4.js)
 REC=(reg/rec/data_countries.js)
 APP=(app_i18n.js app_reg.js app_part1.js app_part2.js app_kpi.js app_kpi_xlsx.js
-     app_corpus.js app_chat.js app_deck.js)
+     app_corpus.js app_chat.js app_deck.js
+     app_boot.js)          # doit rester en dernier : voir l'en-tete du fichier
 
 cat $SHARED $NIS2 $REC $AGENT_DATA $DECK_TPL $APP > bundle.js
 node --check bundle.js

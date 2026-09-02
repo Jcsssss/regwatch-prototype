@@ -743,14 +743,3 @@ function renderSources(){
     URL.revokeObjectURL(a.href);
   });
 }
-
-/* ---------- boot ---------- */
-/* Order matters: the active regulation decides which records exist and which
-   tabs are reachable, so it is applied before anything renders. */
-regApply();
-regRenderPills();
-regSyncTabs();
-regFooter();
-refreshBadge();
-const r0 = parseHash();
-route(regHasTab(r0.v) || r0.v === "country" ? r0.v : "overview", r0.arg);
