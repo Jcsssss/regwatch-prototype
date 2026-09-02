@@ -12,7 +12,39 @@ OpenAI** de RegWatch pointe dessus sans changer une ligne de l'outil.
 
 ---
 
-## 1. Déployer
+## 0. Depuis un poste sans git ni compte GitHub — Azure Cloud Shell
+
+C'est le chemin à prendre quand les accès Azure sont sur une machine qui ne peut
+pas cloner ce dépôt. Cloud Shell tourne dans le navigateur du portail : elle a
+déjà `az`, son propre système de fichiers, et ne demande aucune installation.
+
+1. Portail Azure → l'icône `>_` en haut → **Bash**.
+2. Coller **tout** le contenu de `deploy-cloudshell.sh`, puis Entrée.
+
+Le script écrit les trois fichiers, crée les ressources, publie, vérifie, et
+affiche à la fin l'endpoint et le secret à reporter dans RegWatch.
+
+Il **ne contient aucun secret** — la clé Azure est demandée à la saisie, en
+invisible, et n'est écrite ni dans le script ni dans l'historique du shell. Il
+peut donc voyager par n'importe quel canal : un copier-coller depuis l'autre
+poste, un mail à soi-même, ou la vue GitHub du fichier dans le navigateur du PC
+(bouton *Copy raw file*).
+
+Le script est **généré** depuis les fichiers de ce dossier :
+
+```sh
+python3 tools/make_cloudshell_script.py
+```
+
+Ne le modifiez pas à la main — corrigez `function_app.py` et régénérez, sinon le
+code déployé cesse d'être le code du dépôt.
+
+Si `config-zip` échoue sur une version récente d'`az`, la commande équivalente
+est `az functionapp deploy --src-path proxy.zip --type zip -n "$APP" -g "$RG"`.
+
+---
+
+## 1. Déployer depuis un poste qui a le dépôt
 
 Une fois, depuis ce dossier. Remplacez le nom de l'application par le vôtre —
 il doit être unique dans tout Azure.
@@ -46,6 +78,14 @@ Puis publier :
 
 ```sh
 func azure functionapp publish regwatch-proxy --python
+```
+
+Ajoutez un secret partagé pour que l'endpoint ne soit pas ouvert à tous — le
+script Cloud Shell le fait automatiquement :
+
+```sh
+az functionapp config appsettings set -n regwatch-proxy -g rg-regwatch \
+  --settings REGWATCH_SHARED_SECRET="$(openssl rand -hex 24)"
 ```
 
 (`func` vient d'Azure Functions Core Tools : `brew tap azure/functions && brew install azure-functions-core-tools@4`.)
