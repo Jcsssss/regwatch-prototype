@@ -18,6 +18,9 @@ appsettings set`):
     AZURE_OPENAI_DEPLOYMENT     e.g. gpt-5.4-mini
     AZURE_OPENAI_API_VERSION    optional, defaults below
     REGWATCH_ALLOWED_ORIGINS    comma-separated, e.g. https://jcsssss.github.io
+                                (a server-side check; the BROWSER-side CORS
+                                 headers come from the Function App's own CORS
+                                 settings — see `az functionapp cors add`)
     REGWATCH_SHARED_SECRET      optional; when set, callers must send it in
                                 the x-regwatch-key header
 
@@ -75,23 +78,22 @@ def allowed_origins():
 
 
 def cors_headers(origin):
-    """Echo the caller's origin when it is allowed, so credentials stay possible.
+    """Nothing. CORS belongs to the platform here, and only to the platform.
 
-    A wildcard would work for this endpoint today and would stop working the day
-    Easy Auth is turned on, because a credentialed request rejects `*`.
+    The Functions host answers a CORS preflight itself, before the function is
+    ever invoked: an OPTIONS request came back 204 with no headers at all, which
+    is what a browser reads as "blocked". The fix is to declare the origins on
+    the Function App (`az functionapp cors add`), and once that is done the
+    platform also stamps the actual responses.
+
+    So this function must not stamp them too. Two `Access-Control-Allow-Origin`
+    headers on one response is not additive - browsers reject it outright, which
+    would look exactly like the bug we just fixed.
+
+    The origin allowlist below stays: it is a server-side check, unrelated to
+    the headers, and it still refuses a caller the platform let through.
     """
-    allowed = allowed_origins()
-    value = origin if (origin and origin.rstrip("/") in allowed) else (allowed[0] if allowed else "")
-    headers = {
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, api-key, x-regwatch-key",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Max-Age": "86400",
-        "Vary": "Origin",
-    }
-    if value:
-        headers["Access-Control-Allow-Origin"] = value
-        headers["Access-Control-Allow-Credentials"] = "true"
-    return headers
+    return {"Vary": "Origin"}
 
 
 def reply(status, payload, origin):
@@ -112,6 +114,8 @@ def chat_completions(req: func.HttpRequest) -> func.HttpResponse:
     origin = req.headers.get("Origin", "")
 
     if req.method == "OPTIONS":
+        # Rarely reached: the host answers preflights before us. Kept so the
+        # route is still correct if that ever stops being true.
         return func.HttpResponse("", status_code=204, headers=cors_headers(origin))
 
     allowed = allowed_origins()

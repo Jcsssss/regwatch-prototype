@@ -165,7 +165,17 @@ run az functionapp config appsettings set -n "$APP" -g "$RG" --settings \
   ENABLE_ORYX_BUILD=true -o none
 unset AOAI_KEY
 
-step "5/5  publication du code"
+step "5/6  CORS de la plateforme"
+# Le host Azure Functions repond lui-meme aux preflights, AVANT d'appeler le
+# code : sans cette declaration il renvoie 204 sans le moindre en-tete, et le
+# navigateur bloque. C'est de la configuration de plateforme, pas du code.
+for _o in ${ORIGINS//,/ }; do
+  az functionapp cors add -n "$APP" -g "$RG" --allowed-origins "$_o" -o none 2>/dev/null \
+    && echo "   autorise : $_o" \
+    || echo "   deja autorise : $_o"
+done
+
+step "6/6  publication du code"
 run zip -qr proxy.zip function_app.py requirements.txt host.json
 az functionapp deployment source config-zip -n "$APP" -g "$RG" --src proxy.zip -o none \
   || az functionapp deploy -n "$APP" -g "$RG" --src-path proxy.zip --type zip -o none \
