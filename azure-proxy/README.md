@@ -103,9 +103,14 @@ Ajoutez un secret partagé pour que l'endpoint ne soit pas ouvert à tous — le
 script Cloud Shell le fait automatiquement :
 
 ```sh
+NEW=$(openssl rand -hex 24); echo "Nouveau secret : $NEW"
 az functionapp config appsettings set -n regwatch-proxy -g rg-regwatch \
-  --settings REGWATCH_SHARED_SECRET="$(openssl rand -hex 24)"
+  --settings REGWATCH_SHARED_SECRET="$NEW" -o none
 ```
+
+On génère, on lit, **puis** on envoie : les versions récentes d'`az` masquent
+les valeurs dans la sortie de `set`, donc un secret posé directement depuis
+`$(openssl …)` n'est jamais affiché et devient introuvable.
 
 (`func` vient d'Azure Functions Core Tools : `brew tap azure/functions && brew install azure-functions-core-tools@4`.)
 
@@ -140,9 +145,14 @@ quelqu'un qui vise votre endpoint.** Nécessaire, jamais suffisante.
 ### Le secret partagé — un limiteur, pas un secret
 
 ```sh
+NEW=$(openssl rand -hex 24); echo "Nouveau secret : $NEW"
 az functionapp config appsettings set -n regwatch-proxy -g rg-regwatch \
-  --settings REGWATCH_SHARED_SECRET="$(openssl rand -hex 24)"
+  --settings REGWATCH_SHARED_SECRET="$NEW" -o none
 ```
+
+On génère, on lit, **puis** on envoie : les versions récentes d'`az` masquent
+les valeurs dans la sortie de `set`, donc un secret posé directement depuis
+`$(openssl …)` n'est jamais affiché et devient introuvable.
 
 Il est accepté dans l'en-tête `x-regwatch-key` **ou comme jeton bearer** — c'est
 ce que le champ « Clé API » de RegWatch envoie déjà, donc rien ne change dans la
