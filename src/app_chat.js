@@ -33,15 +33,33 @@ const CHAT_API_VERSION = "2024-10-21";
 
 /* ---------- configuration ---------- */
 
+/* The team's proxy, pre-filled so a consultant has one field to fill instead of
+   three. This URL is not a secret: without the proxy's key it answers 401, and
+   it is only ever reached from an origin the Function App allows. The key is
+   the thing that must never be in this file - the published page is
+   downloadable by anyone, so a key written here would be a published key.
+   Empty this constant if the proxy moves or the team goes back to per-person
+   Azure keys; an existing configuration in a browser is never overwritten. */
+const CHAT_DEFAULT_MODE = "compat";
+const CHAT_DEFAULT_ENDPOINT = "https://regwatch-proxy.azurewebsites.net/api/v1";
+
 function chatCfg(){
   const c = store.ai || (store.ai = {});
-  c.mode = c.mode || "azure";
-  c.endpoint = c.endpoint || "";
+  c.mode = c.mode || CHAT_DEFAULT_MODE;
+  c.endpoint = c.endpoint || (c.mode === CHAT_DEFAULT_MODE ? CHAT_DEFAULT_ENDPOINT : "");
   c.deployment = c.deployment || "";
   c.model = c.model || "gpt-4o";
   c.key = c.key || "";
   return c;
 }
+
+/* Is the configuration the shipped one, needing only a key? The setup card asks
+   for less when so, because asking for an endpoint that is already filled in
+   reads as "this is broken". */
+const chatUsingDefaults = () => {
+  const c = chatCfg();
+  return c.mode === CHAT_DEFAULT_MODE && c.endpoint === CHAT_DEFAULT_ENDPOINT;
+};
 const chatReady = () => {
   const c = chatCfg();
   return !!c.key && !!c.endpoint && (c.mode !== "azure" || !!c.deployment);
@@ -474,8 +492,8 @@ function chatRender(){
   <p class="pg-sub">${t(regId() === "nis2" ? "chat.sub" : "chat.recSub")}</p>
 
   ${chatReady() ? "" : `<div class="card chat-setup"><div class="bd">
-    <p class="chat-setup-t">${t("chat.setupTitle")}</p>
-    <p class="q-note">${t("chat.setupHelp")}</p>
+    <p class="chat-setup-t">${t(chatUsingDefaults() ? "chat.setupKeyOnly" : "chat.setupTitle")}</p>
+    <p class="q-note">${t(chatUsingDefaults() ? "chat.setupKeyHelp" : "chat.setupHelp")}</p>
     <button class="btn primary" id="chatSetup" type="button">${t("chat.settings")}</button>
   </div></div>`}
 
@@ -586,7 +604,9 @@ function chatWireSettings(){
     saveStore(); modal.hidden = true; chatRender();
   });
   $("#cfForget").addEventListener("click", () => {
-    delete store.ai; saveStore(); chatRender(); chatOpenSettings();
+    /* Forget the key, not the address: the endpoint is shipped configuration,
+       and clearing it would leave the next person hunting for a URL. */
+    delete store.ai; saveStore(); chatCfg(); chatRender(); chatOpenSettings();
   });
   $("#cfTest").addEventListener("click", async () => {
     read(); saveStore();

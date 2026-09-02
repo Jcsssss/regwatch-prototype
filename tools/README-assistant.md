@@ -3,42 +3,42 @@
 L'onglet **Assistant** répond aux questions des consultants à partir des seules
 données RegWatch. Il a besoin d'un endpoint de modèle ; la clé reste chez vous.
 
-## Option 2 — la clé dans votre navigateur (ce qui est en place)
+## Mise en route pour un consultant
 
-1. Ouvrez `regwatch.html`, onglet **Assistant**, bouton ⚙.
-2. Mode **Azure OpenAI**, puis :
-   - Endpoint : `https://<votre-ressource>.openai.azure.com`
-   - Déploiement : le nom exact du déploiement (portail Azure → Deployments)
-   - Clé API : `AZURE_OPENAI_API_KEY`
-3. **Tester la connexion** avant d'enregistrer.
+L'endpoint du proxy de l'équipe est déjà pré-rempli dans l'outil. Il ne reste
+qu'une chose à faire, une seule fois par navigateur :
 
-La clé est écrite dans le `localStorage` de ce navigateur et n'est envoyée qu'à
-l'endpoint saisi. Elle ne fait jamais partie du fichier publié — donc rien à
-craindre côté GitHub Pages, mais ne la saisissez pas sur un poste partagé.
+1. Ouvrir `https://jcsssss.github.io/regwatch-prototype`, onglet **Assistant**.
+2. Bouton ⚙ → coller la **clé du proxy** dans « Clé API » → Enregistrer.
 
-### Si « Tester la connexion » échoue avec une erreur réseau
+Cette clé n'est pas la clé Azure : c'est un secret propre au proxy, demandez-la
+à l'équipe NIS 2. Elle reste dans le `localStorage` de ce navigateur et n'est
+envoyée qu'au proxy.
 
-C'est le cas le plus probable au premier essai, et ce n'est pas un problème de
-clé. Azure OpenAI ne répond pas au *preflight* CORS, donc le navigateur bloque
-l'appel avant qu'il ne parte : la requête n'atteint jamais Azure. Repli :
+**Ouvrez la page publiée, pas le fichier local.** Un `regwatch.html` ouvert en
+double-clic a pour origine `null`, que le proxy refuse (403).
+
+## Où vit la clé Azure
+
+Nulle part dans l'outil. Elle est dans les réglages de la Function App
+(`azure-proxy/`), et ne descend jamais dans un navigateur. Le proxy est ce qui
+rend cela possible — voir `azure-proxy/README.md` pour son déploiement et pour
+ce qui protège réellement son endpoint.
+
+## Utiliser sa propre clé Azure plutôt que le proxy
+
+Toujours possible : ⚙ → mode **Azure OpenAI** → endpoint, déploiement, clé. Une
+configuration déjà présente dans un navigateur n'est jamais écrasée par les
+valeurs par défaut.
+
+Si le test échoue avec une erreur réseau, c'est le CORS : Azure OpenAI ne répond
+pas au préflight depuis une page web. Repli local :
 
 ```sh
-export AZURE_OPENAI_API_KEY="..."
-export AZURE_OPENAI_ENDPOINT="https://xxx.openai.azure.com"
-export AZURE_OPENAI_DEPLOYMENT="gpt-4o"
-python3 tools/chat_proxy.py
+python3 tools/chat_proxy.py     # lit le .env du dépôt
 ```
 
-(ou simplement `python3 tools/chat_proxy.py` si `agent-veille/.env` est déjà
-rempli — le proxy le lit.)
-
-Puis dans l'assistant : mode **Compatible OpenAI**, endpoint
-`http://localhost:8787/v1`, clé : n'importe quoi (elle est ignorée, la vraie
-reste dans le proxy).
-
-Le proxy n'écoute que sur `localhost`, ne stocke rien, et n'est **pas** ce qu'il
-faut déployer : c'est l'Azure Function de l'option 1 qui prendra sa place, et
-seul le champ « Endpoint » changera.
+puis mode **Compatible OpenAI**, endpoint `http://localhost:8787/v1`.
 
 ## Ce que l'assistant peut lire
 
