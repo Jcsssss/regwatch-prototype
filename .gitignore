@@ -45,3 +45,7 @@ logs/
 # Graph token cache and the workbook pulled from SharePoint.
 # graph-token.json holds a refresh token — a credential, never commit it.
 data/.cache/
+
+# Azure Function proxy: local settings hold the key
+azure-proxy/local.settings.json
+azure-proxy/.python_packages/

@@ -20,7 +20,7 @@ that is the Azure Function in option 1.
 Then in RegWatch: gear -> mode "OpenAI-compatible", endpoint
 http://localhost:8787/v1, key anything (it is ignored; the real one stays here).
 
-Reads agent-veille/.env or a path given as the first argument, so the same
+Reads the repository's .env (or a path given as the first argument), so the same
 configuration the watch agent already uses works unchanged.
 """
 
@@ -110,8 +110,17 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    load_env(sys.argv[1] if len(sys.argv) > 1 else
-             os.path.join(os.path.dirname(__file__), "..", "agent-veille", ".env"))
+    # An explicit path wins, then the repository root, then a copy beside the
+    # agent. The root is where the SharePoint settings already live.
+    _here = os.path.dirname(os.path.abspath(__file__))
+    _root = os.path.dirname(_here)
+    for _candidate in (sys.argv[1] if len(sys.argv) > 1 else None,
+                       os.path.join(_root, ".env"),
+                       os.path.join(_root, "agent-veille", ".env")):
+        if _candidate and os.path.exists(_candidate):
+            load_env(_candidate)
+            print("configuration lue dans %s" % _candidate)
+            break
     KEY = os.environ.get("AZURE_OPENAI_API_KEY", "")
     ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT", "")
     DEPLOYMENT = os.environ.get("AZURE_OPENAI_DEPLOYMENT", "")

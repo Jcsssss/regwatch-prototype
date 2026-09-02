@@ -47,9 +47,21 @@ def load_env_file(path):
             os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
+def find_env(explicit=None):
+    """The first .env that exists, in the order a person would expect: an
+    explicit path, then the repository root (where the SharePoint settings
+    already live), then a copy beside the agent."""
+    for candidate in (explicit, str(ROOT / ".env"), str(ROOT / "agent-veille" / ".env")):
+        if candidate and os.path.exists(candidate):
+            return candidate
+    return None
+
+
 def main():
-    if len(sys.argv) > 1 and os.path.exists(sys.argv[1]):
-        load_env_file(sys.argv[1])
+    env = find_env(sys.argv[1] if len(sys.argv) > 1 else None)
+    if env:
+        load_env_file(env)
+        print("configuration lue dans %s" % env)
 
     key = os.getenv("AZURE_OPENAI_API_KEY")
     endpoint = (os.getenv("AZURE_OPENAI_ENDPOINT") or "").rstrip("/")

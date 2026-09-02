@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AZURE_OPENAI_API_KEY": "…",
+    "AZURE_OPENAI_ENDPOINT": "https://nis2agent-resource.services.ai.azure.com",
+    "AZURE_OPENAI_DEPLOYMENT": "gpt-5.4-mini",
+    "REGWATCH_ALLOWED_ORIGINS": "https://jcsssss.github.io,http://localhost:8000"
+  }
+}

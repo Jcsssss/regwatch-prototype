@@ -52,12 +52,25 @@ def load_env_file(path):
         os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
 
 
+def find_env(explicit=None):
+    """The first .env that exists, in the order a person would expect: an
+    explicit path, then the repository root - where the SharePoint settings
+    already live - then a copy beside the agent."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for candidate in (explicit, os.path.join(root, ".env"),
+                      os.path.join(root, "agent-veille", ".env")):
+        if candidate and os.path.exists(candidate):
+            return candidate
+    return None
+
+
 def main():
-    if len(sys.argv) > 1:
-        path = sys.argv[1]
-        if not os.path.exists(path):
-            print("!! .env introuvable : %s" % path)
-            return 2
+    explicit = sys.argv[1] if len(sys.argv) > 1 else None
+    if explicit and not os.path.exists(explicit):
+        print("!! .env introuvable : %s" % explicit)
+        return 2
+    path = find_env(explicit)
+    if path:
         load_env_file(path)
         print("config lue depuis %s\n" % path)
 
