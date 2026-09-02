@@ -78,22 +78,38 @@ def allowed_origins():
 
 
 def cors_headers(origin):
-    """Nothing. CORS belongs to the platform here, and only to the platform.
+    """The headers this function puts on its own responses.
 
-    The Functions host answers a CORS preflight itself, before the function is
-    ever invoked: an OPTIONS request came back 204 with no headers at all, which
-    is what a browser reads as "blocked". The fix is to declare the origins on
-    the Function App (`az functionapp cors add`), and once that is done the
-    platform also stamps the actual responses.
+    CORS here is split between two layers, and the split was measured, not
+    assumed:
 
-    So this function must not stamp them too. Two `Access-Control-Allow-Origin`
-    headers on one response is not additive - browsers reject it outright, which
-    would look exactly like the bug we just fixed.
+      the preflight   belongs to the platform. The Functions host answers
+                      OPTIONS before the function is invoked, so with no origins
+                      declared on the Function App it returns 204 with nothing
+                      and the browser blocks. `az functionapp cors add` fixes
+                      that, and only that.
 
-    The origin allowlist below stays: it is a server-side check, unrelated to
-    the headers, and it still refuses a caller the platform let through.
+      the responses   belong to us. Once the platform CORS was configured, a
+                      POST still came back with exactly ONE
+                      Access-Control-Allow-Origin - ours. The platform does not
+                      stamp actual responses here, so dropping these headers
+                      would remove them entirely.
+
+    Echoing the caller's origin rather than a wildcard keeps credentialed
+    requests possible, which a `*` forbids.
     """
-    return {"Vary": "Origin"}
+    allowed = allowed_origins()
+    value = origin if (origin and origin.rstrip("/") in allowed) else (allowed[0] if allowed else "")
+    headers = {
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, api-key, x-regwatch-key",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Max-Age": "86400",
+        "Vary": "Origin",
+    }
+    if value:
+        headers["Access-Control-Allow-Origin"] = value
+        headers["Access-Control-Allow-Credentials"] = "true"
+    return headers
 
 
 def reply(status, payload, origin):
@@ -114,8 +130,8 @@ def chat_completions(req: func.HttpRequest) -> func.HttpResponse:
     origin = req.headers.get("Origin", "")
 
     if req.method == "OPTIONS":
-        # Rarely reached: the host answers preflights before us. Kept so the
-        # route is still correct if that ever stops being true.
+        # Rarely reached: the host answers preflights itself. Kept so the route
+        # stays correct if that ever stops being true.
         return func.HttpResponse("", status_code=204, headers=cors_headers(origin))
 
     allowed = allowed_origins()
