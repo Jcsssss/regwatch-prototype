@@ -18,11 +18,30 @@ C'est le chemin à prendre quand les accès Azure sont sur une machine qui ne pe
 pas cloner ce dépôt. Cloud Shell tourne dans le navigateur du portail : elle a
 déjà `az`, son propre système de fichiers, et ne demande aucune installation.
 
-1. Portail Azure → l'icône `>_` en haut → **Bash**.
-2. Coller **tout** le contenu de `deploy-cloudshell.sh`, puis Entrée.
+1. Portail Azure → l'icône `>_` en haut → **Bash**. À l'écran d'accueil,
+   *No storage account required* suffit.
+2. **Étape 1** — coller tout le contenu de `deploy-cloudshell.sh`. Ce bloc
+   n'exécute rien : il écrit `~/regwatch-deploy.sh`.
+3. **Étape 2** — lancer le script :
 
-Le script écrit les trois fichiers, crée les ressources, publie, vérifie, et
-affiche à la fin l'endpoint et le secret à reporter dans RegWatch.
+   ```sh
+   bash ~/regwatch-deploy.sh
+   # ou, pour réutiliser un groupe de ressources existant :
+   RG=Agent_mapping bash ~/regwatch-deploy.sh
+   ```
+
+Il crée les ressources, publie, vérifie, et affiche à la fin l'endpoint et le
+secret à reporter dans RegWatch.
+
+**Pourquoi en deux temps.** Un bloc collé s'exécute *dans* le shell interactif :
+un `set -e` ou un `exit` y ferme la session, et `read` peut avaler un retour à
+la ligne resté dans le tampon du collage et revenir vide. Les deux sont arrivés.
+Écrit puis lancé, `read` reçoit un vrai terminal et un échec arrête le script,
+pas la console.
+
+Le script est rejouable : groupe, stockage et Function App existants sont
+réutilisés au lieu d'échouer, et le nom du compte de stockage est déterministe
+pour ne pas en semer un nouveau à chaque essai.
 
 Il **ne contient aucun secret** — la clé Azure est demandée à la saisie, en
 invisible, et n'est écrite ni dans le script ni dans l'historique du shell. Il
