@@ -285,9 +285,12 @@ step "1/5  groupe de ressources"
 # Creer un groupe demande un droit que beaucoup de comptes n'ont pas. Un groupe
 # existant est donc reutilise sans y toucher, et l'echec de creation explique
 # quoi faire au lieu de renvoyer le message brut d'Azure.
+GROUP_WAS_OURS=""
 if az group show -n "$RG" -o none 2>/dev/null; then
   echo "   deja present, reutilise (rien n'y est modifie)."
-elif ! az group create -n "$RG" -l "$LOCATION" -o none 2>/dev/null; then
+elif az group create -n "$RG" -l "$LOCATION" -o none 2>/dev/null; then
+  GROUP_WAS_OURS=1
+else
   echo
   echo "!! impossible de creer le groupe '$RG' — le compte n'a pas ce droit,"
   echo "   ou le groupe appartient a une autre souscription."
@@ -354,6 +357,19 @@ for i in 1 2 3 4 5 6 7 8; do
 done
 [ -n "$OK" ] || echo "   !! /health ne repond pas encore. Reessayez dans deux minutes :  curl $URL/health"
 
+# Ne JAMAIS proposer de supprimer un groupe qu'on n'a pas cree : ici il
+# contient la ressource Azure OpenAI, et un `group delete` l'emporterait avec.
+if [ -n "${GROUP_WAS_OURS:-}" ]; then
+  TEARDOWN="     az group delete -n $RG --yes
+     (ce groupe a ete cree par ce script, il ne contient que le proxy)"
+else
+  TEARDOWN="     az functionapp delete -n $APP -g $RG
+     az storage account delete -n $STORAGE -g $RG --yes
+
+     NE SUPPRIMEZ PAS le groupe '$RG' : il existait avant et contient
+     d'autres ressources, dont la ressource Azure OpenAI."
+fi
+
 cat <<INFO
 
 ============================================================================
@@ -374,8 +390,8 @@ cat <<INFO
      az functionapp config appsettings set -n $APP -g $RG \
        --settings REGWATCH_SHARED_SECRET="\$(openssl rand -hex 24)"
 
-  Pour tout supprimer :
-     az group delete -n $RG --yes
+  Pour supprimer ce qui a ete cree ici :
+$TEARDOWN
 ============================================================================
 INFO
 REGWATCH_DEPLOY_EOF
