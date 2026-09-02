@@ -387,7 +387,7 @@ cat <<INFO
        --query "[?name=='REGWATCH_SHARED_SECRET'].value" -o tsv
 
   Pour la changer — on genere, on lit, PUIS on envoie (az masque les valeurs
-  dans la sortie de `set`, donc un secret pose sans etre affiche est perdu) :
+  dans la sortie de "set", donc un secret pose sans etre affiche est perdu) :
      NEW=\$(openssl rand -hex 24); echo "Nouveau secret : \$NEW"
      az functionapp config appsettings set -n $APP -g $RG \
        --settings REGWATCH_SHARED_SECRET="\$NEW" -o none
