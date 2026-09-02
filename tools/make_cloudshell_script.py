@@ -64,15 +64,36 @@ echo "Stockage    : $STORAGE"
 echo
 
 # La cle est demandee ici, jamais ecrite dans le script ni dans l'historique.
-# Une saisie vide est redemandee plutot que de faire echouer le script.
+#
+# Deux precautions, apprises a la dure. Le tampon d'entree est vide avant de
+# lire : quelqu'un qui colle la commande AVEC les lignes d'explication qui la
+# suivent verrait sinon `read` avaler la ligne suivante comme si c'etait la
+# cle - en silence, puisque la saisie est masquee. Et la forme de la saisie est
+# verifiee : une cle Azure n'a ni espace ni diese, donc ce qui en contient est
+# une ligne collee par erreur, pas une cle.
+flush_stdin() { read -r -t 0.3 -N 100000 _junk 2>/dev/null || true; }
+
+key_looks_wrong() {
+  case "$1" in
+    "" )                 echo "vide" ;;
+    *[[:space:]]* )      echo "elle contient un espace" ;;
+    "#"* )               echo "elle commence par #, c'est une ligne de commentaire" ;;
+    * ) [ ${#1} -lt 20 ] && echo "elle fait ${#1} caracteres, c'est trop court" ;;
+  esac
+}
+
 if [ -z "${AOAI_KEY:-}" ]; then
   for _try in 1 2 3; do
+    flush_stdin
     read -rsp "Cle Azure OpenAI (la saisie reste invisible) : " AOAI_KEY; echo
-    [ -n "$AOAI_KEY" ] && break
-    echo "  (vide — reessayez)"
+    _why="$(key_looks_wrong "${AOAI_KEY:-}")"
+    [ -z "$_why" ] && break
+    echo "  Cela ne ressemble pas a une cle : $_why."
+    echo "  Collez UNIQUEMENT la cle, sans les lignes qui l'entourent."
+    AOAI_KEY=""
   done
 fi
-[ -n "${AOAI_KEY:-}" ] || die "aucune cle saisie."
+[ -n "${AOAI_KEY:-}" ] || die "aucune cle valide saisie."
 
 # Un secret propre au proxy, pour que l'endpoint ne soit pas ouvert a tous.
 SHARED="$(openssl rand -hex 24)"
@@ -86,7 +107,31 @@ step() { echo; echo "== $1"; }
 run()  { "$@" || die "echec : $*"; }
 
 step "1/5  groupe de ressources"
-run az group create -n "$RG" -l "$LOCATION" -o none
+# Creer un groupe demande un droit que beaucoup de comptes n'ont pas. Un groupe
+# existant est donc reutilise sans y toucher, et l'echec de creation explique
+# quoi faire au lieu de renvoyer le message brut d'Azure.
+if az group show -n "$RG" -o none 2>/dev/null; then
+  echo "   deja present, reutilise (rien n'y est modifie)."
+elif ! az group create -n "$RG" -l "$LOCATION" -o none 2>/dev/null; then
+  echo
+  echo "!! impossible de creer le groupe '$RG' — le compte n'a pas ce droit,"
+  echo "   ou le groupe appartient a une autre souscription."
+  echo
+  echo "   Relancez en reutilisant un groupe existant, par exemple :"
+  echo "       RG=Agent_mapping bash ~/regwatch-deploy.sh"
+  echo
+  echo "   Vos groupes disponibles :"
+  az group list --query "[].name" -o tsv 2>/dev/null | sed 's/^/       /'
+  exit 1
+fi
+
+# Un groupe reutilise a sa propre region ; suivre la sienne evite de creer des
+# ressources a l'autre bout du continent par rapport a ce qui existe deja.
+_rg_loc="$(az group show -n "$RG" --query location -o tsv 2>/dev/null || true)"
+if [ -n "$_rg_loc" ] && [ "$_rg_loc" != "$LOCATION" ]; then
+  echo "   region du groupe : $_rg_loc (au lieu de $LOCATION) — on suit le groupe."
+  LOCATION="$_rg_loc"
+fi
 
 step "2/5  compte de stockage ($STORAGE)"
 if az storage account show -n "$STORAGE" -g "$RG" -o none 2>/dev/null; then
