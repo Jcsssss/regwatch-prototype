@@ -13,6 +13,7 @@ Python 3 without openpyxl and without touching the agent's repository.
 """
 
 import json
+import codecs
 import re
 import sys
 import unicodedata
@@ -127,17 +128,67 @@ def translated(trans, text, lang):
 
 TAG = re.compile(r"<[^>]+>")
 WS = re.compile(r"\s+")
+REPR_HEAD = re.compile(r"^\s*[\(\[]\s*['\"]")
+REPR_SPLIT = re.compile(r"['\"]\s*,\s*['\"]")
+
+try:
+    from ftfy import fix_text as _fix_text
+except ImportError:                                   # pragma: no cover
+    def _fix_text(text):
+        """Without ftfy the text passes through unrepaired rather than mangled.
+
+        `pip install ftfy` to get the mojibake repair; the rest still works.
+        """
+        return text
+
+
+def _unwrap_repr(text):
+    """Pull the text out of a Python repr the agent stored instead of a string.
+
+    Six excerpts arrived as `('title', 'body …')` and four of those were cut
+    mid-string, so ast.literal_eval refuses them outright. Splitting on the
+    quote-comma-quote boundary and keeping the longest piece survives the
+    truncation, which literal_eval never will.
+    """
+    if not REPR_HEAD.match(text or ""):
+        return text
+    body = text.strip().lstrip("([").strip()
+    pieces = REPR_SPLIT.split(body)
+    return max(pieces, key=len).strip().strip("'\"").rstrip(")]").strip("'\" ")
+
+
+def _unescape(text):
+    """Escape sequences that arrived as literal characters.
+
+    A repr writes a non-breaking space as the four characters \\xa0; once the
+    repr is unwrapped those are still text, and decoding them is what turns the
+    bytes back into the mojibake that can then be repaired.
+    """
+    if "\\x" not in text and "\\u" not in text:
+        return text
+    try:
+        return codecs.decode(text, "unicode_escape")
+    except Exception:                                 # noqa: BLE001
+        return text
 
 
 def plain_excerpt(text):
-    """The source's opening lines as text.
+    """The source's opening lines, as readable text.
 
-    Some feeds - Google News among them - wrap the excerpt in an anchor, and the
-    card escapes what it renders, so the markup was showing up literally as
-    `<a href="https://news.google.com/...">`. Strip the tags and keep the words.
+    Four layers of upstream damage, undone in the order they were applied.
+    Titles and summaries are clean - the agent writes those itself - so this is
+    only ever about the raw `Extrait source` column and the fetch cache.
+
+      1. a repr of a tuple, often truncated mid-string
+      2. escape sequences that arrived as literal characters
+      3. mojibake: UTF-8 decoded as cp1252, which is why every non-French,
+         non-English excerpt read as gibberish
+      4. HTML: Google News wraps the excerpt in an anchor, and the card escapes
+         what it renders, so the markup showed up literally
     """
     if not text:
         return ""
+    text = _fix_text(_unescape(_unwrap_repr(text)))
     return WS.sub(" ", TAG.sub(" ", text)).strip()
 
 
