@@ -36,7 +36,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ITEMS = ROOT / "data" / "watch-items.json"
 CACHE = ROOT / "data" / "translations-cache.json"
-BATCH = 20
+BATCH = 8    # long excerpts in big batches invite the model to echo them
 
 
 def load_env_file(path):
@@ -94,9 +94,6 @@ def main():
                     want.append((text, lang))
 
     print("%d segment(s) à traduire (%d déjà en cache)" % (len(want), len(cache)))
-    if not want:
-        print("rien à faire.")
-        return 0
 
     from openai import AzureOpenAI
     client = AzureOpenAI(api_key=key, azure_endpoint=endpoint,
@@ -113,6 +110,11 @@ def main():
                 "Reply with a JSON array of translations, in the same order as the input, "
                 "and nothing else." % (LANG_NAME[lang], LANG_NAME[lang]))
 
+    # Grouped by target language first: one system prompt per request.
+    by_lang = {}
+    for text, lang in want:
+        by_lang.setdefault(lang, []).append(text)
+
     # Batched per target language, and the batches are cut inside a language:
     # a batch straddling two would need two system prompts, and silently
     # dropping the overflow would leave those segments untranslated for good.
@@ -123,6 +125,8 @@ def main():
             batches.append((lang, texts[start:start + BATCH]))
 
     done, total = 0, len(want)
+    if not batches:
+        print("  rien de nouveau à traduire.")
     for lang, chunk in batches:
         payload = json.dumps(chunk, ensure_ascii=False)
         try:
@@ -147,6 +151,49 @@ def main():
             print("  lot %s ignoré : %s" % (lang, str(error)[:110]))
         CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         time.sleep(0.4)
+
+    # --- verification pass -------------------------------------------------
+    #
+    # A batch of twenty long segments sometimes comes back with a few echoed
+    # rather than translated: three Czech and two German excerpts returned
+    # word for word. The prompt allows an echo on purpose ("if it is already in
+    # the target language, return it unchanged"), so the failure is invisible
+    # unless it is looked for.
+    #
+    # Each echoed segment is retried once, alone, with an instruction that
+    # removes the option. What still comes back identical is genuinely already
+    # in that language - most EU and Irish items are - and is marked so it is
+    # never retried again.
+    suspects = [(text, lang)
+                for text, value in cache.items() if isinstance(value, dict)
+                for lang in ("en", "fr")
+                if value.get(lang, "").strip() == text.strip()
+                and not value.get(lang + "Same")]
+    if suspects:
+        print("\n%d segment(s) revenus a l'identique, reprise un par un" % len(suspects))
+        confirmed = 0
+        for text, lang in suspects:
+            firm = ("Translate the following text into %s. It is NOT in %s. "
+                    "Output only the translation, no quotes, no commentary."
+                    % (LANG_NAME[lang], LANG_NAME[lang]))
+            try:
+                r = client.chat.completions.create(
+                    model=deployment,
+                    messages=[{"role": "system", "content": firm},
+                              {"role": "user", "content": text}])
+                out = (r.choices[0].message.content or "").strip().strip('"')
+            except Exception as error:                # noqa: BLE001
+                print("  repris sans succes : %s" % str(error)[:90])
+                continue
+            if out and out.strip() != text.strip():
+                cache[text][lang] = out
+            else:
+                # Already in that language; stop asking.
+                cache[text][lang + "Same"] = True
+                confirmed += 1
+        CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print("  %d traduits a la reprise, %d confirmes deja dans la langue"
+              % (len(suspects) - confirmed, confirmed))
 
     print("\n%d traductions en cache -> %s" % (len(cache), CACHE.relative_to(ROOT)))
     print("Relance tools/veille_to_watchitems.py pour les intégrer.")
