@@ -106,6 +106,39 @@ function wbSections(c){
     <div class="q-note">${t("cp.wbNote")}</div>
   </div>`;
 }
+/* ---------- cyber-theme coverage ----------
+ *
+ * The workbook counts how many requirements a country imposes; this says WHICH
+ * themes its framework actually covers. Two countries with 150 requirements
+ * each can cover completely different ground, and that is the gap a consultant
+ * is looking for.
+ *
+ * Nine countries of twenty-nine, last reviewed in July 2025 while the rest of
+ * the record is a year newer. Both limits are stated on the card rather than
+ * left for the reader to discover: an uncovered theme here may simply never
+ * have been reviewed.
+ */
+function themesSection(c){
+  if (regId() !== "nis2" || typeof CYBER_THEMES === "undefined") return "";
+  const rec = (CYBER_THEMES.countries || {})[c.iso];
+  if (!rec) return "";
+  const pct = Math.round(rec.themesCovered / rec.themesTotal * 100);
+  const rows = rec.families
+    .slice()
+    .sort((a, b) => (b.covered / b.of) - (a.covered / a.of) || a.family.localeCompare(b.family))
+    .map(f => `<div class="thm" ${f.themes.length ? kpiTip(f.themes.join(" · ")) : ""}>
+      <span class="thm-n">${esc(f.family)}</span>
+      <span class="thm-bar"><i style="width:${Math.round(f.covered / f.of * 100)}%"></i></span>
+      <span class="thm-v">${f.covered}<small>/${f.of}</small></span></div>`).join("");
+  return `<div class="card"><div class="cap"><h2>${t("thm.title")}</h2>
+      <span class="q-note">${t("thm.count", { n: rec.themesCovered, total: rec.themesTotal, pct: pct })}</span></div>
+    <div class="bd">
+      <p class="q-note" style="margin-top:0">${t("thm.sub", { date: fmtDateL(CYBER_THEMES.lastUpdate),
+        n: Object.keys(CYBER_THEMES.countries).length })}</p>
+      <div class="thms">${rows}</div>
+    </div></div>`;
+}
+
 /* The NIS 2 fact grid, written out because it is the richest: several of these
    read two fields at once and none of them survive being generated. REC's is
    declared in its spec instead - see countryFacts(). */
@@ -174,6 +207,7 @@ function renderCountry(iso){
       <div class="card"><div class="cap"><h2>${t("cp.authorities")}</h2></div><div class="bd auth">
         ${c.authorities.map(a => `<div class="a"><b>${esc(a.name)}</b><span>${esc(a.role)}</span></div>`).join("")}
       </div></div>
+      ${themesSection(c)}
       ${docsSection(c)}
       <div class="card"><div class="cap"><h2>${t("cp.sources")}</h2></div><div class="bd srcs">
         ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
