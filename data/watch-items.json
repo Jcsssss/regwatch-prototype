@@ -177,6 +177,26 @@
    },
    "targetCells": [
     {
+     "sheet": "Incident reporting - P1",
+     "field": "Organism official name to report incident",
+     "cell": "F10"
+    },
+    {
+     "sheet": "Incident reporting - P1",
+     "field": "Method for incident reporting",
+     "cell": "H10"
+    },
+    {
+     "sheet": "Incident reporting - P1",
+     "field": "Date of incident reporting becoming mandatory",
+     "cell": "G10"
+    },
+    {
+     "sheet": "Incident reporting - P1",
+     "field": "Name and link of web platform",
+     "cell": "I10"
+    },
+    {
      "sheet": "Cybersecurity frameworks - P1",
      "field": "Name and link of framework",
      "cell": "F9"
@@ -185,26 +205,6 @@
      "sheet": "Cybersecurity frameworks - P1",
      "field": "Framework last publication date",
      "cell": "G9"
-    },
-    {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Dedicated framework to NIS 2",
-     "cell": "E9"
-    },
-    {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Number of cyber requirements for EE",
-     "cell": "L9"
-    },
-    {
-     "sheet": "Authority - P3",
-     "field": "Consolidated list of authorities",
-     "cell": "E9"
-    },
-    {
-     "sheet": "ID - P1",
-     "field": "Entry into force of the transposition",
-     "cell": "E9"
     }
    ],
    "excerptEn": "NÚKIB News Service Updates NÚKIB calls on the public to submit suggestions for supporting materials NÚKIB calls on the public to submit suggestions for supporting materials 20. […]",
@@ -1686,14 +1686,14 @@
      "cell": "I24"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Entry into force of the transposition",
-     "cell": "E23"
+     "sheet": "Sanctions - P2",
+     "field": "Financial sanctions",
+     "cell": "F24"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Name of principal transposition text",
-     "cell": "K23"
+     "sheet": "Sanctions - P2",
+     "field": "Types of additional penalties",
+     "cell": "I24"
     }
    ],
    "excerptEn": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2, replaced its predecessor, Directive 2016/1148 or NIS1. […]",
@@ -1748,14 +1748,14 @@
      "cell": "I18"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Entry into force of the transposition",
-     "cell": "E17"
+     "sheet": "Sanctions - P2",
+     "field": "Financial sanctions",
+     "cell": "F18"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Name of principal transposition text",
-     "cell": "K17"
+     "sheet": "Sanctions - P2",
+     "field": "Types of additional penalties",
+     "cell": "I18"
     }
    ],
    "excerptEn": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2, replaced its predecessor, Directive 2016/1148 or NIS1. […]",
@@ -1810,14 +1810,14 @@
      "cell": "I14"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Entry into force of the transposition",
-     "cell": "E13"
+     "sheet": "Sanctions - P2",
+     "field": "Financial sanctions",
+     "cell": "F14"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Name of principal transposition text",
-     "cell": "K13"
+     "sheet": "Sanctions - P2",
+     "field": "Types of additional penalties",
+     "cell": "I14"
     }
    ],
    "excerptEn": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2, replaced its predecessor, Directive 2016/1148 or NIS1. […]",
@@ -1903,14 +1903,14 @@
      "cell": "I31"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Entry into force of the transposition",
-     "cell": "E30"
+     "sheet": "Sanctions - P2",
+     "field": "Financial sanctions",
+     "cell": "F31"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Name of principal transposition text",
-     "cell": "K30"
+     "sheet": "Sanctions - P2",
+     "field": "Types of additional penalties",
+     "cell": "I31"
     }
    ],
    "excerptEn": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2, replaced its predecessor, Directive 2016/1148 or NIS1. […]",
@@ -3439,6 +3439,26 @@
    },
    "targetCells": [
     {
+     "sheet": "Registration - P1",
+     "field": "Registration availability",
+     "cell": "D14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Authority in charge of registration",
+     "cell": "F14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Registration deadline",
+     "cell": "H14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Method of registration",
+     "cell": "I14"
+    },
+    {
      "sheet": "Incident reporting - P1",
      "field": "Organism official name to report incident",
      "cell": "F14"
@@ -3447,26 +3467,6 @@
      "sheet": "Incident reporting - P1",
      "field": "Method for incident reporting",
      "cell": "H14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Date of incident reporting becoming mandatory",
-     "cell": "G14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Name and link of web platform",
-     "cell": "I14"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Audit explicitly planned by the transposition",
-     "cell": "D13"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Organism in charge of the audit",
-     "cell": "E13"
     }
    ],
    "excerptEn": "Financial sector entities are prime targets because of the sensitivity of the data they handle and the financial transactions they carry out. In order to support the sector in the face of the cyber threat, the Agence nationale de la sécurité des systèmes d'information (ANSSI), the Autorité de contrôle prudentiel et de résolution (ACPR) and the Banque de France signed, on 3 July 2026, an agreement aimed at strengthening information exchange and cooperation in compliance with the NIS 2 directive and DORA regulation. […]",
@@ -5056,14 +5056,14 @@
      "cell": "I14"
     },
     {
-     "sheet": "Audit & Controls - P1",
-     "field": "Audit explicitly planned by the transposition",
-     "cell": "D13"
+     "sheet": "Incident reporting - P1",
+     "field": "Organism official name to report incident",
+     "cell": "F14"
     },
     {
-     "sheet": "Audit & Controls - P1",
-     "field": "Organism in charge of the audit",
-     "cell": "E13"
+     "sheet": "Incident reporting - P1",
+     "field": "Method for incident reporting",
+     "cell": "H14"
     }
    ],
    "excerptEn": "L'ANSSI is launching a call for expressions of interest to support the creation and development of entities responsible for sectoral support for cybersecurity issues (AMI SEC), from 16 June 2026 to 27 July 2026. This call for expressions of interest defines the object of the funding envisaged by the Agence nationale de la sécurité des systèmes d'information (ANSSI) to encourage initiatives making it possible to strengthen the capacity for sectoral coordination in cybersecurity at national level. […]",
@@ -5377,33 +5377,33 @@
    },
    "targetCells": [
     {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Name and link of framework",
-     "cell": "F13"
+     "sheet": "Registration - P1",
+     "field": "Registration availability",
+     "cell": "D14"
     },
     {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Framework last publication date",
-     "cell": "G13"
+     "sheet": "Registration - P1",
+     "field": "Authority in charge of registration",
+     "cell": "F14"
     },
     {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Dedicated framework to NIS 2",
-     "cell": "E13"
+     "sheet": "Registration - P1",
+     "field": "Registration deadline",
+     "cell": "H14"
     },
     {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Number of cyber requirements for EE",
-     "cell": "L13"
+     "sheet": "Registration - P1",
+     "field": "Method of registration",
+     "cell": "I14"
     },
     {
-     "sheet": "Authority - P3",
-     "field": "Consolidated list of authorities",
-     "cell": "E13"
+     "sheet": "Audit & Controls - P1",
+     "field": "Audit explicitly planned by the transposition",
+     "cell": "D13"
     },
     {
-     "sheet": "ID - P1",
-     "field": "Entry into force of the transposition",
+     "sheet": "Audit & Controls - P1",
+     "field": "Organism in charge of the audit",
      "cell": "E13"
     }
    ],
@@ -5986,14 +5986,14 @@
      "cell": "I14"
     },
     {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Name and link of framework",
-     "cell": "F13"
+     "sheet": "Audit & Controls - P1",
+     "field": "Audit explicitly planned by the transposition",
+     "cell": "D13"
     },
     {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Framework last publication date",
-     "cell": "G13"
+     "sheet": "Audit & Controls - P1",
+     "field": "Organism in charge of the audit",
+     "cell": "E13"
     }
    ],
    "excerptEn": "These two documents complement the operational aspect of remediation, in particular to help with the implementation or identification of the actions listed among the activities of the guide “Piloter la remédiation” from the same collection. The financial and material damage that a cyberattack can cause is considerable. If a major incident is only partially or poorly remediated, its effects may extend over time. […]",
@@ -6028,6 +6028,26 @@
    },
    "targetCells": [
     {
+     "sheet": "Registration - P1",
+     "field": "Registration availability",
+     "cell": "D14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Authority in charge of registration",
+     "cell": "F14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Registration deadline",
+     "cell": "H14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Method of registration",
+     "cell": "I14"
+    },
+    {
      "sheet": "Incident reporting - P1",
      "field": "Organism official name to report incident",
      "cell": "F14"
@@ -6036,26 +6056,6 @@
      "sheet": "Incident reporting - P1",
      "field": "Method for incident reporting",
      "cell": "H14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Date of incident reporting becoming mandatory",
-     "cell": "G14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Name and link of web platform",
-     "cell": "I14"
-    },
-    {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Name and link of framework",
-     "cell": "F13"
-    },
-    {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Framework last publication date",
-     "cell": "G13"
     }
    ],
    "excerptEn": "In a context marked by an intensification of the cyber threat affecting the whole economy and society, ANSSI brought together on Tuesday 17 March 2026 at Campus Cyber the institutional, sectoral and public stakeholders concerned by NIS 2 in order to encourage them to join the large-scale security dynamic driven by the directive. […]",
@@ -6090,6 +6090,26 @@
    },
    "targetCells": [
     {
+     "sheet": "Incident reporting - P1",
+     "field": "Organism official name to report incident",
+     "cell": "F14"
+    },
+    {
+     "sheet": "Incident reporting - P1",
+     "field": "Method for incident reporting",
+     "cell": "H14"
+    },
+    {
+     "sheet": "Incident reporting - P1",
+     "field": "Date of incident reporting becoming mandatory",
+     "cell": "G14"
+    },
+    {
+     "sheet": "Incident reporting - P1",
+     "field": "Name and link of web platform",
+     "cell": "I14"
+    },
+    {
      "sheet": "Sanctions - P2",
      "field": "Financial sanctions",
      "cell": "F14"
@@ -6098,26 +6118,6 @@
      "sheet": "Sanctions - P2",
      "field": "Types of additional penalties",
      "cell": "I14"
-    },
-    {
-     "sheet": "Sanctions - P2",
-     "field": "Addition of penalties not included in the directive",
-     "cell": "H14"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Audit explicitly planned by the transposition",
-     "cell": "D13"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Organism in charge of the audit",
-     "cell": "E13"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Framework used during audit",
-     "cell": "P13"
     }
    ],
    "excerptEn": "This call for comments is intended for the entire ecosystem supported by ANSSI, both beneficiaries and providers of security monitoring services and products. The results of this consultation are intended to inform the ongoing drafting of the Agency's supervision doctrine documents, at the level of the architectures and technical building blocks that make them up. The deadline for responding to the call for comments is set for Thursday 7 May 2026 inclusive. […]",
@@ -6152,6 +6152,26 @@
    },
    "targetCells": [
     {
+     "sheet": "Registration - P1",
+     "field": "Registration availability",
+     "cell": "D14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Authority in charge of registration",
+     "cell": "F14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Registration deadline",
+     "cell": "H14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Method of registration",
+     "cell": "I14"
+    },
+    {
      "sheet": "Incident reporting - P1",
      "field": "Organism official name to report incident",
      "cell": "F14"
@@ -6160,26 +6180,6 @@
      "sheet": "Incident reporting - P1",
      "field": "Method for incident reporting",
      "cell": "H14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Date of incident reporting becoming mandatory",
-     "cell": "G14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Name and link of web platform",
-     "cell": "I14"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Audit explicitly planned by the transposition",
-     "cell": "D13"
-    },
-    {
-     "sheet": "Audit & Controls - P1",
-     "field": "Organism in charge of the audit",
-     "cell": "E13"
     }
    ],
    "excerptEn": "The digital security roadmaps of the State, drawn up annually, set out the priority efforts that ministries must make in the area of digital security. In a context of high threat and a deteriorated geopolitical situation, a decision was made to make the 2026-2027 roadmap public in order to strengthen its reach. The multiple incidents and data leaks that affected in 2025 the information systems of ministries and of the establishments under their supervision recall the persistence of weaknesses in these infrastructures. […]",
@@ -6214,6 +6214,26 @@
    },
    "targetCells": [
     {
+     "sheet": "Registration - P1",
+     "field": "Registration availability",
+     "cell": "D14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Authority in charge of registration",
+     "cell": "F14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Registration deadline",
+     "cell": "H14"
+    },
+    {
+     "sheet": "Registration - P1",
+     "field": "Method of registration",
+     "cell": "I14"
+    },
+    {
      "sheet": "Incident reporting - P1",
      "field": "Organism official name to report incident",
      "cell": "F14"
@@ -6222,26 +6242,6 @@
      "sheet": "Incident reporting - P1",
      "field": "Method for incident reporting",
      "cell": "H14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Date of incident reporting becoming mandatory",
-     "cell": "G14"
-    },
-    {
-     "sheet": "Incident reporting - P1",
-     "field": "Name and link of web platform",
-     "cell": "I14"
-    },
-    {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Name and link of framework",
-     "cell": "F13"
-    },
-    {
-     "sheet": "Cybersecurity frameworks - P1",
-     "field": "Framework last publication date",
-     "cell": "G13"
     }
    ],
    "excerptEn": "ANSSI publishes its 2025 activity report, this document reviews the major actions carried out by the Agency with the aim of strengthening the overall level of cybersecurity in France. The year 2025 was marked by the publication of the 2025 Revue nationale Stratégique (RNS), which sets new national strategic directions in the area of defence and national security. […]",

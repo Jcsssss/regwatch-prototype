@@ -108,6 +108,27 @@ def load_excerpts():
     return {url: v["text"] for url, v in cache.items() if v.get("ok") and v.get("text")}
 
 
+# Below this, a "body" is a stub, a language switcher or a consent page rather
+# than an article. Measured: real bodies run to 2 500 characters and beyond,
+# while the failures came back at 20, 110 and 278.
+MIN_BODY = 500
+
+
+def load_bodies():
+    """Full article text, for routing only - never shown to a reader.
+
+    Separate from load_excerpts() because the two are trusted differently: the
+    excerpt is displayed and must be the source's own opening lines, the body is
+    only ever matched against keywords.
+    """
+    path = ROOT / "data" / "excerpt-cache.json"
+    if not path.exists():
+        return {}
+    cache = json.loads(path.read_text(encoding="utf-8"))
+    return {url: v["body"] for url, v in cache.items()
+            if v.get("ok") and len(v.get("body") or "") >= MIN_BODY}
+
+
 def load_translations():
     """Translations from agent-veille/translate_items.py, keyed by source text.
 
@@ -215,7 +236,18 @@ def load_cellmap():
 
 
 def target_cells(cellmap, iso, *texts):
-    """Resolve the workbook cells a source most likely affects, for one country."""
+    """Resolve the workbook cells a source most likely affects, for one country.
+
+    Fed the agent's own analysis AND the article body, united rather than
+    swapped. Measured on sixteen live pages, routing on the body alone gains 13
+    themes and loses 22: some pages yield a language switcher instead of an
+    article, and the keyword list is French and English while the sources are
+    Czech, German, Dutch. The agent's summary is doing translation work, which
+    is exactly why it must stay in the mix.
+
+    United, the body can only add. A theme added wrongly is visible to the
+    validator and dismissed in a second; a theme never raised is invisible.
+    """
     if not cellmap or iso == "EU":
         return []
     blob = " ".join(t for t in texts if t).lower()
@@ -387,6 +419,7 @@ def build_items(rows):
     items, report = [], {"unmapped_countries": {}, "no_country": 0, "eu_wide": 0, "with_cells": 0, "index_pages": 0, "index_urls": {}}
     cellmap = load_cellmap()
     excerpts = load_excerpts()
+    bodies = load_bodies()
     trans = load_translations()
     dates = load_dates()
     if not trans:
@@ -491,7 +524,8 @@ def build_items(rows):
             }
             item["targetCells"] = target_cells(
                 cellmap, code, title, item["summary"], item["agent"]["textType"],
-                item["agent"]["obligations"])
+                item["agent"]["obligations"],
+                bodies.get(first(record, "URL source"), ""))
             if item["targetCells"]:
                 report["with_cells"] += 1
             items.append(item)

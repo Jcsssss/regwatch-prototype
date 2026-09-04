@@ -33,7 +33,8 @@ ROOT = Path(__file__).resolve().parent.parent
 ITEMS = ROOT / "data" / "watch-items.json"
 CACHE = ROOT / "data" / "excerpt-cache.json"
 
-MAX_CHARS = 600
+MAX_CHARS = 600          # what the card shows: the opening lines
+MAX_BODY = 20000         # what the router reads: the article, bounded
 TIMEOUT = 12
 WORKERS = 8
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -56,7 +57,17 @@ CONSENT = re.compile(
 
 
 def extract(html):
-    """The first real sentences of the page body."""
+    """The page's real paragraphs: the opening lines, and the whole body.
+
+    Two consumers, two needs. The card shows the first sentences, so a validator
+    reads the source before trusting a generated summary. The cell router needs
+    everything: routing on a 338-character summary means an article that devotes
+    three paragraphs to sanctions is never routed to the Sanctions sheet, because
+    the summary happened not to use the word.
+
+    The body was already being fetched and cleaned, then thrown away at 600
+    characters. Keeping it costs nothing but disk.
+    """
     soup = BeautifulSoup(html, "html.parser")
     for tag in soup(["script", "style", "nav", "header", "footer", "aside", "form"]):
         tag.decompose()
@@ -69,18 +80,19 @@ def extract(html):
         if len(text) < 40 or NOISE.match(text):
             continue
         parts.append(text)
-        if sum(len(x) for x in parts) >= MAX_CHARS:
+        if sum(len(x) for x in parts) >= MAX_BODY:
             break
 
     if not parts:
-        return ""
+        return "", ""
+    body = " ".join(parts)[:MAX_BODY]
     out = " ".join(parts)
     if len(out) > MAX_CHARS:
         cut = out[:MAX_CHARS]
         # end on a sentence when we can, rather than mid-word
         stop = max(cut.rfind(". "), cut.rfind(" ! "), cut.rfind(" ? "))
         out = (cut[:stop + 1] if stop > MAX_CHARS * 0.5 else cut.rstrip()) + " […]"
-    return out
+    return out, body
 
 
 def fetch(url):
@@ -92,12 +104,15 @@ def fetch(url):
         ctype = r.headers.get("Content-Type", "")
         if "html" not in ctype.lower():
             return {"ok": False, "reason": "type %s" % (ctype.split(";")[0] or "inconnu")}
-        text = extract(r.text)
+        text, body = extract(r.text)
         if not text:
             return {"ok": False, "reason": "aucun texte exploitable"}
         if CONSENT.search(text):
             return {"ok": False, "reason": "mur de consentement (agrégateur)"}
-        return {"ok": True, "text": text}
+        # `body` is kept apart from `text`: only the first is shown to a reader,
+        # and only the second is trusted for routing - and only when long enough
+        # to be an article rather than a language switcher or a stub.
+        return {"ok": True, "text": text, "body": body, "bodyChars": len(body)}
     except Exception as error:
         return {"ok": False, "reason": type(error).__name__}
 
@@ -125,6 +140,11 @@ def main():
     if urls:
         with ThreadPoolExecutor(max_workers=WORKERS) as pool:
             for url, result in zip(urls, pool.map(fetch, urls)):
+                # A refresh must never trade a success for a failure: sites
+                # rate-limit, block a user agent for a day, or go down. Six
+                # working excerpts were lost to a single --refresh before this.
+                if not result.get("ok") and cache.get(url, {}).get("ok"):
+                    result = cache[url]
                 cache[url] = result
                 flag = "OK  " if result["ok"] else "----"
                 detail = ("%d car." % len(result["text"])) if result["ok"] else result["reason"]
