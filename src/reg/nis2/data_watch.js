@@ -4912,6 +4912,26 @@ const WATCH_QUEUE_AGENT = [
     },
     "targetCells": [
       {
+        "sheet": "Registration - P1",
+        "field": "Registration availability",
+        "cell": "D24"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Authority in charge of registration",
+        "cell": "F24"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration deadline",
+        "cell": "H24"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Method of registration",
+        "cell": "I24"
+      },
+      {
         "sheet": "Incident reporting - P1",
         "field": "Organism official name to report incident",
         "cell": "F24"
@@ -4920,26 +4940,6 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Incident reporting - P1",
         "field": "Method for incident reporting",
         "cell": "H24"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Date of incident reporting becoming mandatory",
-        "cell": "G24"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Name and link of web platform",
-        "cell": "I24"
-      },
-      {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Name and link of framework",
-        "cell": "F23"
-      },
-      {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Framework last publication date",
-        "cell": "G23"
       }
     ],
     "excerptEn": "On 6 and 7 July 2026, the Senate will debate the Cyberbeveiligingswet (Cbw). The bill will also be put to a vote. If the Senate adopts the bill, the Cbw is expected to enter into force on 15 August 2026. Organisations covered by the law will then face new obligations in the area of digital resilience. The Cbw implements the European NIS2 directive in the Netherlands and sets requirements for the digital resilience of more than 8,000 organisations. Organisations are themselves responsible for checking whether they fall under this law. […]",
@@ -4994,14 +4994,14 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I24"
       },
       {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Name and link of framework",
-        "cell": "F23"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D23"
       },
       {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Framework last publication date",
-        "cell": "G23"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E23"
       }
     ],
     "excerptEn": "Cyberattacks rarely remain limited to a single organisation. Malicious actors in many cases attack several organisations at the same time. In order to prevent several organisations from becoming victims, rapid and standardised exchange of threat information is essential. That is why the Nationaal Cyber Security Centrum (NCSC) has submitted an application for version 2.1 of STIX/TAXII, which makes effective and automated exchange of threat information possible, to be included on Forum Standaardisatie’s “comply or explain” list. […]",

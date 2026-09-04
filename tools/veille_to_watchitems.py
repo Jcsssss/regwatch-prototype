@@ -40,6 +40,28 @@ ROOT = Path(__file__).resolve().parent.parent
 # model picks from the SAME catalogue of field labels and the code still
 # resolves the addresses - so a model can never invent a cell reference.
 # --------------------------------------------------------------------------- #
+# The routes below are written in French and English. The sources are not: a
+# Czech page never says "sanction", a German one never says "référentiel". The
+# terms in tools/theme_terms.py are folded in at load time so the pattern stays
+# readable here and the vocabulary stays editable there.
+try:
+    from theme_terms import terms_for as _terms_for
+except ImportError:                                    # pragma: no cover
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        from theme_terms import terms_for as _terms_for
+    except ImportError:
+        def _terms_for(_sheet):
+            return []
+
+
+def _widen(pattern, sheet_name):
+    """Add the source-language terms for this sheet to its pattern."""
+    words = [re.escape(w) for w in _terms_for(sheet_name)]
+    return pattern + ("|" + "|".join(words) if words else "")
+
+
 CELL_ROUTES = [
     (r"enregistr|registration|inscri|immatricul|déclaration des entités",
      "Registration - P1",
@@ -298,6 +320,10 @@ RELIABILITY_TYPE = {
 # `Statut` -> RegWatch status. The agent always writes "À valider"; "À traiter"
 # only appears on the workbook's hand-seeded rows.
 STATUS_MAP = {"a valider": "pending", "a traiter": "pending"}
+
+
+CELL_ROUTES = [(_widen(pattern, sheet), sheet, labels)
+               for pattern, sheet, labels in CELL_ROUTES]
 
 
 def fold(value):
