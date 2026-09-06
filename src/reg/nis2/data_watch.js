@@ -33,6 +33,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Publication ENISA; rapport d’analyse sectorielle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -100,18 +101,30 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I24"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F24"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D23"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I24"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E23"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
-      "score": 80,
+      "score": 95,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -119,13 +132,9 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 10
       },
-      "penalties": {
-        "duplicate": -15
-      },
-      "notes": [
-        "duplicate"
-      ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
     }
   },
   {
@@ -179,14 +188,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I18"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F18"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D17"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I18"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E17"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
@@ -204,7 +225,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -258,14 +279,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D13"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E13"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
@@ -283,7 +316,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -316,8 +349,9 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
-      "score": 80,
+      "score": 65,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -325,9 +359,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 10
       },
-      "penalties": {},
-      "notes": [],
-      "duplicateOf": null
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -381,14 +419,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I31"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F31"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D30"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I31"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E30"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
@@ -406,7 +456,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -470,6 +520,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "P13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -549,6 +600,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H22"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -598,6 +650,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Plan d'action stratégique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 80,
       "parts": {
@@ -673,8 +726,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E23"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -682,16 +736,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260710154925-001"
+      "duplicateOf": null
     }
   },
   {
@@ -724,6 +775,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "décision administrative; procédure juridique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -742,7 +794,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260710154925-001"
+      "duplicateOf": "REG-20260710155218-003-NL"
     }
   },
   {
@@ -796,6 +848,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "L17"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -844,6 +897,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "décision de la Commission européenne; procédure de manquement"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -895,6 +949,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "décision réglementaire; procédure juridique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -904,13 +959,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260710155218-003-NL"
     }
   },
   {
@@ -969,6 +1027,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1048,6 +1107,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E26"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1127,6 +1187,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G25"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1196,6 +1257,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "L25"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1275,6 +1337,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E25"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1354,6 +1417,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E21"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1433,6 +1497,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1512,6 +1577,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G21"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -1592,8 +1658,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E30"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -1601,16 +1668,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172307-023-ES"
+      "duplicateOf": null
     }
   },
   {
@@ -1674,6 +1738,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1753,6 +1818,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -1801,6 +1867,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "article de presse"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -1810,16 +1877,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145257-007-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -1883,8 +1947,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -1892,13 +1957,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145257-007-EU"
     }
   },
   {
@@ -1962,8 +2030,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -1971,16 +2040,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172256-022"
+      "duplicateOf": null
     }
   },
   {
@@ -2013,6 +2079,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "article d'analyse sectorielle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -2022,16 +2089,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145243-005-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -2095,8 +2159,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2104,13 +2169,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145243-005-EU"
     }
   },
   {
@@ -2174,8 +2242,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2183,16 +2252,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172240-020"
+      "duplicateOf": null
     }
   },
   {
@@ -2225,6 +2291,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité réglementaire"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -2243,7 +2310,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260703172240-020"
+      "duplicateOf": "REG-20260707145234-004-FR"
     }
   },
   {
@@ -2307,8 +2374,20 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H15"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "Registrierung",
+        "text": "Registrierungspflicht gemäß § 33 Absatz 6 BSIG - Einzelheiten zur Ausgestaltung des Registrierungsverfahrens Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal ."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Meldung",
+        "text": "Meldung: , 11.06.2026 BSI -Magazin: NIS-2 und BSI -Gesetz stärken Cybersicherheit in Unternehmen Die neue Ausgabe des halbjährlich erscheinenden BSI-Magazins ist da."
+      }
+    ],
     "reliability": {
-      "score": 70,
+      "score": 85,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -2317,14 +2396,12 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10,
-        "duplicate": -15
+        "impossibleDate": -10
       },
       "notes": [
-        "impossibleDate",
-        "duplicate"
+        "impossibleDate"
       ],
-      "duplicateOf": "REG-20260703172101-011-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -2386,6 +2463,13 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "ID - P1",
         "field": "Name of principal transposition text",
         "cell": "K23"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "ID - P1",
+        "term": "publi",
+        "text": "Voor alle andere organisaties in de publieke sector geldt een dringend advies om STIX en TAXII versie 2.1 toe te passen."
       }
     ],
     "reliability": {
@@ -2465,6 +2549,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Ce nouvel accord s’inscrit dans cette dynamique, portée également par la réglementation européenne et vise à protéger le système financier avec des échanges renforcés sur les incidents d’origine cyber et la gestion de crise."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Dans ce cadre, l’ANSSI conduira les actions nécessaires en matière de réponse technique aux incidents de cybersécurité touchant le secteur financier, via le Centre national et gouvernemental de veille, d’alerte et de réponse aux attaques informatiques (CERT-FR)."
+      }
+    ],
     "reliability": {
       "score": 95,
       "parts": {
@@ -2540,6 +2636,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E21"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -2589,6 +2686,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "rapport"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 70,
       "parts": {
@@ -2668,8 +2766,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "K23"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2677,16 +2776,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172325-025-BE"
+      "duplicateOf": null
     }
   },
   {
@@ -2750,8 +2846,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "K5"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2759,13 +2856,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172325-025-NL"
     }
   },
   {
@@ -2829,6 +2929,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I24"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -2877,6 +2978,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -2895,7 +2997,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260703172307-023-ES"
+      "duplicateOf": "REG-20260707152305-012"
     }
   },
   {
@@ -2944,8 +3046,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "L30"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2953,13 +3056,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707152305-012"
     }
   },
   {
@@ -3023,8 +3129,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3032,13 +3139,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145250-006"
     }
   },
   {
@@ -3102,6 +3212,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -3181,8 +3292,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3190,13 +3302,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145234-004-FR"
     }
   },
   {
@@ -3229,6 +3344,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité réglementaire"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -3238,16 +3354,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172228-019-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -3311,8 +3424,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I15"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3320,13 +3434,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172228-019-EU"
     }
   },
   {
@@ -3359,6 +3476,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "article d'analyse;actualité réglementaire"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -3368,16 +3486,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172220-018-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -3441,8 +3556,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3450,13 +3566,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172220-018-EU"
     }
   },
   {
@@ -3520,6 +3639,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -3568,6 +3688,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "guide"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -3577,16 +3698,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172155-016-BE"
+      "duplicateOf": null
     }
   },
   {
@@ -3650,8 +3768,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G5"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3659,13 +3778,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172155-016-EU"
     }
   },
   {
@@ -3729,6 +3851,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -3808,6 +3931,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I26"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -3887,6 +4011,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -3935,6 +4060,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -4017,6 +4143,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -4065,6 +4192,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -4116,6 +4244,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "guide officiel; publication réglementaire; checklist; FAQ; roadmap; infopackets; vidéos; webinaires"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -4133,7 +4262,7 @@ const WATCH_QUEUE_AGENT = [
         "impossibleDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260703172101-011-DE"
+      "duplicateOf": "REG-20260707145226-003"
     }
   },
   {
@@ -4197,8 +4326,20 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H15"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "Registrierung",
+        "text": "Registrierungspflicht gemäß § 33 Absatz 6 BSIG - Einzelheiten zur Ausgestaltung des Registrierungsverfahrens Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal ."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Meldung",
+        "text": "Meldung: , 11.06.2026 BSI -Magazin: NIS-2 und BSI -Gesetz stärken Cybersicherheit in Unternehmen Die neue Ausgabe des halbjährlich erscheinenden BSI-Magazins ist da."
+      }
+    ],
     "reliability": {
-      "score": 85,
+      "score": 70,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -4207,12 +4348,14 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10
+        "impossibleDate": -10,
+        "duplicate": -15
       },
       "notes": [
-        "impossibleDate"
+        "impossibleDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145226-003"
     }
   },
   {
@@ -4274,6 +4417,13 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Audit & Controls - P1",
         "field": "Organism in charge of the audit",
         "cell": "E14"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "Nachweis",
+        "text": "Entsprechende Dokumentationen können beispielsweise sein: Durch diese Pflicht wird sichergestellt, dass Einrichtungen nach Anforderungen von Nachweisen des Bundesamts gemäß § 61 Absatz 3 BSIG dem Bundesamt entsprechende Nachweisdokumente vorlegen können."
       }
     ],
     "reliability": {
@@ -4353,6 +4503,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G17"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -4430,6 +4581,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H24"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 70,
       "parts": {
@@ -4505,6 +4657,18 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Audit & Controls - P1",
         "field": "Organism in charge of the audit",
         "cell": "E23"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "melding",
+        "text": "Test of je systemen de STIX-objecten correct vertalen naar bruikbare alerts in je dashboard, zonder dat je organisatie overspoeld wordt met valse meldingen."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "Controle",
+        "text": "Controleer de ondersteuning van je systemen Veel systemen (zoals een Threat Intelligence Platform of SIEM) ondersteunen al STIX/TAXII 2.1."
       }
     ],
     "reliability": {
@@ -4584,6 +4748,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "notification",
+        "text": "Ouverture de l’appel à manifestation d'intérêt Clôture de l’appel à manifestation d'intérêt Décision et notifications aux candidats et aux lauréats Consulter le document annexe de l'AMI SEC"
+      }
+    ],
     "reliability": {
       "score": 95,
       "parts": {
@@ -4659,6 +4830,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 95,
       "parts": {
@@ -4703,8 +4875,9 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité;guide;stratégie"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
-      "score": 30,
+      "score": 45,
       "parts": {
         "source": 30,
         "evidence": 0,
@@ -4713,15 +4886,13 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10,
-        "duplicate": -15
+        "impossibleDate": -10
       },
       "notes": [
         "noSourceText",
-        "impossibleDate",
-        "duplicate"
+        "impossibleDate"
       ],
-      "duplicateOf": "REG-20260703171902-001"
+      "duplicateOf": null
     }
   },
   {
@@ -4754,8 +4925,9 @@ const WATCH_QUEUE_AGENT = [
       "textType": "guide; méthodologie; rapport d'autorité compétente"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
-      "score": 45,
+      "score": 30,
       "parts": {
         "source": 30,
         "evidence": 0,
@@ -4763,12 +4935,15 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "noSourceText",
-        "old"
+        "old",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703171910-002"
     }
   },
   {
@@ -4832,6 +5007,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -4909,6 +5085,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "term": "exigence",
+        "text": "L’ANSSI compte s’appuyer sur cette notion pour définir des exigences adaptées et proportionnées aux enjeux de chacune de ces catégories."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -4955,6 +5138,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "FAQ officielle; guide pratique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -5035,6 +5219,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "En outre, suivant cette logique, la norme ISO 27001 n’intègre pas, par nature, le principe de proportionnalité distinguant les EE et les EI prévu par la directive et inscrit par l’ANSSI dans le référentiel NIS 2."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "certification",
+        "text": "L’obtention d’une certification ISO 27001 ne permet pas, en elle-même, une conformité à NIS 2."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -5081,6 +5277,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "FAQ;guide"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -5161,6 +5358,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Ces exigences s’inscriront dans la suite logique de l’actuelle réglementation NIS 1 et porteront principalement sur des aspects d’hygiène informatique fondamentale afin que les entités puissent se protéger contre les menaces les plus courantes."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "notification",
+        "text": "Elles ne seront par conséquent pas soumises aux mesures de sécurité ni aux règles de notification d’incidents s’appliquant aux entités régulées par NIS 2."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -5207,6 +5416,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "FAQ institutionnelle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -5256,6 +5466,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "page institutionnelle; guide technique; méthodologie; analyse de marché"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -5334,6 +5545,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G17"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -5410,6 +5622,18 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Sanctions - P2",
         "field": "Types of additional penalties",
         "cell": "I18"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "reporting",
+        "text": "Risk management and reporting: Entities listed in Annex I or II, and critical entities under Directive (EU) 2022/2557, must follow cybersecurity risk management and reporting rules."
+      },
+      {
+        "sheet": "Sanctions - P2",
+        "term": "sanction",
+        "text": "The primary distinction between essential and important entities lies in supervision and sanctions they're subject to."
       }
     ],
     "reliability": {
@@ -5489,6 +5713,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "P5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -5567,6 +5792,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -5645,6 +5871,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -5721,6 +5948,13 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Cybersecurity frameworks - P1",
         "field": "Framework last publication date",
         "cell": "G13"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Ils fournissent un service de réponse à incident de premier niveau et mettent en relation les victimes avec des partenaires de proximité tels que des prestataires de réponse à incident et des partenaires étatiques."
       }
     ],
     "reliability": {
@@ -5800,6 +6034,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Si un incident majeur est partiellement ou mal remédié, ses effets peuvent s’étendre dans la durée."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "contrôle",
+        "text": "Ce fort potentiel de déstabilisation exige, à la fois des organisations cibles et des prestataires de cybersécurité, un savoir-faire dans l’endiguement de ces cyber-attaques, dans la reprise de contrôle du système d’information compromis et dans le rétablissement d’un état de fonctionnement suffisant."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -5877,6 +6123,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Les mesures inscrites dans ce référentiel visent un niveau de sécurité adapté pour protéger les entités contre la menace cybercriminelle de masse."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -5944,14 +6197,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D13"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E13"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "La supervision de sécurité désigne l’ensemble des moyens et des activités concourant, dans les meilleurs délais, à la détection et à la qualification d’un incident de sécurité sur un périmètre supervisé, ainsi qu’au choix de la réaction appropriée lorsque cet incident est avéré."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "Supervis",
+        "text": "Deux guides de la collection « Supervision de sécurité » ont déjà été publiés en 2025 : un guide de niveau stratégique : (Ouvre une nouvelle fenêtre) Les clés de la décision | MesServicesCyber ; un guide de niveau opérationnel : (Ouvre une nouvelle fenêtre) Piloter un projet de supervision | MesServicesCyber ."
       }
     ],
     "reliability": {
@@ -6031,6 +6296,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Elle s’inscrit également dans la perspective de la mise en conformité des administrations de l’État à la directive de l’Union européenne 2022/2555, dite « directive NIS 2 »."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Les multiples incidents et fuites de données qui ont affecté en 2025 les systèmes d’information des ministères et des établissements dont ils ont la tutelle rappellent la persistance de fragilités dans ces infrastructures."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -6106,6 +6383,18 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Incident reporting - P1",
         "field": "Method for incident reporting",
         "cell": "H14"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "La Stratégie Nationale de cybersécurité 2026-2030 qui guide plus particulièrement l’ANSSI s’inscrit dans la continuité de la RNS afin d’élever le niveau de cybersécurité global et de faire de la France une Nation cyber de premier rang."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Des échanges qui se matérialisent avec le partage d’outils, de méthode de réponse à incident ou encore de connaissance de la menace."
       }
     ],
     "reliability": {
@@ -6185,6 +6474,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "term": "référentiel",
+        "text": "Le référentiel pour la qualification des prestataires d’accompagnement et de conseil en sécurité des systèmes d’information (PACS) évolue."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -6262,6 +6558,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {

@@ -645,6 +645,35 @@ function relDetail(q){
       r.notes.map(n => esc(t("rel.n." + n))).join("<br>")}</div>` : ""}</details>`;
 }
 
+/* The sentences that put this item in a workbook cell, quoted from the source.
+
+   The card used to show only the article's opening lines, and the router had
+   often decided on a paragraph much further down: more than half the time the
+   displayed text did not contain the theme it was filed under, leaving the
+   validator to take the routing on trust. This shows the evidence instead, and
+   the theme it argues for.
+
+   Untranslated on purpose. This is the passage that has to be checked as
+   published; the readable rendering of the opening lines stays below. */
+function verbatimPanel(q){
+  const rows = q.verbatim || [];
+  if (!rows.length) return "";
+  return `<div class="q-verb">
+    <div class="q-verb-h">${t("card.verbatim")} <span class="q-note">${t("card.verbatimNote")}</span></div>
+    ${rows.map(v => `<blockquote class="q-verb-q">
+        <span class="q-verb-t">${esc(v.sheet.split(" - ")[0])}</span>
+        ${markTerm(v.text, v.term)}</blockquote>`).join("")}
+  </div>`;
+}
+
+/* Highlight the matched word without letting the source's text become markup. */
+function markTerm(text, term){
+  const i = term ? text.toLowerCase().indexOf(term.toLowerCase()) : -1;
+  if (i < 0) return esc(text);
+  return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + term.length))
+       + "</mark>" + esc(text.slice(i + term.length));
+}
+
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
@@ -685,7 +714,10 @@ function qCard(q){
     <div class="q-title">${esc(itemTitle(q))}</div>
     <div class="q-meta">${meta}</div>
     ${relDetail(q)}
-    ${body}
+    ${verbatimPanel(q)}
+    ${(q.verbatim || []).length
+      ? `<details class="q-open-lines"><summary>${t("card.verbatimOpening")}</summary>${body}</details>`
+      : body}
     ${cellsPanel(q)}
     ${agentPanel(q)}
     ${q.status === "pending" && isVal ? `<div class="q-actions">

@@ -57,9 +57,17 @@ except ImportError:                                    # pragma: no cover
 
 
 def _widen(pattern, sheet_name):
-    """Add the source-language terms for this sheet to its pattern."""
+    """Add the source-language terms for this sheet, and anchor the left edge.
+
+    The terms are stems on purpose - "enregistr" has to catch "enregistrement",
+    "registrace" and "registrácia" at once - so the right edge stays open. The
+    left edge must not: without it "fine" matched inside "define" and filed an
+    article about defining national strategies under Sanctions. One-sided is the
+    correct amount of strictness here, not a compromise.
+    """
     words = [re.escape(w) for w in _terms_for(sheet_name)]
-    return pattern + ("|" + "|".join(words) if words else "")
+    body = pattern + ("|" + "|".join(words) if words else "")
+    return r"(?<!\w)(?:%s)" % body
 
 
 CELL_ROUTES = [
@@ -255,6 +263,53 @@ def load_cellmap():
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))["sheets"]
+
+
+# A sentence ends at . ! ? or a newline, but not inside an abbreviation or a
+# number. Good enough for quoting: a sentence cut one clause early is still the
+# source's own words, which a paraphrase never is.
+SENTENCE = re.compile(r"(?<=[.!?])\s+(?=[A-ZÀ-ÖØ-Þ0-9«\"])")
+MAX_VERBATIM = 4
+MIN_SENTENCE = 40
+MAX_SENTENCE = 320
+
+
+def verbatim_for(body, sheets):
+    """The sentences that actually triggered each routed theme.
+
+    Until now the card showed the article's opening lines - a headline, usually
+    - while the router had decided the item was about sanctions on the strength
+    of a paragraph further down. More than half the time the displayed text did
+    not mention the theme it was filed under. This quotes the sentence that did.
+
+    Only the source's own words, never a summary: a validator checking a
+    regulatory text has to read what was published.
+    """
+    if not body or not sheets:
+        return []
+    sentences = [x.strip() for x in SENTENCE.split(body)]
+    sentences = [x for x in sentences if MIN_SENTENCE <= len(x) <= MAX_SENTENCE]
+    out, seen = [], set()
+    for pattern, sheet, _labels in CELL_ROUTES:
+        if sheet not in sheets:
+            continue
+        rx = re.compile(pattern, re.I)
+        # Prefer the sentence carrying the most of the theme's vocabulary. The
+        # first match is usually the article's definitional opening, which is
+        # true, generic, and tells a validator nothing.
+        best = None
+        for sentence in sentences:
+            hits = rx.findall(sentence)
+            if not hits or sentence in seen:
+                continue
+            if best is None or len(hits) > best[0]:
+                best = (len(hits), sentence, rx.search(sentence).group(0))
+        if best:
+            seen.add(best[1])
+            out.append({"sheet": sheet, "term": best[2], "text": best[1]})
+        if len(out) >= MAX_VERBATIM:
+            break
+    return out
 
 
 def target_cells(cellmap, iso, *texts):
@@ -548,10 +603,13 @@ def build_items(rows):
                     "textType": first(record, "Type de texte"),
                 },
             }
+            _body = bodies.get(first(record, "URL source"), "")
             item["targetCells"] = target_cells(
                 cellmap, code, title, item["summary"], item["agent"]["textType"],
-                item["agent"]["obligations"],
-                bodies.get(first(record, "URL source"), ""))
+                item["agent"]["obligations"], _body)
+            # The sentences that triggered the routing, quoted from the source.
+            item["verbatim"] = verbatim_for(
+                _body, {c["sheet"] for c in item["targetCells"]})
             if item["targetCells"]:
                 report["with_cells"] += 1
             items.append(item)
