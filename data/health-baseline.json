@@ -1,0 +1,23 @@
+{
+ "date": "2026-09-06",
+ "items": 89,
+ "officialShare": 51,
+ "aggregatorShare": 49,
+ "itemsWithExcerpt": 36,
+ "itemsWithBody": 35,
+ "datesEstablished": 46,
+ "datesFromFeed": 0,
+ "impossibleDates": 8,
+ "itemsRouted": 74,
+ "excerptsTranslated": 36,
+ "titlesTranslated": 100,
+ "duplicates": 26,
+ "reliabilityMedian": 30,
+ "reliabilityHigh": 30,
+ "reliabilityLow": 49,
+ "sourcesReachable": 37,
+ "usableBodies": 22,
+ "feedsWorking": 22,
+ "unreachableFeeds": 3,
+ "candidatesWaiting": 35
+}
