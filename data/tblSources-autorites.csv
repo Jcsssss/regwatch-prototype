@@ -1,0 +1,30 @@
+﻿Source;Type;URL / Endpoint;Actif;Pays / zone;Fiabilité;Priorité;Note
+CCB - Centre for Cybersecurity Belgium;RSS;https://cert.be/en/rss;Oui;BE;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+Bulgarian cybersecurity authority;RSS;https://www.govcert.bg/feed/;Oui;BG;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+NUKIB;RSS;https://nukib.gov.cz/rss.xml;Oui;CZ;Officielle;1;Flux vérifié : 15 entrées, 15 datées
+BSI;RSS;https://wid.cert-bund.de/content/public/securityAdvisory/rss;Oui;DE;Officielle;1;Flux vérifié : 250 entrées, 250 datées
+CFCS - Center for Cybersikkerhed;RSS;https://samsik.dk/feed/;Oui;DK;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+RIA - Information System Authority;RSS;https://www.ria.ee/rss-feeds/rss.xml;Oui;EE;Officielle;1;Flux vérifié : 100 entrées, 100 datées
+INCIBE;RSS;https://www.incibe.es/rss.xml;Oui;ES;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+Traficom / NCSC-FI;RSS;https://www.kyberturvallisuuskeskus.fi/feed/rss/fi;Oui;FI;Officielle;1;Flux vérifié : 500 entrées, 500 datées
+ANSSI;RSS;https://cyber.gouv.fr/actualites/rss/;Oui;FR;Officielle;1;Flux vérifié : 20 entrées, 20 datées
+NCSC UK;RSS;https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml;Oui;GB;Officielle;1;Flux vérifié : 20 entrées, 20 datées
+ZSIS / CERT.hr;RSS;https://www.cert.hr/feed/;Oui;HR;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+NBSZ NKI;RSS;https://nki.gov.hu/it-biztonsag/hirek/feed/;Oui;HU;Officielle;1;Flux vérifié : 20 entrées, 20 datées
+NCSC Ireland;RSS;https://www.ncsc.gov.ie/news/alerts.rss;Oui;IE;Officielle;1;Flux vérifié : 233 entrées, 233 datées
+ILR / GOVCERT.LU;RSS;https://www.govcert.lu/index.xml;Oui;LU;Officielle;1;Flux vérifié : 191 entrées, 191 datées
+CERT.LV;RSS;https://cert.lv/lv/feed/atom/viss;Oui;LV;Officielle;1;Flux vérifié : 30 entrées, 30 datées
+MDIA / CIP;RSS;https://mdia.gov.mt/feed/;Oui;MT;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+NCSC-NL;RSS;https://feeds.ncsc.nl/nieuws.rss;Oui;NL;Officielle;1;Flux vérifié : 328 entrées, 328 datées
+NSM;RSS;https://nsm.no/rss/nyheter-fra-nsm/;Oui;NO;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+CSIRT NASK / CERT Polska;RSS;https://cert.pl/atom.xml;Oui;PL;Officielle;1;Flux vérifié : 100 entrées, 100 datées
+DNSC;RSS;https://dnsc.ro/feed;Oui;RO;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+MSB / CERT-SE;RSS;https://www.cert.se/feed/atom.xml;Oui;SE;Officielle;1;Flux vérifié : 20 entrées, 20 datées
+SI-CERT / URSIV;RSS;https://www.cert.si/feed;Oui;SI;Officielle;1;Flux vérifié : 10 entrées, 10 datées
+nis.gv.at / CERT.at;Page web;https://www.cert.at;Non;AT;Officielle;2;Ni flux ni page d'actualités exploitable - à surveiller manuellement
+DSA - Digital Security Authority;Page web;https://dsa.cy;Non;CY;Officielle;2;Ni flux ni page d'actualités exploitable - à surveiller manuellement
+National Cybersecurity Authority;Page web;https://mindigital.gr;Non;GR;Officielle;2;Injoignable lors du dernier sondage - à revérifier avant activation
+ACN;Page web;https://www.acn.gov.it;Non;IT;Officielle;2;Ni flux ni page d'actualités exploitable - à surveiller manuellement
+NKSC;Page web;https://www.nksc.lt;Non;LT;Officielle;2;Injoignable lors du dernier sondage - à revérifier avant activation
+CNCS;Page web;https://www.cncs.gov.pt;Non;PT;Officielle;2;Injoignable lors du dernier sondage - à revérifier avant activation
+NBU SK;Page web;https://www.nbu.gov.sk;Non;SK;Officielle;2;Ni flux ni page d'actualités exploitable - à surveiller manuellement
