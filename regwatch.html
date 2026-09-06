@@ -302,6 +302,14 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
   color:#fff;font-family:var(--font-mono);letter-spacing:-.02em}
 .kpi-grid-h{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:8px}
 
+/* ---- reliability, shown with its reasons ---- */
+.rel{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.rel b{font-family:var(--font-mono);margin-left:2px}
+.rel-hi{background:var(--st-ok-bg);color:var(--st-ok-ink)}
+.rel-mid{background:var(--st-warn-bg);color:var(--st-warn-ink)}
+.rel-lo{background:var(--surface3);color:var(--muted)}
+.rel-pen{font-size:11.5px;color:var(--bad);margin-top:4px}
+
 /* ---- proposed sources, awaiting a validator ---- */
 .cands{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
 .cand{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
@@ -9761,7 +9769,22 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-05-28",
       "textType": "Publication ENISA; rapport d’analyse sectorielle"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260814114913-001-NL",
@@ -9823,7 +9846,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I24"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-EU"
+    }
   },
   {
     "id": "REG-20260814114913-001-IE",
@@ -9885,7 +9925,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I18"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-EU"
+    }
   },
   {
     "id": "REG-20260814114913-001-FR",
@@ -9947,7 +10004,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-EU"
+    }
   },
   {
     "id": "REG-20260814114913-001-EU",
@@ -9978,7 +10052,20 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-08-14",
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260814114913-001-ES",
@@ -10040,7 +10127,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I31"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-EU"
+    }
   },
   {
     "id": "REG-20260710155535-007",
@@ -10102,7 +10206,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework used during audit",
         "cell": "P13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260710155346-005",
@@ -10164,7 +10285,25 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H22"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 60,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10
+      },
+      "notes": [
+        "noSourceText",
+        "impossibleDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260710155304-004",
@@ -10195,7 +10334,20 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-07-07",
       "textType": "Plan d'action stratégique"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260710155218-003-NL",
@@ -10257,7 +10409,27 @@ const WATCH_QUEUE_AGENT = [
         "field": "Dedicated framework to NIS 2",
         "cell": "E23"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260710154925-001"
+    }
   },
   {
     "id": "REG-20260710155218-003-EU",
@@ -10288,7 +10460,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-07-08",
       "textType": "décision administrative; procédure juridique"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260710154925-001"
+    }
   },
   {
     "id": "REG-20260710155008-002-IE",
@@ -10340,7 +10532,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Additional texts (in support of principal text)",
         "cell": "L17"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260710155008-002-EU",
@@ -10371,7 +10580,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-07-08",
       "textType": "décision de la Commission européenne; procédure de manquement"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260710155008-002-IE"
+    }
   },
   {
     "id": "REG-20260710154925-001",
@@ -10402,7 +10631,24 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-07-08",
       "textType": "décision réglementaire; procédure juridique"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160820-011",
@@ -10459,7 +10705,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Consolidated list of authorities",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160741-008",
@@ -10521,7 +10784,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E26"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160726-007",
@@ -10583,7 +10863,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G25"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160714-006",
@@ -10635,7 +10932,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Number of cyber requirements for EE",
         "cell": "L25"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160704-005",
@@ -10697,7 +11011,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E25"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160554-003",
@@ -10759,7 +11090,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E21"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707160323-001",
@@ -10821,7 +11169,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707152359-016",
@@ -10883,7 +11248,25 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G21"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 60,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10
+      },
+      "notes": [
+        "noSourceText",
+        "impossibleDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707152305-012",
@@ -10945,7 +11328,27 @@ const WATCH_QUEUE_AGENT = [
         "field": "Entry into force of the transposition",
         "cell": "E30"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172307-023-ES"
+    }
   },
   {
     "id": "REG-20260707152247-010",
@@ -11007,7 +11410,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707145303-008",
@@ -11069,7 +11489,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Entry into force of the transposition",
         "cell": "E14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707145257-007-EU",
@@ -11100,7 +11537,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-01-01",
       "textType": "article de presse"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260707145257-007-DE"
+    }
   },
   {
     "id": "REG-20260707145257-007-DE",
@@ -11162,7 +11619,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707145250-006",
@@ -11224,7 +11698,27 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172256-022"
+    }
   },
   {
     "id": "REG-20260707145243-005-EU",
@@ -11255,7 +11749,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2024-10-16",
       "textType": "article d'analyse sectorielle"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260707145243-005-DE"
+    }
   },
   {
     "id": "REG-20260707145243-005-DE",
@@ -11317,7 +11831,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707145234-004-FR",
@@ -11379,7 +11910,27 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172240-020"
+    }
   },
   {
     "id": "REG-20260707145234-004-EU",
@@ -11410,7 +11961,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-01-01",
       "textType": "actualité réglementaire"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172240-020"
+    }
   },
   {
     "id": "REG-20260707145226-003",
@@ -11472,7 +12043,26 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H15"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 70,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10,
+        "duplicate": -15
+      },
+      "notes": [
+        "impossibleDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172101-011-DE"
+    }
   },
   {
     "id": "REG-20260707145207-002",
@@ -11534,7 +12124,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Name of principal transposition text",
         "cell": "K23"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 70,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260707145159-001",
@@ -11596,7 +12201,20 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 95,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172504-029",
@@ -11658,7 +12276,25 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E21"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 60,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10
+      },
+      "notes": [
+        "noSourceText",
+        "impossibleDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172350-026",
@@ -11689,7 +12325,24 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-06-17",
       "textType": "rapport"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 70,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10
+      },
+      "notes": [
+        "impossibleDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172325-025-NL",
@@ -11751,7 +12404,27 @@ const WATCH_QUEUE_AGENT = [
         "field": "Name of principal transposition text",
         "cell": "K23"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172325-025-BE"
+    }
   },
   {
     "id": "REG-20260703172325-025-BE",
@@ -11813,7 +12486,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Name of principal transposition text",
         "cell": "K5"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172317-024",
@@ -11875,7 +12565,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I24"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172307-023-EU",
@@ -11906,7 +12613,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-07-02",
       "textType": "actualité"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172307-023-ES"
+    }
   },
   {
     "id": "REG-20260703172307-023-ES",
@@ -11953,7 +12680,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Additional texts (in support of principal text)",
         "cell": "L30"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172256-022",
@@ -12015,7 +12759,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172248-021",
@@ -12077,7 +12838,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172240-020",
@@ -12139,7 +12917,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172228-019-EU",
@@ -12170,7 +12965,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-06-12",
       "textType": "actualité réglementaire"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172228-019-DE"
+    }
   },
   {
     "id": "REG-20260703172228-019-DE",
@@ -12232,7 +13047,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I15"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172220-018-EU",
@@ -12263,7 +13095,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2024-10-16",
       "textType": "article d'analyse;actualité réglementaire"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172220-018-DE"
+    }
   },
   {
     "id": "REG-20260703172220-018-DE",
@@ -12325,7 +13177,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172212-017",
@@ -12387,7 +13256,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Entry into force of the transposition",
         "cell": "E14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172155-016-EU",
@@ -12418,7 +13304,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-06-17",
       "textType": "guide"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172155-016-BE"
+    }
   },
   {
     "id": "REG-20260703172155-016-BE",
@@ -12480,7 +13386,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G5"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172144-015",
@@ -12542,7 +13465,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G5"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172136-014",
@@ -12604,7 +13544,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I26"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172122-013-FR",
@@ -12666,7 +13623,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172122-013-EU",
@@ -12697,7 +13671,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-06-12",
       "textType": "actualité"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172122-013-FR"
+    }
   },
   {
     "id": "REG-20260703172114-012-FR",
@@ -12759,7 +13753,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 15,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172114-012-EU",
@@ -12790,7 +13801,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2024-10-17",
       "textType": "actualité"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 0,
+      "parts": {
+        "source": 0,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "aggregator",
+        "noSourceText",
+        "noDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172114-012-FR"
+    }
   },
   {
     "id": "REG-20260703172101-011-EU",
@@ -12821,7 +13852,26 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-07-03",
       "textType": "guide officiel; publication réglementaire; checklist; FAQ; roadmap; infopackets; vidéos; webinaires"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10,
+        "duplicate": -15
+      },
+      "notes": [
+        "impossibleDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703172101-011-DE"
+    }
   },
   {
     "id": "REG-20260703172101-011-DE",
@@ -12883,7 +13933,24 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H15"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10
+      },
+      "notes": [
+        "impossibleDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172052-010",
@@ -12945,7 +14012,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703172031-009",
@@ -13007,7 +14089,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G17"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703171942-006",
@@ -13069,7 +14166,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H24"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 70,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703171936-005",
@@ -13131,7 +14243,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E23"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 70,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703171927-004",
@@ -13193,7 +14320,20 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 95,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703171918-003",
@@ -13255,7 +14395,20 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 95,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260703171910-002",
@@ -13286,7 +14439,27 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2025-08-26",
       "textType": "actualité;guide;stratégie"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 30,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {
+        "impossibleDate": -10,
+        "duplicate": -15
+      },
+      "notes": [
+        "noSourceText",
+        "impossibleDate",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260703171902-001"
+    }
   },
   {
     "id": "REG-20260703171902-001",
@@ -13317,7 +14490,23 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2025-06-25",
       "textType": "guide; méthodologie; rapport d'autorité compétente"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText",
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260611144623",
@@ -13379,7 +14568,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G5"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260611144556-FR",
@@ -13441,7 +14645,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260611144556-EU",
@@ -13472,7 +14691,25 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-10-28",
       "textType": "FAQ officielle; guide pratique"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "old",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260611144556-FR"
+    }
   },
   {
     "id": "REG-20260611144550-FR",
@@ -13534,7 +14771,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260611144550-EU",
@@ -13565,7 +14817,25 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-06-11",
       "textType": "FAQ;guide"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "old",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260611144550-FR"
+    }
   },
   {
     "id": "REG-20260611144542-FR",
@@ -13627,7 +14897,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260611144542-EU",
@@ -13658,7 +14943,25 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-10-14",
       "textType": "FAQ institutionnelle"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 55,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "old",
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260611144542-FR"
+    }
   },
   {
     "id": "REG-20260609113249",
@@ -13689,7 +14992,23 @@ const WATCH_QUEUE_AGENT = [
       "inForceOn": "2026-06-09",
       "textType": "page institutionnelle; guide technique; méthodologie; analyse de marché"
     },
-    "targetCells": []
+    "targetCells": [],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText",
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260602131547",
@@ -13751,7 +15070,23 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G17"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText",
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260602131528",
@@ -13813,7 +15148,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I18"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260602131521",
@@ -13875,7 +15225,23 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework used during audit",
         "cell": "P5"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText",
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260602131515",
@@ -13937,7 +15303,23 @@ const WATCH_QUEUE_AGENT = [
         "field": "Entry into force of the transposition",
         "cell": "E5"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText",
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120201",
@@ -13999,7 +15381,23 @@ const WATCH_QUEUE_AGENT = [
         "field": "Entry into force of the transposition",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 60,
+      "parts": {
+        "source": 30,
+        "evidence": 15,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "openingOnly",
+        "noDate"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120155",
@@ -14061,7 +15459,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Framework last publication date",
         "cell": "G13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120152",
@@ -14123,7 +15536,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Organism in charge of the audit",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120137",
@@ -14185,7 +15613,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120134",
@@ -14247,7 +15690,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Types of additional penalties",
         "cell": "I14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120128",
@@ -14309,7 +15767,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120117",
@@ -14371,7 +15844,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Method for incident reporting",
         "cell": "H14"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-20260528120114",
@@ -14433,7 +15921,22 @@ const WATCH_QUEUE_AGENT = [
         "field": "Dedicated framework to NIS 2",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 85,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "old"
+      ],
+      "duplicateOf": null
+    }
   },
   {
     "id": "REG-004",
@@ -14495,7 +15998,23 @@ const WATCH_QUEUE_AGENT = [
         "field": "Entry into force of the transposition",
         "cell": "E13"
       }
-    ]
+    ],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 30,
+        "evidence": 0,
+        "date": 0,
+        "actionability": 15,
+        "freshness": 0
+      },
+      "penalties": {},
+      "notes": [
+        "noSourceText",
+        "old"
+      ],
+      "duplicateOf": null
+    }
   }
 ];
 /* ---- Country slide template (pptx), base64.
@@ -14863,6 +16382,24 @@ const I18N = {
     "cand.accept": "Add to the registry",
     "cand.reject": "Not a source",
     "cand.noteAccepted": "Proposed by source discovery, accepted after review (found {date})",
+    "rel.label": "Reliability",
+    "rel.why": "Why {n} out of 100",
+    "rel.allGood": "Every check passed.",
+    "rel.pSource": "Publisher",
+    "rel.pEvidence": "The source's own words",
+    "rel.pDate": "Publication date",
+    "rel.pAction": "Points at the workbook",
+    "rel.pFresh": "Recent",
+    "rel.pen.impossibleDate": "Date later than detection",
+    "rel.pen.duplicate": "Near-duplicate of an earlier item",
+    "rel.n.aggregator": "Aggregator: the article's own text cannot be reached.",
+    "rel.n.manual": "Entered by a consultant.",
+    "rel.n.openingOnly": "Opening lines only, not the body of the article.",
+    "rel.n.noSourceText": "No text from the source: only the agent's synthesis is available.",
+    "rel.n.noDate": "Publication date not established.",
+    "rel.n.old": "Published more than 90 days ago.",
+    "rel.n.impossibleDate": "Date later than detection: impossible, most likely a \"last updated\" line read as a publication date.",
+    "rel.n.duplicate": "Near-duplicate of an item already present from the same domain.",
     "hub.pending": "pending",
     "hub.official": "official",
     "hub.verify": "to verify",
@@ -15238,6 +16775,24 @@ const I18N = {
     "cand.accept": "Ajouter au registre",
     "cand.reject": "Pas une source",
     "cand.noteAccepted": "Proposée par la découverte de sources, acceptée après revue (trouvée le {date})",
+    "rel.label": "Fiabilité",
+    "rel.why": "Pourquoi {n} sur 100",
+    "rel.allGood": "Tous les contrôles sont passés.",
+    "rel.pSource": "Éditeur",
+    "rel.pEvidence": "Le texte de la source",
+    "rel.pDate": "Date de publication",
+    "rel.pAction": "Pointe vers le classeur",
+    "rel.pFresh": "Récent",
+    "rel.pen.impossibleDate": "Date postérieure à la détection",
+    "rel.pen.duplicate": "Quasi-doublon d'un élément antérieur",
+    "rel.n.aggregator": "Agrégateur : le texte de l'article est inatteignable.",
+    "rel.n.manual": "Saisie consultant.",
+    "rel.n.openingOnly": "Premières lignes seulement, pas le corps de l'article.",
+    "rel.n.noSourceText": "Aucun texte de la source : seule la synthèse de l'agent est disponible.",
+    "rel.n.noDate": "Date de publication non établie.",
+    "rel.n.old": "Publié il y a plus de 90 jours.",
+    "rel.n.impossibleDate": "Date postérieure à la détection : impossible, probablement un « dernière mise à jour » lu comme une publication.",
+    "rel.n.duplicate": "Quasi-doublon d'un élément déjà présent du même domaine.",
     "hub.pending": "en attente",
     "hub.official": "officielles",
     "hub.verify": "à vérifier",
@@ -16344,6 +17899,42 @@ function agentPanel(q){
     <div class="q-agent-row"><b></b><span class="q-note">${t("card.aiNote")}</span></div>
   </details>`;
 }
+/* ---------- reliability ----------
+ *
+ * The agent ships its own relevance score and it sorts nothing: 8 for 37 items
+ * and 9 for 38 more, out of 89. This one is built from facts a validator can
+ * check - what kind of publisher, whether we hold the source's own words, how
+ * the date was established, whether it points at the workbook - so the number
+ * is shown with its reasons rather than on its own.
+ */
+const relBand = n => n >= 70 ? "hi" : n >= 40 ? "mid" : "lo";
+
+function relChip(q){
+  const r = q.reliability;
+  if (!r) return "";
+  const why = (r.notes || []).map(n => t("rel.n." + n)).join(" ") || t("rel.allGood");
+  return `<span class="rel rel-${relBand(r.score)}"${kpiTip(why)}>${
+    t("rel.label")} <b>${r.score}</b></span>`;
+}
+
+function relDetail(q){
+  const r = q.reliability;
+  if (!r) return "";
+  const LABEL = { source: "rel.pSource", evidence: "rel.pEvidence", date: "rel.pDate",
+                  actionability: "rel.pAction", freshness: "rel.pFresh" };
+  const MAX = { source: 30, evidence: 25, date: 20, actionability: 15, freshness: 10 };
+  const bars = Object.keys(LABEL).map(k => `<div class="thm">
+      <span class="thm-n">${t(LABEL[k])}</span>
+      <span class="thm-bar"><i style="width:${Math.round((r.parts[k] || 0) / MAX[k] * 100)}%"></i></span>
+      <span class="thm-v">${r.parts[k] || 0}<small>/${MAX[k]}</small></span></div>`).join("");
+  const pen = Object.keys(r.penalties || {}).map(k =>
+    `<div class="rel-pen">${t("rel.pen." + k)} <b>${r.penalties[k]}</b></div>`).join("");
+  return `<details class="q-orig"><summary>${t("rel.why", { n: r.score })}</summary>
+    <div class="thms" style="margin-top:6px">${bars}</div>${pen}
+    ${(r.notes || []).length ? `<div class="q-note" style="margin-top:6px">${
+      r.notes.map(n => esc(t("rel.n." + n))).join("<br>")}</div>` : ""}</details>`;
+}
+
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
@@ -16379,10 +17970,11 @@ function qCard(q){
          <span class="src-note">${t("card.excerptFallback")}</span></blockquote>`;
 
   return `<div class="q-card">
-    <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}
+    <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}${relChip(q)}
       <span class="q-note">${esc(q.source.name)}</span></div>
     <div class="q-title">${esc(itemTitle(q))}</div>
     <div class="q-meta">${meta}</div>
+    ${relDetail(q)}
     ${body}
     ${cellsPanel(q)}
     ${agentPanel(q)}

@@ -609,6 +609,42 @@ function agentPanel(q){
     <div class="q-agent-row"><b></b><span class="q-note">${t("card.aiNote")}</span></div>
   </details>`;
 }
+/* ---------- reliability ----------
+ *
+ * The agent ships its own relevance score and it sorts nothing: 8 for 37 items
+ * and 9 for 38 more, out of 89. This one is built from facts a validator can
+ * check - what kind of publisher, whether we hold the source's own words, how
+ * the date was established, whether it points at the workbook - so the number
+ * is shown with its reasons rather than on its own.
+ */
+const relBand = n => n >= 70 ? "hi" : n >= 40 ? "mid" : "lo";
+
+function relChip(q){
+  const r = q.reliability;
+  if (!r) return "";
+  const why = (r.notes || []).map(n => t("rel.n." + n)).join(" ") || t("rel.allGood");
+  return `<span class="rel rel-${relBand(r.score)}"${kpiTip(why)}>${
+    t("rel.label")} <b>${r.score}</b></span>`;
+}
+
+function relDetail(q){
+  const r = q.reliability;
+  if (!r) return "";
+  const LABEL = { source: "rel.pSource", evidence: "rel.pEvidence", date: "rel.pDate",
+                  actionability: "rel.pAction", freshness: "rel.pFresh" };
+  const MAX = { source: 30, evidence: 25, date: 20, actionability: 15, freshness: 10 };
+  const bars = Object.keys(LABEL).map(k => `<div class="thm">
+      <span class="thm-n">${t(LABEL[k])}</span>
+      <span class="thm-bar"><i style="width:${Math.round((r.parts[k] || 0) / MAX[k] * 100)}%"></i></span>
+      <span class="thm-v">${r.parts[k] || 0}<small>/${MAX[k]}</small></span></div>`).join("");
+  const pen = Object.keys(r.penalties || {}).map(k =>
+    `<div class="rel-pen">${t("rel.pen." + k)} <b>${r.penalties[k]}</b></div>`).join("");
+  return `<details class="q-orig"><summary>${t("rel.why", { n: r.score })}</summary>
+    <div class="thms" style="margin-top:6px">${bars}</div>${pen}
+    ${(r.notes || []).length ? `<div class="q-note" style="margin-top:6px">${
+      r.notes.map(n => esc(t("rel.n." + n))).join("<br>")}</div>` : ""}</details>`;
+}
+
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
@@ -644,10 +680,11 @@ function qCard(q){
          <span class="src-note">${t("card.excerptFallback")}</span></blockquote>`;
 
   return `<div class="q-card">
-    <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}
+    <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}${relChip(q)}
       <span class="q-note">${esc(q.source.name)}</span></div>
     <div class="q-title">${esc(itemTitle(q))}</div>
     <div class="q-meta">${meta}</div>
+    ${relDetail(q)}
     ${body}
     ${cellsPanel(q)}
     ${agentPanel(q)}

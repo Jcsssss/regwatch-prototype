@@ -556,6 +556,34 @@ def build_items(rows):
                 report["with_cells"] += 1
             items.append(item)
 
+    # An objective reliability score, computed here so it is regenerated with
+    # everything else rather than patched on afterwards. The agent's own score
+    # returns 8 or 9 for 84% of items and sorts nothing; this one is built from
+    # facts a validator can check - see tools/reliability.py.
+    # Aliased on import: this module has its own load_bodies(), and a bare
+    # `from reliability import load_bodies` would shadow it as a local for the
+    # whole function - including the call made further up.
+    try:
+        from reliability import find_duplicates as _find_dupes
+        from reliability import load_bodies as _rel_bodies
+        from reliability import score_item as _score_item
+    except ImportError:
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parent))
+        try:
+            from reliability import find_duplicates as _find_dupes
+            from reliability import load_bodies as _rel_bodies
+            from reliability import score_item as _score_item
+        except ImportError:
+            _find_dupes = None
+    if _find_dupes:
+        _bodies = _rel_bodies()
+        _dupes = _find_dupes(items)
+        for _it in items:
+            _it["reliability"] = _score_item(_it, _bodies, _dupes.get(_it["id"]))
+        report["duplicates"] = len(_dupes)
+        report["lowTrust"] = sum(1 for i in items if i["reliability"]["score"] < 30)
+
     items.sort(key=lambda i: (i["detected"], i["id"]), reverse=True)
     return items, report
 

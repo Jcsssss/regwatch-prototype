@@ -32,7 +32,22 @@
         "inForceOn": "2026-05-28",
         "textType": "Publication ENISA; rapport d’analyse sectorielle"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260814114913-001-NL",
@@ -94,7 +109,24 @@
           "field": "Types of additional penalties",
           "cell": "I24"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 80,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260814114913-001-EU"
+      }
     },
     {
       "id": "REG-20260814114913-001-IE",
@@ -156,7 +188,24 @@
           "field": "Types of additional penalties",
           "cell": "I18"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 80,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260814114913-001-EU"
+      }
     },
     {
       "id": "REG-20260814114913-001-FR",
@@ -218,7 +267,24 @@
           "field": "Types of additional penalties",
           "cell": "I14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 80,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260814114913-001-EU"
+      }
     },
     {
       "id": "REG-20260814114913-001-EU",
@@ -249,7 +315,20 @@
         "inForceOn": "2026-08-14",
         "textType": "Décision de la Commission européenne / actualité institutionnelle"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 80,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260814114913-001-ES",
@@ -311,7 +390,24 @@
           "field": "Types of additional penalties",
           "cell": "I31"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 80,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260814114913-001-EU"
+      }
     },
     {
       "id": "REG-20260710155535-007",
@@ -373,7 +469,24 @@
           "field": "Framework used during audit",
           "cell": "P13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260710155346-005",
@@ -435,7 +548,25 @@
           "field": "Method for incident reporting",
           "cell": "H22"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 60,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10
+        },
+        "notes": [
+          "noSourceText",
+          "impossibleDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260710155304-004",
@@ -466,7 +597,20 @@
         "inForceOn": "2026-07-07",
         "textType": "Plan d'action stratégique"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 80,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260710155218-003-NL",
@@ -528,7 +672,27 @@
           "field": "Dedicated framework to NIS 2",
           "cell": "E23"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260710154925-001"
+      }
     },
     {
       "id": "REG-20260710155218-003-EU",
@@ -559,7 +723,27 @@
         "inForceOn": "2026-07-08",
         "textType": "décision administrative; procédure juridique"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260710154925-001"
+      }
     },
     {
       "id": "REG-20260710155008-002-IE",
@@ -611,7 +795,24 @@
           "field": "Additional texts (in support of principal text)",
           "cell": "L17"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260710155008-002-EU",
@@ -642,7 +843,27 @@
         "inForceOn": "2026-07-08",
         "textType": "décision de la Commission européenne; procédure de manquement"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260710155008-002-IE"
+      }
     },
     {
       "id": "REG-20260710154925-001",
@@ -673,7 +894,24 @@
         "inForceOn": "2026-07-08",
         "textType": "décision réglementaire; procédure juridique"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160820-011",
@@ -730,7 +968,24 @@
           "field": "Consolidated list of authorities",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160741-008",
@@ -792,7 +1047,24 @@
           "field": "Organism in charge of the audit",
           "cell": "E26"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160726-007",
@@ -854,7 +1126,24 @@
           "field": "Framework last publication date",
           "cell": "G25"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160714-006",
@@ -906,7 +1195,24 @@
           "field": "Number of cyber requirements for EE",
           "cell": "L25"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160704-005",
@@ -968,7 +1274,24 @@
           "field": "Organism in charge of the audit",
           "cell": "E25"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160554-003",
@@ -1030,7 +1353,24 @@
           "field": "Organism in charge of the audit",
           "cell": "E21"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707160323-001",
@@ -1092,7 +1432,24 @@
           "field": "Types of additional penalties",
           "cell": "I14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707152359-016",
@@ -1154,7 +1511,25 @@
           "field": "Framework last publication date",
           "cell": "G21"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 60,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10
+        },
+        "notes": [
+          "noSourceText",
+          "impossibleDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707152305-012",
@@ -1216,7 +1591,27 @@
           "field": "Entry into force of the transposition",
           "cell": "E30"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172307-023-ES"
+      }
     },
     {
       "id": "REG-20260707152247-010",
@@ -1278,7 +1673,24 @@
           "field": "Organism in charge of the audit",
           "cell": "E14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707145303-008",
@@ -1340,7 +1752,24 @@
           "field": "Entry into force of the transposition",
           "cell": "E14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707145257-007-EU",
@@ -1371,7 +1800,27 @@
         "inForceOn": "2026-01-01",
         "textType": "article de presse"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260707145257-007-DE"
+      }
     },
     {
       "id": "REG-20260707145257-007-DE",
@@ -1433,7 +1882,24 @@
           "field": "Framework last publication date",
           "cell": "G14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707145250-006",
@@ -1495,7 +1961,27 @@
           "field": "Framework last publication date",
           "cell": "G14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172256-022"
+      }
     },
     {
       "id": "REG-20260707145243-005-EU",
@@ -1526,7 +2012,27 @@
         "inForceOn": "2024-10-16",
         "textType": "article d'analyse sectorielle"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260707145243-005-DE"
+      }
     },
     {
       "id": "REG-20260707145243-005-DE",
@@ -1588,7 +2094,24 @@
           "field": "Framework last publication date",
           "cell": "G14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707145234-004-FR",
@@ -1650,7 +2173,27 @@
           "field": "Organism in charge of the audit",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172240-020"
+      }
     },
     {
       "id": "REG-20260707145234-004-EU",
@@ -1681,7 +2224,27 @@
         "inForceOn": "2026-01-01",
         "textType": "actualité réglementaire"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172240-020"
+      }
     },
     {
       "id": "REG-20260707145226-003",
@@ -1743,7 +2306,26 @@
           "field": "Method for incident reporting",
           "cell": "H15"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 70,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10,
+          "duplicate": -15
+        },
+        "notes": [
+          "impossibleDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172101-011-DE"
+      }
     },
     {
       "id": "REG-20260707145207-002",
@@ -1805,7 +2387,22 @@
           "field": "Name of principal transposition text",
           "cell": "K23"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 70,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260707145159-001",
@@ -1867,7 +2464,20 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 95,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172504-029",
@@ -1929,7 +2539,25 @@
           "field": "Organism in charge of the audit",
           "cell": "E21"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 60,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10
+        },
+        "notes": [
+          "noSourceText",
+          "impossibleDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172350-026",
@@ -1960,7 +2588,24 @@
         "inForceOn": "2026-06-17",
         "textType": "rapport"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 70,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10
+        },
+        "notes": [
+          "impossibleDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172325-025-NL",
@@ -2022,7 +2667,27 @@
           "field": "Name of principal transposition text",
           "cell": "K23"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172325-025-BE"
+      }
     },
     {
       "id": "REG-20260703172325-025-BE",
@@ -2084,7 +2749,24 @@
           "field": "Name of principal transposition text",
           "cell": "K5"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172317-024",
@@ -2146,7 +2828,24 @@
           "field": "Types of additional penalties",
           "cell": "I24"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172307-023-EU",
@@ -2177,7 +2876,27 @@
         "inForceOn": "2026-07-02",
         "textType": "actualité"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172307-023-ES"
+      }
     },
     {
       "id": "REG-20260703172307-023-ES",
@@ -2224,7 +2943,24 @@
           "field": "Additional texts (in support of principal text)",
           "cell": "L30"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172256-022",
@@ -2286,7 +3022,24 @@
           "field": "Framework last publication date",
           "cell": "G14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172248-021",
@@ -2348,7 +3101,24 @@
           "field": "Organism in charge of the audit",
           "cell": "E14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172240-020",
@@ -2410,7 +3180,24 @@
           "field": "Organism in charge of the audit",
           "cell": "E14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172228-019-EU",
@@ -2441,7 +3228,27 @@
         "inForceOn": "2026-06-12",
         "textType": "actualité réglementaire"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172228-019-DE"
+      }
     },
     {
       "id": "REG-20260703172228-019-DE",
@@ -2503,7 +3310,24 @@
           "field": "Types of additional penalties",
           "cell": "I15"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172220-018-EU",
@@ -2534,7 +3358,27 @@
         "inForceOn": "2024-10-16",
         "textType": "article d'analyse;actualité réglementaire"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172220-018-DE"
+      }
     },
     {
       "id": "REG-20260703172220-018-DE",
@@ -2596,7 +3440,24 @@
           "field": "Framework last publication date",
           "cell": "G14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172212-017",
@@ -2658,7 +3519,24 @@
           "field": "Entry into force of the transposition",
           "cell": "E14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172155-016-EU",
@@ -2689,7 +3567,27 @@
         "inForceOn": "2026-06-17",
         "textType": "guide"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172155-016-BE"
+      }
     },
     {
       "id": "REG-20260703172155-016-BE",
@@ -2751,7 +3649,24 @@
           "field": "Framework last publication date",
           "cell": "G5"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172144-015",
@@ -2813,7 +3728,24 @@
           "field": "Framework last publication date",
           "cell": "G5"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172136-014",
@@ -2875,7 +3807,24 @@
           "field": "Types of additional penalties",
           "cell": "I26"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172122-013-FR",
@@ -2937,7 +3886,24 @@
           "field": "Types of additional penalties",
           "cell": "I14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172122-013-EU",
@@ -2968,7 +3934,27 @@
         "inForceOn": "2026-06-12",
         "textType": "actualité"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172122-013-FR"
+      }
     },
     {
       "id": "REG-20260703172114-012-FR",
@@ -3030,7 +4016,24 @@
           "field": "Framework last publication date",
           "cell": "G13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 15,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172114-012-EU",
@@ -3061,7 +4064,27 @@
         "inForceOn": "2024-10-17",
         "textType": "actualité"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 0,
+        "parts": {
+          "source": 0,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "aggregator",
+          "noSourceText",
+          "noDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172114-012-FR"
+      }
     },
     {
       "id": "REG-20260703172101-011-EU",
@@ -3092,7 +4115,26 @@
         "inForceOn": "2026-07-03",
         "textType": "guide officiel; publication réglementaire; checklist; FAQ; roadmap; infopackets; vidéos; webinaires"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10,
+          "duplicate": -15
+        },
+        "notes": [
+          "impossibleDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703172101-011-DE"
+      }
     },
     {
       "id": "REG-20260703172101-011-DE",
@@ -3154,7 +4196,24 @@
           "field": "Method for incident reporting",
           "cell": "H15"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10
+        },
+        "notes": [
+          "impossibleDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172052-010",
@@ -3216,7 +4275,22 @@
           "field": "Organism in charge of the audit",
           "cell": "E14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703172031-009",
@@ -3278,7 +4352,22 @@
           "field": "Framework last publication date",
           "cell": "G17"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703171942-006",
@@ -3340,7 +4429,22 @@
           "field": "Method for incident reporting",
           "cell": "H24"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 70,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703171936-005",
@@ -3402,7 +4506,22 @@
           "field": "Organism in charge of the audit",
           "cell": "E23"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 70,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703171927-004",
@@ -3464,7 +4583,20 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 95,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703171918-003",
@@ -3526,7 +4658,20 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 95,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260703171910-002",
@@ -3557,7 +4702,27 @@
         "inForceOn": "2025-08-26",
         "textType": "actualité;guide;stratégie"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 30,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {
+          "impossibleDate": -10,
+          "duplicate": -15
+        },
+        "notes": [
+          "noSourceText",
+          "impossibleDate",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260703171902-001"
+      }
     },
     {
       "id": "REG-20260703171902-001",
@@ -3588,7 +4753,23 @@
         "inForceOn": "2025-06-25",
         "textType": "guide; méthodologie; rapport d'autorité compétente"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText",
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260611144623",
@@ -3650,7 +4831,22 @@
           "field": "Framework last publication date",
           "cell": "G5"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260611144556-FR",
@@ -3712,7 +4908,22 @@
           "field": "Framework last publication date",
           "cell": "G13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260611144556-EU",
@@ -3743,7 +4954,25 @@
         "inForceOn": "2026-10-28",
         "textType": "FAQ officielle; guide pratique"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "old",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260611144556-FR"
+      }
     },
     {
       "id": "REG-20260611144550-FR",
@@ -3805,7 +5034,22 @@
           "field": "Organism in charge of the audit",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260611144550-EU",
@@ -3836,7 +5080,25 @@
         "inForceOn": "2026-06-11",
         "textType": "FAQ;guide"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "old",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260611144550-FR"
+      }
     },
     {
       "id": "REG-20260611144542-FR",
@@ -3898,7 +5160,22 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260611144542-EU",
@@ -3929,7 +5206,25 @@
         "inForceOn": "2026-10-14",
         "textType": "FAQ institutionnelle"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 55,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {
+          "duplicate": -15
+        },
+        "notes": [
+          "old",
+          "duplicate"
+        ],
+        "duplicateOf": "REG-20260611144542-FR"
+      }
     },
     {
       "id": "REG-20260609113249",
@@ -3960,7 +5255,23 @@
         "inForceOn": "2026-06-09",
         "textType": "page institutionnelle; guide technique; méthodologie; analyse de marché"
       },
-      "targetCells": []
+      "targetCells": [],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 15,
+          "actionability": 0,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText",
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260602131547",
@@ -4022,7 +5333,23 @@
           "field": "Framework last publication date",
           "cell": "G17"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText",
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260602131528",
@@ -4084,7 +5411,22 @@
           "field": "Types of additional penalties",
           "cell": "I18"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260602131521",
@@ -4146,7 +5488,23 @@
           "field": "Framework used during audit",
           "cell": "P5"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText",
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260602131515",
@@ -4208,7 +5566,23 @@
           "field": "Entry into force of the transposition",
           "cell": "E5"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText",
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120201",
@@ -4270,7 +5644,23 @@
           "field": "Entry into force of the transposition",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 60,
+        "parts": {
+          "source": 30,
+          "evidence": 15,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "openingOnly",
+          "noDate"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120155",
@@ -4332,7 +5722,22 @@
           "field": "Framework last publication date",
           "cell": "G13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120152",
@@ -4394,7 +5799,22 @@
           "field": "Organism in charge of the audit",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120137",
@@ -4456,7 +5876,22 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120134",
@@ -4518,7 +5953,22 @@
           "field": "Types of additional penalties",
           "cell": "I14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120128",
@@ -4580,7 +6030,22 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120117",
@@ -4642,7 +6107,22 @@
           "field": "Method for incident reporting",
           "cell": "H14"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-20260528120114",
@@ -4704,7 +6184,22 @@
           "field": "Dedicated framework to NIS 2",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 85,
+        "parts": {
+          "source": 30,
+          "evidence": 25,
+          "date": 15,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "old"
+        ],
+        "duplicateOf": null
+      }
     },
     {
       "id": "REG-004",
@@ -4766,7 +6261,23 @@
           "field": "Entry into force of the transposition",
           "cell": "E13"
         }
-      ]
+      ],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 30,
+          "evidence": 0,
+          "date": 0,
+          "actionability": 15,
+          "freshness": 0
+        },
+        "penalties": {},
+        "notes": [
+          "noSourceText",
+          "old"
+        ],
+        "duplicateOf": null
+      }
     }
   ]
 }
