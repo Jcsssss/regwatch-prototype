@@ -17,6 +17,8 @@ should not be retried on every run, and the card falls back to the AI summary.
 """
 
 import argparse
+import os
+import subprocess
 import json
 import re
 import sys
@@ -35,6 +37,21 @@ CACHE = ROOT / "data" / "excerpt-cache.json"
 
 MAX_CHARS = 600          # what the card shows: the opening lines
 MAX_BODY = 20000         # what the router reads: the article, bounded
+MIN_USEFUL = 500         # below this a body is a stub, not an article
+
+# Pages that build themselves in the browser return a shell to `requests`.
+# Honest note on this fallback: it earns nothing on the corpus as it stands.
+# The pages that looked like it needed them turned out to be stale cache
+# entries, and every current failure is a WAF (403), a PDF, or an index page
+# with no article to read - none of which rendering fixes. It is kept, off by
+# default, because a JavaScript-only authority site is a matter of time and the
+# cost of carrying it is a flag. Do not assume it helps; measure.
+CHROME_PATHS = [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser",
+]
+RENDER_BUDGET_MS = 8000
+RENDER_TIMEOUT = 45
 TIMEOUT = 12
 WORKERS = 8
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -95,7 +112,34 @@ def extract(html):
     return out, body
 
 
-def fetch(url):
+def chrome():
+    """The headless browser, or None - the fallback is optional by design."""
+    for path in CHROME_PATHS:
+        if os.path.exists(path):
+            return path
+    return os.environ.get("REGWATCH_CHROME") or None
+
+
+def render(url):
+    """The DOM after the page's own JavaScript has run.
+
+    Slow - eight seconds a page - so it is only ever a second attempt, on pages
+    whose static HTML yielded nothing worth reading.
+    """
+    binary = chrome()
+    if not binary:
+        return ""
+    try:
+        out = subprocess.run(
+            [binary, "--headless", "--disable-gpu", "--no-sandbox",
+             "--virtual-time-budget=%d" % RENDER_BUDGET_MS, "--dump-dom", url],
+            capture_output=True, timeout=RENDER_TIMEOUT)
+        return out.stdout.decode("utf-8", "ignore")
+    except Exception:                                   # noqa: BLE001
+        return ""
+
+
+def fetch(url, render_js=False):
     try:
         r = requests.get(url, timeout=TIMEOUT, headers={"User-Agent": UA,
                                                         "Accept-Language": "fr,en;q=0.8"})
@@ -105,6 +149,14 @@ def fetch(url):
         if "html" not in ctype.lower():
             return {"ok": False, "reason": "type %s" % (ctype.split(";")[0] or "inconnu")}
         text, body = extract(r.text)
+        # A page that renders itself in the browser gives requests a shell.
+        # Worth a second, slower attempt before calling it unreadable.
+        if len(body) < MIN_USEFUL and render_js:
+            html = render(url)
+            if html:
+                text2, body2 = extract(html)
+                if len(body2) > len(body):
+                    text, body = text2, body2
         if not text:
             return {"ok": False, "reason": "aucun texte exploitable"}
         if CONSENT.search(text):
@@ -120,26 +172,34 @@ def fetch(url):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--refresh", action="store_true", help="refetch cached URLs too")
+    ap.add_argument("--render", action="store_true",
+                    help="second attempt through headless Chrome when the static "
+                         "page yields nothing readable (slow: ~8 s per page)")
     args = ap.parse_args()
 
     if not ITEMS.exists():
         raise SystemExit("%s absent — lance d'abord tools/veille_to_watchitems.py" % ITEMS)
 
     items = json.loads(ITEMS.read_text(encoding="utf-8"))["items"]
-    cache = {}
-    if CACHE.exists() and not args.refresh:
-        cache = json.loads(CACHE.read_text(encoding="utf-8"))
+    # The cache is ALWAYS loaded, even on a refresh: --refresh means "fetch these
+    # again", not "forget what worked". Dropping it here is what let a single
+    # refresh trade six working excerpts for the day's failures, and it defeated
+    # the guard below by leaving nothing to compare against.
+    cache = json.loads(CACHE.read_text(encoding="utf-8")) if CACHE.exists() else {}
 
     urls = []
     for item in items:
         url = (item.get("source") or {}).get("url") or ""
-        if url and url not in cache and url not in urls:
+        if not url or url in urls:
+            continue
+        if args.refresh or url not in cache:
             urls.append(url)
 
     print("%d URL(s) uniques à récupérer (%d déjà en cache)" % (len(urls), len(cache)))
     if urls:
         with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-            for url, result in zip(urls, pool.map(fetch, urls)):
+            work = ((u, args.render) for u in urls)
+            for url, result in zip(urls, pool.map(lambda a: fetch(*a), work)):
                 # A refresh must never trade a success for a failure: sites
                 # rate-limit, block a user agent for a day, or go down. Six
                 # working excerpts were lost to a single --refresh before this.
