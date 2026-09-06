@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Emit the authority feeds as tblSources rows, ready to paste into the agent.
 
-    python3 tools/export_sources.py            # a table to read
-    python3 tools/export_sources.py --csv      # data/tblSources-autorites.csv
+    python3 tools/export_sources.py                       # the gap, as a table
+    python3 tools/export_sources.py --csv                 # the rows, as CSV
+    python3 tools/export_sources.py --patch <workbook>    # a corrected copy
 
 Why this exists. The watch agent collects 53% of its items from Google News and
 21% from the national authorities, while the registry holds 22 authority feeds
@@ -23,14 +24,18 @@ it: an aggregator is good at telling you a subject exists in a country whose
 authority publishes nothing, which is exactly the 7 countries whose feed is
 page-only or down.
 
-Columns match what the Sources tab already exports, which is the shape the
-agent's tblSources uses.
+Columns match the agent's own tblSources, read from the workbook when one is
+given so the copy keeps every other column - CSS selector, API paths, the
+discovery metadata - untouched.
+
+The original is never written to. --patch writes a new file beside it.
 """
 
 import argparse
 import csv
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -79,13 +84,102 @@ def rows(feeds):
     return out
 
 
+def patch(workbook, feeds):
+    """A copy of the agent's workbook with the authority feeds put in front.
+
+    Three corrections, all reversible because the original is left alone:
+      absent      the feed is added as a new row
+      as a page   a domain watched by scraping when it publishes a feed: the
+                  feed is added, the page row is left in place and untouched
+      inactive    switched back on, its URL corrected to the one that answers
+
+    Nothing is deleted. An aggregator query still earns its place for the seven
+    countries whose authority publishes no feed.
+    """
+    import urllib.parse as up
+    try:
+        import openpyxl
+    except ImportError:
+        raise SystemExit("pip install openpyxl")
+
+    wb = openpyxl.load_workbook(workbook)
+    if "Sources" not in wb.sheetnames:
+        raise SystemExit("feuille 'Sources' absente de %s" % workbook)
+    ws = wb["Sources"]
+    head = [c.value for c in ws[1]]
+    idx = {str(h).strip(): i for i, h in enumerate(head) if h}
+
+    def cell(row, name):
+        i = idx.get(name)
+        return ws.cell(row=row, column=i + 1) if i is not None else None
+
+    existing = {}
+    for r in range(2, ws.max_row + 1):
+        c = cell(r, "URL / Endpoint")
+        if c and c.value:
+            existing[str(c.value).strip()] = r
+
+    hosts = {}
+    for url, r in existing.items():
+        hosts.setdefault(up.urlparse(url).netloc.lower().lstrip("www."), []).append(r)
+
+    added = revived = 0
+    for f in [x for x in feeds if x["kind"] == "rss"]:
+        row = existing.get(f["url"])
+        if row:
+            c = cell(row, "Actif")
+            if c and str(c.value).strip() != "Oui":
+                c.value = "Oui"
+                revived += 1
+            continue
+        target = ws.max_row + 1
+        values = {
+            "Source": f["name"], "Type": "RSS", "URL / Endpoint": f["url"],
+            "Actif": "Oui", "Pays / zone": f["iso"], "Fiabilité": "Officielle",
+            "Fréquence": "Quotidienne",
+            "Réglementation suivie": "NIS2",
+            "Statue source": "Validée",
+            "découvert le": date.today().isoformat(),
+            "Découvert par": "Sondage des autorités (RegWatch)",
+            "Raison source IA ": "Flux de l'autorité nationale, vérifié : %d entrées datées"
+                                 % f.get("entries", 0),
+        }
+        for name, value in values.items():
+            c = cell(target, name)
+            if c is not None:
+                c.value = value
+        added += 1
+
+    # Rows written below a table's range are not part of it: Excel would show
+    # them, the agent reading tblVeille/tblSources by name would not. Extend the
+    # reference to what was actually written.
+    table = ws.tables.get("tblSources")
+    if table and added:
+        start, _end = table.ref.split(":")
+        col = "".join(ch for ch in _end if ch.isalpha())
+        table.ref = "%s:%s%d" % (start, col, ws.max_row)
+
+    out = Path(workbook).with_name(Path(workbook).stem + " - sources completees.xlsx")
+    wb.save(out)
+    return out, added, revived
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", action="store_true", help="écrire le CSV plutôt que d'afficher")
+    ap.add_argument("--patch", metavar="CLASSEUR",
+                    help="écrire une copie du classeur de l'agent avec les flux ajoutés")
     args = ap.parse_args()
 
     feeds = load_feeds()
     table = rows(feeds)
+
+    if args.patch:
+        out, added, revived = patch(args.patch, feeds)
+        print("%d flux ajoutés, %d réactivés" % (added, revived))
+        print("copie écrite : %s" % out)
+        print("L'original n'a pas été modifié.")
+        return 0
 
     if args.csv:
         OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
