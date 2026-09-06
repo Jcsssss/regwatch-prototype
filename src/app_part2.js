@@ -289,6 +289,78 @@ function withinWindow(items, days){
   return items.filter(x => x.detected >= cutoff);
 }
 
+/* ---------- source candidates ----------
+ *
+ * agent-veille/discover_sources.py proposes; nobody watches anything until a
+ * validator says so. The card sits in the watch inbox rather than in the source
+ * registry because accepting a source is a validation act, and the inbox is
+ * where validation happens - the same place, the same gesture, the same two
+ * buttons as a watch item.
+ *
+ * An accepted candidate lands in the consultant-added sources, which is what
+ * the Sources tab lists and what its export ships to the agent's tblSources.
+ * A rejected one is remembered so the crawler never proposes it again.
+ */
+function rejectedSources(){ return store.rejectedSources || (store.rejectedSources = []); }
+
+function candidatesCard(){
+  if (regId() !== "nis2" || typeof SOURCE_CANDIDATES === "undefined") return "";
+  const taken = new Set(customSources().map(s => s.host || s.url));
+  const refused = new Set(rejectedSources());
+  const open = (SOURCE_CANDIDATES.candidates || [])
+    .filter(c => !taken.has(c.host) && !refused.has(c.host));
+  if (!open.length) return "";
+
+  const rows = open.slice(0, 12).map(c => `<div class="cand" data-host="${esc(c.host)}">
+      <div class="cand-h">
+        <b>${esc(c.name)}</b>
+        <span class="chip ${c.type === "official" ? "src-official" : "src-unofficial"}">${
+          c.type === "official" ? t("cand.official") : t("cand.unofficial")}</span>
+        <span class="chip ${c.kind === "rss" ? "st-validated" : "st-pending"}">${
+          c.kind === "rss" ? t("cand.feed", { n: c.entries }) : t("cand.page")}</span>
+      </div>
+      <a class="cand-u" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a>
+      ${c.context && c.context.length
+        ? `<div class="cand-c">${t("cand.seen", { n: c.seenFrom })} · ${esc(c.context[0])}</div>` : ""}
+      <div class="q-actions">
+        <button class="btn ok cand-ok" data-host="${esc(c.host)}" type="button">${t("cand.accept")}</button>
+        <button class="btn danger cand-no" data-host="${esc(c.host)}" type="button">${t("cand.reject")}</button>
+      </div>
+    </div>`).join("");
+
+  return `<details class="card fold" open><summary class="cap">
+      <h2>${t("cand.title")}</h2>
+      <span class="q-note">${t("cand.count", { n: open.length })}</span>
+      <span class="fold-car" aria-hidden="true">▾</span></summary>
+    <div class="bd">
+      <p class="q-note" style="margin-top:0">${t("cand.sub", {
+        date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
+      <div class="cands">${rows}</div>
+    </div></details>`;
+}
+
+function wireCandidates(el){
+  const find = host => (SOURCE_CANDIDATES.candidates || []).find(c => c.host === host);
+  el.querySelectorAll(".cand-ok").forEach(b => b.addEventListener("click", () => {
+    const c = find(b.dataset.host);
+    if (!c) return;
+    customSources().push({
+      name: c.name, url: c.url, host: c.host, iso: "EU",
+      kind: c.kind === "rss" ? "rss" : "page", type: c.type,
+      note: t("cand.noteAccepted", { date: fmtDateL(c.discovered) }),
+    });
+    saveStore();
+    renderInbox();
+  }));
+  el.querySelectorAll(".cand-no").forEach(b => b.addEventListener("click", () => {
+    /* Remembered by domain: discover_sources.py reads this list back and stops
+       proposing it, so a refusal is a decision and not a chore repeated weekly. */
+    if (!rejectedSources().includes(b.dataset.host)) rejectedSources().push(b.dataset.host);
+    saveStore();
+    renderInbox();
+  }));
+}
+
 function renderInboxHub(el, pending, done){
   /* The agent runs weekly and the workbook's own lookback is 21 days, so a
      7-day window goes empty whenever a run slips. Fall back rather than show
@@ -330,6 +402,7 @@ function renderInboxHub(el, pending, done){
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
   <p class="pg-sub">${t("hub.sub")}</p>
+  ${candidatesCard()}
   <div class="card"><div class="bd">
     <div class="filters">
       <label class="q-toggle">${t("hub.window")}
@@ -370,6 +443,7 @@ function renderInboxHub(el, pending, done){
     window.scrollTo({ top: 0 });
   }));
   $("#hubW").addEventListener("change", e => { inboxFilter.hubDays = +e.target.value; renderInbox(); });
+  wireCandidates(el);
   $("#hubAll").addEventListener("click", () => { inboxFilter.hubDays = 0; renderInbox(); });
   paintProcessed(done);
   const pSort = $("#pSort");

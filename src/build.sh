@@ -22,7 +22,7 @@ DECK_TPL=()
 # Arrays, not strings: zsh does not word-split an unquoted scalar.
 SHARED=(map_data.js data_meta.js data_flags.js)
 NIS2=(reg/nis2/data_excel.js reg/nis2/data_docs.js reg/nis2/data_authorities.js
-      reg/nis2/data_kpis.js reg/nis2/data_themes.js
+      reg/nis2/data_kpis.js reg/nis2/data_themes.js reg/nis2/data_candidates.js
       reg/nis2/data_c1.js reg/nis2/data_c2.js reg/nis2/data_c3.js reg/nis2/data_c4.js)
 REC=(reg/rec/data_countries.js)
 APP=(app_i18n.js app_reg.js app_part1.js app_part2.js app_kpi.js app_kpi_xlsx.js

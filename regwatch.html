@@ -302,6 +302,15 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
   color:#fff;font-family:var(--font-mono);letter-spacing:-.02em}
 .kpi-grid-h{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:8px}
 
+/* ---- proposed sources, awaiting a validator ---- */
+.cands{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.cand{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.cand-h{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:13px;margin-bottom:5px}
+.cand-h b{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.cand-u{display:block;font-size:11.5px;color:var(--accent);word-break:break-all;margin-bottom:5px}
+.cand-c{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+.cand .q-actions{display:flex;gap:7px}
+
 /* ---- cyber-theme coverage ---- */
 .thms{display:flex;flex-direction:column;gap:7px}
 .thm{display:grid;grid-template-columns:1fr 76px 46px;gap:9px;align-items:center;font-size:12.5px}
@@ -7148,6 +7157,509 @@ const CYBER_THEMES = {
    ]
   }
  }
+};
+/* ---- Source candidates found by agent-veille/discover_sources.py.
+   Proposals only: nothing here is watched until a validator accepts it
+   in the Watch inbox. Do not edit by hand. ---- */
+const SOURCE_CANDIDATES = {
+ "generated": "2026-09-06",
+ "candidates": [
+  {
+   "host": "cyber.gov.gr",
+   "name": "Εθνική Αρχή Κυβερνοασφάλειας - Εθνική Αρχή Κυβερνοασφάλειας",
+   "url": "https://cyber.gov.gr/feed/",
+   "kind": "rss",
+   "entries": 10,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 171,
+   "context": [
+    "Skip to content",
+    "Skip to footer",
+    "Οδηγία NIS2"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "portal.nukib.gov.cz",
+   "name": "Portál NÚKIB",
+   "url": "https://portal.nukib.gov.cz/rss.xml",
+   "kind": "rss",
+   "entries": 19,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 10,
+   "context": [
+    "zákonu o kybernetické bezpečnosti",
+    "podpůrné materiály",
+    "kalkulačku"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "moje.cert.pl",
+   "name": "Strona główna – moje.cert.pl",
+   "url": "https://moje.cert.pl/advisory_feed/advisory/feed/",
+   "kind": "rss",
+   "entries": 10,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 4,
+   "context": [
+    "Ostrzeżenia",
+    "moje.cert.pl"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cyber.gov.lv",
+   "name": "Sākumlapa | Nacionālais kiberdrošības centrs",
+   "url": "https://cyber.gov.lv/rss.xml",
+   "kind": "rss",
+   "entries": 9,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "Open a link",
+    "Nacionālais kiberdrošības centrs"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "mod.gov.lv",
+   "name": "Sākumlapa | Aizsardzības ministrija",
+   "url": "https://mod.gov.lv/rss.xml",
+   "kind": "rss",
+   "entries": 10,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Kiberdrošība"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "sztfh.hu",
+   "name": "Szabályozott Tevékenységek Felügyelet Hatósága – Szabályozott Tevékenységek Felügyeleti Ha",
+   "url": "https://sztfh.hu/feed/",
+   "kind": "rss",
+   "entries": 8,
+   "type": "unofficial",
+   "reliability": "Non officielle - à vérifier",
+   "seenFrom": 16,
+   "context": [
+    "Kiberbiztonság felügyelete",
+    "Kiberbiztonsági tanúsítások",
+    "Kiberbiztonsági felügyelet"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "csirt.gov.it",
+   "name": "CSIRT Italia - ACN",
+   "url": "https://csirt.gov.it",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 87,
+   "context": [
+    "Segnala un incidente informatico",
+    "Skip to Main Content",
+    "RSS: apre una nuova finestra"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "traficom.fi",
+   "name": "Traficom – liikenteen ja viestinnän palvelut sinulle | Traficom",
+   "url": "https://traficom.fi",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 5,
+   "context": [
+    "Traficom.fi Ulkoinen verkkopalvelu.",
+    "Tietoa ja ohjeita Ulkoinen verkkopalvelu.",
+    "Saavutettavuusseloste"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "report.ncsc.gov.uk",
+   "name": "Reporting a Cyber Security Incident",
+   "url": "https://report.ncsc.gov.uk",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 3,
+   "context": [
+    "Report an incident"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "incydent.cert.pl",
+   "name": "Zgłoś incydent | CERT.PL>_",
+   "url": "https://incydent.cert.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 3,
+   "context": [
+    "Zgłoś incydent",
+    "incydent.cert.pl"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cve.cert.hr",
+   "name": "Svi - CERT CVE",
+   "url": "https://cve.cert.hr",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "CERT CVE",
+    "ovdje"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "csirtsnetwork.eu",
+   "name": "CSIRTs Network",
+   "url": "https://csirtsnetwork.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "mwdb.cert.pl",
+   "name": "CERT.PL>_ Malware Database",
+   "url": "https://mwdb.cert.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "MWDB"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "bezpiecznapoczta.cert.pl",
+   "name": "Bezpieczna poczta",
+   "url": "https://bezpiecznapoczta.cert.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "Bezpieczna Poczta"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "ncsc.se",
+   "name": "NCSC",
+   "url": "https://ncsc.se",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "Systematisk informationssäkerhet"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "osveta.nukib.gov.cz",
+   "name": "Nástěnka (GUEST)",
+   "url": "https://osveta.nukib.gov.cz",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "osveta.nukib.gov.cz"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "portal.bsi.bund.de",
+   "name": "BSI Portal",
+   "url": "https://portal.bsi.bund.de",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "BSI-Portal"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "raport.cert.ee",
+   "name": "Küberintsidendi teavitusvorm",
+   "url": "https://raport.cert.ee",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Teavituskeskkond raport.cert.ee"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "eits.ria.ee",
+   "name": "E-ITS",
+   "url": "https://eits.ria.ee",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "E-ITS – Eesti infoturbestandard"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "messervices.cyber.gouv.fr",
+   "name": "Accueil | MesServicesCyber",
+   "url": "https://messervices.cyber.gouv.fr",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "MesServicesCyber"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cybersecuritymonth.eu",
+   "name": "European Cybersecurity Month | ENISA",
+   "url": "https://cybersecuritymonth.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "iffy.cert.hr",
+   "name": "CERT iffy",
+   "url": "https://iffy.cert.hr",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "ovdje"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cybersec.nki.gov.hu",
+   "name": "Főoldal - CyberSec 2025",
+   "url": "https://cybersec.nki.gov.hu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "10. CyberSec konferencia"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "hcsc.nki.gov.hu",
+   "name": "HCSC'26",
+   "url": "https://hcsc.nki.gov.hu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Hungarian Cyber Security Challenge 2026"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cyberthreatmap.nki.gov.hu",
+   "name": "Honeypot támadási adatok",
+   "url": "https://cyberthreatmap.nki.gov.hu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Cyber Threatmap"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cert.hu",
+   "name": "HunCERT csoport",
+   "url": "https://cert.hu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "HunCERT"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cert.europa.eu",
+   "name": "CERT-EU",
+   "url": "https://cert.europa.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "CERT-EU"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "sme.ncsc.gov.ie",
+   "name": "SMECORE - Home",
+   "url": "https://sme.ncsc.gov.ie",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cvd.cert.lv",
+   "name": "Ievainojamību ziņošanas platforma",
+   "url": "https://cvd.cert.lv",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "advisories.ncsc.nl",
+   "name": "NCSC NL | Security Advisories",
+   "url": "https://advisories.ncsc.nl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Actuele kwetsbaarheden"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "mijn.ncsc.nl",
+   "name": "MijnNCSC",
+   "url": "https://mijn.ncsc.nl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "MijnNCSC"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "csirt.gov.pl",
+   "name": "CSIRT GOV",
+   "url": "https://csirt.gov.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "CSIRT GOV"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cyberportal.mcf.se",
+   "name": "ui",
+   "url": "https://cyberportal.mcf.se",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Rapportera incident"
+   ],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "cybersecurity-centre.europa.eu",
+   "name": "Language selection | European Cybersecurity Competence Centre and Network",
+   "url": "https://cybersecurity-centre.europa.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [],
+   "discovered": "2026-09-06"
+  },
+  {
+   "host": "itvaatlik.ee",
+   "name": "Ole kaitstud küberrünnaku eest - ITVaatlik",
+   "url": "https://itvaatlik.ee",
+   "kind": "page",
+   "entries": 0,
+   "type": "unofficial",
+   "reliability": "Non officielle - à vérifier",
+   "seenFrom": 1,
+   "context": [
+    "Küberturvalisuse portaal itvaatlik.ee"
+   ],
+   "discovered": "2026-09-06"
+  }
+ ],
+ "rejected": []
 };
 const COUNTRIES_1 = [
 { iso:"BE", name:"Belgium", flag:"🇧🇪", region:"West", eu:true, maturity:4, lastUpdate:"2026-06-18",
@@ -14340,6 +14852,17 @@ const I18N = {
     "hub.noneAtAll": "Nothing pending. The queue is clear.",
     "hub.euTile": "EU-wide",
     "hub.euNote": "No country record - cannot be published to a record.",
+    "cand.title": "Proposed sources",
+    "cand.count": "{n} awaiting a decision",
+    "cand.sub": "Found by following links out of the sources already trusted, crawled {date}. Nothing is watched until you accept it; a refusal is remembered and never proposed again.",
+    "cand.official": "Official",
+    "cand.unofficial": "Unofficial - verify",
+    "cand.feed": "Feed · {n} entries",
+    "cand.page": "No feed - page only",
+    "cand.seen": "linked from {n} trusted page(s)",
+    "cand.accept": "Add to the registry",
+    "cand.reject": "Not a source",
+    "cand.noteAccepted": "Proposed by source discovery, accepted after review (found {date})",
     "hub.pending": "pending",
     "hub.official": "official",
     "hub.verify": "to verify",
@@ -14704,6 +15227,17 @@ const I18N = {
     "hub.noneAtAll": "Rien en attente. La file est vide.",
     "hub.euTile": "Union européenne",
     "hub.euNote": "Pas de fiche pays - non publiable sur une fiche.",
+    "cand.title": "Sources proposées",
+    "cand.count": "{n} en attente de décision",
+    "cand.sub": "Trouvées en suivant les liens sortants des sources déjà fiables, exploration du {date}. Rien n'est surveillé tant que vous n'avez pas accepté ; un refus est retenu et n'est plus proposé.",
+    "cand.official": "Officielle",
+    "cand.unofficial": "Non officielle - à vérifier",
+    "cand.feed": "Flux · {n} entrées",
+    "cand.page": "Pas de flux - page seule",
+    "cand.seen": "liée depuis {n} page(s) fiable(s)",
+    "cand.accept": "Ajouter au registre",
+    "cand.reject": "Pas une source",
+    "cand.noteAccepted": "Proposée par la découverte de sources, acceptée après revue (trouvée le {date})",
     "hub.pending": "en attente",
     "hub.official": "officielles",
     "hub.verify": "à vérifier",
@@ -15490,6 +16024,78 @@ function withinWindow(items, days){
   return items.filter(x => x.detected >= cutoff);
 }
 
+/* ---------- source candidates ----------
+ *
+ * agent-veille/discover_sources.py proposes; nobody watches anything until a
+ * validator says so. The card sits in the watch inbox rather than in the source
+ * registry because accepting a source is a validation act, and the inbox is
+ * where validation happens - the same place, the same gesture, the same two
+ * buttons as a watch item.
+ *
+ * An accepted candidate lands in the consultant-added sources, which is what
+ * the Sources tab lists and what its export ships to the agent's tblSources.
+ * A rejected one is remembered so the crawler never proposes it again.
+ */
+function rejectedSources(){ return store.rejectedSources || (store.rejectedSources = []); }
+
+function candidatesCard(){
+  if (regId() !== "nis2" || typeof SOURCE_CANDIDATES === "undefined") return "";
+  const taken = new Set(customSources().map(s => s.host || s.url));
+  const refused = new Set(rejectedSources());
+  const open = (SOURCE_CANDIDATES.candidates || [])
+    .filter(c => !taken.has(c.host) && !refused.has(c.host));
+  if (!open.length) return "";
+
+  const rows = open.slice(0, 12).map(c => `<div class="cand" data-host="${esc(c.host)}">
+      <div class="cand-h">
+        <b>${esc(c.name)}</b>
+        <span class="chip ${c.type === "official" ? "src-official" : "src-unofficial"}">${
+          c.type === "official" ? t("cand.official") : t("cand.unofficial")}</span>
+        <span class="chip ${c.kind === "rss" ? "st-validated" : "st-pending"}">${
+          c.kind === "rss" ? t("cand.feed", { n: c.entries }) : t("cand.page")}</span>
+      </div>
+      <a class="cand-u" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a>
+      ${c.context && c.context.length
+        ? `<div class="cand-c">${t("cand.seen", { n: c.seenFrom })} · ${esc(c.context[0])}</div>` : ""}
+      <div class="q-actions">
+        <button class="btn ok cand-ok" data-host="${esc(c.host)}" type="button">${t("cand.accept")}</button>
+        <button class="btn danger cand-no" data-host="${esc(c.host)}" type="button">${t("cand.reject")}</button>
+      </div>
+    </div>`).join("");
+
+  return `<details class="card fold" open><summary class="cap">
+      <h2>${t("cand.title")}</h2>
+      <span class="q-note">${t("cand.count", { n: open.length })}</span>
+      <span class="fold-car" aria-hidden="true">▾</span></summary>
+    <div class="bd">
+      <p class="q-note" style="margin-top:0">${t("cand.sub", {
+        date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
+      <div class="cands">${rows}</div>
+    </div></details>`;
+}
+
+function wireCandidates(el){
+  const find = host => (SOURCE_CANDIDATES.candidates || []).find(c => c.host === host);
+  el.querySelectorAll(".cand-ok").forEach(b => b.addEventListener("click", () => {
+    const c = find(b.dataset.host);
+    if (!c) return;
+    customSources().push({
+      name: c.name, url: c.url, host: c.host, iso: "EU",
+      kind: c.kind === "rss" ? "rss" : "page", type: c.type,
+      note: t("cand.noteAccepted", { date: fmtDateL(c.discovered) }),
+    });
+    saveStore();
+    renderInbox();
+  }));
+  el.querySelectorAll(".cand-no").forEach(b => b.addEventListener("click", () => {
+    /* Remembered by domain: discover_sources.py reads this list back and stops
+       proposing it, so a refusal is a decision and not a chore repeated weekly. */
+    if (!rejectedSources().includes(b.dataset.host)) rejectedSources().push(b.dataset.host);
+    saveStore();
+    renderInbox();
+  }));
+}
+
 function renderInboxHub(el, pending, done){
   /* The agent runs weekly and the workbook's own lookback is 21 days, so a
      7-day window goes empty whenever a run slips. Fall back rather than show
@@ -15531,6 +16137,7 @@ function renderInboxHub(el, pending, done){
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
   <p class="pg-sub">${t("hub.sub")}</p>
+  ${candidatesCard()}
   <div class="card"><div class="bd">
     <div class="filters">
       <label class="q-toggle">${t("hub.window")}
@@ -15571,6 +16178,7 @@ function renderInboxHub(el, pending, done){
     window.scrollTo({ top: 0 });
   }));
   $("#hubW").addEventListener("change", e => { inboxFilter.hubDays = +e.target.value; renderInbox(); });
+  wireCandidates(el);
   $("#hubAll").addEventListener("click", () => { inboxFilter.hubDays = 0; renderInbox(); });
   paintProcessed(done);
   const pSort = $("#pSort");

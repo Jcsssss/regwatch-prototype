@@ -300,6 +300,15 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
   color:#fff;font-family:var(--font-mono);letter-spacing:-.02em}
 .kpi-grid-h{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:8px}
 
+/* ---- proposed sources, awaiting a validator ---- */
+.cands{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.cand{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.cand-h{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:13px;margin-bottom:5px}
+.cand-h b{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.cand-u{display:block;font-size:11.5px;color:var(--accent);word-break:break-all;margin-bottom:5px}
+.cand-c{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+.cand .q-actions{display:flex;gap:7px}
+
 /* ---- cyber-theme coverage ---- */
 .thms{display:flex;flex-direction:column;gap:7px}
 .thm{display:grid;grid-template-columns:1fr 76px 46px;gap:9px;align-items:center;font-size:12.5px}
