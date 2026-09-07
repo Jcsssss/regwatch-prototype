@@ -138,9 +138,10 @@ Chaque étape, telle qu'implémentée aujourd'hui :
 ## 6. Exports
 | Export | Contenu | Version |
 |---|---|---|
-| CSV (« ; ») | Matrice KPI complète (compatible Excel FR) | V1 (fait dans le prototype) |
-| PNG | Carte de maturité (fond + couleurs du thème) | V1 (fait dans le prototype) |
-| XLSX | Classeur multi-onglets (KPI, chronologies, sources) | V2 |
+| XLSX | L'indicateur affiché, ses données **et son graphique**, en classeur natif | ✅ fait — a remplacé l'export CSV, qui obligeait à refaire les graphiques à la main |
+| PNG | Carte de maturité (fond + couleurs du thème) | ✅ fait |
+| PPTX | Trames de slides par pays | ✅ fait (`tools/build_country_deck.py`) |
+| CSV (« ; ») | Matrice KPI complète | ⛔ retiré au profit du XLSX |
 | PPTX | Trames de slides format WID (carte, tuiles, tableaux) | V2 |
 
 ---
@@ -225,10 +226,10 @@ Charge de fonctionnement cible : **≈ 0,5 à 1 j/semaine de validation** pour l
 | Carte maturité 1–4 + non-UE suivis (UK, NO) | ✅ interactive, export PNG, thèmes clair/sombre |
 | 29 fiches pays complètes (données réelles juin–juillet 2026) | ✅ |
 | Chronologies d'événements par pays | ✅ |
-| Rôles lecteur/validateur | ✅ (sélecteur en en-tête ; SSO en production) |
+| Rôles lecteur/validateur/développeur | ✅ (sélecteur en en-tête ; SSO en production). Le rôle développeur n'existe que dans la version équipe : diagnostic local et assistant technique. |
 | File de validation + saisie manuelle + traçabilité | ✅ (persistance locale navigateur, simulée) |
-| Édition manuelle complète des fiches (statut, KPIs, rubriques, chronologie, autorités, sources) | ✅ (bouton « Edit record » en mode validateur ; marqueur « edited » ; retour aux données importées possible) |
-| KPIs, graphiques EE/IE et retards, export CSV « ; » | ✅ (matrice avec toutes les colonnes du classeur KPI) |
+| Édition manuelle complète des fiches (statut, KPIs, rubriques, chronologie, autorités, sources) | ⛔ **retirée** — le classeur SharePoint est devenu la source de vérité unique et RegWatch en est un miroir en lecture (commit `88546af`). Deux surfaces d'écriture pour une même donnée produisaient des divergences que rien n'arbitrait. Les seules écritures restantes sont la validation d'un élément de veille et l'ajout d'une source. |
+| KPIs, graphiques et export | ✅ export Excel natif, graphiques compris — l'export CSV a été remplacé, un classeur qui ne porte que des nombres oblige à refaire les graphiques à la main. |
 | Registre des sources typées | ✅ |
 | Multi-réglementations | ✅ maquetté (onglets DORA/CER/CRA « planned », modèle générique) |
 | Intégration de l'agent de collecte existant (branchement sur la file de validation, mapping des champs), notifications, XLSX/PPTX | ❌ V1.5/V2 (cf. roadmap §9 — travail d'intégration, la brique collecte + IA existe déjà) |
