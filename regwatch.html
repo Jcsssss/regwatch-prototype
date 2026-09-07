@@ -100,6 +100,12 @@ header.app::before{content:"";display:block;height:3px;background:linear-gradien
 .hd-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .role-wrap{display:flex;align-items:center;gap:7px}
 .role-wrap select{background:var(--surface2);color:var(--ink);border:1px solid var(--line2);border-radius:7px;padding:5px 9px;font-size:12.5px;font-weight:600;cursor:pointer}
+/* La roue crantee, a cote du role : elle deplie l'onglet Diagnostic. Discrete
+   au repos, elle prend la couleur d'accent une fois enfoncee - c'est le seul
+   indice que l'onglet vient de la, si on l'a ouvert et oublie. */
+.gear-btn{border:1px solid var(--line2);background:var(--surface2);color:var(--muted);border-radius:7px;padding:4px 8px;font-size:14px;line-height:1;cursor:pointer}
+.gear-btn:hover{color:var(--ink)}
+.gear-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 nav.tabs{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto}
 nav.tabs a{color:var(--ink2);font-weight:600;font-size:13.5px;padding:9px 13px;border-bottom:2.5px solid transparent;white-space:nowrap}
 nav.tabs a:hover{text-decoration:none;color:var(--ink)}
@@ -16474,6 +16480,7 @@ const I18N = {
     "manual.optManual": "Manual - consultant input",
     "role.developer": "Developer",
     "nav.dev": "Diagnostics",
+    "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
     "dev.title": "Diagnostics",
     "dev.sub": "What this browser reports about itself. Useful when reporting a problem: copy it into the message.",
@@ -16929,6 +16936,7 @@ const I18N = {
     "manual.optManual": "Manuelle - saisie consultant",
     "role.developer": "Développeur",
     "nav.dev": "Diagnostic",
+    "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
     "dev.title": "Diagnostic",
     "dev.sub": "Ce que ce navigateur déclare de lui-même. Utile pour signaler un problème : copiez-le dans le message.",
@@ -17348,6 +17356,13 @@ function applyStaticI18n(){
   document.querySelectorAll("[data-i18n]").forEach(el => {
     el.textContent = t(el.dataset.i18n);
   });
+  /* Un bouton dont tout le sens tient dans son infobulle - la roue crantee -
+     ne peut pas passer par textContent. */
+  document.querySelectorAll("[data-i18n-title]").forEach(el => {
+    const s = t(el.dataset.i18nTitle);
+    el.title = s;
+    el.setAttribute("aria-label", s);
+  });
   document.documentElement.lang = lang;
   document.querySelectorAll(".lang-switch button").forEach(b => {
     b.classList.toggle("on", b.dataset.lang === lang);
@@ -17500,14 +17515,22 @@ function regId(){
 }
 function regSpec(){ return REG_SPECS[regId()]; }
 /* Les onglets techniques n'appartiennent à aucune réglementation : ils
-   décrivent l'outil lui-même et suivent le rôle. Le dire ici plutôt que chez
-   chaque appelant évite que la barre d'onglets et le routage divergent - ce
-   qu'ils faisaient : la barre les montrait, le routage les refusait au
-   chargement, et recharger la page depuis l'onglet Diagnostic ramenait à
-   l'accueil. */
-const REG_DEV_TABS = ["dev", "devchat"];
+   décrivent l'outil lui-même. Le dire ici plutôt que chez chaque appelant évite
+   que la barre d'onglets et le routage divergent - ce qu'ils faisaient : la
+   barre les montrait, le routage les refusait au chargement, et recharger la
+   page depuis l'onglet Diagnostic ramenait à l'accueil.
+
+   Les deux ne suivent pas la même règle. L'assistant technique parle
+   d'architecture et de code : il reste le métier du Développeur. Le diagnostic,
+   lui, ne dit que ce que le navigateur courant déclare de lui-même - c'est ce
+   qu'on demande à quelqu'un qui signale un problème, quel que soit son rôle.
+   Le réserver au Développeur obligeait un lecteur à changer de rôle pour lire
+   une information qui le concerne. Il suit donc la roue crantée (diagOn), pas
+   le rôle - y compris pour le Développeur, pour qu'il n'y ait qu'une règle à
+   connaître et un seul endroit où l'onglet apparaît et disparaît. */
 function regHasTab(v){
-  if (REG_DEV_TABS.includes(v)) return role === "developer";
+  if (v === "dev") return diagOn();
+  if (v === "devchat") return role === "developer";
   return regSpec().tabs.includes(v);
 }
 
@@ -17634,9 +17657,41 @@ roleSel.addEventListener("change", () => {
      visibles inviterait un clic qui ne peut pas aboutir, et quitter le rôle en
      restant sur l'un d'eux laisserait une vue orpheline à l'écran. */
   regSyncTabs();
-  if (role !== "developer" && currentRoute.v.startsWith("dev")) { location.hash = "#/overview"; return; }
+  if (currentRoute.v.startsWith("dev") && !regHasTab(currentRoute.v)) { location.hash = "#/overview"; return; }
   refreshBadge(); renderCurrent();
 });
+
+/* ---------- la roue crantée : l'onglet Diagnostic ----------
+ *
+ * Le diagnostic sert une fois - au moment où l'on signale un problème - et se
+ * regarde le reste du temps sans y toucher. Un sixième onglet permanent pour
+ * cela déplace tous les autres et laisse croire à une rubrique de travail. Il
+ * est donc replié derrière une roue crantée à côté du rôle : absent tant qu'on
+ * ne la presse pas, et alors ouvert directement, pour que le clic ait un effet
+ * visible plutôt que de faire apparaître un onglet de plus quelque part.
+ *
+ * L'état est mémorisé comme le rôle et la langue : sans cela, recharger la page
+ * depuis l'onglet Diagnostic le refermait sous les pieds de celui qui venait de
+ * l'ouvrir - exactement ce que regHasTab() a déjà eu à corriger une fois.
+ *
+ * Le bouton n'existe que dans la version équipe (bloc DEV du squelette) ; dans
+ * la version client, diagOn() répond simplement toujours non.
+ */
+let diagShown = store.diag === true;
+function diagOn(){ return diagShown; }
+const diagGear = document.getElementById("diagGear");
+if (diagGear) {
+  const syncGear = () => diagGear.setAttribute("aria-pressed", String(diagShown));
+  syncGear();
+  diagGear.addEventListener("click", () => {
+    diagShown = !diagShown; store.diag = diagShown; saveStore();
+    syncGear(); regSyncTabs();
+    /* Refermer en restant sur la vue laisserait un écran que plus aucun onglet
+       ne désigne ; l'ouvrir sans y aller laisserait le clic sans réponse. */
+    location.hash = diagShown ? "#/dev"
+      : (currentRoute.v === "dev" ? "#/overview" : location.hash);
+  });
+}
 
 /* ---------- helpers ---------- */
 const $ = (s, el) => (el || document).querySelector(s);

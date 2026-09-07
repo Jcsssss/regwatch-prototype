@@ -56,9 +56,41 @@ roleSel.addEventListener("change", () => {
      visibles inviterait un clic qui ne peut pas aboutir, et quitter le rôle en
      restant sur l'un d'eux laisserait une vue orpheline à l'écran. */
   regSyncTabs();
-  if (role !== "developer" && currentRoute.v.startsWith("dev")) { location.hash = "#/overview"; return; }
+  if (currentRoute.v.startsWith("dev") && !regHasTab(currentRoute.v)) { location.hash = "#/overview"; return; }
   refreshBadge(); renderCurrent();
 });
+
+/* ---------- la roue crantée : l'onglet Diagnostic ----------
+ *
+ * Le diagnostic sert une fois - au moment où l'on signale un problème - et se
+ * regarde le reste du temps sans y toucher. Un sixième onglet permanent pour
+ * cela déplace tous les autres et laisse croire à une rubrique de travail. Il
+ * est donc replié derrière une roue crantée à côté du rôle : absent tant qu'on
+ * ne la presse pas, et alors ouvert directement, pour que le clic ait un effet
+ * visible plutôt que de faire apparaître un onglet de plus quelque part.
+ *
+ * L'état est mémorisé comme le rôle et la langue : sans cela, recharger la page
+ * depuis l'onglet Diagnostic le refermait sous les pieds de celui qui venait de
+ * l'ouvrir - exactement ce que regHasTab() a déjà eu à corriger une fois.
+ *
+ * Le bouton n'existe que dans la version équipe (bloc DEV du squelette) ; dans
+ * la version client, diagOn() répond simplement toujours non.
+ */
+let diagShown = store.diag === true;
+function diagOn(){ return diagShown; }
+const diagGear = document.getElementById("diagGear");
+if (diagGear) {
+  const syncGear = () => diagGear.setAttribute("aria-pressed", String(diagShown));
+  syncGear();
+  diagGear.addEventListener("click", () => {
+    diagShown = !diagShown; store.diag = diagShown; saveStore();
+    syncGear(); regSyncTabs();
+    /* Refermer en restant sur la vue laisserait un écran que plus aucun onglet
+       ne désigne ; l'ouvrir sans y aller laisserait le clic sans réponse. */
+    location.hash = diagShown ? "#/dev"
+      : (currentRoute.v === "dev" ? "#/overview" : location.hash);
+  });
+}
 
 /* ---------- helpers ---------- */
 const $ = (s, el) => (el || document).querySelector(s);

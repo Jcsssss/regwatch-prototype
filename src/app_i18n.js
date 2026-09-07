@@ -77,6 +77,7 @@ const I18N = {
     "manual.optManual": "Manual - consultant input",
     "role.developer": "Developer",
     "nav.dev": "Diagnostics",
+    "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
     "dev.title": "Diagnostics",
     "dev.sub": "What this browser reports about itself. Useful when reporting a problem: copy it into the message.",
@@ -532,6 +533,7 @@ const I18N = {
     "manual.optManual": "Manuelle - saisie consultant",
     "role.developer": "Développeur",
     "nav.dev": "Diagnostic",
+    "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
     "dev.title": "Diagnostic",
     "dev.sub": "Ce que ce navigateur déclare de lui-même. Utile pour signaler un problème : copiez-le dans le message.",
@@ -950,6 +952,13 @@ function t(key, vars){
 function applyStaticI18n(){
   document.querySelectorAll("[data-i18n]").forEach(el => {
     el.textContent = t(el.dataset.i18n);
+  });
+  /* Un bouton dont tout le sens tient dans son infobulle - la roue crantee -
+     ne peut pas passer par textContent. */
+  document.querySelectorAll("[data-i18n-title]").forEach(el => {
+    const s = t(el.dataset.i18nTitle);
+    el.title = s;
+    el.setAttribute("aria-label", s);
   });
   document.documentElement.lang = lang;
   document.querySelectorAll(".lang-switch button").forEach(b => {

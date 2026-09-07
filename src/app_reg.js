@@ -103,14 +103,22 @@ function regId(){
 }
 function regSpec(){ return REG_SPECS[regId()]; }
 /* Les onglets techniques n'appartiennent à aucune réglementation : ils
-   décrivent l'outil lui-même et suivent le rôle. Le dire ici plutôt que chez
-   chaque appelant évite que la barre d'onglets et le routage divergent - ce
-   qu'ils faisaient : la barre les montrait, le routage les refusait au
-   chargement, et recharger la page depuis l'onglet Diagnostic ramenait à
-   l'accueil. */
-const REG_DEV_TABS = ["dev", "devchat"];
+   décrivent l'outil lui-même. Le dire ici plutôt que chez chaque appelant évite
+   que la barre d'onglets et le routage divergent - ce qu'ils faisaient : la
+   barre les montrait, le routage les refusait au chargement, et recharger la
+   page depuis l'onglet Diagnostic ramenait à l'accueil.
+
+   Les deux ne suivent pas la même règle. L'assistant technique parle
+   d'architecture et de code : il reste le métier du Développeur. Le diagnostic,
+   lui, ne dit que ce que le navigateur courant déclare de lui-même - c'est ce
+   qu'on demande à quelqu'un qui signale un problème, quel que soit son rôle.
+   Le réserver au Développeur obligeait un lecteur à changer de rôle pour lire
+   une information qui le concerne. Il suit donc la roue crantée (diagOn), pas
+   le rôle - y compris pour le Développeur, pour qu'il n'y ait qu'une règle à
+   connaître et un seul endroit où l'onglet apparaît et disparaît. */
 function regHasTab(v){
-  if (REG_DEV_TABS.includes(v)) return role === "developer";
+  if (v === "dev") return diagOn();
+  if (v === "devchat") return role === "developer";
   return regSpec().tabs.includes(v);
 }
 

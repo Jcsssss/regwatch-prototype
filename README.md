@@ -40,9 +40,15 @@ confort de lecture, pas un contrôle d'accès.
   d'incertain ne lui est montré.
 - **Validateur** — voit chaque élément détecté par l'agent, la phrase de la source qui l'a
   déclenché, et tranche. Aucune fiche ne bouge sans son accord.
-- **Développeur** *(version équipe uniquement)* — deux onglets de plus : **Diagnostic**, qui
-  affiche l'environnement du navigateur courant sans rien transmettre, et **Assistant
-  technique**, qui répond sur l'architecture en lisant la documentation et le code embarqués.
+- **Développeur** *(version équipe uniquement)* — un onglet de plus, **Assistant technique**,
+  qui répond sur l'architecture en lisant la documentation et le code embarqués.
+
+L'onglet **Diagnostic** — l'environnement du navigateur courant, affiché sans rien
+transmettre — ne suit pas le rôle : il est replié derrière la **roue crantée** à côté du
+sélecteur, ouverte à n'importe quel rôle. C'est l'information qu'on demande à quelqu'un qui
+signale un problème ; l'obliger à changer de rôle pour la lire n'avait pas de sens. Il reste
+absent de la barre d'onglets tant que la roue n'a pas été pressée, et l'état est mémorisé
+dans le navigateur comme le rôle et la langue. La roue n'existe que dans la version équipe.
 
 ## Reconstruire
 

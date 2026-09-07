@@ -98,6 +98,12 @@ header.app::before{content:"";display:block;height:3px;background:linear-gradien
 .hd-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .role-wrap{display:flex;align-items:center;gap:7px}
 .role-wrap select{background:var(--surface2);color:var(--ink);border:1px solid var(--line2);border-radius:7px;padding:5px 9px;font-size:12.5px;font-weight:600;cursor:pointer}
+/* La roue crantee, a cote du role : elle deplie l'onglet Diagnostic. Discrete
+   au repos, elle prend la couleur d'accent une fois enfoncee - c'est le seul
+   indice que l'onglet vient de la, si on l'a ouvert et oublie. */
+.gear-btn{border:1px solid var(--line2);background:var(--surface2);color:var(--muted);border-radius:7px;padding:4px 8px;font-size:14px;line-height:1;cursor:pointer}
+.gear-btn:hover{color:var(--ink)}
+.gear-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 nav.tabs{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto}
 nav.tabs a{color:var(--ink2);font-weight:600;font-size:13.5px;padding:9px 13px;border-bottom:2.5px solid transparent;white-space:nowrap}
 nav.tabs a:hover{text-decoration:none;color:var(--ink)}
@@ -701,6 +707,10 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
           <!-- DEV:END -->
         </select>
       </div>
+      <!-- DEV:START -->
+      <button type="button" id="diagGear" class="gear-btn" aria-pressed="false"
+              data-i18n-title="gear.diag" title="Diagnostics">&#9881;</button>
+      <!-- DEV:END -->
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="fr">FR</button>
