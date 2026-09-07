@@ -51,26 +51,41 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; RegWatch collection; +internal)"}
 TIMEOUT = 15
 WORKERS = 8
 
-# Le premier filtre est lexical et volontairement large : il sert à écarter les
-# avis de vulnérabilité, qui forment l'essentiel des flux de CERT et n'ont rien
-# à voir avec la transposition. Ce qui passe est ensuite jugé, pas avant.
+# Le tri lexical, en deux temps. Il a été refait une fois : avec 16 flux il
+# passait, avec 36 il laissait entrer les avis du BSI. La cause était dans KEEP
+# et non dans DROP - « kritisch » y figurait pour « entités critiques » et
+# matchait « kritische Schwachstelle ». Les termes trop courts sont désormais
+# liés à leur syntagme, et DROP couvre la vulnérabilité dans les langues du
+# registre.
 KEEP = re.compile(
-    r"nis\s?-?2|nis2|sri\s?2|directive|transpo|loi|zákon|ustaw|gesetz|wet\b|lag\b|laki"
-    r"|seadus|likum|įstatym|zakon|törvény|lege|νόμ|закон|dlí"
-    r"|registr|enregistr|rejestr|reģistr|registreer|nyilvántart"
-    r"|sanction|sankc|bußgeld|pokut|bírság|amend|kazna|глоб"
-    r"|autorit|behörde|úřad|urząd|iestād|asutus|hatóság|arch|орган"
-    r"|obligation|verplicht|povinnost|kötelez|vaatimu|nõue|prasīb"
-    r"|entités essentielles|essential entit|wesentliche|podmiot kluczow"
-    r"|cer\b|résilience|resilien|kritisch|kritick|kritis", re.I)
+    r"nis\s?-?2|nis2|sri\s?2|directive|transpo"
+    # Le nom d'une loi nationale. Borné à gauche seulement : en néerlandais et
+    # en allemand le mot est un suffixe de composé - Cyberbeveiligings|wet.
+    r"|wet\b|gesetz|zákon|zakon|ustaw|likum|įstatym|törvény|seadus"
+    r"|laki\b|lag\b|lov\b|lei\b|legge\b|ley\b|lege\b|νόμ|закон"
+    # L'entrée en vigueur : le fait le plus diagnostique de tous.
+    r"|entrée en vigueur|van kracht|in werking|inkrafttreten|tritt in kraft"
+    r"|wejści\w+ w życie|entry into force|entered into force|účinnost|jõustu"
+    r"|registr|enregistr|rejestr|reģistr|registreer|nyilvántart|wykaz"
+    r"|sanction|sankc|bußgeld|pokut|bírság|kazna|глоб"
+    r"|entités essentielles|essential entit|wesentliche einrichtung|podmiot kluczow"
+    r"|kritische infrastruktur|kritische einrichtung|entités critiques|critical entit"
+    r"|résilience des entités|resilience of critical|cer directive"
+    r"|obligation|verplicht|meldepflicht|povinnost|kötelez|velvoit|kohustus|pienākum"
+    r"|autorité compétente|competent authority|zuständige behörde|organ właściwy",
+    re.I)
 
-# Ce qui ressemble à un avis technique : présent dans tous les flux de CERT,
-# absent du sujet. Écarté avant le filtre ci-dessus, qui matcherait sinon sur
-# « vulnérabilité critique ».
+# L'avis de vulnérabilité : l'essentiel de ce que publie un CERT, et rien à
+# voir avec la transposition. Écarté avant KEEP, qui matcherait sinon sur
+# « infrastructure critique » dans le corps d'un bulletin.
 DROP = re.compile(
-    r"cve-\d{4}|vulnerab|kwetsbaarhe|haavoittuv|sårbarhet|zranitel|luka w"
-    r"|patch|update your|voer updates|advisory|advies|hotfix|zero-day|0-day"
-    r"|phishing|õngitsus|ransomware|lunavara|malware|ddos", re.I)
+    r"cve-\d{4}|cvss|cwe-\d|\[hoch\]|\[mittel\]|\[niedrig\]|\[kritisch\]"
+    r"|vulnerab|vulnérab|kwetsbaarhe|schwachstell|sicherheitslücke|haavoittuv"
+    r"|sårbarhet|sikkerhedshul|zranitel|podatnoś|ievainojam|pažeidžiam|ranjivost"
+    r"|sebezpečn|sérülékeny|уязвим|ευπάθ"
+    r"|patch|hotfix|update verfügbar|voer updates|zero-day|0-day|exploit"
+    r"|advisory|advies|phishing|õngitsus|ransomware|lunavara|malware|ddos"
+    r"|botnet|trojan|backdoor", re.I)
 
 
 def sources(workbook):
