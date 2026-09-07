@@ -1,0 +1,12 @@
+﻿Source;Type;URL / Endpoint;Actif;Pays / zone;Fiabilité;Priorité;Note
+Help Net Security;RSS;https://www.helpnetsecurity.com/feed/;Oui;EU;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+PortSEurope;RSS;https://www.portseurope.com/feed;Oui;EU;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+Arthur Cox - veille juridique;RSS;https://www.arthurcox.com/feed;Oui;IE;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+Baltic News Service;RSS;https://www.bns.ee/rss.xml;Oui;EE;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+France Info;RSS;https://www.franceinfo.fr/titres.rss;Oui;FR;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+France 3 Régions;RSS;https://france3-regions.franceinfo.fr/en/rss;Oui;FR;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+EMIS Insights;RSS;https://isimarkets.com/feed/;Oui;EU;Non officielle - à vérifier;2;Presse ou cabinet - alerte précoce, à confirmer sur la source officielle. Flux vérifié le 7 septembre 2026.
+lvm.fi;Page web;https://lvm.fi;Non;;Non officielle - à vérifier;3;ministère finlandais - publie les évaluations de la loi cyber, sans flux - inactive tant que la collecte n'est pas traitée.
+nordicdaily.com;Page web;https://nordicdaily.com;Non;;Non officielle - à vérifier;3;reprise de presse, sans flux - inactive tant que la collecte n'est pas traitée.
+techniques-ingenieur.fr;Page web;https://techniques-ingenieur.fr;Non;;Non officielle - à vérifier;3;presse technique, sans flux exploitable - inactive tant que la collecte n'est pas traitée.
+zonebourse.com;Page web;https://zonebourse.com;Non;;Non officielle - à vérifier;3;403 : pare-feu applicatif, inatteignable sans contournement - inactive tant que la collecte n'est pas traitée.
