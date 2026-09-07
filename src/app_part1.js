@@ -52,11 +52,15 @@ document.querySelectorAll(".lang-switch button").forEach(b => {
 });
 roleSel.addEventListener("change", () => {
   role = roleSel.value; store.role = role; saveStore();
-  /* Les onglets techniques n'appartiennent pas au rôle courant : les laisser
-     visibles inviterait un clic qui ne peut pas aboutir, et quitter le rôle en
-     restant sur l'un d'eux laisserait une vue orpheline à l'écran. */
+  /* Un onglet qui n'appartient pas au rôle courant ne doit ni rester visible -
+     ce serait inviter un clic qui ne peut pas aboutir - ni rester affiché sous
+     les yeux de celui qui vient de changer de rôle : la vue resterait à l'écran
+     alors que plus aucun onglet ne la désigne. Le test passe par regHasTab()
+     plutôt que par une liste d'onglets, sinon chaque nouvelle règle de
+     visibilité devrait être répétée ici. La fiche pays fait exception : elle
+     n'est l'onglet de personne, et tous les rôles la lisent. */
   regSyncTabs();
-  if (currentRoute.v.startsWith("dev") && !regHasTab(currentRoute.v)) { location.hash = "#/overview"; return; }
+  if (currentRoute.v !== "country" && !regHasTab(currentRoute.v)) { location.hash = "#/overview"; return; }
   refreshBadge(); renderCurrent();
 });
 

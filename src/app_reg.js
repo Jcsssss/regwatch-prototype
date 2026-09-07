@@ -119,6 +119,17 @@ function regSpec(){ return REG_SPECS[regId()]; }
 function regHasTab(v){
   if (v === "dev") return diagOn();
   if (v === "devchat") return role === "developer";
+  /* La file de veille est le poste de travail du validateur : elle ne contient
+     que des elements incertains, et ceux qui sont tranches sont deja lisibles
+     dans la chronologie de la fiche pays concernee. Un lecteur y voyait une
+     liste plate d'items traites, sans le geste qui lui donne son sens, et
+     pouvait en conclure qu'un element rejete faisait partie du suivi. On ne
+     montre rien d'incertain a un lecteur : c'est la regle que la documentation
+     enoncait deja, et que le code ne tenait pas.
+
+     Les deux conditions se cumulent : REC n'a pas encore d'agent, donc pas de
+     file, et un validateur ne doit pas y trouver un onglet vide. */
+  if (v === "inbox") return role !== "reader" && regSpec().tabs.includes(v);
   return regSpec().tabs.includes(v);
 }
 

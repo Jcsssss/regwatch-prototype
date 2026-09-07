@@ -267,11 +267,14 @@ function renderInbox(){
   const pending = queue.filter(q => q.status === "pending");
   const done = queue.filter(q => q.status !== "pending");
 
+  /* Le lecteur n'a plus cet onglet du tout (regHasTab). Reste le developpeur,
+     qui la consulte sans y trancher : l'encart nommait « Lecteur » un role qui
+     n'est plus celui qui le lit. */
   if (!isVal) {
     el.innerHTML = `
     <h1 class="pg">${t("inbox.title")}</h1>
     <p class="pg-sub">${t("inbox.sub")}</p>
-    <div class="rolenote"><b>${t("role.reader")}.</b> ${t("inbox.sub")}</div>
+    <div class="rolenote"><b>${t("role." + role)}.</b> ${t("inbox.sub")}</div>
     <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
       <div id="procList"></div>
     </div></div>`;
