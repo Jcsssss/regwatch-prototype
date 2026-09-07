@@ -45,7 +45,15 @@ initLang();
 document.querySelectorAll(".lang-switch button").forEach(b => {
   b.addEventListener("click", () => setLang(b.dataset.lang));
 });
-roleSel.addEventListener("change", () => { role = roleSel.value; store.role = role; saveStore(); refreshBadge(); renderCurrent(); });
+roleSel.addEventListener("change", () => {
+  role = roleSel.value; store.role = role; saveStore();
+  /* Les onglets techniques n'appartiennent pas au rôle courant : les laisser
+     visibles inviterait un clic qui ne peut pas aboutir, et quitter le rôle en
+     restant sur l'un d'eux laisserait une vue orpheline à l'écran. */
+  regSyncTabs();
+  if (role !== "developer" && currentRoute.v.startsWith("dev")) { location.hash = "#/overview"; return; }
+  refreshBadge(); renderCurrent();
+});
 
 /* ---------- helpers ---------- */
 const $ = (s, el) => (el || document).querySelector(s);
@@ -97,7 +105,8 @@ function refreshBadge(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ["overview", "countries", "country", "inbox", "insights", "sources"];
+const VIEWS = ["overview", "countries", "country", "inbox", "insights", "sources",
+               "dev", "devchat"];
 let currentRoute = { v: "overview", arg: null };
 function parseHash(){
   const h = (location.hash || "#/overview").replace(/^#\//, "");
@@ -109,7 +118,9 @@ function route(v, arg, force){
   currentRoute = { v, arg };
   VIEWS.forEach(x => $("#v-" + x).classList.toggle("on", x === v));
   document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.v === v || (v === "country" && a.dataset.v === "countries")));
-  ({ overview: renderOverview, countries: renderCountries, country: () => renderCountry(arg), inbox: renderInbox, insights: renderInsights, sources: renderSources })[v]();
+  ({ overview: renderOverview, countries: renderCountries, country: () => renderCountry(arg),
+     inbox: renderInbox, insights: renderInsights, sources: renderSources,
+     dev: renderDev, devchat: renderDevChat })[v]();
   if (!force) window.scrollTo({ top: 0 });
 }
 window.addEventListener("hashchange", () => { const r = parseHash(); route(r.v, r.arg); });

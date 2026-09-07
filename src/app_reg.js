@@ -102,7 +102,17 @@ function regId(){
   return REG_SPECS[id] ? id : "nis2";
 }
 function regSpec(){ return REG_SPECS[regId()]; }
-function regHasTab(v){ return regSpec().tabs.includes(v); }
+/* Les onglets techniques n'appartiennent à aucune réglementation : ils
+   décrivent l'outil lui-même et suivent le rôle. Le dire ici plutôt que chez
+   chaque appelant évite que la barre d'onglets et le routage divergent - ce
+   qu'ils faisaient : la barre les montrait, le routage les refusait au
+   chargement, et recharger la page depuis l'onglet Diagnostic ramenait à
+   l'accueil. */
+const REG_DEV_TABS = ["dev", "devchat"];
+function regHasTab(v){
+  if (REG_DEV_TABS.includes(v)) return role === "developer";
+  return regSpec().tabs.includes(v);
+}
 
 /* `COUNTRIES` and `byIso` are what every view reads; switching regulation
    swaps them rather than threading a parameter through the whole app. */

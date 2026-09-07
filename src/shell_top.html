@@ -320,6 +320,14 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .rel-why[open] > summary{margin-bottom:2px}
 
 /* Filtre par pays de l'onglet Sources : mêmes drapeaux que la file de veille. */
+/* Quatre compteurs de volume, dans le diagnostic : des chiffres, pas des
+   tuiles de tableau de bord - ils décrivent ce qui est chargé, rien de plus. */
+.figs4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0}
+.fig4{padding:0 16px;border-left:1px solid var(--line)}
+.fig4:first-child{padding-left:0;border-left:0}
+.fig4 .v{display:block;font-size:26px;font-weight:750;letter-spacing:-.02em;
+  color:var(--accent2);font-variant-numeric:tabular-nums;line-height:1.1}
+.fig4 .k{display:block;margin-top:3px;font-size:11.5px;color:var(--ink2)}
 .sflags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 13px}
 .sflag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;
   border:1px solid var(--line2);border-radius:999px;background:var(--surface);
@@ -688,6 +696,7 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
         <select id="roleSel" aria-label="Switch role">
           <option value="reader" data-i18n="role.reader">Reader</option>
           <option value="validator" data-i18n="role.validator">Validator (NIS 2 core team)</option>
+          <option value="developer" data-i18n="role.developer">Developer</option>
         </select>
       </div>
       <div class="lang-switch" role="group" aria-label="Language">
@@ -702,6 +711,8 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
     <a href="#/inbox" data-v="inbox"><span data-i18n="nav.inbox">Watch inbox</span><span class="badge" id="pendingBadge" hidden>0</span></a>
     <a href="#/insights" data-v="insights" data-i18n="nav.insights">Assistant</a>
     <a href="#/sources" data-v="sources" data-i18n="nav.sources">Sources</a>
+    <a href="#/dev" data-v="dev" data-i18n="nav.dev">Diagnostics</a>
+    <a href="#/devchat" data-v="devchat" data-i18n="nav.devchat">Tech assistant</a>
   </nav>
 </header>
 
@@ -712,6 +723,8 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
   <div id="v-inbox" class="view"></div>
   <div id="v-insights" class="view"></div>
   <div id="v-sources" class="view"></div>
+  <div id="v-dev" class="view"></div>
+  <div id="v-devchat" class="view"></div>
 </main>
 <footer>
   <div class="line" id="footSrc"></div>
