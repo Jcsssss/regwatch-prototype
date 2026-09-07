@@ -18023,30 +18023,30 @@ function withinWindow(items, days){
  */
 function rejectedSources(){ return store.rejectedSources || (store.rejectedSources = []); }
 
-function candidatesCard(){
-  if (regId() !== "nis2" || typeof SOURCE_CANDIDATES === "undefined") return "";
+let candFilter = "";
+let candSearch = "";
+
+/* Les propositions encore en attente : ni déjà retenues, ni refusées. */
+function candidatesOpen(){
+  if (regId() !== "nis2" || typeof SOURCE_CANDIDATES === "undefined") return [];
   const taken = new Set(customSources().map(s => s.host || s.url));
   const refused = new Set(rejectedSources());
-  const open = (SOURCE_CANDIDATES.candidates || [])
+  return (SOURCE_CANDIDATES.candidates || [])
     .filter(c => !taken.has(c.host) && !refused.has(c.host));
-  if (!open.length) return "";
+}
 
-  /* Même tableau que l'onglet Sources, et pour la même raison : une proposition
-     se juge sur les mêmes colonnes qu'une source déjà retenue - le pays, le
-     domaine, le degré de confiance, ce qu'on sait d'elle. Deux présentations
-     pour un même objet obligeaient à réapprendre à lire d'un onglet à l'autre.
+const candName = iso => iso === "EU" ? t("hub.euTile")
+  : byIso[iso] ? byIso[iso].name : iso;
 
-     Le pays vient du domaine national, lu par discover_sources.py ; il n'est
-     jamais deviné ici. */
-  const candName = iso => iso === "EU" ? t("hub.euTile")
-    : byIso[iso] ? byIso[iso].name : iso;
-  const sorted = [...open].sort((a, b) =>
-    (a.iso ? 0 : 1) - (b.iso ? 0 : 1)
-    || candName(a.iso).localeCompare(candName(b.iso))
-    || a.name.localeCompare(b.name));
-  const countries = new Set(open.map(c => c.iso).filter(Boolean));
+/* Même tableau que l'onglet Sources, et pour la même raison : une proposition
+   se juge sur les mêmes colonnes qu'une source déjà retenue - le pays, le
+   domaine, le degré de confiance, ce qu'on sait d'elle. Deux présentations pour
+   un même objet obligeaient à réapprendre à lire d'un onglet à l'autre.
 
-  const rows = sorted.map(c => `<tr data-host="${esc(c.host)}">
+   Le pays vient du domaine national, lu par discover_sources.py ; il n'est
+   jamais deviné ici. */
+function candRow(c){
+  return `<tr data-host="${esc(c.host)}">
       <td style="white-space:nowrap">${c.iso
         ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(candName(c.iso))}`
         : `<span style="color:var(--muted)">${t("cand.noCountry")}</span>`}</td>
@@ -18061,46 +18061,116 @@ function candidatesCard(){
           type="button">${t("cand.accept")}</button>
         <button class="btn danger cand-no" data-host="${esc(c.host)}"
           type="button">${t("cand.reject")}</button></td>
-    </tr>`).join("");
+    </tr>`;
+}
 
+function candidatesCard(){
+  if (!candidatesOpen().length) return "";
   /* Fermé au départ : ce sont des propositions, pas des tâches du jour. La file
      de veille s'ouvre pour voir ce qui est arrivé ; arbitrer le registre est un
-     autre geste, qu'on décide de faire. */
-  return `<details class="card fold"><summary class="cap">
+     autre geste, qu'on décide de faire.
+
+     Le contenu est peint par wireCandidates : filtrer ne doit pas re-rendre la
+     page, sinon l'encart se referme à chaque frappe. */
+  return `<details class="card fold" id="candCard"><summary class="cap">
       <h2>${t("cand.title")}</h2>
-      <span class="q-note">${t("cand.count", { n: open.length })} · ${
-        t("cand.inCountries", { n: countries.size })}</span>
+      <span class="q-note" id="candCount"></span>
       <span class="fold-car" aria-hidden="true">▾</span></summary>
     <div class="bd">
       <p class="q-note" style="margin-top:0">${t("cand.sub", {
         date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
+      <div class="filters">
+        <input id="candSearch" type="search" class="q-search" autocomplete="off"
+          placeholder="${t("src.searchCountry")}" value="${esc(candSearch)}"
+          aria-label="${t("src.searchCountry")}">
+        <span class="q-note" id="candShown"></span>
+      </div>
+      <div class="sflags" id="candFlags"></div>
       <div class="tbl-wrap"><table class="tbl">
         <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th>
           <th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th><th></th></tr></thead>
-        <tbody>${rows}</tbody></table></div>
+        <tbody id="candRows"></tbody></table></div>
     </div></details>`;
 }
 
 function wireCandidates(el){
+  const card = el.querySelector("#candCard");
+  if (!card) return;
   const find = host => (SOURCE_CANDIDATES.candidates || []).find(c => c.host === host);
-  el.querySelectorAll(".cand-ok").forEach(b => b.addEventListener("click", () => {
-    const c = find(b.dataset.host);
-    if (!c) return;
-    customSources().push({
-      name: c.name, url: c.url, host: c.host, iso: c.iso || "EU",
-      kind: c.kind === "rss" ? "rss" : "page", type: c.type,
-      note: t("cand.noteAccepted", { date: fmtDateL(c.discovered) }),
-    });
-    saveStore();
-    renderInbox();
-  }));
-  el.querySelectorAll(".cand-no").forEach(b => b.addEventListener("click", () => {
-    /* Remembered by domain: discover_sources.py reads this list back and stops
-       proposing it, so a refusal is a decision and not a chore repeated weekly. */
-    if (!rejectedSources().includes(b.dataset.host)) rejectedSources().push(b.dataset.host);
-    saveStore();
-    renderInbox();
-  }));
+
+  function paint(){
+    const open = candidatesOpen();
+    /* Le dernier arbitrage rendu fait disparaître l'encart : il ne reste rien
+       à décider, et une section vide se lit comme une panne. */
+    if (!open.length) { card.remove(); return; }
+
+    const countries = [...new Set(open.map(c => c.iso).filter(Boolean))]
+      .sort((a, b) => candName(a).localeCompare(candName(b)));
+    const needle = candSearch.trim().toLowerCase();
+    const shown = needle
+      ? countries.filter(iso => candName(iso).toLowerCase().includes(needle)
+                             || iso.toLowerCase().startsWith(needle))
+      : countries;
+    /* Un filtre disparu de la liste resterait actif sans être visible. */
+    if (candFilter && !shown.includes(candFilter)) candFilter = "";
+
+    card.querySelector("#candCount").textContent =
+      t("cand.count", { n: open.length }) + " · " + t("cand.inCountries", { n: countries.length });
+
+    card.querySelector("#candFlags").innerHTML =
+      `<button class="sflag ${candFilter ? "" : "on"}" data-iso="" type="button">${
+        t("src.allCountries")}</button>` + shown.map(iso =>
+      `<button class="sflag ${candFilter === iso ? "on" : ""}" data-iso="${esc(iso)}" type="button"
+         title="${esc(candName(iso))}"><i class="fi">${flagSvg(iso)}</i>
+         <span>${esc(candName(iso))}</span>
+         <span class="sflag-n">${open.filter(c => c.iso === iso).length}</span></button>`).join("")
+      + (shown.length ? "" : `<span class="q-note">${t("src.noCountry", { q: esc(candSearch) })}</span>`);
+    card.querySelectorAll("#candFlags .sflag").forEach(b => b.addEventListener("click", () => {
+      candFilter = b.dataset.iso === candFilter ? "" : b.dataset.iso;
+      paint();
+    }));
+
+    /* La recherche filtre le tableau, pas seulement les drapeaux proposés :
+       taper "esto" et voir les trente-cinq lignes ne servait à rien. Un pays
+       explicitement cliqué l'emporte sur la recherche. */
+    const keep = c => candFilter ? c.iso === candFilter
+      : needle ? shown.includes(c.iso) : true;
+    const list = open.filter(keep)
+      .sort((a, b) => (a.iso ? 0 : 1) - (b.iso ? 0 : 1)
+        || candName(a.iso).localeCompare(candName(b.iso))
+        || a.name.localeCompare(b.name));
+    card.querySelector("#candShown").textContent =
+      t("src.count", { n: list.length, total: open.length });
+    card.querySelector("#candRows").innerHTML = list.map(candRow).join("");
+
+    card.querySelectorAll(".cand-ok").forEach(b => b.addEventListener("click", () => {
+      const c = find(b.dataset.host);
+      if (!c) return;
+      customSources().push({
+        name: c.name, url: c.url, host: c.host, iso: c.iso || "EU",
+        kind: c.kind === "rss" ? "rss" : "page", type: c.type,
+        note: t("cand.noteAccepted", { date: fmtDateL(c.discovered) }),
+      });
+      saveStore();
+      paint();
+    }));
+    card.querySelectorAll(".cand-no").forEach(b => b.addEventListener("click", () => {
+      /* Retenu par domaine : discover_sources.py relit cette liste et cesse de
+         le proposer, si bien qu'un refus est une décision et non une corvée
+         répétée chaque semaine. */
+      if (!rejectedSources().includes(b.dataset.host)) rejectedSources().push(b.dataset.host);
+      saveStore();
+      paint();
+    }));
+  }
+
+  paint();
+  /* Repeindre plutôt que re-rendre : un re-render vide le champ et lui prend le
+     focus, ce qui rend la frappe impossible. */
+  card.querySelector("#candSearch").addEventListener("input", e => {
+    candSearch = e.target.value;
+    paint();
+  });
 }
 
 function renderInboxHub(el, pending, done){
@@ -18658,7 +18728,10 @@ function renderSources(){
       paint();
     }));
 
-    const list = rows.filter(r => !srcFilter || r.iso === srcFilter);
+    /* Même règle que l'encart des propositions : la recherche restreint le
+       tableau, un pays cliqué l'emporte sur elle. */
+    const list = rows.filter(r => srcFilter ? r.iso === srcFilter
+      : needle ? shown.includes(r.iso) : true);
     $("#sCount").textContent = t("src.count", { n: list.length, total: rows.length });
     $("#srcRows").innerHTML = list.map(r => `<tr>
       <td style="white-space:nowrap">${r.iso ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.scope)}</td>
