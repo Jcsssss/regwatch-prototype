@@ -35,6 +35,7 @@ REC=(reg/rec/data_countries.js)
 # tools/build_devdocs.py, transverse aux reglementations.
 DEVDOCS=()
 [ -f data_devdocs.js ] && DEVDOCS=(data_devdocs.js)
+[ -f data_devcode.js ] && DEVDOCS=($DEVDOCS data_devcode.js)
 APP=(app_i18n.js app_reg.js app_part1.js app_part2.js app_kpi.js app_kpi_xlsx.js
      app_corpus.js app_chat.js app_dev.js app_deck.js
      app_boot.js)          # doit rester en dernier : voir l'en-tete du fichier

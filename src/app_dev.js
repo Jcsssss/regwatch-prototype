@@ -78,6 +78,7 @@ function renderDev(){
     [t("dev.sDocs"), typeof DEV_DOCS !== "undefined" ? DEV_DOCS.length : 0],
     [t("dev.sCands"), typeof SOURCE_CANDIDATES !== "undefined"
       ? (SOURCE_CANDIDATES.candidates || []).length : 0],
+    [t("dev.sCode"), typeof DEV_CODE_INDEX !== "undefined" ? DEV_CODE_INDEX.length : 0],
   ];
 
   el.innerHTML = `
@@ -121,6 +122,94 @@ function renderDev(){
  * une commande fait perdre plus de temps qu'il n'en gagne.
  */
 
+/* ---------- le code source, embarqué et compressé ----------
+ *
+ * La documentation dit ce qu'un module fait et pourquoi ; elle ne dit pas ce
+ * que fait la ligne 240. Sans le code, l'assistant répond juste jusqu'au moment
+ * où la question devient précise - c'est-à-dire jusqu'au moment où il servirait.
+ *
+ * 654 Ko de source pèseraient +37 % sur le fichier livré. Compressés, 277 Ko,
+ * soit +16 %, et la page les décompresse au premier usage seulement : celui qui
+ * n'ouvre jamais l'onglet Développeur ne paie que le téléchargement.
+ */
+let devCodeCache = null;
+
+async function devCode(){
+  if (devCodeCache) return devCodeCache;
+  if (typeof DEV_CODE_GZ === "undefined") {
+    devCodeCache = { __error: "Le code source n'est pas embarqué dans cette version." };
+    return devCodeCache;
+  }
+  /* Sans DecompressionStream, on le dit plutôt que de répondre à côté en
+     silence : l'assistant se rabattra sur la documentation. */
+  if (typeof DecompressionStream !== "function") {
+    devCodeCache = { __error: "Ce navigateur ne sait pas décompresser le code embarqué "
+      + "(DecompressionStream absent). La documentation reste consultable." };
+    return devCodeCache;
+  }
+  try {
+    const bin = atob(DEV_CODE_GZ);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+    const text = await new Response(stream).text();
+    const map = {};
+    text.split(DEV_CODE_SEP).forEach(chunk => {
+      const nl = chunk.indexOf("\n");
+      if (nl > 0) map[chunk.slice(0, nl).trim()] = chunk.slice(nl + 1);
+    });
+    devCodeCache = map;
+  } catch (e) {
+    devCodeCache = { __error: "Décompression du code impossible : " + e.message };
+  }
+  return devCodeCache;
+}
+
+async function devSearchCode(a){
+  const files = await devCode();
+  if (files.__error) return { error: files.__error };
+  const needle = String(a.query || "").trim();
+  if (needle.length < 2) return { error: "requête trop courte" };
+  const rx = new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+  const limit = Math.min(Math.max(a.limit || 12, 1), 30);
+  const only = a.path ? String(a.path) : null;
+  const hits = [];
+  for (const path of Object.keys(files)) {
+    if (only && !path.includes(only)) continue;
+    const lines = files[path].split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      if (!rx.test(lines[i])) continue;
+      hits.push({ file: path, line: i + 1, text: lines[i].trim().slice(0, 200) });
+      if (hits.length >= limit) break;
+    }
+    if (hits.length >= limit) break;
+  }
+  return { matches: hits.length, truncated: hits.length >= limit, hits };
+}
+
+async function devReadFile(a){
+  const files = await devCode();
+  if (files.__error) return { error: files.__error };
+  const path = Object.keys(files).find(p => p === a.path)
+            || Object.keys(files).find(p => p.endsWith(a.path || "\u0000"));
+  if (!path) return { error: "fichier inconnu", known: Object.keys(files).slice(0, 40) };
+  const lines = files[path].split("\n");
+  const from = Math.max(1, a.from || 1);
+  /* Borné : un fichier entier remplirait la fenêtre du modèle sans rien
+     apporter de plus qu'une lecture ciblée. */
+  const to = Math.min(lines.length, a.to ? a.to : from + 159, from + 199);
+  return { file: path, lines: lines.length, from, to,
+           text: lines.slice(from - 1, to)
+                      .map((l, i) => (from + i) + ": " + l).join("\n") };
+}
+
+function devListCode(){
+  if (typeof DEV_CODE_INDEX === "undefined") return { error: "code non embarqué" };
+  return { files: DEV_CODE_INDEX.length,
+           totalLines: DEV_CODE_INDEX.reduce((n, f) => n + f.lines, 0),
+           list: DEV_CODE_INDEX.map(f => ({ path: f.path, lines: f.lines })) };
+}
+
 const DEV_TOOLS = [
   { name: "search_docs",
     description: "Cherche dans la documentation de l'outil : README, cahier des "
@@ -136,6 +225,26 @@ const DEV_TOOLS = [
       id: { type: "string" } }, required: ["id"] } },
   { name: "list_files",
     description: "La liste des fichiers documentés, avec le nombre de sections de chacun.",
+    parameters: { type: "object", properties: {} } },
+  { name: "search_code",
+    description: "Cherche une chaîne dans le code source embarqué (JS de l'application, "
+      + "CSS, script de construction, chaîne Python de veille, proxy). Rend fichier et "
+      + "numéro de ligne. À préférer dès que la question porte sur ce que fait le code.",
+    parameters: { type: "object", properties: {
+      query: { type: "string", description: "nom de fonction, variable, chaîne littérale" },
+      path: { type: "string", description: "restreindre à un chemin, ex. tools/ ou app_chat" },
+      limit: { type: "integer", description: "nombre de correspondances, 1 à 30" } },
+      required: ["query"] } },
+  { name: "read_file",
+    description: "Lit le code d'un fichier, par tranche de lignes. Utiliser après "
+      + "search_code pour voir le contexte d'une correspondance.",
+    parameters: { type: "object", properties: {
+      path: { type: "string", description: "chemin, ex. tools/reliability.py" },
+      from: { type: "integer", description: "première ligne, 1 par défaut" },
+      to: { type: "integer", description: "dernière ligne, 160 lignes au plus par appel" } },
+      required: ["path"] } },
+  { name: "list_code",
+    description: "La liste des fichiers de code embarqués, avec leur nombre de lignes.",
     parameters: { type: "object", properties: {} } },
   { name: "runtime_facts",
     description: "L'état courant de l'outil dans ce navigateur : version des données, "
@@ -188,6 +297,7 @@ function devRuntimeFacts(){
     sourceCandidates: typeof SOURCE_CANDIDATES !== "undefined"
       ? (SOURCE_CANDIDATES.candidates || []).length : 0,
     docSections: DEV_DOCS.length,
+    codeFilesEmbedded: typeof DEV_CODE_INDEX !== "undefined" ? DEV_CODE_INDEX.length : 0,
     servedFrom: location.protocol === "file:" ? "fichier local" : location.origin,
     browser: u.browser + " " + u.version, os: u.os,
     interfaceLanguage: lang,
@@ -197,7 +307,9 @@ function devRuntimeFacts(){
 }
 
 const DEV_CALL = { search_docs: devSearchDocs, get_doc: devGetDoc,
-                   list_files: devListFiles, runtime_facts: devRuntimeFacts };
+                   list_files: devListFiles, runtime_facts: devRuntimeFacts,
+                   search_code: devSearchCode, read_file: devReadFile,
+                   list_code: devListCode };
 
 function devSystemPrompt(){
   return [
@@ -214,6 +326,9 @@ function devSystemPrompt(){
     "  dépôt. Ne devine jamais une commande, un chemin ou un nom de fonction.",
     "- Les en-têtes de modules expliquent souvent le pourquoi d'une décision,",
     "  pas seulement le quoi : quand la question est « pourquoi », cherche là.",
+    "- Le code source est lisible : search_code puis read_file. Dès que la",
+    "  question porte sur ce que le code fait réellement, lis-le plutôt que de",
+    "  déduire de la documentation, et cite fichier et ligne.",
     "- Réponds en " + (lang === "fr" ? "français" : "anglais") + ", brièvement,",
     "  en texte courant. Du code seulement s'il est demandé ou s'il est la",
     "  réponse la plus courte.",
@@ -253,7 +368,10 @@ async function devAsk(question){
         let args = {};
         try { args = JSON.parse(call.function.arguments || "{}"); } catch (e) { /* laissé vide */ }
         const fn = DEV_CALL[call.function.name];
-        const out = fn ? fn(args) : { error: "outil inconnu" };
+        /* Les outils de code décompressent au premier appel : le résultat peut
+           être une promesse, et l'attendre ici évite d'envoyer « [object
+           Promise] » au modèle. */
+        const out = fn ? await fn(args) : { error: "outil inconnu" };
         used.push(call.function.name);
         devWire.push({ role: "tool", tool_call_id: call.id,
                        content: JSON.stringify(out).slice(0, 12000) });
