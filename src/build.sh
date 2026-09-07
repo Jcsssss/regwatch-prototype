@@ -1,4 +1,10 @@
 #!/bin/zsh
+# Ce script a besoin de zsh : les listes de fichiers ci-dessous sont des
+# tableaux, et bash ne les eclate pas - `cat $APP` n'y prend que le premier
+# fichier. Lance sous bash, le build produisait un bundle ampute de 90 % de
+# l'application, et `node --check` le validait sans rien dire. On se relance
+# donc sous zsh plutot que de faire confiance a l'appelant.
+[ -n "$ZSH_VERSION" ] || exec zsh "$0" "$@"
 # Build RegWatch from source parts.
 # Outputs:
 #   regwatch-artifact.html — artifact content (no doctype/html/body wrapper)
@@ -29,8 +35,20 @@ APP=(app_i18n.js app_reg.js app_part1.js app_part2.js app_kpi.js app_kpi_xlsx.js
      app_corpus.js app_chat.js app_deck.js
      app_boot.js)          # doit rester en dernier : voir l'en-tete du fichier
 
-cat $SHARED $NIS2 $REC $AGENT_DATA $DECK_TPL $APP > bundle.js
+FILES=($SHARED $NIS2 $REC $AGENT_DATA $DECK_TPL $APP)
+cat $FILES > bundle.js
 node --check bundle.js
+
+# node --check ne voit qu'une syntaxe valide : un bundle ou il manque la moitie
+# des fichiers en est une. On compare donc les octets, seule verification qui
+# attrape une concatenation partielle.
+want=0
+for f in $FILES; do want=$(( want + $(wc -c < $f) )); done
+got=$(wc -c < bundle.js)
+if [ "$want" -ne "$got" ]; then
+  echo "bundle incomplet : $got octets ecrits, $want attendus (${#FILES} fichiers)" >&2
+  exit 1
+fi
 
 { cat shell_top.html; echo '<script>'; cat bundle.js; echo '</script>'; } > regwatch-artifact.html
 
@@ -56,4 +74,10 @@ node --check bundle.js
   echo '</body></html>'
 } > test_val.html
 
-ls -la regwatch.html regwatch-artifact.html
+# La copie vers la racine etait une etape manuelle, decrite dans le README et
+# oubliee : les sources partaient dans un commit pendant que la page publiee
+# restait a la version d'avant. C'est le build qui la fait maintenant.
+cp regwatch.html ../regwatch.html
+cp regwatch.html ../index.html
+
+ls -la regwatch.html ../regwatch.html ../index.html

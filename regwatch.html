@@ -318,6 +318,32 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .cand-u{display:block;font-size:11.5px;color:var(--accent);word-break:break-all;margin-bottom:5px}
 .cand-c{font-size:11.5px;color:var(--muted);margin-bottom:8px}
 .cand .q-actions{display:flex;gap:7px}
+/* Les propositions rangées par pays : l'en-tête de groupe porte le drapeau, et
+   les cartes du pays tiennent dessous dans la même grille. */
+.cand-grp + .cand-grp{margin-top:15px}
+.cand-ch{display:flex;align-items:center;gap:7px;margin-bottom:8px;font-size:13px}
+.cand-ch .fi{width:19px;height:14px;flex:0 0 auto}
+.cand-ch b{color:var(--ink)}
+
+/* Le panneau "Pourquoi xx sur 100" : ses notes finissaient collées à l'extrait
+   qui le suit, les deux blocs se lisant comme un seul. */
+.rel-why[open]{margin-bottom:11px;padding-bottom:2px}
+.rel-why[open] > summary{margin-bottom:2px}
+
+/* Filtre par pays de l'onglet Sources : mêmes drapeaux que la file de veille. */
+.sflags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 13px}
+.sflag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;
+  border:1px solid var(--line2);border-radius:999px;background:var(--surface);
+  color:var(--ink2);font:inherit;font-size:12px;cursor:pointer;line-height:1.2}
+.sflag:hover{border-color:var(--accent);color:var(--ink)}
+.sflag:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sflag.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sflag .fi{width:18px;height:13px;flex:0 0 auto;border-radius:2px}
+.sflag-n{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sflag.on .sflag-n{color:var(--accent-ink);opacity:.75}
+.q-search{padding:6px 11px;border:1px solid var(--line2);border-radius:8px;
+  background:var(--surface);color:var(--ink);font:inherit;font-size:13px;min-width:210px}
+.q-search:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 
 /* ---- cyber-theme coverage ---- */
 .thms{display:flex;flex-direction:column;gap:7px}
@@ -471,6 +497,24 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .q-open:hover{filter:brightness(1.08)}
 .q-excerpt{margin:0;padding:9px 13px;border-left:3px solid var(--accent);background:var(--surface2);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink2);max-width:82ch}
 .q-excerpt .src-note{display:block;margin-top:5px;font-size:11.5px;color:var(--muted);font-style:italic}
+/* The quoted evidence sits above the opening lines and outranks them: this is
+   what the router acted on. Green, not accent, so it never reads as another
+   agent-written block - it is the source speaking. */
+.q-verb{margin:0 0 9px}
+.q-verb-h{font-size:11.5px;font-weight:650;color:var(--ink2);margin-bottom:6px}
+.q-verb-h .q-note{font-weight:400;font-style:italic}
+.q-verb-q{margin:0 0 6px;padding:8px 12px;border-left:3px solid var(--ok);
+  background:var(--surface2);border-radius:0 8px 8px 0;font-size:13px;
+  color:var(--ink2);max-width:82ch}
+.q-verb-q:last-child{margin-bottom:0}
+.q-verb-t{display:block;font-size:10.5px;font-weight:650;letter-spacing:.03em;
+  text-transform:uppercase;color:var(--ok);margin-bottom:3px}
+.q-verb-q mark{background:var(--accent-soft);color:var(--accent2);
+  padding:0 2px;border-radius:3px;font-weight:600}
+.q-open-lines > summary{cursor:pointer;font-size:11.5px;color:var(--accent);
+  list-style:none;margin-bottom:6px}
+.q-open-lines > summary::-webkit-details-marker{display:none}
+.q-open-lines > summary:hover{text-decoration:underline}
 .q-cells{margin-top:10px;border:1px solid var(--accent);border-radius:9px;background:var(--accent-soft);font-size:12.5px}
 .q-cells>summary{cursor:pointer;padding:8px 11px;font-weight:700;color:var(--accent);list-style:none;display:flex;align-items:center;gap:7px}
 .q-cells>summary::-webkit-details-marker{display:none}
@@ -7173,22 +7217,6 @@ const SOURCE_CANDIDATES = {
  "generated": "2026-09-06",
  "candidates": [
   {
-   "host": "cyber.gov.gr",
-   "name": "Εθνική Αρχή Κυβερνοασφάλειας - Εθνική Αρχή Κυβερνοασφάλειας",
-   "url": "https://cyber.gov.gr/feed/",
-   "kind": "rss",
-   "entries": 10,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 171,
-   "context": [
-    "Skip to content",
-    "Skip to footer",
-    "Οδηγία NIS2"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
    "host": "portal.nukib.gov.cz",
    "name": "Portál NÚKIB",
    "url": "https://portal.nukib.gov.cz/rss.xml",
@@ -7202,83 +7230,137 @@ const SOURCE_CANDIDATES = {
     "podpůrné materiály",
     "kalkulačku"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "CZ"
   },
   {
-   "host": "moje.cert.pl",
-   "name": "Strona główna – moje.cert.pl",
-   "url": "https://moje.cert.pl/advisory_feed/advisory/feed/",
-   "kind": "rss",
-   "entries": 10,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 4,
-   "context": [
-    "Ostrzeżenia",
-    "moje.cert.pl"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "cyber.gov.lv",
-   "name": "Sākumlapa | Nacionālais kiberdrošības centrs",
-   "url": "https://cyber.gov.lv/rss.xml",
-   "kind": "rss",
-   "entries": 9,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 2,
-   "context": [
-    "Open a link",
-    "Nacionālais kiberdrošības centrs"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "mod.gov.lv",
-   "name": "Sākumlapa | Aizsardzības ministrija",
-   "url": "https://mod.gov.lv/rss.xml",
-   "kind": "rss",
-   "entries": 10,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "Kiberdrošība"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "sztfh.hu",
-   "name": "Szabályozott Tevékenységek Felügyelet Hatósága – Szabályozott Tevékenységek Felügyeleti Ha",
-   "url": "https://sztfh.hu/feed/",
-   "kind": "rss",
-   "entries": 8,
-   "type": "unofficial",
-   "reliability": "Non officielle - à vérifier",
-   "seenFrom": 16,
-   "context": [
-    "Kiberbiztonság felügyelete",
-    "Kiberbiztonsági tanúsítások",
-    "Kiberbiztonsági felügyelet"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "csirt.gov.it",
-   "name": "CSIRT Italia - ACN",
-   "url": "https://csirt.gov.it",
+   "host": "osveta.nukib.gov.cz",
+   "name": "Nástěnka (GUEST)",
+   "url": "https://osveta.nukib.gov.cz",
    "kind": "page",
    "entries": 0,
    "type": "official",
    "reliability": "Officielle",
-   "seenFrom": 87,
+   "seenFrom": 1,
    "context": [
-    "Segnala un incidente informatico",
-    "Skip to Main Content",
-    "RSS: apre una nuova finestra"
+    "osveta.nukib.gov.cz"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "CZ"
+  },
+  {
+   "host": "portal.bsi.bund.de",
+   "name": "BSI Portal",
+   "url": "https://portal.bsi.bund.de",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "BSI-Portal"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "DE"
+  },
+  {
+   "host": "raport.cert.ee",
+   "name": "Küberintsidendi teavitusvorm",
+   "url": "https://raport.cert.ee",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Teavituskeskkond raport.cert.ee"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "EE"
+  },
+  {
+   "host": "eits.ria.ee",
+   "name": "E-ITS",
+   "url": "https://eits.ria.ee",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "E-ITS – Eesti infoturbestandard"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "EE"
+  },
+  {
+   "host": "itvaatlik.ee",
+   "name": "Ole kaitstud küberrünnaku eest - ITVaatlik",
+   "url": "https://itvaatlik.ee",
+   "kind": "page",
+   "entries": 0,
+   "type": "unofficial",
+   "reliability": "Non officielle - à vérifier",
+   "seenFrom": 1,
+   "context": [
+    "Küberturvalisuse portaal itvaatlik.ee"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "EE"
+  },
+  {
+   "host": "csirtsnetwork.eu",
+   "name": "CSIRTs Network",
+   "url": "https://csirtsnetwork.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [],
+   "discovered": "2026-09-06",
+   "iso": "EU"
+  },
+  {
+   "host": "cybersecuritymonth.eu",
+   "name": "European Cybersecurity Month | ENISA",
+   "url": "https://cybersecuritymonth.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [],
+   "discovered": "2026-09-06",
+   "iso": "EU"
+  },
+  {
+   "host": "cert.europa.eu",
+   "name": "CERT-EU",
+   "url": "https://cert.europa.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "CERT-EU"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "EU"
+  },
+  {
+   "host": "cybersecurity-centre.europa.eu",
+   "name": "Language selection | European Cybersecurity Competence Centre and Network",
+   "url": "https://cybersecurity-centre.europa.eu",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [],
+   "discovered": "2026-09-06",
+   "iso": "EU"
   },
   {
    "host": "traficom.fi",
@@ -7294,7 +7376,23 @@ const SOURCE_CANDIDATES = {
     "Tietoa ja ohjeita Ulkoinen verkkopalvelu.",
     "Saavutettavuusseloste"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "FI"
+  },
+  {
+   "host": "messervices.cyber.gouv.fr",
+   "name": "Accueil | MesServicesCyber",
+   "url": "https://messervices.cyber.gouv.fr",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "MesServicesCyber"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "FR"
   },
   {
    "host": "report.ncsc.gov.uk",
@@ -7308,22 +7406,25 @@ const SOURCE_CANDIDATES = {
    "context": [
     "Report an incident"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "GB"
   },
   {
-   "host": "incydent.cert.pl",
-   "name": "Zgłoś incydent | CERT.PL>_",
-   "url": "https://incydent.cert.pl",
-   "kind": "page",
-   "entries": 0,
+   "host": "cyber.gov.gr",
+   "name": "Εθνική Αρχή Κυβερνοασφάλειας - Εθνική Αρχή Κυβερνοασφάλειας",
+   "url": "https://cyber.gov.gr/feed/",
+   "kind": "rss",
+   "entries": 10,
    "type": "official",
    "reliability": "Officielle",
-   "seenFrom": 3,
+   "seenFrom": 171,
    "context": [
-    "Zgłoś incydent",
-    "incydent.cert.pl"
+    "Skip to content",
+    "Skip to footer",
+    "Οδηγία NIS2"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "GR"
   },
   {
    "host": "cve.cert.hr",
@@ -7338,143 +7439,8 @@ const SOURCE_CANDIDATES = {
     "CERT CVE",
     "ovdje"
    ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "csirtsnetwork.eu",
-   "name": "CSIRTs Network",
-   "url": "https://csirtsnetwork.eu",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 2,
-   "context": [],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "mwdb.cert.pl",
-   "name": "CERT.PL>_ Malware Database",
-   "url": "https://mwdb.cert.pl",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 2,
-   "context": [
-    "MWDB"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "bezpiecznapoczta.cert.pl",
-   "name": "Bezpieczna poczta",
-   "url": "https://bezpiecznapoczta.cert.pl",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 2,
-   "context": [
-    "Bezpieczna Poczta"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "ncsc.se",
-   "name": "NCSC",
-   "url": "https://ncsc.se",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 2,
-   "context": [
-    "Systematisk informationssäkerhet"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "osveta.nukib.gov.cz",
-   "name": "Nástěnka (GUEST)",
-   "url": "https://osveta.nukib.gov.cz",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "osveta.nukib.gov.cz"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "portal.bsi.bund.de",
-   "name": "BSI Portal",
-   "url": "https://portal.bsi.bund.de",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "BSI-Portal"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "raport.cert.ee",
-   "name": "Küberintsidendi teavitusvorm",
-   "url": "https://raport.cert.ee",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "Teavituskeskkond raport.cert.ee"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "eits.ria.ee",
-   "name": "E-ITS",
-   "url": "https://eits.ria.ee",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "E-ITS – Eesti infoturbestandard"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "messervices.cyber.gouv.fr",
-   "name": "Accueil | MesServicesCyber",
-   "url": "https://messervices.cyber.gouv.fr",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "MesServicesCyber"
-   ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "cybersecuritymonth.eu",
-   "name": "European Cybersecurity Month | ENISA",
-   "url": "https://cybersecuritymonth.eu",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "HR"
   },
   {
    "host": "iffy.cert.hr",
@@ -7488,7 +7454,25 @@ const SOURCE_CANDIDATES = {
    "context": [
     "ovdje"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "HR"
+  },
+  {
+   "host": "sztfh.hu",
+   "name": "Szabályozott Tevékenységek Felügyelet Hatósága – Szabályozott Tevékenységek Felügyeleti Ha",
+   "url": "https://sztfh.hu/feed/",
+   "kind": "rss",
+   "entries": 8,
+   "type": "unofficial",
+   "reliability": "Non officielle - à vérifier",
+   "seenFrom": 16,
+   "context": [
+    "Kiberbiztonság felügyelete",
+    "Kiberbiztonsági tanúsítások",
+    "Kiberbiztonsági felügyelet"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "HU"
   },
   {
    "host": "cybersec.nki.gov.hu",
@@ -7502,7 +7486,8 @@ const SOURCE_CANDIDATES = {
    "context": [
     "10. CyberSec konferencia"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "HU"
   },
   {
    "host": "hcsc.nki.gov.hu",
@@ -7516,7 +7501,8 @@ const SOURCE_CANDIDATES = {
    "context": [
     "Hungarian Cyber Security Challenge 2026"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "HU"
   },
   {
    "host": "cyberthreatmap.nki.gov.hu",
@@ -7530,7 +7516,8 @@ const SOURCE_CANDIDATES = {
    "context": [
     "Cyber Threatmap"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "HU"
   },
   {
    "host": "cert.hu",
@@ -7544,21 +7531,8 @@ const SOURCE_CANDIDATES = {
    "context": [
     "HunCERT"
    ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "cert.europa.eu",
-   "name": "CERT-EU",
-   "url": "https://cert.europa.eu",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [
-    "CERT-EU"
-   ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "HU"
   },
   {
    "host": "sme.ncsc.gov.ie",
@@ -7570,7 +7544,56 @@ const SOURCE_CANDIDATES = {
    "reliability": "Officielle",
    "seenFrom": 1,
    "context": [],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "IE"
+  },
+  {
+   "host": "csirt.gov.it",
+   "name": "CSIRT Italia - ACN",
+   "url": "https://csirt.gov.it",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 87,
+   "context": [
+    "Segnala un incidente informatico",
+    "Skip to Main Content",
+    "RSS: apre una nuova finestra"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "IT"
+  },
+  {
+   "host": "cyber.gov.lv",
+   "name": "Sākumlapa | Nacionālais kiberdrošības centrs",
+   "url": "https://cyber.gov.lv/rss.xml",
+   "kind": "rss",
+   "entries": 9,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "Open a link",
+    "Nacionālais kiberdrošības centrs"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "LV"
+  },
+  {
+   "host": "mod.gov.lv",
+   "name": "Sākumlapa | Aizsardzības ministrija",
+   "url": "https://mod.gov.lv/rss.xml",
+   "kind": "rss",
+   "entries": 10,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 1,
+   "context": [
+    "Kiberdrošība"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "LV"
   },
   {
    "host": "cvd.cert.lv",
@@ -7582,7 +7605,8 @@ const SOURCE_CANDIDATES = {
    "reliability": "Officielle",
    "seenFrom": 1,
    "context": [],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "LV"
   },
   {
    "host": "advisories.ncsc.nl",
@@ -7596,7 +7620,8 @@ const SOURCE_CANDIDATES = {
    "context": [
     "Actuele kwetsbaarheden"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "NL"
   },
   {
    "host": "mijn.ncsc.nl",
@@ -7610,7 +7635,70 @@ const SOURCE_CANDIDATES = {
    "context": [
     "MijnNCSC"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "NL"
+  },
+  {
+   "host": "moje.cert.pl",
+   "name": "Strona główna – moje.cert.pl",
+   "url": "https://moje.cert.pl/advisory_feed/advisory/feed/",
+   "kind": "rss",
+   "entries": 10,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 4,
+   "context": [
+    "Ostrzeżenia",
+    "moje.cert.pl"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "PL"
+  },
+  {
+   "host": "incydent.cert.pl",
+   "name": "Zgłoś incydent | CERT.PL>_",
+   "url": "https://incydent.cert.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 3,
+   "context": [
+    "Zgłoś incydent",
+    "incydent.cert.pl"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "PL"
+  },
+  {
+   "host": "mwdb.cert.pl",
+   "name": "CERT.PL>_ Malware Database",
+   "url": "https://mwdb.cert.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "MWDB"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "PL"
+  },
+  {
+   "host": "bezpiecznapoczta.cert.pl",
+   "name": "Bezpieczna poczta",
+   "url": "https://bezpiecznapoczta.cert.pl",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "Bezpieczna Poczta"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "PL"
   },
   {
    "host": "csirt.gov.pl",
@@ -7624,7 +7712,23 @@ const SOURCE_CANDIDATES = {
    "context": [
     "CSIRT GOV"
    ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "PL"
+  },
+  {
+   "host": "ncsc.se",
+   "name": "NCSC",
+   "url": "https://ncsc.se",
+   "kind": "page",
+   "entries": 0,
+   "type": "official",
+   "reliability": "Officielle",
+   "seenFrom": 2,
+   "context": [
+    "Systematisk informationssäkerhet"
+   ],
+   "discovered": "2026-09-06",
+   "iso": "SE"
   },
   {
    "host": "cyberportal.mcf.se",
@@ -7638,33 +7742,8 @@ const SOURCE_CANDIDATES = {
    "context": [
     "Rapportera incident"
    ],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "cybersecurity-centre.europa.eu",
-   "name": "Language selection | European Cybersecurity Competence Centre and Network",
-   "url": "https://cybersecurity-centre.europa.eu",
-   "kind": "page",
-   "entries": 0,
-   "type": "official",
-   "reliability": "Officielle",
-   "seenFrom": 1,
-   "context": [],
-   "discovered": "2026-09-06"
-  },
-  {
-   "host": "itvaatlik.ee",
-   "name": "Ole kaitstud küberrünnaku eest - ITVaatlik",
-   "url": "https://itvaatlik.ee",
-   "kind": "page",
-   "entries": 0,
-   "type": "unofficial",
-   "reliability": "Non officielle - à vérifier",
-   "seenFrom": 1,
-   "context": [
-    "Küberturvalisuse portaal itvaatlik.ee"
-   ],
-   "discovered": "2026-09-06"
+   "discovered": "2026-09-06",
+   "iso": "SE"
   }
  ],
  "rejected": []
@@ -9770,6 +9849,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Publication ENISA; rapport d’analyse sectorielle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -9837,18 +9917,30 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I24"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F24"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D23"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I24"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E23"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
-      "score": 80,
+      "score": 95,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -9856,13 +9948,9 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 10
       },
-      "penalties": {
-        "duplicate": -15
-      },
-      "notes": [
-        "duplicate"
-      ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
     }
   },
   {
@@ -9916,14 +10004,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I18"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F18"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D17"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I18"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E17"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
@@ -9941,7 +10041,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -9995,14 +10095,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D13"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E13"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
@@ -10020,7 +10132,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -10053,8 +10165,9 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Décision de la Commission européenne / actualité institutionnelle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
-      "score": 80,
+      "score": 65,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -10062,9 +10175,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 10
       },
-      "penalties": {},
-      "notes": [],
-      "duplicateOf": null
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -10118,14 +10235,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I31"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F31"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D30"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I31"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E30"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Incident",
+        "text": "The directive sets up a network of Computer Security Incident Response Teams (CSIRTs) to exchange information on cyber threats, and respond to incidents."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "supervis",
+        "text": "NIS2 raises the EU common level of ambition on cyber-security, through a wider scope, clearer rules and stronger supervision tools."
       }
     ],
     "reliability": {
@@ -10143,7 +10272,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-EU"
+      "duplicateOf": "REG-20260814114913-001-NL"
     }
   },
   {
@@ -10207,6 +10336,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "P13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -10286,6 +10416,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H22"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -10335,6 +10466,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "Plan d'action stratégique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 80,
       "parts": {
@@ -10410,8 +10542,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E23"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -10419,16 +10552,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260710154925-001"
+      "duplicateOf": null
     }
   },
   {
@@ -10461,6 +10591,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "décision administrative; procédure juridique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -10479,7 +10610,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260710154925-001"
+      "duplicateOf": "REG-20260710155218-003-NL"
     }
   },
   {
@@ -10533,6 +10664,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "L17"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -10581,6 +10713,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "décision de la Commission européenne; procédure de manquement"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -10632,6 +10765,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "décision réglementaire; procédure juridique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -10641,13 +10775,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260710155218-003-NL"
     }
   },
   {
@@ -10706,6 +10843,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -10785,6 +10923,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E26"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -10864,6 +11003,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G25"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -10933,6 +11073,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "L25"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -11012,6 +11153,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E25"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -11091,6 +11233,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E21"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -11170,6 +11313,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -11249,6 +11393,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G21"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -11329,8 +11474,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E30"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -11338,16 +11484,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172307-023-ES"
+      "duplicateOf": null
     }
   },
   {
@@ -11411,6 +11554,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -11490,6 +11634,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -11538,6 +11683,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "article de presse"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -11547,16 +11693,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145257-007-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -11620,8 +11763,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -11629,13 +11773,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145257-007-EU"
     }
   },
   {
@@ -11699,8 +11846,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -11708,16 +11856,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172256-022"
+      "duplicateOf": null
     }
   },
   {
@@ -11750,6 +11895,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "article d'analyse sectorielle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -11759,16 +11905,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145243-005-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -11832,8 +11975,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -11841,13 +11985,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145243-005-EU"
     }
   },
   {
@@ -11911,8 +12058,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -11920,16 +12068,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172240-020"
+      "duplicateOf": null
     }
   },
   {
@@ -11962,6 +12107,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité réglementaire"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -11980,7 +12126,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260703172240-020"
+      "duplicateOf": "REG-20260707145234-004-FR"
     }
   },
   {
@@ -12044,8 +12190,20 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H15"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "Registrierung",
+        "text": "Registrierungspflicht gemäß § 33 Absatz 6 BSIG - Einzelheiten zur Ausgestaltung des Registrierungsverfahrens Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal ."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Meldung",
+        "text": "Meldung: , 11.06.2026 BSI -Magazin: NIS-2 und BSI -Gesetz stärken Cybersicherheit in Unternehmen Die neue Ausgabe des halbjährlich erscheinenden BSI-Magazins ist da."
+      }
+    ],
     "reliability": {
-      "score": 70,
+      "score": 85,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -12054,14 +12212,12 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10,
-        "duplicate": -15
+        "impossibleDate": -10
       },
       "notes": [
-        "impossibleDate",
-        "duplicate"
+        "impossibleDate"
       ],
-      "duplicateOf": "REG-20260703172101-011-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -12123,6 +12279,13 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "ID - P1",
         "field": "Name of principal transposition text",
         "cell": "K23"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "ID - P1",
+        "term": "publi",
+        "text": "Voor alle andere organisaties in de publieke sector geldt een dringend advies om STIX en TAXII versie 2.1 toe te passen."
       }
     ],
     "reliability": {
@@ -12202,6 +12365,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Ce nouvel accord s’inscrit dans cette dynamique, portée également par la réglementation européenne et vise à protéger le système financier avec des échanges renforcés sur les incidents d’origine cyber et la gestion de crise."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Dans ce cadre, l’ANSSI conduira les actions nécessaires en matière de réponse technique aux incidents de cybersécurité touchant le secteur financier, via le Centre national et gouvernemental de veille, d’alerte et de réponse aux attaques informatiques (CERT-FR)."
+      }
+    ],
     "reliability": {
       "score": 95,
       "parts": {
@@ -12277,6 +12452,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E21"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -12326,6 +12502,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "rapport"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 70,
       "parts": {
@@ -12405,8 +12582,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "K23"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -12414,16 +12592,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172325-025-BE"
+      "duplicateOf": null
     }
   },
   {
@@ -12487,8 +12662,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "K5"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -12496,13 +12672,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172325-025-NL"
     }
   },
   {
@@ -12566,6 +12745,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I24"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -12614,6 +12794,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -12632,7 +12813,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260703172307-023-ES"
+      "duplicateOf": "REG-20260707152305-012"
     }
   },
   {
@@ -12681,8 +12862,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "L30"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -12690,13 +12872,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707152305-012"
     }
   },
   {
@@ -12760,8 +12945,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -12769,13 +12955,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145250-006"
     }
   },
   {
@@ -12839,6 +13028,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -12918,8 +13108,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -12927,13 +13118,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145234-004-FR"
     }
   },
   {
@@ -12966,6 +13160,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité réglementaire"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -12975,16 +13170,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172228-019-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -13048,8 +13240,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I15"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -13057,13 +13250,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172228-019-EU"
     }
   },
   {
@@ -13096,6 +13292,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "article d'analyse;actualité réglementaire"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -13105,16 +13302,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172220-018-DE"
+      "duplicateOf": null
     }
   },
   {
@@ -13178,8 +13372,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G14"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -13187,13 +13382,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172220-018-EU"
     }
   },
   {
@@ -13257,6 +13455,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -13305,6 +13504,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "guide"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -13314,16 +13514,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172155-016-BE"
+      "duplicateOf": null
     }
   },
   {
@@ -13387,8 +13584,9 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G5"
       }
     ],
+    "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -13396,13 +13594,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172155-016-EU"
     }
   },
   {
@@ -13466,6 +13667,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -13545,6 +13747,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I26"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -13624,6 +13827,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -13672,6 +13876,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -13754,6 +13959,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 15,
       "parts": {
@@ -13802,6 +14008,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 0,
       "parts": {
@@ -13853,6 +14060,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "guide officiel; publication réglementaire; checklist; FAQ; roadmap; infopackets; vidéos; webinaires"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -13870,7 +14078,7 @@ const WATCH_QUEUE_AGENT = [
         "impossibleDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260703172101-011-DE"
+      "duplicateOf": "REG-20260707145226-003"
     }
   },
   {
@@ -13934,8 +14142,20 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H15"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "Registrierung",
+        "text": "Registrierungspflicht gemäß § 33 Absatz 6 BSIG - Einzelheiten zur Ausgestaltung des Registrierungsverfahrens Registrieren Sie sich mit Ihrem ELSTER -Organisationszertifikat im BSI -Portal ."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "Meldung",
+        "text": "Meldung: , 11.06.2026 BSI -Magazin: NIS-2 und BSI -Gesetz stärken Cybersicherheit in Unternehmen Die neue Ausgabe des halbjährlich erscheinenden BSI-Magazins ist da."
+      }
+    ],
     "reliability": {
-      "score": 85,
+      "score": 70,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -13944,12 +14164,14 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10
+        "impossibleDate": -10,
+        "duplicate": -15
       },
       "notes": [
-        "impossibleDate"
+        "impossibleDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145226-003"
     }
   },
   {
@@ -14011,6 +14233,13 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Audit & Controls - P1",
         "field": "Organism in charge of the audit",
         "cell": "E14"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "Nachweis",
+        "text": "Entsprechende Dokumentationen können beispielsweise sein: Durch diese Pflicht wird sichergestellt, dass Einrichtungen nach Anforderungen von Nachweisen des Bundesamts gemäß § 61 Absatz 3 BSIG dem Bundesamt entsprechende Nachweisdokumente vorlegen können."
       }
     ],
     "reliability": {
@@ -14090,6 +14319,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G17"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -14167,6 +14397,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H24"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 70,
       "parts": {
@@ -14242,6 +14473,18 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Audit & Controls - P1",
         "field": "Organism in charge of the audit",
         "cell": "E23"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "melding",
+        "text": "Test of je systemen de STIX-objecten correct vertalen naar bruikbare alerts in je dashboard, zonder dat je organisatie overspoeld wordt met valse meldingen."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "Controle",
+        "text": "Controleer de ondersteuning van je systemen Veel systemen (zoals een Threat Intelligence Platform of SIEM) ondersteunen al STIX/TAXII 2.1."
       }
     ],
     "reliability": {
@@ -14321,6 +14564,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "notification",
+        "text": "Ouverture de l’appel à manifestation d'intérêt Clôture de l’appel à manifestation d'intérêt Décision et notifications aux candidats et aux lauréats Consulter le document annexe de l'AMI SEC"
+      }
+    ],
     "reliability": {
       "score": 95,
       "parts": {
@@ -14396,6 +14646,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 95,
       "parts": {
@@ -14440,8 +14691,9 @@ const WATCH_QUEUE_AGENT = [
       "textType": "actualité;guide;stratégie"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
-      "score": 30,
+      "score": 45,
       "parts": {
         "source": 30,
         "evidence": 0,
@@ -14450,15 +14702,13 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10,
-        "duplicate": -15
+        "impossibleDate": -10
       },
       "notes": [
         "noSourceText",
-        "impossibleDate",
-        "duplicate"
+        "impossibleDate"
       ],
-      "duplicateOf": "REG-20260703171902-001"
+      "duplicateOf": null
     }
   },
   {
@@ -14491,8 +14741,9 @@ const WATCH_QUEUE_AGENT = [
       "textType": "guide; méthodologie; rapport d'autorité compétente"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
-      "score": 45,
+      "score": 30,
       "parts": {
         "source": 30,
         "evidence": 0,
@@ -14500,12 +14751,15 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "noSourceText",
-        "old"
+        "old",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703171910-002"
     }
   },
   {
@@ -14569,6 +14823,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -14646,6 +14901,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "term": "exigence",
+        "text": "L’ANSSI compte s’appuyer sur cette notion pour définir des exigences adaptées et proportionnées aux enjeux de chacune de ces catégories."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -14692,6 +14954,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "FAQ officielle; guide pratique"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -14772,6 +15035,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "En outre, suivant cette logique, la norme ISO 27001 n’intègre pas, par nature, le principe de proportionnalité distinguant les EE et les EI prévu par la directive et inscrit par l’ANSSI dans le référentiel NIS 2."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "certification",
+        "text": "L’obtention d’une certification ISO 27001 ne permet pas, en elle-même, une conformité à NIS 2."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -14818,6 +15093,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "FAQ;guide"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -14898,6 +15174,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Ces exigences s’inscriront dans la suite logique de l’actuelle réglementation NIS 1 et porteront principalement sur des aspects d’hygiène informatique fondamentale afin que les entités puissent se protéger contre les menaces les plus courantes."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "notification",
+        "text": "Elles ne seront par conséquent pas soumises aux mesures de sécurité ni aux règles de notification d’incidents s’appliquant aux entités régulées par NIS 2."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -14944,6 +15232,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "FAQ institutionnelle"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 55,
       "parts": {
@@ -14993,6 +15282,7 @@ const WATCH_QUEUE_AGENT = [
       "textType": "page institutionnelle; guide technique; méthodologie; analyse de marché"
     },
     "targetCells": [],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -15071,6 +15361,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "G17"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -15147,6 +15438,18 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Sanctions - P2",
         "field": "Types of additional penalties",
         "cell": "I18"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "reporting",
+        "text": "Risk management and reporting: Entities listed in Annex I or II, and critical entities under Directive (EU) 2022/2557, must follow cybersecurity risk management and reporting rules."
+      },
+      {
+        "sheet": "Sanctions - P2",
+        "term": "sanction",
+        "text": "The primary distinction between essential and important entities lies in supervision and sanctions they're subject to."
       }
     ],
     "reliability": {
@@ -15226,6 +15529,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "P5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -15304,6 +15608,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E5"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -15382,6 +15687,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 60,
       "parts": {
@@ -15458,6 +15764,13 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Cybersecurity frameworks - P1",
         "field": "Framework last publication date",
         "cell": "G13"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Ils fournissent un service de réponse à incident de premier niveau et mettent en relation les victimes avec des partenaires de proximité tels que des prestataires de réponse à incident et des partenaires étatiques."
       }
     ],
     "reliability": {
@@ -15537,6 +15850,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Si un incident majeur est partiellement ou mal remédié, ses effets peuvent s’étendre dans la durée."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "contrôle",
+        "text": "Ce fort potentiel de déstabilisation exige, à la fois des organisations cibles et des prestataires de cybersécurité, un savoir-faire dans l’endiguement de ces cyber-attaques, dans la reprise de contrôle du système d’information compromis et dans le rétablissement d’un état de fonctionnement suffisant."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -15614,6 +15939,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Les mesures inscrites dans ce référentiel visent un niveau de sécurité adapté pour protéger les entités contre la menace cybercriminelle de masse."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -15681,14 +16013,26 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D13"
       },
       {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I14"
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
+        "cell": "E13"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "La supervision de sécurité désigne l’ensemble des moyens et des activités concourant, dans les meilleurs délais, à la détection et à la qualification d’un incident de sécurité sur un périmètre supervisé, ainsi qu’au choix de la réaction appropriée lorsque cet incident est avéré."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "Supervis",
+        "text": "Deux guides de la collection « Supervision de sécurité » ont déjà été publiés en 2025 : un guide de niveau stratégique : (Ouvre une nouvelle fenêtre) Les clés de la décision | MesServicesCyber ; un guide de niveau opérationnel : (Ouvre une nouvelle fenêtre) Piloter un projet de supervision | MesServicesCyber ."
       }
     ],
     "reliability": {
@@ -15768,6 +16112,18 @@ const WATCH_QUEUE_AGENT = [
         "cell": "H14"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "Elle s’inscrit également dans la perspective de la mise en conformité des administrations de l’État à la directive de l’Union européenne 2022/2555, dite « directive NIS 2 »."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Les multiples incidents et fuites de données qui ont affecté en 2025 les systèmes d’information des ministères et des établissements dont ils ont la tutelle rappellent la persistance de fragilités dans ces infrastructures."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -15843,6 +16199,18 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Incident reporting - P1",
         "field": "Method for incident reporting",
         "cell": "H14"
+      }
+    ],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "inscri",
+        "text": "La Stratégie Nationale de cybersécurité 2026-2030 qui guide plus particulièrement l’ANSSI s’inscrit dans la continuité de la RNS afin d’élever le niveau de cybersécurité global et de faire de la France une Nation cyber de premier rang."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Des échanges qui se matérialisent avec le partage d’outils, de méthode de réponse à incident ou encore de connaissance de la menace."
       }
     ],
     "reliability": {
@@ -15922,6 +16290,13 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [
+      {
+        "sheet": "Cybersecurity frameworks - P1",
+        "term": "référentiel",
+        "text": "Le référentiel pour la qualification des prestataires d’accompagnement et de conseil en sécurité des systèmes d’information (PACS) évolue."
+      }
+    ],
     "reliability": {
       "score": 85,
       "parts": {
@@ -15999,6 +16374,7 @@ const WATCH_QUEUE_AGENT = [
         "cell": "E13"
       }
     ],
+    "verbatim": [],
     "reliability": {
       "score": 45,
       "parts": {
@@ -16072,6 +16448,9 @@ const I18N = {
     "card.noLink": "No link provided",
     "card.excerptFallback": "Source text unavailable - showing the agent's summary instead.",
     "card.excerptTranslated": "Translated from the source's language.",
+    "card.verbatim": "Passages that triggered the filing",
+    "card.verbatimNote": "Quoted from the source, in its own language.",
+    "card.verbatimOpening": "Opening of the article",
     "card.excerptShowOriginal": "Show the original wording",
     "card.cells": "Cells to update in the comparative workbook",
     "card.cellsNote": "Suggested targets - confirm against the source before editing the workbook.",
@@ -16094,6 +16473,20 @@ const I18N = {
     "manual.optOfficial": "Official",
     "manual.optUnofficial": "Unofficial - to verify",
     "manual.optManual": "Manual - consultant input",
+    "chip.official": "Official",
+    "chip.manual": "Manual - consultant input",
+    "chip.unofficial": "Unofficial - verify",
+    "chip.pending": "Pending validation",
+    "chip.validated": "Validated",
+    "chip.rejected": "Rejected",
+    "map.notTracked": "Not tracked",
+    "map.lastUpdate": "Last update",
+    "cand.noCountry": "No country identified",
+    "cand.nProposed": "{n} proposed",
+    "cand.inCountries": "{n} countries",
+    "src.allCountries": "All countries",
+    "src.searchCountry": "Search for a country",
+    "src.noCountry": "No country matches \u201c{q}\u201d.",
     "lvl.1": "Preliminary transposition work underway",
     "lvl.2": "Bill currently before the legislature",
     "lvl.3": "Law approved - framework provisional or unavailable",
@@ -16237,9 +16630,9 @@ const I18N = {
     "recLvl.4": "National text adopted",
     "ov.recTitle": "REC transposition across the EU",
     "tl.recInForce": "National text enters into force",
-    "chat.r1": "Quels pays ont adopté leur texte national de transposition de REC, et à quelle date ?",
+    "chat.r1": "Which countries have adopted their national REC transposition text, and on what date?",
     "chat.r2": "For Slovenia, how are critical entities registered under the REC transposition?",
-    "chat.r3": "Quels pays ont une autorité identifiée pour REC, et lesquels restent à renseigner ?",
+    "chat.r3": "Which countries have an authority identified for REC, and which are still to be filled in?",
     "chat.r4": "Which countries state how REC is aligned with NIS 2 and DORA?",
     "src.recSub": "Authorities named in the REC transposition workbook. The watch agent does not cover REC yet, so there is no measured feed registry here - this is the starting list for building one.",
     "src.recAuthTitle": "REC authorities named in the workbook",
@@ -16274,9 +16667,9 @@ const I18N = {
     "chat.recSub": "Ask about any of the 27 REC transpositions. The assistant answers from the REC country records only - it has no watch items, no KPI table and no charts for REC yet, and says so rather than reaching for NIS 2 data.",
     "chat.assistant": "RegWatch assistant",
     "chat.hello": "Ask a question, or start from one of these:",
-    "chat.s1": "Quels sont les principaux organismes d'audit en charge de NIS 2 dans les pays européens ?",
+    "chat.s1": "Which bodies are in charge of NIS 2 audits across European countries?",
     "chat.s2": "For Croatia, are sector authorities supposed to contact companies subject to NIS 2? What does it mean if a company has not been contacted?",
-    "chat.s3": "Peux-tu me générer le graphique des délais de transposition des différents pays de l'UE ?",
+    "chat.s3": "Can you draw me the chart of transposition delays across EU countries?",
     "chat.s4": "Which countries require an audit by an externally accredited body, and how often?",
     "chat.placeholder": "Ask a question - Enter to send, Shift+Enter for a new line",
     "chat.send": "Send",
@@ -16465,6 +16858,9 @@ const I18N = {
     "card.noLink": "Aucun lien fourni",
     "card.excerptFallback": "Texte de la source indisponible - synthèse de l'agent affichée à la place.",
     "card.excerptTranslated": "Traduit depuis la langue de la source.",
+    "card.verbatim": "Passages qui ont déclenché le classement",
+    "card.verbatimNote": "Cités depuis la source, dans sa langue.",
+    "card.verbatimOpening": "Début de l'article",
     "card.excerptShowOriginal": "Afficher le texte d'origine",
     "card.cells": "Cellules à mettre à jour dans le classeur comparatif",
     "card.cellsNote": "Cibles suggérées - à confirmer sur la source avant d'éditer le classeur.",
@@ -16487,6 +16883,20 @@ const I18N = {
     "manual.optOfficial": "Officielle",
     "manual.optUnofficial": "Non officielle - à vérifier",
     "manual.optManual": "Manuelle - saisie consultant",
+    "chip.official": "Officielle",
+    "chip.manual": "Manuelle - saisie consultant",
+    "chip.unofficial": "Non officielle - à vérifier",
+    "chip.pending": "En attente de validation",
+    "chip.validated": "Validé",
+    "chip.rejected": "Rejeté",
+    "map.notTracked": "Non suivi",
+    "map.lastUpdate": "Dernière mise à jour",
+    "cand.noCountry": "Pays non identifié",
+    "cand.nProposed": "{n} proposée(s)",
+    "cand.inCountries": "{n} pays",
+    "src.allCountries": "Tous les pays",
+    "src.searchCountry": "Rechercher un pays",
+    "src.noCountry": "Aucun pays ne correspond à «\u00a0{q}\u00a0».",
     "lvl.1": "Travaux préliminaires de transposition en cours",
     "lvl.2": "Projet de loi devant le législateur",
     "lvl.3": "Loi adoptée - cadre provisoire ou indisponible",
@@ -16833,6 +17243,7 @@ let lang = "en";
 
 function initLang(){
   if (store.lang === "fr" || store.lang === "en") lang = store.lang;
+  applyCountryNames();
   applyStaticI18n();
 }
 
@@ -16854,10 +17265,35 @@ function applyStaticI18n(){
   });
 }
 
+/* Les noms de pays vivent dans les données, en anglais, et se retrouvaient tels
+   quels dans l'interface française : "Croatia", "Czechia", "Estonia" au milieu
+   d'une page en français. Plutôt que de reprendre les quelque soixante endroits
+   qui les affichent, on renomme les enregistrements eux-mêmes au changement de
+   langue - l'original anglais est conservé, la bascule est donc réversible.
+
+   Un seul jeu de noms suffit : l'anglais est déjà dans les données. */
+const COUNTRY_FR = {
+  AT: "Autriche", BE: "Belgique", BG: "Bulgarie", CY: "Chypre", CZ: "Tchéquie",
+  DE: "Allemagne", DK: "Danemark", EE: "Estonie", ES: "Espagne", FI: "Finlande",
+  FR: "France", GB: "Royaume-Uni", GR: "Grèce", HR: "Croatie", HU: "Hongrie",
+  IE: "Irlande", IT: "Italie", LT: "Lituanie", LU: "Luxembourg", LV: "Lettonie",
+  MT: "Malte", NL: "Pays-Bas", NO: "Norvège", PL: "Pologne", PT: "Portugal",
+  RO: "Roumanie", SE: "Suède", SI: "Slovénie", SK: "Slovaquie",
+};
+
+function applyCountryNames(){
+  if (typeof COUNTRIES === "undefined") return;
+  COUNTRIES.forEach(c => {
+    if (c.nameEn === undefined) c.nameEn = c.name;
+    c.name = lang === "fr" ? (COUNTRY_FR[c.iso] || c.nameEn) : c.nameEn;
+  });
+}
+
 function setLang(next){
   if (next === lang) return;
   lang = next;
   if (typeof store !== "undefined") { store.lang = lang; saveStore(); }
+  applyCountryNames();
   applyStaticI18n();
   renderCurrent();
 }
@@ -16982,6 +17418,9 @@ function regApply(){
   const spec = regSpec();
   COUNTRIES = spec.countries();
   byIso = Object.fromEntries(COUNTRIES.map(c => [c.iso, c]));
+  /* Chaque réglementation apporte ses propres enregistrements : ceux de REC
+     n'ont pas encore été renommés dans la langue courante. */
+  if (typeof applyCountryNames === "function") applyCountryNames();
 }
 
 function setRegulation(id){
@@ -17117,10 +17556,16 @@ function inkOn(hex){ /* readable text colour for a given fill */
    interface is bilingual and nothing generated should arrive pre-written in
    one language. Hand-written entries still carry their own text. */
 const evText = ev => ev.textKey ? t(ev.textKey) : (ev.text || "");
-const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">Level ${c.maturity}</span>`; };
+const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">${t("common.level")} ${c.maturity}</span>`; };
 const fwChip = c => `<span class="chip fw-${c.fw}">${t("fw." + c.fw)}</span>`;
-const srcChip = t => t === "official" ? `<span class="chip src-official">Official</span>` : t === "manual" ? `<span class="chip src-manual">Manual - consultant input</span>` : `<span class="chip src-unofficial">Unofficial - verify</span>`;
-const stChip = s => ({ pending: `<span class="chip st-pending">Pending validation</span>`, validated: `<span class="chip st-validated">Validated</span>`, rejected: `<span class="chip st-rejected">Rejected</span>` }[s] || "");
+/* Le paramètre s'appelait `t` : il masquait la fonction de traduction, ce qui
+   rendait ces deux puces intraduisibles sans qu'aucune clé ne manque. */
+const srcChip = kind => kind === "official" ? `<span class="chip src-official">${t("chip.official")}</span>`
+  : kind === "manual" ? `<span class="chip src-manual">${t("chip.manual")}</span>`
+  : `<span class="chip src-unofficial">${t("chip.unofficial")}</span>`;
+const stChip = s => ({ pending: `<span class="chip st-pending">${t("chip.pending")}</span>`,
+  validated: `<span class="chip st-validated">${t("chip.validated")}</span>`,
+  rejected: `<span class="chip st-rejected">${t("chip.rejected")}</span>` }[s] || "");
 
 /* pending badge */
 function refreshBadge(){
@@ -17251,7 +17696,7 @@ function drawMap(host, legendHost, counts){
     const t = e.target.closest(".ctry");
     if (!t) { hideTip(); return; }
     const c = byIso[t.dataset.iso];
-    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">Last update ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
+    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">${t("map.lastUpdate")} ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
   });
   svgEl.addEventListener("mouseleave", hideTip);
   svgEl.addEventListener("click", e => {
@@ -17263,8 +17708,8 @@ function drawMap(host, legendHost, counts){
     if (t && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); location.hash = "#/country/" + t.dataset.iso; }
   });
   if (legendHost) legendHost.innerHTML =
-    [1, 2, 3, 4].map(l => `<span class="leg-it"><span class="leg-sw" style="background:${lvlColor(l)}"></span>Level ${l} <span class="n">(${counts[l]})</span></span>`).join("") +
-    `<span class="leg-it"><span class="leg-sw" style="background:${cssVar('--untracked')}"></span>Not tracked</span>`;
+    [1, 2, 3, 4].map(l => `<span class="leg-it"><span class="leg-sw" style="background:${lvlColor(l)}"></span>${t("common.level")} ${l} <span class="n">(${counts[l]})</span></span>`).join("") +
+    `<span class="leg-it"><span class="leg-sw" style="background:${cssVar('--untracked')}"></span>${t("map.notTracked")}</span>`;
 }
 
 function exportMapPNG(){
@@ -17601,7 +18046,17 @@ function candidatesCard(){
     .filter(c => !taken.has(c.host) && !refused.has(c.host));
   if (!open.length) return "";
 
-  const rows = open.slice(0, 12).map(c => `<div class="cand" data-host="${esc(c.host)}">
+  /* Rangées par pays : une liste à plat de 35 domaines étrangers ne se lit pas,
+     alors que "la Pologne en propose cinq" se décide. Le pays est lu sur le
+     domaine national par discover_sources.py, jamais deviné ici. */
+  const byCand = {};
+  open.forEach(c => { (byCand[c.iso || ""] = byCand[c.iso || ""] || []).push(c); });
+  const candName = iso => iso === "EU" ? t("hub.euTile")
+    : byIso[iso] ? byIso[iso].name : iso;
+  const candIsos = Object.keys(byCand).sort((a, b) =>
+    (a ? 0 : 1) - (b ? 0 : 1) || candName(a).localeCompare(candName(b)));
+
+  const row = c => `<div class="cand" data-host="${esc(c.host)}">
       <div class="cand-h">
         <b>${esc(c.name)}</b>
         <span class="chip ${c.type === "official" ? "src-official" : "src-unofficial"}">${
@@ -17616,16 +18071,24 @@ function candidatesCard(){
         <button class="btn ok cand-ok" data-host="${esc(c.host)}" type="button">${t("cand.accept")}</button>
         <button class="btn danger cand-no" data-host="${esc(c.host)}" type="button">${t("cand.reject")}</button>
       </div>
+    </div>`;
+
+  const groups = candIsos.map(iso => `<div class="cand-grp">
+      <div class="cand-ch">${iso ? `<i class="fi">${flagSvg(iso)}</i> ` : ""}
+        <b>${iso ? esc(candName(iso)) : t("cand.noCountry")}</b>
+        <span class="q-note">${t("cand.nProposed", { n: byCand[iso].length })}</span></div>
+      <div class="cands">${byCand[iso].map(row).join("")}</div>
     </div>`).join("");
 
   return `<details class="card fold" open><summary class="cap">
       <h2>${t("cand.title")}</h2>
-      <span class="q-note">${t("cand.count", { n: open.length })}</span>
+      <span class="q-note">${t("cand.count", { n: open.length })} · ${
+        t("cand.inCountries", { n: candIsos.filter(Boolean).length })}</span>
       <span class="fold-car" aria-hidden="true">▾</span></summary>
     <div class="bd">
       <p class="q-note" style="margin-top:0">${t("cand.sub", {
         date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
-      <div class="cands">${rows}</div>
+      ${groups}
     </div></details>`;
 }
 
@@ -17635,7 +18098,7 @@ function wireCandidates(el){
     const c = find(b.dataset.host);
     if (!c) return;
     customSources().push({
-      name: c.name, url: c.url, host: c.host, iso: "EU",
+      name: c.name, url: c.url, host: c.host, iso: c.iso || "EU",
       kind: c.kind === "rss" ? "rss" : "page", type: c.type,
       note: t("cand.noteAccepted", { date: fmtDateL(c.discovered) }),
     });
@@ -17692,7 +18155,6 @@ function renderInboxHub(el, pending, done){
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
   <p class="pg-sub">${t("hub.sub")}</p>
-  ${candidatesCard()}
   <div class="card"><div class="bd">
     <div class="filters">
       <label class="q-toggle">${t("hub.window")}
@@ -17713,6 +18175,7 @@ function renderInboxHub(el, pending, done){
           <span class="ctile-name">${esc(c.name)}</span></button>`).join("")}</div>
     </details>` : ""}
   </div></div>
+  ${candidatesCard()}
   <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
     ${done.length ? `<details class="q-proc">
       <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
@@ -17929,21 +18392,62 @@ function relDetail(q){
       <span class="thm-v">${r.parts[k] || 0}<small>/${MAX[k]}</small></span></div>`).join("");
   const pen = Object.keys(r.penalties || {}).map(k =>
     `<div class="rel-pen">${t("rel.pen." + k)} <b>${r.penalties[k]}</b></div>`).join("");
-  return `<details class="q-orig"><summary>${t("rel.why", { n: r.score })}</summary>
+  return `<details class="q-orig rel-why"><summary>${t("rel.why", { n: r.score })}</summary>
     <div class="thms" style="margin-top:6px">${bars}</div>${pen}
     ${(r.notes || []).length ? `<div class="q-note" style="margin-top:6px">${
       r.notes.map(n => esc(t("rel.n." + n))).join("<br>")}</div>` : ""}</details>`;
 }
 
+/* The sentences that put this item in a workbook cell, quoted from the source.
+
+   The card used to show only the article's opening lines, and the router had
+   often decided on a paragraph much further down: more than half the time the
+   displayed text did not contain the theme it was filed under, leaving the
+   validator to take the routing on trust. This shows the evidence instead, and
+   the theme it argues for.
+
+   Untranslated on purpose. This is the passage that has to be checked as
+   published; the readable rendering of the opening lines stays below. */
+function verbatimPanel(q){
+  const rows = q.verbatim || [];
+  if (!rows.length) return "";
+  return `<div class="q-verb">
+    <div class="q-verb-h">${t("card.verbatim")} <span class="q-note">${t("card.verbatimNote")}</span></div>
+    ${rows.map(v => `<blockquote class="q-verb-q">
+        <span class="q-verb-t">${esc(v.sheet.split(" - ")[0])}</span>
+        ${markTerm(v.text, v.term)}</blockquote>`).join("")}
+  </div>`;
+}
+
+/* Highlight the matched word without letting the source's text become markup. */
+function markTerm(text, term){
+  const i = term ? text.toLowerCase().indexOf(term.toLowerCase()) : -1;
+  if (i < 0) return esc(text);
+  return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + term.length))
+       + "</mark>" + esc(text.slice(i + term.length));
+}
+
+/* La provenance de la date ne s'affiche que lorsqu'elle demande de la prudence.
+   "Lue dans la page" figurait sur presque toutes les cartes - une mention qui
+   ne varie jamais n'informe pas, elle encombre. Une date déduite par le modèle
+   ou introuvable reste signalée : c'est là que le validateur doit se méfier. */
+const DATE_ORIGIN_SHOWN = new Set(["ia", "inconnue"]);
+
+/* Le nom que l'agent se donne lui-même quand il n'a pas su nommer l'éditeur.
+   Ce n'est pas une source, et l'afficher à côté du score de fiabilité laissait
+   croire que la fiabilité portait sur l'agent. */
+const SOURCE_PLACEHOLDERS = new Set(["Watch agent", "Agent de veille"]);
+
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
   const a = q.agent || {};
+  const srcName = SOURCE_PLACEHOLDERS.has((q.source.name || "").trim()) ? "" : q.source.name;
   /* Date and link first: they are what a validator reaches for to check a source. */
   const meta = [
     /* The date carries its provenance: an inferred date must not read like a fact. */
     a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span>${
-      a.dateOrigin ? `<span class="d-orig d-${esc(a.dateOrigin)}" title="${t("date.origin")}">${t("date." + a.dateOrigin)}</span>` : ""}</span>` : "",
+      DATE_ORIGIN_SHOWN.has(a.dateOrigin) ? `<span class="d-orig d-${esc(a.dateOrigin)}" title="${t("date.origin")}">${t("date." + a.dateOrigin)}</span>` : ""}</span>` : "",
     `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
     q.source.url
       ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`
@@ -17971,11 +18475,14 @@ function qCard(q){
 
   return `<div class="q-card">
     <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}${relChip(q)}
-      <span class="q-note">${esc(q.source.name)}</span></div>
+      ${srcName ? `<span class="q-note">${esc(srcName)}</span>` : ""}</div>
     <div class="q-title">${esc(itemTitle(q))}</div>
     <div class="q-meta">${meta}</div>
     ${relDetail(q)}
-    ${body}
+    ${verbatimPanel(q)}
+    ${(q.verbatim || []).length
+      ? `<details class="q-open-lines"><summary>${t("card.verbatimOpening")}</summary>${body}</details>`
+      : body}
     ${cellsPanel(q)}
     ${agentPanel(q)}
     ${q.status === "pending" && isVal ? `<div class="q-actions">
@@ -18036,6 +18543,7 @@ function chartTip(el){
 
 /* ---------- Sources ---------- */
 let srcFilter = "";
+let srcSearch = "";
 /* The source registry is what the collection pipeline reads: every RSS feed,
    page and API the agent monitors. Making it editable here is the point - the
    quality of the watch is decided by this list, not by the model. Additions are
@@ -18124,11 +18632,15 @@ function renderSources(){
   </div></details>` : ""}
   <div class="card"><div class="bd">
     <div class="filters">
-      <select id="sFilter" aria-label="Filter by scope"><option value="">${t("src.allScopes")}</option>${
-        scopes.map(iso => `<option value="${iso}" ${srcFilter === iso ? "selected" : ""}>${
-          byIso[iso] ? esc(byIso[iso].name) : esc(iso)}</option>`).join("")}</select>
+      <input id="sSearch" type="search" class="q-search" autocomplete="off"
+        placeholder="${t("src.searchCountry")}" value="${esc(srcSearch)}"
+        aria-label="${t("src.searchCountry")}">
       <span class="q-note" id="sCount"></span>
     </div>
+    <!-- Le drapeau se reconnaît plus vite qu'un nom se lit, et la barre du
+         dessus rattrape les pays que l'oeil ne trouve pas. Même geste que dans
+         la file de veille, pour que les deux onglets se manipulent pareil. -->
+    <div class="sflags" id="sFlags"></div>
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th>${isVal ? "<th></th>" : ""}</tr></thead>
       <tbody id="srcRows"></tbody>
@@ -18136,6 +18648,27 @@ function renderSources(){
   </div></div>`;
 
   function paint(){
+    const needle = srcSearch.trim().toLowerCase();
+    const shown = needle
+      ? scopes.filter(iso => scopeName(iso).toLowerCase().includes(needle)
+                          || iso.toLowerCase().startsWith(needle))
+      : scopes;
+    /* Un filtre qui ne figure plus dans la liste resterait actif sans être
+       visible : la recherche le relâche plutôt que de mentir sur le décompte. */
+    if (srcFilter && !shown.includes(srcFilter)) srcFilter = "";
+
+    $("#sFlags").innerHTML = `<button class="sflag ${srcFilter ? "" : "on"}" data-iso=""
+        type="button">${t("src.allCountries")}</button>` + shown.map(iso =>
+      `<button class="sflag ${srcFilter === iso ? "on" : ""}" data-iso="${esc(iso)}" type="button"
+         title="${esc(scopeName(iso))}"><i class="fi">${flagSvg(iso)}</i>
+         <span>${esc(scopeName(iso))}</span>
+         <span class="sflag-n">${rows.filter(r => r.iso === iso).length}</span></button>`).join("")
+      + (shown.length ? "" : `<span class="q-note">${t("src.noCountry", { q: esc(srcSearch) })}</span>`);
+    $("#sFlags").querySelectorAll(".sflag").forEach(b => b.addEventListener("click", () => {
+      srcFilter = b.dataset.iso === srcFilter ? "" : b.dataset.iso;
+      paint();
+    }));
+
     const list = rows.filter(r => !srcFilter || r.iso === srcFilter);
     $("#sCount").textContent = t("src.count", { n: list.length, total: rows.length });
     $("#srcRows").innerHTML = list.map(r => `<tr>
@@ -18151,7 +18684,9 @@ function renderSources(){
     }));
   }
   paint();
-  $("#sFilter").addEventListener("change", e => { srcFilter = e.target.value; renderSources(); });
+  /* Repeindre plutôt que re-rendre : un re-render vide le champ et lui prend le
+     focus, ce qui rend la frappe impossible. */
+  $("#sSearch").addEventListener("input", e => { srcSearch = e.target.value; paint(); });
 
   if (!isVal) return;
   $("#sAdd").addEventListener("click", () => {
