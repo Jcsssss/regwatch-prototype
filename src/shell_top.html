@@ -696,7 +696,9 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
         <select id="roleSel" aria-label="Switch role">
           <option value="reader" data-i18n="role.reader">Reader</option>
           <option value="validator" data-i18n="role.validator">Validator (NIS 2 core team)</option>
+          <!-- DEV:START -->
           <option value="developer" data-i18n="role.developer">Developer</option>
+          <!-- DEV:END -->
         </select>
       </div>
       <div class="lang-switch" role="group" aria-label="Language">
@@ -711,8 +713,10 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
     <a href="#/inbox" data-v="inbox"><span data-i18n="nav.inbox">Watch inbox</span><span class="badge" id="pendingBadge" hidden>0</span></a>
     <a href="#/insights" data-v="insights" data-i18n="nav.insights">Assistant</a>
     <a href="#/sources" data-v="sources" data-i18n="nav.sources">Sources</a>
+    <!-- DEV:START -->
     <a href="#/dev" data-v="dev" data-i18n="nav.dev">Diagnostics</a>
     <a href="#/devchat" data-v="devchat" data-i18n="nav.devchat">Tech assistant</a>
+    <!-- DEV:END -->
   </nav>
 </header>
 
@@ -723,8 +727,10 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
   <div id="v-inbox" class="view"></div>
   <div id="v-insights" class="view"></div>
   <div id="v-sources" class="view"></div>
+  <!-- DEV:START -->
   <div id="v-dev" class="view"></div>
   <div id="v-devchat" class="view"></div>
+  <!-- DEV:END -->
 </main>
 <footer>
   <div class="line" id="footSrc"></div>

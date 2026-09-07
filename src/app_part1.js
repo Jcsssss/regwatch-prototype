@@ -40,6 +40,11 @@ applyValidated();
 /* ---------- role ---------- */
 let role = store.role || "reader";
 const roleSel = document.getElementById("roleSel");
+/* Le rôle vient du navigateur, et la version client ne propose pas les mêmes
+   que la version équipe : quelqu'un qui a ouvert l'une puis l'autre garde un
+   rôle qui n'existe plus ici. Le laisser tel quel affichait une page blanche.
+   On retombe sur le rôle le plus restreint, qui est toujours proposé. */
+if (!roleSel.querySelector(`[value="${role}"]`)) { role = "reader"; store.role = role; }
 roleSel.value = role;
 initLang();
 document.querySelectorAll(".lang-switch button").forEach(b => {
@@ -115,12 +120,22 @@ function parseHash(){
 }
 function renderCurrent(){ route(currentRoute.v, currentRoute.arg, true); }
 function route(v, arg, force){
+  const render = {
+    overview: renderOverview, countries: renderCountries,
+    country: () => renderCountry(arg), inbox: renderInbox,
+    insights: renderInsights, sources: renderSources,
+    /* Absents de la version client : le rendu comme la vue. */
+    dev: typeof renderDev === "function" ? renderDev : null,
+    devchat: typeof renderDevChat === "function" ? renderDevChat : null,
+  };
+  /* Une vue qui n'existe pas dans cette version - un lien partagé, un signet,
+     un stockage venu de l'autre version - ramène à l'accueil plutôt que de
+     laisser l'écran vide sur une exception. */
+  if (!render[v] || !$("#v-" + v)) { v = "overview"; arg = null; }
   currentRoute = { v, arg };
-  VIEWS.forEach(x => $("#v-" + x).classList.toggle("on", x === v));
+  VIEWS.forEach(x => { const el = $("#v-" + x); if (el) el.classList.toggle("on", x === v); });
   document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.v === v || (v === "country" && a.dataset.v === "countries")));
-  ({ overview: renderOverview, countries: renderCountries, country: () => renderCountry(arg),
-     inbox: renderInbox, insights: renderInsights, sources: renderSources,
-     dev: renderDev, devchat: renderDevChat })[v]();
+  render[v]();
   if (!force) window.scrollTo({ top: 0 });
 }
 window.addEventListener("hashchange", () => { const r = parseHash(); route(r.v, r.arg); });

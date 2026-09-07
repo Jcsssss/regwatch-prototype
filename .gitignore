@@ -49,3 +49,11 @@ data/.cache/
 # Azure Function proxy: local settings hold the key
 azure-proxy/local.settings.json
 azure-proxy/.python_packages/
+
+# Version equipe : rebâtie en une commande (zsh src/build.sh), et elle ne doit
+# pas etre servie par GitHub Pages - la page publique est la version client.
+regwatch-equipe.html
+src/regwatch-equipe.html
+src/artifact-equipe.html
+src/bundle-equipe.js
+src/shell_client.html
