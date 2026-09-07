@@ -3,6 +3,7 @@
 
     python3 agent-veille/collect.py                     # depuis le dernier run
     python3 agent-veille/collect.py --since 2026-08-14
+    python3 agent-veille/collect.py --score             # note la pertinence (Azure)
 
 Ce n'est pas l'agent du stagiaire et cela ne le remplace pas : son code vit dans
 son dépôt, avec sa logique de sélecteurs CSS, ses invites et son écriture dans
@@ -11,12 +12,15 @@ flux, pour répondre à une question précise que son agent ne peut pas répondr
 tant qu'il ne tourne pas : qu'y avait-il à prendre pendant la fenêtre non
 couverte.
 
-Aucun appel au modèle, volontairement : ce fichier ne touche pas à la clé du
-cabinet et ne coûte rien. Le tri est lexical, donc grossier et vérifiable à
-l'oeil - il écarte d'abord les avis de vulnérabilité, qui forment l'essentiel
-des flux de CERT, puis retient ce qui parle de transposition, d'enregistrement,
-de sanction ou d'autorité. Noter la pertinence est le travail de l'agent, avec
-ses invites ; le refaire ici en dépenserait les jetons deux fois.
+La collecte ne coûte rien et ne touche pas à la clé : le tri est lexical, donc
+grossier et vérifiable à l'oeil - il écarte d'abord les avis de vulnérabilité,
+qui forment l'essentiel des flux de CERT, puis retient ce qui parle de
+transposition, d'enregistrement, de sanction ou d'autorité.
+
+`--score` appelle le modèle du cabinet, et seulement sur ce que le filtre a déjà
+retenu : le lexical fait le gros du tri pour rien, le modèle ne juge que la
+courte liste. Le coût réel en jetons est affiché à la fin de chaque exécution,
+parce qu'une dépense qu'on ne voit pas est une dépense qu'on ne contrôle pas.
 
 Rien n'est écrit dans le classeur de l'agent, jamais. Sortie : un rapport, et
 data/collect-<date>.json si --write.
@@ -137,6 +141,83 @@ def pull(src):
         return src, [], type(error).__name__
 
 
+SCORE_BATCH = 8
+JUDGE = (
+    "Tu tries une veille réglementaire européenne pour un cabinet de conseil qui "
+    "tient un classeur comparatif de la transposition de NIS 2 et de REC dans "
+    "29 pays. Pour chaque élément, dis s'il apporte un fait exploitable pour ce "
+    "classeur.\n"
+    "Note de 0 à 10 : 9-10 un texte national, une décision d'autorité, une "
+    "échéance ou une sanction ; 6-8 une obligation, un chiffre d'application, "
+    "une position d'autorité ; 3-5 du commentaire de marché ou de cabinet ; "
+    "0-2 hors sujet, publicité, avis technique.\n"
+    "Indique la feuille visée parmi : Registration, Incident reporting, "
+    "Sanctions, Audit & Controls, Cybersecurity frameworks, Authority, ID - ou "
+    "\"aucune\".\n"
+    "Réponds par un tableau JSON, un objet par élément, dans le même ordre, "
+    "avec les clés score (entier), sheet (chaîne), why (une phrase en français, "
+    "factuelle, sans formule d'introduction). Rien d'autre que le JSON."
+)
+
+
+def load_env():
+    """Les identifiants Azure du cabinet, lus dans le .env du dépôt."""
+    for candidate in (ROOT / ".env", ROOT / "agent-veille" / ".env"):
+        if candidate.exists():
+            for line in candidate.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+            return
+    raise SystemExit("aucun .env trouvé")
+
+
+def score(items):
+    """Fait juger la courte liste par le modèle, et rend le coût visible."""
+    load_env()
+    key = os.getenv("AZURE_OPENAI_API_KEY")
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+    if not (key and endpoint and deployment):
+        raise SystemExit("AZURE_OPENAI_API_KEY / ENDPOINT / DEPLOYMENT manquants")
+    print("modèle : %s" % deployment)
+
+    from openai import AzureOpenAI
+    client = AzureOpenAI(api_key=key, azure_endpoint=endpoint,
+                         api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-01"),
+                         timeout=90, max_retries=3)
+
+    used_in = used_out = 0
+    for start in range(0, len(items), SCORE_BATCH):
+        chunk = items[start:start + SCORE_BATCH]
+        payload = json.dumps([{"titre": c["title"], "pays": c["iso"],
+                               "source": c["source"], "extrait": c["summary"][:280]}
+                              for c in chunk], ensure_ascii=False)
+        try:
+            r = client.chat.completions.create(
+                model=deployment,
+                messages=[{"role": "system", "content": JUDGE},
+                          {"role": "user", "content": payload}])
+            raw = re.sub(r"^```(?:json)?|```$", "", (r.choices[0].message.content or ""),
+                         flags=re.M).strip()
+            out = json.loads(raw)
+            if not isinstance(out, list) or len(out) != len(chunk):
+                raise ValueError("réponse de longueur inattendue")
+            for item, verdict in zip(chunk, out):
+                item["score"] = int(verdict.get("score", 0))
+                item["sheet"] = str(verdict.get("sheet", "aucune"))
+                item["why"] = str(verdict.get("why", "")).strip()
+            if r.usage:
+                used_in += r.usage.prompt_tokens
+                used_out += r.usage.completion_tokens
+        except Exception as error:
+            # Un lot qui échoue laisse ses éléments non notés plutôt que notés
+            # à zéro : l'absence de jugement n'est pas un jugement négatif.
+            print("  lot %d-%d : %s" % (start + 1, start + len(chunk), type(error).__name__))
+    return used_in, used_out
+
+
 def relevant(item):
     text = item["title"] + " " + item["summary"]
     if DROP.search(text):
@@ -148,6 +229,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--since", help="date ISO ; par défaut la dernière détection connue")
     ap.add_argument("--all", action="store_true", help="ne pas filtrer sur le sujet")
+    ap.add_argument("--score", action="store_true",
+                    help="faire noter la pertinence par le modèle du cabinet (coût réel affiché)")
     ap.add_argument("--write", action="store_true", help="écrire le résultat en JSON")
     ap.add_argument("--workbook", default=str(WORKBOOK))
     args = ap.parse_args()
@@ -194,10 +277,26 @@ def main():
         for src, err in failed:
             print("  %-38s %s" % (src["name"][:38], err))
 
+    if args.score and keep:
+        print()
+        used_in, used_out = score(keep)
+        keep.sort(key=lambda e: (-(e.get("score") or -1), e["date"]), reverse=False)
+
     print("\nCE QUE L'AGENT AURAIT REMONTÉ")
     for e in keep:
-        print("  %-11s %-4s %-26s %s"
-              % (e["date"], e["iso"][:4], e["source"][:26], e["title"][:64]))
+        if args.score:
+            print("  %2s/10  %-11s %-4s %-22s %s"
+                  % (e.get("score", "?"), e["date"], e["iso"][:4],
+                     (e.get("sheet") or "")[:22], e["title"][:52]))
+            if e.get("why"):
+                print("         %s" % e["why"][:96])
+        else:
+            print("  %-11s %-4s %-26s %s"
+                  % (e["date"], e["iso"][:4], e["source"][:26], e["title"][:64]))
+
+    if args.score and keep:
+        print("\ncoût : %d jetons en entrée, %d en sortie (%s)"
+              % (used_in, used_out, os.getenv("AZURE_OPENAI_DEPLOYMENT")))
 
     if args.write:
         out = ROOT / "data" / ("collect-%s.json" % date.today().isoformat())
