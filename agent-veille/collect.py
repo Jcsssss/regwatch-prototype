@@ -3,7 +3,6 @@
 
     python3 agent-veille/collect.py                     # depuis le dernier run
     python3 agent-veille/collect.py --since 2026-08-14
-    python3 agent-veille/collect.py --score             # note la pertinence (Azure)
 
 Ce n'est pas l'agent du stagiaire et cela ne le remplace pas : son code vit dans
 son dépôt, avec sa logique de sélecteurs CSS, ses invites et son écriture dans
@@ -12,9 +11,12 @@ flux, pour répondre à une question précise que son agent ne peut pas répondr
 tant qu'il ne tourne pas : qu'y avait-il à prendre pendant la fenêtre non
 couverte.
 
-La collecte est gratuite et ne demande aucune clé. `--score` fait appel au
-modèle du cabinet et ne porte que sur les éléments déjà retenus par mots-clés,
-pour que le coût reste proportionné à ce qu'on en tire.
+Aucun appel au modèle, volontairement : ce fichier ne touche pas à la clé du
+cabinet et ne coûte rien. Le tri est lexical, donc grossier et vérifiable à
+l'oeil - il écarte d'abord les avis de vulnérabilité, qui forment l'essentiel
+des flux de CERT, puis retient ce qui parle de transposition, d'enregistrement,
+de sanction ou d'autorité. Noter la pertinence est le travail de l'agent, avec
+ses invites ; le refaire ici en dépenserait les jetons deux fois.
 
 Rien n'est écrit dans le classeur de l'agent, jamais. Sortie : un rapport, et
 data/collect-<date>.json si --write.
