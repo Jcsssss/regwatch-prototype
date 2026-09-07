@@ -4,6 +4,7 @@
     python3 agent-veille/collect.py                     # depuis le dernier run
     python3 agent-veille/collect.py --since 2026-08-14
     python3 agent-veille/collect.py --score             # note la pertinence (Azure)
+    python3 agent-veille/collect.py --publishers        # qui écrit derrière l'agrégateur
 
 Ce n'est pas l'agent du stagiaire et cela ne le remplace pas : son code vit dans
 son dépôt, avec sa logique de sélecteurs CSS, ses invites et son écriture dans
@@ -287,6 +288,117 @@ def score(items):
     return used_in, used_out
 
 
+FEED_PATHS = ("/feed", "/feed/", "/rss", "/rss.xml", "/feed.xml", "/atom.xml",
+              "/index.xml", "/actualites/feed/", "/en/rss")
+PUB_CSV = ROOT / "data" / "tblSources-editeurs.csv"
+
+
+def publishers(workbook, top=20):
+    """Qui écrit réellement, derrière les requêtes d'agrégateur du registre.
+
+    L'agrégateur masque l'article mais nomme l'éditeur. En balayant ses
+    requêtes on obtient donc, gratuitement, la liste des titres qui couvrent le
+    sujet - classée par volume mesuré plutôt que par réputation supposée.
+
+    Ce que la mesure dit, et qu'il faut entendre : la traîne est longue. Les
+    vingt premiers éditeurs ne couvrent qu'un tiers du flux. Les prendre en
+    direct est utile, ce n'est pas une solution complète, et cette fonction est
+    faite pour que le chiffre soit sous les yeux au moment de décider.
+    """
+    from bs4 import BeautifulSoup
+    srcs = sources(workbook)
+    known = {up.urlparse(s["url"]).netloc.lower().removeprefix("www.") for s in srcs}
+    queries = [s for s in srcs if any(a in s["url"] for a in AGGREGATORS)]
+    print("%d requête(s) d'agrégateur dans le registre" % len(queries))
+
+    seen, total = {}, 0
+    for q in queries:
+        try:
+            d = feedparser.parse(requests.get(q["url"], timeout=TIMEOUT, headers=UA).content)
+        except Exception:
+            continue
+        for e in d.entries:
+            origin = getattr(e, "source", None) or {}
+            host = up.urlparse(origin.get("href") or "").netloc.lower().removeprefix("www.")
+            if not host:
+                continue
+            seen[host] = seen.setdefault(host, {"n": 0, "name": origin.get("title") or host})
+            seen[host]["n"] += 1
+            total += 1
+    ranked = sorted(seen.items(), key=lambda kv: -kv[1]["n"])
+    print("%d articles vus, chez %d éditeurs" % (total, len(ranked)))
+    for n in (10, 20, 30, 50):
+        cov = sum(v["n"] for _h, v in ranked[:n])
+        print("   les %2d premiers couvrent %2d %% du flux" % (n, round(100 * cov / max(total, 1))))
+
+    already = [(h, v) for h, v in ranked if h in known]
+    if already:
+        share = round(100 * sum(v["n"] for _h, v in already) / max(total, 1))
+        print("\n%d éditeurs déjà surveillés arrivent quand même en seconde main "
+              "(%d %% du flux) :" % (len(already), share))
+        for h, v in already[:6]:
+            print("   %-30s %d" % (h, v["n"]))
+
+    def probe_feed(entry):
+        host, meta = entry
+        try:
+            r = requests.get("https://" + host, timeout=12, headers=UA, allow_redirects=True)
+            if r.status_code != 200:
+                return host, meta, None, "HTTP %d" % r.status_code
+            soup = BeautifulSoup(r.text, "html.parser")
+            tries = [up.urljoin(r.url, l["href"]) for l in soup.find_all("link")
+                     if l.get("href") and ("rss" in (l.get("type") or "").lower()
+                                           or "atom" in (l.get("type") or "").lower())]
+            tries += [up.urljoin(r.url, x) for x in FEED_PATHS]
+            for u in tries[:12]:
+                try:
+                    rr = requests.get(u, timeout=12, headers=UA)
+                    if rr.status_code != 200:
+                        continue
+                    d = feedparser.parse(rr.content)
+                    if d.entries:
+                        return host, meta, u, None
+                except Exception:
+                    pass
+            return host, meta, None, "pas de flux"
+        except Exception as error:
+            return host, meta, None, type(error).__name__
+
+    todo = [(h, v) for h, v in ranked if h not in known][:top]
+    print("\nSONDAGE DES %d PREMIERS ÉDITEURS NON SURVEILLÉS" % len(todo))
+    rows = []
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        for host, meta, feed, err in pool.map(probe_feed, todo):
+            print("  %-30s %4d  %s" % (host[:30], meta["n"], feed[:56] if feed else "— " + err))
+            if feed:
+                rows.append((host, meta, feed))
+    covered = sum(m["n"] for _h, m, _f in rows)
+    print("\n%d des %d publient un flux exploitable, soit %d %% du flux d'agrégateur"
+          % (len(rows), len(todo), round(100 * covered / max(total, 1))))
+
+    import csv
+    cols = ["Source", "Type", "URL / Endpoint", "Actif", "Pays / zone",
+            "Fiabilité", "Priorité", "Note"]
+    with PUB_CSV.open("w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=cols, delimiter=";")
+        w.writeheader()
+        for host, meta, feed in rows:
+            w.writerow({
+                "Source": meta["name"][:60], "Type": "RSS", "URL / Endpoint": feed,
+                "Actif": "Oui", "Pays / zone": "", "Fiabilité": "Non officielle - à vérifier",
+                "Priorité": "2",
+                "Note": "Éditeur identifié derrière l'agrégateur, %d articles sur la période. "
+                        "En direct, son texte est lisible ; via l'agrégateur il ne l'est pas. "
+                        "Flux vérifié le %s." % (meta["n"], date.today().isoformat()),
+            })
+    print("écrit : %s" % PUB_CSV.relative_to(ROOT))
+    # Un flux qui s'analyse n'est pas forcement le bon : next.ink rend son flux
+    # podcast avant son flux d'articles. A relire avant d'activer.
+    print("À relire avant activation : le premier flux qui s'analyse n'est pas")
+    print("toujours le flux d'actualités (podcasts, commentaires, catégories).")
+    return 0
+
+
 def relevant(item):
     text = item["title"] + " " + item["summary"]
     if DROP.search(text):
@@ -300,9 +412,14 @@ def main():
     ap.add_argument("--all", action="store_true", help="ne pas filtrer sur le sujet")
     ap.add_argument("--score", action="store_true",
                     help="faire noter la pertinence par le modèle du cabinet (coût réel affiché)")
+    ap.add_argument("--publishers", action="store_true",
+                    help="classer les éditeurs derrière les requêtes d'agrégateur")
     ap.add_argument("--write", action="store_true", help="écrire le résultat en JSON")
     ap.add_argument("--workbook", default=str(WORKBOOK))
     args = ap.parse_args()
+
+    if args.publishers:
+        return publishers(args.workbook)
 
     since = args.since
     if not since and ITEMS.exists():
