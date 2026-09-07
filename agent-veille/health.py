@@ -46,8 +46,12 @@ BETTER_UP = {
 }
 BETTER_DOWN = {
     "aggregatorShare", "impossibleDates", "duplicates", "reliabilityLow",
-    "indexPagesRejected", "unreachableFeeds",
+    "indexPagesRejected", "unreachableFeeds", "daysSinceRun",
 }
+
+# Au-delà, la file ne reflète plus la réalité : l'agent tourne une fois par
+# semaine, deux semaines de silence sont une panne, pas un creux.
+STALE_DAYS = 14
 
 
 def load(path, default=None):
@@ -81,8 +85,14 @@ def measure():
     scores = [(i.get("reliability") or {}).get("score") for i in items]
     scores = sorted(s for s in scores if s is not None)
 
+    detected = sorted(i.get("detected", "") for i in items if i.get("detected"))
+    last_run = detected[-1] if detected else ""
+    stale = (date.today() - date.fromisoformat(last_run)).days if last_run else 9999
+
     return {
         "date": date.today().isoformat(),
+        "lastRun": last_run,
+        "daysSinceRun": stale,
         "items": len(items),
         "officialShare": share(sum(1 for i in items if (i.get("source") or {}).get("type") == "official")),
         "aggregatorShare": share(sum(1 for i in items if any(a in host_of(i) for a in AGGREGATORS))),
@@ -114,6 +124,7 @@ def measure():
 
 LABELS = [
     ("COLLECTE", [
+        ("daysSinceRun", "jours depuis la dernière détection", ""),
         ("items", "éléments dans la file", ""),
         ("officialShare", "issus d'une source officielle", "%"),
         ("aggregatorShare", "issus d'un agrégateur", "%"),
@@ -174,6 +185,14 @@ def main():
         print("état du %s — référence du %s\n" % (now["date"], before.get("date", "?")))
     else:
         print("état du %s — aucune référence enregistrée\n" % now["date"])
+
+    # Une file qui vieillit ne se voit pas dans les parts : elles restent
+    # identiques pendant que la veille s'arrête. C'est le seul indicateur qui
+    # merite d'etre crie.
+    if now["daysSinceRun"] >= STALE_DAYS:
+        print("!! L'agent n'a rien détecté depuis %d jours (dernière détection le %s)."
+              % (now["daysSinceRun"], now["lastRun"] or "?"))
+        print("   Tout ce qui suit décrit une photo, pas la situation.\n")
 
     alerts = 0
     for section, rows in LABELS:
