@@ -50,9 +50,10 @@ data/.cache/
 azure-proxy/local.settings.json
 azure-proxy/.python_packages/
 
-# Version equipe : rebâtie en une commande (zsh src/build.sh), et elle ne doit
-# pas etre servie par GitHub Pages - la page publique est la version client.
-regwatch-equipe.html
+# Version equipe : publiee elle aussi, a cote de la version client. Elle
+# n'expose rien de plus - GitHub Pages sert deja tout l'arbre du depot, code
+# source compris, alors que le depot lui-meme est prive. Les intermediaires de
+# build restent ignores.
 src/regwatch-equipe.html
 src/artifact-equipe.html
 src/bundle-equipe.js
