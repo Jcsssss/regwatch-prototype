@@ -311,19 +311,10 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .rel-pen{font-size:11.5px;color:var(--bad);margin-top:4px}
 
 /* ---- proposed sources, awaiting a validator ---- */
-.cands{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
-.cand{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
-.cand-h{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:13px;margin-bottom:5px}
-.cand-h b{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
-.cand-u{display:block;font-size:11.5px;color:var(--accent);word-break:break-all;margin-bottom:5px}
-.cand-c{font-size:11.5px;color:var(--muted);margin-bottom:8px}
-.cand .q-actions{display:flex;gap:7px}
-/* Les propositions rangées par pays : l'en-tête de groupe porte le drapeau, et
-   les cartes du pays tiennent dessous dans la même grille. */
-.cand-grp + .cand-grp{margin-top:15px}
-.cand-ch{display:flex;align-items:center;gap:7px;margin-bottom:8px;font-size:13px}
-.cand-ch .fi{width:19px;height:14px;flex:0 0 auto}
-.cand-ch b{color:var(--ink)}
+/* Les propositions se lisent dans le tableau de l'onglet Sources ; il ne reste
+   d'elles que le domaine, sous le nom de la source. */
+.cand-u{font-size:11.5px;color:var(--muted);word-break:break-all;margin-top:2px}
+.tbl .btn{padding:4px 9px;font-size:11.5px}
 
 /* Le panneau "Pourquoi xx sur 100" : ses notes finissaient collées à l'extrait
    qui le suit, les deux blocs se lisant comme un seul. */
@@ -16482,7 +16473,6 @@ const I18N = {
     "map.notTracked": "Not tracked",
     "map.lastUpdate": "Last update",
     "cand.noCountry": "No country identified",
-    "cand.nProposed": "{n} proposed",
     "cand.inCountries": "{n} countries",
     "src.allCountries": "All countries",
     "src.searchCountry": "Search for a country",
@@ -16767,8 +16757,6 @@ const I18N = {
     "cand.title": "Proposed sources",
     "cand.count": "{n} awaiting a decision",
     "cand.sub": "Found by following links out of the sources already trusted, crawled {date}. Nothing is watched until you accept it; a refusal is remembered and never proposed again.",
-    "cand.official": "Official",
-    "cand.unofficial": "Unofficial - verify",
     "cand.feed": "Feed · {n} entries",
     "cand.page": "No feed - page only",
     "cand.seen": "linked from {n} trusted page(s)",
@@ -16892,7 +16880,6 @@ const I18N = {
     "map.notTracked": "Non suivi",
     "map.lastUpdate": "Dernière mise à jour",
     "cand.noCountry": "Pays non identifié",
-    "cand.nProposed": "{n} proposée(s)",
     "cand.inCountries": "{n} pays",
     "src.allCountries": "Tous les pays",
     "src.searchCountry": "Rechercher un pays",
@@ -17177,8 +17164,6 @@ const I18N = {
     "cand.title": "Sources proposées",
     "cand.count": "{n} en attente de décision",
     "cand.sub": "Trouvées en suivant les liens sortants des sources déjà fiables, exploration du {date}. Rien n'est surveillé tant que vous n'avez pas accepté ; un refus est retenu et n'est plus proposé.",
-    "cand.official": "Officielle",
-    "cand.unofficial": "Non officielle - à vérifier",
     "cand.feed": "Flux · {n} entrées",
     "cand.page": "Pas de flux - page seule",
     "cand.seen": "liée depuis {n} page(s) fiable(s)",
@@ -18046,49 +18031,53 @@ function candidatesCard(){
     .filter(c => !taken.has(c.host) && !refused.has(c.host));
   if (!open.length) return "";
 
-  /* Rangées par pays : une liste à plat de 35 domaines étrangers ne se lit pas,
-     alors que "la Pologne en propose cinq" se décide. Le pays est lu sur le
-     domaine national par discover_sources.py, jamais deviné ici. */
-  const byCand = {};
-  open.forEach(c => { (byCand[c.iso || ""] = byCand[c.iso || ""] || []).push(c); });
+  /* Même tableau que l'onglet Sources, et pour la même raison : une proposition
+     se juge sur les mêmes colonnes qu'une source déjà retenue - le pays, le
+     domaine, le degré de confiance, ce qu'on sait d'elle. Deux présentations
+     pour un même objet obligeaient à réapprendre à lire d'un onglet à l'autre.
+
+     Le pays vient du domaine national, lu par discover_sources.py ; il n'est
+     jamais deviné ici. */
   const candName = iso => iso === "EU" ? t("hub.euTile")
     : byIso[iso] ? byIso[iso].name : iso;
-  const candIsos = Object.keys(byCand).sort((a, b) =>
-    (a ? 0 : 1) - (b ? 0 : 1) || candName(a).localeCompare(candName(b)));
+  const sorted = [...open].sort((a, b) =>
+    (a.iso ? 0 : 1) - (b.iso ? 0 : 1)
+    || candName(a.iso).localeCompare(candName(b.iso))
+    || a.name.localeCompare(b.name));
+  const countries = new Set(open.map(c => c.iso).filter(Boolean));
 
-  const row = c => `<div class="cand" data-host="${esc(c.host)}">
-      <div class="cand-h">
-        <b>${esc(c.name)}</b>
-        <span class="chip ${c.type === "official" ? "src-official" : "src-unofficial"}">${
-          c.type === "official" ? t("cand.official") : t("cand.unofficial")}</span>
-        <span class="chip ${c.kind === "rss" ? "st-validated" : "st-pending"}">${
-          c.kind === "rss" ? t("cand.feed", { n: c.entries }) : t("cand.page")}</span>
-      </div>
-      <a class="cand-u" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a>
-      ${c.context && c.context.length
-        ? `<div class="cand-c">${t("cand.seen", { n: c.seenFrom })} · ${esc(c.context[0])}</div>` : ""}
-      <div class="q-actions">
-        <button class="btn ok cand-ok" data-host="${esc(c.host)}" type="button">${t("cand.accept")}</button>
-        <button class="btn danger cand-no" data-host="${esc(c.host)}" type="button">${t("cand.reject")}</button>
-      </div>
-    </div>`;
+  const rows = sorted.map(c => `<tr data-host="${esc(c.host)}">
+      <td style="white-space:nowrap">${c.iso
+        ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(candName(c.iso))}`
+        : `<span style="color:var(--muted)">${t("cand.noCountry")}</span>`}</td>
+      <td><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a>
+        <div class="cand-u">${esc(c.host)}</div></td>
+      <td>${srcChip(c.type)}</td>
+      <td style="color:var(--muted)">${c.kind === "rss"
+          ? esc(t("cand.feed", { n: c.entries })) : esc(t("cand.page"))}${
+        c.context && c.context.length
+          ? ` · ${esc(t("cand.seen", { n: c.seenFrom }))} · ${esc(c.context[0])}` : ""}</td>
+      <td style="white-space:nowrap"><button class="btn ok cand-ok" data-host="${esc(c.host)}"
+          type="button">${t("cand.accept")}</button>
+        <button class="btn danger cand-no" data-host="${esc(c.host)}"
+          type="button">${t("cand.reject")}</button></td>
+    </tr>`).join("");
 
-  const groups = candIsos.map(iso => `<div class="cand-grp">
-      <div class="cand-ch">${iso ? `<i class="fi">${flagSvg(iso)}</i> ` : ""}
-        <b>${iso ? esc(candName(iso)) : t("cand.noCountry")}</b>
-        <span class="q-note">${t("cand.nProposed", { n: byCand[iso].length })}</span></div>
-      <div class="cands">${byCand[iso].map(row).join("")}</div>
-    </div>`).join("");
-
-  return `<details class="card fold" open><summary class="cap">
+  /* Fermé au départ : ce sont des propositions, pas des tâches du jour. La file
+     de veille s'ouvre pour voir ce qui est arrivé ; arbitrer le registre est un
+     autre geste, qu'on décide de faire. */
+  return `<details class="card fold"><summary class="cap">
       <h2>${t("cand.title")}</h2>
       <span class="q-note">${t("cand.count", { n: open.length })} · ${
-        t("cand.inCountries", { n: candIsos.filter(Boolean).length })}</span>
+        t("cand.inCountries", { n: countries.size })}</span>
       <span class="fold-car" aria-hidden="true">▾</span></summary>
     <div class="bd">
       <p class="q-note" style="margin-top:0">${t("cand.sub", {
         date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
-      ${groups}
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th>
+          <th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th><th></th></tr></thead>
+        <tbody>${rows}</tbody></table></div>
     </div></details>`;
 }
 

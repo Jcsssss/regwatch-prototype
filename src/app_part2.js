@@ -311,49 +311,53 @@ function candidatesCard(){
     .filter(c => !taken.has(c.host) && !refused.has(c.host));
   if (!open.length) return "";
 
-  /* Rangées par pays : une liste à plat de 35 domaines étrangers ne se lit pas,
-     alors que "la Pologne en propose cinq" se décide. Le pays est lu sur le
-     domaine national par discover_sources.py, jamais deviné ici. */
-  const byCand = {};
-  open.forEach(c => { (byCand[c.iso || ""] = byCand[c.iso || ""] || []).push(c); });
+  /* Même tableau que l'onglet Sources, et pour la même raison : une proposition
+     se juge sur les mêmes colonnes qu'une source déjà retenue - le pays, le
+     domaine, le degré de confiance, ce qu'on sait d'elle. Deux présentations
+     pour un même objet obligeaient à réapprendre à lire d'un onglet à l'autre.
+
+     Le pays vient du domaine national, lu par discover_sources.py ; il n'est
+     jamais deviné ici. */
   const candName = iso => iso === "EU" ? t("hub.euTile")
     : byIso[iso] ? byIso[iso].name : iso;
-  const candIsos = Object.keys(byCand).sort((a, b) =>
-    (a ? 0 : 1) - (b ? 0 : 1) || candName(a).localeCompare(candName(b)));
+  const sorted = [...open].sort((a, b) =>
+    (a.iso ? 0 : 1) - (b.iso ? 0 : 1)
+    || candName(a.iso).localeCompare(candName(b.iso))
+    || a.name.localeCompare(b.name));
+  const countries = new Set(open.map(c => c.iso).filter(Boolean));
 
-  const row = c => `<div class="cand" data-host="${esc(c.host)}">
-      <div class="cand-h">
-        <b>${esc(c.name)}</b>
-        <span class="chip ${c.type === "official" ? "src-official" : "src-unofficial"}">${
-          c.type === "official" ? t("cand.official") : t("cand.unofficial")}</span>
-        <span class="chip ${c.kind === "rss" ? "st-validated" : "st-pending"}">${
-          c.kind === "rss" ? t("cand.feed", { n: c.entries }) : t("cand.page")}</span>
-      </div>
-      <a class="cand-u" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.url)}</a>
-      ${c.context && c.context.length
-        ? `<div class="cand-c">${t("cand.seen", { n: c.seenFrom })} · ${esc(c.context[0])}</div>` : ""}
-      <div class="q-actions">
-        <button class="btn ok cand-ok" data-host="${esc(c.host)}" type="button">${t("cand.accept")}</button>
-        <button class="btn danger cand-no" data-host="${esc(c.host)}" type="button">${t("cand.reject")}</button>
-      </div>
-    </div>`;
+  const rows = sorted.map(c => `<tr data-host="${esc(c.host)}">
+      <td style="white-space:nowrap">${c.iso
+        ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(candName(c.iso))}`
+        : `<span style="color:var(--muted)">${t("cand.noCountry")}</span>`}</td>
+      <td><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a>
+        <div class="cand-u">${esc(c.host)}</div></td>
+      <td>${srcChip(c.type)}</td>
+      <td style="color:var(--muted)">${c.kind === "rss"
+          ? esc(t("cand.feed", { n: c.entries })) : esc(t("cand.page"))}${
+        c.context && c.context.length
+          ? ` · ${esc(t("cand.seen", { n: c.seenFrom }))} · ${esc(c.context[0])}` : ""}</td>
+      <td style="white-space:nowrap"><button class="btn ok cand-ok" data-host="${esc(c.host)}"
+          type="button">${t("cand.accept")}</button>
+        <button class="btn danger cand-no" data-host="${esc(c.host)}"
+          type="button">${t("cand.reject")}</button></td>
+    </tr>`).join("");
 
-  const groups = candIsos.map(iso => `<div class="cand-grp">
-      <div class="cand-ch">${iso ? `<i class="fi">${flagSvg(iso)}</i> ` : ""}
-        <b>${iso ? esc(candName(iso)) : t("cand.noCountry")}</b>
-        <span class="q-note">${t("cand.nProposed", { n: byCand[iso].length })}</span></div>
-      <div class="cands">${byCand[iso].map(row).join("")}</div>
-    </div>`).join("");
-
-  return `<details class="card fold" open><summary class="cap">
+  /* Fermé au départ : ce sont des propositions, pas des tâches du jour. La file
+     de veille s'ouvre pour voir ce qui est arrivé ; arbitrer le registre est un
+     autre geste, qu'on décide de faire. */
+  return `<details class="card fold"><summary class="cap">
       <h2>${t("cand.title")}</h2>
       <span class="q-note">${t("cand.count", { n: open.length })} · ${
-        t("cand.inCountries", { n: candIsos.filter(Boolean).length })}</span>
+        t("cand.inCountries", { n: countries.size })}</span>
       <span class="fold-car" aria-hidden="true">▾</span></summary>
     <div class="bd">
       <p class="q-note" style="margin-top:0">${t("cand.sub", {
         date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
-      ${groups}
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th>
+          <th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th><th></th></tr></thead>
+        <tbody>${rows}</tbody></table></div>
     </div></details>`;
 }
 

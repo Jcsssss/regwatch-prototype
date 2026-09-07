@@ -309,19 +309,10 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .rel-pen{font-size:11.5px;color:var(--bad);margin-top:4px}
 
 /* ---- proposed sources, awaiting a validator ---- */
-.cands{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
-.cand{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
-.cand-h{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:13px;margin-bottom:5px}
-.cand-h b{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
-.cand-u{display:block;font-size:11.5px;color:var(--accent);word-break:break-all;margin-bottom:5px}
-.cand-c{font-size:11.5px;color:var(--muted);margin-bottom:8px}
-.cand .q-actions{display:flex;gap:7px}
-/* Les propositions rangées par pays : l'en-tête de groupe porte le drapeau, et
-   les cartes du pays tiennent dessous dans la même grille. */
-.cand-grp + .cand-grp{margin-top:15px}
-.cand-ch{display:flex;align-items:center;gap:7px;margin-bottom:8px;font-size:13px}
-.cand-ch .fi{width:19px;height:14px;flex:0 0 auto}
-.cand-ch b{color:var(--ink)}
+/* Les propositions se lisent dans le tableau de l'onglet Sources ; il ne reste
+   d'elles que le domaine, sous le nom de la source. */
+.cand-u{font-size:11.5px;color:var(--muted);word-break:break-all;margin-top:2px}
+.tbl .btn{padding:4px 9px;font-size:11.5px}
 
 /* Le panneau "Pourquoi xx sur 100" : ses notes finissaient collées à l'extrait
    qui le suit, les deux blocs se lisant comme un seul. */
