@@ -311,7 +311,17 @@ function candidatesCard(){
     .filter(c => !taken.has(c.host) && !refused.has(c.host));
   if (!open.length) return "";
 
-  const rows = open.slice(0, 12).map(c => `<div class="cand" data-host="${esc(c.host)}">
+  /* Rangées par pays : une liste à plat de 35 domaines étrangers ne se lit pas,
+     alors que "la Pologne en propose cinq" se décide. Le pays est lu sur le
+     domaine national par discover_sources.py, jamais deviné ici. */
+  const byCand = {};
+  open.forEach(c => { (byCand[c.iso || ""] = byCand[c.iso || ""] || []).push(c); });
+  const candName = iso => iso === "EU" ? t("hub.euTile")
+    : byIso[iso] ? byIso[iso].name : iso;
+  const candIsos = Object.keys(byCand).sort((a, b) =>
+    (a ? 0 : 1) - (b ? 0 : 1) || candName(a).localeCompare(candName(b)));
+
+  const row = c => `<div class="cand" data-host="${esc(c.host)}">
       <div class="cand-h">
         <b>${esc(c.name)}</b>
         <span class="chip ${c.type === "official" ? "src-official" : "src-unofficial"}">${
@@ -326,16 +336,24 @@ function candidatesCard(){
         <button class="btn ok cand-ok" data-host="${esc(c.host)}" type="button">${t("cand.accept")}</button>
         <button class="btn danger cand-no" data-host="${esc(c.host)}" type="button">${t("cand.reject")}</button>
       </div>
+    </div>`;
+
+  const groups = candIsos.map(iso => `<div class="cand-grp">
+      <div class="cand-ch">${iso ? `<i class="fi">${flagSvg(iso)}</i> ` : ""}
+        <b>${iso ? esc(candName(iso)) : t("cand.noCountry")}</b>
+        <span class="q-note">${t("cand.nProposed", { n: byCand[iso].length })}</span></div>
+      <div class="cands">${byCand[iso].map(row).join("")}</div>
     </div>`).join("");
 
   return `<details class="card fold" open><summary class="cap">
       <h2>${t("cand.title")}</h2>
-      <span class="q-note">${t("cand.count", { n: open.length })}</span>
+      <span class="q-note">${t("cand.count", { n: open.length })} · ${
+        t("cand.inCountries", { n: candIsos.filter(Boolean).length })}</span>
       <span class="fold-car" aria-hidden="true">▾</span></summary>
     <div class="bd">
       <p class="q-note" style="margin-top:0">${t("cand.sub", {
         date: fmtDateL(SOURCE_CANDIDATES.generated) })}</p>
-      <div class="cands">${rows}</div>
+      ${groups}
     </div></details>`;
 }
 
@@ -345,7 +363,7 @@ function wireCandidates(el){
     const c = find(b.dataset.host);
     if (!c) return;
     customSources().push({
-      name: c.name, url: c.url, host: c.host, iso: "EU",
+      name: c.name, url: c.url, host: c.host, iso: c.iso || "EU",
       kind: c.kind === "rss" ? "rss" : "page", type: c.type,
       note: t("cand.noteAccepted", { date: fmtDateL(c.discovered) }),
     });
@@ -402,7 +420,6 @@ function renderInboxHub(el, pending, done){
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
   <p class="pg-sub">${t("hub.sub")}</p>
-  ${candidatesCard()}
   <div class="card"><div class="bd">
     <div class="filters">
       <label class="q-toggle">${t("hub.window")}
@@ -423,6 +440,7 @@ function renderInboxHub(el, pending, done){
           <span class="ctile-name">${esc(c.name)}</span></button>`).join("")}</div>
     </details>` : ""}
   </div></div>
+  ${candidatesCard()}
   <div class="card"><div class="cap"><h2>${t("proc.title")} (${done.length})</h2></div><div class="bd">
     ${done.length ? `<details class="q-proc">
       <summary>${t("proc.show")}<span class="n" id="procCount"></span></summary>
@@ -639,7 +657,7 @@ function relDetail(q){
       <span class="thm-v">${r.parts[k] || 0}<small>/${MAX[k]}</small></span></div>`).join("");
   const pen = Object.keys(r.penalties || {}).map(k =>
     `<div class="rel-pen">${t("rel.pen." + k)} <b>${r.penalties[k]}</b></div>`).join("");
-  return `<details class="q-orig"><summary>${t("rel.why", { n: r.score })}</summary>
+  return `<details class="q-orig rel-why"><summary>${t("rel.why", { n: r.score })}</summary>
     <div class="thms" style="margin-top:6px">${bars}</div>${pen}
     ${(r.notes || []).length ? `<div class="q-note" style="margin-top:6px">${
       r.notes.map(n => esc(t("rel.n." + n))).join("<br>")}</div>` : ""}</details>`;
@@ -674,15 +692,27 @@ function markTerm(text, term){
        + "</mark>" + esc(text.slice(i + term.length));
 }
 
+/* La provenance de la date ne s'affiche que lorsqu'elle demande de la prudence.
+   "Lue dans la page" figurait sur presque toutes les cartes - une mention qui
+   ne varie jamais n'informe pas, elle encombre. Une date déduite par le modèle
+   ou introuvable reste signalée : c'est là que le validateur doit se méfier. */
+const DATE_ORIGIN_SHOWN = new Set(["ia", "inconnue"]);
+
+/* Le nom que l'agent se donne lui-même quand il n'a pas su nommer l'éditeur.
+   Ce n'est pas une source, et l'afficher à côté du score de fiabilité laissait
+   croire que la fiabilité portait sur l'agent. */
+const SOURCE_PLACEHOLDERS = new Set(["Watch agent", "Agent de veille"]);
+
 function qCard(q){
   const c = byIso[q.iso];
   const isVal = role === "validator";
   const a = q.agent || {};
+  const srcName = SOURCE_PLACEHOLDERS.has((q.source.name || "").trim()) ? "" : q.source.name;
   /* Date and link first: they are what a validator reaches for to check a source. */
   const meta = [
     /* The date carries its provenance: an inferred date must not read like a fact. */
     a.publishedOn ? `<span><span class="k">${t("card.published")}</span> <span class="num">${fmtDateL(a.publishedOn)}</span>${
-      a.dateOrigin ? `<span class="d-orig d-${esc(a.dateOrigin)}" title="${t("date.origin")}">${t("date." + a.dateOrigin)}</span>` : ""}</span>` : "",
+      DATE_ORIGIN_SHOWN.has(a.dateOrigin) ? `<span class="d-orig d-${esc(a.dateOrigin)}" title="${t("date.origin")}">${t("date." + a.dateOrigin)}</span>` : ""}</span>` : "",
     `<span><span class="k">${t("card.detected")}</span> <span class="num">${fmtDateL(q.detected)}</span></span>`,
     q.source.url
       ? `<a class="q-open" href="${esc(q.source.url)}" target="_blank" rel="noopener">${t("card.open")}</a>`
@@ -710,7 +740,7 @@ function qCard(q){
 
   return `<div class="q-card">
     <div class="q-top"><b><i class="fi">${flagSvg(c ? c.iso : "EU")}</i> ${c ? esc(c.name) : t("hub.euTile")}</b>${stChip(q.status)}${srcChip(q.source.type)}${relChip(q)}
-      <span class="q-note">${esc(q.source.name)}</span></div>
+      ${srcName ? `<span class="q-note">${esc(srcName)}</span>` : ""}</div>
     <div class="q-title">${esc(itemTitle(q))}</div>
     <div class="q-meta">${meta}</div>
     ${relDetail(q)}
@@ -778,6 +808,7 @@ function chartTip(el){
 
 /* ---------- Sources ---------- */
 let srcFilter = "";
+let srcSearch = "";
 /* The source registry is what the collection pipeline reads: every RSS feed,
    page and API the agent monitors. Making it editable here is the point - the
    quality of the watch is decided by this list, not by the model. Additions are
@@ -866,11 +897,15 @@ function renderSources(){
   </div></details>` : ""}
   <div class="card"><div class="bd">
     <div class="filters">
-      <select id="sFilter" aria-label="Filter by scope"><option value="">${t("src.allScopes")}</option>${
-        scopes.map(iso => `<option value="${iso}" ${srcFilter === iso ? "selected" : ""}>${
-          byIso[iso] ? esc(byIso[iso].name) : esc(iso)}</option>`).join("")}</select>
+      <input id="sSearch" type="search" class="q-search" autocomplete="off"
+        placeholder="${t("src.searchCountry")}" value="${esc(srcSearch)}"
+        aria-label="${t("src.searchCountry")}">
       <span class="q-note" id="sCount"></span>
     </div>
+    <!-- Le drapeau se reconnaît plus vite qu'un nom se lit, et la barre du
+         dessus rattrape les pays que l'oeil ne trouve pas. Même geste que dans
+         la file de veille, pour que les deux onglets se manipulent pareil. -->
+    <div class="sflags" id="sFlags"></div>
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thTrust")}</th><th>${t("src.thNote")}</th>${isVal ? "<th></th>" : ""}</tr></thead>
       <tbody id="srcRows"></tbody>
@@ -878,6 +913,27 @@ function renderSources(){
   </div></div>`;
 
   function paint(){
+    const needle = srcSearch.trim().toLowerCase();
+    const shown = needle
+      ? scopes.filter(iso => scopeName(iso).toLowerCase().includes(needle)
+                          || iso.toLowerCase().startsWith(needle))
+      : scopes;
+    /* Un filtre qui ne figure plus dans la liste resterait actif sans être
+       visible : la recherche le relâche plutôt que de mentir sur le décompte. */
+    if (srcFilter && !shown.includes(srcFilter)) srcFilter = "";
+
+    $("#sFlags").innerHTML = `<button class="sflag ${srcFilter ? "" : "on"}" data-iso=""
+        type="button">${t("src.allCountries")}</button>` + shown.map(iso =>
+      `<button class="sflag ${srcFilter === iso ? "on" : ""}" data-iso="${esc(iso)}" type="button"
+         title="${esc(scopeName(iso))}"><i class="fi">${flagSvg(iso)}</i>
+         <span>${esc(scopeName(iso))}</span>
+         <span class="sflag-n">${rows.filter(r => r.iso === iso).length}</span></button>`).join("")
+      + (shown.length ? "" : `<span class="q-note">${t("src.noCountry", { q: esc(srcSearch) })}</span>`);
+    $("#sFlags").querySelectorAll(".sflag").forEach(b => b.addEventListener("click", () => {
+      srcFilter = b.dataset.iso === srcFilter ? "" : b.dataset.iso;
+      paint();
+    }));
+
     const list = rows.filter(r => !srcFilter || r.iso === srcFilter);
     $("#sCount").textContent = t("src.count", { n: list.length, total: rows.length });
     $("#srcRows").innerHTML = list.map(r => `<tr>
@@ -893,7 +949,9 @@ function renderSources(){
     }));
   }
   paint();
-  $("#sFilter").addEventListener("change", e => { srcFilter = e.target.value; renderSources(); });
+  /* Repeindre plutôt que re-rendre : un re-render vide le champ et lui prend le
+     focus, ce qui rend la frappe impossible. */
+  $("#sSearch").addEventListener("input", e => { srcSearch = e.target.value; paint(); });
 
   if (!isVal) return;
   $("#sAdd").addEventListener("click", () => {

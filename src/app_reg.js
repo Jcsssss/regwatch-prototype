@@ -110,6 +110,9 @@ function regApply(){
   const spec = regSpec();
   COUNTRIES = spec.countries();
   byIso = Object.fromEntries(COUNTRIES.map(c => [c.iso, c]));
+  /* Chaque réglementation apporte ses propres enregistrements : ceux de REC
+     n'ont pas encore été renommés dans la langue courante. */
+  if (typeof applyCountryNames === "function") applyCountryNames();
 }
 
 function setRegulation(id){

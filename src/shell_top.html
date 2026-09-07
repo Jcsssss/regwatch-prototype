@@ -316,6 +316,32 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .cand-u{display:block;font-size:11.5px;color:var(--accent);word-break:break-all;margin-bottom:5px}
 .cand-c{font-size:11.5px;color:var(--muted);margin-bottom:8px}
 .cand .q-actions{display:flex;gap:7px}
+/* Les propositions rangées par pays : l'en-tête de groupe porte le drapeau, et
+   les cartes du pays tiennent dessous dans la même grille. */
+.cand-grp + .cand-grp{margin-top:15px}
+.cand-ch{display:flex;align-items:center;gap:7px;margin-bottom:8px;font-size:13px}
+.cand-ch .fi{width:19px;height:14px;flex:0 0 auto}
+.cand-ch b{color:var(--ink)}
+
+/* Le panneau "Pourquoi xx sur 100" : ses notes finissaient collées à l'extrait
+   qui le suit, les deux blocs se lisant comme un seul. */
+.rel-why[open]{margin-bottom:11px;padding-bottom:2px}
+.rel-why[open] > summary{margin-bottom:2px}
+
+/* Filtre par pays de l'onglet Sources : mêmes drapeaux que la file de veille. */
+.sflags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 13px}
+.sflag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;
+  border:1px solid var(--line2);border-radius:999px;background:var(--surface);
+  color:var(--ink2);font:inherit;font-size:12px;cursor:pointer;line-height:1.2}
+.sflag:hover{border-color:var(--accent);color:var(--ink)}
+.sflag:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sflag.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sflag .fi{width:18px;height:13px;flex:0 0 auto;border-radius:2px}
+.sflag-n{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sflag.on .sflag-n{color:var(--accent-ink);opacity:.75}
+.q-search{padding:6px 11px;border:1px solid var(--line2);border-radius:8px;
+  background:var(--surface);color:var(--ink);font:inherit;font-size:13px;min-width:210px}
+.q-search:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
 
 /* ---- cyber-theme coverage ---- */
 .thms{display:flex;flex-direction:column;gap:7px}

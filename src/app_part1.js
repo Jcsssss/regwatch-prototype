@@ -77,10 +77,16 @@ function inkOn(hex){ /* readable text colour for a given fill */
    interface is bilingual and nothing generated should arrive pre-written in
    one language. Hand-written entries still carry their own text. */
 const evText = ev => ev.textKey ? t(ev.textKey) : (ev.text || "");
-const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">Level ${c.maturity}</span>`; };
+const lvlChip = c => { const f = lvlColor(c.maturity); return `<span class="chip lvl" style="background:${f};color:${inkOn(f)}">${t("common.level")} ${c.maturity}</span>`; };
 const fwChip = c => `<span class="chip fw-${c.fw}">${t("fw." + c.fw)}</span>`;
-const srcChip = t => t === "official" ? `<span class="chip src-official">Official</span>` : t === "manual" ? `<span class="chip src-manual">Manual - consultant input</span>` : `<span class="chip src-unofficial">Unofficial - verify</span>`;
-const stChip = s => ({ pending: `<span class="chip st-pending">Pending validation</span>`, validated: `<span class="chip st-validated">Validated</span>`, rejected: `<span class="chip st-rejected">Rejected</span>` }[s] || "");
+/* Le paramètre s'appelait `t` : il masquait la fonction de traduction, ce qui
+   rendait ces deux puces intraduisibles sans qu'aucune clé ne manque. */
+const srcChip = kind => kind === "official" ? `<span class="chip src-official">${t("chip.official")}</span>`
+  : kind === "manual" ? `<span class="chip src-manual">${t("chip.manual")}</span>`
+  : `<span class="chip src-unofficial">${t("chip.unofficial")}</span>`;
+const stChip = s => ({ pending: `<span class="chip st-pending">${t("chip.pending")}</span>`,
+  validated: `<span class="chip st-validated">${t("chip.validated")}</span>`,
+  rejected: `<span class="chip st-rejected">${t("chip.rejected")}</span>` }[s] || "");
 
 /* pending badge */
 function refreshBadge(){
@@ -211,7 +217,7 @@ function drawMap(host, legendHost, counts){
     const t = e.target.closest(".ctry");
     if (!t) { hideTip(); return; }
     const c = byIso[t.dataset.iso];
-    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">Last update ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
+    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">${t("map.lastUpdate")} ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
   });
   svgEl.addEventListener("mouseleave", hideTip);
   svgEl.addEventListener("click", e => {
@@ -223,8 +229,8 @@ function drawMap(host, legendHost, counts){
     if (t && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); location.hash = "#/country/" + t.dataset.iso; }
   });
   if (legendHost) legendHost.innerHTML =
-    [1, 2, 3, 4].map(l => `<span class="leg-it"><span class="leg-sw" style="background:${lvlColor(l)}"></span>Level ${l} <span class="n">(${counts[l]})</span></span>`).join("") +
-    `<span class="leg-it"><span class="leg-sw" style="background:${cssVar('--untracked')}"></span>Not tracked</span>`;
+    [1, 2, 3, 4].map(l => `<span class="leg-it"><span class="leg-sw" style="background:${lvlColor(l)}"></span>${t("common.level")} ${l} <span class="n">(${counts[l]})</span></span>`).join("") +
+    `<span class="leg-it"><span class="leg-sw" style="background:${cssVar('--untracked')}"></span>${t("map.notTracked")}</span>`;
 }
 
 function exportMapPNG(){

@@ -75,6 +75,20 @@ const I18N = {
     "manual.optOfficial": "Official",
     "manual.optUnofficial": "Unofficial - to verify",
     "manual.optManual": "Manual - consultant input",
+    "chip.official": "Official",
+    "chip.manual": "Manual - consultant input",
+    "chip.unofficial": "Unofficial - verify",
+    "chip.pending": "Pending validation",
+    "chip.validated": "Validated",
+    "chip.rejected": "Rejected",
+    "map.notTracked": "Not tracked",
+    "map.lastUpdate": "Last update",
+    "cand.noCountry": "No country identified",
+    "cand.nProposed": "{n} proposed",
+    "cand.inCountries": "{n} countries",
+    "src.allCountries": "All countries",
+    "src.searchCountry": "Search for a country",
+    "src.noCountry": "No country matches \u201c{q}\u201d.",
     "lvl.1": "Preliminary transposition work underway",
     "lvl.2": "Bill currently before the legislature",
     "lvl.3": "Law approved - framework provisional or unavailable",
@@ -218,9 +232,9 @@ const I18N = {
     "recLvl.4": "National text adopted",
     "ov.recTitle": "REC transposition across the EU",
     "tl.recInForce": "National text enters into force",
-    "chat.r1": "Quels pays ont adopté leur texte national de transposition de REC, et à quelle date ?",
+    "chat.r1": "Which countries have adopted their national REC transposition text, and on what date?",
     "chat.r2": "For Slovenia, how are critical entities registered under the REC transposition?",
-    "chat.r3": "Quels pays ont une autorité identifiée pour REC, et lesquels restent à renseigner ?",
+    "chat.r3": "Which countries have an authority identified for REC, and which are still to be filled in?",
     "chat.r4": "Which countries state how REC is aligned with NIS 2 and DORA?",
     "src.recSub": "Authorities named in the REC transposition workbook. The watch agent does not cover REC yet, so there is no measured feed registry here - this is the starting list for building one.",
     "src.recAuthTitle": "REC authorities named in the workbook",
@@ -255,9 +269,9 @@ const I18N = {
     "chat.recSub": "Ask about any of the 27 REC transpositions. The assistant answers from the REC country records only - it has no watch items, no KPI table and no charts for REC yet, and says so rather than reaching for NIS 2 data.",
     "chat.assistant": "RegWatch assistant",
     "chat.hello": "Ask a question, or start from one of these:",
-    "chat.s1": "Quels sont les principaux organismes d'audit en charge de NIS 2 dans les pays européens ?",
+    "chat.s1": "Which bodies are in charge of NIS 2 audits across European countries?",
     "chat.s2": "For Croatia, are sector authorities supposed to contact companies subject to NIS 2? What does it mean if a company has not been contacted?",
-    "chat.s3": "Peux-tu me générer le graphique des délais de transposition des différents pays de l'UE ?",
+    "chat.s3": "Can you draw me the chart of transposition delays across EU countries?",
     "chat.s4": "Which countries require an audit by an externally accredited body, and how often?",
     "chat.placeholder": "Ask a question - Enter to send, Shift+Enter for a new line",
     "chat.send": "Send",
@@ -471,6 +485,20 @@ const I18N = {
     "manual.optOfficial": "Officielle",
     "manual.optUnofficial": "Non officielle - à vérifier",
     "manual.optManual": "Manuelle - saisie consultant",
+    "chip.official": "Officielle",
+    "chip.manual": "Manuelle - saisie consultant",
+    "chip.unofficial": "Non officielle - à vérifier",
+    "chip.pending": "En attente de validation",
+    "chip.validated": "Validé",
+    "chip.rejected": "Rejeté",
+    "map.notTracked": "Non suivi",
+    "map.lastUpdate": "Dernière mise à jour",
+    "cand.noCountry": "Pays non identifié",
+    "cand.nProposed": "{n} proposée(s)",
+    "cand.inCountries": "{n} pays",
+    "src.allCountries": "Tous les pays",
+    "src.searchCountry": "Rechercher un pays",
+    "src.noCountry": "Aucun pays ne correspond à «\u00a0{q}\u00a0».",
     "lvl.1": "Travaux préliminaires de transposition en cours",
     "lvl.2": "Projet de loi devant le législateur",
     "lvl.3": "Loi adoptée - cadre provisoire ou indisponible",
@@ -817,6 +845,7 @@ let lang = "en";
 
 function initLang(){
   if (store.lang === "fr" || store.lang === "en") lang = store.lang;
+  applyCountryNames();
   applyStaticI18n();
 }
 
@@ -838,10 +867,35 @@ function applyStaticI18n(){
   });
 }
 
+/* Les noms de pays vivent dans les données, en anglais, et se retrouvaient tels
+   quels dans l'interface française : "Croatia", "Czechia", "Estonia" au milieu
+   d'une page en français. Plutôt que de reprendre les quelque soixante endroits
+   qui les affichent, on renomme les enregistrements eux-mêmes au changement de
+   langue - l'original anglais est conservé, la bascule est donc réversible.
+
+   Un seul jeu de noms suffit : l'anglais est déjà dans les données. */
+const COUNTRY_FR = {
+  AT: "Autriche", BE: "Belgique", BG: "Bulgarie", CY: "Chypre", CZ: "Tchéquie",
+  DE: "Allemagne", DK: "Danemark", EE: "Estonie", ES: "Espagne", FI: "Finlande",
+  FR: "France", GB: "Royaume-Uni", GR: "Grèce", HR: "Croatie", HU: "Hongrie",
+  IE: "Irlande", IT: "Italie", LT: "Lituanie", LU: "Luxembourg", LV: "Lettonie",
+  MT: "Malte", NL: "Pays-Bas", NO: "Norvège", PL: "Pologne", PT: "Portugal",
+  RO: "Roumanie", SE: "Suède", SI: "Slovénie", SK: "Slovaquie",
+};
+
+function applyCountryNames(){
+  if (typeof COUNTRIES === "undefined") return;
+  COUNTRIES.forEach(c => {
+    if (c.nameEn === undefined) c.nameEn = c.name;
+    c.name = lang === "fr" ? (COUNTRY_FR[c.iso] || c.nameEn) : c.nameEn;
+  });
+}
+
 function setLang(next){
   if (next === lang) return;
   lang = next;
   if (typeof store !== "undefined") { store.lang = lang; saveStore(); }
+  applyCountryNames();
   applyStaticI18n();
   renderCurrent();
 }

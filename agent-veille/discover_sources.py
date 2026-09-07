@@ -94,6 +94,26 @@ def host_of(url):
     return up.urlparse(url).netloc.lower().removeprefix("www.")
 
 
+# Le pays d'une source, lu sur son domaine national. Ce n'est pas une
+# supposition : un ccTLD est attribué à un pays, et l'autorité de
+# cybersécurité d'un État publie sur le domaine de cet État. Les rares
+# exceptions (un .com hébergeant une autorité) ressortent sans pays plutôt que
+# rattachées au mauvais - le validateur les voit et tranche.
+TLD_ISO = {"uk": "GB", "el": "GR"}          # ccTLD qui diffère du code ISO
+SUPRANATIONAL = (".europa.eu", ".eu")
+
+
+def host_iso(host):
+    """Le code ISO du pays de ce domaine, 'EU' pour l'Union, '' si indécidable."""
+    host = (host or "").lower().rstrip(".")
+    if host.endswith(SUPRANATIONAL):
+        return "EU"
+    tld = host.rsplit(".", 1)[-1]
+    if len(tld) != 2:
+        return ""
+    return TLD_ISO.get(tld, tld.upper())
+
+
 def is_official(host):
     """Decides the Officielle label: a government or EU domain, full stop."""
     return host.endswith(OFFICIAL_SUFFIXES) or any(h in host for h in OFFICIAL_HINTS)
@@ -249,6 +269,7 @@ def main():
                 "url": got["feed"],
                 "kind": got["kind"],
                 "entries": got["entries"],
+                "iso": host_iso(entry["host"]),
                 "type": "official" if official else "unofficial",
                 "reliability": "Officielle" if official else "Non officielle - à vérifier",
                 "seenFrom": entry["hits"],
@@ -256,7 +277,8 @@ def main():
                 "discovered": date.today().isoformat(),
             })
 
-    out.sort(key=lambda c: (c["kind"] != "rss", c["type"] != "official", -c["seenFrom"]))
+    out.sort(key=lambda c: (not c["iso"], c["iso"], c["kind"] != "rss",
+                            c["type"] != "official", -c["seenFrom"]))
     previous = json.loads(OUT_JSON.read_text(encoding="utf-8")) if OUT_JSON.exists() else {}
     payload = {"generated": date.today().isoformat(),
                "candidates": out,
