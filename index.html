@@ -17887,20 +17887,27 @@ function drawMap(host, legendHost, counts){
     ci.setAttribute("class", "ctry"); ci.setAttribute("data-iso", iso);
     svgEl.appendChild(ci);
   });
+  /* `hit`, et non `t` : la cible du survol portait le meme nom que la fonction
+     de traduction, qu'elle masquait donc dans la portee du gestionnaire. Le
+     jour ou « Last update » est passe par t("map.lastUpdate"), l'appel a vise
+     l'element SVG au lieu de la fonction, et l'infobulle de la carte a cesse
+     d'apparaitre : l'exception tombait pendant l'evaluation du gabarit, avant
+     que showTip ne soit atteint. Les trois gestionnaires sont renommes, pas
+     seulement celui qui traduisait, pour que le piege ne se retende pas. */
   svgEl.addEventListener("mousemove", e => {
-    const t = e.target.closest(".ctry");
-    if (!t) { hideTip(); return; }
-    const c = byIso[t.dataset.iso];
+    const hit = e.target.closest(".ctry");
+    if (!hit) { hideTip(); return; }
+    const c = byIso[hit.dataset.iso];
     showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">${t("map.lastUpdate")} ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
   });
   svgEl.addEventListener("mouseleave", hideTip);
   svgEl.addEventListener("click", e => {
-    const t = e.target.closest(".ctry");
-    if (t) { hideTip(); location.hash = "#/country/" + t.dataset.iso; }
+    const hit = e.target.closest(".ctry");
+    if (hit) { hideTip(); location.hash = "#/country/" + hit.dataset.iso; }
   });
   svgEl.addEventListener("keydown", e => {
-    const t = e.target.closest(".ctry");
-    if (t && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); location.hash = "#/country/" + t.dataset.iso; }
+    const hit = e.target.closest(".ctry");
+    if (hit && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); location.hash = "#/country/" + hit.dataset.iso; }
   });
   if (legendHost) legendHost.innerHTML =
     [1, 2, 3, 4].map(l => `<span class="leg-it"><span class="leg-sw" style="background:${lvlColor(l)}"></span>${t("common.level")} ${l} <span class="n">(${counts[l]})</span></span>`).join("") +
