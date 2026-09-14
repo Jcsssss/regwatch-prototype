@@ -121,7 +121,15 @@ nav.tabs .badge[hidden]{display:none}
   box-shadow:0 0 0 1px var(--line2);display:block}
 .fflag svg,.fflag img{width:100%;height:100%;object-fit:cover;display:block}
 .fhead h1{font-size:29px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0}
+/* Le bloc de titre occupe toute la largeur restante, sinon la rangee de
+   pastilles se dimensionne sur son contenu et le bouton pousse a droite se
+   colle aux pastilles au lieu de rejoindre le bord de la fiche. */
+.fhead-txt{flex:1;min-width:0}
 .fpills{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:8px}
+/* La generation des slides est une action, pas un etat : elle partage la ligne
+   des pastilles mais se tient a l'autre bout. */
+.fdeck{margin-left:auto}
+@media (max-width:720px){.fdeck{margin-left:0}}
 .fpill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;
   font-size:12px;font-weight:700}
 .fpill svg{width:12px;height:12px;color:var(--muted)}

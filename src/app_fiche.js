@@ -337,14 +337,14 @@ function renderFiche(c, el){
   <a class="back" href="#/countries">${t("cp.back")}</a>
   <div class="fhead">
     <span class="fflag">${flagSvg(iso)}</span>
-    <div>
+    <div class="fhead-txt">
       <h1>${esc(c.name)}</h1>
       <div class="fpills">
         ${statusPill}${delay}
         <span class="fpill upd">${ficheIcon("clock")}${t("fiche.upd", { date: fmtDate(c.lastUpdate) })}</span>
         <label class="fcellsw"><input type="checkbox" id="ficheCells"> ${t("fiche.showCells")}</label>
+        ${role === "validator" ? `<button class="btn fdeck" id="deckBtn">${t("cp.genSlides")}</button>` : ""}
       </div>
-      ${role === "validator" ? `<button class="btn" id="deckBtn" style="margin-top:10px">${t("cp.genSlides")}</button>` : ""}
     </div>
   </div>
 
