@@ -352,7 +352,12 @@ function renderFiche(c, el){
 
   <div class="fcols">
     <div>
-      <div class="fnav"><div class="fnav-in" id="ficheNav">
+      <div class="fnav" id="ficheNavWrap"><div class="fnav-in" id="ficheNav">
+        <a class="fnav-back" href="#/countries" title="${t("cp.back")}" aria-label="${t("cp.back")}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </a>
+        <span class="fnav-id"><span class="fnav-flag">${flagSvg(iso)}</span><b>${esc(c.name)}</b></span>
+        <span class="fnav-sep"></span>
         ${FICHE_SECTIONS.map(s => `<button type="button" data-fgo="${s.key}">
           ${ficheIcon(s.icon)}${t(s.tKey)}</button>`).join("")}
       </div></div>
@@ -419,11 +424,13 @@ let ficheScrollBound = false;
    d'ancres se colle, ou un lien d'ancre depose la page, et ou commence la
    colonne de droite. Les coder en dur les faisait diverger des que l'en-tete
    changeait de hauteur - ce qu'il fait a chaque palier responsive. */
+let ficheHdrH = 96;
 function ficheHeader(){
   const hdr = document.querySelector("header.app");
   const nav = document.querySelector(".fnav-in");
   const root = document.documentElement;
   const h = hdr ? Math.round(hdr.getBoundingClientRect().height) : 96;
+  ficheHdrH = h;
   root.style.setProperty("--fhdr", h + "px");
   root.style.setProperty("--fnavh", (nav ? Math.round(nav.getBoundingClientRect().height) : 52) + "px");
   return h;
@@ -491,7 +498,22 @@ function ficheWire(el){
      ecouteur est pose (ficheScrollBound), et il lit ce que la fiche courante y
      a depose. */
   ficheHeader();
-  ficheSpy = { secs: secs, mark: mark, current: current, lock: 0 };
+  /* Le nom du pays et le retour rejoignent la barre d'ancres des que l'en-tete
+     sort de l'ecran. Les y mettre en permanence repeterait, a dix pixels
+     d'intervalle, ce que le titre dit deja en plus gros ; une troisieme barre
+     collante mangerait le tiers de la hauteur utile. */
+  const navWrap = $("#ficheNavWrap", el);
+  const head = el.querySelector(".fhead");
+  const stick = () => {
+    if (!navWrap || !head) return;
+    /* ficheHdrH plutot que getComputedStyle : cette fonction tourne a chaque
+       image de defilement, et lire une variable CSS y force un recalcul de
+       style a chaque passage. */
+    const passed = head.getBoundingClientRect().bottom <= ficheHdrH;
+    navWrap.classList.toggle("stuck", passed);
+  };
+  stick();
+  ficheSpy = { secs: secs, mark: mark, current: current, lock: 0, stick: stick };
   if (!ficheScrollBound) {
     ficheScrollBound = true;
     /* Pose une seule fois, comme l'ecouteur de defilement et pour la meme
@@ -504,7 +526,11 @@ function ficheWire(el){
       requestAnimationFrame(() => {
         tick = false;
         const sp = ficheSpy;
-        if (!sp || Date.now() < sp.lock || !document.body.contains(sp.secs[0])) return;
+        if (!sp || !document.body.contains(sp.secs[0])) return;
+        /* L'identite suit le defilement meme pendant un saut d'ancre : c'est le
+           marquage de la section active qui est gele, pas la barre elle-meme. */
+        sp.stick();
+        if (Date.now() < sp.lock) return;
         sp.mark(sp.current().dataset.fsec);
       });
     }, { passive: true });

@@ -176,6 +176,26 @@ nav.tabs .badge[hidden]{display:none}
 .fnav-in button svg{width:15px;height:15px;flex:none}
 .fnav-in button:hover{background:var(--surface2);color:var(--ink)}
 .fnav-in button[aria-current="true"]{background:var(--accent);color:var(--accent-ink)}
+/* Le retour et le nom du pays, replies tant que l'en-tete de la fiche est
+   visible : ils n'apparaissent que lorsqu'il sort de l'ecran, faute de quoi ils
+   repeteraient le titre a dix pixels de distance. */
+.fnav-back,.fnav-id,.fnav-sep{display:none}
+.fnav.stuck .fnav-back{display:grid;place-items:center;width:30px;height:30px;flex:none;
+  border-radius:8px;color:var(--ink2);text-decoration:none}
+.fnav.stuck .fnav-back:hover{background:var(--surface2);color:var(--ink);text-decoration:none}
+.fnav-back svg{width:16px;height:16px}
+.fnav.stuck .fnav-id{display:flex;align-items:center;gap:8px;flex:none;
+  padding:0 2px;min-width:0;max-width:190px}
+.fnav-flag{width:21px;height:14px;border-radius:3px;overflow:hidden;flex:none;
+  box-shadow:0 0 0 1px var(--line2);display:block}
+.fnav-flag svg{width:100%;height:100%;display:block}
+.fnav-id b{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.fnav.stuck .fnav-sep{display:block;width:1px;height:22px;flex:none;
+  background:var(--line2);margin:0 4px}
+@media (max-width:720px){
+  .fnav.stuck .fnav-id{max-width:104px}
+}
 
 /* --- sections --- */
 .fsec{background:var(--surface);border:1px solid var(--line);border-radius:13px;
@@ -19723,7 +19743,12 @@ function renderFiche(c, el){
 
   <div class="fcols">
     <div>
-      <div class="fnav"><div class="fnav-in" id="ficheNav">
+      <div class="fnav" id="ficheNavWrap"><div class="fnav-in" id="ficheNav">
+        <a class="fnav-back" href="#/countries" title="${t("cp.back")}" aria-label="${t("cp.back")}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </a>
+        <span class="fnav-id"><span class="fnav-flag">${flagSvg(iso)}</span><b>${esc(c.name)}</b></span>
+        <span class="fnav-sep"></span>
         ${FICHE_SECTIONS.map(s => `<button type="button" data-fgo="${s.key}">
           ${ficheIcon(s.icon)}${t(s.tKey)}</button>`).join("")}
       </div></div>
@@ -19790,11 +19815,13 @@ let ficheScrollBound = false;
    d'ancres se colle, ou un lien d'ancre depose la page, et ou commence la
    colonne de droite. Les coder en dur les faisait diverger des que l'en-tete
    changeait de hauteur - ce qu'il fait a chaque palier responsive. */
+let ficheHdrH = 96;
 function ficheHeader(){
   const hdr = document.querySelector("header.app");
   const nav = document.querySelector(".fnav-in");
   const root = document.documentElement;
   const h = hdr ? Math.round(hdr.getBoundingClientRect().height) : 96;
+  ficheHdrH = h;
   root.style.setProperty("--fhdr", h + "px");
   root.style.setProperty("--fnavh", (nav ? Math.round(nav.getBoundingClientRect().height) : 52) + "px");
   return h;
@@ -19862,7 +19889,22 @@ function ficheWire(el){
      ecouteur est pose (ficheScrollBound), et il lit ce que la fiche courante y
      a depose. */
   ficheHeader();
-  ficheSpy = { secs: secs, mark: mark, current: current, lock: 0 };
+  /* Le nom du pays et le retour rejoignent la barre d'ancres des que l'en-tete
+     sort de l'ecran. Les y mettre en permanence repeterait, a dix pixels
+     d'intervalle, ce que le titre dit deja en plus gros ; une troisieme barre
+     collante mangerait le tiers de la hauteur utile. */
+  const navWrap = $("#ficheNavWrap", el);
+  const head = el.querySelector(".fhead");
+  const stick = () => {
+    if (!navWrap || !head) return;
+    /* ficheHdrH plutot que getComputedStyle : cette fonction tourne a chaque
+       image de defilement, et lire une variable CSS y force un recalcul de
+       style a chaque passage. */
+    const passed = head.getBoundingClientRect().bottom <= ficheHdrH;
+    navWrap.classList.toggle("stuck", passed);
+  };
+  stick();
+  ficheSpy = { secs: secs, mark: mark, current: current, lock: 0, stick: stick };
   if (!ficheScrollBound) {
     ficheScrollBound = true;
     /* Pose une seule fois, comme l'ecouteur de defilement et pour la meme
@@ -19875,7 +19917,11 @@ function ficheWire(el){
       requestAnimationFrame(() => {
         tick = false;
         const sp = ficheSpy;
-        if (!sp || Date.now() < sp.lock || !document.body.contains(sp.secs[0])) return;
+        if (!sp || !document.body.contains(sp.secs[0])) return;
+        /* L'identite suit le defilement meme pendant un saut d'ancre : c'est le
+           marquage de la section active qui est gele, pas la barre elle-meme. */
+        sp.stick();
+        if (Date.now() < sp.lock) return;
         sp.mark(sp.current().dataset.fsec);
       });
     }, { passive: true });
