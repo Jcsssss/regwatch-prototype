@@ -113,6 +113,217 @@ nav.tabs a.on{color:var(--accent);border-bottom-color:var(--accent)}
 nav.tabs .badge{display:inline-block;min-width:17px;text-align:center;background:var(--st-warn-bg);color:var(--st-warn-ink);border-radius:999px;font-size:11px;font-weight:700;padding:1px 5px;margin-left:5px}
 nav.tabs .badge[hidden]{display:none}
 
+
+/* ================= Fiche pays refondue (app_fiche.js) =================
+   Elle epouse la structure du classeur : une section par feuille. Les styles
+   sont prefixes f- pour ne pas entrer en collision avec la fiche d'origine,
+   qui sert encore REC. */
+.fhead{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:2px 0 18px}
+.fflag{width:87px;height:58px;border-radius:7px;overflow:hidden;flex:none;margin-top:7px;
+  box-shadow:0 0 0 1px var(--line2);display:block}
+.fflag svg,.fflag img{width:100%;height:100%;object-fit:cover;display:block}
+.fhead h1{font-size:29px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0}
+.fpills{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.fpill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 12px;
+  font-size:12px;font-weight:700}
+.fpill svg{width:12px;height:12px;color:var(--muted)}
+.fpill.ok{background:var(--st-ok-bg);color:var(--st-ok-ink)}
+.fpill.no{background:var(--st-bad-bg);color:var(--st-bad-ink)}
+.fpill.wip{background:var(--st-warn-bg);color:var(--st-warn-ink)}
+.fpill.upd{background:var(--surface3);color:var(--ink2);font-weight:600}
+.fcellsw{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);
+  cursor:pointer;user-select:none;margin-left:4px}
+.fcellsw input{margin:0;cursor:pointer}
+
+/* --- les cinq bulles --- */
+.ffacts{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:20px}
+.ffact{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:13px 14px 12px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.ffact .ic{width:26px;height:26px;border-radius:7px;background:var(--accent-soft);
+  color:var(--accent);display:grid;place-items:center;flex:none}
+.ffact .ic svg{width:15px;height:15px}
+.ffact .lbl{font-size:10.5px;font-weight:800;letter-spacing:.075em;text-transform:uppercase;
+  color:var(--muted)}
+.ffact .val{font-size:15px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.ffact .val.sm{font-size:12.5px;font-weight:600;line-height:1.4;max-height:5.6em;overflow-y:auto}
+.fmat{display:flex;align-items:center;gap:9px}
+.fmat b{font-size:19px;font-weight:800;color:var(--mc);font-variant-numeric:tabular-nums}
+.fmat .dots{display:flex;gap:3px}
+.fmat .dots i{width:15px;height:6px;border-radius:2px;background:var(--line2)}
+.fmat .dots i.on{background:var(--mc)}
+
+/* --- grille et navigation --- */
+.fcols{display:grid;grid-template-columns:minmax(0,1fr) 316px;gap:20px;align-items:start}
+/* --fhdr est la hauteur mesuree de header.app, posee par ficheHeader(). La
+   barre d'ancres se collait a top:0, c'est-a-dire exactement la ou l'en-tete de
+   l'application est deja colle, et avec un z-index inferieur : elle passait
+   dessous et disparaissait. La hauteur de l'en-tete change avec la largeur de
+   l'ecran, donc elle se mesure et ne se devine pas. */
+.fnav{position:sticky;top:var(--fhdr,96px);z-index:35;background:var(--bg);padding:6px 0 10px}
+.fnav-in{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);
+  border-radius:11px;padding:4px;overflow-x:auto}
+.fnav-in button{border:0;background:transparent;border-radius:8px;cursor:pointer;
+  padding:8px 13px;font-size:13px;font-weight:700;color:var(--ink2);
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.fnav-in button svg{width:15px;height:15px;flex:none}
+.fnav-in button:hover{background:var(--surface2);color:var(--ink)}
+.fnav-in button[aria-current="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* --- sections --- */
+.fsec{background:var(--surface);border:1px solid var(--line);border-radius:13px;
+  margin-bottom:16px;overflow:hidden;
+  scroll-margin-top:calc(var(--fhdr,96px) + var(--fnavh,52px) + 8px)}
+.fsec-h{display:flex;align-items:center;gap:11px;padding:15px 17px;border-bottom:1px solid var(--line)}
+.fsec-h .ic{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;flex:none;
+  background:var(--accent-soft);color:var(--accent)}
+.fsec-h .ic svg{width:17px;height:17px}
+.fsec-h h2{font-size:16.5px;font-weight:800;margin:0}
+.fsec-h .cnt{margin-left:auto;font-size:11.5px;color:var(--muted);font-weight:600;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.fsec-b{padding:15px 17px 17px}
+
+/* --- paires libelle / valeur --- */
+.frows{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;margin:0}
+.frow{display:grid;grid-template-columns:minmax(150px,36%) 1fr;gap:14px;
+  background:var(--surface);padding:10px 13px;align-items:start}
+.frow dt{font-size:12.5px;color:var(--ink2);font-weight:600;display:flex;align-items:center;
+  gap:7px;flex-wrap:wrap;margin:0}
+.frow dd{margin:0;font-size:13.5px;font-weight:600;overflow-wrap:anywhere}
+.fv-none,.fv-nc{color:var(--muted);font-weight:500;font-style:italic}
+.fcell{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--accent);
+  background:var(--accent-soft);border-radius:4px;padding:1px 5px;white-space:nowrap;display:none}
+body.fcells .fcell{display:inline}
+.ftag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 9px;
+  font-size:11.5px;font-weight:800}
+.ftag.y{background:var(--st-ok-bg);color:var(--st-ok-ink)}
+.ftag.n{background:var(--st-bad-bg);color:var(--st-bad-ink)}
+
+/* --- blocs visuels --- */
+.fblock{margin-top:18px}
+.flab{font-size:11px;font-weight:800;letter-spacing:.075em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.fnote{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.5}
+.fcks{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:7px}
+.fck{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;
+  background:var(--surface2);border-radius:8px;padding:8px 11px}
+.fck svg{width:13px;height:13px;flex:none}
+.fck.on{background:var(--st-ok-bg);color:var(--st-ok-ink)}
+.fck.off{color:var(--muted);font-weight:500}
+.fck.other{background:var(--info-bg);color:var(--info)}
+.fbars{display:grid;gap:12px}
+.fbar{display:grid;grid-template-columns:130px 1fr auto;gap:12px;align-items:center}
+.fbar .k{font-size:12.5px;font-weight:700;color:var(--ink2)}
+.fbar .t{height:22px;background:var(--surface2);border-radius:6px;overflow:hidden}
+.fbar .t i{display:block;height:100%;border-radius:6px}
+.fbar .v{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;min-width:34px;
+  text-align:right}
+.fbar .v.na{font-size:12px;font-weight:600;color:var(--muted)}
+.ftl{position:relative;padding:20px 0 4px}
+.ftl .axis{position:absolute;left:0;right:0;top:28px;height:3px;background:var(--line2);border-radius:2px}
+.ftl .stops{position:relative;display:flex;justify-content:space-between;gap:8px}
+.ftl .stop{text-align:center;flex:1;min-width:0}
+.ftl .dot{width:15px;height:15px;border-radius:50%;background:var(--accent);margin:0 auto 9px;
+  box-shadow:0 0 0 4px var(--bg)}
+.ftl .h{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}
+.ftl .d{font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+
+/* --- voir plus --- */
+.fmore{margin-top:14px;border-top:1px dashed var(--line2);padding-top:12px}
+.fmore-t{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:9px;
+  font-size:12.5px;font-weight:700;color:var(--ink2);cursor:pointer;font-family:inherit}
+.fmore-t:hover{background:var(--surface3);color:var(--ink)}
+.fmore-t svg{width:13px;height:13px;transition:transform .18s}
+.fmore-t[aria-expanded="true"] svg{transform:rotate(180deg)}
+.finner{margin-top:11px}
+
+/* --- recommandation --- */
+.freco{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--surface)}
+/* accent + accent-ink, pas accent2 : en theme sombre accent2 est un violet
+   clair, sur lequel du texte blanc ne se lit pas. */
+.freco-h{display:flex;align-items:center;gap:11px;padding:15px 17px;
+  background:var(--accent);color:var(--accent-ink)}
+.freco-h svg{width:18px;height:18px;color:var(--accent-ink);opacity:.75}
+.freco-h h2{font-size:16px;font-weight:800;margin:0}
+.freco-h .by{margin-left:auto;font-size:10.5px;font-weight:800;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent-ink);opacity:.6}
+.freco-b{padding:16px 17px}
+.freco-b .none{background:var(--surface2);border:1px dashed var(--line2);border-radius:10px;
+  padding:13px 15px;font-size:13px;color:var(--ink2);line-height:1.55}
+
+/* --- colonne de droite --- */
+.fasidew{position:sticky;top:calc(var(--fhdr,96px) + 8px);align-self:start}
+.faside{display:grid;gap:14px;max-height:calc(100vh - var(--fhdr,96px) - 24px);
+  overflow-y:auto;padding-right:3px;
+  scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.faside::-webkit-scrollbar{width:7px}
+.faside::-webkit-scrollbar-thumb{background:var(--line2);border-radius:99px}
+.ffade{position:absolute;left:0;right:3px;bottom:0;height:72px;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--bg) 80%);transition:opacity .22s}
+.fhint{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);display:inline-flex;
+  align-items:center;gap:7px;background:var(--accent);color:var(--accent-ink);border:0;
+  border-radius:999px;padding:6px 14px;font-size:11.5px;font-weight:700;cursor:pointer;
+  white-space:nowrap;font-family:inherit;transition:opacity .22s;box-shadow:var(--shadow)}
+.fhint svg{width:13px;height:13px}
+.fasidew.at-end .ffade,.fasidew.at-end .fhint{opacity:0;pointer-events:none}
+.ftl-list{list-style:none;margin:0;padding:0;display:grid;gap:13px}
+.ftl-list li{display:grid;grid-template-columns:74px 1fr;gap:11px;font-size:12.5px}
+.ftl-list .when{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700;
+  font-size:11.5px;text-align:right;line-height:1.35}
+.ftl-list .what{border-left:2px solid var(--line2);padding-left:11px}
+.ftl-list li:first-child .what{border-color:var(--accent)}
+.fbtn{display:flex;align-items:center;justify-content:space-between;gap:9px;width:100%;
+  background:var(--accent);color:var(--accent-ink);border:0;border-radius:9px;padding:11px 14px;
+  font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+.fbtn:hover{filter:brightness(1.12);text-decoration:none}
+.fbtn svg{width:15px;height:15px;flex:none}
+.fbtn.ghost{background:var(--surface2);color:var(--ink);border:1px solid var(--line2)}
+.fbtn.ghost:hover{background:var(--surface3);color:var(--ink)}
+
+/* --- fenetre des secteurs --- */
+#ficheSectors{border:0;padding:0;background:transparent;max-width:min(920px,94vw);width:100%}
+#ficheSectors::backdrop{background:rgba(10,8,20,.62)}
+.fmodal{background:var(--surface);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
+.fmodal-h{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.fmodal-h h2{font-size:17px;font-weight:800;margin:0}
+.fmodal-h .x{margin-left:auto;background:var(--surface2);border:1px solid var(--line2);
+  border-radius:8px;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;
+  color:var(--ink)}
+.fmodal-h .x svg{width:14px;height:14px}
+.fmodal-b{padding:18px 20px 22px;max-height:min(74vh,660px);overflow-y:auto}
+.fann{font-size:11px;font-weight:800;letter-spacing:.085em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:9px;margin:4px 0 11px}
+.fann:not(:first-child){margin-top:22px}
+.fann::after{content:"";flex:1;height:1px;background:var(--line)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:9px}
+.fs{border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;
+  flex-direction:column;gap:8px;background:var(--surface2)}
+.fs .si{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
+  background:var(--surface);color:var(--muted)}
+.fs .si svg{width:15px;height:15px}
+.fs .sn{font-size:12.5px;font-weight:700;line-height:1.3}
+.fs .sd{font-size:11px;color:var(--muted);line-height:1.35}
+.fs.ee{background:var(--accent-soft);border-color:transparent}
+.fs.ee .si{background:var(--accent);color:var(--accent-ink)}
+.fs.ei .si{color:var(--ie)}
+.fmlg{font-size:11.5px;color:var(--muted);margin-top:16px;padding-top:13px;
+  border-top:1px solid var(--line);line-height:1.5}
+
+@media (max-width:1080px){.ffacts{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:980px){
+  .fcols{grid-template-columns:1fr}
+  .fasidew{position:static}
+  .faside{max-height:none;overflow:visible}
+  .ffade,.fhint{display:none}
+}
+@media (max-width:620px){
+  .ffacts{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr;gap:3px}
+  .fbar{grid-template-columns:1fr auto;gap:8px}
+  .fbar .t{grid-column:1/-1}
+}
+
 /* ================= Layout ================= */
 main{max-width:1240px;margin:0 auto;padding:22px 24px 60px}
 .view{display:none}
@@ -8634,6 +8845,10 @@ const WATCH_QUEUE = [
   source:{ name:"Independent blog", url:"", type:"unofficial" },
   status:"rejected", validatedBy:"NIS 2 core team", validatedOn:"2026-06-20", rejectReason:"Contradicted by official source" }
 ];
+/* ---- Le classeur comparatif, porte case par case.
+   Genere par tools/sheets_to_countries.py - ne pas editer a la main.
+   Le classeur sur SharePoint est la source de verite. ---- */
+const SHEET_DATA = {"workbook":"CYBER WATCH5_Technical inventory.xlsx","sheets":{"id":{"name":"ID - P1","fields":[{"c":"D","l":"Maturity Level"},{"c":"E","l":"Entry into force of the transposition"},{"c":"F","l":"Transposition finalized"},{"c":"G","l":"Transposition (semester)"},{"c":"H","l":"Transposition (year)"},{"c":"I","l":"Exceeded time from EU deadline (month)"},{"c":"J","l":"Type of document for principal transposition text"},{"c":"K","l":"Name of principal transposition text"},{"c":"L","l":"Additional texts (in support of principal text)"}]},"inc":{"name":"Incident reporting - P1","fields":[{"c":"C","l":"Maturity Level"},{"c":"E","l":"Organism type to report incident"},{"c":"F","l":"Organism official name to report incident"},{"c":"G","l":"Date of incident reporting becoming mandatory"},{"c":"H","l":"Method for incident reporting"},{"c":"I","l":"Name and link of web platform"},{"c":"J","l":"Mandatory information required"},{"c":"L","l":"Major incident definition is the same as in the directive"},{"c":"M","l":"Major incident definition in the transposition"},{"c":"N","l":"Size thresholds / criteria to consider an incident as major"},{"c":"P","l":"Specificity on timeline regarding EU directive timeline"},{"c":"Q","l":"Timeline"},{"c":"R","l":"Any other relavant comments"},{"c":"W","l":"Timeline Directive NIS2"}]},"reg":{"name":"Registration - P1","fields":[{"c":"C","l":"Maturity Level"},{"c":"D","l":"Registration availability"},{"c":"E","l":"Tools for self assessment"},{"c":"F","l":"Authority in charge of registration"},{"c":"G","l":"Types of registration"},{"c":"H","l":"Registration deadline"},{"c":"I","l":"Method of registration"},{"c":"J","l":"Deadline of registration (months)"},{"c":"K","l":"Deadline to submit new information (months)"},{"c":"L","l":"Date of reference for registration deadline"},{"c":"M","l":"Notification from the authority of the eligibility"},{"c":"N","l":"List of information for registration"},{"c":"O","l":"Name"},{"c":"P","l":"Address"},{"c":"Q","l":"Coordinates"},{"c":"R","l":"Classification"},{"c":"S","l":"List of member states where service is provided"},{"c":"T","l":"Identity of the main entity"},{"c":"U","l":"National company identification number (tax, SIRET, fical, REGON, ... …)"},{"c":"V","l":"Single point of contact"},{"c":"W","l":"Role of the point of contact"},{"c":"X","l":"IP ranges"},{"c":"Y","l":"Domain names"},{"c":"Z","l":"Classification of sector and subsector (EE/EI)"},{"c":"AA","l":"List of Information Systems"},{"c":"AB","l":"Specific law requirements"},{"c":"AC","l":"Contract with providers of cyber services (third party)"}]},"fw":{"name":"Cybersecurity frameworks - P1","fields":[{"c":"C","l":"Maturity Level"},{"c":"D","l":"Cybersecurity framework directives published"},{"c":"E","l":"Dedicated framework to NIS 2"},{"c":"F","l":"Name and link of framework"},{"c":"G","l":"Framework last publication date"},{"c":"H","l":"Classification of IS"},{"c":"I","l":"Rules of classification"},{"c":"J","l":"Number of cyber themes for EE"},{"c":"K","l":"Number of cyber themes for IE"},{"c":"L","l":"Number of cyber requirements for EE"},{"c":"M","l":"Number of cyber requirements for IE"},{"c":"N","l":"Comments on the number of cyber themes and cyber requirements"},{"c":"O","l":"Does it rely on other frameworks?"},{"c":"P","l":"ISO 27001/27002"},{"c":"Q","l":"IEC 62443"},{"c":"R","l":"NIST CSF"},{"c":"S","l":"NIST SP 800.53"},{"c":"T","l":"CIS Controls"},{"c":"U","l":"NIS 1"},{"c":"V","l":"CyFun Belge"},{"c":"W","l":"Other national regulatory framework"},{"c":"X","l":"Name of national regulatory frameworks"},{"c":"Y","l":"Other national guidance / standards"},{"c":"Z","l":"Name of other national guidance / standards"},{"c":"AA","l":"Existence of a presumption of compliance"},{"c":"AB","l":"Reasons and sectors of presumption"},{"c":"AC","l":"Compliance deadline to framework is different between EE and EI"},{"c":"AD","l":"Compliance deadline to framework from effective date for EE (months)"},{"c":"AE","l":"Compliance deadline to framework from effective date for EI (months)"},{"c":"AF","l":"Compliance target level is different between EE and EI"},{"c":"AG","l":"List of compliance levels"},{"c":"AH","l":"Level of compliance to reach for EE"},{"c":"AI","l":"Level of compliance to reach for EI"},{"c":"AJ","l":"Gradual compliance to reach target level"}]},"aud":{"name":"Audit & Controls - P1","fields":[{"c":"C","l":"Maturity Level"},{"c":"D","l":"Audit explicitly planned by the transposition"},{"c":"E","l":"Organism in charge of the audit"},{"c":"F","l":"Typology of auditor(s)"},{"c":"G","l":"Detailed - Organism in charge of the audit"},{"c":"H","l":"Audit billing model"},{"c":"I","l":"Audit to be conducted by entity (self-assessment)"},{"c":"J","l":"First deadline for self-assessment"},{"c":"K","l":"Frequency for next self-assessments (months)"},{"c":"L","l":"First audit deadline expected for EE (from effective date in months)"},{"c":"M","l":"Frequency for next audits for EE (from first audit date in months)"},{"c":"N","l":"First audit deadline expected for EI (from effective date in months)"},{"c":"O","l":"Frequency for next audits for IE (from first audit date in months)"},{"c":"P","l":"Framework used during audit"},{"c":"Q","l":"Evidence requested during audit"},{"c":"R","l":"Certification requested during audit"},{"c":"S","l":"Audit format and deliverable"},{"c":"T","l":"Criteria for externals auditors / accreditation for organisms"},{"c":"U","l":"Reason of unexpected audit"}]},"san":{"name":"Sanctions - P2","fields":[{"c":"C","l":"Maturity Level"},{"c":"D","l":"Compliance with the sanctions set out in the Directive"},{"c":"E","l":"Ban on practicing for legal representative"},{"c":"F","l":"Financial sanctions"},{"c":"G","l":"Suspension of cyber certification"},{"c":"H","l":"Addition of penalties not included in the directive"},{"c":"I","l":"Types of additional penalties"},{"c":"J","l":"Reccuring or temporary financial sanctions"},{"c":"K","l":"Individual financial sanction"},{"c":"L","l":"Individual banishment sanction"},{"c":"M","l":"Recidivism aggravating factors"},{"c":"N","l":"Public injunction"},{"c":"O","l":"Withdrawal of certifications"},{"c":"P","l":"Suspension of all or part of the entity's activities"},{"c":"Q","l":"Corrective control measures"},{"c":"R","l":"Criminal penalties"},{"c":"S","l":"Financial penalties for the public sector as provided by law"}]},"auth":{"name":"Authority - P3","fields":[{"c":"C","l":"Maturity Level"},{"c":"D","l":"Number of authorities involved in NIS2"},{"c":"E","l":"Consolidated list of authorities"},{"c":"F","l":"Transposition authority"},{"c":"G","l":"Audit authority"},{"c":"H","l":"Registration authority"},{"c":"I","l":"Incident notification authority"},{"c":"J","l":"Multi sectoral authorities"},{"c":"K","l":"Number of sectoral authorities"},{"c":"L","l":"List of sectoral authorities (only if yes and optional)"},{"c":"M","l":"Authority member of EU Network"},{"c":"N","l":"Authority member of NIS Cooperation Group"},{"c":"O","l":"Authority member of EU- CyClone"}]}},"rows":{"AT":{"id":{"D":"3","E":"2026-10-01","F":"Yes","G":"S2 2026","H":"2026","I":"23","J":"Law","K":"Netz- und Informationssystemsicherheitsgesetz – \"NISG 2026\"","L":"NC"},"inc":{"C":"3","E":"Sectoral CSIRT","F":"Sectoral CSIRT","G":"2026-10-01","H":"Report on a web platform","I":"CERT.at","J":"What's happening, expected actions and consequences","L":"YES","P":"NO","R":"Austrian HealthCERT: A specialised CSIRT has been set up specifically for the healthcare sector\nVoluntary reporting: Organisations may voluntarily report cyber threats or ‘near-misses’ (Beinahe-Vorfälle)\nConfidentiality: The authority may inform the public if this is deemed to be in the public interest, after consulting the organisation concerned"},"reg":{"C":"3","D":"NO","E":"Form","F":"Le Bundesamt für Cybersicherheit (Cybersecurity Authority)","G":"Self registration or Notification depending on entities","H":"2027-01-01","I":"Platform","J":"3","K":"Basic data (name, address, contact details, IP address): 2 weeks following the change\n\nStructural data (registered office, turnover thresholds): 3 months following the change","L":"October 1st 2026","M":"NO","N":"Name and registration number.\nUp-tp-date address and contact details.\nIP address.\nSector and subsector, if applicable.\nList of Member States in which they provide the services, if applicable.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Implicitly required but not explicitly listed in the text of the law","V":"Yes","W":"Not specified","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO"},"fw":{"C":"3","D":"No","E":"NC","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NC","AA":"NC","AB":"N.A","AC":"NO","AD":"6","AE":"6","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"For EE and EI","E":"External organism accredited","G":"Acredited organism","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"12","K":"24","L":"24","M":"24","N":"24","O":"24","P":"NC","Q":"NC","R":"Evidence of operational and organisational implementation may be provided by appropriate valid certificates","S":"The deliverable is a structured report in accordance with the authority’s templates, accompanied by the remediation plan","T":"Auditors must be accredited by the authority. The criteria include a relevant qualification, at least three years’ professional experience in cybersecurity, and passing a proficiency examination (Eignungsprüfung) set by the authority","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Specific fines for domain name registry and DNS service providers","J":"NC","K":"YES","L":"NC","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"3","D":"3","E":"Federal Ministry of the Interior\nNational CERT \nSectoral CERTs","F":"BMI","G":"BMI","H":"BMI","I":"CERT","L":"CERT","M":"TO COMPLETE"}},"BE":{"id":{"D":"4","E":"2024-10-18","F":"Yes","G":"In time","H":"In time (2024)","I":"0","J":"Law","K":"Loi du 26 avril 2024 établissant un cadre pour la cybersécurité des réseaux et des systèmes d'information d'intérêt général pour la sécurité publique","L":"Arrêté royal : Cadre pour la sécurité des réseaux et des SI d'intérêt général du 26 avril 2024\nGuide : Cyfun on CCB website"},"inc":{"C":"4","F":"National CSIRT (CCB)","G":"2024-10-18","H":"Report via email","I":"SafeOnWeb","J":"What's happening, expected actions and consequences","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — early warning (all entities)\n72 hours (or 24 hours for trust service providers) — incident notification\nOn request — intermediate/interim report\n1 month after the incident notification — final report\nIf still ongoing at that point — progress report immediately, then final report within 1 month of resolution","R":"The CCB requires notifying affected service recipients directly without delay ; individually sub-threshold incidents can be treated collectively as a single significant incident if they meet certain cumulative criteria"},"reg":{"C":"4","D":"YES","E":"Platform and Guide","F":"CCB","G":"Self registration by the entity","H":"2025-03-18","I":"Platform","J":"5","K":"0.5","L":"From effective date (10/18/2025)","M":"NO","N":"Name and registration number (at the KBO / BCE or equivalent from another EU member state)\nAddress and contact details (email addresses, IP ranges, phone numbers)\nSectoral classification (relevant sector and subsectors, entity type)\nService locations (a list of EU member states where the entity provides services that fall within the scope of the law)","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"Legal Representative","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"CyFun 2025","G":"2025-01-10","H":"Applicable to all IS","I":"Different level of IS","J":"6","K":"6","L":"218","M":"135","O":"YES","P":"YES","Q":"YES","R":"YES","S":"NO","T":"YES","U":"NO","V":"YES","W":"NO","X":"N.A","Y":"YES","Z":"SafeOnWeb","AA":"YES","AB":"ISO 27 001 certification","AC":"NO","AD":"30","AE":"30","AF":"YES","AG":"Small, Basic, Important and Essential","AH":"Essential","AI":"Important","AJ":"YES"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","G":"National Authority: The Centre for Cybersecurity Belgium (CCB).\nExternal Bodies: The CCB maintains and keeps current a list of approved private conformity assessment bodies","H":"At the expense of authority","I":"Yes, only for EI","J":"NA - voluntary and reactive","L":"18","M":"At any time; certification renewal follows the chosen scheme's validity cycle (3 years for ISO 27001).","P":"CyFun ; ISO27001 ; IEC62443","Q":"Policies, audit/conformity reports, asset & risk registers, logs, backups, incident records, access reviews, training records, supplier audits/contracts.","R":"CyFun® certification/conformity assessment; supplier security certifications (e.g., CyFun®, ISO 27001); CREST or ISO/IEC 17025 for testing providers","S":"Periodic conformity assessment or authority inspection; on-site/remote audits, technical testing; delivery of audit/inspection reports and compliance status.","T":"Authority-approved, accredited (ISO 17021-1/CREST/ISO 17025 as applicable), independent, conflict-free, security-cleared where required.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"Same modalities as in the directives","H":"NO","J":"NO","K":"NO","L":"YES","M":"YES","N":"YES","O":"NO","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"5","E":"CCB ; NCCN ; NBB/BNB ; BIPT / IBPT ; FANC / AFNC","F":"Belgian Federal State","G":"CCB","H":"CCB","I":"CCB","J":"YES","K":"3","L":"NBB (National Bank of Belgium) ; BIPT (digital infrastructure except trust services and postal/shipping services ; FANC (cyber aspects of nuclear electricty transmission facilities in the Energy sector)","M":"CCB","N":"CCB","O":"CCB"}},"BG":{"id":{"D":"3","E":"2026-02-17","F":"Yes","G":"S1 2026","H":"2026","I":"16","J":"Law","K":"Закон за изменение и допълнение на Закона за киберсигурност","L":"NC"},"inc":{"C":"3","E":"Sectoral CSIRT","F":"СЕРИКС (Sectoral Computer Security Incident Response Team)","G":"Within 30 days of their formal identification by the national authorities","H":"NC","I":"NC","J":"Early warning: Indicates whether the incident is suspected to be of unlawful/malicious origin and whether it may have a cross-border impact\nIncident notification: Update on the warning, initial assessment (severity, impact) and technical information (indicators of compromise) where available\nFinal report: Detailed description (scope, impact), type of threat or root cause, mitigation measures applied and actual cross-border impact","L":"YES","P":"NO","R":"NC"},"reg":{"C":"3","D":"NO","E":"NC","F":"The Minister for e-Government","G":"Notification of concerned entities by the authority","H":"For providers of specific digital services (DNS, TLD, cloud, etc.), the information must be provided within two months of their establishment or the appointment of a representative","J":"2 months for specific digital entities","K":"0.5","L":"From effective date","M":"YES","N":"Name and registration number.\nAddress and contact details.\nSubsector classification and type of establishment\naddress in other EU member states or of legal representatives outside the EU.\nIP address, if applicable.\nSize tresholds.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"YES","W":"Not specified","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"YES"},"fw":{"C":"3","D":"No","E":"NC","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NC","AA":"NC","AB":"N.A","AC":"NO","AE":"12","AF":"NO","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"For EE and EI","E":"National authority","G":"The audit may be carried out either directly by the authority or by an independent body","H":"At the expense of the entity","I":"Yes, only for EE","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"Same modalities as in the directives","H":"YES","I":"Specific fines for failure to register in the national register","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"3","D":"3","E":"Ministry of Online Administration \nSectoral Authorities and sectoral ministry","F":"E-government ministry","G":"E-government ministry","H":"E-government ministry","I":"Sectoral CERTs","J":"YES","K":"Multiple","L":"NC","M":"National CERT","N":"MEU / SPOC","O":"Cybersecurity Council / SPOC"}},"HR":{"id":{"D":"4","E":"2024-02-15","F":"Yes","G":"In time","H":"In time (2024)","I":"0","J":"Law","K":"Croatian Cybersecurity Act (Zakon o kibernetičkoj sigurnosti n° 14/2024)","L":"Plusieurs décrets : Règlement sur la cybersécurité n° 135 / nov. 24, Programme national de gestion des crises cyber janv. 25, Plan de mise en œuvre des exercices de cybersécurité, Acte de planification stratégique à moyen terme, Règles de certification pour l'audit de cybersécurité"},"inc":{"C":"4","E":"Sectoral CSIRT","F":"Sectoral CSIRT","G":"30 days following the notification by authority","H":"Report on a web platform","I":"PiXi platform : https://pixi.carnet.hr/","J":"What's happening, expected actions and consequences","L":"YES","P":"NO","R":"Entities must inform their beneficiaries of significant incidents or serious cyber threats without undue delay. The 30-day period specified in the Act is a transitional deadline for entities to commence their reporting obligations once they have been officially notified of their classification.","W":"Major incident Directive NIS2"},"reg":{"C":"4","D":"YES","E":"Authority","F":"RIA","G":"Notification of concerned entities by the authority","H":"The initial classification must be carried out by the authorities within one year of the Act coming into force (i.e. by February 2025)","I":"Electronic mail","J":"15 à 45 jours après réception de la demande de l'autorité\nRegistre spécial : 15 jours après reception de la demande","K":"Données de classification : dans les 2 semaines suivant le changement \nRegistre spécial : dans les 3 mois suivant le changement","L":"Reception of classification","M":"YES","N":"Nom, adresse et coordonnées, le secteur et sous-secteur concernés, la liste des Etats membres dans lequel l’installation fournit des services\nLes acteurs du numériques ainsi que les KRITIS doivent fournir des informations supplémentaires tells que les plages d’adresses IP publiques de l’établissement et le service critique etc.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not explicitly listed in Articles 20 and 23 (but required for general legal identification)","V":"YES","W":"Legal Representative","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"Vlada Republike Hrvatske + ISO27001","G":"2025-03-02","H":"Applicable to all IS","I":"NC","J":"13","K":"13","L":"99","M":"99","N":"The Croatian framework contains 13 general cybersecurity risk-management themes applicable to essential and important entities. \nEntities in the digital infrastructure sector are subject to an additional set of specific physical security measures under Annex III, bringing the applicable total to 14 themes for those entities.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"NO","W":"NO","X":"N.A","Y":"YES","Z":"PiXi","AA":"NO","AB":"N.A","AC":"NO","AD":"12","AE":"12","AF":"NO","AG":"Essential, Important","AH":"Full compliance","AI":"Full compliance","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"External organism accredited","G":"External organism acredited","H":"At the expense of entity","I":"Yes, only for EI","J":"24 months after law coming into force","K":"24","L":"12","M":"24","N":"NC","O":"NC","P":"YES","Q":"YES","R":"National security certificate for auditing or a certificate issued under a European certification scheme","S":"EE : Cybersecurity Audit Report\nEI (Self-assessment) : Declaration of Conformity (Izjava o sukladnosti) or corrective action plan","T":"Managed security service providers (MSPs/MSSPs) holding a national security certificate issued by the ZSIS","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"More specific modalities","F":"More specific modalities","G":"Same modalities as in the directives","H":"YES","I":"Specific fines (€2,000 to €20,000) for failure to provide the data required for the classification of entities","J":"NC","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"4","D":"13","E":"See my comment","F":"NCSC-HR","G":"NCSC-HR","H":"NCSC-HR","I":"HAKOM / Specific entities","J":"NCSC-HR","K":"7","L":"See my comment","M":"NCSC-HR and National CRT","N":"NCSC-HR","O":"National CRT"}},"CY":{"id":{"D":"4","E":"2025-04-25","F":"Yes","G":"S1 2025","H":"2025","I":"6","J":"Law","K":"Ο περί Ασφάλειας Δικτύων και Συστημάτων Πληροφοριών (Τροποποιητικός) Νόμος του 2025 (Νόμος 60(Ι)/2025)"},"inc":{"C":"4","F":"DSA","G":"2026-02-25","H":"Report on a web platform","I":"National CSIRT-CY Incident Reporting Form","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours (per others, matching the directive default) — early warning\n72 hours — full/incident notification\nOn request — intermediate report\n1 month after incident notification — final report\nIf ongoing — progress report at the 1-month mark, then final report within 1 month of resolution"},"reg":{"C":"4","D":"YES","E":"Authority","F":"DSA","G":"Notification of concerned entities by the authority","H":"2026-07-17","I":"NC","J":"12","K":"NC","L":"From effective date (7/11/2025)","M":"YES","N":"Name and identification details\nSectoral classification (relevant sector and subsector)\nList of essential services \nNumber of entities\nThreshold data (number of users or market share)\nCross-border service provision (if the entity operates in 6+ countries): specific essential services it provides, and a list of member states where those services are provided\nInfrastructure location\nImpact assessment data (data regarding potential impact, including size and duration of potential disruptions and their effect on economic activities, public safety, or health)\nInterdependence information (the degree to which the entity depends on other sectors or entities)","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"NO","U":"NO","V":"YES","W":"Security Liaison Officer","X":"NO","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"4","D":"No","E":"NC","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","X":"NC","Y":"NC","Z":"NC","AA":"NC","AB":"NC","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"4","D":"For EE and EI","E":"National authority","F":"Independent national cybersecurity authority","G":"DSA (Digital Security Authority)","H":"Audited entity bears the cost of independent audits; authority inspections funded via regulatory fees.","I":"NO","L":"NC","M":"Risk-based; no fixed frequency (ad hoc audits possible)","N":"NC","O":"Triggered only by non-compliance indicators/evidence.","P":"NO","Q":"Policies, audit reports, logs (≥6 months), technical/operational records, system data, sensor data.","R":"NO","S":"Targeted audit/on-site inspection; audit report with findings, compliance status, and recommendations.","T":"Qualified independent auditors meeting Authority-defined criteria; trained professionals.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"It adds strict criminal penalties (imprisonment and criminal fines), alongside separate administrative fines of up to €200,000/€300,400 for general breaches of the law or EU regulations.","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"NO","P":"YES","Q":"YES","R":"YES","S":"YES"},"auth":{"C":"4","D":"1","E":"Digital Security Authority (DSA)","F":"DSA","G":"DSA","H":"DSA","I":"DSA","J":"NO","K":"0","M":"DSA","N":"DSA","O":"DSA"}},"CZ":{"id":{"D":"4","E":"2025-11-01","F":"Yes","G":"S2 2025","H":"2025","I":"12","J":"Law","K":"Zákon č. 264/2025 Sb.\nZákon o kybernetické bezpečnosti","L":"Zákon č. 264/2025 Sb. (Cybersecurity Act), publiée 04/08/2025, en vigueur 01/11/2025 ; 2 décrets d'application (EE/EI) publiés 14/10/2025."},"inc":{"C":"4","E":"Multiple organisms","F":"Notification is made to the NUKIB for providers subject to the high‑obligation regime, and to the national CERT for providers subject to the low‑obligation regime","G":"At latest 12 month after notification by authority","H":"Report on a web platform","I":"NUKIB - https://portal.nukib.gov.cz/chci-vyridit/ohlaseni-regulovane-sluzby","J":"What's happening, expected actions and consequences","L":"NO","M":"A cybersecurity incident has a significant impact on the provision of a regulated service if it has caused or may cause serious operational disruption of services or financial losses to the regulated service provider, or has caused or may cause considerable harm to other persons","N":"NC","P":"NO","R":"NC"},"reg":{"C":"4","D":"YES","E":"Platform","F":"NUKIB","G":"Self registration by the entity","H":"2026-02-01","I":"Platform","J":"2","K":"3","L":"From effective date","M":"NO","N":"Name of the organisation.\nSector and subsector classification, as well as the type of entity .\nUp-to-date contact details of the entity and its legal representative, if applicable.\nList of member states where the entity provides services.\nIP address.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"YES","W":"Legal Representative","X":"YES","Y":"YES","Z":"YES","AA":"NO","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"NUKIB's Decree","G":"2025-09-05","H":"Applicable to all IS","I":"Different level of IS","J":"25","K":"16","L":"293","M":"82","N":"Act 264/2025 splits obligations into a higher regime (EE, Decree 409/2025) and a lower regime (IE, Decree 410/2025). \nEE face 293 requirements across 25 measure sections; IE face 82 : a +257% gap, the largest in the EU.","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NO","X":"N.A","Y":"NO","Z":"NO","AA":"NO","AB":"N.A","AC":"YES","AD":"12","AE":"12","AF":"YES","AG":"The bill distinguishes between two types of entities: suppliers under the strong obligations regime (≈ EE) and those under the weak obligations regime (≈ EI).","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"National authority","G":"The National Cybersecurity Centre and the Office for the Protection of the Constitution","H":"NC","I":"Yes, only for EE","J":"12","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"\"- Adjustment to the local currency;\n\"- CZK 100,000,000 for failure to provide the required information; \n\"- CZK 50,000,000 for failure to notify changes and updates to the information;\n\"- CZK 35,000,000 for failure to implement the required changes;\n\"- CZK 20,000,000 for breaching a prohibition on carrying out duties;\n\"- CZK 2,000,000 for the deliberate provision of incorrect information;\n\"- CZK 50,000 for a breach of confidentiality by a natural person; \n\"- The total amount of repeated fines for administrative bodies may reach CZK 100,000 and may not exceed CZK 10,000,000 or 1 per cent of the net turnover achieved by a legal entity or a natural person;","J":"YES","K":"NO","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"2","E":"NUKIB \nNational CERT","F":"NUKIB","G":"NUKIB","H":"NUKIB","I":"CERT","L":"TO COMPLETE","M":"TO COMPLETE"}},"DK":{"id":{"D":"3","E":"2025-07-01","F":"Yes","G":"S2 2025","H":"2025","I":"8","J":"Law","K":"Lov om foranstaltninger til sikring af et højt cybersikkerhedsniveau (NIS‑2‑loven) (Bill L 141)","L":"07/05/2024: the Ministry of Defense submitted a draft of the main act implementing NIS 2 for public consultation, which ran until August 22 and October 2024"},"inc":{"C":"3","E":"National authority","F":"CFCS","G":"2025-01-07","H":"Report on a web platform","I":"Virk.dk : governmental platform\nhttps://virk.dk\nSectoral authorities can also ask complementary informations after reception of the report on Virk.dk","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","L":"YES","P":"NO","R":"NC"},"reg":{"C":"3","D":"YES","E":"Platform","F":"CFCS","G":"Self registration by the entity","H":"2025-10-01","I":"Platform","J":"0.5","K":"Digital infrastructure entities/ICT services: Within 3 months of the change\n\nOther essential/important entities: Within 2 weeks of the change","L":"From effective date","M":"NO","N":"Name of the organisation.\nSector and subsector classification, as well as the type of entity .\nUp-to-date contact details of the entity and its legal representative, if applicable.\nList of member states where the entity provides services.\nIP address.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"YES","W":"Not specified","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"3","D":"Temporary","E":"NIS 2 dedicated framework","F":"VEJLEDNING TIL NIS 2-LOVEN – Implementering af cybersikkerhedsforanstaltninger","G":"2025-06-01","H":"Applicable to all IS","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NO","Z":"N.A","AA":"NO","AB":"N.A","AC":"NO","AD":"NO","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"For EE and EI","E":"Sectoral authorities","G":"Sectoral authorities","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"NC","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Order for public disclosure. \nThe authority may order an entity to publish, in a non-anonymised form, decisions relating to enforcement measures or summaries of judgments imposing fines","J":"NC","K":"YES","L":"YES","M":"NC","N":"YES","O":"YES","P":"NO","Q":"YES","R":"YES","S":"NC"},"auth":{"C":"3","D":"10","E":"CFCS – Centre for Cyber Security (CSIRT + SPOC)\nDanish Business Authority (DBA) – DSP\nDanish Energy Agency \nDanish Transport, Construction and Housing Authority (air / rail / road / ports)\nDanish Maritime Authority\nDanish Financial Supervisory Authority \nDanish Health Data Authority \nMinistry of Environment and Food \nSAMSIK / Danish Agency for Digital Government – OES secteur public numérique (administration)\nMSSB / Ministry for Resilience and Preparedness – Coordination nationale NIS2","F":"MSSB","G":"Danish Energy Agency\n Danish Transport Authority\nDanish Maritime Authority\nDanish FSA\nDanish Health Data Authority\n Ministry of Environment and Food\nSAMSIK","H":"CFCS (through Virk.dk)","I":"CFCS (National CSIRT)","J":"YES","K":"7","L":"Danish Energy Agency \nDanish Transport, Construction and Housing Authority (air / rail / road / ports)\nDanish Maritime Authority\nDanish Financial Supervisory Authority \nDanish Health Data Authority \nMinistry of Environment and Food \nSAMSIK (Public administration)","M":"CFCS","N":"CFCS","O":"CFCS"}},"EE":{"id":{"D":"4","E":"2026-01-01","F":"Yes","G":"S1 2026","H":"2026","I":"14","J":"Law","K":"Küberturvalisuse seaduse ja avaliku teabe seaduse","L":"Laws (old) : n°RT I, 06.08.2022, 2 ; n°RT I, 30.12.2025, 4 ; n°RT I, 21.06.2024, ; n°RT I, 30.12.2025, 4 still relevant"},"inc":{"C":"4","F":"RIA","G":"2026-01-01","H":"Report on a web platform","I":"CERT-EE","J":"The arrangements are identical to those provided for in the directive","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability ; impact is rated at least \"severe\" on the severity scale set out in the entity's system risk analysis, the service cannot continue within the maximum permitted outage time set in the service-level agreement, the incident disrupts another service provider's service continuity","Q":"24 hours — esmane teade (initial notice)\n72 hours — intsidenditeade (incident notification)\nOn request / if unresolved — vahearuanne (interim report)\n1 month after the intsidenditeade — lõpparuanne (final report)"},"reg":{"C":"4","D":"YES","E":"Platform","F":"RIA","G":"Self registration by the entity","H":"2026-04-01","I":"Platform","J":"3","K":"0.5","L":"From effective date (1/1/2026)","M":"NO","N":"Name of the organisation.\nSector and subsector classification.\nAddress (of main establishment and other establishments in the EU).\nUp-to-date contact details of the entity and its legal representative.\nList of member states where the entity provides services.","O":"YES","P":"YES","Q":"NO","R":"YES","S":"YES","T":"NO","U":"YES","V":"NO","W":"NC","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"E-ITS","G":"2025-12-14","H":"Applicable to all IS","I":"Different level of IS","J":"114","K":"114","L":"1750","M":"1750","O":"YES","P":"YES","Q":"NO","R":"NO","S":"NO","T":"NO","U":"NO","V":"NO","W":"YES","X":"E-ITS","Y":"YES","Z":"German BSI IT-Grundschutz","AA":"YES","AB":"IS/IEC 27001 certification","AC":"NO","AD":"36","AE":"36","AF":"NO","AG":"Small organisations (V-EITS for under 50 employees and less than 10M euro turnover) / full E-ITS for everyone else","AH":"full E-ITS","AI":"full E-ITS","AJ":"YES"},"aud":{"C":"4","D":"For EE and EI","E":"National authority","F":"Information system authority","G":"RIA","H":"At the expense of the entity","I":"NO","L":"NC - compliance required within 36 months","M":"Risk-based/ad-hoc ; spot checks possible","N":"NC - compliance required within 36 months","O":"Ex-post audits upon non-compliance concerns","P":"E-ITS, internal security policies & risk assessments.","Q":"Logs, records, risk analyses, security controls evidence, procedures/workflows.","R":"NO","S":"On-site or remote audit; report with findings/recommendations, possible corrective order.","T":"Accredited conformity assessment body; regulator-defined auditor requirements.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"It adds a misdemeanor fine of up to 200 fine units for natural persons or €20,000 for legal entities issuing non-compliant cybersecurity conformity declarations (§ 18^1). It also sets out specific legal representative fines of up to 300 fine units or €32,000 for cross-border electricity entities (§ 18^5).","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"3","E":"RIA ; TTJA ; Security authority","F":"RIA","G":"RIA, TTJA and security authority","H":"RIA","I":"RIA","J":"YES","K":"1","L":"Cross-border electricity flows","M":"RIA","N":"RIA","O":"RIA"}},"FI":{"id":{"D":"3","E":"2025-04-08","F":"Yes","G":"S1 2025","H":"2025","I":"5","J":"Law","K":"Kyberturvallisuuslaki (124/2025)","L":"05/24/2024: the Council of State submitted a draft bill (HE 57/2024) NIS 2 to Parliament"},"inc":{"C":"3","E":"Multiple organisms","F":"Sectoral authorities (for mandatory notification)\nNSCS-FI (Traficom) (automatically receives all notifications)","G":"2025-08-04","H":"Report on a web platform","I":"Traficom NIS2 Incident-Notification E-Service\nhttps://www.kyberturvallisuuskeskus.fi/en/toimintamme/saantely-ja-valvonta/nis2-euroopan-unionin-kyberturvallisuusdirektiivi/nis2","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","L":"YES","P":"NO","R":"Voluntary reporting of non-significant threats is encouraged (not just permitted)"},"reg":{"C":"3","D":"YES","E":"Platform","F":"NCSC-FI","G":"Self registration by the entity","H":"2025-05-08","I":"Platform","J":"1","K":"0.5","L":"From effective date","M":"NC","N":"Les entités doivent fournir les informations suivantes lors de l’enregistrement: \nNom de l'entité, secteur, sous-secteur et type d'entité, plages d'adresses IP de l'entité\n\nCertaines entités (DNS, marketplace, cloud, …) doivent enregistrer davantage de données :\nAdresse de l'établissement en Finlande ou adresse de l'établissement principal en Finlande et adresses des autres établissements dans l'UE\nCoordonnées à jour, y compris les adresses e-mail et les numéros de téléphone","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"Yes","W":"Not specified","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NC","AC":"NO"},"fw":{"C":"3","D":"Temporary","E":"NIS 2 dedicated framework","F":"Liikenne- ja viestintäviraston suositus NIS-valvoville viranomaisille kyberturvallisuuden riskienhallinnan toimenpiteistä","G":"2025-08-04","H":"Applicable to all IS","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NO","AA":"NC","AB":"N.A","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"For EE and EI","E":"National authority","G":"Traficom (transport, digital infrastructure, managed services).\nEnergiavirasto (energy).\nTukes (manufacturing, chemicals).\nValvira (health).\nRuokavirasto (food).","H":"At the expense of the entity","I":"NO","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","O":"NO","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"3","D":"3","E":"LVM (Liikenne-ja viestintäministeri) : Ministry of Transport and Communications\nNCSC-FI\nTraficom","F":"Traficom","G":"Traficom","H":"LVM","I":"NCSC-FI","J":"NO","K":"0","M":"Traficom","N":"Traficom","O":"Traficom"}},"FR":{"id":{"D":"2","E":"NC","F":"No","G":"NC","H":"NC","I":"NC","J":"Law","K":"Projet de loi relatif à la résilience des infrastructures critiques et renforcement de la cybersécurité","L":"NC"},"inc":{"C":"2","E":"National authority","F":"ANSSI","H":"NC","J":"NC","L":"NC","M":"NC","N":"NC","P":"NO","R":"Timeline Directive NIS 2"},"reg":{"C":"2","D":"YES","E":"Platform","F":"ANSSI","G":"Self registration by the entity","I":"Platform","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","V":"NC","W":"NC","X":"NC","Y":"NC","Z":"NC","AA":"NC"},"fw":{"C":"2","D":"Temporary","E":"NIS 2 dedicated framework","F":"20260317_NIS_V2_ReCyF_v2.5.pdf (provisoire)","G":"15/11/2024","H":"Applicable to all IS","I":"Exclusion of IS possible","J":"20","K":"15","L":"152","M":"76","N":"France has not yet enacted its transposition law; ANSSI's ReCyF v2.5 (17/03/2026) is a non-binding working document. \nIt structures NIS2 into 20 security objectives: objectives 1-15 apply to both tiers, 16-20 to essential entities only.\n Result: EE = 20 themes / 152 measures, IE = 15 themes / 76 measures (+105% gap).","O":"YES","P":"YES","Q":"NO","R":"NO","S":"NO","T":"NO","U":"YES","V":"NC","W":"YES","X":"LPM","Y":"NC","AA":"YES","AB":"ISO 27001 compliance (objectives 2 and 3)\n▪ PACS service provider (objectives 3, 17, 19 and 20)\n▪ PASSI service provider (Objective 5)\n▪ Use of a PAMS service provider (objectives 14 and 15)\n▪ PDIS service provider (Objective 16)","AC":"NC","AD":"NC","AE":"NC","AF":"YES","AG":"Essential, Important","AH":"20","AI":"15","AJ":"NC"},"aud":{"C":"2","D":"For EE and EI","E":"National authority","G":"ANSSI","H":"The costs of checks carried out by ANSSI (inspections, audits by its officers, scans) are borne by ANSSI.\nHowever, the cost of audits carried out by an independent body is borne by the entity being audited, unless ANSSI decides otherwise.","I":"Yes, for EE and EI","J":"NC","K":"12","L":"NC","M":"NC","N":"NC","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"2","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Daily penalty payments (up to EUR 5,000 per day of delay) to compel the entity to comply with an enforcement measure.\nPermanent revocation of an authorisation, qualification or certificate (as distinct from a simple suspension)","J":"YES","K":"NO","L":"NO","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"2","D":"1","E":"ANSSI","F":"ANSSI","G":"ANSSI","H":"ANSSI","I":"TO COMPLETE","L":"TO COMPLETE","M":"TO COMPLETE"}},"DE":{"id":{"D":"4","E":"2025-12-06","F":"Yes","G":"S2 2025","H":"2025","I":"13","J":"Law","K":"Gesetz zur Umsetzung der NIS-2-Richtlinie und zur Regelung wesentlicher Grundzüge des Informationssicherheitsmanagements in der Bundesverwaltung","L":"Décret : Act on the Federal Office for Information Security (BSI Act - BSIG)"},"inc":{"C":"4","F":"BSI","G":"2026-01-06","H":"Report on a web platform","I":"BSI-Portal","J":"What's happening, expected actions and consequences","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — Frühwarnung (early warning)\n72 hours — Meldung (incident notification/follow-up)\n1 month after the 72-hour notification — Abschlussmeldung (final report), or a progress report if the incident is still ongoing"},"reg":{"C":"4","D":"YES","E":"Platform and Guide","F":"BSI","G":"Self registration by the entity","H":"2026-03-06","I":"Platform","J":"3","K":"0.5","L":"From effective date (12/06/2025)","M":"NO","N":"Name and legal form (including commercial register number)\nAddress and up-to-date contact details, including email addresses and telephone number \nPublic IP ranges/blocks\nRelevant sector, subsector, or industry\nList of EU member states where the entity provides its services\nEstablishment locations (main establishment and any other EU establishments, or the address of a designated representative if the entity is based outside the EU)\nCritical infrastructure data (for operators of critical installations, including installation categories, supply metrics and a 24/7 contact point)","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"Local representative","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"BSIG2026","G":"2025-12-05","H":"Different applicability according of IS","I":"Different level of IS","J":"10","K":"NC","O":"YES","P":"YES","Q":"NO","R":"NO","S":"NO","T":"NO","U":"NO","V":"NO","W":"YES","X":"KRITIS-Verordnung","Y":"YES","Z":"BSI IT-Grunschutz (10 layers, 111 mdoules)","AA":"NO","AB":"ISO 27001, IT-Grunschutz","AC":"NO","AD":"0","AE":"0","AF":"NO","AG":"Proportionality test according to risk exposure; entity size, implementation cost, and the probability / severity of incidents","AH":"Appropriate, proportionate, and effective technical and organizational measures across the same 10 categories","AI":"Appropriate, proportionate, and effective technical and organizational measures across the same 10 categories","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"External organism accredited","F":"Qualified independent third parties","G":"BSI maintains referral lists of qualified providers","H":"Entity pays regular compliance audits; regulator-initiated audits billed only if triggered by justified compliance concerns","I":"Yes, for EE and EI","J":"No fixed deadline ; ongoing compliance evaluation required","K":"Continuous (no fixed frequency)","L":"≥3 years (critical operators); otherwise BSI-triggered","M":"36 ; ad-hoc","O":"Reactive/ad-hoc only","P":"Sector-specific B3S framework, IT-Grunschutz","Q":"Audit reports, supporting documentation, remediation plans, records/documents, proof of remediation.","R":"Product-level certification required for specific ICT products, services or processes","S":"Audit/compliance report, deficiency register, remediation plan.","T":"BSI-authorized, accredited, technically qualified, independent, adequately resourced.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"It introduces personal civil liability for company directors. If they fail to implement/monitor risk-management measures, they are personally liable to their own company for any resulting damages. BSIG § 63 also raises the cap on coercive compliance fines to €100,000.","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"5","E":"BSI ; BNetzA ; BaFin ; BBK, Landesbehörden","F":"BMI","G":"BSI ; BNetzA ; BaFin ; Landesbehörden","H":"BSI ; BBK","I":"BSI ; BBK (for energy and telecommunication, BNetzA and BSI)","J":"YES","K":"3","L":"BNetzA (energy and telecommunication) ; BaFin (bank and market infrastructures), Landesbehörden (16 regional authorities of the Länder)","M":"BSI","N":"BSI","O":"BSI"}},"GR":{"id":{"D":"4","E":"2024-11-27","F":"Yes","G":"S2 2024","H":"2024","I":"1","J":"Law","K":"Loi n°5160/2024","L":"02/10/2025: Joint Ministerial Decision No. 1381/2025, which specifies the creation of a digital platform and details regarding the submission of information required for the registration of entities\n\n05/06/2025: Joint Ministerial Decision No. 1689/2025, establishing the national framework of cybersecurity requirements\n\n12/16/2025: Adoption of the new National Cybersecurity Strategy 2026–2030, under Law 5160/2024 (replacing the 2020–2025 strategy)"},"inc":{"C":"4","F":"NCSA","G":"28/11/2024","H":"Report via email","I":"Incident reporting form","J":"NC","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — early warning\n72 hours — incident notification\nOn request — interim report\n1 month after the incident notification — final report (or progress report + final report within 1 month of resolution, if still ongoing)"},"reg":{"C":"4","D":"YES","E":"Platform","F":"NCA","G":"Self registration by the entity","H":"2026-01-17","I":"Platform","J":"2","K":"0.5","L":"From effective date (11/27/2024)","M":"NO","N":"Name of the organisation.\nSector and subsector classification, as well as the type of entity.\nUp-to-date contact details of the entity and its legal representative.\nList of member states where the entity provides services .\nList of member states where the entity provides services (if applicable).\nIP address.\nDomain Names of Company","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"CISO","X":"YES","Y":"YES","Z":"YES","AA":"NO","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"National Framework of Cybersecurity Requirements","G":"2025-06-05","H":"Applicable to all IS","I":"Different level of IS","J":"22","K":"21","L":"110","M":"98","O":"NO","P":"NO","Q":"NO","R":"NO","S":"NO","T":"NO","U":"NO","V":"NO","W":"NO","X":"N.A","Y":"YES","Z":"Cybersecurity National Strategy 2026-2030","AA":"NO","AB":"N.A","AC":"NO","AD":"3","AE":"3","AF":"NO","AG":"Essential, Important","AH":"Essential","AI":"Important","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"National authority","F":"National cybersecurity authority","G":"NCSA","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"Continuous (no fixed frequency)","L":"NA - risk-based","M":"Risk-based; ad hoc/targeted audits","O":"Reactive/ex-post; triggered by incidents or non-compliance concerns","P":"Risk-based Audit & Supervision Regulation; EU/international standards; Unified Cybersecurity Policy.","Q":"Policies, implementation evidence, asset inventory, system/data records, logs, devices/cloud data.","R":"NO","S":"On-site/remote, regular/targeted audits & scans; audit report and corrective actions.","T":"Authority-certified inspectors/SMEs; qualified, independent, conflict-free; supervised certification bodies.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Greek law adds specific maximum administrative fines for individual compliance infractions that are not detailed in the directive:• Fine up to €200,000 for management's failure to approve risk management measures (Article 14.1).• Fine up to €100,000 for failing to provide annual employee training (Article 14.2).• Fine up to €200,000 for registry registration failures (Article 19).• Fine up to €800,000 for domain registration database failures (Article 20).• Fine up to €100,000 for failure to notify information sharing participation (Article 21.3).• Fine up to €500,000 for failing to comply with supervision of essential entities (Article 24.2 & 24.4).• Fine up to €350,000 for failing to comply with supervision of important entities (Article 25.2).• Fine up to €300,000 for mandatory certification violations (Article 15.6).• Additionally, private supervised entities must pay a proportional supervision fee (παράβολο εποπτείας) and audit fee (τέλος ελέγχου).","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"4","D":"8","E":"NCA ; ADAE ; EYP (national CERT) : Ministry of Digital Governance ; GEETHA : EET ; HDPA ; Coordinating Committee for Cybersecurity","F":"Ministry of Digital Governance","G":"NCA","H":"NCA","I":"NCA's CSIRT ; EYP national CERT ; ADAE and NCA (for electronic communications providers)","J":"YES","K":"1","L":"ADAE","M":"NCA","N":"NCA","O":"NCA"}},"HU":{"id":{"D":"4","E":"2025-01-01","F":"Yes","G":"S1 2025","H":"2025","I":"2","J":"Law","K":"Act LXIX of 2024 on the cybersecurity of Hungary","L":"Laws (old) : n°LX/2025, n°LXIX/2024, n°XXXII/2021 still partly effective"},"inc":{"C":"4","E":"National authority","F":"Specialized National Security Service (SFTZH)","G":"2025-01-01","H":"Report on a web platform","I":"https://incidens.nki.gov.hu/","J":"Name of the organisation involved in the accident \nRegulatory authority for the organisation involved in the accident\nOrganisation number of the organisation involved in the incident \nName of the person who reported the incident\nTelephone number of the person reporting \nContact email address\nAbout\nDescription of the nature of the incident \nName of the system involved in the incident \nBrief description of the incident","L":"YES","P":"NO","R":"Entities must inform their beneficiaries of a significant incident within 72 hours of becoming aware of it","W":"il a causé ou est susceptible de causer une perturbation opérationnelle grave des services ou des pertes financières pour l’entité concernée;"},"reg":{"C":"4","D":"YES","E":"Form","F":"SZTFH","G":"Self registration by the entity","H":"2026-01-31","I":"Electronique mail","J":"1","K":"0.5","L":"From specific date (01/01/2026)","M":"NO","N":"Données de l'entreprise (nom, numéro fiscal …)\nDonnées techniques ( les services publics fournis par ses SI électroniques, l'adresse IP publique et fixe attribuée à l'organisme utilisée par ses SI électroniques…)\nInformations sur le responsable de la sécurité des systèmes d'information électronique","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"CISO","X":"YES","Y":"YES","Z":"YES","AA":"YES","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"418/2024. (XII. 23.) Korm. rendelet","G":"2025-02-10","H":"Applicable to all IS","I":"Different level of IS","J":"19","K":"19","N":"No fixed EE/EI requirement count. The Hungarian framework (Decree 7/2024 MK, Annex 2) applies a single control catalogue to all entities.\n The number of applicable controls depends on the security class of each electronic information system (Basic / Significant / High), not on EE/IE status. A single requirement count is therefore only meaningful once a class is fixed.","O":"YES","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"YES","V":"NC","Y":"NC","AA":"YES","AB":"The sectors of banking, financial market infrastructures, and public administration are not listed in the Hungarian NIS2 implementation.","AC":"NO","AD":"24","AE":"24","AF":"YES","AG":"basic, significant, high","AI":"basic","AJ":"YES"},"aud":{"C":"4","D":"For EE and EI","E":"External organism accredited","G":"NKI, KNBSZ","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"24","L":"Around 18","M":"24","N":"18","O":"24","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"TO COMPLETE","G":"Same modalities as in the directives","H":"YES","I":"\"- 1 to 15 million HUF if an audit contract is not concluded\n\"- 1 to 150 million HUF for failure to carry out audits (capped at 2%)\n\"- HUF 500,000 to 5 million \n\"- HUF 1 to 5 million against directors \n\"- HUF 1 to 5 million against digital entities failing to comply with the authority’s orders","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"5","E":"SZTFH/ SARA\nNKI\nKNBSZ\nSpecialized National Security Service","F":"SZFTH","G":"SZFTH","H":"SZFTH","I":"CNCS/ KNBSZ","L":"TO COMPLETE","M":"TO COMPLETE"}},"IE":{"id":{"D":"1","E":"NC","F":"No","G":"NC","H":"NC","I":"NC","J":"Law","K":"National Cyber Security Bill 2024","L":"NC"},"inc":{"C":"1","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","L":"NC","M":"NC","N":"NC","P":"NO","R":"Timeline Directive NIS 2","W":"il a affecté ou est susceptible d’affecter d’autres personnes physiques ou morales en causant des dommages matériels, corporels ou moraux considérables."},"reg":{"C":"1","D":"NO","E":"Guide","F":"NCSC","G":"Self registration by the entity","H":"Fournisseurs d'infrastructure numérique (DNS, TLD, cloud, etc.) : 17/01/2025\nÉtablissement de la liste générale par le NCSC : 17/04/2025","I":"Platform","J":"3","K":"0.5","L":"From effective date","M":"NC","N":"Identification d'un point de contact\nAssociation du point contact avec le sujet NIS, incluant la fourniture du code fiscal ou d'un titre légal attestant de la délégation de pouvoir par le représentant légal\nInscription des informations de l’entité sur le portail de l’ACN","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"Yes","W":"Not specified","X":"YES","Y":"YES","Z":"YES","AA":"NC","AB":"YES","AC":"YES"},"fw":{"C":"1","D":"Temporary","E":"Reference to NIS 2 existing frameworks (e.g. CyFun)","F":"CyFun 2025 + ISO27001","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"YES","W":"NC","Y":"NC","AA":"NC","AB":"NC","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"1","D":"For EE and EI","E":"National authority","G":"NC","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident notified by an entity"},"san":{"C":"1","D":"YES","E":"More specific modalities","F":"Same modalities as in the directives","G":"More specific modalities","H":"YES","I":"Compliance Notices: Formal orders requiring the entity to remedy specific breaches, failing which it will face more severe penalties\nCommitments: A procedure enabling an entity to propose measures to remedy a breach, thereby suspending legal proceedings for as long as the commitment is upheld\nSettlements: The possibility of resolving a dispute definitively through a financial settlement before the arbitrator’s decision\nDNS Blocking / Sinkholing: Specific powers of the NCSC to suspend or block domain names in the event of a threat to national security","J":"NC","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"YES","S":"NO"},"auth":{"C":"1","D":"3","E":"NCSC \n Ministry of the Environment, Climate and Communications","F":"NCSC","G":"NCSC","H":"NCSC","I":"TO COMPLETE","L":"TO COMPLETE","M":"TO COMPLETE"}},"IT":{"id":{"D":"4","E":"2024-10-16","F":"Yes","G":"In time","H":"In time (2024)","I":"0","J":"Law","K":"D.Lgs. 138/2024","L":"Decision No. 164179 officially establishes the basic technical specifications, structured around four annexes that define, respectively, the minimum security measures for EE and EI and the definition of a significant incident for EE and EI.​\n\nDecision No. 136117 defines the procedures for accessing the ACN Portal, the designation of the contact point, the procedures for transmitting information, the designation of NIS representatives within the Union, and the annual updating of data. (Update by June 30).​\n\nDecision No. 136118 establishes the procedures by which NIS entities notify the competent national authority of their participation in information-sharing agreements."},"inc":{"C":"4","F":"CSIRT Italia (ACN)","G":"15/01/2026","H":"Report on a web platform","I":"CSIRT Italia","J":"Severity and impact\nType of threat or the original cause\nMitigation measures adopted \nCross-border impact of the accident","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — pre-notifica (early warning)\n72 hours — notifica (incident notification)\nOn request — interim report\n1 month after the notifica — relazione finale (final report), or monthly progress reports if the incident is still ongoing"},"reg":{"C":"4","D":"YES","E":"Platform","F":"ACN","G":"Self registration by the entity","H":"2025-02-28","I":"Platform","J":"4","K":"0.5","L":"From effective date (10/18/2024)","M":"NO","N":"Name of entity/name and personal identification number of a natural person.\nSector and subsector.\nProvided services.\nLegal address.\nNetwork and information systems relevant to the provision of services.\nContact details of the entity.\nList of the countries where the entity provides services.\nIP address .","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"NO","V":"YES","W":"Not specified","X":"YES","Y":"YES","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"https://www.acn.gov.it/portale/documents/d/guest/detacn_nis_specifiche_2025_164179_allegato1; https://www.acn.gov.it/portale/documents/d/guest/detacn_nis_specifiche_2025_164179_allegato2","G":"2025-12-19","H":"Applicable to all IS","I":"NC","J":"43","K":"37","L":"116","M":"87","O":"YES","P":"NO","Q":"NO","R":"YES","S":"NO","T":"NO","U":"NO","V":"NO","W":"NO","X":"N.A","Y":"YES","Z":"Linee Guida NIS - Specifiche di Base","AA":"NO","AB":"N.A","AC":"NO","AD":"18","AE":"18","AF":"NO","AG":"Essential, Important","AH":"Essential","AI":"Important","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","F":"Private, independent qualified third-party organisation (specialised professional auditors or certifiers) and national cybersecurity agency","G":"ACN (Agenzia per la Cybersicurezza Nazionale)","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NA - set by ACN case-by-cased","K":"ACN-defined / periodic","L":"NA - ACN-triggered","M":"Periodic or risk-based targeted audits","O":"Targeted only","P":"ACN/NIS2 framework (Gov-Identify-Protect-Detect-Respond-Recover), EU/international standards.","Q":"Policies, risk assessments, logs, BC/DR plans, audit reports, compliance records.","R":"NO","S":"Remote/on-site, periodic or targeted; audit report, recommendations, remediation plan.","T":"Qualified independent body or ACN; accreditation criteria set by DPCM.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"Same modalities as in the directives","H":"YES","I":"1. Public Sector Fines: Flat pecuniary fines specifically targeting public entities. 2. Personal Disciplinary Liability: Violations by public employees can trigger managerial, disciplinary, and administrative-accounting liability. 3. Minor Infractions Tier: Fines up to 0.1% or 0.07% of turnover (or €10k–€50k for public bodies) for registry and service categorization failures. 4. Settlement Tools: Adds an \"invitation to comply\" (invito a conformarsi) and reduced payment settlement options.","J":"NO","K":"NO","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"4","D":"11","E":"ACN, Ministry of Defense and 9 sector-specific ministries","F":"ACN","G":"ACN","H":"ACN","I":"CSIRT Italia (operating within ACN)","J":"YES","K":"9","L":"Presidency of the Council of Ministers ; Ministry of Economy and Finance ; Ministry of Enterprises and Made in Italy ; Ministry of Agriculture, Food Sovereignty and Forestry ; Ministry of Environment and Energy Security ; Ministry of Infrastructure and Transport ; Ministry of University and Research ; Ministry of Culture ; Ministry of Health","M":"CSIRT Italia (operating within ACN)","N":"ACN","O":"ACN"}},"LV":{"id":{"D":"4","E":"2024-09-01","F":"Yes","G":"In time","H":"In time (2024)","I":"0","J":"Law","K":"Nacionālās kiberdrošības likums","L":"Décrets : n°397/LV, n°252/LV, n°158/LV, n°702/LV"},"inc":{"C":"4","F":"CERT.LV","G":"2025-07-01","H":"Report via email","I":"By mail (cert@cert.lv, cert@cert.gov.lv) or by phone (+371 67085888)","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — early warning\n72 hours — incident notification\n30 days — final report","W":"sans retard injustifié et en tout état de cause dans les 24 heures après avoir eu connaissance de l’incident important, une alerte précoce qui, le cas échéant, indique si l’on suspecte l’incident important d’avoir été causé par des actes illicites ou malveillants ou s’il pourrait avoir un impact transfrontière;"},"reg":{"C":"4","D":"YES","E":"Form","F":"NCSC","G":"Self registration by the entity","H":"2025-04-01","I":"Electronic mail","J":"7","K":"0.5","L":"From effective date (9/1/2024)","M":"NO","N":"The entity's name, registration number, and legal address.\nRelevant sectors and subsectors.\nA detailed list and description of the essential or important services provided.\nPublic IP address ranges and, optionally, domain names used by the entity.\nA list of EU Member States where the services are provided.\nContact details for the organization and its designated point of contact","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"NO","U":"YES","V":"YES","W":"Local representative","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NC","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"Minimālās kiberdrošības prasības","G":"2025-02-07","H":"Applicable to all IS","I":"Different level of IS","J":"18","K":"18","L":"87","M":"80","O":"NO","P":"NO","Q":"NO","R":"NO","S":"NO","T":"NO","U":"NO","V":"NO","W":"NO","X":"N.A","Y":"NO","Z":"N.A","AA":"NO","AB":"N.A","AC":"NO","AD":"13","AE":"13","AF":"YES","AG":"Class A, B and C","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","F":"National cybersecurity authority ; independent auditors can be legal or physical persons (private businesses or individual specialists). They must have specialised technical capabilities and hold recognised international certifications","G":"National Cybersecurity Center and independent cybersecurity auditors","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"01-Oct-2025 (or within 3 months of designation)","K":"12 (critical ICT/Class A) or 36 (others)","L":"NC","M":"Risk-based","N":"NC","O":"Risk-based","P":"National Cybersecurity Law, Cabinet Regulation No. 397 (Minimum Cybersecurity Requirements), cybersecurity risk management measures, self-assessment obligations, internal security documentation, and applicable NIS2 requirements.","Q":"Self-assessment report, cybersecurity policy, ICT asset/system inventory, risk management & business continuity plan, incident register, network/security documentation, backup records, logs, penetration test results, training records, remediation evidence.","R":"NO","S":"Authority-led inspection or independent external cybersecurity audit; can include document review, remote supervision, on-site inspection, security testing, vulnerability scanning and evidence review. Audit report identifying compliance status, findings, deficiencies, supporting evidence and corrective actions. Copy of external audit report must be submitted to NKC/SAB.","T":"Independent and conflict-free auditor; registered cybersecurity auditor; adequate technical capability; recognised certifications (e.g., CISA, ISO 27001 Lead Auditor, CISSP); relevant experience.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"More specific modalities","F":"More specific modalities","G":"NO","H":"YES","I":"Latvia introduces strict personnel security requirements (Section 26.1) that disqualify individuals with convictions for terrorism, state-level crimes, or property/economic crimes from holding privileged IT access roles. Fines also include coercive penalties (piespiedu nauda) to force compliance.","J":"YES","K":"NO","L":"YES","M":"YES","N":"YES","O":"NO","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"12","E":"NKDC, SAB, CERT.LV, MIDD, DDUK, Ministry of Defence and 6 cooperating sectoral regulators","F":"Saeima (Latvian Parliament), Cabinet of Ministers, and the Ministry of Defence","G":"NKDC and SAB","H":"NKDC","I":"CERT.LV and MIDD","J":"YES","K":"6","L":"Bank of Latvia ; SPRK (electronic communications); Civil Aviation Agency ; Maritime Administration of Latvia ; Data State Inspectorate ; State Police / Prosecution","M":"CERT.LV and MIDD","N":"NKDC","O":"NKDC"}},"LT":{"id":{"D":"4","E":"2024-10-18","F":"Yes","G":"In time","H":"In time (2024)","I":"0","J":"Law","K":"Loi sur la cybersécurité N° XII-1428 : dispositions NIS2 adoptées 11/07/2024 ; loi en vigueur 18/10/2024 ; résolution gouvernementale de mise en œuvre 12/11/2024."},"inc":{"C":"4","F":"NKSC","G":"2024-11-06","H":"Report on a web platform","I":"National Cyber Incident Platform","J":"Cross-border impact of the accident\nSeverity and impact\nType of threat or the original cause\nMitigation measures adopted \nProves of intrusion\nIncident stemming from malicious or illegal actions?","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — initial notice (large incidents)\n72 hours — severity/impact assessment + IOCs (large incidents); or basic info (minor incidents)\n1 month from incident registration — final report","R":"Lithuania requires reporting of minor incidents too, not just significant ones","W":"sans retard injustifié et en tout état de cause dans les 72 heures après avoir eu connaissance de l’incident important, une notification d’incident qui, le cas échéant, met à jour les informations visées au point a) et fournit une évaluation initiale de l’incident important, y compris de sa gravité et de son impact, ainsi que des indicateurs de compromission, lorsqu’ils sont disponibles;"},"reg":{"C":"4","D":"YES","E":"Authority","F":"NKSC","G":"Notification of concerned entities by the authority","H":"2025-04-17","I":"Electronic mail","J":"6","K":"N.A","L":"From effective date (10/18/2024)","M":"YES","N":"Name and Code: The name of the cybersecurity subject and its legal entity code.\nLegal Form: The specific legal status of the organization.\nAddresses: The address of the main office and, for specific digital providers (DNS, cloud, data centers, etc.), the addresses of other legal branches within the European Union.\nEconomic Activities: A description of the types of economic activities performed.\nContact Details: Up-to-date contact information for the entity.\nRepresentative Information: If an entity is not established in the EU but offers services in Lithuania, it must provide the address and contact details of its designated representative","O":"YES","P":"YES","Q":"NO","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"Legal Representative","X":"NO","Y":"YES","Z":"YES","AA":"NO","AB":"YES","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"Implementing of the cybersecurity law","G":"2024-11-06","H":"Applicable to all IS","I":"Different level of IS","J":"14","K":"14","L":"119","M":"107","O":"YES","P":"YES","Q":"NO","R":"NO","S":"NO","T":"NO","U":"NO","V":"NO","W":"NO","X":"N.A","Y":"NO","Z":"NC","AA":"NO","AB":"N.A","AC":"NO","AD":"12","AE":"12","AF":"NO","AG":"Essential, Important","AH":"Essential","AI":"Important","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","F":"National cybersecurity authority, audit firms (independent private or public certified audit firms) only for financial verifications of the secure network ; entity-level auditors","G":"NKSC","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"12 (to be submitted annually for essential entities)","L":"NC","M":"36","N":"NC","O":"36","P":"NKSC Cybersecurity Audit Methodology + compliance against Cybersecurity Law, Cybersecurity Requirements Description, and internal security policies.","Q":"Compliance assessment report, remediation plan, cybersecurity audit report, risk assessment report, risk management plan, supporting policies/procedures.","R":"NO","S":"Audit report; identified non-conformities/remediation plan where applicable.","T":"NO","U":"NC"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Lithuania adds specific national interventions, such as the authority of the NKSC to issue binding orders to block or suspend specific domain names or restrict web traffic to non-compliant/compromised resources","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"4","D":"19","E":"2 core policy/operational bodies, 3 cooperating national safety and data protection agencies, 14 sectoral identifying ministries and institutions","F":"Ministry of National Defence (KAM)","G":"NKSC","H":"NKSC","I":"NKSC","J":"YES","K":"14","L":"Ministry of Energy; Ministry of Transport and Communications ; Ministry of Health ; Ministry of Finance ; Ministry of Economy and Innovation ; Ministry of Agriculture ; Ministry of Environment ; Ministry of Justice ; Ministry of the Interior ; Ministry of Foreign Affairs ; Ministry of Culture ; Ministry of Social Security and Labour ; Ministry of Education, Science and Sports ; Central Bank of Lithuania","M":"NKSC","N":"Ministry of National Defence and NKSC","O":"Ministry of National Defence and NKSC"}},"LU":{"id":{"D":"3","E":"2026-05-10","F":"Yes","G":"S1 2026","H":"2026","I":"18","J":"Law","K":"Loi du 5 mai 2026 concernant des mesures destinées à assurer un niveau élevé de cybersécurité","L":"Loi du 5 mai 2026 sur la résilience des entités critiques (transposing the CER directive)"},"inc":{"C":"3","F":"ILR (for non-financial EE and EI)\nCSSF (for financial services, digital asset service providers)","G":"2026-05-06","H":"Report on a web platform","I":"SERIMA","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — early warning\n72 hours — incident notification\nInterim report — possible, on request\n1 month — final report\n+2 months after the final report — supplementary notification if new important information is discovered","R":"If the operator discovers new information about the incident within 2 months of the final notification it must notify the ILR of that new information as well.","W":"à la demande d’un CSIRT ou, selon le cas, de l’autorité compétente, un rapport intermédiaire sur les mises à jour pertinentes de la situation;"},"reg":{"C":"3","D":"YES","E":"Platform","F":"IRL or CSSF","G":"Self registration by the entity","H":"2026-07-05","I":"Platform","J":"2","K":"0.5","L":"From effective date (5/5/2026)","M":"NO","N":"Name of the entity.\nAddress and updated contact details, including email addresses, telephone numbers, and IP ranges.\nThe relevant sector and subsector (as defined in Annex I or II of the law).\nA list of other EU Member States where the entity provides its services.\nThe size of the entity and, if applicable, the size of the group to which it belongs.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"NO","V":"YES","W":"Not specified","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"3","D":"No","E":"NC","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","X":"NC","Y":"NC","Z":"NC","AA":"NC","AB":"NC","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"For EE and EI","E":"Multiple","F":"Competent regulatory authority ; external independent auditor / assessment body (not more specified)","G":"ILR and independent body","H":"At the expense of the entity","I":"NO","L":"NC","M":"\"regular and targeted\"","N":"NC","O":"\"targeted\"","P":"NO","Q":"Written cybersecurity policies; evidence of implementation of cybersecurity measures; security audit reports from qualified auditors; supporting documentation/data; proof of compliance with NIS2 obligations.","R":"NO","S":"Targeted, regular (essential entities only), or ad hoc audits; may be performed by the competent authority or an independent body. Audit results must be made available to the competent authority. No prescribed audit report format is specified.","T":"NC","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"Same modalities as in the directives","H":"NO","J":"YES","K":"NO","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"3","D":"4","E":"ILR, CSSF, HCPN (which houses GOVCERT.LU) and CIRCL","F":"Luxembourg Parliament and Grand Duke, HCPN, ILR and CSSF","G":"ILR and CSSF","H":"ILR and CSSF","I":"ILR or CSSF","J":"NO","K":"0","M":"GOVCERT.LU and CIRCL","N":"HCPN, ILR, CSSF","O":"HPCN"}},"MT":{"id":{"D":"4","E":"2025-04-08","F":"Yes","G":"S1 2025","H":"2025","I":"5","J":"Order / Legal notice","K":"Measures for a High Common Level of Cybersecurity across the European Union (Malta) Order, 2025","L":"NC"},"inc":{"C":"4","E":"National CSIRT","F":"CSIRT-Malta","G":"2025-08-04","H":"Report on a web platform","I":"CSIRT-Malta (channels provided by CSIRT, thus not publicly published as a unique portal URL)","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","L":"YES","P":"NO","R":"NC","W":"un rapport final au plus tard un mois après la présentation de la notification d’incident visée au point b), comprenant les éléments suivants:"},"reg":{"C":"4","D":"YES","E":"NC","F":"CIP Department","G":"Self registration by the entity","H":"2025-10-30","I":"Platform","J":"NC","K":"0.5","L":"NC","M":"YES","N":"Name of the entity\nType of CSIRT used (internal / autonomous)\nLegal address\nContact details (email, phone)\nIP ranges\nNIS2 sector / subsector\nMember States served\nIT resources: infrastructure, OT, networks","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"YES","W":"NC","X":"YES","Y":"YES","Z":"YES","AA":"YES","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"Reference to NIS 2 existing frameworks (e.g. CyFun)","F":"CyberFundamentals Framework (CyFun 2025)","G":"29/10/2025","H":"Applicable to all IS","I":"Different level of IS","J":"22","K":"22","L":"218","M":"133","N":"Malta adopted framework (CyFun 2025). Malta did not publish its own catalogue: Legal Notice 71 of 2025 (S.L. 460.41) transposes NIS2 and points to the Belgian CyberFundamentals framework, which Malta co-owns.\nRequirements follow cumulative assurance levels: Important entities = Important level (133 req.), Essential entities = Essential level (218 req.). The gap reflects the higher assurance tier required for EE, not a different catalogue.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"NO","T":"YES","U":"NO","V":"YES","W":"NO","X":"N.A","Y":"NO","Z":"N.A","AA":"NO","AB":"N.A","AC":"NO","AD":"18","AE":"18","AF":"YES","AG":"Small level, Basic level, Important level, Essential level","AH":"Essential level","AI":"Important level","AJ":"YES"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","G":"CIPD\nSectoral Authorities (MCA for new technologies & Communication means, MFSA for financial services)","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"NC","L":"NC","M":"Regular","N":"NC","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident notified by an entity"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Payments of daily administrative penalties (penalty payments) to compel an entity to cease or rectify a breach","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NC","S":"YES"},"auth":{"C":"4","D":"5","E":"CIPD (Critical Infrastructure Protection Department)\nCSIRT Malta\nMHSE (Ministry for Home Affairs, Security and Employment)\nMCA (sectoral authority for telecom)\nMFSA (sectoral authority for financial services)","F":"CIPD","G":"CIPD","H":"CIPD","I":"CSIRT Malta","J":"YES","K":"2","L":"MCA (sectoral authority for telecom)\nMFSA (sectoral authority for financial services)","M":"CIPD","N":"CIPD","O":"CIPD"}},"NL":{"id":{"D":"4","E":"2026-08-15","F":"Yes","G":"S2 2026","H":"2026","I":"21","J":"Law","K":"Cybersecurity Act : Cyberbeveiligingswet - Cbw","L":"Mapping made by the ENISA to help the entities to comply\nRecommendations on which entities can start to comply with NIS 2"},"inc":{"C":"4","F":"Ministry of Justice and Security (NCSC-NL)","G":"2026-08-15","H":"Report on a web platform","I":"Mijn NCSC","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request /24 hours — early warning\n72 hours — incident report\n1 month — final report final report 1month)","W":"i)"},"reg":{"C":"4","D":"YES","E":"Platform and Guide","F":"NCSC","G":"Self registration by the entity","I":"Platform","J":"0","K":"0.5","L":"From effective date (8/15/2026)","M":"NC","N":"Entity Name and Address: Including the legal seat.\nContact Details: Updated email addresses and telephone numbers.\nTechnical Identifiers: Public IP address ranges and publicly available domain names owned by the entity\nClassification: The relevant sector, subsector, and type of entity as defined in Annex 1 or 2 of the law\nCross-Border Services: A list of EU Member States where the entity provides its services\nIdentification Number: The Chamber of Commerce number (or equivalent foreign registration number)\nInformation Sharing: Notification of participation in any cybersecurity information-sharing arrangements","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"Not specified","X":"YES","Y":"YES","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"Cbw (NIS2) Control Framework","G":"2026-07-10","H":"Applicable to all IS","I":"Different level of IS","J":"17","K":"17","L":"130","M":"130","O":"YES","P":"YES","Q":"NO","R":"YES","S":"NO","T":"NO","U":"NO","V":"NO","W":"No","X":"NC","Y":"YES","Z":"Mapping NIS 2 en NEN-EN-ISO/IEC 27002 (nl) / BIO","AA":"NC","AB":"NC","AC":"NC","AD":"NC","AE":"NC","AF":"NO","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"External organism accredited","F":"Sectoral authorities (ministries responsible for said sector) ; may require an audit by an independent qualified expert","G":"Ministries and independent qualified external expert / auditor","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"Periodic and risk-based","L":"NC","M":"Risk-based / authority-driven","N":"NC","O":"Risk-based / authority-driven","P":"Cbw/Cbb + NIS2 compliance assessment; no mandatory audit framework.","Q":"Policies, risk assessments, incident records, BCP/DRP, supplier controls, logs, training records, asset inventory, governance evidence.","R":"NO","S":"Independent audit report with findings and recommendations.","T":"Independent, qualified expert; no specific accreditation mandated.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"The Cbw introduces \"last onder bestuursdwang\" (administrative coercion) and specific individual fines of up to €25,000 for individual board members violating training/governance obligations.","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NC"},"auth":{"C":"4","D":"9","E":"9 ministries and several specialised Inspectorates","F":"Ministry of Justice and Security","G":"Specialised inspectorates (RDI, ILT, IGJ, NVWA, ANVS and DNB/AFM)","H":"Minitry of Justice and Security (via NCSC)","I":"CSIRTs and competent authorities","J":"YES","K":"6","L":"BZK (public sector); FIN (banking and financial markets sectors); KGG (energy sectors) ; LVVN (food sector); VWS (health sector) ; OCW (higher education)","M":"Ministry of Justice and Security (via NCSC)","N":"Ministry of Justice and Security (via NCSC)","O":"Ministry of Justice and Security (via NCSC)"}},"NO":{"id":{"D":"1","E":"NC","F":"No","G":"NC","H":"NC","I":"NC","J":"Law","K":"Digitalsikkerhetsloven","L":"The regulations (Digitalsikkerhetsforskriften) of the Digital Security Act (Digitalsikkerhetsloven)"},"inc":{"C":"1","E":"National authority","F":"NCSC (National Cyber Security Center)","G":"NC","H":"NC","I":"NC","J":"NC","L":"NC","M":"NC","N":"NC","P":"NO","R":"NC","W":"ii)"},"reg":{"C":"1","D":"NO","E":"No tool","F":"NSM","G":"Self registration by the entity","H":"NC","I":"NC","J":"NC","L":"NC","M":"NC","N":"Name of the organisation.\nSector and subsector classification, as well as the type of entity.\nUp-to-date contact details of the entity and its legal representative.\nList of member states where the entity provides services .\nList of member states where the entity provides services (if applicable).\nIP address.\nDomain Names of Company.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","V":"Yes","W":"NC","X":"YES","Y":"Yes","Z":"YES","AA":"No"},"fw":{"C":"1","D":"No","E":"NC","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NC","AA":"NC","AB":"NC","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"1","D":"NC","E":"Multiple","G":"Sectoral authorities\nNSM (National Security Authority) for entities with no designated sectoral authorities","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC"},"san":{"C":"1","D":"NC","E":"NC","F":"NC","G":"Same modality as in the directive","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC"},"auth":{"C":"1","D":"8","E":"NSM – Norwegian Security Authority (Nasjonal sikkerhetsmyndighet)\nNorwegian Communications Authority (NKOM)\nNorwegian Water Resources and Energy Directorate (NVE)\nDirectorate for Civil Aviation (Luftfartstilsynet)\nNorwegian Maritime Authority (Sjøfartsdirektoratet)\nNorwegian Health Directorate (Helsedirektoratet)\nFinancial Supervisory Authority of Norway (Finanstilsynet)\nNorCERT","F":"NSM","G":"NSM\nNKOM\nNVE\nLuftfartstilsynet\nSjøfartsdirektoratet\nHelsedirektoratet\nFinanstilsynet\"","H":"NSM","I":"NorCERT (NSM)","J":"YES","K":"6","L":"NKOM\nNVE\nLuftfartstilsynet\nSjøfartsdirektoratet\nHelsedirektoratet\nFinanstilsynet"}},"PL":{"id":{"D":"3","E":"2026-04-03","F":"Yes","G":"S1 2026","H":"2026","I":"17","J":"Law","K":"USTAWA zmianie ustawy o krajowym systemie cyberbezpieczeństwa oraz niektórych innych ustaw"},"inc":{"C":"3","F":"Sectoral CSIRTs","G":"2026-04-03","H":"Report on a web platform","I":"System S46","J":"What's happening, expected actions and consequences","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — early warning\n72 hours — full incident notification\n1 month — final report","W":"iii)"},"reg":{"C":"3","D":"YES","E":"Platform","F":"Ministry of Digital Affairs","G":"Self registration by the entity","H":"2025-07-01","I":"Platform","J":"6","K":"0.5","L":"From effective date (1/1/2025)","M":"YES","N":"la dénomination (raison sociale) de l’entité essentielle/importante;\nle secteur, sous-secteur et type d’entité, conformément aux annexes 1 ou 2 de la loi;\nl’adresse du siège et l’adresse de correspondance;\nl’adresse de notification électronique, si elle a été enregistrée dans la base d’adresses électroniques;\nl’adresse e-mail;\nle numéro d’identification fiscale (NIP), si attribué;\nle numéro REGON, si attribué;\nle numéro dans le registre d’activité réglementée, si attribué;\nla plage d’adresses IP publiques utilisées en continu;\nles domaines internet utilisés en continu;\nles données des personnes de contact…\nla date d’inscription au registre;\nla base légale de l’inscription;","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"NO","V":"YES","W":"Account administrator","X":"YES","Y":"YES","Z":"YES","AA":"NO","AB":"YES","AC":"YES"},"fw":{"C":"3","D":"No","E":"NIS 2 dedicated framework","F":"NC","G":"NC","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","X":"NC","Y":"NC","Z":"NC","AA":"NC","AB":"NC","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"Yes only for EE","E":"External organism accredited","F":"Independent auditor / external audit body","G":"Supervised by the Ministery of Digital Affairs","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"12","L":"24","M":"36 and at any time","O":"NA - at any time, notably after a significant incident or legal breach","P":"Audit of the Information Security Management System (ISMS/SZBI) and compliance with Art. 8 cybersecurity requirements (risk management, technical and organizational measures, incident management, business continuity, monitoring, documentation). No specific mandatory framework (e.g., ISO 27001) prescribed in the law.","Q":"ISMS documentation, risk assessments, policies/procedures, incident records, business continuity documentation, technical and operational security records, cybersecurity governance documentation, audit trail/log evidence, and other documents demonstrating compliance with Art. 8-14 requirements.","R":"o","S":"Independent audit of information systems used for service provision; deliverable is a formal audit report. A copy of the report must be submitted electronically to the competent cybersecurity authority within 3 working days of receipt.","T":"Auditor must be independent. Audit cannot be performed by a person who currently carries out cybersecurity tasks for the entity or who did so within the previous 12 months. Competent authority may specify categories of entities authorized to perform an ordered external audit. No dedicated accreditation scheme expressly established in the law.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"More specific modalities","H":"YES","I":"Poland adds specific penalties for failing to register or update registry details in time and introduces a 50,000 PLN fine for third-party ICT hardware/software suppliers (high-risk vendors) who refuse to cooperate or hand over documentation upon request.","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"3","D":"16","E":"16 unique publioc administrative entities or national-level cyber response bodies","F":"Ministry of Digital Affairs","G":"Sectoral competent authorities","H":"Ministry of Digital Affairs","I":"Sectoral CSIRTs and national CSIRTs","J":"YES","K":"8","L":"Ministry of Transport ; Ministry of Maritime Economy ; KNF (banking and financial market infrastructures); Ministry of Agriculture ; Ministry of Climate ; Ministry of Science and Higher Education ; Ministry of Public Finance","M":"CSIRT MON, CSIRT NASK, and CSIRT GOV","N":"Ministry of Digital Affairs","O":"Ministry of Digital Affairs, Ministry of National Defense, head of ABW"}},"PT":{"id":{"D":"4","E":"2026-03-04","F":"Yes","G":"S1 2026","H":"2026","I":"16","J":"Decree-law","K":"Decreto-Lei n.º 125/2025 (Regime Jurídico da Cibersegurança) + Regulamento n.º 756/2026 ; abroge Lei 46/2018 et DL 65/2021 (art. 9)"},"inc":{"C":"4","F":"CNCS","G":"2026-06-23","H":"Report on a web platform","I":"MyCiber","J":"What's happening, expected actions and consequences","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — initial alert\n72 hours — notification (standard NIS2 pattern; not independently confirmed for Portugal but implied)\n30 days — progress report, if unresolved\nFollowing month — final report, after the incident is resolved/handled","W":"iv)"},"reg":{"C":"4","D":"YES","E":"Platform","F":"CNCS","G":"Self registration by the entity","H":"2026-08-22","I":"Platform","J":"2","K":"1","L":"From establishment of platform rules (6/23/2026)","M":"YES","N":"Name of the organisation.\nTax identification number.\nAddress and up-to-date contact details.\nIP address.\nSector and subsector classification.\nList of member states where the entity provides services, if applicable.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"CISO","X":"YES","Y":"YES","Z":"YES","AA":"NO","AB":"YES","AC":"NO"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"QNRCS v2","G":"2026-06-22","H":"Applicable to all IS","I":"Different level of IS","J":"6","K":"7","L":"150","M":"101","O":"YES","P":"YES","Q":"NO","R":"YES","S":"YES","T":"YES","U":"NO","V":"YES","W":"YES","X":"Selo de Maturidade Digital","Y":"YES","Z":"Instruçao Técnica de Divulgaçao Coordenada de Vulnerabilidades","AA":"NO","AC":"YES","AD":"24","AE":"24","AF":"YES","AG":"Basic, Substantiel, Elevé","AH":"Elevé","AI":"Substantiel","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","F":"national cybersecurity authority, sectoral cybersecurity authorities for some sectors (electronic communications, trust services, and for the financial sector), and independent qualified entity","G":"CNSC, ANACOM (electronic comms), GNS (trust services), Banco Portugal/CMVM/ASF (financial sector)","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"NC","K":"12","L":"NC","M":"Regular audits foreseen, but risk-based rather than calendar-based","N":"NC","O":"Risk-based, mainly targeted/ad hoc under ex post supervision","P":"QNRCS (National Cybersecurity Reference Framework) + minimum cybersecurity measures from Regulation 756/2026 (Annex III), aligned with NIST CSF 2.0, ISO/IEC 27001/27002, CIS Controls v8.1, NIST SP 800-53. Audits assess compliance against the entity's required conformity level (Basic/Substantial/High)","Q":"Policies, risk assessments, incident response plans, business continuity/DR plans, asset inventories, access reviews, training records, vulnerability assessments, supplier assessments, logs, backup tests, technical configurations, penetration-test results, and other documentary/technical evidence proving implementation of controls.","R":"Not automatically required. CNCS may require certification depending on risk/criticality. Voluntary certifications can create a presumption of compliance (EC-QNRCS, ISO/IEC 27001, DNP TS 4577-1 for public entities, or other CNCS-recognized schemes).","S":"On-site or remote audit; regular, targeted, or ad hoc. Includes document reviews, evidence requests, inspections, and security verification activities. Deliverable typically consists of audit findings, compliance assessment, non-conformities, and corrective recommendations/actions.","T":"Audits may be performed by the competent authority or by an independent qualified entity. Certification bodies must be accredited; recognized certification schemes include EC-QNRCS, ISO/IEC 27001 certification bodies, and other schemes approved/recognized by CNCS (National Cybersecurity Certification Authority).","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"NO","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"4","D":"7","E":"CSSC, CNCS, SG-SSI, GNS (sectoral authority for trust services), ANCOM (sectoral authority for telecom and postal services), BdP (bank of Portugal), ASF (special authority for insurance and pensions), CMVM (special authority for securities markets)","F":"CNCS","G":"CNCS, GNS, ANCOM, BdP, ASF and CMVM","H":"CNCS","I":"CNCS (via CERT.PT° and sectoral/special authorities","J":"YES","K":"5","L":"GNS (trust services sector); ANACOM (electronic communications and postal services sectors), Banco de Portugal (BdP), ASF (insurance and pensions sector), CMVM (securities markets sector)","M":"CNCS","N":"CNCS","O":"CNCS"}},"RO":{"id":{"D":"3","E":"2025-07-10","F":"Yes","G":"S2 2025","H":"2025","I":"8","J":"Order / Legal notice","K":"OUG n.º 155/2024 (en vigueur 31/12/2024) + Lei 124/2025 (10/07/2025) + Arrêtés DNSC n.º 1/2025 et n.º 2/2025 (20/08/2025)."},"inc":{"C":"3","F":"DNSC","G":"2024-12-30","H":"Report on a web platform","I":"PNRISC","J":"Identification & entity\nClassification of the incident\nFactual descriptiob\nIndicators & technical proofs\nImpact assessment\nMeasures of response","M":"YES","N":"Number / percentage of users affected, duration of incident, geographic spread, and service unavailability","Q":"24 hours — early warning\n72 hours — incident report\nOn request — interim report\n1 month — final report","W":"en cas d’incident en cours au moment de la présentation du rapport final visé au point d), les États membres veillent à ce que les entités concernées fournissent à ce moment-là un rapport d’avancement puis un rapport final dans un délai d’un mois à compter du traitement de l’incident."},"reg":{"C":"3","D":"YES","E":"Platform","F":"DNSC","G":"Self registration by the entity","H":"2025-01-30","I":"Electronic mail","J":"1","K":"0.5","L":"From effective date (12/31/2024)","M":"NO","N":"Name and Address: The entity's name, its main headquarters address, and addresses of other EU-based establishments.\nContact Details: Updated email addresses, telephone numbers, and designated permanent means of contact.\nPoints of Contact: Identification of the person within the entity responsible for monitoring contact means.\nClassification: Relevant sector, subsector, and entity type according to the law's annexes.\nCross-Border Data: A list of other EU Member States where the entity provides its services.\nTechnical Identifiers: Public IP address ranges.\nStatus Verification: Documentation or information sufficient to demonstrate that the entity meets the criteria for being classified as essential or important","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"NO","V":"YES","W":"Not specified","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"NO","AC":"NO"},"fw":{"C":"3","D":"Temporary","E":"Reference to NIS 2 existing frameworks (e.g. CyFun)","F":"CyberFundamentals Framework (CyFun 2025)","G":"29/10/2025","H":"Applicable to all IS","I":"Different level of IS","J":"7","K":"9","L":"218","M":"133","O":"YES","P":"YES","Q":"YES","R":"YES","S":"NO","T":"YES","U":"NO","V":"YES","W":"NO","X":"N.A","Y":"NO","Z":"N.A","AA":"NO","AB":"N.A","AC":"NO","AD":"18","AE":"18","AF":"YES","AG":"Small level, Basic level, Important level, Essential level","AH":"Essential level","AI":"Important level","AJ":"NO"},"aud":{"C":"3","D":"For EE and EI","E":"External organism accredited","F":"independent DNSC-certified cybersecurity auditor (person or audit provider). Will become a professional organisation of public utility under DNSC coordination.","G":"DNSC","H":"At the expense of the entity","I":"Yes, for EE and EI","J":"4 months after registration","K":"12","L":"NC","M":"NA - set by DNSC based on risk level","N":"NC","O":"NA - set by DNSC based on risk level","P":"Systematic assessment of all cybersecurity policies, procedures and protection measures; audits must follow applicable European/international standards and DNSC technical requirements.","Q":"Documented cybersecurity policies, risk management measures, audit results, supporting evidence, security documentation, access to relevant data, systems, equipment and records requested by DNSC.","R":"NO","S":"Independent audit (periodic or ad hoc) producing an audit report with identified vulnerabilities/deficiencies and remediation recommendations; entity must submit a remediation plan and implementation evidence to DNSC.","T":"Auditors must be DNSC-attested (3-year validity), follow professional ethics and independence requirements, and cannot audit where there is a conflict of interest, active/recent service contract, employment relationship, or after 3 consecutive audits of the same entity.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"Same modalities as in the directives","H":"YES","I":"Romania adds unique penalties, including:• Specific lower-scale fines (from 1,000 Lei to 500,000 Lei) for failing to register or notify updates to the Entity Registry.• Standardized fines of 1% to 10% of net assets/turnover for newly-established entities with no previous year's turnover data.• Domain blocking and cancellation for TLD registries and registrars that fail to correct inaccurate registration data.• Suspension or permanent withdrawal/revocation of credentials for CSIRTs and cybersecurity auditors","J":"NO","K":"NO","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"3","D":"20","E":"2 central national authority (DNSC), 3 sectoral authorities (ANCOM, ADR, AACR), and 14 other ministries, financial regulation agencies, data protection agencies, and national security agencies","F":"Romanian Government and DNSC","G":"DNSC and competent sectoral authorities","H":"DNSC","I":"DNCS","J":"YES","K":"3","L":"ANCOM (digital infrastructures and postal/carrier services), ADR (trust services), AACR (civil aviation)","M":"DNSC","N":"DNSC","O":"DNSC"}},"SK":{"id":{"D":"4","E":"2025-01-01","F":"Yes","G":"S1 2025","H":"2025","I":"2","J":"Law","K":"Amendement à la Law No. 69/2018 (en vigueur 01/01/2025) + Décret 226/2025 (critères incidents graves & reporting) + Décret 227/2025 (mesures minimales & documentation), en vigueur 01/09/2025.","L":"NC"},"inc":{"C":"4","E":"National authority","F":"Národný bezpečnostný úrad (NBÚ)","G":"2025-01-01","H":"Report on a web platform","I":"JISKB\nhttps://www.jiskb.nbu.gov.sk/","J":"Incident nature, time of detection\nSuspected malicious or unlawful origin\nImpact on essential/important services\nIndicators of compromise (IOCs) and technical evidence\nMitigation actions already implemented","L":"NO","M":"A major cybersecurity incident is defined as a large-scale cybersecurity incident and a cybersecurity incident that\n\na) has caused, or is likely to cause, serious disruption to the functioning of the essential service operator, or damage, other injury to property or loss of profit on a large scale,\n\nb) has affected or is likely to affect other persons by causing them damage, other harm or loss of profit to a significant extent","N":"NC","P":"NO","R":"NC"},"reg":{"C":"4","D":"YES","E":"Platform","F":"NBU","G":"Self registration by the entity","H":"2025-03-01","I":"Platform","J":"2","K":"0.5","L":"From start of activities","M":"NO","N":"Name of the organisation.\nAddress of the main registered office and updated contact details.\nAddresses of the other registered offices in the EU, if applicable .\nContact details of the person in charge of monitoring the means of contact.\nContact details of the person designated as representative if the entity is not established in the EU.\nList of member states where the entity provides services.\nIP address.\nProof of meeting the conditions for identification as an essential or important entity.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Not specified","V":"YES","W":"Legal Representative","X":"YES","Y":"YES","Z":"YES","AA":"NC","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"NIS 2 dedicated framework","F":"24 months after registration on KSIS (under certain technical obligations)","G":"28/08/2025","H":"Applicable to all IS","I":"Different level of IS","J":"17","K":"17","L":"122","M":"115","N":"Like Malta, Slovakia sets different EE/IE counts. Its 151 measures (17 areas, §20(2) a-q) are each flagged for PZS (essential-service operator = IE) and PKZS (critical operator = EE). \nOn the IT baseline, EE apply 122 measures and IE 115; OT relevance is higher (EE 147 / IE 133).","O":"YES","P":"YES","Q":"NC","R":"NC","S":"NC","T":"NC","U":"YES","V":"NO","W":"YES","X":"Act on Cybersecurity (loi nationale)","Y":"NO","Z":"NC","AA":"NO","AB":"N.A","AC":"NO","AD":"12","AE":"12","AF":"NO","AG":"NC","AH":"N.A","AI":"N.A","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"National authority","G":"NBU","H":"At the expense of the entity","I":"Yes, only for EI","J":"24","K":"NC","L":"24","M":"NC","N":"60","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Daily penalties (penalty payments): In the event of a delay in implementing a corrective measure, a fine of 0.5 per cent of the maximum amount of the fine incurred may be imposed for each day of delay\nMandatory appointment of a security officer: The authority may appoint an external security officer, at the entity’s expense, to oversee compliance\nRemedial Agreement (Dohoda o náprave): The possibility for the entity and the authority to enter into a written agreement on remedial measures and compensation for damages, which may bring the supervisory proceedings to a close","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"YES","S":"NO"},"auth":{"C":"4","D":"2","E":"NBU\nCSIRT.SK","F":"NBU","G":"NBU","H":"NBU","I":"CSIRT-SK\nNBU (through JISKB)","J":"NO","K":"0","M":"NBU","N":"NBU","O":"NBU"}},"SI":{"id":{"D":"4","E":"2025-06-19","F":"Yes","G":"S1 2025","H":"2025","I":"8","J":"Law","K":"Information Security Act (ZInfV-1), adoptée 23/05/2025 (procédure d'urgence), publiée 04/06/2025, en vigueur 19/06/2025."},"inc":{"C":"4","E":"National CSIRT","F":"SI‑CERT","G":"2025-06-07","H":"Report via email","I":"SI-CERT\nhttps://www.cert.si/prijava-incidenta/","J":"Detailed incident description\nOperational impact\nMitigation actions taken\nTechnical evidence\nSecure submission","L":"YES","P":"NO","R":"Timeline Directive NIS 2"},"reg":{"C":"4","D":"YES","E":"Platform","F":"Urad Vlade Republike Slovenije za informacijsko varnost","G":"Self registration by the entity","H":"2025-12-19","I":"Electronic mail","J":"1","K":"0.5","L":"The day on which the entity meets the size and sector criteria laid down by law","M":"NO","N":"Name, address, contact details, identification number (matična številka), sector/sub-sector, size criteria, contact details (and alternate contact), IP ranges, AS numbers and domain names","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"YES","V":"YES","W":"NC","X":"YES","Y":"YES","Z":"YES","AA":"NC","AB":"YES","AC":"YES"},"fw":{"C":"4","D":"Final","E":"Reference to existing standards (e.g. ISO)","G":"19/06/2025","H":"Applicable to all IS","I":"Different level of IS","J":"17","K":"17","N":"Slovenia did not issue a stand-alone catalogue; instead the framework is annexed inside the ZInfV-1 law itself.\nArticle 22(2) sets 17 mandatory all-hazards risk-management measures, complemented by the 8-point security-documentation set of Article 21. \nThe 17 measures apply identically to essential (bistveni) and important (pomembni) entities, so the theme count is 17/17. No granular per-tier control count exists: depth is proportionate to entity risk (Art. 22(3)-(5)), and EU Commission implementing acts plus ISO/IEC 27001 add detail. \nThis differs from Malta/Slovakia, which publish tiered, countable control sets.","O":"YES","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"YES","V":"NO","W":"NO","X":"N.A","Y":"NO","Z":"N.A","AA":"NO","AB":"N.A","AC":"NO","AD":"18","AE":"18","AF":"NO","AG":"NC","AH":"N.A","AI":"N.A","AJ":"NO"},"aud":{"C":"4","D":"For EE and EI","E":"Multiple","G":"URSIV\nAKOS : pour les communications électroniques, médias et services numériques","H":"At the expense of the entity","I":"Yes, only for EI","J":"NC","K":"24","L":"NC","M":"24","N":"NC","O":"24","P":"YES","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"4","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"Same modalities as in the directives","H":"YES","I":"Enforcement fines (denarne kazne za prisilitev) to ensure compliance with an administrative decision","J":"YES","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"PARTIALLY (YES / NO)"},"auth":{"C":"4","D":"3","E":"URSIV\nAKOS\nSI-CERT","F":"URSIV","G":"URSIV","H":"URSIV","I":"SI-CERT","J":"YES","K":"1","L":"AKOS (telecom, digitalinfrastructures)","M":"URSIV","N":"URSIV","O":"URSIV"}},"ES":{"id":{"D":"2","E":"NC","F":"No","G":"NC","H":"NC","I":"NC","J":"Law","K":"NC"},"inc":{"C":"2","F":"CCN-CERT and INCIBE-CERT","G":"NC","H":"Report on a web platform","I":"Current interim reporting runs through CCN-CERT and INCIBE-CERT's respective existing incident-reporting channels.","J":"NC","M":"NC","N":"NC","Q":"NC","R":"NC"},"reg":{"C":"2","D":"NO","E":"NC","F":"National Cybersecurity Center","G":"Self registration by the entity","H":"NC","I":"Platform","J":"3","K":"2","L":"From effective date","M":"NC","N":"Name of the organisation.\nSector and subsector classification, as well as the type of entity .\nUp-to-date contact details of the entity and its legal representative, if applicable.\nList of member states where the entity provides services.\nIP address.","O":"YES","P":"YES","Q":"YES","R":"YES","S":"YES","T":"NO","U":"NO","V":"YES","W":"CISO","X":"YES","Y":"NO","Z":"YES","AA":"NO","AB":"YES","AC":"NO"},"fw":{"C":"2","D":"No","E":"NC","F":"NC","G":"17/1/2025","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NC","AA":"NC","AB":"N.A","AC":"NC","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"2","D":"For EE and EI","E":"External organism accredited","F":"Independent certification / conformity assessment body","G":"ENS-accredited certification body / an accredited cybersecurity conformity assessment body","H":"At the expense of the entity","I":"Yes, only for EI","J":"NC","K":"NC","L":"NC","M":"NC - set by future regulation","N":"NC","O":"NC - set by future regulation","P":"ENS (Esquema Nacional de Seguridad) baseline; equivalent European/international standards; cybersecurity risk-management measures under Art. 15; risk-based approach. Specific procedures to be defined by the National Cybersecurity Centre.","Q":"Security policies and documentation; evidence of implementation of cybersecurity measures; audit reports and supporting evidence; risk-management documentation; proof of compliance; data/documents/information requested by the supervisory authority","R":"Essential entities must obtain and maintain a conformity certification. Authorities may request results of audits performed by accredited certification bodies. Important entities may choose certification or self-assessment.","S":"Periodic, specific, or extraordinary audits; on-site or remote supervision possible. Audit results must be communicated to the supervisory authority and the National Cybersecurity Centre. Audit report is the main deliverable.","T":"Audit performed by an accredited ENS Certification Entity where applicable; otherwise by an accredited cybersecurity conformity assessment body. Accreditation framework and procedures determined by the National Cybersecurity Centre and applicable certification schemes.","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"2","D":"YES","E":"Same modalities as in the directives","F":"More specific modalities","G":"Same modalities as in the directives","H":"YES","I":"Spain introduces two major specific modalities: • Solidary Management Liability: Members of management bodies respond jointly and severally (solidariamente) for the infractions committed by their entities. • Official Gazette Public Admonition: Fines for very grave and grave infractions can be accompanied by an accessory penalty of formal public admonition in the Boletín Oficial del Estado (BOE) naming the responsible party.","J":"NO","K":"YES","L":"YES","M":"YES","N":"YES","O":"YES","P":"YES","Q":"YES","R":"NO","S":"NO"},"auth":{"C":"2","D":"19","E":"1 central authority (CNCS), 3 main control authorities (Ministries of Defense, Digital Transformation, and Interior), 4 national reference CSIRTs and 11 specialised sectoral points of contact","F":"The state and joint ministries (of Defense, Interior and Digital Transformation and Public Function)","G":"Ministry of Defence (via CCN), Ministry of Digital Transformation and Ministry of Interior (via OCC)","H":"CNCS and control authorities","I":"CSIRTS and control authorities","J":"YES","K":"11","L":"Banco de Espana (banking), SNMV (financial market infrastructures), Consejo de Seguridad Nuclear (nuclear), MITECO (energy), Ministry of transport ; Ministry of Health, Ministry of Science/space Agency, Ministry of Industry, Ministry of Social Rights/ASEAN, Ministry of Defence / CNN","M":"CNCS","N":"CNCS","O":"CNCS"}},"SE":{"id":{"D":"3","E":"2026-01-15","F":"Yes","G":"S1 2026","H":"2026","I":"14","J":"Law","K":"« en ny cybersäkerhetslag » - Act SFS 2025:1506, adoptée par le Riksdag 10/12/2025, publiée 17/12/2025, en vigueur 15/01/2026. Règlements complémentaires attendus T1 2026."},"inc":{"C":"3","E":"National CSIRT","F":"MSB (Swedish Civil Contingencies Agency)\nCSIRT-SE","G":"15/01/2026","H":"Report on a web platform","I":"Interim official reporting platform (until the new national portal is fully deployed)","J":"Identification & Contact Information\nIncident Classification\nIncident Description\nTechnical Evidence & Indicators\nImpact Assessment\nContainment & Mitigation Actions","L":"NO","M":"An incident shall be considered significant if it has caused or may cause serious operational disruption of the service provided or financial loss for the affected entity, or if it has affected or may affect other natural or legal persons by causing significant damage.","N":"NC","P":"NO","R":"NC"},"reg":{"C":"3","D":"YES","E":"Platform","F":"MCF","G":"Self registration by the entity","H":"2026-02-16","I":"Platform","J":"1","K":"0.5","L":"NC","M":"NO","N":"Name of the organisation.\nAddress and up-to-date contact details.\nIP address, Sector classification\nList of member states where the entity provides services","O":"YES","P":"YES","Q":"YES","R":"YES","S":"Not specified","T":"YES","U":"Not specified","V":"NC","W":"Not specified","X":"NC","Y":"YES","Z":"YES","AA":"NC","AB":"YES","AC":"YES"},"fw":{"C":"3","D":"Temporary","E":"NIS 2 dedicated framework","F":"Cybersäkerhetslag","G":"12/17/25","H":"NC","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"NC","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","W":"NC","Y":"NC","AA":"NC","AB":"N.A","AC":"NO","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"3","D":"For EE and EI","E":"Multiple","G":"Sectoral Authorities : PTS (infrastructures numériques), Statens energimyndighet (énergie), Transportstyrelsen (transports), Finansinspektionen (secteur bancaire)​\n\nRegional Authorities : Norbotten, Skåne, Stockholm, Västra Götaland, Örebro, Östergötland. The sectors they oversee are: public administration, waste management, research, manufacturing and production, private educational institutions.","H":"At the expense of the entity (annual fees)","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"NC","Q":"YES","R":"YES","S":"YES","T":"YES","U":"Major incident or evidence/suspicion of non-compliance"},"san":{"C":"3","D":"YES","E":"Same modalities as in the directives","F":"Same modalities as in the directives","G":"NC","H":"YES","I":"Urgent proceedings (Penalty payments): Injunctions may be accompanied by a financial penalty to ensure compliance\nNote (Remark/Warning): A low-level intervention measure if other sanctions are not deemed necessary","J":"YES","K":"NO","L":"YES","M":"YES","N":"YES","O":"NC","P":"NO","Q":"YES","R":"NO","S":"YES"},"auth":{"C":"3","D":"14","E":"MCF\nCSIRT-SE\nEnergy (Energimyndigheten)\nTransport (Transportstyrelsen)\nFinance (Finansinspektionen)\nHealth (Inspektionen för vård och omsorg) \nDrinking Water (Livsmedelsverket) \nDigital Infrastructure (Post‑ och telestyrelsen)\nRegional authorities:\nNorbotten, Skåne, Stockholm, Västra Götaland, Örebro, Östergötland.\n\n​","F":"MCF","G":"MCF","H":"MCF","I":"CSIRT-SE","J":"YES","K":"6","L":"Finance (Finansinspektionen)\nHealth (Inspektionen för vård och omsorg) \nDrinking Water (Livsmedelsverket) \nDigital Infrastructure (Post‑ och telestyrelsen)","M":"MCF","N":"MCF","O":"MCF"}},"GB":{"id":{"D":"2","E":"NC","F":"No","G":"NC","H":"NC","I":"NC","J":"Law","K":"Cyber Security and Resilience (Network and Information Systems) Bill - amende les NIS Regulations 2018 (S.I. 2018/506). 1re lecture Chambre des Lords 17/06/2026 ; Royal Assent attendu fin 2026 ; mise en œuvre complète anticipée ~2028 (entrée en vigueur échelonnée par statutory instruments)."},"inc":{"C":"2","E":"Multiple organisms","F":"Primary regulators (sectoral authorities)\nICO for digital service providers","G":"NC","H":"NC","I":"NC","J":"NC","L":"NC","M":"The CS&R Bill states that significant incidents include those involving system compromise, even if service disruption has not yet occurred.\nThe CS&R Bill includes the following criteria:\n- Incidents causing serious cyber security compromise\n- Incidents affecting designated critical suppliers\n- Incidents with major service impact or operational disruption","N":"NC","P":"NO","R":"NC"},"reg":{"C":"2","D":"NO","E":"NC","F":"DSIT","G":"NC","H":"NC","I":"NC","J":"NC","L":"NC","M":"NC","N":"Name of the organisation.\nAddress and up-to-date contact details.\nIP address.\nSector and subsector classification.\nList of member states where the entity provides services (if applicable).\nDetails of the point of contact administering the domain name .","O":"YES","P":"YES","Q":"YES","R":"YES","S":"Not specified","T":"YES","U":"Not specified","V":"Yes","W":"NC","X":"NC","Y":"NC","Z":"YES","AA":"NC","AB":"YES","AC":"YES"},"fw":{"C":"2","D":"Temporary","E":"NC","F":"Cyber Security and Resilience Act 2026","G":"06/17/2026","H":"Applicable to all IS","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","O":"YES","P":"NC","Q":"NC","R":"NC","S":"NC","T":"NC","U":"NC","V":"NC","Y":"NC","Z":"NC","AA":"NC","AB":"NC","AC":"NO","AD":"NC","AE":"NC","AF":"NC","AG":"NC","AH":"NC","AI":"NC","AJ":"NC"},"aud":{"C":"2","D":"For EE and EI","E":"Sectoral authorities","G":"12 Competent Authorities","H":"At the expense of the entity","I":"NC","J":"NC","K":"NC","L":"NC","M":"NC","N":"NC","O":"NC","P":"YES","Q":"YES","R":"YES","S":"Annual report of the authorities to the SPOC (single point of contact) on the number and nature of incidents reported","T":"YES","U":"Multiple"},"san":{"C":"2","D":"YES","E":"NC","F":"More specific modalities","G":"NC","H":"YES","I":"Cost recovery: \nThe authorities may impose charges on organisations to cover the costs associated with their supervisory and enforcement functions","J":"YES","K":"YES","L":"NC","M":"YES","N":"YES","O":"NC","P":"YES","Q":"YES","R":"YES","S":"YES"},"auth":{"C":"2","D":"9","E":"DSIT\nNCSC (CERT UK)\nICO\nOfgem (energy: electricity, gas)\nDepartment for Energy Security & Net Zero (DESNZ) (energy: oil, pipelines)\nDepartment for Transport (DfT)\nCivil Aviation Authority (CAA)\nOfcom (communications & digital infrastructures)\nDrinking Water Inspectorate (DWI)","F":"DSIT","G":"ICO\nOfgem \nDESNZ \nCAA \nOfcom \nDfT \nDWI","H":"ICO\nOfgem \nDESNZ \nCAA \nOfcom \nDfT \nDWI","I":"NCSC (+ ICO or sectoral authority)","J":"YES","K":"6","L":"Ofgem \nDESNZ \nCAA \nOfcom \nDfT \nDWI"}}}};
 /* ---- REC country records, from the transposition workbook.
    Generated by tools/rec_to_countries.py - do not edit by hand.
    Shares the core fields with NIS 2 (identity, maturity, law, sections)
@@ -16479,6 +16694,75 @@ const I18N = {
     "manual.optUnofficial": "Unofficial - to verify",
     "manual.optManual": "Manual - consultant input",
     "role.developer": "Developer",
+    "fiche.inc": "Incident reporting",
+    "fiche.reg": "Registration",
+    "fiche.fw": "Framework",
+    "fiche.aud": "Audits",
+    "fiche.san": "Sanctions",
+    "fiche.f.maturity": "Maturity level",
+    "fiche.f.inForce": "Entry into application",
+    "fiche.f.docType": "Type of document",
+    "fiche.f.mainText": "Principal text",
+    "fiche.f.extraText": "Additional texts",
+    "fiche.empty": "Not recorded",
+    "fiche.emptyShort": "n/a",
+    "fiche.nc": "Not communicated",
+    "fiche.yes": "Yes",
+    "fiche.no": "No",
+    "fiche.filled": "{n} of {total} fields filled",
+    "fiche.more": "Show {n} more fields from the sheet",
+    "fiche.listCount": "{n} of {total} apply.",
+    "fiche.regList": "Information required at registration",
+    "fiche.fwList": "Frameworks it relies on",
+    "fiche.audList": "What the audit expects",
+    "fiche.sanList": "Measures provided for",
+    "fiche.selfAssess": "Self-assessment",
+    "fiche.reqTitle": "Cyber requirements by entity type",
+    "fiche.themeTitle": "Cyber themes covered",
+    "fiche.barsEmpty": "Columns present in the workbook but empty for this country.",
+    "fiche.ee": "Essential (EE)",
+    "fiche.ie": "Important (EI)",
+    "fiche.timeline": "Reporting deadlines",
+    "fiche.tl24": "Early warning",
+    "fiche.tl72": "Incident notification",
+    "fiche.tl1m": "1 month",
+    "fiche.tlFinal": "Final report",
+    "fiche.tlAligned": "Aligned on the NIS 2 directive, no national specificity declared.",
+    "fiche.tlUnknown": "Deviation from the directive not recorded in the workbook.",
+    "fiche.transposed": "Transposed",
+    "fiche.delay": "{n} months late",
+    "fiche.upd": "Up to date as of {date}",
+    "fiche.showCells": "Show source cells",
+    "fiche.sectors": "Sectors covered",
+    "fiche.sectorsBtn": "See the sector map",
+    "fiche.sectorsTitle": "Sectors covered by NIS 2",
+    "fiche.sectorsNote": "Scope of the directive, identical for every country. The workbook holds no national sector sheet: nothing here is specific to the country you are reading.",
+    "fiche.annex1": "Annex I \u00b7 Essential entities",
+    "fiche.annex2": "Annex II \u00b7 Important entities",
+    "fiche.close": "Close",
+    "fiche.folder": "Open the country folder",
+    "fiche.scrollHint": "Timeline, authorities, sources",
+    "fiche.reco": "Wavestone recommendation",
+    "fiche.recoBy": "Internal analysis",
+    "fiche.recoNone": "This section is in place and waiting for its column in the Cyber Watch. As soon as a \u201cWavestone recommendation\u201d column exists in the ID sheet, its content appears here for all 29 countries.",
+    "sect.energy": "Energy", "sect.energyD": "Electricity, oil, gas, hydrogen, district heating",
+    "sect.transport": "Transport", "sect.transportD": "Air, rail, water, road",
+    "sect.bank": "Banking", "sect.bankD": "Credit institutions",
+    "sect.fmi": "Financial market infrastructures", "sect.fmiD": "Trading venues, central counterparties",
+    "sect.health": "Health", "sect.healthD": "Providers, laboratories, device manufacturers",
+    "sect.water": "Drinking water", "sect.waterD": "Supply and distribution",
+    "sect.waste": "Waste water", "sect.wasteD": "Collection and treatment",
+    "sect.digital": "Digital infrastructure", "sect.digitalD": "Exchange points, DNS, registries, data centres",
+    "sect.ict": "ICT service management", "sect.ictD": "Managed service and security providers",
+    "sect.public": "Public administration", "sect.publicD": "Central government entities",
+    "sect.space": "Space", "sect.spaceD": "Ground infrastructure operators",
+    "sect.post": "Postal services", "sect.postD": "Postal and courier services",
+    "sect.garbage": "Waste management", "sect.garbageD": "Collection, sorting, treatment",
+    "sect.chem": "Chemicals", "sect.chemD": "Manufacture, production, distribution",
+    "sect.food": "Food", "sect.foodD": "Production, processing, distribution",
+    "sect.manu": "Manufacturing", "sect.manuD": "Medical devices, electronics, machinery, vehicles",
+    "sect.provider": "Digital providers", "sect.providerD": "Marketplaces, search engines, social networks",
+    "sect.research": "Research", "sect.researchD": "Research organisations",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -16935,6 +17219,75 @@ const I18N = {
     "manual.optUnofficial": "Non officielle - à vérifier",
     "manual.optManual": "Manuelle - saisie consultant",
     "role.developer": "Développeur",
+    "fiche.inc": "Incident reporting",
+    "fiche.reg": "Registration",
+    "fiche.fw": "Framework",
+    "fiche.aud": "Audits",
+    "fiche.san": "Sanctions",
+    "fiche.f.maturity": "Niveau de maturit\u00e9",
+    "fiche.f.inForce": "Entr\u00e9e en application",
+    "fiche.f.docType": "Type de document",
+    "fiche.f.mainText": "Texte principal",
+    "fiche.f.extraText": "Textes additionnels",
+    "fiche.empty": "Non renseign\u00e9",
+    "fiche.emptyShort": "n.r.",
+    "fiche.nc": "Non communiqu\u00e9",
+    "fiche.yes": "Oui",
+    "fiche.no": "Non",
+    "fiche.filled": "{n} champs renseign\u00e9s sur {total}",
+    "fiche.more": "Voir les {n} champs suppl\u00e9mentaires de la feuille",
+    "fiche.listCount": "{n} sur {total} s\u2019appliquent.",
+    "fiche.regList": "Informations demand\u00e9es \u00e0 l\u2019enregistrement",
+    "fiche.fwList": "R\u00e9f\u00e9rentiels sur lesquels il s\u2019appuie",
+    "fiche.audList": "Attendus de l\u2019audit",
+    "fiche.sanList": "Mesures pr\u00e9vues",
+    "fiche.selfAssess": "Auto-\u00e9valuation",
+    "fiche.reqTitle": "Exigences cyber par type d\u2019entit\u00e9",
+    "fiche.themeTitle": "Th\u00e8mes cyber couverts",
+    "fiche.barsEmpty": "Colonnes pr\u00e9sentes dans le classeur mais vides pour ce pays.",
+    "fiche.ee": "Essentielles (EE)",
+    "fiche.ie": "Importantes (EI)",
+    "fiche.timeline": "D\u00e9lais de notification",
+    "fiche.tl24": "Alerte pr\u00e9coce",
+    "fiche.tl72": "Notification d\u2019incident",
+    "fiche.tl1m": "1 mois",
+    "fiche.tlFinal": "Rapport final",
+    "fiche.tlAligned": "Align\u00e9 sur la directive NIS 2, sans sp\u00e9cificit\u00e9 nationale d\u00e9clar\u00e9e.",
+    "fiche.tlUnknown": "\u00c9cart avec la directive non renseign\u00e9 dans le classeur.",
+    "fiche.transposed": "Transpos\u00e9e",
+    "fiche.delay": "{n} mois de retard",
+    "fiche.upd": "\u00c0 jour le {date}",
+    "fiche.showCells": "Afficher les cases source",
+    "fiche.sectors": "Secteurs couverts",
+    "fiche.sectorsBtn": "Voir la cartographie des secteurs",
+    "fiche.sectorsTitle": "Secteurs couverts par NIS 2",
+    "fiche.sectorsNote": "P\u00e9rim\u00e8tre de la directive, identique pour tous les pays. Le classeur ne porte pas de feuille Secteurs nationale : rien ici n\u2019est propre au pays consult\u00e9.",
+    "fiche.annex1": "Annexe I \u00b7 Entit\u00e9s essentielles",
+    "fiche.annex2": "Annexe II \u00b7 Entit\u00e9s importantes",
+    "fiche.close": "Fermer",
+    "fiche.folder": "Ouvrir le dossier du pays",
+    "fiche.scrollHint": "Chronologie, autorit\u00e9s, sources",
+    "fiche.reco": "Recommandation Wavestone",
+    "fiche.recoBy": "Analyse interne",
+    "fiche.recoNone": "La section est en place et attend sa colonne dans le Cyber Watch. D\u00e8s qu\u2019une colonne \u00ab Recommandation Wavestone \u00bb existera dans la feuille ID, son contenu s\u2019affichera ici pour les 29 pays.",
+    "sect.energy": "\u00c9nergie", "sect.energyD": "\u00c9lectricit\u00e9, p\u00e9trole, gaz, hydrog\u00e8ne, chauffage urbain",
+    "sect.transport": "Transports", "sect.transportD": "A\u00e9rien, ferroviaire, maritime, routier",
+    "sect.bank": "Banque", "sect.bankD": "\u00c9tablissements de cr\u00e9dit",
+    "sect.fmi": "Infrastructures des march\u00e9s financiers", "sect.fmiD": "Plateformes de n\u00e9gociation, contreparties centrales",
+    "sect.health": "Sant\u00e9", "sect.healthD": "Prestataires, laboratoires, fabricants de dispositifs",
+    "sect.water": "Eau potable", "sect.waterD": "Fourniture et distribution",
+    "sect.waste": "Eaux us\u00e9es", "sect.wasteD": "Collecte et traitement",
+    "sect.digital": "Infrastructure num\u00e9rique", "sect.digitalD": "Points d\u2019\u00e9change, DNS, registres, centres de donn\u00e9es",
+    "sect.ict": "Gestion des services TIC", "sect.ictD": "Fournisseurs de services g\u00e9r\u00e9s et de s\u00e9curit\u00e9",
+    "sect.public": "Administration publique", "sect.publicD": "Entit\u00e9s des administrations centrales",
+    "sect.space": "Espace", "sect.spaceD": "Exploitants d\u2019infrastructures au sol",
+    "sect.post": "Services postaux", "sect.postD": "Postes et services de courrier express",
+    "sect.garbage": "Gestion des d\u00e9chets", "sect.garbageD": "Collecte, tri, traitement",
+    "sect.chem": "Produits chimiques", "sect.chemD": "Fabrication, production, distribution",
+    "sect.food": "Denr\u00e9es alimentaires", "sect.foodD": "Production, transformation, distribution",
+    "sect.manu": "Fabrication", "sect.manuD": "Dispositifs m\u00e9dicaux, \u00e9lectronique, machines, v\u00e9hicules",
+    "sect.provider": "Fournisseurs num\u00e9riques", "sect.providerD": "Places de march\u00e9, moteurs de recherche, r\u00e9seaux sociaux",
+    "sect.research": "Recherche", "sect.researchD": "Organismes de recherche",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -18108,6 +18461,14 @@ function renderCountry(iso){
   const c = byIso[iso];
   const el = $("#v-country");
   if (!c) { el.innerHTML = `<p>${t("cp.unknown")}</p>`; return; }
+  /* La fiche refondue lit le classeur case par case (app_fiche.js). Elle ne
+     vaut que pour NIS 2 : REC n'a pas de classeur comparatif, et lui servir une
+     page de sections vides serait pire que la fiche d'origine, qui affiche ce
+     dont on dispose. */
+  if (typeof renderFiche === "function" && typeof ficheOn === "function" && ficheOn()) {
+    renderFiche(c, el);
+    return;
+  }
   const spec = regSpec();
   const facts = countryFacts(c);
   const secHtml = spec.sections.filter(k => c.sections[k] && c.sections[k].length).map(k => `
@@ -18155,6 +18516,13 @@ function renderCountry(iso){
       <b>${t("cp.readOnlyT")}</b> ${t("cp.readOnly")}
     </div>
   </div>`;
+  wireDeckButton(el, iso);
+}
+
+/* Le bouton de generation des slides, extrait de renderCountry : la fiche
+   refondue (app_fiche.js) le porte aussi, et dupliquer trente lignes de
+   telechargement aurait garanti qu'une des deux copies cesse d'etre corrigee. */
+function wireDeckButton(el, iso){
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;
@@ -18994,6 +19362,544 @@ function renderSources(){
     a.click();
     URL.revokeObjectURL(a.href);
   });
+}
+/* ---------- la fiche pays, refondue ----------
+ *
+ * La fiche precedente aplatissait le classeur : une quinzaine de champs types,
+ * puis des puces de prose ou le reste finissait melange. Chercher le delai de
+ * notification d'un incident demandait de lire toute la page.
+ *
+ * Celle-ci epouse la structure du Cyber Watch : une section par feuille, une
+ * ligne par colonne. Ce n'est pas un choix esthetique, c'est ce qui rend la
+ * mise a jour mecanique - une case ajoutee au classeur apparait sans qu'on
+ * retouche une table de correspondance, et un validateur qui connait le
+ * classeur sait ou regarder sans apprendre une seconde organisation.
+ *
+ * Les donnees viennent de SHEET_DATA (tools/sheets_to_countries.py), qui porte
+ * les 133 colonnes telles quelles. Les champs types de EXCEL_DATA restent la
+ * source des tris, de la carte et des graphiques : les deux ne se marchent pas
+ * dessus, ils ne repondent pas a la meme question.
+ */
+
+/* Les libelles du classeur sont en anglais et le resteront : c'est la langue de
+   la source, et un validateur passe de l'un a l'autre. On traduit les champs
+   mis en avant, pas les 133 - une traduction partielle mais juste vaut mieux
+   qu'un dictionnaire de 133 entrees que personne ne tiendra a jour. Le reste
+   s'affiche avec le libelle du classeur, ce qui a l'avantage d'etre verifiable. */
+const FICHE_FR = {
+  "inc!E": "Type d'organisme", "inc!F": "Nom de l'organisme",
+  "inc!G": "Obligatoire à partir du", "inc!H": "Méthode",
+  "inc!I": "Plateforme", "inc!J": "Informations demandées",
+  "inc!M": "Définition de l'incident majeur", "inc!N": "Critères d'incident significatif",
+  "inc!P": "Écart avec la directive", "inc!Q": "Délais de notification",
+  "reg!D": "Enregistrement disponible", "reg!E": "Outil",
+  "reg!F": "Autorité en charge", "reg!G": "Type d'enregistrement",
+  "reg!H": "Échéance", "reg!I": "Méthode",
+  "reg!J": "Délai d'enregistrement (mois)", "reg!K": "Délai de mise à jour (mois)",
+  "reg!L": "Date de référence", "reg!M": "Notification d'éligibilité",
+  "fw!D": "Référentiel publié", "fw!E": "Référentiel dédié à NIS 2",
+  "fw!F": "Nom et lien", "fw!G": "Date de publication",
+  "fw!H": "Classification des SI", "fw!I": "Règle de classification",
+  "fw!J": "Thèmes cyber (EE)", "fw!K": "Thèmes cyber (EI)",
+  "fw!L": "Exigences cyber (EE)", "fw!M": "Exigences cyber (EI)",
+  "aud!D": "Audit prévu par la transposition", "aud!E": "Organisme en charge",
+  "aud!F": "Typologie d'auditeurs", "aud!G": "Détail de l'organisme",
+  "aud!I": "Auto-évaluation", "aud!J": "Première échéance",
+  "aud!K": "Fréquence (mois)", "aud!U": "Raison d'un audit inopiné",
+  "san!D": "Conforme aux sanctions de la directive", "san!E": "Interdiction d'exercer",
+  "san!F": "Sanctions financières", "san!G": "Suspension de certification",
+  "san!H": "Peines hors directive", "san!I": "Types de peines additionnelles"
+};
+
+/* Ce que chaque section met en avant, et ce qu'elle replie. Les colonnes sont
+   nommees explicitement plutot que deduites : l'ordre de lecture d'une fiche
+   n'est pas l'ordre des colonnes d'un tableur. */
+const FICHE_SECTIONS = [
+  { key: "inc", tKey: "fiche.inc", icon: "alert",
+    primary: ["E", "F", "G", "H", "I", "J", "M", "N"] },
+  { key: "reg", tKey: "fiche.reg", icon: "card",
+    primary: ["D", "I", "E", "F", "G", "H", "J", "K", "L"],
+    listKey: "fiche.regList",
+    list: ["O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC"] },
+  { key: "fw", tKey: "fiche.fw", icon: "shield",
+    primary: ["D", "E", "F", "G", "H", "I"],
+    listKey: "fiche.fwList",
+    list: ["P", "Q", "R", "S", "T", "U", "V"] },
+  { key: "aud", tKey: "fiche.aud", icon: "search",
+    primary: ["D", "E", "G", "F", "U"],
+    listKey: "fiche.audList",
+    list: ["P", "Q", "R", "S", "T"] },
+  { key: "san", tKey: "fiche.san", icon: "scale",
+    primary: ["D", "F", "E", "G", "H", "I"],
+    listKey: "fiche.sanList",
+    list: ["J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"] }
+];
+
+const FICHE_ICONS = {
+  alert: '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>',
+  card: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h5M7 13h8"/>',
+  shield: '<path d="M12 3l8 3.5v5c0 4.6-3.2 8.6-8 9.5-4.8-.9-8-4.9-8-9.5v-5z"/><path d="M9 12l2 2 4-4"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M8.5 11l1.8 1.8 3.2-3.4"/>',
+  scale: '<path d="M12 3v18M5 7h14M7 7l-3 6a3.5 3.5 0 0 0 6 0zM17 7l3 6a3.5 3.5 0 0 1-6 0z"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  bank: '<path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/>',
+  grid: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/>',
+  folder: '<path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  bulb: '<path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3z"/><path d="M10 20h4"/>'
+};
+function ficheIcon(name, cls){
+  return `<svg class="${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${FICHE_ICONS[name] || ""}</svg>`;
+}
+
+/* ---------- lecture des cases ---------- */
+function ficheOn(){ return typeof SHEET_DATA !== "undefined" && regId() === "nis2"; }
+function ficheCell(iso, key, col){
+  const row = (SHEET_DATA.rows || {})[iso];
+  const bag = row && row[key];
+  return (bag && bag[col] != null) ? bag[col] : null;
+}
+function ficheLabel(key, col){
+  const fr = lang === "fr" ? FICHE_FR[key + "!" + col] : null;
+  if (fr) return fr;
+  const sheet = (SHEET_DATA.sheets || {})[key];
+  const f = sheet && sheet.fields.find(x => x.c === col);
+  return f ? f.l : col;
+}
+function ficheCols(key){
+  const sheet = (SHEET_DATA.sheets || {})[key];
+  /* La colonne C repete le niveau de maturite sur chaque feuille : il est deja
+     dans l'en-tete de la fiche, l'afficher cinq fois n'apprend rien. */
+  return sheet ? sheet.fields.map(f => f.c).filter(c => c !== "C") : [];
+}
+
+const FICHE_YES = /^(yes|oui|y)$/i;
+const FICHE_NO = /^(no|non|n)$/i;
+
+/* Une valeur telle que la fiche la montre. Trois etats se distinguent, et la
+   distinction compte : la case est vide (personne n'a regarde), la case dit
+   « NC » (on a cherche, on n'a pas trouve), ou elle porte une reponse. Les
+   confondre ferait passer une lacune de la veille pour une absence de regle. */
+function ficheValue(v){
+  if (v == null) return `<span class="fv-none">${t("fiche.empty")}</span>`;
+  if (v === "NC") return `<span class="fv-nc">${t("fiche.nc")}</span>`;
+  if (FICHE_YES.test(v)) return `<span class="ftag y">${t("fiche.yes")}</span>`;
+  if (FICHE_NO.test(v)) return `<span class="ftag n">${t("fiche.no")}</span>`;
+  const safe = esc(v).replace(/\n/g, "<br>");
+  /* Plusieurs cases portent une URL au milieu d'une phrase. */
+  return safe.replace(/(https?:\/\/[^\s<]+)/g,
+    '<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+
+function ficheRows(iso, key, cols){
+  const html = cols.map(col => {
+    const label = ficheLabel(key, col);
+    if (!label) return "";
+    return `<div class="frow"><dt>${esc(label)}<span class="fcell">${key}!${col}</span></dt>
+      <dd>${ficheValue(ficheCell(iso, key, col))}</dd></div>`;
+  }).join("");
+  return html ? `<dl class="frows">${html}</dl>` : "";
+}
+
+/* Une liste de cases oui/non, montree comme une liste a cocher : sur quinze
+   lignes, un tableau de « YES / NO » se lit moins vite qu'une grille ou l'oeil
+   ne cherche que les coches. Une valeur qui n'est ni oui ni non garde son
+   texte, sinon on la perdrait en la forcant dans un pictogramme. */
+const FICHE_TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg>';
+const FICHE_CROSS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 8l8 8M16 8l-8 8"/></svg>';
+const FICHE_DOT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/></svg>';
+
+function ficheList(iso, key, cols, titleKey){
+  const items = cols.map(col => {
+    const label = ficheLabel(key, col);
+    if (!label) return "";
+    const v = ficheCell(iso, key, col);
+    if (v == null || v === "NC")
+      return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`;
+    if (FICHE_YES.test(v)) return `<div class="fck on">${FICHE_TICK}<span>${esc(label)}</span></div>`;
+    if (FICHE_NO.test(v)) return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`;
+    return `<div class="fck other">${FICHE_DOT}<span>${esc(label)} <b>${esc(v)}</b></span></div>`;
+  }).join("");
+  if (!items) return "";
+  const yes = cols.filter(c => { const v = ficheCell(iso, key, c); return v && FICHE_YES.test(v); }).length;
+  return `<div class="fblock">
+    <div class="flab">${t(titleKey)}<span class="fcell">${key}!${cols[0]}:${cols[cols.length - 1]}</span></div>
+    <div class="fcks">${items}</div>
+    <div class="fnote">${t("fiche.listCount", { n: yes, total: cols.length })}</div>
+  </div>`;
+}
+
+/* Deux barres comparees. Le classeur donne des nombres bruts ; les mettre cote
+   a cote est ce qui les rend lisibles - « 152 » ne dit rien, « le double de
+   l'autre » dit quelque chose. */
+function ficheBars(iso, key, pairs, titleKey, noteKey){
+  const vals = pairs.map(p => {
+    const raw = ficheCell(iso, key, p.col);
+    const n = raw != null && /^\d+([.,]\d+)?$/.test(String(raw)) ? parseFloat(String(raw).replace(",", ".")) : null;
+    return { label: t(p.tKey), n, color: p.color, col: p.col };
+  });
+  const max = Math.max.apply(null, vals.map(v => v.n || 0));
+  const any = vals.some(v => v.n != null);
+  return `<div class="fblock">
+    <div class="flab">${t(titleKey)}<span class="fcell">${key}!${pairs.map(p => p.col).join(" ")}</span></div>
+    <div class="fbars">${vals.map(v => `
+      <div class="fbar">
+        <span class="k">${esc(v.label)}</span>
+        <span class="t">${v.n != null && max > 0 ? `<i style="width:${Math.max(3, v.n / max * 100)}%;background:${v.color}"></i>` : ""}</span>
+        <span class="v${v.n == null ? " na" : ""}">${v.n != null ? v.n : t("fiche.emptyShort")}</span>
+      </div>`).join("")}</div>
+    ${any ? "" : `<div class="fnote">${t(noteKey)}</div>`}
+  </div>`;
+}
+
+/* ---------- les delais de notification ----------
+ * La directive fixe 24 h / 72 h / 1 mois. Le classeur ne stocke pas trois
+ * dates mais deux choses : un pays s'ecarte-t-il de ce rythme, et si oui,
+ * comment. On dessine donc le rythme de reference, et on dit ce que le pays en
+ * fait - ce qui est plus juste que de deviner une frise a partir d'une phrase.
+ */
+function ficheTimeline(iso){
+  const spec = ficheCell(iso, "inc", "P");
+  const detail = ficheCell(iso, "inc", "Q");
+  const aligned = spec != null && FICHE_NO.test(spec);
+  const stops = [
+    { h: "24 h", d: t("fiche.tl24") },
+    { h: "72 h", d: t("fiche.tl72") },
+    { h: t("fiche.tl1m"), d: t("fiche.tlFinal") }
+  ];
+  return `<div class="fblock">
+    <div class="flab">${t("fiche.timeline")}<span class="fcell">inc!P inc!Q</span></div>
+    <div class="ftl">
+      <div class="axis"></div>
+      <div class="stops">${stops.map(s => `
+        <div class="stop"><div class="dot"></div><div class="h">${s.h}</div><div class="d">${s.d}</div></div>`).join("")}</div>
+    </div>
+    <div class="fnote">${aligned ? t("fiche.tlAligned")
+      : detail && detail !== "NC" ? esc(detail).replace(/\n/g, "<br>")
+      : t("fiche.tlUnknown")}</div>
+  </div>`;
+}
+
+/* ---------- les secteurs des annexes I et II ----------
+ * Le classeur n'a pas de feuille Secteurs : ce qui suit est le perimetre de la
+ * directive, identique pour tous les pays, pas une donnee nationale. C'est dit
+ * dans la fenetre elle-meme, faute de quoi un lecteur y verrait le perimetre
+ * retenu par le pays qu'il consulte.
+ */
+const FICHE_EE = [
+  ["sect.energy", "sect.energyD"], ["sect.transport", "sect.transportD"],
+  ["sect.bank", "sect.bankD"], ["sect.fmi", "sect.fmiD"],
+  ["sect.health", "sect.healthD"], ["sect.water", "sect.waterD"],
+  ["sect.waste", "sect.wasteD"], ["sect.digital", "sect.digitalD"],
+  ["sect.ict", "sect.ictD"], ["sect.public", "sect.publicD"],
+  ["sect.space", "sect.spaceD"]
+];
+const FICHE_EI = [
+  ["sect.post", "sect.postD"], ["sect.garbage", "sect.garbageD"],
+  ["sect.chem", "sect.chemD"], ["sect.food", "sect.foodD"],
+  ["sect.manu", "sect.manuD"], ["sect.provider", "sect.providerD"],
+  ["sect.research", "sect.researchD"]
+];
+function ficheSectorsHtml(){
+  const cell = (r, cls) => `<div class="fs ${cls}"><div class="si">${ficheIcon("grid")}</div>
+    <div class="sn">${t(r[0])}</div><div class="sd">${t(r[1])}</div></div>`;
+  return `<div class="fmodal">
+    <div class="fmodal-h"><h2>${t("fiche.sectorsTitle")}</h2>
+      <button class="x" type="button" id="ficheSecClose" aria-label="${t("fiche.close")}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button></div>
+    <div class="fmodal-b">
+      <div class="fann">${t("fiche.annex1")}</div>
+      <div class="fgrid">${FICHE_EE.map(r => cell(r, "ee")).join("")}</div>
+      <div class="fann">${t("fiche.annex2")}</div>
+      <div class="fgrid">${FICHE_EI.map(r => cell(r, "ei")).join("")}</div>
+      <div class="fmlg">${t("fiche.sectorsNote")}</div>
+    </div></div>`;
+}
+
+/* ---------- les cinq bulles ---------- */
+function ficheFacts(c){
+  const iso = c.iso;
+  const mat = c.maturity;
+  const bubbles = [
+    { icon: "alert", lab: t("fiche.f.maturity"), cell: "id!D",
+      html: `<div class="fmat" style="--mc:var(--m${mat})"><b>${mat}</b>
+        <span class="dots">${[1, 2, 3, 4].map(l => `<i class="${l <= mat ? "on" : ""}"></i>`).join("")}</span></div>` },
+    { icon: "clock", lab: t("fiche.f.inForce"), cell: "id!E",
+      html: c.lawInForce ? `<b>${fmtDateL(c.lawInForce)}</b>` : ficheValue(ficheCell(iso, "id", "E")) },
+    { icon: "card", lab: t("fiche.f.docType"), cell: "id!J",
+      html: ficheValue(ficheCell(iso, "id", "J")) },
+    { icon: "book", lab: t("fiche.f.mainText"), cell: "id!K", small: true,
+      html: ficheValue(ficheCell(iso, "id", "K")) },
+    { icon: "folder", lab: t("fiche.f.extraText"), cell: "id!L", small: true,
+      html: ficheValue(ficheCell(iso, "id", "L")) }
+  ];
+  return `<div class="ffacts">${bubbles.map(b => `
+    <div class="ffact">
+      <div class="ic">${ficheIcon(b.icon)}</div>
+      <div class="lbl">${b.lab}<span class="fcell">${b.cell}</span></div>
+      <div class="val${b.small ? " sm" : ""}">${b.html}</div>
+    </div>`).join("")}</div>`;
+}
+
+/* ---------- la fiche ---------- */
+function renderFiche(c, el){
+  const iso = c.iso;
+  const docs = (typeof COUNTRY_DOCS !== "undefined" && COUNTRY_DOCS[iso]) || null;
+
+  const sections = FICHE_SECTIONS.map(s => {
+    const shown = s.primary.concat(s.list || []);
+    const rest = ficheCols(s.key).filter(col => shown.indexOf(col) < 0);
+    const filled = s.primary.concat(s.list || []).concat(rest)
+      .filter(col => ficheCell(iso, s.key, col) != null).length;
+    const total = ficheCols(s.key).length;
+
+    let extras = "";
+    if (s.key === "inc") extras += ficheTimeline(iso);
+    if (s.key === "fw") {
+      extras += ficheBars(iso, "fw",
+        [{ col: "L", tKey: "fiche.ee", color: "var(--ee)" },
+         { col: "M", tKey: "fiche.ie", color: "var(--ie)" }],
+        "fiche.reqTitle", "fiche.barsEmpty");
+      extras += ficheBars(iso, "fw",
+        [{ col: "J", tKey: "fiche.ee", color: "var(--ee)" },
+         { col: "K", tKey: "fiche.ie", color: "var(--ie)" }],
+        "fiche.themeTitle", "fiche.barsEmpty");
+    }
+    if (s.key === "aud")
+      extras += `<div class="fblock"><div class="flab">${t("fiche.selfAssess")}<span class="fcell">aud!I:K</span></div>
+        ${ficheRows(iso, "aud", ["I", "J", "K"])}</div>`;
+    if (s.list) extras += ficheList(iso, s.key, s.list, s.listKey);
+
+    return `<section class="fsec" id="fsec-${s.key}" data-fsec="${s.key}">
+      <div class="fsec-h">
+        <div class="ic">${ficheIcon(s.icon)}</div>
+        <h2>${t(s.tKey)}</h2>
+        <span class="cnt">${t("fiche.filled", { n: filled, total: total })}</span>
+      </div>
+      <div class="fsec-b">
+        ${ficheRows(iso, s.key, s.primary)}
+        ${extras}
+        ${rest.length ? `<div class="fmore">
+          <button type="button" class="fmore-t" aria-expanded="false">
+            ${t("fiche.more", { n: rest.length })}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="finner" hidden>${ficheRows(iso, s.key, rest)}</div>
+        </div>` : ""}
+      </div>
+    </section>`;
+  }).join("");
+
+  const statusPill = c.transposed
+    ? `<span class="fpill ok">${t("fiche.transposed")}</span>`
+    : `<span class="fpill no">${t("cp.notTransposed")}</span>`;
+  const delay = c.delayMonths != null
+    ? `<span class="fpill wip">${t("fiche.delay", { n: c.delayMonths })}</span>` : "";
+
+  el.innerHTML = `
+  <a class="back" href="#/countries">${t("cp.back")}</a>
+  <div class="fhead">
+    <span class="fflag">${flagSvg(iso)}</span>
+    <div>
+      <h1>${esc(c.name)}</h1>
+      <div class="fpills">
+        ${statusPill}${delay}
+        <span class="fpill upd">${ficheIcon("clock")}${t("fiche.upd", { date: fmtDate(c.lastUpdate) })}</span>
+        <label class="fcellsw"><input type="checkbox" id="ficheCells"> ${t("fiche.showCells")}</label>
+      </div>
+      ${role === "validator" ? `<button class="btn" id="deckBtn" style="margin-top:10px">${t("cp.genSlides")}</button>` : ""}
+    </div>
+  </div>
+
+  ${ficheFacts(c)}
+
+  <div class="fcols">
+    <div>
+      <div class="fnav"><div class="fnav-in" id="ficheNav">
+        ${FICHE_SECTIONS.map(s => `<button type="button" data-fgo="${s.key}">
+          ${ficheIcon(s.icon)}${t(s.tKey)}</button>`).join("")}
+      </div></div>
+      ${sections}
+
+      <div class="freco">
+        <div class="freco-h">${ficheIcon("bulb")}<h2>${t("fiche.reco")}</h2>
+          <span class="by">${t("fiche.recoBy")}</span></div>
+        <div class="freco-b"><div class="none">${t("fiche.recoNone")}</div></div>
+      </div>
+    </div>
+
+    <div class="fasidew" id="ficheAsideW">
+      <aside class="faside" id="ficheAside">
+        <div class="card"><div class="cap"><h2>${t("cp.timeline")}</h2></div><div class="bd">
+          <ul class="ftl-list">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(ev => `
+            <li><span class="when">${fmtDateL(ev.date)}</span><span class="what">${esc(evText(ev))}</span></li>`).join("")}
+          </ul>
+        </div></div>
+
+        <div class="card"><div class="cap"><h2>${t("cp.authorities")}</h2></div><div class="bd auth">
+          ${c.authorities.map(a => `<div class="a"><b>${esc(a.name)}</b><span>${esc(a.role)}</span></div>`).join("")}
+        </div></div>
+
+        <div class="card"><div class="cap"><h2>${t("fiche.sectors")}</h2></div><div class="bd">
+          <button class="fbtn" type="button" id="ficheSecOpen">${t("fiche.sectorsBtn")}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v6h6M20 10V4h-6M20 4l-7 7M4 20l7-7"/></svg>
+          </button>
+        </div></div>
+
+        ${docs && docs.folderUrl ? `<div class="card"><div class="cap"><h2>${t("docs.title")}</h2></div><div class="bd">
+          <a class="fbtn ghost" href="${esc(docs.folderUrl)}" target="_blank" rel="noopener">${t("fiche.folder")}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div></div>` : ""}
+
+        <div class="card"><div class="cap"><h2>${t("cp.sources")}</h2></div><div class="bd srcs">
+          ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
+        </div></div>
+      </aside>
+      <div class="ffade"></div>
+      <button class="fhint" type="button" id="ficheHint">${t("fiche.scrollHint")}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <dialog id="ficheSectors">${ficheSectorsHtml()}</dialog>`;
+
+  ficheWire(el);
+  /* Le validateur garde la generation des slides pays : elle etait dans la
+     fiche d'origine, et une refonte qui retire une fonction sans le dire est
+     une regression, pas un choix. */
+  if (typeof wireDeckButton === "function") wireDeckButton(el, iso);
+}
+
+/* Etat du reperage, partage entre les rendus : voir le commentaire dans
+   ficheWire() sur l'ecouteur unique. */
+let ficheSpy = null;
+let ficheScrollBound = false;
+
+/* La hauteur de l'en-tete colle de l'application, mesuree et publiee en
+   variable CSS. Elle commande trois choses qui doivent s'accorder : ou la barre
+   d'ancres se colle, ou un lien d'ancre depose la page, et ou commence la
+   colonne de droite. Les coder en dur les faisait diverger des que l'en-tete
+   changeait de hauteur - ce qu'il fait a chaque palier responsive. */
+function ficheHeader(){
+  const hdr = document.querySelector("header.app");
+  const nav = document.querySelector(".fnav-in");
+  const root = document.documentElement;
+  const h = hdr ? Math.round(hdr.getBoundingClientRect().height) : 96;
+  root.style.setProperty("--fhdr", h + "px");
+  root.style.setProperty("--fnavh", (nav ? Math.round(nav.getBoundingClientRect().height) : 52) + "px");
+  return h;
+}
+
+function ficheWire(el){
+  /* --- cases source --- */
+  const sw = $("#ficheCells", el);
+  if (sw) {
+    /* Le reglage survit au changement de pays : il est porte par le corps de la
+       page, pas par la fiche, qui est reconstruite a chaque navigation. */
+    sw.checked = document.body.classList.contains("fcells");
+    sw.addEventListener("change", () => {
+      document.body.classList.toggle("fcells", sw.checked);
+    });
+  }
+
+  /* --- blocs replies --- */
+  el.querySelectorAll(".fmore-t").forEach(b => b.addEventListener("click", () => {
+    const open = b.getAttribute("aria-expanded") === "true";
+    b.setAttribute("aria-expanded", String(!open));
+    b.parentNode.querySelector(".finner").hidden = open;
+  }));
+
+  /* --- secteurs --- */
+  const dlg = $("#ficheSectors", el);
+  const open = $("#ficheSecOpen", el);
+  if (dlg && open) {
+    open.addEventListener("click", () => { if (dlg.showModal) dlg.showModal(); });
+    const x = $("#ficheSecClose", el);
+    if (x) x.addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  }
+
+  /* --- reperage des sections ---
+     La section courante est la derniere dont le haut est passe au-dessus de la
+     ligne de lecture. Un calcul, pas un evenement : marquer sur « entre dans le
+     champ de vision » laisse plusieurs sections se declarer au meme instant, et
+     c'est la derniere traitee qui l'emporte - donc celle du bas, jamais celle
+     qu'on vient d'atteindre. */
+  const nav = $("#ficheNav", el);
+  const secs = [...el.querySelectorAll(".fsec")];
+  if (!nav || !secs.length) return;
+  const btns = [...nav.querySelectorAll("button")];
+  /* La ligne de lecture suit l'en-tete : sous lui, plus la barre d'ancres. */
+  const lineOf = () => ficheHeader() +
+    (nav.getBoundingClientRect().height || 52) + 12;
+
+  const mark = k => btns.forEach(b =>
+    b.setAttribute("aria-current", b.dataset.fgo === k ? "true" : "false"));
+
+  function current(){
+    let cur = secs[0];
+    const line = lineOf();
+    secs.forEach(s => { if (s.getBoundingClientRect().top <= line) cur = s; });
+    /* Une derniere section plus courte que l'ecran ne franchit jamais la ligne. */
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4)
+      cur = secs[secs.length - 1];
+    return cur;
+  }
+
+  /* L'etat de defilement vit au niveau du module, pas de la fiche : chaque
+     navigation vers un pays reconstruit le DOM, et attacher un ecouteur de
+     defilement a chaque rendu en accumulerait un par pays visite. Un seul
+     ecouteur est pose (ficheScrollBound), et il lit ce que la fiche courante y
+     a depose. */
+  ficheHeader();
+  ficheSpy = { secs: secs, mark: mark, current: current, lock: 0 };
+  if (!ficheScrollBound) {
+    ficheScrollBound = true;
+    /* Pose une seule fois, comme l'ecouteur de defilement et pour la meme
+       raison : ficheWire() s'execute a chaque pays consulte. */
+    window.addEventListener("resize", ficheHeader, { passive: true });
+    let tick = false;
+    window.addEventListener("scroll", () => {
+      if (tick || !ficheSpy) return;
+      tick = true;
+      requestAnimationFrame(() => {
+        tick = false;
+        const sp = ficheSpy;
+        if (!sp || Date.now() < sp.lock || !document.body.contains(sp.secs[0])) return;
+        sp.mark(sp.current().dataset.fsec);
+      });
+    }, { passive: true });
+  }
+  mark(secs[0].dataset.fsec);
+
+  nav.addEventListener("click", e => {
+    const b = e.target.closest("button[data-fgo]");
+    if (!b) return;
+    const target = $("#fsec-" + b.dataset.fgo, el);
+    if (ficheSpy) ficheSpy.lock = Date.now() + 800;
+    mark(b.dataset.fgo);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  /* --- la colonne de droite defile, et le dit --- */
+  const aside = $("#ficheAside", el), wrap = $("#ficheAsideW", el);
+  if (aside && wrap) {
+    const state = () => {
+      const fits = aside.scrollHeight <= aside.clientHeight + 4;
+      const bottom = aside.scrollTop + aside.clientHeight >= aside.scrollHeight - 4;
+      wrap.classList.toggle("at-end", fits || bottom);
+    };
+    aside.addEventListener("scroll", state, { passive: true });
+    window.addEventListener("resize", state, { passive: true });
+    const hint = $("#ficheHint", el);
+    if (hint) hint.addEventListener("click", () =>
+      aside.scrollBy({ top: Math.round(aside.clientHeight * 0.72), behavior: "smooth" }));
+    state();
+  }
 }
 /* ================= Chart engine over the KPI table =================
  *

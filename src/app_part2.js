@@ -171,6 +171,14 @@ function renderCountry(iso){
   const c = byIso[iso];
   const el = $("#v-country");
   if (!c) { el.innerHTML = `<p>${t("cp.unknown")}</p>`; return; }
+  /* La fiche refondue lit le classeur case par case (app_fiche.js). Elle ne
+     vaut que pour NIS 2 : REC n'a pas de classeur comparatif, et lui servir une
+     page de sections vides serait pire que la fiche d'origine, qui affiche ce
+     dont on dispose. */
+  if (typeof renderFiche === "function" && typeof ficheOn === "function" && ficheOn()) {
+    renderFiche(c, el);
+    return;
+  }
   const spec = regSpec();
   const facts = countryFacts(c);
   const secHtml = spec.sections.filter(k => c.sections[k] && c.sections[k].length).map(k => `
@@ -218,6 +226,13 @@ function renderCountry(iso){
       <b>${t("cp.readOnlyT")}</b> ${t("cp.readOnly")}
     </div>
   </div>`;
+  wireDeckButton(el, iso);
+}
+
+/* Le bouton de generation des slides, extrait de renderCountry : la fiche
+   refondue (app_fiche.js) le porte aussi, et dupliquer trente lignes de
+   telechargement aurait garanti qu'une des deux copies cesse d'etre corrigee. */
+function wireDeckButton(el, iso){
   const db = $("#deckBtn", el);
   if (db) db.addEventListener("click", async () => {
     const label = db.textContent;
