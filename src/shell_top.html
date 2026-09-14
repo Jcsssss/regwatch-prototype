@@ -285,14 +285,24 @@ body.fcells .fcell{display:inline}
   scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
 .faside::-webkit-scrollbar{width:7px}
 .faside::-webkit-scrollbar-thumb{background:var(--line2);border-radius:99px}
-.ffade{position:absolute;left:0;right:3px;bottom:0;height:72px;pointer-events:none;
-  background:linear-gradient(to bottom,transparent,var(--bg) 80%);transition:opacity .22s}
-.fhint{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);display:inline-flex;
+/* Les deux bords de la colonne se signalent : un degrade montre que le contenu
+   se poursuit, le bouton nomme ce qui s'y trouve et fait defiler. Chacun
+   disparait quand son bord est atteint, et les deux quand la colonne tient
+   entiere dans l'ecran. */
+.ffade{position:absolute;left:0;right:3px;height:72px;pointer-events:none;
+  transition:opacity .22s;z-index:1}
+.ffade.down{bottom:0;background:linear-gradient(to bottom,transparent,var(--bg) 80%)}
+.ffade.up{top:0;height:56px;background:linear-gradient(to top,transparent,var(--bg) 80%)}
+.fhint{position:absolute;left:50%;transform:translateX(-50%);display:inline-flex;
   align-items:center;gap:7px;background:var(--accent);color:var(--accent-ink);border:0;
   border-radius:999px;padding:6px 14px;font-size:11.5px;font-weight:700;cursor:pointer;
-  white-space:nowrap;font-family:inherit;transition:opacity .22s;box-shadow:var(--shadow)}
+  white-space:nowrap;font-family:inherit;transition:opacity .22s;box-shadow:var(--shadow);
+  z-index:2}
+.fhint.down{bottom:9px}
+.fhint.up{top:9px}
 .fhint svg{width:13px;height:13px}
-.fasidew.at-end .ffade,.fasidew.at-end .fhint{opacity:0;pointer-events:none}
+.fasidew.at-end .ffade.down,.fasidew.at-end .fhint.down{opacity:0;pointer-events:none}
+.fasidew.at-start .ffade.up,.fasidew.at-start .fhint.up{opacity:0;pointer-events:none}
 .ftl-list{list-style:none;margin:0;padding:0;display:grid;gap:13px}
 .ftl-list li{display:grid;grid-template-columns:74px 1fr;gap:11px;font-size:12.5px}
 .ftl-list .when{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700;
@@ -341,7 +351,7 @@ body.fcells .fcell{display:inline}
   .fcols{grid-template-columns:1fr}
   .fasidew{position:static}
   .faside{max-height:none;overflow:visible}
-  .ffade,.fhint{display:none}
+  .ffade,.fhint{display:none}   /* la page defile normalement : rien a signaler */
 }
 @media (max-width:620px){
   .ffacts{grid-template-columns:1fr}

@@ -287,14 +287,24 @@ body.fcells .fcell{display:inline}
   scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
 .faside::-webkit-scrollbar{width:7px}
 .faside::-webkit-scrollbar-thumb{background:var(--line2);border-radius:99px}
-.ffade{position:absolute;left:0;right:3px;bottom:0;height:72px;pointer-events:none;
-  background:linear-gradient(to bottom,transparent,var(--bg) 80%);transition:opacity .22s}
-.fhint{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);display:inline-flex;
+/* Les deux bords de la colonne se signalent : un degrade montre que le contenu
+   se poursuit, le bouton nomme ce qui s'y trouve et fait defiler. Chacun
+   disparait quand son bord est atteint, et les deux quand la colonne tient
+   entiere dans l'ecran. */
+.ffade{position:absolute;left:0;right:3px;height:72px;pointer-events:none;
+  transition:opacity .22s;z-index:1}
+.ffade.down{bottom:0;background:linear-gradient(to bottom,transparent,var(--bg) 80%)}
+.ffade.up{top:0;height:56px;background:linear-gradient(to top,transparent,var(--bg) 80%)}
+.fhint{position:absolute;left:50%;transform:translateX(-50%);display:inline-flex;
   align-items:center;gap:7px;background:var(--accent);color:var(--accent-ink);border:0;
   border-radius:999px;padding:6px 14px;font-size:11.5px;font-weight:700;cursor:pointer;
-  white-space:nowrap;font-family:inherit;transition:opacity .22s;box-shadow:var(--shadow)}
+  white-space:nowrap;font-family:inherit;transition:opacity .22s;box-shadow:var(--shadow);
+  z-index:2}
+.fhint.down{bottom:9px}
+.fhint.up{top:9px}
 .fhint svg{width:13px;height:13px}
-.fasidew.at-end .ffade,.fasidew.at-end .fhint{opacity:0;pointer-events:none}
+.fasidew.at-end .ffade.down,.fasidew.at-end .fhint.down{opacity:0;pointer-events:none}
+.fasidew.at-start .ffade.up,.fasidew.at-start .fhint.up{opacity:0;pointer-events:none}
 .ftl-list{list-style:none;margin:0;padding:0;display:grid;gap:13px}
 .ftl-list li{display:grid;grid-template-columns:74px 1fr;gap:11px;font-size:12.5px}
 .ftl-list .when{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700;
@@ -343,7 +353,7 @@ body.fcells .fcell{display:inline}
   .fcols{grid-template-columns:1fr}
   .fasidew{position:static}
   .faside{max-height:none;overflow:visible}
-  .ffade,.fhint{display:none}
+  .ffade,.fhint{display:none}   /* la page defile normalement : rien a signaler */
 }
 @media (max-width:620px){
   .ffacts{grid-template-columns:1fr}
@@ -17563,7 +17573,8 @@ const I18N = {
     "fiche.annex2": "Annex II \u00b7 Important entities",
     "fiche.close": "Close",
     "fiche.folder": "Open the country folder",
-    "fiche.scrollHint": "Timeline, authorities, sources",
+    "fiche.scrollDown": "Sectors, documents, sources",
+    "fiche.scrollUp": "Timeline, authorities",
     "fiche.reco": "Wavestone recommendation",
     "fiche.recoBy": "Internal analysis",
     "fiche.recoNone": "This section is in place and waiting for its column in the Cyber Watch. As soon as a \u201cWavestone recommendation\u201d column exists in the ID sheet, its content appears here for all 29 countries.",
@@ -18088,7 +18099,8 @@ const I18N = {
     "fiche.annex2": "Annexe II \u00b7 Entit\u00e9s importantes",
     "fiche.close": "Fermer",
     "fiche.folder": "Ouvrir le dossier du pays",
-    "fiche.scrollHint": "Chronologie, autorit\u00e9s, sources",
+    "fiche.scrollDown": "Secteurs, documents, sources",
+    "fiche.scrollUp": "Chronologie, autorit\u00e9s",
     "fiche.reco": "Recommandation Wavestone",
     "fiche.recoBy": "Analyse interne",
     "fiche.recoNone": "La section est en place et attend sa colonne dans le Cyber Watch. D\u00e8s qu\u2019une colonne \u00ab Recommandation Wavestone \u00bb existera dans la feuille ID, son contenu s\u2019affichera ici pour les 29 pays.",
@@ -20558,6 +20570,11 @@ function renderFiche(c, el){
     </div>
 
     <div class="fasidew" id="ficheAsideW">
+      <div class="ffade up"></div>
+      <button class="fhint up" type="button" id="ficheHintUp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        ${t("fiche.scrollUp")}
+      </button>
       <aside class="faside" id="ficheAside">
         <div class="card"><div class="cap"><h2>${t("cp.timeline")}</h2></div><div class="bd">
           <ul class="ftl-list">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(ev => `
@@ -20585,8 +20602,8 @@ function renderFiche(c, el){
           ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
         </div></div>
       </aside>
-      <div class="ffade"></div>
-      <button class="fhint" type="button" id="ficheHint">${t("fiche.scrollHint")}
+      <div class="ffade down"></div>
+      <button class="fhint down" type="button" id="ficheHint">${t("fiche.scrollDown")}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </button>
     </div>
@@ -20736,16 +20753,23 @@ function ficheWire(el){
   /* --- la colonne de droite defile, et le dit --- */
   const aside = $("#ficheAside", el), wrap = $("#ficheAsideW", el);
   if (aside && wrap) {
+    /* Les deux bords se signalent, pas seulement le bas : arrive en bas de la
+       colonne, rien n'indiquait que la chronologie etait restee au-dessus, et
+       une colonne qui a son propre defilement ne remonte pas avec la page. */
     const state = () => {
       const fits = aside.scrollHeight <= aside.clientHeight + 4;
       const bottom = aside.scrollTop + aside.clientHeight >= aside.scrollHeight - 4;
       wrap.classList.toggle("at-end", fits || bottom);
+      wrap.classList.toggle("at-start", fits || aside.scrollTop <= 4);
     };
     aside.addEventListener("scroll", state, { passive: true });
     window.addEventListener("resize", state, { passive: true });
-    const hint = $("#ficheHint", el);
-    if (hint) hint.addEventListener("click", () =>
-      aside.scrollBy({ top: Math.round(aside.clientHeight * 0.72), behavior: "smooth" }));
+    const step = dir => aside.scrollBy({
+      top: dir * Math.round(aside.clientHeight * 0.72), behavior: "smooth" });
+    const down = $("#ficheHint", el);
+    if (down) down.addEventListener("click", () => step(1));
+    const up = $("#ficheHintUp", el);
+    if (up) up.addEventListener("click", () => step(-1));
     state();
   }
 }

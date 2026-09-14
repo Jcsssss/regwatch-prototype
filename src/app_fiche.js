@@ -371,6 +371,11 @@ function renderFiche(c, el){
     </div>
 
     <div class="fasidew" id="ficheAsideW">
+      <div class="ffade up"></div>
+      <button class="fhint up" type="button" id="ficheHintUp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        ${t("fiche.scrollUp")}
+      </button>
       <aside class="faside" id="ficheAside">
         <div class="card"><div class="cap"><h2>${t("cp.timeline")}</h2></div><div class="bd">
           <ul class="ftl-list">${[...c.timeline].sort((a, b) => b.date < a.date ? -1 : 1).map(ev => `
@@ -398,8 +403,8 @@ function renderFiche(c, el){
           ${c.sources.map(s => `<div class="s">${srcChip(s.type)}${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</div>`).join("")}
         </div></div>
       </aside>
-      <div class="ffade"></div>
-      <button class="fhint" type="button" id="ficheHint">${t("fiche.scrollHint")}
+      <div class="ffade down"></div>
+      <button class="fhint down" type="button" id="ficheHint">${t("fiche.scrollDown")}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
       </button>
     </div>
@@ -549,16 +554,23 @@ function ficheWire(el){
   /* --- la colonne de droite defile, et le dit --- */
   const aside = $("#ficheAside", el), wrap = $("#ficheAsideW", el);
   if (aside && wrap) {
+    /* Les deux bords se signalent, pas seulement le bas : arrive en bas de la
+       colonne, rien n'indiquait que la chronologie etait restee au-dessus, et
+       une colonne qui a son propre defilement ne remonte pas avec la page. */
     const state = () => {
       const fits = aside.scrollHeight <= aside.clientHeight + 4;
       const bottom = aside.scrollTop + aside.clientHeight >= aside.scrollHeight - 4;
       wrap.classList.toggle("at-end", fits || bottom);
+      wrap.classList.toggle("at-start", fits || aside.scrollTop <= 4);
     };
     aside.addEventListener("scroll", state, { passive: true });
     window.addEventListener("resize", state, { passive: true });
-    const hint = $("#ficheHint", el);
-    if (hint) hint.addEventListener("click", () =>
-      aside.scrollBy({ top: Math.round(aside.clientHeight * 0.72), behavior: "smooth" }));
+    const step = dir => aside.scrollBy({
+      top: dir * Math.round(aside.clientHeight * 0.72), behavior: "smooth" });
+    const down = $("#ficheHint", el);
+    if (down) down.addEventListener("click", () => step(1));
+    const up = $("#ficheHintUp", el);
+    if (up) up.addEventListener("click", () => step(-1));
     state();
   }
 }
