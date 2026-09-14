@@ -343,7 +343,7 @@ function renderFiche(c, el){
         ${statusPill}${delay}
         <span class="fpill upd">${ficheIcon("clock")}${t("fiche.upd", { date: fmtDate(c.lastUpdate) })}</span>
         <label class="fcellsw"><input type="checkbox" id="ficheCells"> ${t("fiche.showCells")}</label>
-        ${role === "validator" ? `<button class="btn fdeck" id="deckBtn">${t("cp.genSlides")}</button>` : ""}
+        ${role === "validator" ? `<button class="btn fdeck" id="rptBtn">${t("rpt.go")}</button>` : ""}
       </div>
     </div>
   </div>
@@ -413,10 +413,12 @@ function renderFiche(c, el){
   <dialog id="ficheSectors">${ficheSectorsHtml()}</dialog>`;
 
   ficheWire(el);
-  /* Le validateur garde la generation des slides pays : elle etait dans la
-     fiche d'origine, et une refonte qui retire une fonction sans le dire est
-     une regression, pas un choix. */
-  if (typeof wireDeckButton === "function") wireDeckButton(el, iso);
+  /* La generation du rapport, reservee au validateur. app_report.js remplace
+     l'ancien bouton a slide unique : quatre slides, un choix de contenu et de
+     langue. L'ancien generateur reste en place pour la fiche d'origine (REC). */
+  const rb = $("#rptBtn", el);
+  if (rb && typeof reportDialog === "function")
+    rb.addEventListener("click", () => reportDialog(iso));
 }
 
 /* Etat du reperage, partage entre les rendus : voir le commentaire dans
