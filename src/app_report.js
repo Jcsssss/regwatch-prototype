@@ -129,64 +129,86 @@ function rptLines(text, widthIn, sizePt){
   return Math.max(1, Math.ceil(chars / perLine));
 }
 function rptH(lines, sizePt, spaceBefPt){
-  return rptEmu((lines * sizePt * 1.32 + (spaceBefPt || 0)) / 72);
+  /* 1,40 et non 1,32 : a 1,32 un sous-titre mordait sur la derniere ligne de la
+     puce precedente. L'estimation du nombre de lignes est approchee, la marge
+     doit l'absorber. */
+  return rptEmu((lines * sizePt * 1.40 + (spaceBefPt || 0)) / 72);
 }
 
-/* ---------- un empileur de blocs dans une colonne ---------- */
+/* ---------- un empileur de blocs dans une colonne ----------
+ *
+ * En deux passes, et c'est necessaire. Les phrases ancrees sur les textes
+ * legaux sont bien plus longues que les champs du classeur qu'elles remplacent,
+ * et une colonne calee sur une seule taille debordait : les rubriques du bas se
+ * chevauchaient. On enregistre donc les blocs sans les ecrire, on mesure, puis
+ * on choisit l'echelle qui fait tenir. Un corps plus petit se lit ; un
+ * chevauchement, non.
+ *
+ * Quand meme l'echelle minimale ne suffit pas, les derniers blocs sont ecartes
+ * plutot que dessines par-dessus les precedents, et la slide le dit.
+ */
 function rptColumn(x, y, wIn, idStart){
   return {
-    x: x, y: y, w: rptEmu(wIn), wIn: wIn, id: idStart, sp: [],
-    /* titre de rubrique : pastille de couleur, libelle noir, filet pointille */
-    rub: function(label){
-      const sz = 1300;
-      this.sp.push(rptRect(this.id++, this.x, this.y + rptEmu(0.02),
-        rptEmu(0.1), rptEmu(0.20), RPT_VIOLET));
-      this.sp.push(rptTextBox(this.id++, this.x + rptEmu(0.18), this.y,
-        this.w - rptEmu(0.18), rptH(1, 13, 0),
-        [{ runs: [{ t: label, sz: sz, b: true, color: "000000" }] }]));
-      this.y += rptH(1, 13, 0) + rptEmu(0.04);
-      this.sp.push(rptDots(this.id++, this.x, this.y, this.w));
-      this.y += rptEmu(0.09);
-      return this;
-    },
-    /* sous-titre violet souligne */
-    sub: function(label){
-      const h = rptH(1, 9, 2);
-      this.sp.push(rptTextBox(this.id++, this.x, this.y, this.w, h,
-        [{ runs: [{ t: label, sz: 900, b: true, u: true, color: RPT_VIOLET }], space: 20 }]));
-      this.y += h + rptEmu(0.02);
-      return this;
-    },
-    /* une liste a puces */
+    x: x, y0: y, w: rptEmu(wIn), wIn: wIn, id: idStart, ops: [], dropped: 0,
+    rub: function(label){ this.ops.push({ k: "rub", label: label }); return this; },
+    sub: function(label){ this.ops.push({ k: "sub", label: label }); return this; },
     bullets: function(items, sizePt){
-      if (!items || !items.length) return this;
-      const sz = (sizePt || 8.5);
-      const paras = items.map(it => ({
-        runs: rptRuns(it, { sz: Math.round(sz * 100), b: false, i: false, color: "000000" }),
-        align: "just", bullet: true, space: 20
-      }));
-      const lines = items.reduce((n, it) =>
-        n + rptLines(it, this.wIn - 0.18, sz), 0);
-      const h = rptH(lines, sz, items.length * 2);
-      this.sp.push(rptTextBox(this.id++, this.x, this.y, this.w, h, paras));
-      this.y += h + rptEmu(0.04);
+      if (items && items.length) this.ops.push({ k: "bul", items: items, sz: sizePt || 8.5 });
       return this;
     },
-    /* un intertitre simple, sans filet */
-    line: function(label, sizePt, bold, color){
-      const sz = sizePt || 8.8;
-      const h = rptH(1, sz, 4);
-      this.sp.push(rptTextBox(this.id++, this.x, this.y, this.w, h,
-        [{ runs: [{ t: label, sz: Math.round(sz * 100), b: bold !== false,
-                    color: color || "000000" }], space: 40 }]));
-      this.y += h;
-      return this;
+    /* La hauteur d'un bloc a une echelle donnee. */
+    heightOf: function(op, f){
+      if (op.k === "rub") return rptH(1, 13 * f, 0) + rptEmu(0.13 * f);
+      if (op.k === "sub") return rptH(1, 9 * f, 2) + rptEmu(0.02 * f);
+      const sz = op.sz * f;
+      const lines = op.items.reduce((n, it) => n + rptLines(it, this.wIn - 0.18, sz), 0);
+      return rptH(lines, sz, op.items.length * 2) + rptEmu(0.04);
+    },
+    total: function(f){
+      return this.ops.reduce((h, op) => h + this.heightOf(op, f), 0);
+    },
+    /* Ecrit la colonne dans la hauteur disponible et rend ses formes. */
+    render: function(maxY){
+      const room = maxY - this.y0;
+      let f = 1;
+      while (f > 0.62 && this.total(f) > room) f -= 0.03;
+      const sp = [];
+      let yy = this.y0;
+      for (const op of this.ops) {
+        const h = this.heightOf(op, f);
+        /* Un bloc qui ne tient plus n'est pas dessine par-dessus le precedent. */
+        if (yy + h > maxY) { this.dropped++; continue; }
+        if (op.k === "rub") {
+          sp.push(rptRect(this.id++, this.x, yy + rptEmu(0.02 * f),
+            rptEmu(0.1 * f), rptEmu(0.20 * f), RPT_VIOLET));
+          sp.push(rptTextBox(this.id++, this.x + rptEmu(0.18 * f), yy,
+            this.w - rptEmu(0.18 * f), rptH(1, 13 * f, 0),
+            [{ runs: [{ t: op.label, sz: Math.round(1300 * f), b: true, color: "000000" }] }]));
+          sp.push(rptDots(this.id++, this.x, yy + rptH(1, 13 * f, 0) + rptEmu(0.04 * f), this.w));
+        } else if (op.k === "sub") {
+          sp.push(rptTextBox(this.id++, this.x, yy, this.w, rptH(1, 9 * f, 2),
+            [{ runs: [{ t: op.label, sz: Math.round(900 * f), b: true, u: true,
+                        color: RPT_VIOLET }], space: 20 }]));
+        } else {
+          const sz = op.sz * f;
+          sp.push(rptTextBox(this.id++, this.x, yy, this.w, h,
+            op.items.map(it => ({
+              runs: rptRuns(it, { sz: Math.round(sz * 100), b: false, i: false,
+                                  color: "000000" }),
+              align: "just", bullet: true, space: 20
+            }))));
+        }
+        yy += h;
+      }
+      this.scale = f;
+      return sp;
     }
   };
 }
 
 /* ---------- l'en-tete commun aux trois slides de transposition ---------- */
-function rptHead(col, c, lang){
+function rptHead(c, lang, x, y, idStart){
+  const col = { x: x, y: y, id: idStart, sp: [] };
   const name = rptCountryName(c, lang);
   const title = lang === "en"
     ? "NIS 2 directive transposition in " + name
@@ -208,7 +230,7 @@ function rptHead(col, c, lang){
     rptEmu(1.9), rptH(4, 7, 0),
     [{ runs: [{ t: rptMaturity(c.maturity, lang), sz: 700, b: true, color: RPT_VIOLET }],
        align: "ctr", space: 0 }]));
-  col.y += rptEmu(1.02);
+  return { shapes: col.sp, bottom: col.y + rptEmu(1.02) };
 }
 
 function rptCountryName(c, lang){
@@ -224,6 +246,26 @@ function rptMaturity(n, lang){
 
 /* ================= le contenu des slides ================= */
 
+/* ---------- les phrases ancrees sur les textes legaux ----------
+ *
+ * data_prose.js porte, par pays et par bloc, des puces redigees a partir des
+ * seuls textes legaux du pays, chacune terminee par sa source. Quand un bloc
+ * existe, il remplace les champs du classeur : une phrase de droit citee vaut
+ * mieux qu'une juxtaposition de cases, et c'est ce que les supports montrent.
+ *
+ * Un bloc non relu laisse une trace jusqu'a la slide, qui le dit en pied. Un
+ * document qui sort de l'outil doit annoncer lui-meme ce qu'il vaut.
+ */
+let rptDraftUsed = false;
+function rptProse(iso, key){
+  if (typeof PROSE === "undefined") return null;
+  const bag = PROSE[iso];
+  const blk = bag && bag[key];
+  if (!blk || !blk.b || !blk.b.length) return null;
+  if (blk.d) rptDraftUsed = true;
+  return blk.b;
+}
+
 /* Une valeur du classeur, prete a etre ecrite. Les cases vides et les « NC »
    ne sont pas ecrites du tout : une slide client n'a pas a afficher les trous
    de notre veille. Elles remontent en revanche dans le compte rendu. */
@@ -234,11 +276,16 @@ function rptCell(iso, key, col){
 }
 function rptYes(v){ return v != null && /^(yes|oui|y)$/i.test(v); }
 
+const RPT_TOP = rptEmu(0.32), RPT_BOT = RPT_H - rptEmu(0.30);
+const RPT_LX = rptEmu(0.45), RPT_LW = 5.4;
+const RPT_RX = rptEmu(6.75), RPT_RW = 5.9;
+const RPT_SPLIT = rptEmu(6.33);
+
 function rptSlide1(c, lang){
   const iso = c.iso, L = lang === "en";
-  const left = rptColumn(rptEmu(0.45), rptEmu(0.32), 5.4, 100);
-  rptHead(left, c, lang);
+  const head = rptHead(c, lang, RPT_LX, RPT_TOP, 100);
 
+  const left = rptColumn(RPT_LX, head.bottom, RPT_LW, 150);
   left.rub(L ? "Key steps in the transposition process"
              : "Étapes clés dans le processus de transposition");
   left.sub(L ? "Latest events" : "Derniers événements");
@@ -252,8 +299,10 @@ function rptSlide1(c, lang){
   left.rub(L ? "Cybersecurity requirements" : "Exigences de cybersécurité");
   left.sub("Framework");
   left.bullets(rptFwLines(c, iso, lang));
+  const fwd = rptProse(iso, "fw.deadlines");
+  if (fwd) { left.sub(L ? "Deadlines" : "Échéances"); left.bullets(fwd); }
 
-  const right = rptColumn(rptEmu(6.75), rptEmu(0.32), 5.9, 300);
+  const right = rptColumn(RPT_RX, RPT_TOP, RPT_RW, 400);
   right.rub(L ? "Entity registration" : "Enregistrement des entités");
   right.sub(L ? "Deadlines" : "Échéances");
   right.bullets(rptRegDeadlines(c, iso, lang));
@@ -268,20 +317,20 @@ function rptSlide1(c, lang){
   right.rub(L ? "Controls" : "Contrôles");
   right.bullets(rptControls(iso, lang));
 
-  return { shapes: [rptRect(99, rptEmu(6.33), 0, RPT_W - rptEmu(6.33), RPT_H, RPT_GREY)]
-    .concat(left.sp, right.sp) };
+  return { shapes: [rptRect(99, RPT_SPLIT, 0, RPT_W - RPT_SPLIT, RPT_H, RPT_GREY)]
+    .concat(head.shapes, left.render(RPT_BOT), right.render(RPT_BOT)) };
 }
 
 function rptSlide2(c, lang){
   const iso = c.iso, L = lang === "en";
-  const left = rptColumn(rptEmu(0.45), rptEmu(0.32), 5.4, 100);
-  rptHead(left, c, lang);
+  const head = rptHead(c, lang, RPT_LX, RPT_TOP, 100);
+  const left = rptColumn(RPT_LX, head.bottom, RPT_LW, 150);
   left.rub(L ? "Additional sectors" : "Secteurs additionnels");
   left.bullets(rptSectors(iso, lang, "private"));
   left.rub(L ? "Public sectors" : "Secteurs publics");
   left.bullets(rptSectors(iso, lang, "public"));
 
-  const right = rptColumn(rptEmu(6.75), rptEmu(0.32), 5.9, 300);
+  const right = rptColumn(RPT_RX, RPT_TOP, RPT_RW, 400);
   right.rub(L ? "Correspondence with other regulations"
               : "Correspondance à d'autres réglementations");
   right.bullets(rptCorrespondence(c, iso, lang));
@@ -290,19 +339,20 @@ function rptSlide2(c, lang){
   right.rub(L ? "Wavestone recommendations" : "Recommandations Wavestone");
   right.bullets(rptReco(c, iso, lang));
 
-  return { shapes: [rptRect(99, rptEmu(6.33), 0, RPT_W - rptEmu(6.33), RPT_H, RPT_GREY)]
-    .concat(left.sp, right.sp) };
+  return { shapes: [rptRect(99, RPT_SPLIT, 0, RPT_W - RPT_SPLIT, RPT_H, RPT_GREY)]
+    .concat(head.shapes, left.render(RPT_BOT), right.render(RPT_BOT)) };
 }
 
 function rptSlide3(c, lang){
   const L = lang === "en";
-  const top = rptColumn(rptEmu(0.45), rptEmu(0.32), 12.4, 100);
-  rptHead(top, c, lang);
+  const head = rptHead(c, lang, RPT_LX, RPT_TOP, 100);
+  const ySplit = rptEmu(4.3);
+
+  const top = rptColumn(RPT_LX, head.bottom, 12.4, 150);
   top.rub(L ? "Calendar of recent events" : "Calendrier des derniers événements");
   top.bullets(rptEvents(c, lang, 10), 8);
 
-  const ySplit = Math.max(top.y + rptEmu(0.1), rptEmu(4.6));
-  const bl = rptColumn(rptEmu(0.45), ySplit, 4.6, 500);
+  const bl = rptColumn(RPT_LX, ySplit, 4.6, 500);
   bl.rub(L ? "Next steps" : "Prochaines étapes");
   bl.bullets((c.next || []).slice(0, 3));
   const br = rptColumn(rptEmu(5.6), ySplit + rptEmu(0.1), 6.2, 700);
@@ -311,7 +361,8 @@ function rptSlide3(c, lang){
 
   return { shapes: [rptRect(99, rptEmu(5.35), ySplit - rptEmu(0.1),
       RPT_W - rptEmu(5.75), RPT_H - ySplit, RPT_GREY)]
-    .concat(top.sp, bl.sp, br.sp) };
+    .concat(head.shapes, top.render(ySplit - rptEmu(0.15)),
+            bl.render(RPT_BOT), br.render(RPT_BOT)) };
 }
 
 function rptSlide4(c, lang){
@@ -347,6 +398,10 @@ function rptSlide4(c, lang){
       g.themes.forEach(th => {
         const nLines = rptLines(th.desc, colW - 0.2, 6.6) + 1;
         const h = rptH(nLines, 6.8, 6);
+        /* Une carte qui ne tient plus est ecartee plutot que dessinee sous le
+           pied de slide : les referentiels les plus fournis comptent trente
+           themes. */
+        if (y + h + rptEmu(0.26) > RPT_H - rptEmu(0.5)) return;
         sp.push(rptRect(id++, x, y, rptEmu(colW), h + rptEmu(0.1), RPT_CARD));
         sp.push(rptTextBox(id++, x + rptEmu(0.08), y + rptEmu(0.05),
           rptEmu(colW - 0.16), h,
@@ -382,6 +437,10 @@ function rptEvents(c, lang, max){
 }
 
 function rptFwLines(c, iso, lang){
+  {
+    const P = rptProse(iso, "fw.framework");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const name = rptCell(iso, "fw", "F") || c.fwName;
   const dedicated = rptCell(iso, "fw", "E");
@@ -399,6 +458,10 @@ function rptFwLines(c, iso, lang){
 }
 
 function rptRegDeadlines(c, iso, lang){
+  {
+    const P = rptProse(iso, "reg.deadlines");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const dl = rptCell(iso, "reg", "H");
   if (dl) out.push((L ? "Registration deadline: " : "Échéance d'enregistrement : ") + "<b>" + dl + "</b>");
@@ -414,6 +477,10 @@ function rptRegDeadlines(c, iso, lang){
 }
 
 function rptRegPlatform(iso, lang){
+  {
+    const P = rptProse(iso, "reg.platform");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const avail = rptCell(iso, "reg", "D");
   if (avail) out.push((L ? "Registration available: " : "Enregistrement disponible : ")
@@ -428,6 +495,10 @@ function rptRegPlatform(iso, lang){
 }
 
 function rptIncident(iso, lang){
+  {
+    const P = rptProse(iso, "inc.process");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const org = rptCell(iso, "inc", "F") || rptCell(iso, "inc", "E");
   if (org) out.push((L ? "Reported to " : "Notification à ") + "<b>" + org + "</b>");
@@ -443,6 +514,10 @@ function rptIncident(iso, lang){
 }
 
 function rptControls(iso, lang){
+  {
+    const P = rptProse(iso, "ctl.process");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const who = rptCell(iso, "aud", "D");
   if (who) out.push((L ? "Audits planned " : "Audits prévus ") + "<b>" + who + "</b>");
@@ -463,6 +538,8 @@ function rptControls(iso, lang){
    elle est cartographiee ; a defaut, de la section `scope` de l'enregistrement
    pays, qui est ecrite a la main. */
 function rptSectors(iso, lang, kind){
+  const P = rptProse(iso, kind === "public" ? "sec.public" : "sec.private");
+  if (P) return P;
   const L = lang === "en";
   const c = byIso[iso];
   const sec = (c.sections && c.sections.scope) || [];
@@ -472,6 +549,10 @@ function rptSectors(iso, lang, kind){
 }
 
 function rptCorrespondence(c, iso, lang){
+  {
+    const P = rptProse(iso, "corr");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const rely = rptCell(iso, "fw", "O");
   const names = ["P:ISO 27001/27002", "Q:IEC 62443", "R:NIST CSF", "S:NIST SP 800-53",
@@ -488,6 +569,10 @@ function rptCorrespondence(c, iso, lang){
 }
 
 function rptRegProcess(iso, lang){
+  {
+    const P = rptProse(iso, "reg.process");
+    if (P) return P;
+  }
   const L = lang === "en", out = [];
   const type = rptCell(iso, "reg", "G");
   if (type) out.push("<b>" + type + "</b>");
@@ -514,6 +599,8 @@ function rptReco(c, iso, lang){
 }
 
 function rptOther(c, lang){
+  const P = rptProse(c.iso, "other");
+  if (P) return P;
   const out = (c.sections && c.sections.other) ? c.sections.other.slice(0, 4) : [];
   return out.length ? out
     : [lang === "en" ? "No additional information recorded."
@@ -609,10 +696,25 @@ async function generateCountryReport(iso, opts){
   if (typeof DECK_TEMPLATE_B64 === "undefined")
     throw new Error(t("rpt.noTemplate"));
   const lang = opts.lang || "fr";
+  rptDraftUsed = false;
 
   const wanted = [];
   if (opts.what !== "fw") wanted.push(rptSlide1(c, lang), rptSlide2(c, lang), rptSlide3(c, lang));
   if (opts.what !== "country") wanted.push(rptSlide4(c, lang));
+
+  /* La mention de brouillon est posee ici, avant que les slides ne soient
+     serialisees : ajoutee plus bas, elle modifiait des objets deja ecrits dans
+     le zip et n'apparaissait nulle part. Elle se signale sur chaque slide et
+     pas seulement dans la conversation qui l'a produite, car le fichier circule
+     sans elle. */
+  if (rptDraftUsed) {
+    const note = lang === "en"
+      ? "Draft — sentences drawn from the legal texts, not yet reviewed"
+      : "Brouillon — phrases tirées des textes légaux, non encore relues";
+    wanted.forEach(sl => sl.shapes.push(
+      rptTextBox(9000, rptEmu(0.45), RPT_H - rptEmu(0.32), rptEmu(7.5), rptH(1, 7, 0),
+        [{ runs: [{ t: note, sz: 700, b: true, color: "FF2A49" }] }])));
+  }
 
   const bin = atob(DECK_TEMPLATE_B64);
   const bytes = new Uint8Array(bin.length);

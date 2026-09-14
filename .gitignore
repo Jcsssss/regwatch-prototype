@@ -58,3 +58,10 @@ src/regwatch-equipe.html
 src/artifact-equipe.html
 src/bundle-equipe.js
 src/shell_client.html
+
+# Corpus legal extrait des PDF de ressources/ : un intermediaire, regenerable
+# avec tools/legal_corpus.py, et volumineux. GitHub Pages sert tout l'arbre :
+# 600 Ko de texte de loi extrait n'ont rien a y faire. Les phrases redigees,
+# elles, sont suivies : c'est ce qui se relit et ce qui part dans les slides.
+data/legal/*.json
+!data/legal/*-prose.json
