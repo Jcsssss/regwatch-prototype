@@ -111,8 +111,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 5,
    "fw": "Final",
    "fwName": "CyFun 2025",
-   "reqEE": 218,
-   "reqIE": 135,
+   "reqEE": 219,
+   "reqIE": 134,
    "complianceEE": 30,
    "complianceIE": 30,
    "auditBody": "Multiple",
@@ -148,11 +148,9 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : YES"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : SafeOnWeb",
     "Mandatory information required : What's happening, expected actions and consequences",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - early warning (all entities) 72 hours (or 24 hours for trust service providers) - incident notification On request - intermediate/interim report 1 month after the incident notification - final report If still ongoing at that point - progress report immediately, then final report within 1 month of resolution",
     "Any other relavant comments : The CCB requires notifying affected service recipients directly without delay ; individually sub-threshold incidents can be treated collectively as a single significant incident if they meet certain cumulative criteria"
    ],
    "reg": [
@@ -185,6 +183,7 @@ const EXCEL_DATA = {
    ],
    "aud": [
     "Audit explicitly planned by the transposition : For EE and EI",
+    "Typology of auditor(s) : National authority, sectorial authorities, and external accredited organisms",
     "Detailed - Organism in charge of the audit : National Authority: The Centre for Cybersecurity Belgium (CCB). External Bodies: The CCB maintains and keeps current a list of approved private conformity assessment bodies",
     "Audit billing model : At the expense of authority",
     "Audit to be conducted by entity (self-assessment) : Yes, only for EI",
@@ -325,6 +324,8 @@ const EXCEL_DATA = {
    "regDeadline": "2026-07-17",
    "regDeadlineMonths": 12,
    "fw": "No",
+   "reqEE": 219,
+   "reqIE": 134,
    "auditBody": "National authority",
    "sanctionMax": "Same modalities as in the directives",
    "authorityCount": 1,
@@ -332,14 +333,16 @@ const EXCEL_DATA = {
   },
   "sections": {
    "fw": [
-    "Type of document for principal transposition text : Law"
+    "Type of document for principal transposition text : Law",
+    "Number of cyber themes for EE : 6",
+    "Number of cyber themes for IE : 6",
+    "Comments on the number of cyber themes and cyber requirements : Uses the CyFun"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : National CSIRT-CY Incident Reporting Form",
     "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours (per others, matching the directive default) - early warning 72 hours - full/incident notification On request - intermediate report 1 month after incident notification - final report If ongoing - progress report at the 1-month mark, then final report within 1 month of resolution"
+    "Timeline : Early warning within 6 hours"
    ],
    "reg": [
     "Registration availability : YES",
@@ -452,7 +455,8 @@ const EXCEL_DATA = {
     "Organism type to report incident NOUVELLE COLONNE : Multiple organisms",
     "Name and link of web platform : NUKIB - https://portal.nukib.gov.cz/chci-vyridit/ohlaseni-regulovane-sluzby",
     "Mandatory information required : What's happening, expected actions and consequences",
-    "Major incident definition in the transposition : A cybersecurity incident has a significant impact on the provision of a regulated service if it has caused or may cause serious operational disruption of services or financial losses to the regulated service provider, or has caused or may cause considerable harm to other persons"
+    "Major incident definition in the transposition : A provider of a regulated service under the higher-obligation regime is required to report to the Office, in accordance with the procedure set forth in Section 16, any cybersecurity incidents that have manifested to the specified extent, originated in cyberspace, and for which intentional fault cannot be ruled out within the time limit specified in Section 16(1). A provider of a regulated service subject to the lower-level obligations regime is required to report to the national team for the coordination and management of cybersecurity incidents, events, and threats (hereinafter referred to as “National CERT”) in accordance with the procedure set forth in Section 16 any cybersecurity incidents that occurred to the specified extent, originated in cyberspace, have a significant impact on the provision of a regulated service, and for which intentional culpability cannot be ruled out within the time limit specified in Section 16(1). A cybersecurity incident has a significant impact on the provision of a regulated service if it has caused or may cause the provider of the regulated service serious operational disruption of services or financial losses, or has caused or may cause considerable harm to other persons. The method for assessing the significance of the impact of a cybersecurity incident on the provision of a regulated service by a provider of a regulated service under the reduced obligations regime shall be established by the Office by decree. The provider of a regulated service shall begin to comply with the obligation to report cybersecurity incidents pursuant to paragraphs 1 and 2 for each regulated service no later than one year from the date of receipt of the decision on the registration of the regulated service.",
+    "Size thresholds / criteria to consider an incident as major : Intentionality suspected + major operational, financial, or third-party impact"
    ],
    "reg": [
     "Registration availability : YES",
@@ -525,7 +529,7 @@ const EXCEL_DATA = {
    "transposed": true,
    "delayMonths": 13,
    "law": "Gesetz zur Umsetzung der NIS-2-Richtlinie und zur Regelung wesentlicher Grundzüge des Informationssicherheitsmanagements in der Bundesverwaltung",
-   "incidentAuthority": "BSI",
+   "incidentAuthority": "BSI (althought for specific sectors like public telecommunications networks and publicly available elctronic communications services, operators must report their incidents to both their sectoral regulator and national CSIRT)",
    "incidentMandatoryFrom": "2026-01-06",
    "incidentMethod": "Report on a web platform",
    "regAuthority": "BSI",
@@ -536,7 +540,7 @@ const EXCEL_DATA = {
    "fwName": "BSIG2026",
    "complianceEE": 0,
    "complianceIE": 0,
-   "auditBody": "External organism accredited",
+   "auditBody": "Multiple",
    "sanctionMax": "Same modalities as in the directives",
    "authorityCount": 5,
    "authorities": "BSI ; BNetzA ; BaFin ; BBK, Landesbehörden"
@@ -545,11 +549,10 @@ const EXCEL_DATA = {
    "fw": [
     "Type of document for principal transposition text : Law",
     "Additional texts (in support of principal text) : Décret : Act on the Federal Office for Information Security (BSI Act - BSIG)",
-    "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
+    "Dedicated framework to NIS 2 : Reference to existing standards (e.g. ISO)",
     "Framework last publication date : 2025-12-05",
     "Classification of IS : Different applicability according of IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 10",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : NO",
@@ -568,11 +571,9 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : BSI-Portal",
-    "Mandatory information required : What's happening, expected actions and consequences",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - Frühwarnung (early warning) 72 hours - Meldung (incident notification/follow-up) 1 month after the 72-hour notification - Abschlussmeldung (final report), or a progress report if the incident is still ongoing"
+    "Mandatory information required : What's happening, expected actions and consequences"
    ],
    "reg": [
     "Registration availability : YES",
@@ -605,7 +606,7 @@ const EXCEL_DATA = {
    ],
    "aud": [
     "Audit explicitly planned by the transposition : For EE and EI",
-    "Typology of auditor(s) : Qualified independent third parties",
+    "Typology of auditor(s) : Sectoral and regional authorities + Qualified independent third parties",
     "Detailed - Organism in charge of the audit : BSI maintains referral lists of qualified providers",
     "Audit billing model : Entity pays regular compliance audits; regulator-initiated audits billed only if triggered by justified compliance concerns",
     "Audit to be conducted by entity (self-assessment) : Yes, for EE and EI",
@@ -664,6 +665,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 0.5,
    "fw": "Temporary",
    "fwName": "VEJLEDNING TIL NIS 2-LOVEN - Implementering af cybersikkerhedsforanstaltninger",
+   "reqEE": 129,
+   "reqIE": 129,
    "auditBody": "Sectoral authorities",
    "sanctionMax": "Same modalities as in the directives",
    "authorityCount": 10,
@@ -761,11 +764,11 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 3,
    "fw": "Final",
    "fwName": "E-ITS",
-   "reqEE": 1750,
+   "reqEE": 1852,
    "reqIE": 1750,
    "complianceEE": 36,
    "complianceIE": 36,
-   "auditBody": "National authority",
+   "auditBody": "Multiple",
    "sanctionMax": "Same modalities as in the directives",
    "authorityCount": 3,
    "authorities": "RIA ; TTJA ; Security authority"
@@ -778,8 +781,8 @@ const EXCEL_DATA = {
     "Framework last publication date : 2025-12-14",
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 114",
-    "Number of cyber themes for IE : 114",
+    "Number of cyber themes for EE : 10",
+    "Number of cyber themes for IE : 10",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : NO",
@@ -798,11 +801,11 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : YES"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : CERT-EE",
     "Mandatory information required : The arrangements are identical to those provided for in the directive",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability ; impact is rated at least \"severe\" on the severity scale set out in the entity's system risk analysis, the service cannot continue within the maximum permitted outage time set in the service-level agreement, the incident disrupts another service provider's service continuity",
-    "Timeline : 24 hours - esmane teade (initial notice) 72 hours - intsidenditeade (incident notification) On request / if unresolved - vahearuanne (interim report) 1 month after the intsidenditeade - lõpparuanne (final report)"
+    "Major incident definition in the transposition : (2) A cyber incident has a significant impact if at least one of the following conditions is met: 1) the impact of the cyber incident is, according to the severity level of the consequences specified in the system risk analysis prepared pursuant to § 7(1)(1) of this Act, at least “severe”; 2) due to the cyber incident, it is not possible to continue providing the service after the maximum permitted service interruption time specified in the service level agreement or service continuity requirements has elapsed; 3) due to the cyber incident, the service continuity of another service provider has been disrupted; 4) to resolve the cyber incident, it is necessary to implement the emergency measures set forth in the system risk analysis prepared pursuant to § 7 (1)(1) of this Act or, if available, in another document describing the restoration of service continuity or system security; 5) the service provider, another service provider, or service users have suffered or may suffer significant damage as a result of the cyber incident; 6) the incident constitutes a major incident as defined in the European Commission implementing act adopted pursuant to Article 23(11) of Directive (EU) 2022/2555 of the European Parliament and of the Council.",
+    "Size thresholds / criteria to consider an incident as major : Severe impact OR service outage beyond SLA OR significant damage OR major NIS2 incident."
    ],
    "reg": [
     "Registration availability : YES",
@@ -834,7 +837,7 @@ const EXCEL_DATA = {
    ],
    "aud": [
     "Audit explicitly planned by the transposition : For EE and EI",
-    "Typology of auditor(s) : Information system authority",
+    "Typology of auditor(s) : National authorities and third parties (independent and accredited audit body)",
     "Detailed - Organism in charge of the audit : RIA",
     "Audit billing model : At the expense of the entity",
     "Audit to be conducted by entity (self-assessment) : NO",
@@ -887,7 +890,7 @@ const EXCEL_DATA = {
    "regTool": "Platform",
    "regDeadlineMonths": 3,
    "fw": "No",
-   "auditBody": "External organism accredited",
+   "auditBody": "Multiple",
    "sanctionMax": "More specific modalities",
    "authorityCount": 19,
    "authorities": "1 central authority (CNCS), 3 main control authorities (Ministries of Defense, Digital Transformation, and Interior), 4 national reference CSIRTs and 11 specialised sectoral points of contact"
@@ -898,6 +901,7 @@ const EXCEL_DATA = {
     "Framework last publication date : 17/1/2025"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : Current interim reporting runs through CCN-CERT and INCIBE-CERT's respective existing incident-reporting channels."
    ],
    "reg": [
@@ -923,7 +927,7 @@ const EXCEL_DATA = {
    ],
    "aud": [
     "Audit explicitly planned by the transposition : For EE and EI",
-    "Typology of auditor(s) : Independent certification / conformity assessment body",
+    "Typology of auditor(s) : Independent certification / conformity assessment body ; multi-sectoral authorities, sectoral authorities",
     "Detailed - Organism in charge of the audit : ENS-accredited certification body / an accredited cybersecurity conformity assessment body",
     "Audit billing model : At the expense of the entity",
     "Audit to be conducted by entity (self-assessment) : Yes, only for EI",
@@ -980,6 +984,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 1,
    "fw": "Temporary",
    "fwName": "Liikenne- ja viestintäviraston suositus NIS-valvoville viranomaisille kyberturvallisuuden riskienhallinnan toimenpiteistä",
+   "reqEE": 77,
+   "reqIE": 67,
    "auditBody": "National authority",
    "authorityCount": 3,
    "authorities": "LVM (Liikenne-ja viestintäministeri) : Ministry of Transport and Communications NCSC-FI Traficom"
@@ -1063,7 +1069,7 @@ const EXCEL_DATA = {
    "fw": "Temporary",
    "fwName": "20260317_NIS_V2_ReCyF_v2.5.pdf (provisoire)",
    "reqEE": 152,
-   "reqIE": 76,
+   "reqIE": 74,
    "auditBody": "National authority",
    "selfAssessFreq": 12,
    "sanctionMax": "Same modalities as in the directives",
@@ -1240,7 +1246,7 @@ const EXCEL_DATA = {
    "reqIE": 98,
    "complianceEE": 3,
    "complianceIE": 3,
-   "auditBody": "National authority",
+   "auditBody": "Multiple",
    "sanctionMax": "Same modalities as in the directives",
    "authorityCount": 8,
    "authorities": "NCA ; ADAE ; EYP (national CERT) : Ministry of Digital Governance ; GEETHA : EET ; HDPA ; Coordinating Committee for Cybersecurity"
@@ -1272,10 +1278,9 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : Incident reporting form",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - early warning 72 hours - incident notification On request - interim report 1 month after the incident notification - final report (or progress report + final report within 1 month of resolution, if still ongoing)"
+    "Timeline Directive NIS2 : Un incident est considéré comme important si:"
    ],
    "reg": [
     "Registration availability : YES",
@@ -1307,7 +1312,7 @@ const EXCEL_DATA = {
    ],
    "aud": [
     "Audit explicitly planned by the transposition : For EE and EI",
-    "Typology of auditor(s) : National cybersecurity authority",
+    "Typology of auditor(s) : National cybersecurity authority and sectoral authorities",
     "Detailed - Organism in charge of the audit : NCSA",
     "Audit billing model : At the expense of the entity",
     "Audit to be conducted by entity (self-assessment) : Yes, for EE and EI",
@@ -1365,8 +1370,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 15,
    "fw": "Final",
    "fwName": "Vlada Republike Hrvatske + ISO27001",
-   "reqEE": 99,
-   "reqIE": 99,
+   "reqEE": 98,
+   "reqIE": 91,
    "complianceEE": 12,
    "complianceIE": 12,
    "auditBody": "External organism accredited",
@@ -1405,8 +1410,9 @@ const EXCEL_DATA = {
     "Organism type to report incident NOUVELLE COLONNE : Sectoral CSIRT",
     "Name and link of web platform : PiXi platform : https://pixi.carnet.hr/",
     "Mandatory information required : What's happening, expected actions and consequences",
-    "Any other relavant comments : Entities must inform their beneficiaries of significant incidents or serious cyber threats without undue delay. The 30-day period specified in the Act is a transitional deadline for entities to commence their reporting obligations once they have been officially notified of their classification.",
-    "Timeline Directive NIS2 : Major incident Directive NIS2"
+    "Major incident definition in the transposition : (1) Incidents that cause or are capable of causing severe operational disruption of the services are incidents: - of the service, or - that adversely affect the availability of the service or impair the quality that adversely affect or are capable of adversely affecting the authenticity, integrity or confidentiality of stored, transmitted or processed data or services. (2) An incident shall be considered to adversely affect the availability of the service or impair the quality of service if at least one of the following criteria thresholds is met: - at least 20% of the recipients of the service were unable to access the service for at least one hour - at least 1% of the recipients of the service were unable to access the service for at least eight hours, provided that 1% of the recipients are at least 100 recipients of the service - access to the service was not possible for an hour or more, and the entity is not capable of determining how many recipients of the service were unable to access the service during the period in which the service was unavailable - at least 30% of the recipients of the service were occasionally unable to access the service or were unable to use the service functionally due to a reduced level of service quality if the occasional interruptions to access the service, or the inability to use the service functionally, lasted for a total of at least one hour over a period of four hours - access to the service in a hospital, airport, airline, bank facility with data centres, police system facility, active water pumping station and control centre, facility of an electronic communications operator, facility of a security and intelligence system body, facility of a professional fire brigade or entity that has been identified as critical entities based on the law governing the field of critical infrastructure, was not possible for at least one hour - access to the air traffic control service was not possible, irrespective of the duration of the interruption of access to the service and the number of recipients to whom the service was unavailable - access to the service used for the needs of the Ministry of Defence and the Armed Forces of the Republic of Croatia, civilian defence planning authorities, or for the needs of legal entities particularly important for defence, was not possible for at least one hour - access to the service of the 112 Centre and other emergency services was not possible, regardless of the duration of the interruption of access to the service and the number of recipients to whom the service was unavailable - access to the service in at least one county or one city or town representing the seat of the county was not possible for at least one hour. (3) An incident shall be considered to adversely affect or be capable of adversely affecting the authenticity, integrity or confidentiality of stored, transmitted or processed data or services if at least one of the following criteria thresholds is met: - critical parts of the entity’s network and information system or critical data have been accessed by an unauthorised person, or the prerequisites have been met for an unauthorised person to gain access - an unauthorised person has configured the entity’s critical network and information systems, or the prerequisites have been met that enable the configuration of a critical network and information system by an unauthorised person - due to the incident, circumstances have arisen that prevent an authorised person from configuring the critical network and information system - the configuration of the entity’s critical network and information system has been modified, supplemented, or otherwise rendered untrustworthy without authorisation, or critical data have been removed, altered, supplemented or otherwise rendered untrustworthy without authorisation - the entity’s critical network and information systems and/or other network and information systems of the entity that may affect the entity’s critical network and information systems perform tasks that deviate from the established procedures for carrying out business activities on the system and/or the established control framework in which those systems normally operate, and in particular if they perform tasks that those systems are not intended to perform or do not perform the essential tasks that they are intended to perform. (4) Within the meaning of paragraph 3 of this Article, all systems and data shall be considered as critical if the entity has not carried out the classification of the criticality of network and information systems, has not identified critical data or is unable to identify critical network and information systems or critical data that have been adversely affected by the incident. Article 60 (1) An incident shall be considered to cause or be capable of causing financial loss to an entity if at least one of the following criteria thresholds is met: - if the loss of revenue or costs caused by the incident, or the sum of the two, amounts to one hundred thousand euro or at least 5% of the entity’s total annual operating revenue, whichever is lower - if access to the service was not possible for at least one hour to recipients of services from whom the entity generated revenue of one hundred thousand euro in the previous year or at least 5% of the entity’s total annual operating revenue, whichever is lower - if the incident caused reputational damage to the entity. (2) The total annual operating revenue of an entity within the meaning of paragraph 1 of this Article shall mean the total annual operating revenue of the entity according to the financial statements for the previous year, regardless of whether the entity also provides other services or carries out other activities not covered by Annex I and Annex II to the Act. (3) The revenue within the meaning of paragraph 1 of this Article shall be deemed to be any revenue of an entity on an annual basis, regardless of whether it is generated or planned to be generated through the entity’s regular operations or through activities that go beyond the scope of the entity’s regular operations. (4) The costs within the meaning of paragraph 1 of this Article shall be deemed to be any costs incurred by the entity as a result of taking actions and activities to contain, respond to or recover from an incident, including all actions and activities undertaken to establish the entity’s normal scope of operations. This shall not include contractual penalties or other types of compensation that the entity is required to pay due to a breach of contractual relations caused by the incident, regardless of whether the person involved is a natural or legal person, or employees or external associates of the entity. (5) An incident shall be deemed to have caused reputational damage to an entity within the meaning of paragraph 1, subparagraph 3 of this Article if one of the following criteria thresholds is met: - - a public service media provider reported the incident the incident resulted in at least 1% of the recipients of the entity’s services raising objections, filing lawsuits, or seeking other remedies against the entity. Article 61 (1) An incident shall be considered to have affected or be capable of affecting other natural and legal persons by causing significant material or non-material damage if the incident resulted in one of the following: - death or bodily injury that required hospitalisation or therapy procedures - complete destruction or substantial damage to the material property of other natural or legal persons - suspension or significant reduction of operations of other natural or legal persons persons. - loss or compromise of personal or sensitive data of other natural or legal (2) Other natural and legal persons within the meaning of paragraph 1 of this Article shall be considered recipients of services of an essential and important entity, as well as any other natural and legal person who has suffered material or non-material damage under paragraph 1 of this Article due to a significant incident. Article 62 Incidents which individually do not meet the criteria for a significant incident set out in Articles 59 to 61 of this Regulation shall be considered as a significant incident if: - - - they occurred at least twice in a six-month period they have the same root cause together they meet at least one of the criteria for a significant incident set out in Articles 59 to 61 of this Regulation.",
+    "Size thresholds / criteria to consider an incident as major : Service disruption affecting users (20% for 1h, 1% for 8h, critical services unavailable), compromise of confidentiality/integrity/availability, financial or reputational damage (€100k or 5% revenue), significant impact on third parties, or repeated incidents with the same root cause.",
+    "Any other relavant comments : Entities must inform their beneficiaries of significant incidents or serious cyber threats without undue delay. The 30-day period specified in the Act is a transitional deadline for entities to commence their reporting obligations once they have been officially notified of their classification."
    ],
    "reg": [
     "Registration availability : YES",
@@ -1494,6 +1500,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 1,
    "fw": "Final",
    "fwName": "418/2024. (XII. 23.) Korm. rendelet",
+   "reqEE": 383,
+   "reqIE": 298,
    "complianceEE": 24,
    "complianceIE": 24,
    "auditBody": "External organism accredited",
@@ -1527,8 +1535,10 @@ const EXCEL_DATA = {
     "Organism type to report incident NOUVELLE COLONNE : National authority",
     "Name and link of web platform : https://incidens.nki.gov.hu/",
     "Mandatory information required : Name of the organisation involved in the accident Regulatory authority for the organisation involved in the accident Organisation number of the organisation involved in the incident Name of the person who reported the incident Telephone number of the person reporting Contact email address About Description of the nature of the incident Name of the system involved in the incident Brief description of the incident",
+    "Major incident definition in the transposition : 40. significant cybersecurity incident means any of the following: a) a cybersecurity incident defined as such in a directly applicable legal act of the European Union b) absent a directly applicable legal act of the European Union, a cybersecurity incident that ba) leads to or threatens at least 5 per cent reduction in the business services of an entity or the services provided by the entity or at least 5 per cent loss of annual income of the entity; bb) causes or is capable of causing a severe operational disruption of the services or a financial or reputational loss for the entity or the person affected by the cybersecurity incident; or bc) affects or is capable of affecting another natural or legal person by causing significant material or non-material damage;",
+    "Size thresholds / criteria to consider an incident as major : 5% of services or annual revenue",
     "Any other relavant comments : Entities must inform their beneficiaries of a significant incident within 72 hours of becoming aware of it",
-    "Timeline Directive NIS2 : il a causé ou est susceptible de causer une perturbation opérationnelle grave des services ou des pertes financières pour l’entité concernée;"
+    "Timeline Directive NIS2 : a)"
    ],
    "reg": [
     "Registration availability : YES",
@@ -1617,7 +1627,7 @@ const EXCEL_DATA = {
    ],
    "inc": [
     "Any other relavant comments : Timeline Directive NIS 2",
-    "Timeline Directive NIS2 : il a affecté ou est susceptible d’affecter d’autres personnes physiques ou morales en causant des dommages matériels, corporels ou moraux considérables."
+    "Timeline Directive NIS2 : b)"
    ],
    "reg": [
     "Registration availability : NO",
@@ -1690,8 +1700,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 4,
    "fw": "Final",
    "fwName": "https://www.acn.gov.it/portale/documents/d/guest/detacn_nis_specifiche_2025_164179_allegato1; https://www.acn.gov.it/portale/documents/d/guest/detacn_nis_specifiche_2025_164179_allegato2",
-   "reqEE": 116,
-   "reqIE": 87,
+   "reqEE": 160,
+   "reqIE": 124,
    "complianceEE": 18,
    "complianceIE": 18,
    "auditBody": "Multiple",
@@ -1706,8 +1716,8 @@ const EXCEL_DATA = {
     "Dedicated framework to NIS 2 : NIS 2 dedicated framework",
     "Framework last publication date : 2025-12-19",
     "Classification of IS : Applicable to all IS",
-    "Number of cyber themes for EE : 43",
-    "Number of cyber themes for IE : 37",
+    "Number of cyber themes for EE : 6",
+    "Number of cyber themes for IE : 6",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : NO",
     "IEC 62443 : NO",
@@ -1725,11 +1735,10 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : CSIRT Italia",
     "Mandatory information required : Severity and impact Type of threat or the original cause Mitigation measures adopted Cross-border impact of the accident",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - pre-notifica (early warning) 72 hours - notifica (incident notification) On request - interim report 1 month after the notifica - relazione finale (final report), or monthly progress reports if the incident is still ongoing"
+    "Timeline Directive NIS2 : 4. Les États membres veillent à ce que, aux fins de la notification visée au paragraphe 1, les entités concernées soumettent au CSIRT ou, selon le cas, à l’autorité compétente:"
    ],
    "reg": [
     "Registration availability : YES",
@@ -1820,8 +1829,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 6,
    "fw": "Final",
    "fwName": "Implementing of the cybersecurity law",
-   "reqEE": 119,
-   "reqIE": 107,
+   "reqEE": 164,
+   "reqIE": 151,
    "complianceEE": 12,
    "complianceIE": 12,
    "auditBody": "Multiple",
@@ -1837,8 +1846,8 @@ const EXCEL_DATA = {
     "Framework last publication date : 2024-11-06",
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 14",
-    "Number of cyber themes for IE : 14",
+    "Number of cyber themes for EE : 7",
+    "Number of cyber themes for IE : 7",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : NO",
@@ -1856,13 +1865,13 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : National Cyber Incident Platform",
     "Mandatory information required : Cross-border impact of the accident Severity and impact Type of threat or the original cause Mitigation measures adopted Proves of intrusion Incident stemming from malicious or illegal actions?",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - initial notice (large incidents) 72 hours - severity/impact assessment + IOCs (large incidents); or basic info (minor incidents) 1 month from incident registration - final report",
+    "Major incident definition in the transposition : 9. Unless otherwise specified in the implementing acts of the European Commission, a major cyber incident, as defined in Article 18(2) of the Cybersecurity Act, is deemed to have occurred when: 9.1. a cybersecurity entity experiences or is likely to experience significant disruptions to service provision, and the cyber incident meets at least one of the following criteria: 9.1.1. services are disrupted throughout the territory of Lithuania and/or in at least one European Union or NATO country; 9.1.2. the operation of networks and information systems is disrupted for 2 or more hours; 9.1.3. the number of affected service recipients or computerized workstations is equal to or greater than 1,000, or 25 percent (whichever is lower); 9.1.4. the personal data of 1,000 service recipients or 25 percent (whichever is lower) of service recipients, or other service recipient data stored by the cybersecurity entity, is affected; 9.1.5. the cybersecurity entity is no longer able to ensure compliance with the requirements established by law for its operations; 9.1.6. trade secrets or classified information have been lost or disclosed; 9.1.7. more than one similar cyber incident occurs within a 6-month period, the root cause of the incidents is the same, and the amount of financial losses reaches the thresholds specified in subparagraph 9.2; 9.2. the cybersecurity entity suffers or may suffer significant financial losses equal to or greater than 500,000 euros, or 5 percent of the cybersecurity",
+    "Size thresholds / criteria to consider an incident as major : 500k losses or ≥ 5% of turnover ; ≥1000 affected recipients/workstations or 25%; personal data of 1000 service recipients or 25% is affected",
     "Any other relavant comments : Lithuania requires reporting of minor incidents too, not just significant ones",
-    "Timeline Directive NIS2 : sans retard injustifié et en tout état de cause dans les 72 heures après avoir eu connaissance de l’incident important, une notification d’incident qui, le cas échéant, met à jour les informations visées au point a) et fournit une évaluation initiale de l’incident important, y compris de sa gravité et de son impact, ainsi que des indicateurs de compromission, lorsqu’ils sont disponibles;"
+    "Timeline Directive NIS2 : b)"
    ],
    "reg": [
     "Registration availability : YES",
@@ -1958,13 +1967,11 @@ const EXCEL_DATA = {
     "Additional texts (in support of principal text) : Loi du 5 mai 2026 sur la résilience des entités critiques (transposing the CER directive)"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National authority",
     "Name and link of web platform : SERIMA",
     "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - early warning 72 hours - incident notification Interim report - possible, on request 1 month - final report +2 months after the final report - supplementary notification if new important information is discovered",
     "Any other relavant comments : If the operator discovers new information about the incident within 2 months of the final notification it must notify the ILR of that new information as well.",
-    "Timeline Directive NIS2 : à la demande d’un CSIRT ou, selon le cas, de l’autorité compétente, un rapport intermédiaire sur les mises à jour pertinentes de la situation;"
+    "Timeline Directive NIS2 : c)"
    ],
    "reg": [
     "Registration availability : YES",
@@ -2047,8 +2054,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 7,
    "fw": "Final",
    "fwName": "Minimālās kiberdrošības prasības",
-   "reqEE": 87,
-   "reqIE": 80,
+   "reqEE": 182,
+   "reqIE": 161,
    "complianceEE": 13,
    "complianceIE": 13,
    "auditBody": "Multiple",
@@ -2065,8 +2072,8 @@ const EXCEL_DATA = {
     "Framework last publication date : 2025-02-07",
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 18",
-    "Number of cyber themes for IE : 18",
+    "Number of cyber themes for EE : 12",
+    "Number of cyber themes for IE : 12",
     "Does it rely on other frameworks? : NO",
     "ISO 27001/27002 : NO",
     "IEC 62443 : NO",
@@ -2082,11 +2089,11 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : By mail (cert@cert.lv, cert@cert.gov.lv) or by phone (+371 67085888)",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - early warning 72 hours - incident notification 30 days - final report",
-    "Timeline Directive NIS2 : sans retard injustifié et en tout état de cause dans les 24 heures après avoir eu connaissance de l’incident important, une alerte précoce qui, le cas échéant, indique si l’on suspecte l’incident important d’avoir été causé par des actes illicites ou malveillants ou s’il pourrait avoir un impact transfrontière;"
+    "Major incident definition in the transposition : Article 118. A cyber incident shall be considered significant if: 118.1. it meets the definition of a significant cyber incident within the meaning of Article 3(1) of Regulation 2024/2690; 118.2. it meets at least one of the following criteria: 118.2.1. the cyber incident threatens public health or safety, national security, economic security, the country’s reputation, foreign relations, civil liberties, or fundamental rights; 118.2.2. the cyber incident causes financial losses to the entity, other entities, the Republic of Latvia, service recipients, or other persons in an amount of at least 500,000 euros or 5% of the entity’s turnover for the last fiscal year (whichever amount is lower); 118.2.3. the cyber incident causes or may cause harm to the life or health of a natural person; 118.2.4. the cyber incident affects or may affect the confidentiality, integrity, or availability of restricted or classified information; 118.2.5. the cyber incident has caused or may cause disruptions to the provision of an essential or critical service or to the functioning of critical ICT infrastructure; 118.2.6. the cyber incident is a cross-border cyber incident as defined in Article 1, paragraph 21, of the National Cybersecurity Act",
+    "Size thresholds / criteria to consider an incident as major : 500k losses or ≥ 5% of turnover",
+    "Timeline Directive NIS2 : a)"
    ],
    "reg": [
     "Registration availability : YES",
@@ -2173,8 +2180,8 @@ const EXCEL_DATA = {
    "regTool": "Platform",
    "fw": "Final",
    "fwName": "CyberFundamentals Framework (CyFun 2025)",
-   "reqEE": 218,
-   "reqIE": 133,
+   "reqEE": 219,
+   "reqIE": 134,
    "complianceEE": 18,
    "complianceIE": 18,
    "auditBody": "Multiple",
@@ -2189,9 +2196,9 @@ const EXCEL_DATA = {
     "Framework last publication date : 29/10/2025",
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 22",
-    "Number of cyber themes for IE : 22",
-    "Comments on the number of cyber themes and cyber requirements : Malta adopted framework (CyFun 2025). Malta did not publish its own catalogue: Legal Notice 71 of 2025 (S.L. 460.41) transposes NIS2 and points to the Belgian CyberFundamentals framework, which Malta co-owns. Requirements follow cumulative assurance levels: Important entities = Important level (133 req.), Essential entities = Essential level (218 req.). The gap reflects the higher assurance tier required for EE, not a different catalogue.",
+    "Number of cyber themes for EE : 6",
+    "Number of cyber themes for IE : 6",
+    "Comments on the number of cyber themes and cyber requirements : Malta adopted framework (CyFun 2025). Malta did not publish its own catalogue: Legal Notice 71 of 2025 (S.L. 460.41) transposes NIS2 and points to the Belgian CyberFundamentals framework, which Malta co-owns. Requirements follow cumulative assurance levels: Important entities = Important level (134 req.), Essential entities = Essential level (219 req.). The gap reflects the higher assurance tier required for EE, not a different catalogue.",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : YES",
@@ -2212,7 +2219,7 @@ const EXCEL_DATA = {
     "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : CSIRT-Malta (channels provided by CSIRT, thus not publicly published as a unique portal URL)",
     "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-    "Timeline Directive NIS2 : un rapport final au plus tard un mois après la présentation de la notification d’incident visée au point b), comprenant les éléments suivants:"
+    "Timeline Directive NIS2 : d)"
    ],
    "reg": [
     "Registration availability : YES",
@@ -2293,9 +2300,9 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 0,
    "fw": "Final",
    "fwName": "Cbw (NIS2) Control Framework",
-   "reqEE": 130,
-   "reqIE": 130,
-   "auditBody": "External organism accredited",
+   "reqEE": 135,
+   "reqIE": 135,
+   "auditBody": "Multiple",
    "sanctionMax": "Same modalities as in the directives",
    "authorityCount": 9,
    "authorities": "9 ministries and several specialised Inspectorates"
@@ -2308,8 +2315,8 @@ const EXCEL_DATA = {
     "Framework last publication date : 2026-07-10",
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 17",
-    "Number of cyber themes for IE : 17",
+    "Number of cyber themes for EE : 13",
+    "Number of cyber themes for IE : 13",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : NO",
@@ -2322,12 +2329,9 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : Mijn NCSC",
-    "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : Timeline Directive (early warning 24h / incident notification 72h / intermediate report upon request /24 hours - early warning 72 hours - incident report 1 month - final report final report 1month)",
-    "Timeline Directive NIS2 : i)"
+    "Mandatory information required : Identification & Contact Information Incident Classification Incident Description Technical Evidence & Indicators Impact Assessment Containment & Mitigation Actions"
    ],
    "reg": [
     "Registration availability : YES",
@@ -2417,8 +2421,7 @@ const EXCEL_DATA = {
     "Additional texts (in support of principal text) : The regulations (Digitalsikkerhetsforskriften) of the Digital Security Act (Digitalsikkerhetsloven)"
    ],
    "inc": [
-    "Organism type to report incident NOUVELLE COLONNE : National authority",
-    "Timeline Directive NIS2 : ii)"
+    "Organism type to report incident NOUVELLE COLONNE : National authority"
    ],
    "reg": [
     "Registration availability : NO",
@@ -2467,7 +2470,7 @@ const EXCEL_DATA = {
    "regTool": "Platform",
    "regDeadlineMonths": 6,
    "fw": "No",
-   "auditBody": "External organism accredited",
+   "auditBody": "Multiple",
    "selfAssessFreq": 12,
    "sanctionMax": "More specific modalities",
    "authorityCount": 16,
@@ -2479,12 +2482,9 @@ const EXCEL_DATA = {
     "Dedicated framework to NIS 2 : NIS 2 dedicated framework"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : Sectoral CSIRT",
     "Name and link of web platform : System S46",
-    "Mandatory information required : What's happening, expected actions and consequences",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - early warning 72 hours - full incident notification 1 month - final report",
-    "Timeline Directive NIS2 : iii)"
+    "Mandatory information required : What's happening, expected actions and consequences"
    ],
    "reg": [
     "Registration availability : YES",
@@ -2511,7 +2511,7 @@ const EXCEL_DATA = {
    ],
    "aud": [
     "Audit explicitly planned by the transposition : Yes only for EE",
-    "Typology of auditor(s) : Independent auditor / external audit body",
+    "Typology of auditor(s) : Sectoral authorities delegating to an independent auditor / external audit body",
     "Detailed - Organism in charge of the audit : Supervised by the Ministery of Digital Affairs",
     "Audit billing model : At the expense of the entity",
     "Audit to be conducted by entity (self-assessment) : Yes, for EE and EI",
@@ -2560,7 +2560,7 @@ const EXCEL_DATA = {
    "transposed": true,
    "delayMonths": 16,
    "law": "Decreto-Lei n.º 125/2025 (Regime Jurídico da Cibersegurança) + Regulamento n.º 756/2026 ; abroge Lei 46/2018 et DL 65/2021 (art. 9)",
-   "incidentAuthority": "CNCS",
+   "incidentAuthority": "CNCS (or sectoral/special authority in rare cases)",
    "incidentMandatoryFrom": "2026-06-23",
    "incidentMethod": "Report on a web platform",
    "regAuthority": "CNCS",
@@ -2569,8 +2569,8 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 2,
    "fw": "Final",
    "fwName": "QNRCS v2",
-   "reqEE": 150,
-   "reqIE": 101,
+   "reqEE": 153,
+   "reqIE": 102,
    "complianceEE": 24,
    "complianceIE": 24,
    "auditBody": "Multiple",
@@ -2587,7 +2587,7 @@ const EXCEL_DATA = {
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
     "Number of cyber themes for EE : 6",
-    "Number of cyber themes for IE : 7",
+    "Number of cyber themes for IE : 6",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : NO",
@@ -2605,12 +2605,9 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National authority",
     "Name and link of web platform : MyCiber",
-    "Mandatory information required : What's happening, expected actions and consequences",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - initial alert 72 hours - notification (standard NIS2 pattern; not independently confirmed for Portugal but implied) 30 days - progress report, if unresolved Following month - final report, after the incident is resolved/handled",
-    "Timeline Directive NIS2 : iv)"
+    "Mandatory information required : What's happening, expected actions and consequences"
    ],
    "reg": [
     "Registration availability : YES",
@@ -2699,11 +2696,11 @@ const EXCEL_DATA = {
    "regDeadlineMonths": 1,
    "fw": "Temporary",
    "fwName": "CyberFundamentals Framework (CyFun 2025)",
-   "reqEE": 218,
-   "reqIE": 133,
+   "reqEE": 219,
+   "reqIE": 134,
    "complianceEE": 18,
    "complianceIE": 18,
-   "auditBody": "External organism accredited",
+   "auditBody": "Multiple",
    "selfAssessFreq": 12,
    "sanctionMax": "More specific modalities",
    "authorityCount": 20,
@@ -2716,8 +2713,9 @@ const EXCEL_DATA = {
     "Framework last publication date : 29/10/2025",
     "Classification of IS : Applicable to all IS",
     "Rules of classification : Different level of IS",
-    "Number of cyber themes for EE : 7",
-    "Number of cyber themes for IE : 9",
+    "Number of cyber themes for EE : 6",
+    "Number of cyber themes for IE : 6",
+    "Comments on the number of cyber themes and cyber requirements : Uses the CyFun",
     "Does it rely on other frameworks? : YES",
     "ISO 27001/27002 : YES",
     "IEC 62443 : YES",
@@ -2735,12 +2733,11 @@ const EXCEL_DATA = {
     "Gradual compliance to reach target level : NO"
    ],
    "inc": [
+    "Organism type to report incident NOUVELLE COLONNE : National CSIRT",
     "Name and link of web platform : PNRISC",
     "Mandatory information required : Identification & entity Classification of the incident Factual descriptiob Indicators & technical proofs Impact assessment Measures of response",
-    "Major incident definition in the transposition : YES",
-    "Size thresholds / criteria to consider an incident as major : Number / percentage of users affected, duration of incident, geographic spread, and service unavailability",
-    "Timeline : 24 hours - early warning 72 hours - incident report On request - interim report 1 month - final report",
-    "Timeline Directive NIS2 : en cas d’incident en cours au moment de la présentation du rapport final visé au point d), les États membres veillent à ce que les entités concernées fournissent à ce moment-là un rapport d’avancement puis un rapport final dans un délai d’un mois à compter du traitement de l’incident."
+    "Timeline : Early warning within 6 hours for incidents with transnational impact",
+    "Timeline Directive NIS2 : e)"
    ],
    "reg": [
     "Registration availability : YES",
@@ -3064,7 +3061,8 @@ const EXCEL_DATA = {
     "Organism type to report incident NOUVELLE COLONNE : National authority",
     "Name and link of web platform : JISKB https://www.jiskb.nbu.gov.sk/",
     "Mandatory information required : Incident nature, time of detection Suspected malicious or unlawful origin Impact on essential/important services Indicators of compromise (IOCs) and technical evidence Mitigation actions already implemented",
-    "Major incident definition in the transposition : A major cybersecurity incident is defined as a large-scale cybersecurity incident and a cybersecurity incident that a) has caused, or is likely to cause, serious disruption to the functioning of the essential service operator, or damage, other injury to property or loss of profit on a large scale, b) has affected or is likely to affect other persons by causing them damage, other harm or loss of profit to a significant extent"
+    "Major incident definition in the transposition : 3.y / z. A critical service is a service essential to the functioning of important societal sectors or economic activities, where the impact of a cybersecurity incident in an information system or network on which the provision of the service depends may result in 1. a threat to the availability, authenticity, integrity, or confidentiality of stored, transmitted, or processed data or related services provided or accessible through these networks and information systems, affecting more than 25,000 people, 2. a restriction or disruption of a critical entity, its essential service, or critical infrastructure, 3. an economic loss exceeding 0.1 percent of gross domestic product based on data from the immediately preceding fiscal year, or 4. an economic loss or material damage to at least one user exceeding 250,000 euros, a significant impact on public order, safety, or public health; an impact in which the impact of a cybersecurity incident in an information system or network, on the operation of which the provision of the service depends, may cause a disruption to public order or security, a threat to public health, an emergency, or a state of distress that may 1. require the performance of rescue operations or the implementation of activities and measures related to the provision of emergency assistance, 2. result in more than 100 injured persons requiring medical treatment or the death of at least one person, (aa) a significant systemic risk: a risk of system disruption that may have serious negative consequences or substantially impede the maintenance of cybersecurity, thereby endangering the life or health of persons, the economic functioning of the state, public order, the safety or property of persons, or threatening the security interests of the Slovak Republic, ab) a person who, given their particular significance at the national or regional level, is a critical person whose disruption due to a cybersecurity incident may require the performance of rescue operations or the implementation of activities and measures related to the provision of emergency assistance.",
+    "Size thresholds / criteria to consider an incident as major : Critical service disruption affecting >25,000 people, critical infrastructure/entities, major economic loss (>0.1% GDP or >€250k), public safety/health impacts, or significant systemic risk."
    ],
    "reg": [
     "Registration availability : YES",

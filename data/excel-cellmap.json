@@ -199,12 +199,17 @@
           "writable": true
         },
         {
-          "column": "W",
-          "label": "Timeline Directive NIS2",
+          "column": "S",
+          "label": "Information required in the early warning form",
           "writable": true
         },
         {
           "column": "X",
+          "label": "Timeline Directive NIS2",
+          "writable": true
+        },
+        {
+          "column": "Y",
           "label": "Early warning within 24 hours. Incident report within 72 hours. Interim report with up-to-date information at the request of the Federal Office for Information Security. Final report no later than 1 month after sending the incident report. Progress report (if the incident is still ongoing) no later than 1 month after sending the incident report and a final report within another month after the end of the incident.",
           "writable": true
         }
@@ -681,7 +686,7 @@
         },
         {
           "column": "N",
-          "label": "First audit deadline expected for EI (from effective date in months)",
+          "label": "First audit deadline expected for IE (from effective date in months)",
           "writable": true
         },
         {
@@ -946,6 +951,6 @@
       ]
     }
   },
-  "addressableCells": 3973,
-  "writableCells": 3683
+  "addressableCells": 4002,
+  "writableCells": 3712
 }

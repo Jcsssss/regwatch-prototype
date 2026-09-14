@@ -25,6 +25,7 @@ from pathlib import Path
 
 try:
     from openpyxl import load_workbook
+    from openpyxl.utils import get_column_letter, column_index_from_string
 except ImportError:
     raise SystemExit("pip install openpyxl")
 
@@ -48,6 +49,18 @@ KEYS = {
 # contradictoires a la meme question. La nouvelle fait foi.
 OLD = re.compile(r"ANCIENNE COLONNE\s*$", re.I)
 NEW = re.compile(r"\s*NOUVELLE COLONNE\s*$", re.I)
+
+# Colonnes de service, ecartees quel que soit leur contenu.
+#
+#   Repartition   qui, dans l'equipe, tient ce pays a jour. Elle porte des
+#                 prenoms : c'est de la donnee personnelle, et la page est
+#                 servie publiquement par GitHub Pages. Elle n'a rien a faire
+#                 dans un fichier distribue, meme si le depot est prive.
+#   Column1...    artefact des tableaux Excel, toujours vide.
+#   en-tete       un en-tete purement numerique n'est pas un libelle mais une
+#   numerique     donnee : la ligne d'en-tete y porte deja une valeur.
+SKIP_LABEL = re.compile(r"^(r[ée]partition|column\d*|colonne\d*)$", re.I)
+SKIP_NUMERIC = re.compile(r"^[\d\s.,%-]+$")
 
 
 def clean(v):
@@ -92,18 +105,28 @@ def main():
         if not key:
             continue
         ws = wb[name]
+        # Les colonnes sont lues dans la feuille, pas dans la cartographie.
+        # Celle-ci vieillit des qu'on insere une colonne dans le classeur - ce
+        # qui est arrive : l'ajout de « Information required in the early
+        # warning » a decale deux colonnes, et l'extracteur lisait alors le
+        # libelle d'une colonne sur les donnees d'une autre. La cartographie ne
+        # sert plus qu'a situer la ligne d'en-tete et celles des pays, qui ne
+        # bougent pas quand on ajoute une colonne.
+        header = spec["headerRow"]
+        first = column_index_from_string(spec["countryColumn"]) + 1
         fields = []
-        for f in spec["fields"]:
-            label = (f.get("label") or "").strip()
-            # Un en-tete qui est en fait une donnee : la colonne X de la feuille
-            # Incident reporting porte une phrase entiere en guise de libelle.
+        for idx in range(first, (ws.max_column or first) + 1):
+            col = get_column_letter(idx)
+            label = clean(ws.cell(row=header, column=idx).value)
+            # Un en-tete qui est en fait une donnee : certaines colonnes portent
+            # une phrase entiere en guise de libelle.
             if not label or len(label) > 90:
                 dropped += 1
                 continue
-            if OLD.search(label):
+            if OLD.search(label) or SKIP_LABEL.match(label) or SKIP_NUMERIC.match(label):
                 dropped += 1
                 continue
-            fields.append({"c": f["column"], "l": NEW.sub("", label).strip()})
+            fields.append({"c": col, "l": NEW.sub("", label).strip()})
         sheets[key] = {"name": name, "fields": fields}
 
         for iso, row in spec["rows"].items():
