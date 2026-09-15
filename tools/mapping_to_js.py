@@ -24,6 +24,12 @@ Le poids
   detail est compresse, decompresse par la page au premier affichage seulement.
   Le resume - taux, repartition, categories - reste en clair : la fiche pays le
   lit sans rien decompresser.
+
+Deux fichiers, pas un
+  Les plans d'action sont un livrable d'analyse : ils restent dans la version
+  equipe et n'entrent pas dans la version client, publiee par GitHub Pages. Ils
+  sont retires des donnees et non caches a l'ecran - une information masquee
+  mais embarquee se lit toujours dans le fichier.
 """
 
 import base64
@@ -39,7 +45,8 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "ressources" / "Agent-Mapping-NIS2-main" / "output"
-OUT = ROOT / "src" / "reg" / "nis2" / "data_mapping.js"
+OUT = ROOT / "src" / "reg" / "nis2" / "data_mapping.js"             # version client
+OUT_TEAM = ROOT / "src" / "reg" / "nis2" / "data_mapping_team.js"   # version equipe
 
 # Ce que le nom du fichier ne dit pas : le nom d'affichage de chaque referentiel
 # et le pays qu'il concerne, pour relier la correspondance a sa fiche.
@@ -145,17 +152,30 @@ def main():
         print("   %-28s %s" % (pid, " | ".join("%s -> %s : %d exigences, %.1f %% en moyenne"
               % (d["from"]["name"], d["to"]["name"], d["n"], d["avg"]) for d in summary)))
 
-    raw = json.dumps(detail, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    gz = base64.b64encode(gzip.compress(raw, 9)).decode("ascii")
-    OUT.write_text(
-        "/* ---- Correspondances validees entre referentiels, issues de l'agent de\n"
-        "   correspondance. Genere par tools/mapping_to_js.py - ne pas editer.\n"
-        "   MAPPING_INDEX est en clair ; le detail est compresse (MAPPING_GZ). ---- */\n"
-        "const MAPPING_INDEX = %s;\n"
-        "const MAPPING_GZ = \"%s\";\n" % (json.dumps(index, ensure_ascii=False, separators=(",", ":")), gz),
-        encoding="utf-8")
-    print("\n%d correspondance(s) ; detail %d Ko brut -> %d Ko compresse ; fichier %d Ko"
-          % (len(index), len(raw) // 1024, len(gz) // 1024, OUT.stat().st_size // 1024))
+    def write(path, with_actions, label):
+        det = detail if with_actions else {
+            pid: {"texts": v["texts"],
+                  "rows": [[{k: x for k, x in r.items() if k != "act"} for r in rows]
+                           for rows in v["rows"]]}
+            for pid, v in detail.items()}
+        idx = {pid: dict(v, actions=with_actions) for pid, v in index.items()}
+        raw = json.dumps(det, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        gz = base64.b64encode(gzip.compress(raw, 9)).decode("ascii")
+        path.write_text(
+            "/* ---- Correspondances validees entre referentiels, issues de l'agent de\n"
+            "   correspondance - version %s. Genere par tools/mapping_to_js.py.\n"
+            "   MAPPING_INDEX est en clair ; le detail est compresse (MAPPING_GZ). ---- */\n"
+            "const MAPPING_INDEX = %s;\n"
+            "const MAPPING_GZ = \"%s\";\n"
+            % (label, json.dumps(idx, ensure_ascii=False, separators=(",", ":")), gz),
+            encoding="utf-8")
+        print("   %-7s %s plans d'action : detail %d Ko brut, %d Ko compresse -> %s"
+              % (label, "avec" if with_actions else "sans", len(raw) // 1024, len(gz) // 1024,
+                 path.relative_to(ROOT)))
+
+    print()
+    write(OUT, False, "client")
+    write(OUT_TEAM, True, "equipe")
 
 
 if __name__ == "__main__":

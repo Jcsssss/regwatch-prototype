@@ -187,9 +187,38 @@ function route(v, arg, force){
 }
 window.addEventListener("hashchange", () => { const r = parseHash(); route(r.v, r.arg); });
 
+/* ---------- theme clair / sombre ----------
+ * Sans choix enregistre, aucun attribut n'est pose : les feuilles de style
+ * suivent prefers-color-scheme, donc le reglage de l'ordinateur, y compris
+ * quand il bascule en cours de journee. Un clic enregistre le choix pour ce
+ * navigateur et pose data-theme, qui prime sur le reglage systeme.
+ *
+ * Le bouton allume est le theme effectivement affiche, choisi ou herite : un
+ * utilisateur en sombre par son systeme voit la lune allumee, pas un selecteur
+ * muet qui laisse croire que rien n'est actif. */
+function themeEffective(){
+  const set = document.documentElement.dataset.theme;
+  if (set === "light" || set === "dark") return set;
+  return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+function themeSync(){
+  const cur = themeEffective();
+  document.querySelectorAll(".theme-switch button").forEach(b => {
+    b.classList.toggle("on", b.dataset.themeSet === cur);
+    b.setAttribute("aria-pressed", String(b.dataset.themeSet === cur));
+  });
+}
+if (store.theme === "light" || store.theme === "dark") document.documentElement.dataset.theme = store.theme;
+document.querySelectorAll(".theme-switch button").forEach(b => b.addEventListener("click", () => {
+  store.theme = b.dataset.themeSet; saveStore();
+  document.documentElement.dataset.theme = store.theme;   /* l'observateur ci-dessous redessine */
+  themeSync();
+}));
+themeSync();
+
 /* theme change → re-render (map/charts use resolved colors) */
 new MutationObserver(() => renderCurrent()).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => renderCurrent());
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { themeSync(); renderCurrent(); });
 
 /* ---------- KPIs ---------- */
 function kpis(){

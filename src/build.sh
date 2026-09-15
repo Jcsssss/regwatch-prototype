@@ -39,8 +39,11 @@ SHARED=(map_data.js data_meta.js data_flags.js)
 NIS2=(reg/nis2/data_excel.js reg/nis2/data_docs.js reg/nis2/data_authorities.js
       reg/nis2/data_kpis.js reg/nis2/data_themes.js reg/nis2/data_candidates.js
       reg/nis2/data_c1.js reg/nis2/data_c2.js reg/nis2/data_c3.js reg/nis2/data_c4.js
-      reg/nis2/data_sheets.js reg/nis2/data_fwthemes.js reg/nis2/data_prose.js
-      reg/nis2/data_mapping.js)
+      reg/nis2/data_sheets.js reg/nis2/data_fwthemes.js reg/nis2/data_prose.js)
+# Les correspondances existent en deux versions : les plans d'action sont un
+# livrable d'analyse, retires des donnees de la version client publiee.
+MAPPING_CLIENT=(reg/nis2/data_mapping.js)
+MAPPING_TEAM=(reg/nis2/data_mapping_team.js)
 REC=(reg/rec/data_countries.js)
 # Documentation de l'outil, corpus de l'assistant technique : construite par
 # tools/build_devdocs.py, transverse aux reglementations.
@@ -71,8 +74,8 @@ build_bundle () {
   fi
 }
 
-CLIENT_FILES=($SHARED $NIS2 $REC $AGENT_DATA $DECK_TPL $CLIENT_APP)
-TEAM_FILES=($SHARED $NIS2 $REC $DEVDOCS $AGENT_DATA $DECK_TPL $APP)
+CLIENT_FILES=($SHARED $NIS2 $MAPPING_CLIENT $REC $AGENT_DATA $DECK_TPL $CLIENT_APP)
+TEAM_FILES=($SHARED $NIS2 $MAPPING_TEAM $REC $DEVDOCS $AGENT_DATA $DECK_TPL $APP)
 build_bundle bundle.js $CLIENT_FILES
 build_bundle bundle-equipe.js $TEAM_FILES
 

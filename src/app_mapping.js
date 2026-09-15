@@ -80,7 +80,7 @@ function renderMapping(pidArg){
 
   el.innerHTML = `
   <h1 class="pg">${t("map.title")}</h1>
-  <p class="pg-sub">${t("map.sub")}</p>
+  <p class="pg-sub">${t(pair.actions ? "map.sub" : "map.subClient")}</p>
 
   ${ids.length > 1 ? `<div class="mp-pairs">${ids.map(id => `
     <button type="button" class="mp-pair${id === mapState.pid ? " on" : ""}" data-pid="${id}">

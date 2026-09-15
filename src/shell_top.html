@@ -609,7 +609,13 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 .lang-switch{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-left:12px}
 .lang-switch button{border:0;background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:700;padding:5px 10px;cursor:pointer;letter-spacing:.03em}
 .lang-switch button+button{border-left:1px solid var(--line)}
-.lang-switch button.on{background:var(--accent);color:#fff}
+.theme-switch{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-left:6px}
+.theme-switch button{border:0;background:var(--surface);color:var(--muted);padding:0 8px;height:28px;
+  display:grid;place-items:center;cursor:pointer}
+.theme-switch button+button{border-left:1px solid var(--line)}
+.theme-switch button:hover:not(.on){color:var(--ink)}
+.theme-switch svg{width:15px;height:15px}
+.lang-switch button.on,.theme-switch button.on{background:var(--accent);color:var(--accent-ink)}
 .d-orig{margin-left:6px;font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:999px;white-space:nowrap}
 .d-flux{background:var(--st-ok-bg);color:var(--st-ok-ink)}
 .d-page{background:var(--info-bg);color:var(--info)}
@@ -926,7 +932,7 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .q-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:7px 0 9px;font-size:12.5px;color:var(--muted)}
 .q-meta .k{font-weight:600;color:var(--ink2)}
 .q-meta .num{font-family:var(--font-mono)}
-.q-open{display:inline-flex;align-items:center;gap:5px;background:var(--accent);color:#fff;border-radius:7px;padding:4px 11px;font-weight:700;font-size:12.5px;text-decoration:none;white-space:nowrap}
+.q-open{display:inline-flex;align-items:center;gap:5px;background:var(--accent);color:var(--accent-ink);border-radius:7px;padding:4px 11px;font-weight:700;font-size:12.5px;text-decoration:none;white-space:nowrap}
 .q-open:hover{filter:brightness(1.08)}
 .q-excerpt{margin:0;padding:9px 13px;border-left:3px solid var(--accent);background:var(--surface2);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink2);max-width:82ch}
 .q-excerpt .src-note{display:block;margin-top:5px;font-size:11.5px;color:var(--muted);font-style:italic}
@@ -953,10 +959,10 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .q-cells>summary::-webkit-details-marker{display:none}
 .q-cells>summary::before{content:"▸ "}
 .q-cells[open]>summary::before{content:"▾ "}
-.q-cells>summary .n{background:var(--accent);color:#fff;border-radius:999px;padding:1px 7px;font-size:11px}
+.q-cells>summary .n{background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:1px 7px;font-size:11px}
 .q-cells-body{padding:0 11px 9px}
 .q-cells-h{font-weight:700;color:var(--accent);margin-bottom:6px;display:flex;align-items:center;gap:7px}
-.q-cells-h span{background:var(--accent);color:#fff;border-radius:999px;padding:1px 7px;font-size:11px}
+.q-cells-h span{background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:1px 7px;font-size:11px}
 .q-points{margin:3px 0 0;padding-left:17px}
 .q-points li{margin-bottom:3px}
 .q-cells-row{display:grid;grid-template-columns:190px 1fr;gap:10px;padding:3px 0;align-items:start}
@@ -974,7 +980,7 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .deck-dl:hover{text-decoration:none}
 .back-big{font-size:14px;font-weight:700;padding:9px 18px;border-radius:9px;margin-bottom:14px;
   background:var(--surface);border:1.5px solid var(--accent);color:var(--accent);cursor:pointer}
-.back-big:hover{background:var(--accent);color:#fff}
+.back-big:hover{background:var(--accent);color:var(--accent-ink)}
 .fi{display:inline-block;width:1.35em;height:1.01em;vertical-align:-.13em;border-radius:2px;overflow:hidden;
   box-shadow:0 0 0 1px rgba(0,0,0,.12) inset;flex:none}
 .fi svg{display:block;width:100%;height:100%}
@@ -987,7 +993,7 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .ctile:hover{border-color:var(--accent);transform:translateY(-2px)}
 .ctile-flag{position:relative;display:block;width:64px;height:48px;border:1px solid var(--line);
   border-radius:9px;overflow:visible;margin-bottom:7px}
-.ctile-n{position:absolute;top:-7px;right:-7px;min-width:22px;padding:1px 6px;background:var(--accent);color:#fff;
+.ctile-n{position:absolute;top:-7px;right:-7px;min-width:22px;padding:1px 6px;background:var(--accent);color:var(--accent-ink);
   border-radius:999px;font-size:11.5px;font-weight:700;font-family:var(--font-mono)}
 .ctile-n.zero{background:var(--surface3);color:var(--muted)}
 .ctile-name{font-weight:700;font-size:13px;color:var(--ink);line-height:1.25}
@@ -1150,6 +1156,16 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="fr">FR</button>
+      </div>
+      <!-- Clair / sombre. Sans choix enregistre, l'outil suit le reglage de
+           l'ordinateur ; un clic fixe le theme pour ce navigateur. -->
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button type="button" data-theme-set="light" data-i18n-title="theme.light" title="Light mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+        </button>
+        <button type="button" data-theme-set="dark" data-i18n-title="theme.dark" title="Dark mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>
+        </button>
       </div>
     </div>
   </div>
