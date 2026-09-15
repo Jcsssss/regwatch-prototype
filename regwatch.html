@@ -333,33 +333,38 @@ body.fcells .fcell{display:inline}
 .fbtn.ghost:hover{background:var(--surface3);color:var(--ink)}
 
 /* --- fenetre des secteurs --- */
-#ficheSectors{border:0;padding:0;background:transparent;max-width:min(920px,94vw);width:100%}
+/* Un <dialog> n'herite pas de la couleur de texte de la page : le navigateur lui
+   impose CanvasText, du noir. En theme sombre, titre et libelles s'ecrivaient
+   donc en noir sur violet fonce. La couleur est posee explicitement. */
+#ficheSectors,#rptDlg{color:var(--ink)}
+#ficheSectors{border:0;padding:0;background:transparent;max-width:min(960px,94vw);width:100%}
 #ficheSectors::backdrop{background:rgba(10,8,20,.62)}
-.fmodal{background:var(--surface);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
-.fmodal-h{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
-.fmodal-h h2{font-size:17px;font-weight:800;margin:0}
+.fmodal{background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
+.fmodal-h{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line)}
+.fmodal-h h2{font-size:17px;font-weight:800;margin:0;color:var(--ink)}
 .fmodal-h .x{margin-left:auto;background:var(--surface2);border:1px solid var(--line2);
   border-radius:8px;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;
   color:var(--ink)}
 .fmodal-h .x svg{width:14px;height:14px}
-.fmodal-b{padding:18px 20px 22px;max-height:min(74vh,660px);overflow-y:auto}
-.fann{font-size:11px;font-weight:800;letter-spacing:.085em;text-transform:uppercase;
-  color:var(--muted);display:flex;align-items:center;gap:9px;margin:4px 0 11px}
-.fann:not(:first-child){margin-top:22px}
-.fann::after{content:"";flex:1;height:1px;background:var(--line)}
-.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:9px}
-.fs{border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;
-  flex-direction:column;gap:8px;background:var(--surface2)}
-.fs .si{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
-  background:var(--surface);color:var(--muted)}
-.fs .si svg{width:15px;height:15px}
-.fs .sn{font-size:12.5px;font-weight:700;line-height:1.3}
-.fs .sd{font-size:11px;color:var(--muted);line-height:1.35}
-.fs.ee{background:var(--accent-soft);border-color:transparent}
-.fs.ee .si{background:var(--accent);color:var(--accent-ink)}
-.fs.ei .si{color:var(--ie)}
-.fmlg{font-size:11.5px;color:var(--muted);margin-top:16px;padding-top:13px;
-  border-top:1px solid var(--line);line-height:1.5}
+.fmodal-b{padding:16px 20px 18px;max-height:calc(100vh - 110px);overflow-y:auto;display:grid;gap:18px}
+.fann{display:flex;align-items:center;gap:9px;margin:0 0 10px;font-size:12px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.fann i{width:10px;height:10px;border-radius:3px;background:var(--fc)}
+.fann span{margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted)}
+.fann-b.ee{--fc:var(--accent)}
+.fann-b.ei{--fc:var(--ie)}
+.fgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.fs{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:10px;
+  background:var(--surface2);border:1px solid var(--line);border-left:3px solid var(--fc)}
+.fs .si{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:none;
+  color:var(--fc);background:color-mix(in srgb,var(--fc) 14%,var(--surface))}
+.fs .si svg{width:17px;height:17px}
+.fs .st{display:flex;flex-direction:column;gap:1px;min-width:0}
+.fs .st b{font-size:13px;font-weight:700;color:var(--ink);line-height:1.3}
+.fs .st span{font-size:11.5px;color:var(--ink2);line-height:1.35}
+.fmlg{margin:0;font-size:11.5px;color:var(--muted);padding-top:12px;border-top:1px solid var(--line);line-height:1.5}
+@media (max-width:860px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
 
 @media (max-width:1080px){.ffacts{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:980px){
@@ -17007,7 +17012,7 @@ const I18N = {
     "fiche.sectors": "Sectors covered",
     "fiche.sectorsBtn": "See the sector map",
     "fiche.sectorsTitle": "Sectors covered by NIS 2",
-    "fiche.sectorsNote": "Scope of the directive, identical for every country. The workbook holds no national sector sheet: nothing here is specific to the country you are reading.",
+    "fiche.sectorsNote": "Scope of the directive (Annexes I and II), identical for every country. The sectors each country actually adds or details are not shown here yet.",
     "fiche.annex1": "Annex I \u00b7 Essential entities",
     "fiche.annex2": "Annex II \u00b7 Important entities",
     "fiche.close": "Close",
@@ -17095,6 +17100,7 @@ const I18N = {
     "map.ficheGaps": "{n} of {total} requirements have no equivalent \u00b7 see the detail",
     "theme.light": "Light mode",
     "theme.dark": "Dark mode",
+    "fiche.sectorsCount": "{n} sectors",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -17593,7 +17599,7 @@ const I18N = {
     "fiche.sectors": "Secteurs couverts",
     "fiche.sectorsBtn": "Voir la cartographie des secteurs",
     "fiche.sectorsTitle": "Secteurs couverts par NIS 2",
-    "fiche.sectorsNote": "P\u00e9rim\u00e8tre de la directive, identique pour tous les pays. Le classeur ne porte pas de feuille Secteurs nationale : rien ici n\u2019est propre au pays consult\u00e9.",
+    "fiche.sectorsNote": "P\u00e9rim\u00e8tre de la directive (annexes I et II), identique pour tous les pays. Les secteurs que chaque pays ajoute ou pr\u00e9cise ne sont pas encore repris ici.",
     "fiche.annex1": "Annexe I \u00b7 Entit\u00e9s essentielles",
     "fiche.annex2": "Annexe II \u00b7 Entit\u00e9s importantes",
     "fiche.close": "Fermer",
@@ -17681,6 +17687,7 @@ const I18N = {
     "map.ficheGaps": "{n} exigences sur {total} sans \u00e9quivalent \u00b7 voir le d\u00e9tail",
     "theme.light": "Mode clair",
     "theme.dark": "Mode sombre",
+    "fiche.sectorsCount": "{n} secteurs",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -20020,34 +20027,62 @@ function ficheTimeline(iso){
  * dans la fenetre elle-meme, faute de quoi un lecteur y verrait le perimetre
  * retenu par le pays qu'il consulte.
  */
+/* Une icone par secteur, pas une icone generique repetee dix-huit fois : avec
+   la meme pour tous, l'oeil devait lire chaque libelle pour trouver le sien. */
+const SECT_ICONS = {
+  energy: '<path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/>',
+  transport: '<rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 16l-2 5M16 16l2 5M8 13h.01M16 13h.01"/>',
+  bank: '<path d="M3 10 12 4l9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/>',
+  fmi: '<path d="M3 20h18M6 16l4-5 3 3 5-7"/><path d="M15 7h3v3"/>',
+  health: '<path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/>',
+  water: '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+  waste: '<path d="M4 16a8 8 0 0 0 14.9 1M20 8A8 8 0 0 0 5.1 7"/><path d="M20 3v5h-5M4 21v-5h5"/>',
+  digital: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  ict: '<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/>',
+  public: '<path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6"/>',
+  space: '<path d="m4 20 5-5M14 4l6 6-5 5-6-6zM9 9 5 5M15 15l4 4"/>',
+  post: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  garbage: '<path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/>',
+  chem: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/>',
+  food: '<path d="M7 3v8a3 3 0 0 0 6 0V3M10 3v18M17 3c-1.7 1.2-2.5 3.5-2.5 6.5V13H17v8"/>',
+  manu: '<path d="M3 21V10l6 4V10l6 4V6l6 4v11z"/>',
+  provider: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  research: '<circle cx="11" cy="11" r="6"/><path d="m20 20-4.3-4.3M11 8v6M8 11h6"/>'
+};
 const FICHE_EE = [
-  ["sect.energy", "sect.energyD"], ["sect.transport", "sect.transportD"],
-  ["sect.bank", "sect.bankD"], ["sect.fmi", "sect.fmiD"],
-  ["sect.health", "sect.healthD"], ["sect.water", "sect.waterD"],
-  ["sect.waste", "sect.wasteD"], ["sect.digital", "sect.digitalD"],
-  ["sect.ict", "sect.ictD"], ["sect.public", "sect.publicD"],
-  ["sect.space", "sect.spaceD"]
+  ["energy", "sect.energy", "sect.energyD"], ["transport", "sect.transport", "sect.transportD"],
+  ["bank", "sect.bank", "sect.bankD"], ["fmi", "sect.fmi", "sect.fmiD"],
+  ["health", "sect.health", "sect.healthD"], ["water", "sect.water", "sect.waterD"],
+  ["waste", "sect.waste", "sect.wasteD"], ["digital", "sect.digital", "sect.digitalD"],
+  ["ict", "sect.ict", "sect.ictD"], ["public", "sect.public", "sect.publicD"],
+  ["space", "sect.space", "sect.spaceD"]
 ];
 const FICHE_EI = [
-  ["sect.post", "sect.postD"], ["sect.garbage", "sect.garbageD"],
-  ["sect.chem", "sect.chemD"], ["sect.food", "sect.foodD"],
-  ["sect.manu", "sect.manuD"], ["sect.provider", "sect.providerD"],
-  ["sect.research", "sect.researchD"]
+  ["post", "sect.post", "sect.postD"], ["garbage", "sect.garbage", "sect.garbageD"],
+  ["chem", "sect.chem", "sect.chemD"], ["food", "sect.food", "sect.foodD"],
+  ["manu", "sect.manu", "sect.manuD"], ["provider", "sect.provider", "sect.providerD"],
+  ["research", "sect.research", "sect.researchD"]
 ];
+/* Des lignes compactes plutot que des cartes : les dix-huit secteurs tiennent
+   sans defilement, alors que l'annexe II etait coupee en bas de la fenetre sans
+   que rien ne signale qu'elle continuait. */
 function ficheSectorsHtml(){
-  const cell = (r, cls) => `<div class="fs ${cls}"><div class="si">${ficheIcon("grid")}</div>
-    <div class="sn">${t(r[0])}</div><div class="sd">${t(r[1])}</div></div>`;
+  const row = (r, cls) => `<li class="fs ${cls}">
+      <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">${SECT_ICONS[r[0]] || ""}</svg></span>
+      <span class="st"><b>${t(r[1])}</b><span>${t(r[2])}</span></span></li>`;
+  const block = (label, list, cls) => `<section class="fann-b ${cls}">
+      <h3 class="fann"><i></i>${label}<span>${t("fiche.sectorsCount", { n: list.length })}</span></h3>
+      <ul class="fgrid">${list.map(r => row(r, cls)).join("")}</ul></section>`;
   return `<div class="fmodal">
     <div class="fmodal-h"><h2>${t("fiche.sectorsTitle")}</h2>
       <button class="x" type="button" id="ficheSecClose" aria-label="${t("fiche.close")}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button></div>
     <div class="fmodal-b">
-      <div class="fann">${t("fiche.annex1")}</div>
-      <div class="fgrid">${FICHE_EE.map(r => cell(r, "ee")).join("")}</div>
-      <div class="fann">${t("fiche.annex2")}</div>
-      <div class="fgrid">${FICHE_EI.map(r => cell(r, "ei")).join("")}</div>
-      <div class="fmlg">${t("fiche.sectorsNote")}</div>
+      ${block(t("fiche.annex1"), FICHE_EE, "ee")}
+      ${block(t("fiche.annex2"), FICHE_EI, "ei")}
+      <p class="fmlg">${t("fiche.sectorsNote")}</p>
     </div></div>`;
 }
 

@@ -222,34 +222,62 @@ function ficheTimeline(iso){
  * dans la fenetre elle-meme, faute de quoi un lecteur y verrait le perimetre
  * retenu par le pays qu'il consulte.
  */
+/* Une icone par secteur, pas une icone generique repetee dix-huit fois : avec
+   la meme pour tous, l'oeil devait lire chaque libelle pour trouver le sien. */
+const SECT_ICONS = {
+  energy: '<path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/>',
+  transport: '<rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 16l-2 5M16 16l2 5M8 13h.01M16 13h.01"/>',
+  bank: '<path d="M3 10 12 4l9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/>',
+  fmi: '<path d="M3 20h18M6 16l4-5 3 3 5-7"/><path d="M15 7h3v3"/>',
+  health: '<path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/>',
+  water: '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+  waste: '<path d="M4 16a8 8 0 0 0 14.9 1M20 8A8 8 0 0 0 5.1 7"/><path d="M20 3v5h-5M4 21v-5h5"/>',
+  digital: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  ict: '<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/>',
+  public: '<path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6"/>',
+  space: '<path d="m4 20 5-5M14 4l6 6-5 5-6-6zM9 9 5 5M15 15l4 4"/>',
+  post: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  garbage: '<path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/>',
+  chem: '<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/>',
+  food: '<path d="M7 3v8a3 3 0 0 0 6 0V3M10 3v18M17 3c-1.7 1.2-2.5 3.5-2.5 6.5V13H17v8"/>',
+  manu: '<path d="M3 21V10l6 4V10l6 4V6l6 4v11z"/>',
+  provider: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  research: '<circle cx="11" cy="11" r="6"/><path d="m20 20-4.3-4.3M11 8v6M8 11h6"/>'
+};
 const FICHE_EE = [
-  ["sect.energy", "sect.energyD"], ["sect.transport", "sect.transportD"],
-  ["sect.bank", "sect.bankD"], ["sect.fmi", "sect.fmiD"],
-  ["sect.health", "sect.healthD"], ["sect.water", "sect.waterD"],
-  ["sect.waste", "sect.wasteD"], ["sect.digital", "sect.digitalD"],
-  ["sect.ict", "sect.ictD"], ["sect.public", "sect.publicD"],
-  ["sect.space", "sect.spaceD"]
+  ["energy", "sect.energy", "sect.energyD"], ["transport", "sect.transport", "sect.transportD"],
+  ["bank", "sect.bank", "sect.bankD"], ["fmi", "sect.fmi", "sect.fmiD"],
+  ["health", "sect.health", "sect.healthD"], ["water", "sect.water", "sect.waterD"],
+  ["waste", "sect.waste", "sect.wasteD"], ["digital", "sect.digital", "sect.digitalD"],
+  ["ict", "sect.ict", "sect.ictD"], ["public", "sect.public", "sect.publicD"],
+  ["space", "sect.space", "sect.spaceD"]
 ];
 const FICHE_EI = [
-  ["sect.post", "sect.postD"], ["sect.garbage", "sect.garbageD"],
-  ["sect.chem", "sect.chemD"], ["sect.food", "sect.foodD"],
-  ["sect.manu", "sect.manuD"], ["sect.provider", "sect.providerD"],
-  ["sect.research", "sect.researchD"]
+  ["post", "sect.post", "sect.postD"], ["garbage", "sect.garbage", "sect.garbageD"],
+  ["chem", "sect.chem", "sect.chemD"], ["food", "sect.food", "sect.foodD"],
+  ["manu", "sect.manu", "sect.manuD"], ["provider", "sect.provider", "sect.providerD"],
+  ["research", "sect.research", "sect.researchD"]
 ];
+/* Des lignes compactes plutot que des cartes : les dix-huit secteurs tiennent
+   sans defilement, alors que l'annexe II etait coupee en bas de la fenetre sans
+   que rien ne signale qu'elle continuait. */
 function ficheSectorsHtml(){
-  const cell = (r, cls) => `<div class="fs ${cls}"><div class="si">${ficheIcon("grid")}</div>
-    <div class="sn">${t(r[0])}</div><div class="sd">${t(r[1])}</div></div>`;
+  const row = (r, cls) => `<li class="fs ${cls}">
+      <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">${SECT_ICONS[r[0]] || ""}</svg></span>
+      <span class="st"><b>${t(r[1])}</b><span>${t(r[2])}</span></span></li>`;
+  const block = (label, list, cls) => `<section class="fann-b ${cls}">
+      <h3 class="fann"><i></i>${label}<span>${t("fiche.sectorsCount", { n: list.length })}</span></h3>
+      <ul class="fgrid">${list.map(r => row(r, cls)).join("")}</ul></section>`;
   return `<div class="fmodal">
     <div class="fmodal-h"><h2>${t("fiche.sectorsTitle")}</h2>
       <button class="x" type="button" id="ficheSecClose" aria-label="${t("fiche.close")}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button></div>
     <div class="fmodal-b">
-      <div class="fann">${t("fiche.annex1")}</div>
-      <div class="fgrid">${FICHE_EE.map(r => cell(r, "ee")).join("")}</div>
-      <div class="fann">${t("fiche.annex2")}</div>
-      <div class="fgrid">${FICHE_EI.map(r => cell(r, "ei")).join("")}</div>
-      <div class="fmlg">${t("fiche.sectorsNote")}</div>
+      ${block(t("fiche.annex1"), FICHE_EE, "ee")}
+      ${block(t("fiche.annex2"), FICHE_EI, "ei")}
+      <p class="fmlg">${t("fiche.sectorsNote")}</p>
     </div></div>`;
 }
 
