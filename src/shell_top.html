@@ -396,6 +396,96 @@ body.fcells .fcell{display:inline}
 .rpt-f{display:flex;align-items:center;gap:12px;padding:13px 18px;border-top:1px solid var(--line)}
 .rpt-msg{font-size:11.5px;color:var(--muted);flex:1;min-width:0;overflow-wrap:anywhere}
 
+/* ================= Correspondances entre referentiels (app_mapping.js) ================= */
+/* L'echelle des relations, de la couverture pleine a l'absence. */
+.rel-full{--rc:var(--ok)}
+.rel-large{--rc:color-mix(in srgb,var(--ok) 55%,var(--surface))}
+/* #FFCA4A, la couleur de statut de la charte : --warn, brun olive, alourdissait
+   la barre et se lisait comme une erreur d'impression. */
+.rel-partial{--rc:#FFCA4A}
+.rel-indirect{--rc:var(--info)}
+.rel-none{--rc:var(--bad)}
+.mp-pairs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.mp-pair{border:1px solid var(--line2);background:var(--surface);color:var(--ink2);border-radius:999px;
+  padding:6px 14px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.mp-pair.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.mp-head .bd{display:grid;gap:14px}
+.mp-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mp-title h2{margin:0;font-size:19px;font-weight:800;color:var(--ink)}
+.mp-valid{background:var(--st-ok-bg);color:var(--st-ok-ink)}
+.mp-dirs{display:flex;gap:6px;flex-wrap:wrap;background:var(--surface2);border:1px solid var(--line);
+  border-radius:11px;padding:4px;width:fit-content;max-width:100%}
+.mp-dir{border:0;background:transparent;border-radius:8px;padding:8px 13px;font:inherit;font-size:13px;
+  color:var(--ink2);cursor:pointer;text-align:left}
+.mp-dir span{color:var(--muted)}
+.mp-dir.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(20,16,44,.12)}
+.mp-dir.on span{color:var(--ink2)}
+.mp-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mp-big{display:flex;flex-direction:column;gap:2px;padding:12px 14px;background:var(--surface2);border-radius:10px}
+.mp-big b{font-size:26px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.mp-big span{font-size:12px;color:var(--muted);line-height:1.35}
+.mp-stack{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--surface3);gap:2px}
+.mp-stack i{display:block;background:var(--rc);min-width:3px}
+.mp-legend{display:flex;flex-wrap:wrap;gap:6px}
+.mp-lg{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);
+  border-radius:8px;padding:5px 10px;font:inherit;font-size:12px;color:var(--ink2);cursor:pointer}
+span.mp-lg{cursor:default}
+.mp-lg i{width:10px;height:10px;border-radius:3px;background:var(--rc);flex:none}
+.mp-lg b{color:var(--ink);font-variant-numeric:tabular-nums}
+.mp-lg span{color:var(--muted);font-variant-numeric:tabular-nums}
+button.mp-lg:hover{border-color:var(--line2);color:var(--ink)}
+.mp-lg.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);color:var(--ink)}
+.mp-read{margin:0}
+.mp-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:18px;align-items:start;margin-top:18px}
+.mp-cats{display:grid;gap:11px}
+.mp-cat{display:grid;grid-template-columns:1fr 46px;grid-template-areas:"k v" "t t" "n n";gap:3px 8px}
+.mp-cat .k{grid-area:k;font-size:12.5px;font-weight:600;color:var(--ink)}
+.mp-cat .v{grid-area:v;font-size:12.5px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.mp-cat .t{grid-area:t;height:7px;background:var(--surface3);border-radius:4px;overflow:hidden}
+.mp-cat .t i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.mp-cat .n{grid-area:n;font-size:11px;color:var(--muted)}
+.mp-cat .n em{font-style:normal;color:var(--bad)}
+.mp-tools{display:flex;gap:8px;margin-bottom:8px}
+.mp-tools input{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line2);border-radius:9px;
+  padding:8px 11px;font:inherit;font-size:13px;color:var(--ink)}
+.mp-tools input:focus{outline:none;border-color:var(--accent)}
+.mp-count{margin:0 0 8px}
+.mp-rows{display:grid;gap:6px}
+.mp-row{border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.mp-row.open{border-color:var(--line2)}
+.mp-rh{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;
+  border:0;background:transparent;padding:9px 11px;font:inherit;color:var(--ink);cursor:pointer;text-align:left}
+.mp-rh:hover{background:var(--surface2)}
+.mp-id{font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--accent);white-space:nowrap}
+.mp-txt{font-size:12.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-row.open .mp-txt{white-space:normal}
+.mp-rel{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;white-space:nowrap;
+  color:var(--ink);background:color-mix(in srgb,var(--rc) 18%,var(--surface));
+  border:1px solid color-mix(in srgb,var(--rc) 45%,var(--surface));border-radius:999px;padding:2px 9px}
+.mp-rel b{font-variant-numeric:tabular-nums;color:var(--ink2)}
+.mp-rb{padding:4px 12px 12px;display:grid;gap:9px;border-top:1px solid var(--line)}
+.mp-kv{display:grid;grid-template-columns:130px 1fr;gap:10px;font-size:12.5px;padding-top:8px}
+.mp-kv > span{color:var(--muted);font-weight:600}
+.mp-kv ul{margin:0;padding-left:17px;display:grid;gap:3px}
+.mp-tgt{margin-bottom:5px;color:var(--ink2)}
+.mp-tgt b{font-family:var(--font-mono);font-size:11.5px;color:var(--ink)}
+.mp-act{background:var(--accent-soft);border-radius:8px;padding:8px 10px;margin-top:4px}
+/* le lien depuis la fiche pays */
+.fmap{display:grid;gap:8px}
+.fmap a{display:grid;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface2);
+  border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.fmap a:hover{border-color:var(--accent);text-decoration:none}
+.fmap .l{font-size:12.5px;color:var(--ink2)}
+.fmap .l b{color:var(--ink)}
+.fmap .mp-stack{height:8px}
+@media (max-width:980px){.mp-grid{grid-template-columns:1fr}}
+@media (max-width:640px){
+  .mp-sum{grid-template-columns:1fr}
+  .mp-kv{grid-template-columns:1fr;gap:3px}
+  .mp-rh{grid-template-columns:auto minmax(0,1fr)}
+  .mp-rh .mp-rel{grid-column:1/-1;justify-self:start}
+}
+
 /* ================= Layout ================= */
 main{max-width:1240px;margin:0 auto;padding:22px 24px 60px}
 .view{display:none}
@@ -1068,6 +1158,7 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
     <a href="#/countries" data-v="countries" data-i18n="nav.countries">Countries</a>
     <a href="#/inbox" data-v="inbox"><span data-i18n="nav.inbox">Watch inbox</span><span class="badge" id="pendingBadge" hidden>0</span></a>
     <a href="#/sources" data-v="sources" data-i18n="nav.sources">Sources</a>
+    <a href="#/mapping" data-v="mapping" data-i18n="nav.mapping">Mappings</a>
     <!-- DEV:START -->
     <a href="#/dev" data-v="dev" data-i18n="nav.dev">Diagnostics</a>
     <a href="#/devchat" data-v="devchat" data-i18n="nav.devchat">Tech assistant</a>
@@ -1081,6 +1172,7 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
   <div id="v-country" class="view"></div>
   <div id="v-inbox" class="view"></div>
   <div id="v-sources" class="view"></div>
+  <div id="v-mapping" class="view"></div>
   <!-- DEV:START -->
   <div id="v-dev" class="view"></div>
   <div id="v-devchat" class="view"></div>

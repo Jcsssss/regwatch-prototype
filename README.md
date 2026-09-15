@@ -111,6 +111,19 @@ python3 tools/veille_to_watchitems.py <classeur.xlsx>   # classeur -> file de ve
 `health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la
 veille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.
 
+## Correspondances entre référentiels
+
+L'onglet **Correspondances** montre ce qu'un référentiel couvre déjà d'un autre, exigence par
+exigence : taux de couverture, répartition (entièrement, largement, partiellement,
+indirectement, non couverte), couverture par catégorie ENISA, et pour chaque exigence
+l'exigence correspondante, l'écart et un plan d'action. La section Framework de la fiche pays
+renvoie aux correspondances qui concernent son référentiel.
+
+Les résultats viennent de l'agent de correspondance (`ressources/Agent-Mapping-NIS2-main`) :
+le moteur ne tourne pas dans l'outil, seuls ses classeurs **validés** (`Validated_*.xlsx`)
+sont embarqués, par `python3 tools/mapping_to_js.py`. Le détail est compressé et n'est
+décompressé qu'à l'ouverture de la page.
+
 ## Assistant
 
 L'assistant métier n'est plus un onglet : il s'ouvre depuis la **baleine en bas à droite**

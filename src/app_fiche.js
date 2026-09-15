@@ -312,6 +312,16 @@ function renderFiche(c, el){
          { col: "K", tKey: "fiche.ie", color: "var(--ie)" }],
         "fiche.themeTitle", "fiche.barsEmpty");
     }
+    if (s.key === "fw" && typeof mapForCountry === "function") {
+      const maps = mapForCountry(iso);
+      if (maps.length) extras += `<div class="fblock"><div class="flab">${t("map.onFiche")}</div>
+        <div class="fmap">${maps.map(m => `<a href="#/mapping/${m.pid}~${m.dir}">
+          <span class="l">${t("map.ficheLine", { to: "<b>" + esc(m.d.to.name) + "</b>",
+            from: "<b>" + esc(m.d.from.name) + "</b>", pct: "<b>" + mapPct(m.d.avg) + "</b>" })}</span>
+          ${mapStack(m.d.counts, m.d.n, false).split('<div class="mp-legend">')[0]}
+          <span class="fnote" style="margin:0">${t("map.ficheGaps", { n: m.d.counts.none, total: m.d.n })}</span>
+        </a>`).join("")}</div></div>`;
+    }
     if (s.key === "aud")
       extras += `<div class="fblock"><div class="flab">${t("fiche.selfAssess")}<span class="fcell">aud!I:K</span></div>
         ${ficheRows(iso, "aud", ["I", "J", "K"])}</div>`;

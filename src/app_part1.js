@@ -146,7 +146,7 @@ function refreshBadge(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ["overview", "countries", "country", "inbox", "insights", "sources",
+const VIEWS = ["overview", "countries", "country", "inbox", "insights", "sources", "mapping",
                "dev", "devchat"];
 let currentRoute = { v: "overview", arg: null };
 function parseHash(){
@@ -160,6 +160,7 @@ function route(v, arg, force){
     overview: renderOverview, countries: renderCountries,
     country: () => renderCountry(arg), inbox: renderInbox,
     insights: renderInsights, sources: renderSources,
+    mapping: typeof renderMapping === "function" ? () => renderMapping(arg) : null,
     /* Absents de la version client : le rendu comme la vue. */
     dev: typeof renderDev === "function" ? renderDev : null,
     devchat: typeof renderDevChat === "function" ? renderDevChat : null,
