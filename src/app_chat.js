@@ -365,7 +365,15 @@ async function chatAsk(question){
   chatRender();
 
   if (!chatWire.length) chatWire.push({ role: "system", content: chatSystemPrompt() });
-  chatWire.push({ role: "user", content: question });
+  /* Le contexte de la page part avec la question, pas dans le message systeme :
+     on change de fiche au fil d'une conversation, et un message systeme fige au
+     premier tour ferait repondre sur la Belgique a une question posee depuis la
+     fiche France. L'ecran, lui, n'affiche que la question telle que tapee. */
+  const ctx = assistContext();
+  chatWire.push({ role: "user", content: ctx.iso
+    ? "[Contexte : l'utilisateur consulte la fiche pays " + ctx.label + " (" + ctx.iso
+      + "). Si la question ne précise pas de pays, elle porte sur celui-ci.]\n" + question
+    : question });
   const pending = chatLog[chatLog.length - 1];
 
   try {
@@ -415,6 +423,7 @@ async function chatAsk(question){
   }
   chatBusy = false;
   chatRender();
+  assistNotify();
 }
 
 /* ---------- rendering ---------- */
@@ -474,44 +483,49 @@ const CHAT_SUGGESTIONS_BY_REG = {
   nis2: ["chat.s1", "chat.s2", "chat.s3", "chat.s4"],
   rec:  ["chat.r1", "chat.r2", "chat.r3", "chat.r4"]
 };
-const chatSuggestions = () => CHAT_SUGGESTIONS_BY_REG[regId()] || CHAT_SUGGESTIONS_BY_REG.nis2;
+/* Sur une fiche pays, les suggestions portent sur ce pays : c'est la question
+   que l'on se pose en la lisant, et c'est ce qui distingue un assistant present
+   sur chaque page d'un onglet qu'on va ouvrir. */
+function chatSuggestions(){
+  const ctx = assistContext();
+  if (ctx.iso && regId() === "nis2")
+    return ["chat.c1", "chat.c2", "chat.c3", "chat.c4"].map(k => ({ k: k, v: { country: ctx.label } }));
+  return (CHAT_SUGGESTIONS_BY_REG[regId()] || CHAT_SUGGESTIONS_BY_REG.nis2).map(k => ({ k: k }));
+}
 
 function chatRender(){
-  const el = $("#v-insights");
+  /* L'assistant vit dans le panneau flottant (#assistBody), plus dans un onglet.
+     Le panneau est etroit : pas de titre de page, les commandes passent en pied. */
+  const el = $("#assistBody");
+  if (!el) return;
   const cfg = chatCfg();
   const body = chatLog.length
     ? chatLog.map(chatBubble).join("")
     : `<div class="chat-empty">
         <p class="chat-hello">${t("chat.hello")}</p>
-        <div class="chat-sugs">${chatSuggestions().map(k =>
-          `<button type="button" class="chat-sug">${kpiEsc(t(k))}</button>`).join("")}</div>
+        <div class="chat-sugs">${chatSuggestions().map(s =>
+          `<button type="button" class="chat-sug">${kpiEsc(t(s.k, s.v))}</button>`).join("")}</div>
       </div>`;
 
   el.innerHTML = `
-  <h1 class="pg">${t("chat.title")}</h1>
-  <p class="pg-sub">${t(regId() === "nis2" ? "chat.sub" : "chat.recSub")}</p>
-
-  ${chatReady() ? "" : `<div class="card chat-setup"><div class="bd">
+  ${chatReady() ? "" : `<div class="chat-setup assist-setup">
     <p class="chat-setup-t">${t(chatUsingDefaults() ? "chat.setupKeyOnly" : "chat.setupTitle")}</p>
     <p class="q-note">${t(chatUsingDefaults() ? "chat.setupKeyHelp" : "chat.setupHelp")}</p>
     <button class="btn primary" id="chatSetup" type="button">${t("chat.settings")}</button>
-  </div></div>`}
+  </div>`}
 
-  <div class="card chat-card">
-    <div class="cap"><h2>${t("chat.assistant")}</h2>
-      <div class="kpi-cap-btns">
-        <button class="btn" id="chatClear" type="button" ${chatLog.length ? "" : "disabled"}>${t("chat.clear")}</button>
-        <button class="btn icon" id="chatGear" type="button" aria-label="${t("chat.settings")}" title="${t("chat.settings")}">⚙</button>
-      </div></div>
-    <div class="bd">
-      <div class="chat-log" id="chatLog">${body}</div>
-      <form class="chat-compose" id="chatForm">
-        <textarea id="chatIn" rows="2" placeholder="${kpiEsc(t("chat.placeholder"))}"
-          aria-label="${t("chat.placeholder")}" ${chatBusy ? "disabled" : ""}></textarea>
-        <button class="btn primary" type="submit" ${chatBusy ? "disabled" : ""}>${t("chat.send")}</button>
-      </form>
-      <p class="q-note chat-foot">${t("chat.foot", { model: cfg.mode === "azure" ? (cfg.deployment || "-") : (cfg.model || "-") })}</p>
-    </div>
+  <div class="chat-log" id="chatLog">${body}</div>
+  <form class="chat-compose" id="chatForm">
+    <textarea id="chatIn" rows="2" placeholder="${kpiEsc(t("chat.placeholder"))}"
+      aria-label="${t("chat.placeholder")}" ${chatBusy ? "disabled" : ""}></textarea>
+    <button class="btn primary" type="submit" ${chatBusy ? "disabled" : ""}>${t("chat.send")}</button>
+  </form>
+  <div class="assist-foot">
+    <span class="q-note">${t("chat.foot", { model: cfg.mode === "azure" ? (cfg.deployment || "-") : (cfg.model || "-") })}</span>
+    <span class="assist-tools">
+      <button class="btn" id="chatClear" type="button" ${chatLog.length ? "" : "disabled"}>${t("chat.clear")}</button>
+      <button class="btn icon" id="chatGear" type="button" aria-label="${t("chat.settings")}" title="${t("chat.settings")}">⚙</button>
+    </span>
   </div>
 
   <div class="chat-modal" id="chatModal" hidden>
@@ -571,9 +585,9 @@ function chatWire2(){
     const m = chatLog[mi];
     if (m && m.charts && m.charts[ci]) kpiExportXlsx(m.charts[ci].sel);
   }));
-  kpiWireTips($("#v-insights"));
+  kpiWireTips($("#assistBody"));
   chatWireSettings();
-  if (!chatBusy) { const i = $("#chatIn"); if (i && chatLog.length) i.focus(); }
+  if (!chatBusy && assistIsOpen()) { const i = $("#chatIn"); if (i && chatLog.length) i.focus(); }
 }
 
 /* ---------- settings ---------- */
@@ -632,4 +646,85 @@ function chatWireSettings(){
 }
 
 /* The router calls this for the assistant tab. */
-function renderInsights(){ chatRender(); }
+/* ---------- le panneau flottant ----------
+ *
+ * L'assistant est une porte ouverte depuis chaque page, comme Copilot dans les
+ * applications Office, et non plus une destination : on pose une question sur
+ * la fiche qu'on lit sans la quitter. Le bouton est la baleine, en bas a droite.
+ *
+ * L'ancienne adresse #/insights reste valable - signets, liens partages - et
+ * ouvre le panneau au lieu d'une page qui n'existe plus.
+ */
+function assistIsOpen(){
+  const p = $("#assistPanel");
+  return !!p && !p.hidden;
+}
+
+/* La page consultee, pour le panneau et pour la question envoyee. */
+function assistContext(){
+  const r = typeof currentRoute !== "undefined" ? currentRoute : { v: "overview" };
+  if (r.v === "country" && r.arg && byIso[r.arg])
+    return { iso: r.arg, label: byIso[r.arg].name };
+  const labels = { overview: "nav.overview", countries: "nav.countries", inbox: "nav.inbox",
+                   sources: "nav.sources", dev: "nav.dev", devchat: "nav.devchat" };
+  return { iso: null, label: t(labels[r.v] || "nav.overview") };
+}
+
+function assistSync(){
+  const c = $("#assistCtx");
+  if (c) c.textContent = t("assist.ctx", { page: assistContext().label });
+  const fab = $("#assistFab");
+  if (fab) fab.setAttribute("aria-label", t("assist.open"));
+  const x = $("#assistClose"); if (x) x.setAttribute("aria-label", t("assist.close"));
+  const g = $("#assistGrow");
+  if (g) g.setAttribute("aria-label", t($("#assistPanel").classList.contains("wide")
+    ? "assist.shrink" : "assist.expand"));
+  /* Sans conversation, les suggestions dependent de la page : on les refait. */
+  if (assistIsOpen() && !chatLog.length) chatRender();
+}
+
+function assistOpen(){
+  const p = $("#assistPanel"), fab = $("#assistFab");
+  if (!p) return;
+  p.hidden = false;
+  fab.setAttribute("aria-expanded", "true");
+  fab.classList.remove("has-new");
+  document.body.classList.add("assist-on");
+  chatRender();
+  assistSync();
+  const i = $("#chatIn"); if (i) i.focus();
+}
+
+function assistClose(){
+  const p = $("#assistPanel"), fab = $("#assistFab");
+  if (!p) return;
+  p.hidden = true;
+  fab.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("assist-on");
+  fab.focus();
+}
+
+/* Une reponse arrivee pendant que le panneau est ferme se signale sur la
+   baleine : sinon on ne saurait pas qu'elle attend. */
+function assistNotify(){
+  const fab = $("#assistFab");
+  if (fab && !assistIsOpen()) fab.classList.add("has-new");
+}
+
+function assistWire(){
+  const fab = $("#assistFab");
+  if (!fab) return;
+  fab.addEventListener("click", () => assistIsOpen() ? assistClose() : assistOpen());
+  $("#assistClose").addEventListener("click", assistClose);
+  $("#assistGrow").addEventListener("click", () => {
+    $("#assistPanel").classList.toggle("wide");
+    assistSync();
+  });
+  document.addEventListener("keydown", e => {
+    const modal = $("#chatModal");
+    if (e.key === "Escape" && assistIsOpen() && !(modal && !modal.hidden)) assistClose();
+  });
+  assistSync();
+}
+
+function renderInsights(){ assistOpen(); }

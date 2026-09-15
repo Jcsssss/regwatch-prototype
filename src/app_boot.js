@@ -24,5 +24,9 @@ regSyncTabs();
 regFooter();
 refreshBadge();
 
+if (typeof assistWire === "function") assistWire();
+
 const r0 = parseHash();
+/* #/insights n'est plus un onglet : regHasTab le refuse, on ouvre le panneau. */
+if (r0.v === "insights" && typeof assistOpen === "function") setTimeout(assistOpen, 0);
 route(regHasTab(r0.v) || r0.v === "country" ? r0.v : "overview", r0.arg);

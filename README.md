@@ -113,6 +113,12 @@ veille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.
 
 ## Assistant
 
+L'assistant métier n'est plus un onglet : il s'ouvre depuis la **baleine en bas à droite**
+de chaque page, dans un panneau qui se superpose à la page sans la quitter, à la manière du
+volet Copilot des applications Office. Il sait quelle page est consultée : sur une fiche pays,
+il l'annonce, propose des questions sur ce pays, et y rapporte les questions qui n'en nomment
+pas. L'ancienne adresse `#/insights` ouvre le panneau.
+
 Les deux assistants — métier et technique — passent par le proxy Azure du cabinet, qui porte
 la clé : elle n'est **jamais** dans la page. Conséquence à connaître : le proxy n'accepte que
 l'origine publiée, donc **les assistants ne fonctionnent pas depuis un fichier ouvert en

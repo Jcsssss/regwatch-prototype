@@ -40,7 +40,7 @@ const REG_SPECS = {
     full: "Directive (EU) 2022/2555 - transposition deadline 17 Oct 2024",
     titleKey: "ov.title", subKey: "ov.sub", footKey: "foot.nis2",
     countries: () => [...COUNTRIES_1, ...COUNTRIES_2, ...COUNTRIES_3, ...COUNTRIES_4],
-    tabs: ["overview", "countries", "inbox", "insights", "sources"],
+    tabs: ["overview", "countries", "inbox", "sources"],
     levels: {
       1: "lvl.1", 2: "lvl.2", 3: "lvl.3", 4: "lvl.4"
     },
@@ -69,7 +69,7 @@ const REG_SPECS = {
        Sources shows the authorities the workbook already names, which is the
        seed of the future REC registry, and the assistant's country tools read
        whichever records are active, so they work here unchanged. */
-    tabs: ["overview", "countries", "insights", "sources"],
+    tabs: ["overview", "countries", "sources"],
     levels: {
       1: "recLvl.1", 2: "recLvl.2", 3: "recLvl.3", 4: "recLvl.4"
     },

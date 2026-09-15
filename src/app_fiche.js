@@ -330,7 +330,9 @@ function renderFiche(c, el){
   const statusPill = c.transposed
     ? `<span class="fpill ok">${t("fiche.transposed")}</span>`
     : `<span class="fpill no">${t("cp.notTransposed")}</span>`;
-  const delay = c.delayMonths != null
+  /* Un retard nul n'est pas un retard : la Belgique, transposee a temps,
+     affichait « 0 mois de retard » sur fond d'avertissement. */
+  const delay = c.delayMonths > 0
     ? `<span class="fpill wip">${t("fiche.delay", { n: c.delayMonths })}</span>` : "";
 
   el.innerHTML = `

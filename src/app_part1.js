@@ -164,6 +164,13 @@ function route(v, arg, force){
     dev: typeof renderDev === "function" ? renderDev : null,
     devchat: typeof renderDevChat === "function" ? renderDevChat : null,
   };
+  /* L'assistant n'est plus une page mais un panneau : l'ancienne adresse -
+     signet, lien partagé - l'ouvre, par-dessus l'accueil. */
+  if (v === "insights") {
+    if (typeof assistOpen === "function") setTimeout(assistOpen, 0);
+    v = "overview"; arg = null;
+    if (location.hash === "#/insights") history.replaceState(null, "", "#/overview");
+  }
   /* Une vue qui n'existe pas dans cette version - un lien partagé, un signet,
      un stockage venu de l'autre version - ramène à l'accueil plutôt que de
      laisser l'écran vide sur une exception. */
@@ -172,6 +179,9 @@ function route(v, arg, force){
   VIEWS.forEach(x => { const el = $("#v-" + x); if (el) el.classList.toggle("on", x === v); });
   document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.v === v || (v === "country" && a.dataset.v === "countries")));
   render[v]();
+  /* Le panneau de l'assistant suit la page : son libellé de contexte, ses
+     suggestions, et la langue quand elle change (setLang repasse par ici). */
+  if (typeof assistSync === "function") assistSync();
   if (!force) window.scrollTo({ top: 0 });
 }
 window.addEventListener("hashchange", () => { const r = parseHash(); route(r.v, r.arg); });
