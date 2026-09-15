@@ -156,15 +156,13 @@ nav.tabs .badge[hidden]{display:none}
 .ffact.has-tip:hover,.ffact.has-tip:focus-visible{border-color:var(--accent)}
 /* l'echelle de maturite dans l'infobulle (fond sombre : --ink) */
 .tip-mat{width:292px;max-width:calc(100vw - 40px)}
-.tip-def{margin:2px 0 8px;opacity:.9}
-.tip-scale{display:grid;gap:4px;padding:7px 0;border-top:1px solid rgba(255,255,255,.18);
-  border-bottom:1px solid rgba(255,255,255,.18)}
+.tip-def{margin:2px 0 9px;color:var(--ink2)}
+.tip-scale{display:grid;gap:3px;padding-top:9px;border-top:1px solid var(--line)}
 .tip-scale div{display:grid;grid-template-columns:9px 12px 1fr;gap:7px;align-items:center;
-  font-size:11.5px;opacity:.62}
-.tip-scale div.on{opacity:1;font-weight:700}
+  font-size:11.5px;color:var(--muted);padding:3px 6px;margin:0 -6px;border-radius:6px}
+.tip-scale div.on{color:var(--ink);font-weight:700;background:var(--accent-soft)}
 .tip-scale i{width:9px;height:9px;border-radius:2px;display:block}
 .tip-scale span{font-variant-numeric:tabular-nums;font-weight:800}
-.tip-note{margin-top:7px;font-size:11px;opacity:.72;line-height:1.4}
 .fmat{display:flex;align-items:center;gap:9px}
 .fmat b{font-size:19px;font-weight:800;color:var(--mc);font-variant-numeric:tabular-nums}
 .fmat .dots{display:flex;gap:3px}
@@ -954,9 +952,15 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .axis-lbl{font-size:10.5px;fill:var(--muted);font-family:var(--font-mono)}
 
 /* tooltip */
-#tip{position:fixed;z-index:100;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 11px;font-size:12.5px;max-width:320px;box-shadow:var(--shadow);opacity:0;transition:opacity .08s;line-height:1.45}
+/* Une carte claire plutot qu'un bloc noir : l'infobulle se lit comme une
+   piece de la page, pas comme un message systeme pose dessus. Elle suit le
+   theme, et le meme style vaut pour la carte et les graphiques. */
+#tip{position:fixed;z-index:100;pointer-events:none;background:var(--surface);color:var(--ink);
+  border:1px solid var(--line2);border-radius:10px;padding:10px 12px;font-size:12.5px;max-width:320px;
+  box-shadow:0 12px 32px -10px rgba(20,16,44,.28),0 2px 6px -2px rgba(20,16,44,.12);
+  opacity:0;transition:opacity .08s;line-height:1.45}
 #tip b{display:block;font-size:13px}
-#tip .m{opacity:.75}
+#tip .m{color:var(--muted)}
 
 footer{max-width:1240px;margin:0 auto;padding:0 24px 40px;color:var(--muted);font-size:12px}
 footer .line{border-top:1px solid var(--line);padding-top:14px;max-width:none}

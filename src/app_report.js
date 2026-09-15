@@ -238,10 +238,12 @@ function rptCountryName(c, lang){
     return DECK_FR_NAME[c.iso];
   return c.nameEn || c.name;
 }
+/* La legende dans la langue du rapport. t() rendrait celle de l'ecran : un
+   rapport demande en anglais depuis l'interface francaise sortait sa jauge en
+   francais. */
 function rptMaturity(n, lang){
-  if (lang === "fr" && typeof DECK_MATURITY_CAPTION !== "undefined")
-    return DECK_MATURITY_CAPTION[n] || "";
-  return t("lvl." + n);
+  const d = (I18N[lang] || I18N.en);
+  return d["lvl." + n] || I18N.en["lvl." + n] || "";
 }
 
 /* ================= le contenu des slides ================= */

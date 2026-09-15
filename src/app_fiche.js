@@ -266,8 +266,7 @@ function ficheFacts(c){
     + `<div class="tip-def">${esc(regLevelLabel(mat))}</div>`
     + `<div class="tip-scale">${[1, 2, 3, 4].map(l =>
         `<div class="${l === mat ? "on" : ""}"><i style="background:var(--m${l})"></i>`
-        + `<span>${l}</span>${esc(regLevelLabel(l))}</div>`).join("")}</div>`
-    + `<div class="tip-note">${t("fiche.matNote")}</div></div>`;
+        + `<span>${l}</span>${esc(regLevelLabel(l))}</div>`).join("")}</div></div>`;
   const bubbles = [
     { icon: "alert", lab: t("fiche.f.maturity"), cell: "id!D", tip: matTip,
       html: `<div class="fmat" style="--mc:var(--m${mat})"><b>${mat}</b>
