@@ -172,7 +172,7 @@ function ficheList(iso, key, cols, titleKey){
 /* Deux barres comparees. Le classeur donne des nombres bruts ; les mettre cote
    a cote est ce qui les rend lisibles - « 152 » ne dit rien, « le double de
    l'autre » dit quelque chose. */
-function ficheBars(iso, key, pairs, titleKey, noteKey){
+function ficheBars(iso, key, pairs, titleKey, noteKey, zoom){
   const vals = pairs.map(p => {
     const raw = ficheCell(iso, key, p.col);
     const n = raw != null && /^\d+([.,]\d+)?$/.test(String(raw)) ? parseFloat(String(raw).replace(",", ".")) : null;
@@ -181,7 +181,10 @@ function ficheBars(iso, key, pairs, titleKey, noteKey){
   const max = Math.max.apply(null, vals.map(v => v.n || 0));
   const any = vals.some(v => v.n != null);
   return `<div class="fblock">
-    <div class="flab">${t(titleKey)}<span class="fcell">${key}!${pairs.map(p => p.col).join(" ")}</span></div>
+    <div class="flab">${t(titleKey)}<span class="fcell">${key}!${pairs.map(p => p.col).join(" ")}</span>
+      ${zoom && typeof FW_REQUIREMENTS !== "undefined" && FW_REQUIREMENTS[iso]
+        ? `<button type="button" class="fzoom" data-fz="${zoom}" title="${esc(t("req.zoom"))}"
+             aria-label="${esc(t("req.zoom"))}">${ficheIcon("search")}<span>${t("req.detail")}</span></button>` : ""}</div>
     <div class="fbars">${vals.map(v => `
       <div class="fbar">
         <span class="k">${esc(v.label)}</span>
@@ -285,6 +288,108 @@ function ficheSectorsHtml(){
     </div></div>`;
 }
 
+/* ---------- le detail derriere les compteurs du referentiel ----------
+ *
+ * Deux onglets pour les deux graphiques. « Themes » liste les mesures du
+ * referentiel national : c'est exactement ce que le compteur compte. « Exigences
+ * » explique le compteur d'exigences avec les textes du fichier source, sans
+ * repartir les 293 exigences par mesure : le fichier ne donne pas cette
+ * repartition, et une ventilation inventee se lirait comme une donnee.
+ *
+ * Filtre EE / EI : pour les entites importantes, les mesures qui ne s'appliquent
+ * qu'en version reduite restent visibles, grisees, avec la mention du fichier -
+ * les masquer ferait croire qu'elles n'existent pas pour elles. */
+let reqState = { tab: "themes", who: "ee" };
+
+/* Le fichier ecrit « Requirements: essential entities face... » ; sans le
+   prefixe, la phrase commencerait par une minuscule. */
+function reqSentence(text, prefix){
+  const s = String(text || "").replace(prefix, "").trim();
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
+}
+
+function reqDialog(iso, tab){
+  const R = FW_REQUIREMENTS[iso];
+  if (!R) return;
+  reqState = { tab: tab === "req" ? "req" : "themes", who: "ee" };
+  let dlg = document.getElementById("ficheReq");
+  if (!dlg) {
+    dlg = document.createElement("dialog");
+    dlg.id = "ficheReq";
+    document.body.appendChild(dlg);
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  }
+  const c = byIso[iso];
+  const draw = () => {
+    const n = R.counts || {};
+    const ms = R.measures || [];
+    const groups = {};
+    ms.forEach(m => { (groups[m.type || "-"] = groups[m.type || "-"] || []).push(m); });
+    const who = reqState.who;
+    const row = m => {
+      const applies = who === "ee" ? m.ee : m.ie;
+      const partial = who === "ie" && !m.ie;
+      return `<li class="rq${partial ? " off" : ""}">
+        <span class="rq-ref">${esc(m.ref)}</span>
+        <span class="rq-b"><b>${esc(m.name)}</b><span>${esc(m.scope)}</span>
+          <span class="rq-tags">
+            ${m.ee ? `<i class="rq-t ee">EE</i>` : ""}
+            ${m.ie ? `<i class="rq-t ie">EI</i>` : `<i class="rq-t no">${esc(t("req.ieReduced"))}</i>`}
+            ${m.itot ? `<i class="rq-t it">${esc(m.itot)}</i>` : ""}
+          </span></span>
+      </li>`;
+    };
+    const themes = Object.keys(groups).map(g => {
+      const list = groups[g];
+      const count = list.filter(m => who === "ee" ? m.ee : m.ie).length;
+      const k = "req.type." + g.toLowerCase(), label = t(k) === k ? g : t(k);
+      return `<section class="rq-g"><h3>${esc(label)}
+        <span>${t("req.groupCount", { n: count, total: list.length })}</span></h3>
+        <ul>${list.map(row).join("")}</ul></section>`;
+    }).join("");
+    const reqTab = `
+      <div class="rq-figs">
+        <div><b>${n.reqEE != null ? n.reqEE : "—"}</b><span>${t("req.reqEE")}</span></div>
+        <div><b>${n.reqIE != null ? n.reqIE : "—"}</b><span>${t("req.reqIE")}</span></div>
+        ${n.reqEE && n.reqIE ? `<div><b>×${(n.reqEE / n.reqIE).toFixed(1).replace(".", lang === "fr" ? "," : ".")}</b><span>${t("req.ratio")}</span></div>` : ""}
+      </div>
+      ${R.texts.req ? `<p class="rq-p">${esc(reqSentence(R.texts.req, /^Requirements:\s*/))}</p>` : ""}
+      ${R.texts.intro ? `<p class="rq-p">${esc(R.texts.intro)}</p>` : ""}
+      ${R.texts.caveat ? `<div class="rq-caveat"><b>${t("req.caveat")}</b> ${esc(R.texts.caveat)}</div>` : ""}
+      <p class="rq-p rq-hint">${t("req.noSplit", { n: ms.length })}</p>`;
+    const themeTab = `
+      ${R.texts.themes ? `<p class="rq-p">${esc(reqSentence(R.texts.themes, /^Themes:\s*/))}</p>` : ""}
+      <div class="rq-who" role="group">
+        <button type="button" data-who="ee" class="${who === "ee" ? "on" : ""}">${t("req.whoEE", { n: n.themesEE != null ? n.themesEE : ms.filter(m => m.ee).length })}</button>
+        <button type="button" data-who="ie" class="${who === "ie" ? "on" : ""}">${t("req.whoIE", { n: n.themesIE != null ? n.themesIE : ms.filter(m => m.ie).length })}</button>
+      </div>
+      ${themes}`;
+    dlg.innerHTML = `<div class="fmodal rq-modal">
+      <div class="fmodal-h"><h2>${t("req.title", { country: esc(c ? c.name : iso) })}</h2>
+        <button class="x" type="button" id="reqClose" aria-label="${t("fiche.close")}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button></div>
+      <div class="rq-tabs" role="tablist">
+        <button type="button" role="tab" data-tab="themes" aria-selected="${reqState.tab === "themes"}">
+          ${t("fiche.themeTitle")} <span>${n.themesEE != null ? n.themesEE : "—"} · ${n.themesIE != null ? n.themesIE : "—"}</span></button>
+        <button type="button" role="tab" data-tab="req" aria-selected="${reqState.tab === "req"}">
+          ${t("fiche.reqTitle")} <span>${n.reqEE != null ? n.reqEE : "—"} · ${n.reqIE != null ? n.reqIE : "—"}</span></button>
+      </div>
+      <div class="fmodal-b rq-b-wrap">
+        ${reqState.tab === "req" ? reqTab : themeTab}
+        ${R.sources && R.sources.length ? `<div class="rq-src"><b>${t("req.sources")}</b>${R.sources.map(x =>
+          `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join("")}</div>` : ""}
+      </div></div>`;
+    dlg.querySelector("#reqClose").addEventListener("click", () => dlg.close());
+    dlg.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => {
+      reqState.tab = b.dataset.tab; draw(); }));
+    dlg.querySelectorAll("[data-who]").forEach(b => b.addEventListener("click", () => {
+      reqState.who = b.dataset.who; draw(); }));
+  };
+  draw();
+  if (!dlg.open && dlg.showModal) dlg.showModal();
+}
+
 /* ---------- les cinq bulles ---------- */
 function ficheFacts(c){
   const iso = c.iso;
@@ -338,11 +443,11 @@ function renderFiche(c, el){
       extras += ficheBars(iso, "fw",
         [{ col: "L", tKey: "fiche.ee", color: "var(--ee)" },
          { col: "M", tKey: "fiche.ie", color: "var(--ie)" }],
-        "fiche.reqTitle", "fiche.barsEmpty");
+        "fiche.reqTitle", "fiche.barsEmpty", "req");
       extras += ficheBars(iso, "fw",
         [{ col: "J", tKey: "fiche.ee", color: "var(--ee)" },
          { col: "K", tKey: "fiche.ie", color: "var(--ie)" }],
-        "fiche.themeTitle", "fiche.barsEmpty");
+        "fiche.themeTitle", "fiche.barsEmpty", "themes");
     }
     if (s.key === "fw" && typeof mapForCountry === "function") {
       const maps = mapForCountry(iso);
@@ -475,6 +580,8 @@ function renderFiche(c, el){
   /* Le meme dialogue depuis la barre collante : une fois l'en-tete sorti de
      l'ecran, le bouton du haut n'est plus a portee, et c'est souvent apres avoir
      relu la fiche qu'on decide de generer les slides. */
+  el.querySelectorAll(".fzoom").forEach(b =>
+    b.addEventListener("click", () => reqDialog(iso, b.dataset.fz)));
   ["#rptBtn", "#rptBtnNav"].forEach(sel => {
     const rb = $(sel, el);
     if (rb && typeof reportDialog === "function")

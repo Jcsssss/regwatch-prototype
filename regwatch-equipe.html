@@ -347,7 +347,59 @@ body.fcells .fcell{display:inline}
 /* Un <dialog> n'herite pas de la couleur de texte de la page : le navigateur lui
    impose CanvasText, du noir. En theme sombre, titre et libelles s'ecrivaient
    donc en noir sur violet fonce. La couleur est posee explicitement. */
-#ficheSectors,#rptDlg{color:var(--ink)}
+#ficheSectors,#rptDlg,#ficheReq{color:var(--ink)}
+/* --- detail du referentiel derriere les compteurs --- */
+.fzoom{margin-left:auto;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);
+  background:var(--surface);color:var(--accent);border-radius:7px;padding:3px 9px;font:inherit;
+  font-size:11px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer}
+.fzoom svg{width:13px;height:13px}
+.fzoom:hover{border-color:var(--accent);background:var(--accent-soft)}
+#ficheReq{border:0;padding:0;background:transparent;max-width:min(860px,94vw);width:100%}
+#ficheReq::backdrop{background:rgba(10,8,20,.62)}
+.rq-tabs{display:flex;gap:4px;padding:10px 20px 0;border-bottom:1px solid var(--line)}
+.rq-tabs button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--ink2);
+  padding:8px 12px 10px;border-bottom:2.5px solid transparent;cursor:pointer}
+.rq-tabs button span{font-weight:600;color:var(--muted);margin-left:4px;font-variant-numeric:tabular-nums}
+.rq-tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+/* .fmodal-b, declaree plus loin, est une grille : elle etirait le selecteur EE / EI
+   sur toute la largeur et creusait l'espace entre les blocs. */
+.fmodal-b.rq-b-wrap{display:block;max-height:calc(100vh - 170px)}
+.rq-p{margin:0 0 12px;font-size:13px;line-height:1.55;color:var(--ink2);max-width:78ch}
+.rq-hint{color:var(--muted);font-size:12px}
+.rq-who{display:inline-flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;margin:2px 0 14px}
+.rq-who button{border:0;background:var(--surface);font:inherit;font-size:12.5px;font-weight:700;color:var(--ink2);
+  padding:7px 13px;cursor:pointer}
+.rq-who button+button{border-left:1px solid var(--line2)}
+.rq-who button.on{background:var(--accent);color:var(--accent-ink)}
+.rq-g{margin-bottom:16px}
+.rq-g h3{display:flex;align-items:baseline;gap:8px;margin:0 0 8px;font-size:12px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.rq-g h3 span{margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted)}
+.rq-g ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rq{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start;padding:9px 11px;
+  background:var(--surface2);border:1px solid var(--line);border-radius:10px}
+.rq.off{opacity:.55}
+.rq-ref{font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--accent);padding-top:1px}
+.rq-b{display:flex;flex-direction:column;gap:3px;min-width:0}
+.rq-b b{font-size:13px;color:var(--ink)}
+.rq-b > span{font-size:12px;color:var(--ink2);line-height:1.45}
+.rq-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.rq-t{font-style:normal;font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px;
+  background:var(--surface3);color:var(--ink2)}
+.rq-t.ee{background:color-mix(in srgb,var(--ee) 18%,var(--surface));color:var(--ink)}
+.rq-t.ie{background:color-mix(in srgb,var(--ie) 18%,var(--surface));color:var(--ink)}
+.rq-t.no{background:var(--st-warn-bg);color:var(--st-warn-ink)}
+.rq-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.rq-figs div{background:var(--surface2);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.rq-figs b{font-size:26px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.rq-figs span{font-size:12px;color:var(--muted)}
+.rq-caveat{margin:0 0 12px;padding:10px 12px;border-radius:9px;background:var(--st-warn-bg);
+  color:var(--st-warn-ink);font-size:12.5px;line-height:1.5}
+.rq-src{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-top:6px;padding-top:12px;
+  border-top:1px solid var(--line);font-size:12px}
+.rq-src b{color:var(--muted);font-weight:700}
+.rq-src a{color:var(--accent)}
+@media (max-width:640px){.rq-figs{grid-template-columns:1fr}.fzoom span{display:none}}
 #ficheSectors{border:0;padding:0;background:transparent;max-width:min(960px,94vw);width:100%}
 #ficheSectors::backdrop{background:rgba(10,8,20,.62)}
 .fmodal{background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
@@ -9146,6 +9198,9 @@ const FW_THEMES = {"BE":{"fw":"CyberFundamentals","themes":17,"ee":218,"ie":135,
    Genere par tools/legal_prose.py, embarque par tools/prose_to_js.py.
    Un bloc marque `d:1` n'a pas encore ete relu : la slide le dit. ---- */
 const PROSE = {"BE":{"reg.deadlines":{"b":["<b>Dans les cinq mois</b> suivant l'entrée en vigueur de la loi ou l'identification visée à l'article 11, les entités essentielles, les entités importantes et les entités fournissant des services d'enregistrement de noms de domaine s'enregistrent auprès de l'<b>autorité nationale de cybersécurité</b> et lui communiquent les informations requises. [2024_05_17 - Approved law, p.57, art. 13]","L'<b>autorité nationale de cybersécurité</b> évalue et, le cas échéant, met à jour l'identification des entités essentielles et importantes au moins tous les <b>deux ans</b>. [2024_05_17 - Approved law, p.56]","Si les données d'enregistrement d'un nom de domaine sont incorrectes, inexactes ou incomplètes, les registres de noms de domaine de premier niveau et les entités fournissant des services d'enregistrement de noms de domaine bloquent immédiatement son fonctionnement jusqu'à correction des données. [2024_05_17 - Approved law, p.88]","Si le titulaire ne corrige pas les données dans le délai fixé par le registre ou par l'entité fournissant les services d'enregistrement, le nom de domaine est annulé. [2024_05_17 - Approved law, p.88]"],"d":1},"reg.platform":{"b":["<b>Les entités fournissant des services d'enregistrement de noms de domaine</b> s'enregistrent auprès de l'<b>autorité nationale de cybersécurité</b> dans les <b>cinq mois</b> suivant l'entrée en vigueur de la loi ou l'identification visée à l'article 11 et lui communiquent notamment leur dénomination, leurs coordonnées et, le cas échéant, la liste des États membres concernés. [2024_05_17 - Approved law, p.57]","Si les données d'enregistrement d'un nom de domaine sont incorrectes, inexactes ou incomplètes, les <b>registres de noms de domaine de premier niveau</b> et les <b>entités fournissant des services d'enregistrement de noms de domaine</b> bloquent immédiatement le fonctionnement de ce nom de domaine jusqu'à correction des données par le titulaire. [2024_05_17 - Approved law, p.88]","Si le titulaire ne corrige pas les données dans le délai fixé par le <b>registre des noms de domaine de premier niveau</b> ou par l'<b>entité fournissant des services d'enregistrement de noms de domaine</b>, le nom de domaine est annulé. [2024_05_17 - Approved law, p.88]","Les <b>registres des noms de domaine de premier niveau</b> et les <b>entités fournissant des services d'enregistrement de noms de domaine</b> rendent publiques, sans retard injustifié après l'enregistrement, les données d'enregistrement du nom de domaine qui ne sont pas des données à caractère personnel. [2024_05_17 - Approved law, p.88]"],"d":1},"reg.process":{"b":["<b>Dans les <b>cinq mois</b> suivant l'entrée en vigueur de la loi ou l'identification visée à l'article 11, les entités essentielles, les entités importantes et les entités fournissant des services d'enregistrement de noms de domaine s'enregistrent auprès de l'<b>autorité nationale de cybersécurité</b> selon les modalités pratiques fixées par cette autorité. [2024_05_17 - Approved law, p.57]</b>","<b>Elles communiquent leur dénomination et leur numéro d'enregistrement auprès de la <b>BCE</b> ou un enregistrement équivalent dans l'Union européenne, ainsi que leur adresse et leurs coordonnées actualisées, y compris leur adresse de courrier électronique, leurs plages d'IP et leur numéro de téléphone. [2024_05_17 - Approved law, p.57]</b>","<b>Le cas échéant, elles indiquent le secteur et le sous-secteur concernés visés à l'annexe I ou II, ainsi qu'une liste des États membres dans lesquels elles fournissent des services relevant du champ d'application de la présente loi. [2024_05_17 - Approved law, p.57]</b>"],"d":1},"inc.process":{"b":["<b>24</b> heures après avoir eu connaissance d’un incident significatif, les entités concernées soumettent au <b>CSIRT national</b> une alerte précoce, puis une notification d’incident dans les <b>72</b> heures, et un rapport final au plus tard <b>1</b> mois après la notification d’incident. [2024_05_17 - Approved law, p.67-68]","Le <b>CSIRT national</b> communique immédiatement les notifications reçues aux éventuelles autorités sectorielles compétentes. [2024_05_17 - Approved law, p.68]","L’<b>autorité nationale de cybersécurité</b> crée une <b>plateforme</b> de coordination et d’évaluation afin que les autorités visées à l’article <b>15</b> et le <b>NCCN</b> échangent de l’information et se coordonnent dans le cadre de l’exécution de la loi. [2024_05_17 - Approved law, p.63]","L’<b>autorité nationale de cybersécurité</b> crée, maintient à jour et met à disposition des entités une <b>plateforme sécurisée</b> accessible par le biais d’internet pour la communication électronique des attestations de conformité et de l’analyse des risques. [2024_06_09 - Implementing royal decree, p.13-14]"],"d":1},"inc.criteria":{"b":["<b>24</b> heures après avoir eu connaissance de l’incident significatif, l’entité concernée soumet au <b>CSIRT national</b> une alerte précoce qui indique, le cas échéant, si l’incident est suspecté d’avoir été causé par des actes illicites ou malveillants ou s’il pourrait avoir un impact transfrontière. [2024_05_17 - Approved law, p.67, art. 35]","<b>72</b> heures après avoir eu connaissance de l’incident significatif, l’entité concernée soumet au <b>CSIRT national</b> une notification d’incident qui met à jour, le cas échéant, les informations de l’alerte précoce et fournit une évaluation initiale de l’incident, y compris sa gravité, son impact et les indicateurs de compromission lorsqu’ils sont disponibles. [2024_05_17 - Approved law, p.67, art. 35]","Pour un prestataire de services de confiance, un incident significatif qui a un impact sur la fourniture des services de confiance est notifié au <b>CSIRT national</b> sans retard injustifié et en tout état de cause dans les <b>24</b> heures après en avoir eu connaissance. [2024_05_17 - Approved law, p.68]","Le <b>CSIRT national</b> communique immédiatement les notifications visées aux paragraphes <b>1er</b> et <b>2</b> aux éventuelles autorités sectorielles compétentes. [2024_05_17 - Approved law, p.68]"],"d":1},"ctl.process":{"b":["<b>L’</b><b>autorité nationale de cybersécurité</b> ou l’éventuelle <b>autorité sectorielle</b> compétente prend les mesures d’exécution en respectant les droits de la défense, en tenant compte des circonstances propres à chaque cas et de la catégorie de l’entité, ainsi que de la gravité de la violation. [2024_05_17 - Approved law, p.75, art. 54]","Les violations répétées, le défaut de notification ou de remédiation des incidents significatifs, le fait de ne pas pallier les insuffisances après des instructions contraignantes et l’entrave aux audits ou activités de contrôle sont considérés comme graves. [2024_05_17 - Approved law, p.75, art. 54]","Les entités essentielles se soumettent à une évaluation périodique de la conformité de la mise en œuvre des mesures de gestion des risques en matière de cybersécurité, soit par une évaluation périodique de la conformité, soit par une inspection par l’<b>autorité nationale de cybersécurité</b>. [2024_05_17 - Approved law, p.69, art. 39]","Les inspections peuvent, à la demande de l’<b>autorité sectorielle</b> concernée, être effectuées de manière conjointe sous la direction de l’<b>autorité nationale de cybersécurité</b> ou être déléguées à l’éventuel service d’inspection concerné avec l’accord de l’<b>autorité nationale de cybersécurité</b>. [2024_05_17 - Approved law, p.69, art. 39]"],"d":1},"ctl.bodies":{"b":["<b>l'autorité nationale de cybersécurité</b> agrée les organismes d'évaluation de la conformité, et le service d'inspection de cette autorité peut à tout moment vérifier le respect des conditions d'agrément. [2024_05_17 - Approved law, p.69, art. 40]","Les membres assermentés du service d'inspection de <b>l'autorité nationale de cybersécurité</b> et, le cas échéant, de l'autorité sectorielle ou du service d'inspection sectoriel disposent de compétences de contrôle, dont l'accès aux documents, les examens, contrôles et auditions, ainsi que la possibilité de soumettre les entités essentielles à des audits de sécurité réguliers et ciblés réalisés par un organisme indépendant. [2024_05_17 - Approved law, p.72, art. 48]","Un organisme d'évaluation de la conformité doit disposer d'une accréditation délivrée par un <b>organisme national d'accréditation</b> pour être agréé, et son agrément se limite aux cadres de référence pour lesquels il est accrédité. [2024_06_09 - Implementing royal decree, p.14, art. 15]","Une autorité désignée comme organisme d'évaluation de la conformité doit disposer des capacités techniques pour effectuer les audits de certification et les vérifications dans le cadre de l'évaluation de la conformité. [2024_06_09 - Implementing royal decree, p.15, art. 19]"],"d":1},"fw.framework":{"b":["<b>L'autorité nationale de cybersécurité</b> élabore, maintient à jour et met à disposition du public un cadre de référence qui reprend les modalités pratiques d’évaluation des mesures minimales de gestion des risques en matière de cybersécurité, avec au minimum les niveaux d’assurance <b>basique</b>, <b>important</b> et <b>essentiel</b>. [2024_06_09 - Implementing royal decree, p.13, art. 4]","Le cadre de référence visé à l’article 4 sert de base à l’évaluation de la conformité par des organismes agréés par <b>l'autorité nationale de cybersécurité</b>. [2024_06_09 - Implementing royal decree, p.14, art. 14]","Les entités importantes qui choisissent une évaluation périodique volontaire de la conformité sur base du cadre de référence obtiennent un avis de vérification au moins au niveau <b>important</b>. [2024_06_09 - Implementing royal decree, p.14, art. 11]","Les entités essentielles peuvent, de manière motivée, obtenir une vérification à un niveau inférieur du cadre de référence si leur analyse des risques le justifie. [2024_06_09 - Implementing royal decree, p.13, art. 7]"],"d":1},"fw.deadlines":{"b":["<b>18</b> mois après l’entrée en vigueur de la loi NIS2 ou la date de l’identification visée à l’article 11 de la loi NIS2, les entités essentielles qui choisissent la certification sur base d’un cadre de référence remplissent les obligations prévues à l’article 22, dont l’obtention d’une vérification ou la transmission du champ d’application et de la déclaration d’applicabilité selon le cadre retenu. [2024_06_09 - Implementing royal decree, p.16]","<b>18</b> mois après l’entrée en vigueur de la loi NIS2 ou la date de l’identification visée à l’article 11 de la loi NIS2, les entités essentielles qui choisissent la supervision par un service d’inspection transmettent une auto-évaluation ou la P.S.I., le champ d’application et la déclaration d’applicabilité selon le cadre de référence choisi. [2024_06_09 - Implementing royal decree, p.16]","<b>30</b> mois suivant l’entrée en vigueur de la loi NIS2 ou la date de l’identification visée à l’article 11 de la loi NIS2, les entités essentielles soumises à la supervision par un service d’inspection transmettent un état de l’avancement de la mise en conformité. [2024_06_09 - Implementing royal decree, p.16]"],"d":1},"sec.private":{"b":["<b>Art. 11</b> permet à l’<b>autorité nationale de cybersécurité</b> d’identifier comme entité essentielle ou importante, quelle que soit sa taille, une entité qui est le seul prestataire en Belgique d’au moins un service essentiel, dont une perturbation aurait un impact important sur la sécurité, la sûreté ou la santé publiques, ou un risque systémique important. [2024_05_17 - Approved law, p.56]","Le <b>Roi</b> peut, par arrêté délibéré en Conseil des ministres, désigner comme entité essentielle ou importante une entité qui ne fait pas partie des secteurs visés en annexe. [2024_05_17 - Approved law, p.56]","La loi s’applique aussi aux entités d’un type visé à l’annexe I ou II, quelle que soit leur taille, lorsqu’elles fournissent des services par des fournisseurs de réseaux de communications électroniques publics ou de services de communications électroniques accessibles au public, des prestataires de services de confiance, ou des registres de noms de domaine de premier niveau et des fournisseurs de services de systèmes de noms de domaine. [2024_05_17 - Approved law, p.49]","Les entités essentielles, les entités importantes et les entités fournissant des services d’enregistrement de noms de domaine s’enregistrent auprès de l’<b>autorité nationale de cybersécurité</b> dans les <b>cinq mois</b> suivant l’entrée en vigueur de la loi ou l’identification visée à l’<b>article 11</b>. [2024_05_17 - Approved law, p.57]"],"d":1},"sec.public":{"b":["<b>l’autorité nationale de cybersécurité</b> identifie comme entités essentielles ou importantes, quelle que soit leur taille, les entités de l’administration publique qui dépendent de l’État fédéral, celles qui dépendent des entités fédérées lorsqu’elles sont identifiées conformément à l’article 11, § <b>2</b>, ainsi que les zones de secours et le Service d’incendie et d’aide médicale urgente de la Région de Bruxelles-Capitale [2024_05_17 - Approved law, p.49]","La loi s’applique aux entités visées à l’article <b>3</b> établies en Belgique et fournissant leurs services ou exerçant leurs activités au sein de l’Union européenne [2024_05_17 - Approved law, p.50, art. 4]","La loi s’applique aussi aux fournisseurs de réseaux de communications électroniques publics ou de services de communications électroniques accessibles au public lorsqu’ils fournissent ces services en Belgique, ainsi qu’aux fournisseurs de services DNS, registres de noms de domaine de premier niveau, entités fournissant des services d’enregistrement de noms de domaine et autres fournisseurs listés lorsqu’ils ont leur établissement principal en Belgique [2024_05_17 - Approved law, p.50, art. 4]","L’<b>Institut</b> est désigné comme autorité sectorielle et service d’inspection sectoriel pour le secteur d’infrastructure numérique, à l’exception des prestataires de services de confiance, et pour le secteur des services postaux et d’expédition [2024_05_17 - Approved law, p.83]"],"d":1},"corr":{"b":["<b>La Banque</b> est désignée comme autorité sectorielle et service d'inspection sectoriel pour les entités du secteur des finances, à l'exception des opérateurs de plate-forme de négociation, et elle partage, si elle le juge utile, avec la <b>BCE</b> les informations pertinentes sur les notifications d'incident reçues en vertu de la loi NIS2 ou du règlement (UE) <b>2022/2554</b>. [2024_05_17 - Approved law, p.82]","L'<b>autorité nationale de cybersécurité</b> élabore un cadre de référence pour l'évaluation des mesures minimales de gestion des risques en matière de cybersécurité et le met à disposition du public, notamment sur son site internet. [2024_06_09 - Implementing royal decree, p.13]","Dans le cadre de l'évaluation de la conformité visée à l'article 39 de la loi NIS2, les entités essentielles choisissent un ou plusieurs cadres de référence parmi le cadre de référence visé à l'article 4 ou la norme <b>NBN EN ISO/IEC 27001</b>. [2024_06_09 - Implementing royal decree, p.13]","Dans le cadre de l'évaluation volontaire de la conformité visée à l'article 41 de la loi NIS2, les entités importantes choisissent un cadre de référence parmi ceux visés pour les entités essentielles. [2024_06_09 - Implementing royal decree, p.13]"],"d":1},"other":{"b":["<b>Dans les</b> <b>deux mois</b> suivant l’entrée en vigueur de la loi, certains fournisseurs et entités communiquent à l’<b>autorité nationale de cybersécurité</b> des informations d’identification et de contact, ainsi que, le cas échéant, leur secteur, sous-secteur et type d’entité concernés. [2024_05_17 - Approved law, p.57, art. 14]","Les entités visées complètent les informations déjà communiquées à l’<b>autorité sectorielle</b> lorsqu’elles y sont tenues par une obligation légale, puis signalent toute modification sans tarder et, en tout état de cause, dans un délai de <b>deux semaines</b>. [2024_05_17 - Approved law, p.57, art. 14]","L’<b>autorité sectorielle</b> transmet les informations collectées à l’<b>autorité nationale de cybersécurité</b>, qui prend les mesures nécessaires pour permettre aux autorités sectorielles de consulter les données qui concernent leurs secteurs. [2024_05_17 - Approved law, p.57, art. 14]","Les membres des organes de direction des entités essentielles et importantes suivent une formation afin que leurs connaissances et compétences leur permettent de déterminer les risques et d’évaluer les pratiques de gestion des risques en matière de cybersécurité et leur impact sur les services fournis. [2024_05_17 - Approved law, p.67, art. 31]"],"d":1}}};
+/* ---- Detail des mesures de cybersecurite par pays, derriere les compteurs
+   de la fiche. Genere par tools/requirements_to_js.py - ne pas editer. ---- */
+const FW_REQUIREMENTS = {"CZ":{"country":"Czech Republic","note":"NIS 2 - CZECH REPUBLIC | Cybersecurity risk-management framework (Act 264/2025 Coll. - NUKIB Decrees 409/2025 (EE) & 410/2025 (IE))","counts":{"themesEE":25,"themesIE":16,"reqEE":293,"reqIE":82},"texts":{"intro":"The Czech Republic has the SHARPEST EE/IE differentiation in the EU (+257%). This is by design: it uses a two-regime \"two-speed\" model with two separate NUKIB decrees - 409/2025 for the higher-obligations regime (EE) and 410/2025 for the lower-obligations regime (IE).","themes":"Themes: Decree 409/2025 (EE) organises the security measures into 25 sections (Hlava I organizational measures §3-16 = 14, Hlava II technical measures §17-27 = 11). The lower-obligations decree 410/2025 (IE) consolidates the same NIS2 baseline domains into fewer, less granular sections.","req":"Requirements: essential entities face 293 detailed requirements (higher regime), important entities 82 (lower regime) - a +257% gap, the largest observed across the EU (source: Wavestone comparative study). The Czech decrees are the most detailed concrete security measures published in the EU (OpenKRITIS). One organisation = one regime: if an entity falls under the higher regime for at least one service, that regime applies to all its regulated services.","caveat":"Requirement counts (293 / 82) are the validated Wavestone framework counts; the exact number can vary slightly with counting granularity of sub-points. Applicability can be tailored on a documented risk basis (statement of applicability, §8). About 150 entities are additionally classified as \"strategically important services\" with reinforced supply-chain / availability requirements."},"sources":[{"label":"Act 264/2025 Coll. (Cybersecurity Act)","url":"https://www.zakonyprolidi.cz/cs/2025-264"},{"label":"Decree 409/2025 (EE / higher regime)","url":"https://www.zakonyprolidi.cz/cs/2025-409"},{"label":"Decree 410/2025 (IE / lower regime)","url":"https://www.zakonyprolidi.cz/cs/2025-410"}],"measures":[{"id":"CZ-01","type":"Organizational","name":"Information security management system (ISMS)","ref":"§ 3","scope":"Establish ISMS objectives, risk-driven measures, security policy/documentation, audit and annual effectiveness review.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-02","type":"Organizational","name":"Top-management requirements","ref":"§ 4","scope":"Board accountability, training, resourcing, cyber security committee, appointment of security roles.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-03","type":"Organizational","name":"Security roles","ref":"§ 5","scope":"Cyber security manager, architect, asset guarantor and auditor, with competence and segregation requirements.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-04","type":"Organizational","name":"Security policy & documentation management","ref":"§ 6","scope":"Establish, maintain, review and enforce the security policy and documentation across measures.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-05","type":"Organizational","name":"Asset management","ref":"§ 7","scope":"Asset identification/valuation methodology, CIA levelling, asset links and protection rules.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-06","type":"Organizational","name":"Risk management","ref":"§ 8","scope":"Risk methodology, annual risk assessment, statement of applicability, risk-treatment plan.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-07","type":"Organizational","name":"Supplier management","ref":"§ 9","scope":"Supplier rules, significant-supplier register, contractual security clauses, ongoing review.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-08","type":"Organizational","name":"Human-resources security","ref":"§ 10","scope":"Awareness plan, onboarding/periodic training, password rules, breach handling, continuity of roles.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-09","type":"Organizational","name":"Change management","ref":"§ 11","scope":"Rules for significant changes, risk handling, testing before deployment, rollback capability.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-10","type":"Organizational","name":"Acquisition, development & maintenance","ref":"§ 12","scope":"Security requirements for acquisition/development/maintenance, environment separation.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-11","type":"Organizational","name":"Access control (organizational)","ref":"§ 13","scope":"Role/group-based access, least privilege, unique identifiers, periodic review, deactivation.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-12","type":"Organizational","name":"Cyber security event & incident handling","ref":"§ 14","scope":"Detection, recording, evaluation, coordination, containment, reporting and post-incident review.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-13","type":"Organizational","name":"Business continuity management","ref":"§ 15","scope":"Impact analysis, RTO/RPO objectives, continuity and recovery plans with regular testing.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-14","type":"Organizational","name":"Cyber security audit","ref":"§ 16","scope":"Audit plan, compliance assessment, corrective actions, at least every 2 years.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-15","type":"Technical","name":"Physical security","ref":"§ 17","scope":"Physical perimeters, protection levels, intrusion detection and access logging.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-16","type":"Technical","name":"Communication-network security","ref":"§ 18","scope":"Segmentation, communication control, remote access/administration, encryption in transit.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-17","type":"Technical","name":"Identity management & authentication","ref":"§ 19","scope":"MFA / continuous zero-trust authentication, password strength, credential lifecycle.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-18","type":"Technical","name":"Access-rights & permission management","ref":"§ 20","scope":"Centralised tool to manage access rights and read/write permissions.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-19","type":"Technical","name":"Detection of cyber security events","ref":"§ 21","scope":"Network/endpoint detection, anti-malware, removable-media control, behaviour-based detection.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-20","type":"Technical","name":"Event logging","ref":"§ 22","scope":"Log content, retention 18 months, integrity protection, time synchronisation.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-21","type":"Technical","name":"Evaluation of cyber security events","ref":"§ 23","scope":"Continuous correlation (SIEM-type), alerting, tuning and use for ISMS optimisation.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-22","type":"Technical","name":"Application security","ref":"§ 24","scope":"Supported/patched assets, vulnerability scanning and penetration testing, retest of findings.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-23","type":"Technical","name":"Cryptographic algorithms","ref":"§ 25","scope":"Resilient algorithms, secure voice/video/text and emergency comms, key/certificate management.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-24","type":"Technical","name":"Availability of the regulated service","ref":"§ 26","scope":"Resilience, redundancy, encrypted and tested backups, secure configuration management.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-25","type":"Technical","name":"Industrial/ICS & specific technical assets (OT)","ref":"§ 27","scope":"Physical/logical access limits, network segmentation, remote-access limits, ICS resilience.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"}]}};
 /* ---- Correspondances validees entre referentiels, issues de l'agent de
    correspondance - version equipe. Genere par tools/mapping_to_js.py.
    MAPPING_INDEX est en clair ; le detail est compresse (MAPPING_GZ). ---- */
@@ -17940,6 +17995,21 @@ const I18N = {
     "theme.dark": "Dark mode",
     "fiche.sectorsCount": "{n} sectors",
     "rpt.navTitle": "Generate the country slides",
+    "req.zoom": "See the detail behind these figures",
+    "req.detail": "Detail",
+    "req.title": "Cybersecurity framework in detail \u00b7 {country}",
+    "req.whoEE": "Essential entities \u00b7 {n} themes",
+    "req.whoIE": "Important entities \u00b7 {n} themes",
+    "req.groupCount": "{n} of {total} apply",
+    "req.ieReduced": "EI: reduced or merged",
+    "req.type.organizational": "Organisational measures",
+    "req.type.technical": "Technical measures",
+    "req.reqEE": "requirements for essential entities",
+    "req.reqIE": "requirements for important entities",
+    "req.ratio": "more requirements for essential entities",
+    "req.caveat": "Caveat.",
+    "req.noSplit": "The source gives these totals, not a breakdown by measure. The {n} measures they apply to are listed in the themes tab.",
+    "req.sources": "Legal texts",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -18528,6 +18598,21 @@ const I18N = {
     "theme.dark": "Mode sombre",
     "fiche.sectorsCount": "{n} secteurs",
     "rpt.navTitle": "G\u00e9n\u00e9rer les slides du pays",
+    "req.zoom": "Voir le d\u00e9tail derri\u00e8re ces chiffres",
+    "req.detail": "D\u00e9tail",
+    "req.title": "R\u00e9f\u00e9rentiel de cybers\u00e9curit\u00e9 en d\u00e9tail \u00b7 {country}",
+    "req.whoEE": "Entit\u00e9s essentielles \u00b7 {n} th\u00e8mes",
+    "req.whoIE": "Entit\u00e9s importantes \u00b7 {n} th\u00e8mes",
+    "req.groupCount": "{n} sur {total} s'appliquent",
+    "req.ieReduced": "EI : r\u00e9duite ou regroup\u00e9e",
+    "req.type.organizational": "Mesures organisationnelles",
+    "req.type.technical": "Mesures techniques",
+    "req.reqEE": "exigences pour les entit\u00e9s essentielles",
+    "req.reqIE": "exigences pour les entit\u00e9s importantes",
+    "req.ratio": "plus d'exigences pour les entit\u00e9s essentielles",
+    "req.caveat": "R\u00e9serve.",
+    "req.noSplit": "La source donne ces totaux, pas leur r\u00e9partition par mesure. Les {n} mesures auxquelles ils s'appliquent sont list\u00e9es dans l'onglet des th\u00e8mes.",
+    "req.sources": "Textes l\u00e9gaux",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -20817,7 +20902,7 @@ function ficheList(iso, key, cols, titleKey){
 /* Deux barres comparees. Le classeur donne des nombres bruts ; les mettre cote
    a cote est ce qui les rend lisibles - « 152 » ne dit rien, « le double de
    l'autre » dit quelque chose. */
-function ficheBars(iso, key, pairs, titleKey, noteKey){
+function ficheBars(iso, key, pairs, titleKey, noteKey, zoom){
   const vals = pairs.map(p => {
     const raw = ficheCell(iso, key, p.col);
     const n = raw != null && /^\d+([.,]\d+)?$/.test(String(raw)) ? parseFloat(String(raw).replace(",", ".")) : null;
@@ -20826,7 +20911,10 @@ function ficheBars(iso, key, pairs, titleKey, noteKey){
   const max = Math.max.apply(null, vals.map(v => v.n || 0));
   const any = vals.some(v => v.n != null);
   return `<div class="fblock">
-    <div class="flab">${t(titleKey)}<span class="fcell">${key}!${pairs.map(p => p.col).join(" ")}</span></div>
+    <div class="flab">${t(titleKey)}<span class="fcell">${key}!${pairs.map(p => p.col).join(" ")}</span>
+      ${zoom && typeof FW_REQUIREMENTS !== "undefined" && FW_REQUIREMENTS[iso]
+        ? `<button type="button" class="fzoom" data-fz="${zoom}" title="${esc(t("req.zoom"))}"
+             aria-label="${esc(t("req.zoom"))}">${ficheIcon("search")}<span>${t("req.detail")}</span></button>` : ""}</div>
     <div class="fbars">${vals.map(v => `
       <div class="fbar">
         <span class="k">${esc(v.label)}</span>
@@ -20930,6 +21018,108 @@ function ficheSectorsHtml(){
     </div></div>`;
 }
 
+/* ---------- le detail derriere les compteurs du referentiel ----------
+ *
+ * Deux onglets pour les deux graphiques. « Themes » liste les mesures du
+ * referentiel national : c'est exactement ce que le compteur compte. « Exigences
+ * » explique le compteur d'exigences avec les textes du fichier source, sans
+ * repartir les 293 exigences par mesure : le fichier ne donne pas cette
+ * repartition, et une ventilation inventee se lirait comme une donnee.
+ *
+ * Filtre EE / EI : pour les entites importantes, les mesures qui ne s'appliquent
+ * qu'en version reduite restent visibles, grisees, avec la mention du fichier -
+ * les masquer ferait croire qu'elles n'existent pas pour elles. */
+let reqState = { tab: "themes", who: "ee" };
+
+/* Le fichier ecrit « Requirements: essential entities face... » ; sans le
+   prefixe, la phrase commencerait par une minuscule. */
+function reqSentence(text, prefix){
+  const s = String(text || "").replace(prefix, "").trim();
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
+}
+
+function reqDialog(iso, tab){
+  const R = FW_REQUIREMENTS[iso];
+  if (!R) return;
+  reqState = { tab: tab === "req" ? "req" : "themes", who: "ee" };
+  let dlg = document.getElementById("ficheReq");
+  if (!dlg) {
+    dlg = document.createElement("dialog");
+    dlg.id = "ficheReq";
+    document.body.appendChild(dlg);
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  }
+  const c = byIso[iso];
+  const draw = () => {
+    const n = R.counts || {};
+    const ms = R.measures || [];
+    const groups = {};
+    ms.forEach(m => { (groups[m.type || "-"] = groups[m.type || "-"] || []).push(m); });
+    const who = reqState.who;
+    const row = m => {
+      const applies = who === "ee" ? m.ee : m.ie;
+      const partial = who === "ie" && !m.ie;
+      return `<li class="rq${partial ? " off" : ""}">
+        <span class="rq-ref">${esc(m.ref)}</span>
+        <span class="rq-b"><b>${esc(m.name)}</b><span>${esc(m.scope)}</span>
+          <span class="rq-tags">
+            ${m.ee ? `<i class="rq-t ee">EE</i>` : ""}
+            ${m.ie ? `<i class="rq-t ie">EI</i>` : `<i class="rq-t no">${esc(t("req.ieReduced"))}</i>`}
+            ${m.itot ? `<i class="rq-t it">${esc(m.itot)}</i>` : ""}
+          </span></span>
+      </li>`;
+    };
+    const themes = Object.keys(groups).map(g => {
+      const list = groups[g];
+      const count = list.filter(m => who === "ee" ? m.ee : m.ie).length;
+      const k = "req.type." + g.toLowerCase(), label = t(k) === k ? g : t(k);
+      return `<section class="rq-g"><h3>${esc(label)}
+        <span>${t("req.groupCount", { n: count, total: list.length })}</span></h3>
+        <ul>${list.map(row).join("")}</ul></section>`;
+    }).join("");
+    const reqTab = `
+      <div class="rq-figs">
+        <div><b>${n.reqEE != null ? n.reqEE : "—"}</b><span>${t("req.reqEE")}</span></div>
+        <div><b>${n.reqIE != null ? n.reqIE : "—"}</b><span>${t("req.reqIE")}</span></div>
+        ${n.reqEE && n.reqIE ? `<div><b>×${(n.reqEE / n.reqIE).toFixed(1).replace(".", lang === "fr" ? "," : ".")}</b><span>${t("req.ratio")}</span></div>` : ""}
+      </div>
+      ${R.texts.req ? `<p class="rq-p">${esc(reqSentence(R.texts.req, /^Requirements:\s*/))}</p>` : ""}
+      ${R.texts.intro ? `<p class="rq-p">${esc(R.texts.intro)}</p>` : ""}
+      ${R.texts.caveat ? `<div class="rq-caveat"><b>${t("req.caveat")}</b> ${esc(R.texts.caveat)}</div>` : ""}
+      <p class="rq-p rq-hint">${t("req.noSplit", { n: ms.length })}</p>`;
+    const themeTab = `
+      ${R.texts.themes ? `<p class="rq-p">${esc(reqSentence(R.texts.themes, /^Themes:\s*/))}</p>` : ""}
+      <div class="rq-who" role="group">
+        <button type="button" data-who="ee" class="${who === "ee" ? "on" : ""}">${t("req.whoEE", { n: n.themesEE != null ? n.themesEE : ms.filter(m => m.ee).length })}</button>
+        <button type="button" data-who="ie" class="${who === "ie" ? "on" : ""}">${t("req.whoIE", { n: n.themesIE != null ? n.themesIE : ms.filter(m => m.ie).length })}</button>
+      </div>
+      ${themes}`;
+    dlg.innerHTML = `<div class="fmodal rq-modal">
+      <div class="fmodal-h"><h2>${t("req.title", { country: esc(c ? c.name : iso) })}</h2>
+        <button class="x" type="button" id="reqClose" aria-label="${t("fiche.close")}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button></div>
+      <div class="rq-tabs" role="tablist">
+        <button type="button" role="tab" data-tab="themes" aria-selected="${reqState.tab === "themes"}">
+          ${t("fiche.themeTitle")} <span>${n.themesEE != null ? n.themesEE : "—"} · ${n.themesIE != null ? n.themesIE : "—"}</span></button>
+        <button type="button" role="tab" data-tab="req" aria-selected="${reqState.tab === "req"}">
+          ${t("fiche.reqTitle")} <span>${n.reqEE != null ? n.reqEE : "—"} · ${n.reqIE != null ? n.reqIE : "—"}</span></button>
+      </div>
+      <div class="fmodal-b rq-b-wrap">
+        ${reqState.tab === "req" ? reqTab : themeTab}
+        ${R.sources && R.sources.length ? `<div class="rq-src"><b>${t("req.sources")}</b>${R.sources.map(x =>
+          `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join("")}</div>` : ""}
+      </div></div>`;
+    dlg.querySelector("#reqClose").addEventListener("click", () => dlg.close());
+    dlg.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => {
+      reqState.tab = b.dataset.tab; draw(); }));
+    dlg.querySelectorAll("[data-who]").forEach(b => b.addEventListener("click", () => {
+      reqState.who = b.dataset.who; draw(); }));
+  };
+  draw();
+  if (!dlg.open && dlg.showModal) dlg.showModal();
+}
+
 /* ---------- les cinq bulles ---------- */
 function ficheFacts(c){
   const iso = c.iso;
@@ -20983,11 +21173,11 @@ function renderFiche(c, el){
       extras += ficheBars(iso, "fw",
         [{ col: "L", tKey: "fiche.ee", color: "var(--ee)" },
          { col: "M", tKey: "fiche.ie", color: "var(--ie)" }],
-        "fiche.reqTitle", "fiche.barsEmpty");
+        "fiche.reqTitle", "fiche.barsEmpty", "req");
       extras += ficheBars(iso, "fw",
         [{ col: "J", tKey: "fiche.ee", color: "var(--ee)" },
          { col: "K", tKey: "fiche.ie", color: "var(--ie)" }],
-        "fiche.themeTitle", "fiche.barsEmpty");
+        "fiche.themeTitle", "fiche.barsEmpty", "themes");
     }
     if (s.key === "fw" && typeof mapForCountry === "function") {
       const maps = mapForCountry(iso);
@@ -21120,6 +21310,8 @@ function renderFiche(c, el){
   /* Le meme dialogue depuis la barre collante : une fois l'en-tete sorti de
      l'ecran, le bouton du haut n'est plus a portee, et c'est souvent apres avoir
      relu la fiche qu'on decide de generer les slides. */
+  el.querySelectorAll(".fzoom").forEach(b =>
+    b.addEventListener("click", () => reqDialog(iso, b.dataset.fz)));
   ["#rptBtn", "#rptBtnNav"].forEach(sel => {
     const rb = $(sel, el);
     if (rb && typeof reportDialog === "function")

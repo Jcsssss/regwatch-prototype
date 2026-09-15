@@ -345,7 +345,59 @@ body.fcells .fcell{display:inline}
 /* Un <dialog> n'herite pas de la couleur de texte de la page : le navigateur lui
    impose CanvasText, du noir. En theme sombre, titre et libelles s'ecrivaient
    donc en noir sur violet fonce. La couleur est posee explicitement. */
-#ficheSectors,#rptDlg{color:var(--ink)}
+#ficheSectors,#rptDlg,#ficheReq{color:var(--ink)}
+/* --- detail du referentiel derriere les compteurs --- */
+.fzoom{margin-left:auto;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);
+  background:var(--surface);color:var(--accent);border-radius:7px;padding:3px 9px;font:inherit;
+  font-size:11px;font-weight:700;letter-spacing:0;text-transform:none;cursor:pointer}
+.fzoom svg{width:13px;height:13px}
+.fzoom:hover{border-color:var(--accent);background:var(--accent-soft)}
+#ficheReq{border:0;padding:0;background:transparent;max-width:min(860px,94vw);width:100%}
+#ficheReq::backdrop{background:rgba(10,8,20,.62)}
+.rq-tabs{display:flex;gap:4px;padding:10px 20px 0;border-bottom:1px solid var(--line)}
+.rq-tabs button{border:0;background:transparent;font:inherit;font-size:13px;font-weight:700;color:var(--ink2);
+  padding:8px 12px 10px;border-bottom:2.5px solid transparent;cursor:pointer}
+.rq-tabs button span{font-weight:600;color:var(--muted);margin-left:4px;font-variant-numeric:tabular-nums}
+.rq-tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+/* .fmodal-b, declaree plus loin, est une grille : elle etirait le selecteur EE / EI
+   sur toute la largeur et creusait l'espace entre les blocs. */
+.fmodal-b.rq-b-wrap{display:block;max-height:calc(100vh - 170px)}
+.rq-p{margin:0 0 12px;font-size:13px;line-height:1.55;color:var(--ink2);max-width:78ch}
+.rq-hint{color:var(--muted);font-size:12px}
+.rq-who{display:inline-flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;margin:2px 0 14px}
+.rq-who button{border:0;background:var(--surface);font:inherit;font-size:12.5px;font-weight:700;color:var(--ink2);
+  padding:7px 13px;cursor:pointer}
+.rq-who button+button{border-left:1px solid var(--line2)}
+.rq-who button.on{background:var(--accent);color:var(--accent-ink)}
+.rq-g{margin-bottom:16px}
+.rq-g h3{display:flex;align-items:baseline;gap:8px;margin:0 0 8px;font-size:12px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.rq-g h3 span{margin-left:auto;font-size:11.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted)}
+.rq-g ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rq{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start;padding:9px 11px;
+  background:var(--surface2);border:1px solid var(--line);border-radius:10px}
+.rq.off{opacity:.55}
+.rq-ref{font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--accent);padding-top:1px}
+.rq-b{display:flex;flex-direction:column;gap:3px;min-width:0}
+.rq-b b{font-size:13px;color:var(--ink)}
+.rq-b > span{font-size:12px;color:var(--ink2);line-height:1.45}
+.rq-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.rq-t{font-style:normal;font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px;
+  background:var(--surface3);color:var(--ink2)}
+.rq-t.ee{background:color-mix(in srgb,var(--ee) 18%,var(--surface));color:var(--ink)}
+.rq-t.ie{background:color-mix(in srgb,var(--ie) 18%,var(--surface));color:var(--ink)}
+.rq-t.no{background:var(--st-warn-bg);color:var(--st-warn-ink)}
+.rq-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.rq-figs div{background:var(--surface2);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.rq-figs b{font-size:26px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.rq-figs span{font-size:12px;color:var(--muted)}
+.rq-caveat{margin:0 0 12px;padding:10px 12px;border-radius:9px;background:var(--st-warn-bg);
+  color:var(--st-warn-ink);font-size:12.5px;line-height:1.5}
+.rq-src{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-top:6px;padding-top:12px;
+  border-top:1px solid var(--line);font-size:12px}
+.rq-src b{color:var(--muted);font-weight:700}
+.rq-src a{color:var(--accent)}
+@media (max-width:640px){.rq-figs{grid-template-columns:1fr}.fzoom span{display:none}}
 #ficheSectors{border:0;padding:0;background:transparent;max-width:min(960px,94vw);width:100%}
 #ficheSectors::backdrop{background:rgba(10,8,20,.62)}
 .fmodal{background:var(--surface);color:var(--ink);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
