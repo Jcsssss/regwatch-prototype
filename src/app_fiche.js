@@ -257,8 +257,19 @@ function ficheSectorsHtml(){
 function ficheFacts(c){
   const iso = c.iso;
   const mat = c.maturity;
+  /* Survoler le niveau en donne la definition, et l'echelle entiere : « niveau
+     2 » ne dit rien seul, « 2 sur 4, projet de loi en discussion » dit ou en est
+     le pays et ce qui lui manque pour monter. Les libelles sont ceux de la
+     reglementation affichee (regLevelLabel), les memes que la legende de la
+     carte et que les supports CYBER WATCH. */
+  const matTip = `<div class="tip-mat"><b>${t("fiche.matTip", { n: mat })}</b>`
+    + `<div class="tip-def">${esc(regLevelLabel(mat))}</div>`
+    + `<div class="tip-scale">${[1, 2, 3, 4].map(l =>
+        `<div class="${l === mat ? "on" : ""}"><i style="background:var(--m${l})"></i>`
+        + `<span>${l}</span>${esc(regLevelLabel(l))}</div>`).join("")}</div>`
+    + `<div class="tip-note">${t("fiche.matNote")}</div></div>`;
   const bubbles = [
-    { icon: "alert", lab: t("fiche.f.maturity"), cell: "id!D",
+    { icon: "alert", lab: t("fiche.f.maturity"), cell: "id!D", tip: matTip,
       html: `<div class="fmat" style="--mc:var(--m${mat})"><b>${mat}</b>
         <span class="dots">${[1, 2, 3, 4].map(l => `<i class="${l <= mat ? "on" : ""}"></i>`).join("")}</span></div>` },
     { icon: "clock", lab: t("fiche.f.inForce"), cell: "id!E",
@@ -271,7 +282,7 @@ function ficheFacts(c){
       html: ficheValue(ficheCell(iso, "id", "L")) }
   ];
   return `<div class="ffacts">${bubbles.map(b => `
-    <div class="ffact">
+    <div class="ffact${b.tip ? " has-tip" : ""}"${b.tip ? ` data-tip="${kpiEsc(b.tip)}" tabindex="0"` : ""}>
       <div class="ic">${ficheIcon(b.icon)}</div>
       <div class="lbl">${b.lab}<span class="fcell">${b.cell}</span></div>
       <div class="val${b.small ? " sm" : ""}">${b.html}</div>
@@ -446,6 +457,18 @@ function ficheHeader(){
 }
 
 function ficheWire(el){
+  /* --- infobulles : a la souris comme au clavier ---
+     kpiWireTips suit le curseur ; au clavier il n'y en a pas, l'infobulle se
+     place alors sous la bulle qui a le focus. */
+  if (typeof kpiWireTips === "function") kpiWireTips(el);
+  el.querySelectorAll(".ffact.has-tip").forEach(n => {
+    n.addEventListener("focus", () => {
+      const r = n.getBoundingClientRect();
+      showTip(n.dataset.tip, r.left, r.bottom);
+    });
+    n.addEventListener("blur", hideTip);
+  });
+
   /* --- cases source --- */
   const sw = $("#ficheCells", el);
   if (sw) {
