@@ -268,23 +268,92 @@ const FICHE_EI = [
 /* Des lignes compactes plutot que des cartes : les dix-huit secteurs tiennent
    sans defilement, alors que l'annexe II etait coupee en bas de la fenetre sans
    que rien ne signale qu'elle continuait. */
-function ficheSectorsHtml(){
+/* Le perimetre retenu par le pays, lu dans la feuille « Sectors - P3 ».
+ *
+ * Chaque secteur porte au plus trois signaux : un sous-secteur de la directive
+ * que le pays ne reprend pas (ecart), des sous-secteurs ajoutes (elargi), des
+ * precisions sans changement de perimetre (precise). Sans aucun des trois, le
+ * secteur est repris tel quel. L'eau potable n'a pas de colonne dans la
+ * feuille : elle est dite « non suivie » plutot que presentee comme conforme.
+ *
+ * Le texte des ajouts et precisions est liste sous la grille, pas dans les
+ * tuiles : une tuile de trois lignes de texte juridique cassait l'alignement et
+ * noyait les dix-sept autres. */
+function sectorState(iso, key){
+  const row = typeof SECTOR_DATA !== "undefined" && SECTOR_DATA.rows[iso];
+  if (!row) return null;
+  const x = row[key];
+  if (!x) return { tracked: false };
+  const spec = SECTOR_DATA.sectors.find(s => s.k === key);
+  const gaps = x.cov.map((v, i) => v === "NO" ? (spec.subs[i] || spec.name) : null).filter(Boolean);
+  const nc = x.cov.length && x.cov.every(v => v === "NC" || v == null);
+  const txt = v => v && v !== "NC" ? v : null;
+  return { tracked: true, gaps, nc, add: txt(x.add), other: txt(x.other) };
+}
+function sectorTags(st){
+  if (!st) return "";
+  if (!st.tracked) return `<span class="stag mute">${t("sect.st.none")}</span>`;
+  if (st.nc) return `<span class="stag mute">${t("sect.st.nc")}</span>`;
+  const tags = [];
+  if (st.gaps.length) tags.push(`<span class="stag gap">${t("sect.st.gap")}</span>`);
+  if (st.add) tags.push(`<span class="stag add">${t("sect.st.add")}</span>`);
+  if (st.other) tags.push(`<span class="stag oth">${t("sect.st.other")}</span>`);
+  return tags.join("") || `<span class="stag same">${t("sect.st.same")}</span>`;
+}
+function ficheSectorsHtml(iso){
+  const has = iso && typeof SECTOR_DATA !== "undefined" && SECTOR_DATA.rows[iso];
+  const c = iso && byIso[iso];
+  const states = {};
+  FICHE_EE.concat(FICHE_EI).forEach(r => { states[r[0]] = has ? sectorState(iso, r[0]) : null; });
   const row = (r, cls) => `<li class="fs ${cls}">
       <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round">${SECT_ICONS[r[0]] || ""}</svg></span>
-      <span class="st"><b>${t(r[1])}</b><span>${t(r[2])}</span></span></li>`;
+      <span class="st"><b>${t(r[1])}</b><span>${t(r[2])}</span>
+        ${has ? `<span class="stags">${sectorTags(states[r[0]])}</span>` : ""}</span></li>`;
   const block = (label, list, cls) => `<section class="fann-b ${cls}">
       <h3 class="fann"><i></i>${label}<span>${t("fiche.sectorsCount", { n: list.length })}</span></h3>
       <ul class="fgrid">${list.map(r => row(r, cls)).join("")}</ul></section>`;
+
+  let details = "", summary = "";
+  if (has) {
+    const all = FICHE_EE.concat(FICHE_EI);
+    const n = { same: 0, add: 0, other: 0, gap: 0 };
+    const lines = [];
+    all.forEach(r => {
+      const st = states[r[0]];
+      if (!st || !st.tracked || st.nc) return;
+      if (!st.gaps.length && !st.add && !st.other) n.same++;
+      if (st.add) n.add++;
+      if (st.other) n.other++;
+      if (st.gaps.length) n.gap++;
+      const parts = [];
+      if (st.gaps.length) parts.push(`<p><span class="stag gap">${t("sect.st.gap")}</span>${esc(t("sect.gapL", { list: st.gaps.join(", ") }))}</p>`);
+      if (st.add) parts.push(`<p><span class="stag add">${t("sect.st.add")}</span>${esc(st.add)}</p>`);
+      if (st.other) parts.push(`<p><span class="stag oth">${t("sect.st.other")}</span>${esc(st.other)}</p>`);
+      if (parts.length) lines.push(`<li><b>${t(r[1])}</b>${parts.join("")}</li>`);
+    });
+    const extra = SECTOR_DATA.rows[iso]._new;
+    summary = `<div class="fsum">
+      <span><b>${n.same}</b> ${t("sect.sumSame")}</span>
+      <span><i class="stag add"></i><b>${n.add}</b> ${t("sect.sumAdd")}</span>
+      <span><i class="stag oth"></i><b>${n.other}</b> ${t("sect.sumOther")}</span>
+      <span><i class="stag gap"></i><b>${n.gap}</b> ${t("sect.sumGap")}</span></div>`;
+    details = `${extra && extra !== "NC" ? `<section class="fsnew">
+        <h3 class="fann"><i></i>${t("sect.newTitle")}</h3><p>${esc(extra)}</p></section>` : ""}
+      ${lines.length ? `<section class="fsdet"><h3 class="fann"><i></i>${t("sect.detTitle")}</h3>
+        <ul>${lines.join("")}</ul></section>` : ""}`;
+  }
   return `<div class="fmodal">
-    <div class="fmodal-h"><h2>${t("fiche.sectorsTitle")}</h2>
+    <div class="fmodal-h"><h2>${c && has ? t("sect.titleC", { c: esc(c.name) }) : t("fiche.sectorsTitle")}</h2>
       <button class="x" type="button" id="ficheSecClose" aria-label="${t("fiche.close")}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button></div>
     <div class="fmodal-b">
+      ${summary}
       ${block(t("fiche.annex1"), FICHE_EE, "ee")}
       ${block(t("fiche.annex2"), FICHE_EI, "ei")}
-      <p class="fmlg">${t("fiche.sectorsNote")}</p>
+      ${details}
+      <p class="fmlg">${has ? t("sect.noteC", { date: fmtDateL(SECTOR_DATA.updated) }) : t("fiche.sectorsNote")}</p>
     </div></div>`;
 }
 
@@ -571,7 +640,7 @@ function renderFiche(c, el){
     </div>
   </div>
 
-  <dialog id="ficheSectors">${ficheSectorsHtml()}</dialog>`;
+  <dialog id="ficheSectors">${ficheSectorsHtml(iso)}</dialog>`;
 
   ficheWire(el);
   /* La generation du rapport, reservee au validateur. app_report.js remplace

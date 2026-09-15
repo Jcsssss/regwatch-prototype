@@ -428,6 +428,282 @@ body.fcells .fcell{display:inline}
 .fmlg{margin:0;font-size:11.5px;color:var(--muted);padding-top:12px;border-top:1px solid var(--line);line-height:1.5}
 @media (max-width:860px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+/* perimetre du pays (feuille Sectors - P3) */
+.stags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.stag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:700;line-height:1;padding:3px 7px;
+  border-radius:999px;border:1px solid transparent;white-space:nowrap}
+.stag.same{background:var(--surface2);color:var(--muted);border-color:var(--line)}
+.stag.mute{background:transparent;color:var(--muted);border-color:var(--line2);font-weight:600}
+.stag.add{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.stag.oth{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.stag.gap{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+.fsum{display:flex;flex-wrap:wrap;gap:8px 18px;padding:10px 14px;border-radius:12px;background:var(--surface2);
+  border:1px solid var(--line);font-size:12.5px;color:var(--ink2)}
+.fsum span{display:inline-flex;align-items:center;gap:6px}
+.fsum b{color:var(--ink);font-size:14px}
+.fsum i.stag{width:9px;height:9px;padding:0;border-radius:3px}
+.fsum i.stag.add{background:var(--ok)}.fsum i.stag.oth{background:var(--warn)}.fsum i.stag.gap{background:var(--bad)}
+.fsdet ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fsdet li{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.fsdet li>b{display:block;font-size:13px;color:var(--ink);margin-bottom:4px}
+.fsdet p,.fsnew p{margin:4px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink2);white-space:pre-line}
+.fsdet p .stag{margin-right:7px;vertical-align:1px}
+.fsdet .fann i,.fsnew .fann i{background:var(--ok)}
+.fsnew{padding:12px 14px;border-radius:12px;border:1px solid color-mix(in srgb,var(--ok) 40%,var(--line));
+  background:color-mix(in srgb,var(--ok) 6%,var(--surface))}
+
+/* ---------- vue europeenne ---------- */
+.eu-filter{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:0 0 6px;padding:12px 14px;
+  background:var(--surface);border:1px solid var(--line);border-radius:13px}
+.eu-fl{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.eu-presets{display:flex;flex-wrap:wrap;gap:4px;padding:3px;background:var(--surface2);border-radius:10px}
+.eu-presets button{border:0;background:transparent;color:var(--ink2);font:inherit;font-size:12.5px;font-weight:650;
+  padding:6px 11px;border-radius:8px;cursor:pointer}
+.eu-presets button:hover{color:var(--ink);background:var(--surface)}
+.eu-presets button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.eu-count{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);
+  padding:5px 10px;border-radius:999px}
+.eu-pick{flex-basis:100%;border-top:1px solid var(--line);padding-top:10px}
+.eu-pick-a{display:flex;gap:6px;margin-bottom:8px}
+.eu-pick-a button{font:inherit;font-size:12px;font-weight:650;color:var(--accent);background:transparent;
+  border:1px solid var(--line2);border-radius:7px;padding:4px 10px;cursor:pointer}
+.eu-pick-a button:hover{border-color:var(--accent)}
+.eu-pick-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px}
+.eu-chk{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink2);padding:5px 8px;border-radius:8px;
+  border:1px solid transparent;cursor:pointer;user-select:none}
+.eu-chk:hover{background:var(--surface2)}
+.eu-chk.on{background:var(--accent-soft);color:var(--ink);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+.eu-chk input{accent-color:var(--accent);margin:0}
+.eu-chk .fi{width:20px;height:14px;border-radius:2px;overflow:hidden;display:inline-block;flex:none;box-shadow:0 0 0 1px var(--line)}
+.eu-chk .fi svg{width:100%;height:100%;display:block}
+.eu-nav .fnav-in{align-items:center}
+.eu-nav .eu-nav-sel{margin-left:auto;flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft)}
+.eu-nav .eu-nav-sel:hover{background:var(--accent-soft);color:var(--accent);filter:brightness(1.05)}
+.eu-sec-w{scroll-margin-top:calc(var(--fhdr,96px) + var(--fnavh,52px) + 12px)}
+.eu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:14px}
+.eu-card{margin:0;display:flex;flex-direction:column;min-width:0;background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px 10px}
+.eu-card.wide{grid-column:1/-1}
+.eu-card-h{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px}
+.eu-title{flex:1;margin:0;font-size:15px;font-weight:800;line-height:1.35;color:var(--accent2);border-radius:6px;
+  padding:2px 5px;margin-left:-5px;outline:none;cursor:text;border:1px dashed transparent}
+.eu-title:hover{border-color:var(--line2)}
+.eu-title:focus{border-color:var(--accent);background:var(--accent-soft)}
+:root:not([data-theme="light"]) .eu-title{color:var(--accent2)}
+.eu-reset{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--surface2);color:var(--muted)}
+.eu-reset[hidden]{display:none}
+.eu-edit{flex:none;height:26px;display:inline-flex;align-items:center;gap:5px;padding:0 9px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--surface2);color:var(--ink2);font:inherit;font-size:11px;font-weight:750;white-space:nowrap}
+.eu-edit svg{width:13px;height:13px}
+.eu-edit:hover{color:var(--accent);border-color:var(--accent)}
+.eu-card.editing .eu-edit{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.eu-card-h:hover .eu-title{border-color:var(--line2)}
+.eu-dl{flex:none;height:26px;display:inline-flex;align-items:center;gap:5px;padding:0 9px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--surface2);color:var(--ink2);font:inherit;font-size:11px;font-weight:750}
+.eu-dl svg{width:13px;height:13px}
+.eu-dl:hover{color:var(--accent);border-color:var(--accent)}
+.eu-dl.busy{opacity:.5;pointer-events:none}
+.eu-head{display:flex;align-items:flex-start;gap:16px;justify-content:space-between}
+.eu-dlall{flex:none;display:inline-flex;align-items:center;gap:7px;margin-top:4px}
+.eu-dlall svg{width:15px;height:15px}
+.eu-dlall:disabled{opacity:.65;cursor:progress}
+@media (max-width:700px){.eu-head{flex-direction:column}}
+.eu-reset:hover{color:var(--accent);border-color:var(--accent)}
+.eu-reset svg{width:13px;height:13px}
+.eu-body{flex:1;min-width:0}
+.eu-note{margin-top:12px;font-size:13px;line-height:1.55;color:var(--ink);padding:8px 10px;border-radius:8px;
+  border:1px dashed var(--line2);outline:none;white-space:pre-wrap;min-height:1.6em}
+.eu-note:empty::before{content:attr(data-ph);color:var(--muted);font-style:italic}
+.eu-note:not(:empty){border-style:solid;border-color:transparent;border-left:3px solid var(--green);border-radius:2px 8px 8px 2px;
+  background:var(--surface2)}
+.eu-note:focus{border:1px solid var(--accent);border-left-width:3px;background:var(--surface)}
+.eu-src{margin-top:8px;font-size:11px;color:var(--muted)}
+.eu-src code{font-family:var(--font-mono);font-size:10.5px;background:var(--surface2);padding:1px 5px;border-radius:4px}
+.eu-empty{color:var(--muted);font-size:13px;margin:6px 0}
+.eu-foot{margin:10px 0 0;font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.eu-disclaimer{font-size:12px;color:var(--muted);margin:14px 2px 0}
+
+/* drapeaux */
+.eu-flags{display:inline-flex;flex-wrap:wrap;gap:3px;align-items:center;vertical-align:middle}
+.eu-flag{display:inline-block;width:22px;height:15px;border-radius:3px;overflow:hidden;flex:none;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 14%,transparent);transition:transform .12s}
+.eu-flag svg{width:100%;height:100%;display:block}
+.eu-flag:hover{transform:scale(1.25);position:relative;z-index:2}
+.eu-more{font-size:11px;font-weight:700;color:var(--muted);padding:0 3px;cursor:help}
+
+/* carte + jauges */
+.eu-mapgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:center}
+.eu-map{width:100%;height:auto;max-height:420px;display:block}
+.eu-map path{stroke:var(--surface)}
+.eu-map .ctry{cursor:pointer}
+.eu-map .ctry:hover{stroke:var(--ink);stroke-width:1.6}
+.eu-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12px;color:var(--ink2)}
+.eu-legend span{display:inline-flex;align-items:center;gap:6px}
+.eu-legend i{width:11px;height:11px;border-radius:3px;box-shadow:0 0 0 1px var(--line)}
+.eu-legend em{font-style:normal;font-weight:700;color:var(--ink)}
+.eu-legend .eu-note-s{color:var(--muted);font-style:italic}
+.eu-rings{display:flex;flex-direction:column;gap:14px}
+.eu-rings.row{flex-direction:row;flex-wrap:wrap;gap:14px 22px}
+.eu-rings.row .eu-ring{flex:1 1 180px}
+.eu-ring{display:grid;grid-template-columns:76px 1fr;align-items:center;gap:4px 14px}
+.eu-ring-g{position:relative;width:76px;height:76px}
+.eu-ring-g>svg{width:76px;height:76px;display:block}
+.eu-ring-n{position:absolute;left:0;top:0;width:76px;height:76px;display:flex;align-items:baseline;justify-content:center;
+  padding-top:24px;pointer-events:none}
+.eu-ring-n b{font-size:22px;font-weight:800;color:var(--ink);line-height:1}
+.eu-ring-n span{font-size:11px;color:var(--muted);font-weight:700}
+.eu-ring-l{font-size:13px;color:var(--ink2);line-height:1.4;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.eu-ring-l b{color:var(--ink)}
+.eu-bul{margin:0;padding:0 0 0 4px;list-style:none;display:grid;gap:4px;font-size:13px;color:var(--ink2)}
+.eu-bul li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:8px;vertical-align:2px}
+.eu-bul b{color:var(--ink);font-size:15px}
+
+/* escalier */
+.eu-side{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:18px;align-items:center}
+.eu-stairs{display:grid;gap:5px}
+.eu-st-row{display:grid;grid-template-columns:minmax(120px,30%) 1fr;gap:12px;align-items:center;min-height:30px}
+.eu-st-f{display:flex;justify-content:flex-end}
+.eu-st-f .eu-flags{justify-content:flex-end}
+.eu-st-t{position:relative;height:30px;border-left:1px solid var(--line2)}
+.eu-st-b{position:absolute;top:3px;bottom:3px;border-radius:6px}
+.eu-st-l{position:absolute;top:50%;transform:translateY(-50%);margin-left:8px;font-size:12px;color:var(--ink2);white-space:nowrap}
+.eu-st-l[data-side="before"]{transform:translate(-100%,-50%);margin-left:-8px}
+.eu-st-l b{color:var(--ink);font-weight:750}
+.eu-kpis{display:grid;gap:10px}
+.eu-kpi{display:flex;flex-direction:column;padding:10px 12px;border-radius:10px;background:var(--surface2);border-left:3px solid var(--green)}
+.eu-kpi b{font-size:24px;font-weight:800;color:var(--accent);line-height:1.1}
+.eu-kpi span{font-size:12px;color:var(--ink2);line-height:1.3}
+
+/* colonnes de drapeaux */
+.eu-cols{display:flex;align-items:flex-end;gap:10px;min-height:210px;padding-top:6px;border-bottom:1px solid var(--line2)}
+.eu-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:210px;position:relative;min-width:0}
+.eu-col-stack{display:flex;flex-direction:row;flex-wrap:wrap-reverse;align-content:flex-start;justify-content:center;gap:4px 3px;
+  width:100%;padding:5px 3px;border-radius:8px 8px 0 0;background:linear-gradient(to top,var(--accent-soft),color-mix(in srgb,var(--accent-soft) 40%,transparent));min-height:26px}
+.eu-col-n{font-size:13px;font-weight:800;color:var(--accent);margin-bottom:3px}
+.eu-col-l{position:absolute;top:calc(100% + 6px);font-size:11.5px;font-weight:650;color:var(--ink2);white-space:nowrap}
+.eu-col-l.first{color:var(--ok)}
+.eu-cols + .eu-foot,.eu-cols{margin-bottom:26px}
+.eu-cols + .eu-foot{margin-top:-2px}
+
+/* barres de part */
+.eu-share{display:grid;gap:6px}
+.eu-sh-h{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:8px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.eu-sh-h:first-child{margin-top:0}
+.eu-sh-h .stag{letter-spacing:0;text-transform:none;font-size:11px}
+.eu-sh-row{display:grid;grid-template-columns:minmax(120px,32%) minmax(60px,1fr) 44px 178px;gap:10px;align-items:center}
+.eu-sh-l{font-size:12.5px;color:var(--ink);line-height:1.3}
+.eu-sh-t{position:relative;height:20px;background:var(--surface2);border-radius:5px;overflow:hidden}
+.eu-sh-b{position:absolute;inset:0 auto 0 0;border-radius:5px}
+.eu-sh-n{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.eu-sh-n b{color:var(--ink);font-size:12.5px}
+.eu-sh-f{min-width:0}
+.eu-sh-f .eu-flags{flex-wrap:nowrap}
+.eu-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+
+/* secteurs */
+.eu-ann + .eu-ann{margin-top:14px}
+.eu-ann h4{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.eu-ann h4 i{width:10px;height:10px;border-radius:3px}
+.eu-ann h4 i.ee{background:var(--accent)}.eu-ann h4 i.ei{background:var(--ie)}
+.eu-secs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.eu-sec{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--surface)}
+.eu-sec.hot{border-color:color-mix(in srgb,var(--ok) 45%,var(--line));background:color-mix(in srgb,var(--ok) 5%,var(--surface))}
+.eu-sec-h{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.eu-sec-h .si{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);flex:none}
+.eu-sec-h .si svg{width:15px;height:15px}
+.eu-sec-h b{font-size:12.5px;line-height:1.25;color:var(--ink)}
+.eu-sec-m{display:grid;gap:5px}
+.eu-sec-m>div{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.eu-big{display:grid;gap:12px}
+.eu-big{grid-template-columns:230px minmax(0,1fr);align-items:start}
+.eu-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+.eu-list li{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.4}
+.eu-list li .eu-flag{margin-top:2px}
+.eu-list b{display:block;color:var(--ink)}
+.eu-list span{color:var(--ink2)}
+
+/* incidents */
+.eu-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.eu-bub{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--surface2)}
+.eu-bub-n{flex:none;width:84px;height:84px;border-radius:50%;background:var(--bc);color:var(--accent-ink);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;box-shadow:0 0 0 5px color-mix(in srgb,var(--bc) 22%,transparent)}
+.eu-bub-n b{font-size:28px;line-height:1;font-weight:800}
+.eu-bub-n span{font-size:10.5px;font-weight:700;opacity:.9}
+.eu-bub h4{margin:2px 0 4px;font-size:14px;color:var(--ink)}
+.eu-bub p{margin:0 0 8px;font-size:12.5px;color:var(--ink2);line-height:1.45}
+
+/* exigences par referentiel */
+.eu-req-wrap{overflow-x:auto;padding-bottom:4px}
+.eu-req{min-width:760px;padding-left:34px;padding-right:96px}
+.eu-req-plot{position:relative;height:260px;margin-top:20px;display:flex;align-items:flex-end;gap:6px;border-bottom:1px solid var(--line2)}
+.eu-grid{}
+.eu-req-plot .eu-gl{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--line);display:block;padding:0}
+.eu-req-plot .eu-gl em{position:absolute;left:-34px;top:-7px;font-style:normal;font-size:10.5px;color:var(--muted);width:28px;text-align:right}
+.eu-avg{position:absolute;left:0;right:0;height:0;border-top:2px dashed;z-index:1;pointer-events:none}
+.eu-avg.ee{border-color:var(--ee)}.eu-avg.ie{border-color:var(--ie)}
+.eu-avg em{position:absolute;right:-96px;white-space:nowrap;font-style:normal;font-size:11px;font-weight:700;padding:1px 6px;border-radius:5px;background:var(--surface)}
+.eu-avg.ee em{top:-10px;color:var(--ee)}.eu-avg.ie em{top:-8px;color:var(--ie)}
+.eu-rc{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:2px;height:100%;min-width:0;position:relative;z-index:2}
+.eu-rc:hover{background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:6px 6px 0 0}
+.eu-rb{display:block;width:42%;max-width:18px;border-radius:4px 4px 0 0;position:relative}
+.eu-rb.ee{background:var(--ee)}.eu-rb.ie{background:var(--ie)}
+.eu-rb.none{height:0}
+.eu-rb em{position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%) rotate(-90deg);transform-origin:center;
+  font-style:normal;font-size:9.5px;font-weight:700;color:var(--ink2);white-space:nowrap;display:none}
+.eu-rb.ee em{display:block;transform:translateX(-50%);font-size:10px}
+.eu-rb.cut{background-image:linear-gradient(165deg,transparent 18%,var(--surface) 18%,var(--surface) 22%,transparent 22%)}
+.eu-rb.cut em{color:var(--bad)}
+.eu-req-x{display:flex;gap:6px}
+.eu-req-x>div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:6px}
+.eu-req-x span{font-size:10.5px;color:var(--ink2);writing-mode:vertical-rl;transform:rotate(180deg);max-height:80px;overflow:hidden;white-space:nowrap}
+
+/* delais horizontaux */
+.eu-hbars{display:grid;gap:4px}
+.eu-hb-scale{display:grid;grid-template-columns:repeat(3,1fr);margin-left:calc(min(160px,30%) + 10px);height:8px;margin-bottom:22px;
+  border-radius:999px;background:linear-gradient(90deg,#ff3b5c,#ff8a3d,#f5b82e,var(--green),var(--m4));position:relative}
+.eu-hb-scale span{font-size:11px;font-weight:700;color:var(--ink2);padding-top:12px}
+.eu-hb-scale span:nth-child(2){text-align:center}.eu-hb-scale span:nth-child(3){text-align:right}
+.eu-hb{display:grid;grid-template-columns:min(160px,30%) 1fr;gap:10px;align-items:center}
+.eu-hb-l{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);min-width:0}
+.eu-hb-l span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.eu-hb-t{display:flex;align-items:center;gap:8px;height:22px}
+.eu-hb-b{height:16px;border-radius:0 5px 5px 0}
+.eu-hb-t span{font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap}
+.eu-hb-t em{font-style:normal;font-weight:500;color:var(--muted)}
+
+/* pyramide */
+.eu-pyr{display:grid;gap:3px}
+.eu-pyr-row{display:grid;grid-template-columns:minmax(220px,46%) 1fr;gap:14px;align-items:center}
+.eu-pyr-s{height:46px;display:grid;place-items:center}
+.eu-pyr-s span{font-size:12.5px;font-weight:750;text-align:center}
+.eu-pyr-f{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px dashed var(--line);min-height:40px}
+.eu-pyr-f>b{font-size:17px;color:var(--accent);min-width:22px}
+
+/* sanctions */
+.eu-san{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.eu-san h4{margin:0 0 10px;font-size:13.5px;color:var(--ink)}
+.eu-san-cards{display:grid;gap:8px}
+.eu-san-cards>div{padding:10px 12px;border-radius:10px;background:var(--surface2);border-top:3px solid var(--accent);display:flex;flex-direction:column;gap:3px}
+.eu-san-cards b{font-size:13px;color:var(--ink)}
+.eu-san-cards span{font-size:12px;color:var(--ink2);line-height:1.4}
+.eu-san .eu-rings.row{flex-direction:column}
+.eu-san .eu-rings.row .eu-ring{flex:none}
+
+@media (max-width:980px){
+  .eu-grid{grid-template-columns:1fr}
+  .eu-mapgrid,.eu-side,.eu-two,.eu-duo,.eu-san,.eu-big,.eu-list{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .eu-grid{padding:10px}
+  .eu-sh-row{grid-template-columns:1fr 44px}
+  .eu-sh-t{grid-column:1/-1;grid-row:2}
+  .eu-sh-f{grid-column:1/-1}
+  .eu-st-row{grid-template-columns:1fr}
+  .eu-st-f{justify-content:flex-start}
+  .eu-pyr-row{grid-template-columns:1fr}
+}
 
 @media (max-width:1080px){.ffacts{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:980px){
@@ -1241,6 +1517,7 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
   </div>
   <nav class="tabs" id="tabs">
     <a href="#/overview" data-v="overview" data-i18n="nav.overview">Overview</a>
+    <a href="#/europe" data-v="europe" data-i18n="nav.europe">European view</a>
     <a href="#/countries" data-v="countries" data-i18n="nav.countries">Countries</a>
     <a href="#/inbox" data-v="inbox"><span data-i18n="nav.inbox">Watch inbox</span><span class="badge" id="pendingBadge" hidden>0</span></a>
     <a href="#/sources" data-v="sources" data-i18n="nav.sources">Sources</a>
@@ -1254,6 +1531,7 @@ p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
 
 <main>
   <div id="v-overview" class="view"></div>
+  <div id="v-europe" class="view"></div>
   <div id="v-countries" class="view"></div>
   <div id="v-country" class="view"></div>
   <div id="v-inbox" class="view"></div>
@@ -9201,6 +9479,9 @@ const PROSE = {"BE":{"reg.deadlines":{"b":["<b>Dans les cinq mois</b> suivant l'
 /* ---- Detail des mesures de cybersecurite par pays, derriere les compteurs
    de la fiche. Genere par tools/requirements_to_js.py - ne pas editer. ---- */
 const FW_REQUIREMENTS = {"CZ":{"country":"Czech Republic","note":"NIS 2 - CZECH REPUBLIC | Cybersecurity risk-management framework (Act 264/2025 Coll. - NUKIB Decrees 409/2025 (EE) & 410/2025 (IE))","counts":{"themesEE":25,"themesIE":16,"reqEE":293,"reqIE":82},"texts":{"intro":"The Czech Republic has the SHARPEST EE/IE differentiation in the EU (+257%). This is by design: it uses a two-regime \"two-speed\" model with two separate NUKIB decrees - 409/2025 for the higher-obligations regime (EE) and 410/2025 for the lower-obligations regime (IE).","themes":"Themes: Decree 409/2025 (EE) organises the security measures into 25 sections (Hlava I organizational measures §3-16 = 14, Hlava II technical measures §17-27 = 11). The lower-obligations decree 410/2025 (IE) consolidates the same NIS2 baseline domains into fewer, less granular sections.","req":"Requirements: essential entities face 293 detailed requirements (higher regime), important entities 82 (lower regime) - a +257% gap, the largest observed across the EU (source: Wavestone comparative study). The Czech decrees are the most detailed concrete security measures published in the EU (OpenKRITIS). One organisation = one regime: if an entity falls under the higher regime for at least one service, that regime applies to all its regulated services.","caveat":"Requirement counts (293 / 82) are the validated Wavestone framework counts; the exact number can vary slightly with counting granularity of sub-points. Applicability can be tailored on a documented risk basis (statement of applicability, §8). About 150 entities are additionally classified as \"strategically important services\" with reinforced supply-chain / availability requirements."},"sources":[{"label":"Act 264/2025 Coll. (Cybersecurity Act)","url":"https://www.zakonyprolidi.cz/cs/2025-264"},{"label":"Decree 409/2025 (EE / higher regime)","url":"https://www.zakonyprolidi.cz/cs/2025-409"},{"label":"Decree 410/2025 (IE / lower regime)","url":"https://www.zakonyprolidi.cz/cs/2025-410"}],"measures":[{"id":"CZ-01","type":"Organizational","name":"Information security management system (ISMS)","ref":"§ 3","scope":"Establish ISMS objectives, risk-driven measures, security policy/documentation, audit and annual effectiveness review.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-02","type":"Organizational","name":"Top-management requirements","ref":"§ 4","scope":"Board accountability, training, resourcing, cyber security committee, appointment of security roles.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-03","type":"Organizational","name":"Security roles","ref":"§ 5","scope":"Cyber security manager, architect, asset guarantor and auditor, with competence and segregation requirements.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-04","type":"Organizational","name":"Security policy & documentation management","ref":"§ 6","scope":"Establish, maintain, review and enforce the security policy and documentation across measures.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-05","type":"Organizational","name":"Asset management","ref":"§ 7","scope":"Asset identification/valuation methodology, CIA levelling, asset links and protection rules.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-06","type":"Organizational","name":"Risk management","ref":"§ 8","scope":"Risk methodology, annual risk assessment, statement of applicability, risk-treatment plan.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-07","type":"Organizational","name":"Supplier management","ref":"§ 9","scope":"Supplier rules, significant-supplier register, contractual security clauses, ongoing review.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-08","type":"Organizational","name":"Human-resources security","ref":"§ 10","scope":"Awareness plan, onboarding/periodic training, password rules, breach handling, continuity of roles.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-09","type":"Organizational","name":"Change management","ref":"§ 11","scope":"Rules for significant changes, risk handling, testing before deployment, rollback capability.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-10","type":"Organizational","name":"Acquisition, development & maintenance","ref":"§ 12","scope":"Security requirements for acquisition/development/maintenance, environment separation.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-11","type":"Organizational","name":"Access control (organizational)","ref":"§ 13","scope":"Role/group-based access, least privilege, unique identifiers, periodic review, deactivation.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-12","type":"Organizational","name":"Cyber security event & incident handling","ref":"§ 14","scope":"Detection, recording, evaluation, coordination, containment, reporting and post-incident review.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-13","type":"Organizational","name":"Business continuity management","ref":"§ 15","scope":"Impact analysis, RTO/RPO objectives, continuity and recovery plans with regular testing.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-14","type":"Organizational","name":"Cyber security audit","ref":"§ 16","scope":"Audit plan, compliance assessment, corrective actions, at least every 2 years.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-15","type":"Technical","name":"Physical security","ref":"§ 17","scope":"Physical perimeters, protection levels, intrusion detection and access logging.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-16","type":"Technical","name":"Communication-network security","ref":"§ 18","scope":"Segmentation, communication control, remote access/administration, encryption in transit.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-17","type":"Technical","name":"Identity management & authentication","ref":"§ 19","scope":"MFA / continuous zero-trust authentication, password strength, credential lifecycle.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-18","type":"Technical","name":"Access-rights & permission management","ref":"§ 20","scope":"Centralised tool to manage access rights and read/write permissions.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-19","type":"Technical","name":"Detection of cyber security events","ref":"§ 21","scope":"Network/endpoint detection, anti-malware, removable-media control, behaviour-based detection.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-20","type":"Technical","name":"Event logging","ref":"§ 22","scope":"Log content, retention 18 months, integrity protection, time synchronisation.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-21","type":"Technical","name":"Evaluation of cyber security events","ref":"§ 23","scope":"Continuous correlation (SIEM-type), alerting, tuning and use for ISMS optimisation.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"},{"id":"CZ-22","type":"Technical","name":"Application security","ref":"§ 24","scope":"Supported/patched assets, vulnerability scanning and penetration testing, retest of findings.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-23","type":"Technical","name":"Cryptographic algorithms","ref":"§ 25","scope":"Resilient algorithms, secure voice/video/text and emergency comms, key/certificate management.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-24","type":"Technical","name":"Availability of the regulated service","ref":"§ 26","scope":"Resilience, redundancy, encrypted and tested backups, secure configuration management.","ee":true,"ie":true,"ieNote":"","itot":"IT + OT"},{"id":"CZ-25","type":"Technical","name":"Industrial/ICS & specific technical assets (OT)","ref":"§ 27","scope":"Physical/logical access limits, network segmentation, remote-access limits, ICS resilience.","ee":true,"ie":false,"ieNote":"Reduced / consolidated","itot":"IT + OT"}]}};
+/* ---- Perimetre sectoriel par pays (feuille « Sectors - P3 »).
+   Genere par tools/sectors_to_js.py - ne pas editer a la main. ---- */
+const SECTOR_DATA = {"updated":"2026-08-06","sectors":[{"k":"energy","name":"Energy sector","annex":"ee","subs":["Electricity","Heating and cooling networks","Oil","Gas","Hydrogen"]},{"k":"transport","name":"Transportation sector","annex":"ee","subs":["Air","Rail","Water","Road"]},{"k":"bank","name":"Banking sector","annex":"ee","subs":[""]},{"k":"fmi","name":"Financial markets infrastructures","annex":"ee","subs":[""]},{"k":"health","name":"Health","annex":"ee","subs":[""]},{"k":"waste","name":"Wastewater","annex":"ee","subs":[""]},{"k":"digital","name":"Digital infrastructures","annex":"ee","subs":[""]},{"k":"ict","name":"ICT service management","annex":"ee","subs":[""]},{"k":"public","name":"Public administration","annex":"ee","subs":[""]},{"k":"space","name":"Space","annex":"ee","subs":[""]},{"k":"post","name":"Postal and shipping services","annex":"ei","subs":[""]},{"k":"garbage","name":"Waste management","annex":"ei","subs":[""]},{"k":"chem","name":"Manufacturing, production and distribution of chemical products","annex":"ei","subs":[""]},{"k":"food","name":"Food production, processing, and distribution","annex":"ei","subs":[""]},{"k":"manu","name":"Manufacturing","annex":"ei","subs":["Medical and diagnostic devices","Computer, electronic, and optical products","Electrical equipment","Machinery and equipment, N.E.C.","Manufacture of motor vehicles, trailers and semi-trailers","Other transportation equipment"]},{"k":"provider","name":"Digital providers","annex":"ei","subs":[""]},{"k":"research","name":"Research","annex":"ei","subs":[""]}],"rows":{"AT":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"health":{"cov":["YES"],"other":"Establishment of a specialist cybersecurity team for the healthcare sector, known as “Austrian HealthCERT”, responsible for sector-specific CSIRT functions"},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"],"add":"YES, includes managed service providers (MSPs) and managed security service providers (MSSPs)"},"public":{"cov":["YES"],"add":"Administration at federal level (the highest level) and at the level of the Länder (regional government offices and district authorities)","other":"Austria adapted the public administration sector by classifying federal-level entities as \"essential\"\n and regional-level entities as \"important\"\n, while explicitly excluding municipalities\n, educational institutions, the judiciary, the legislature, the central bank, and national security, defense, or law enforcement agencies from these obligations"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"],"add":"YES, online marketplaces, online search engines and social media platforms"},"research":{"cov":["YES"]}},"BE":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"DORA lex specialis carve-out"},"fmi":{"cov":["YES"],"other":"DORA lex specialis carve-out"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Federal public administration entities are essential entities regardless of size ; federated-entity administration pulled in"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"BG":{"energy":{"cov":["YES","YES","YES","YES","YES"],"add":"The law specifically includes operators of electric vehicle charging points"},"transport":{"cov":["YES","YES","YES","YES"],"add":"The Act specifies the inclusion of intelligent transport systems"},"bank":{"cov":["YES"],"add":"Credit institutions","other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"],"add":"Trading platform operators and central counterparties (CCPs)","other":"If already covered by DORA, then partial application"},"health":{"cov":["YES"],"add":"Healthcare providers, EU reference laboratories, pharmaceutical research and development, the manufacture of essential pharmaceutical products, and the manufacture of critical medical devices"},"waste":{"cov":["YES"],"add":"Companies involved in the collection, disposal or treatment of urban, domestic or industrial wastewater"},"digital":{"cov":["YES"],"add":"IXPs, DNS (excluding the root zone), TLD registries, cloud services, data centres, CDNs, trust services, networks and public electronic communications services"},"ict":{"cov":["YES"],"add":"Managed Service Providers (MSPs) and Managed Security Service Providers (MSSPs)"},"public":{"cov":["NO"],"other":"Bulgaria has adapted the \"Public Administration\" sector by defining \"administrative authorities\" as entities belonging strictly to the executive branch\n, while extending the directive's scope to other persons exercising public functions and organizations providing public services when they deliver administrative services electronically"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"HR":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"Subject to special laws (Lex Specialis) and the DORA regulation"},"fmi":{"cov":["YES"],"other":"Subject to special laws (Lex Specialis) and the DORA regulation"},"health":{"cov":["YES"],"other":"Explicitly excludes organizational units of the Ministry of Defence, Armed Forces, and Ministry of Justice performing healthcare activities"},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"],"add":"YES\nIncludes \"Information intermediaries\" defined by regulations governing the exchange of electronic invoices)","other":"Information intermediaries for e-invoices are classified as essential entities regardless of size"},"public":{"cov":["YES"],"add":"YES \nIncludes local and regional self-government units","other":"Includes entities managing, developing, or maintaining state information infrastructure. automatically designating state administration authorities and state IT infrastructure managers as essential entities\n, while classifying other state authorities and local or regional governments as essential or important based on risk and importance assessments"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"],"other":"Research entities and education"},"_new":"Education system (Sustav obrazovanja), including early childhood, primary, secondary, and higher education, as well as system monitoring and development"},"CY":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Public administration entities of the wider public sector"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"CZ":{"energy":{"cov":["YES","YES","YES","YES","YES"],"other":"Includes specific thresholds for significance, such as an installed capacity of at least 100 MW for electricity production or serving at least 90,000 customer points for distribution"},"transport":{"cov":["YES","NO","YES","YES"]},"bank":{"cov":["YES"],"other":"Includes specific reference to credit institutions ; the Czech National Bank is explicitly designated as a provider under the regime of higher obligations"},"fmi":{"cov":["YES"]},"health":{"cov":["YES"],"other":"Explicitly includes the Medical Rescue Service (zdravotnická záchranná služba)"},"waste":{"cov":["YES"],"other":"Applicability threshold based on revenues from the service representing at least 5% of turnover"},"digital":{"cov":["YES"],"other":"Includes specific significance thresholds, such as 350,000 active mobile SIM cards or 100,000 active fixed internet connections for electronic communication services"},"ict":{"cov":["NO"]},"public":{"cov":["YES"],"add":"Includes professional chambers (profesní komora),\nmunicipalities with extended powers, and the city districts of Prague 1 to 22","other":"Provides an exhaustive list of specific bodies (e.g., Police Presidium, Fire Rescue Service, Supreme Audit Office) subject to higher obligations. exercising optional provisions to regulate local-level authorities (such as regions, municipalities with extended powers, and Prague city districts) alongside academic and scientific institutions (such as universities and the Academy of Sciences)"},"space":{"cov":["NO"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"],"other":"Applicability threshold based on revenues from the service representing at least 5% of turnover"},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"],"other":"Serial production of passenger motor vehicles is specifically categorized under higher obligations"},"provider":{"cov":["YES"]},"research":{"cov":["YES"],"add":"Explicitly includes Universities (vysoká škola)","other":"Imposes higher obligations for entities involved in sensitive research (military materials) or critical technology areas (e.g., advanced semiconductors, AI, quantum technologies, biotechnology)"},"_new":"Defence industry (Obranný průmysl)\nSpace industry (Vesmírný průmysl)\nEducation (vzdělávání) - Integrated into the \"Science, research and education\" sector (Sector 12) with explicit inclusion of Universities"},"DK":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"],"add":"Inclusion of Intelligent Transport Systems (ITS)","other":"Exclusion of public bodies for which traffic management or the operation of ITS systems constitutes a non-essential part of their overall activities"},"bank":{"cov":["YES"],"other":"The Act does not apply to entities designated under section 333(1) of the Financial Activities Act (§ 1, stk. 2)"},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Exclusion of activities relating to national security, public safety, defence or law enforcement \nThe Minister may decide to include local authorities and educational establishments (section 1, subsection 7). Denmark adapted the \"Public Administration\" sector by automatically including central and regional government entities within its scope, while leaving the inclusion of local-level authorities to be determined by subsequent ministerial regulations"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"],"other":"Exclusion si la gestion des déchets n'est pas leur activité économique principale"},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"EE":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"],"other":"General practictioners / family physicians under IE to detail \"healthcare providers\""},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["NO"],"other":"Under IE : local units under essential entities and associations of local governments ; data controllers and processors of state registries ; the Estonian foresight centre ; public legal entities : state forest managment centre"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"FI":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["NO"],"other":"The Finnish Cybersecurity Act does not apply to entities to which the DORA Regulation (Regulation (EU) 2022/2554) applies, in accordance with Article 2(4) of DORA"},"fmi":{"cov":["NO"],"other":"The Finnish Cybersecurity Act does not apply to entities to which the DORA Regulation (Regulation (EU) 2022/2554) applies, in accordance with Article 2(4) of DORA"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"tate agencies and institutions\nCourts of law and committees established to handle appeals\nParliamentary organs\nState enterprises\nMunicipalities and joint municipal authorities\nIndependent institutions subject to public law\nUniversities and universities of applied sciences\nAdditionally, private individuals, corporations, and other public-law entities are bound by certain parts of the Act (specifically Chapter 4 and Sections 22–27) when they perform public administrative tasks\n.\nKey Exceptions and Restrictions:\nÅland Islands: The Act does not apply to provincial, state, or municipal authorities operating in the Åland Islands\n.\nChapter 3 Exemptions: Chapter 3 (general public administration governance) does not apply to the Office of the President of Finland, the Parliamentary Ombudsman, the Chancellor of Justice, Kela, the Bank of Finland, courts of law, or universities"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"FR":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"This excludes government bodies operating in the fields of national security, defence, public safety and law enforcement. France has adapted the \"Public Administration\" sector by expanding its scope to include various local authorities—such as regions, departments, and municipalities with over 30,000 inhabitants—as well as public hospitals, socio-medical facilities, and emergency services"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"OIV (Operators of Vital Importance): OIVs are included in the framework, with specific requirements for their SIIV (information systems of vital importance)"},"DE":{"energy":{"cov":["YES","YES","YES","YES","YES"],"other":"Germany integrates hydogen under the Gas subsector"},"transport":{"cov":["YES","YES","YES","YES"],"other":"Germany groups Post and Courier services under \"Transport and Traffic\""},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"],"other":"Regulated under the broad \"Water\" sctor"},"digital":{"cov":["YES"],"other":"To keep digital sectors consolidated, germany moved MSPs and MSSPs directly under \"Digital Infrastructures\" rather than a separate B2B sector"},"ict":{"cov":["YES"],"other":"This B2B sector layout is dissolved. Germany integrates MSPs and MSSPs into the \"Digital Infrastructure\" sector list"},"public":{"cov":["YES"],"other":"The BSIG directly regulates Federal Administration, while state/regional and local administrations are left to state-level transpositions"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Social insurance services and basic security for jobseekers (public admin)"},"GR":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"First-level local government (= municipalities) and second-level local government (=regional authorities) into full scope"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"HU":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"],"add":"Public transport"},"bank":{"cov":["YES"],"other":"Subject to specific provisions in conjunction with the DORA Regulation; explicitly includes the Hungarian National Bank"},"fmi":{"cov":["YES"]},"health":{"cov":["YES"],"add":"Entities engaged in R&D into medicinal products and wholesalers of medicinal products","other":"Inclut les entités fabriquant des dispositifs médicaux considérés comme critiques lors d'une urgence de santé publique"},"waste":{"cov":["YES"]},"digital":{"cov":["YES"],"add":"Data exchange service providers"},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"add":"A comprehensive list including Sándor Palace (the Presidency), the National Assembly, the Constitutional Court, the National Judicial Office and the public prosecutors’ offices","other":"Inclut les opérateurs économiques sous contrôle majoritaire de l'État. Hungary has exercised the NIS2 option to include local governments in its cybersecurity framework, classifying public administration offices representing settlements with more than 20,000 inhabitants as essential entities and those with 20,000 or fewer inhabitants as important entities"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"],"add":"Manufacture of cement, lime, and plaster"},"provider":{"cov":["YES"]},"research":{"cov":["YES"],"other":"Explicitly excludes educational establishments"},"_new":"National Defence: Companies carrying out activities relating to National Defence interests\nPublic utilities: Entities subject to national legislation on gas, electricity, water and waste, as identified by the SARA authority"},"IE":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"The country has adapted the directive by designating a specific list of central government bodies as essential entities, classifying all other qualifying public administration bodies as important entities\n, and exempting public bodies from the draft law's administrative fines and penalties"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"IT":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"],"other":"Local Public Transport Services"},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Local administrations (metropolitan cities, municipalities with pop > 100k, regional capitals, ASLs) and other public entities (economic regulators, public welfare/cultural bodies, public reseqrch institutes, zooprophylactic institutes)"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"],"other":"Domain name registration service providers"},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Local public transport services ; educational institutions carrying out research ; cultural interest subjects ; in-house/publicly controlled or participated companies"},"LV":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"],"other":"Latvia expands road and water transport by adding merchants operating commercially in port territories, merchants performing maintenance works on state highway infrastructure"},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Derived public persons (e.g., self-governing state institutions) ; indirect public administration entities ; private law legal entities performing delegated state administrative tasks"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"],"other":"Latvia groups Research under Education and Science and explicitly adds maintainers of education information systems handling students' personal data"},"_new":"Guarding/security services (private sercurity service providers) as IE ; public mass media (public electronic mass media) as EE"},"LT":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"Financial entities coverged by DORA are exempted from NIS2's risk-management and reporting rules because DORA acts as lex specialis"},"fmi":{"cov":["YES"],"other":"DORA lex specialis carve-out"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Municipal public administration entities (local governments)"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"LU":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Explicit exclusions of specific state bodies (State Intelligence Service, Ministry of Defence, and the Luxembourg Army); exclusion of local level (municipalities / communes)"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"MT":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Malta adapted the \"Public Administration\" sector by extending the directive's risk-based scope to local government authorities rather than regional ones\n and explicitly allowing administrative penalties to be imposed on its public administration entities"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"NL":{"energy":{"cov":["YES","YES","YES","YES","YES"],"other":"Nuclear-energy related activities are coverged under the Electricity subsector"},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Provinces, municipalities and water boards"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Institutions for higher education"},"NO":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"]},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"PL":{"energy":{"cov":["YES","YES","YES","YES","YES"],"other":"Mining / mineral extraction which covers extraction of natural gas, crude oil, brown coal, hard coal and other minerals under concession ; nuclear energy which covers operators of nuclear energy facilities"},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"Merges with financial market infrastructures ; includes cooperative savings and credit unions"},"fmi":{"cov":["YES"],"other":"Merged with the banking sector"},"health":{"cov":["YES"],"other":"Healthcare provision and public health ; production / distribution of active substances, medicinal products and medical devices ; extends scope to open pharmacies, public blood service units, and health monitoring centres"},"waste":{"cov":["YES"]},"digital":{"cov":["YES"],"other":"Divides it into 2 subsectors : digital infrastructures excluding electronic communications and electronic communications ; also includes domain name registration service providers"},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Adds a highly detailed lists of domestic pblic sector entities (including public finance sector units, state cultural institutions, research institutes and regional/municpal offices subject to size thresholds like municipal offices with at leas 50 employees)"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"],"other":"Divides this sector into 4 subsectors : waste collection, waste transport, waste treatment/processing, waste deadlers/brokers"},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Nuclear power investments, separate from Energy"},"PT":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Exapnd it to central / regional direct/indirect administrations, autonomous administrations, independent administrative bodies, the Ombudsperson, and services of the Presidency, Assembly, and courts, sorted into Groups A and B based on size"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"RO":{"energy":{"cov":["YES","YES","YES","YES","YES"],"other":"Beneficiaires of non-replayable projects funded by the Modernisation Fund under OUG 60/2022"},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Excludes specific entities like Ministry of Defense, MAE, ORNISS, judiciary"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]}},"SK":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Slovakia has adapted the \"Public Administration\" sector by dividing it into three distinct subsectors overseen by different ministries\n and extending the scope to include local-level cities\n and public IT administrators"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Slovakia has included several additional sectors or sub-sectors beyond the minimum set out in NIS 2:\nMining (Baníctvo): Added to the energy sector\nMetallurgical industry (Hutnícky priemysel): Added to the industry sector\nMeteorological services (Meteorologická služba): Added to the water and atmosphere sector\nSatellite communications (Satelitná komunikácia): Specifically listed under electronic communications"},"SI":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Slovenia has adapted the \"Public Administration\" sector by designating all central government bodies as essential entities\n, extending mandatory obligations to city municipalities at the local level\n, and explicitly excluding legislative, judicial, and other constitutional state bodies from the definition of public administration"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Slovenia, through its ZINFV-1 Act, also includes entities identified as critical under Directive (EU) 2022/2557 (CER). The history indicates that the Slovenian Act specifically classifies systems into ‘key’, ‘control’ and ‘surveillance’ categories"},"ES":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"Entities covered by DORA are exempt from national risk-management, reporting, supervision and pernalty rules"},"fmi":{"cov":["YES"],"other":"DORA-rregulated entities are exempt"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Excludes entities that perform national security, defense, or public safety activities (unless acting as trust service providers. Regional administration is in scope, local administration is generally excluded. Spain explicitly sweeps in municipalities with populations > 20,000 as important entities."},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Nuclear industry under high criticality ; private security under Other Sectors"},"SE":{"energy":{"cov":["YES","YES","YES","YES","YES"]},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"fmi":{"cov":["YES"],"other":"If already covered by DORA, then partial application"},"health":{"cov":["YES"]},"waste":{"cov":["YES"]},"digital":{"cov":["YES"]},"ict":{"cov":["YES"]},"public":{"cov":["YES"],"other":"Sweden has adapted the public administration sector by exercising its option under the directive to include local-level municipalities (kommuner), regions, and municipal associations within the scope of its cybersecurity law\n, while explicitly excluding the Government, the Government Offices, courts, and parliamentary authorities"},"space":{"cov":["YES"]},"post":{"cov":["YES"]},"garbage":{"cov":["YES"]},"chem":{"cov":["YES"]},"food":{"cov":["YES"]},"manu":{"cov":["YES","YES","YES","YES","YES","YES"]},"provider":{"cov":["YES"]},"research":{"cov":["YES"]},"_new":"Sweden has chosen to fully include local authorities (regions and municipalities) within the scheme for essential entities once they exceed the size thresholds for a medium-sized enterprise"},"GB":{"energy":{"cov":["YES","YES","YES","YES","YES"],"add":"The new bill explicitly extends the scope to include energy-smart appliances and load control services.\nThis includes:\nElectric vehicles and charging points\nElectric heating systems (heat pumps, thermal batteries)\nBattery energy storage systems and virtual power plants","other":"The bill defines ‘load controllers’ as regulated entities"},"transport":{"cov":["YES","YES","YES","YES"]},"bank":{"cov":["YES"]},"fmi":{"cov":["YES"]},"health":{"cov":["YES"]},"waste":{"cov":["NC"],"add":"NC","other":"NC"},"digital":{"cov":["YES"],"add":"The bill specifically establishes the data infrastructure sub-sector","other":"Ofcom has been designated as the regulatory authority for this new sub-sector"},"ict":{"cov":["YES"]},"public":{"cov":["NC"],"add":"NC","other":"NC"},"space":{"cov":["NC"],"add":"NC","other":"NC"},"post":{"cov":["NC"],"add":"NC","other":"NC"},"garbage":{"cov":["NC"],"add":"NC","other":"NC"},"chem":{"cov":["NC"],"add":"NC","other":"NC"},"food":{"cov":["NC"],"add":"NC","other":"NC"},"manu":{"cov":["NC","NC","NC","NC","NC","NC"],"add":"NC","other":"NC"},"provider":{"cov":["YES"]},"research":{"cov":["NC"],"add":"NC","other":"NC"}}}};
 /* ---- Correspondances validees entre referentiels, issues de l'agent de
    correspondance - version equipe. Genere par tools/mapping_to_js.py.
    MAPPING_INDEX est en clair ; le detail est compresse (MAPPING_GZ). ---- */
@@ -18010,6 +18291,205 @@ const I18N = {
     "req.caveat": "Caveat.",
     "req.noSplit": "The source gives these totals, not a breakdown by measure. The {n} measures they apply to are listed in the themes tab.",
     "req.sources": "Legal texts",
+    "nav.europe": "European view",
+    "sect.titleC": "Sectors covered \u00b7 {c}",
+    "sect.st.same": "As in the directive",
+    "sect.st.add": "Extended",
+    "sect.st.other": "Clarified",
+    "sect.st.gap": "Deviation",
+    "sect.st.nc": "Not communicated",
+    "sect.st.none": "Not tracked",
+    "sect.gapL": "Sub-sectors not taken over: {list}",
+    "sect.sumSame": "as in the directive",
+    "sect.sumAdd": "extended",
+    "sect.sumOther": "clarified",
+    "sect.sumGap": "with a deviation",
+    "sect.newTitle": "Sectors added beyond the directive",
+    "sect.detTitle": "Additions and clarifications",
+    "sect.noteC": "Source: Cyber Watch workbook, sheet Sectors - P3 (updated {date}). Drinking water has no column in the sheet and is shown as not tracked.",
+    "eu.sub": "NIS 2 transposition indicators compared across countries, computed from the Cyber Watch workbook. Titles are suggested from the data: use \"Edit title\" to rewrite them, add your analysis under each chart, and download the visuals as PNG.",
+    "eu.nis2only": "The European view is available for NIS 2.",
+    "eu.compare": "Countries compared",
+    "eu.count": "{n} countries",
+    "eu.p.eu": "EU {n}",
+    "eu.p.all": "All tracked ({n})",
+    "eu.p.done": "Transposed",
+    "eu.p.todo": "Not transposed",
+    "eu.p.custom": "Custom selection",
+    "eu.pickAll": "All",
+    "eu.pickEU": "EU only",
+    "eu.pickNone": "None",
+    "eu.noSel": "Select at least one country to display the charts.",
+    "eu.empty": "No data for this selection.",
+    "eu.s.tr": "Transposition",
+    "eu.s.scope": "Scope",
+    "eu.editTitle": "Click to rewrite the title",
+    "eu.resetTitle": "Back to the title computed from the data",
+    "eu.notePh": "Add your analysis\u2026",
+    "eu.source": "Source: Cyber Watch",
+    "eu.filled": "filled for {n} / {total}",
+    "eu.saved": "Rewritten titles and analyses are saved in this browser only. The charts themselves are recalculated from the workbook every time the page opens.",
+    "eu.cat.onTime": "On time",
+    "eu.cat.late": "After the deadline",
+    "eu.cat.notYet": "Not transposed yet",
+    "eu.ring.onTime": "countries transposed <b>on time</b>",
+    "eu.ring.late": "countries transposed <b>after the deadline</b>",
+    "eu.ring.notYet": "countries have <b>not transposed yet</b>",
+    "eu.delayM": "{n} months late",
+    "eu.t.trState": "{late} of {n} countries transposed NIS 2 after the deadline, {todo} have not done so yet",
+    "eu.b.lt": "Less than {n} months",
+    "eu.b.range": "{a} to {b} months",
+    "eu.b.gt": "More than {n} months",
+    "eu.b.le1": "1 month or less",
+    "eu.b.months": "{n} months",
+    "eu.t.trDelay": "A generalised delay: {n} countries transposed late, {avg} months on average",
+    "eu.t.trDelayNone": "No country of the selection transposed late",
+    "eu.k.avgDelay": "months of average delay",
+    "eu.k.maxDelay": "months, the longest delay",
+    "eu.k.notYet": "countries still to transpose",
+    "eu.t.trSem": "Besides the {n} countries on time, entries into force spread from {a} to {b}",
+    "eu.notYetList": "Not transposed or date unknown:",
+    "eu.t.trDoc": "{n} of {total} countries transpose through a {kind}",
+    "eu.v.doc.law": "Law",
+    "eu.v.doc.orderlegalnotice": "Order / legal notice",
+    "eu.v.doc.decreelaw": "Decree-law",
+    "eu.sec.same": "As in the directive everywhere",
+    "eu.t.scopeGrid": "Few new sectors, but national clarifications: {n} of {total} countries add sub-sectors, {sector} is the most detailed sector",
+    "eu.t.scopeNew": "{n} of {total} countries add sectors beyond the directive",
+    "eu.ring.newSectors": "countries <b>add sectors</b> outside Annexes I and II",
+    "eu.t.incDef": "{yes} countries take over the directive's definition of a significant incident, {no} add national criteria",
+    "eu.inc.same": "Follow the directive's definition",
+    "eu.inc.sameD": "Severe operational disruption or financial loss, or considerable material or non-material damage to others.",
+    "eu.inc.more": "Add national precisions",
+    "eu.inc.moreD": "Quantitative or qualitative thresholds written into the law. Hover a flag to read them.",
+    "eu.ncList": "Not communicated:",
+    "eu.t.incOrg": "Incidents are notified to the {org} in {n} countries",
+    "eu.h.incOrg": "Body receiving the notification",
+    "eu.h.incMethod": "Channel",
+    "eu.h.incTimeline": "Timelines",
+    "eu.cat.platform": "Online platform",
+    "eu.cat.mail": "Email",
+    "eu.cat.otherProcess": "Another process",
+    "eu.cat.regNone": "Not available yet",
+    "eu.inc.timelineDiff": "Timelines differ from 24 h / 72 h / 1 month",
+    "eu.v.org.nationalcsirt": "National CSIRT",
+    "eu.v.org.sectoralcsirt": "Sectoral CSIRT",
+    "eu.v.org.multipleorganisms": "Several bodies",
+    "eu.v.org.nationalauthority": "National authority",
+    "eu.t.incSince": "Incident reporting became mandatory between {a} and {b}",
+    "eu.otherList": "Another rule or date unknown:",
+    "eu.t.regMap": "{n} of {total} countries have opened registration, {p} of them through an online platform",
+    "eu.ring.regOpen": "countries with <b>registration modalities available</b>",
+    "eu.reg.platforms": "online platforms",
+    "eu.reg.mail": "by email",
+    "eu.reg.other": "through another process",
+    "eu.reg.none": "Not available yet:",
+    "eu.t.regDelay": "Registration time ranges from {a} to {b}",
+    "eu.days": "{n} days",
+    "eu.monthsN": "{n} months",
+    "eu.k.avgReg": "months on average to register",
+    "eu.k.regShort": "countries at 1 month or less",
+    "eu.t.regInfo": "{n} information items are requested by almost every country",
+    "eu.reg.quick": "Quick-win",
+    "eu.reg.quickD": "information easy to identify and access",
+    "eu.reg.hard": "Challenging",
+    "eu.reg.hardD": "information involving several teams and more time",
+    "eu.info.O": "Entity name",
+    "eu.info.P": "Address",
+    "eu.info.Q": "Contact details",
+    "eu.info.R": "NIS 2 classification (EE / IE)",
+    "eu.info.S": "Member States where services are provided",
+    "eu.info.T": "Identity of the main entity",
+    "eu.info.U": "Company identification number",
+    "eu.info.V": "Single point of contact",
+    "eu.info.X": "IP ranges",
+    "eu.info.Y": "Domain names",
+    "eu.info.Z": "Sector and sub-sector",
+    "eu.info.AA": "Information systems inventory",
+    "eu.info.AB": "Sector-specific legal requirements",
+    "eu.info.AC": "Third-party cyber service providers",
+    "eu.cat.fwFinal": "Final framework",
+    "eu.cat.fwTemp": "Draft or temporary framework",
+    "eu.cat.fwNone": "No framework yet",
+    "eu.ring.fwFinal": "countries have <b>published a final framework</b>",
+    "eu.ring.fwTemp": "countries shared a <b>draft or temporary</b> framework",
+    "eu.ring.fwNone": "countries have <b>no framework yet</b>",
+    "eu.t.fwMap": "{a} final frameworks and {b} temporary ones across {total} countries",
+    "eu.t.fwReq": "From {a} to {b} requirements: frameworks are highly heterogeneous",
+    "eu.avgEE": "EE average: {n}",
+    "eu.avgIE": "IE average: {n}",
+    "eu.outlier": "Bar cut and excluded from the averages: {list}",
+    "eu.t.fwDeadline": "{n} countries set a compliance deadline, from {a} to {b} months",
+    "eu.dl.now": "Immediate compliance",
+    "eu.dl.mid": "Medium transition",
+    "eu.dl.long": "Long transition",
+    "eu.dl.immediate": "Immediate",
+    "eu.ncDeadline": "No deadline set or not communicated:",
+    "eu.t.fwSrc": "{src} inspires the frameworks of {n} countries",
+    "eu.src.P": "ISO 27001 / 27002",
+    "eu.src.Q": "IEC 62443",
+    "eu.src.R": "NIST CSF",
+    "eu.src.S": "NIST SP 800-53",
+    "eu.src.T": "CIS Controls",
+    "eu.src.U": "NIS 1",
+    "eu.src.V": "Belgian CyberFundamentals",
+    "eu.src.W": "Other national regulatory framework",
+    "eu.src.Y": "Other national guidance",
+    "eu.h.presumption": "Presumption of conformity",
+    "eu.fw.presumption": "Recognises a presumption of conformity",
+    "eu.t.fwEeIe": "{n} countries set a different target level for essential and important entities",
+    "eu.fw.dedicated": "Framework dedicated to NIS 2",
+    "eu.fw.levelDiff": "Different target level EE / IE",
+    "eu.fw.deadlineDiff": "Different deadline EE / IE",
+    "eu.fw.gradual": "Gradual path to the target level",
+    "eu.aud.y1": "Every year",
+    "eu.aud.y2": "Every 2 years",
+    "eu.aud.y3": "Every 3 years",
+    "eu.aud.y5": "Every 5 years or more",
+    "eu.aud.free": "No fixed cycle",
+    "eu.t.audPyr": "Only {n} of {total} countries set a fixed audit frequency for essential entities",
+    "eu.k.audFixed": "countries with a fixed frequency",
+    "eu.k.audFree": "risk-based or ad hoc audits",
+    "eu.t.audWho": "{n} countries ask entities to carry out a self-assessment",
+    "eu.h.audOrg": "Body in charge of the audit",
+    "eu.h.audSelf": "Self-assessment",
+    "eu.v.aud.multiple": "Several bodies",
+    "eu.v.aud.nationalauthority": "National authority",
+    "eu.v.aud.externalorganismaccredited": "Accredited external body",
+    "eu.v.aud.sectoralauthorities": "Sectoral authorities",
+    "eu.aud.selfBoth": "For EE and IE",
+    "eu.aud.selfEI": "Only for IE",
+    "eu.aud.selfEE": "Only for EE",
+    "eu.aud.selfNo": "No self-assessment",
+    "eu.t.sanMgmt": "A harmonised sanctions regime, with management accountability strengthened in {n} countries",
+    "eu.san.base": "All countries follow the NIS 2 sanctions\u2026",
+    "eu.san.b1": "Supervisory and corrective measures",
+    "eu.san.b1D": "Warnings, binding instructions, audits, remediation orders, monitoring officer, public disclosure",
+    "eu.san.b2": "Financial sanctions against the entity",
+    "eu.san.b2D": "Up to \u20ac10m or 2% of worldwide turnover for EE, \u20ac7m or 1.4% for IE",
+    "eu.san.b3": "Operational restrictions",
+    "eu.san.b3D": "Temporary suspension of certifications or authorisations, temporary management bans for EE",
+    "eu.san.aligned": "{n} of {total} countries declare sanctions aligned with the directive.",
+    "eu.san.plus": "\u2026but several strengthen management accountability",
+    "eu.san.fin": "countries impose <b>individual financial sanctions</b>",
+    "eu.san.ban": "countries provide a <b>ban on managing</b>",
+    "eu.san.crim": "countries provide <b>criminal penalties</b>",
+    "eu.t.sanMeasures": "{n} countries add penalties not provided for by the directive",
+    "eu.sanc.H": "Penalties beyond the directive",
+    "eu.sanc.J": "Recurring or temporary fines",
+    "eu.sanc.M": "Aggravation for repeat offences",
+    "eu.sanc.N": "Public injunction",
+    "eu.sanc.O": "Withdrawal of certifications",
+    "eu.sanc.P": "Suspension of all or part of activities",
+    "eu.sanc.Q": "Corrective control measures",
+    "eu.sanc.S": "Fines for the public sector",
+    "eu.h.sanFin": "Financial sanctions",
+    "eu.dlOne": "Download this visual (PNG)",
+    "eu.editBtn": "Edit title",
+    "eu.dlAll": "Download all visuals",
+    "eu.dlProgress": "Visual {i} of {n}…",
+    "eu.dlFail": "The visual could not be exported in this browser. Try Chrome or Edge.",
+    "eu.san.moreFin": "More specific modalities than the directive",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -18613,6 +19093,205 @@ const I18N = {
     "req.caveat": "R\u00e9serve.",
     "req.noSplit": "La source donne ces totaux, pas leur r\u00e9partition par mesure. Les {n} mesures auxquelles ils s'appliquent sont list\u00e9es dans l'onglet des th\u00e8mes.",
     "req.sources": "Textes l\u00e9gaux",
+    "nav.europe": "Vue europ\u00e9enne",
+    "sect.titleC": "Secteurs couverts \u00b7 {c}",
+    "sect.st.same": "Comme la directive",
+    "sect.st.add": "\u00c9largi",
+    "sect.st.other": "Pr\u00e9cis\u00e9",
+    "sect.st.gap": "\u00c9cart",
+    "sect.st.nc": "Non communiqu\u00e9",
+    "sect.st.none": "Non suivi",
+    "sect.gapL": "Sous-secteurs non repris : {list}",
+    "sect.sumSame": "comme la directive",
+    "sect.sumAdd": "\u00e9largis",
+    "sect.sumOther": "pr\u00e9cis\u00e9s",
+    "sect.sumGap": "avec un \u00e9cart",
+    "sect.newTitle": "Secteurs ajout\u00e9s hors directive",
+    "sect.detTitle": "Ajouts et pr\u00e9cisions",
+    "sect.noteC": "Source : classeur Cyber Watch, feuille Sectors - P3 (mise \u00e0 jour du {date}). L'eau potable n'a pas de colonne dans la feuille : elle est indiqu\u00e9e comme non suivie.",
+    "eu.sub": "Les indicateurs de transposition de NIS 2 compar\u00e9s entre pays, calcul\u00e9s depuis le classeur Cyber Watch. Les titres sont propos\u00e9s \u00e0 partir des donn\u00e9es : le bouton \u00ab Modifier le titre \u00bb permet de les r\u00e9\u00e9crire, ajoutez votre analyse sous chaque graphique et t\u00e9l\u00e9chargez les visuels en PNG.",
+    "eu.nis2only": "La vue europ\u00e9enne est disponible pour NIS 2.",
+    "eu.compare": "Pays compar\u00e9s",
+    "eu.count": "{n} pays",
+    "eu.p.eu": "UE {n}",
+    "eu.p.all": "Tous les pays suivis ({n})",
+    "eu.p.done": "Transpos\u00e9s",
+    "eu.p.todo": "Non transpos\u00e9s",
+    "eu.p.custom": "S\u00e9lection personnalis\u00e9e",
+    "eu.pickAll": "Tous",
+    "eu.pickEU": "UE seulement",
+    "eu.pickNone": "Aucun",
+    "eu.noSel": "S\u00e9lectionnez au moins un pays pour afficher les graphiques.",
+    "eu.empty": "Aucune donn\u00e9e pour cette s\u00e9lection.",
+    "eu.s.tr": "Transposition",
+    "eu.s.scope": "P\u00e9rim\u00e8tre",
+    "eu.editTitle": "Cliquer pour r\u00e9\u00e9crire le titre",
+    "eu.resetTitle": "Revenir au titre calcul\u00e9 depuis les donn\u00e9es",
+    "eu.notePh": "Ajouter votre analyse\u2026",
+    "eu.source": "Source : Cyber Watch",
+    "eu.filled": "renseign\u00e9 pour {n} / {total}",
+    "eu.saved": "Les titres r\u00e9\u00e9crits et les analyses sont enregistr\u00e9s dans ce navigateur uniquement. Les graphiques, eux, sont recalcul\u00e9s depuis le classeur \u00e0 chaque ouverture.",
+    "eu.cat.onTime": "\u00c0 temps",
+    "eu.cat.late": "Apr\u00e8s l'\u00e9ch\u00e9ance",
+    "eu.cat.notYet": "Pas encore transpos\u00e9",
+    "eu.ring.onTime": "pays ont transpos\u00e9 <b>\u00e0 temps</b>",
+    "eu.ring.late": "pays ont transpos\u00e9 <b>apr\u00e8s l'\u00e9ch\u00e9ance</b>",
+    "eu.ring.notYet": "pays n'ont <b>pas encore transpos\u00e9</b>",
+    "eu.delayM": "{n} mois de retard",
+    "eu.t.trState": "{late} pays sur {n} ont transpos\u00e9 NIS 2 apr\u00e8s l'\u00e9ch\u00e9ance, {todo} ne l'ont pas encore fait",
+    "eu.b.lt": "Moins de {n} mois",
+    "eu.b.range": "{a} \u00e0 {b} mois",
+    "eu.b.gt": "Plus de {n} mois",
+    "eu.b.le1": "1 mois ou moins",
+    "eu.b.months": "{n} mois",
+    "eu.t.trDelay": "Un retard g\u00e9n\u00e9ralis\u00e9 : {n} pays ont transpos\u00e9 en retard, de {avg} mois en moyenne",
+    "eu.t.trDelayNone": "Aucun pays de la s\u00e9lection n'a transpos\u00e9 en retard",
+    "eu.k.avgDelay": "mois de retard moyen",
+    "eu.k.maxDelay": "mois, le retard le plus long",
+    "eu.k.notYet": "pays encore \u00e0 transposer",
+    "eu.t.trSem": "Hors les {n} pays \u00e0 temps, des entr\u00e9es en vigueur \u00e9tal\u00e9es de {a} \u00e0 {b}",
+    "eu.notYetList": "Non transpos\u00e9 ou date inconnue :",
+    "eu.t.trDoc": "{n} pays sur {total} transposent par un texte de type \u00ab {kind} \u00bb",
+    "eu.v.doc.law": "Loi",
+    "eu.v.doc.orderlegalnotice": "Arr\u00eat\u00e9 / avis l\u00e9gal",
+    "eu.v.doc.decreelaw": "D\u00e9cret-loi",
+    "eu.sec.same": "Repris tel quel partout",
+    "eu.t.scopeGrid": "Peu de nouveaux secteurs, mais des pr\u00e9cisions nationales : {n} pays sur {total} ajoutent des sous-secteurs, le secteur {sector} est le plus pr\u00e9cis\u00e9",
+    "eu.t.scopeNew": "{n} pays sur {total} ajoutent des secteurs hors directive",
+    "eu.ring.newSectors": "pays <b>ajoutent des secteurs</b> hors annexes I et II",
+    "eu.t.incDef": "{yes} pays reprennent la d\u00e9finition de l'incident significatif de la directive, {no} y ajoutent des crit\u00e8res nationaux",
+    "eu.inc.same": "Reprennent la d\u00e9finition de la directive",
+    "eu.inc.sameD": "Perturbation op\u00e9rationnelle grave ou perte financi\u00e8re, ou dommages mat\u00e9riels ou immat\u00e9riels consid\u00e9rables pour des tiers.",
+    "eu.inc.more": "Ajoutent des pr\u00e9cisions nationales",
+    "eu.inc.moreD": "Seuils quantitatifs ou qualitatifs inscrits dans la loi. Survolez un drapeau pour les lire.",
+    "eu.ncList": "Non communiqu\u00e9 :",
+    "eu.t.incOrg": "Les incidents sont notifi\u00e9s \u00e0 un organisme de type \u00ab {org} \u00bb dans {n} pays",
+    "eu.h.incOrg": "Organisme destinataire",
+    "eu.h.incMethod": "Canal",
+    "eu.h.incTimeline": "D\u00e9lais",
+    "eu.cat.platform": "Plateforme en ligne",
+    "eu.cat.mail": "Courriel",
+    "eu.cat.otherProcess": "Autre proc\u00e9dure",
+    "eu.cat.regNone": "Pas encore disponible",
+    "eu.inc.timelineDiff": "D\u00e9lais diff\u00e9rents de 24 h / 72 h / 1 mois",
+    "eu.v.org.nationalcsirt": "CSIRT national",
+    "eu.v.org.sectoralcsirt": "CSIRT sectoriel",
+    "eu.v.org.multipleorganisms": "Plusieurs organismes",
+    "eu.v.org.nationalauthority": "Autorit\u00e9 nationale",
+    "eu.t.incSince": "La notification des incidents est devenue obligatoire entre {a} et {b}",
+    "eu.otherList": "Autre r\u00e8gle ou date inconnue :",
+    "eu.t.regMap": "{n} pays sur {total} ont ouvert l'enregistrement, dont {p} par une plateforme en ligne",
+    "eu.ring.regOpen": "pays avec des <b>modalit\u00e9s d'enregistrement disponibles</b>",
+    "eu.reg.platforms": "plateformes en ligne",
+    "eu.reg.mail": "par courriel",
+    "eu.reg.other": "par une autre proc\u00e9dure",
+    "eu.reg.none": "Pas encore disponible :",
+    "eu.t.regDelay": "Des d\u00e9lais d'enregistrement de {a} \u00e0 {b}",
+    "eu.days": "{n} jours",
+    "eu.monthsN": "{n} mois",
+    "eu.k.avgReg": "mois en moyenne pour s'enregistrer",
+    "eu.k.regShort": "pays \u00e0 1 mois ou moins",
+    "eu.t.regInfo": "{n} informations sont demand\u00e9es par la quasi-totalit\u00e9 des pays",
+    "eu.reg.quick": "Quick-win",
+    "eu.reg.quickD": "informations faciles \u00e0 identifier et \u00e0 obtenir",
+    "eu.reg.hard": "Plus exigeant",
+    "eu.reg.hardD": "informations qui mobilisent plusieurs \u00e9quipes et plus de temps",
+    "eu.info.O": "Nom de l'entit\u00e9",
+    "eu.info.P": "Adresse",
+    "eu.info.Q": "Coordonn\u00e9es",
+    "eu.info.R": "Classification NIS 2 (EE / EI)",
+    "eu.info.S": "\u00c9tats membres o\u00f9 les services sont fournis",
+    "eu.info.T": "Identit\u00e9 de l'entit\u00e9 principale",
+    "eu.info.U": "Num\u00e9ro d'identification de l'entreprise",
+    "eu.info.V": "Point de contact unique",
+    "eu.info.X": "Plages d'adresses IP",
+    "eu.info.Y": "Noms de domaine",
+    "eu.info.Z": "Secteur et sous-secteur",
+    "eu.info.AA": "Inventaire des syst\u00e8mes d'information",
+    "eu.info.AB": "Exigences l\u00e9gales sectorielles",
+    "eu.info.AC": "Prestataires de services cyber",
+    "eu.cat.fwFinal": "R\u00e9f\u00e9rentiel final",
+    "eu.cat.fwTemp": "R\u00e9f\u00e9rentiel provisoire ou projet",
+    "eu.cat.fwNone": "Pas encore de r\u00e9f\u00e9rentiel",
+    "eu.ring.fwFinal": "pays ont <b>publi\u00e9 un r\u00e9f\u00e9rentiel final</b>",
+    "eu.ring.fwTemp": "pays ont partag\u00e9 un <b>r\u00e9f\u00e9rentiel provisoire</b>",
+    "eu.ring.fwNone": "pays n'ont <b>pas encore de r\u00e9f\u00e9rentiel</b>",
+    "eu.t.fwMap": "{a} r\u00e9f\u00e9rentiels finaux et {b} provisoires sur {total} pays",
+    "eu.t.fwReq": "De {a} \u00e0 {b} exigences : des r\u00e9f\u00e9rentiels tr\u00e8s h\u00e9t\u00e9rog\u00e8nes",
+    "eu.avgEE": "Moyenne EE : {n}",
+    "eu.avgIE": "Moyenne EI : {n}",
+    "eu.outlier": "Barre coup\u00e9e et exclue des moyennes : {list}",
+    "eu.t.fwDeadline": "{n} pays ont fix\u00e9 un d\u00e9lai de mise en conformit\u00e9, de {a} \u00e0 {b} mois",
+    "eu.dl.now": "Conformit\u00e9 imm\u00e9diate",
+    "eu.dl.mid": "Transition moyenne",
+    "eu.dl.long": "Transition longue",
+    "eu.dl.immediate": "Imm\u00e9diat",
+    "eu.ncDeadline": "Sans d\u00e9lai fix\u00e9 ou non communiqu\u00e9 :",
+    "eu.t.fwSrc": "{src} inspire les r\u00e9f\u00e9rentiels de {n} pays",
+    "eu.src.P": "ISO 27001 / 27002",
+    "eu.src.Q": "IEC 62443",
+    "eu.src.R": "NIST CSF",
+    "eu.src.S": "NIST SP 800-53",
+    "eu.src.T": "CIS Controls",
+    "eu.src.U": "NIS 1",
+    "eu.src.V": "CyberFundamentals belge",
+    "eu.src.W": "Autre cadre r\u00e9glementaire national",
+    "eu.src.Y": "Autre guide national",
+    "eu.h.presumption": "Pr\u00e9somption de conformit\u00e9",
+    "eu.fw.presumption": "Reconna\u00eet une pr\u00e9somption de conformit\u00e9",
+    "eu.t.fwEeIe": "{n} pays fixent un niveau cible diff\u00e9rent pour les entit\u00e9s essentielles et importantes",
+    "eu.fw.dedicated": "R\u00e9f\u00e9rentiel d\u00e9di\u00e9 \u00e0 NIS 2",
+    "eu.fw.levelDiff": "Niveau cible diff\u00e9rent EE / EI",
+    "eu.fw.deadlineDiff": "D\u00e9lai diff\u00e9rent EE / EI",
+    "eu.fw.gradual": "Mont\u00e9e progressive vers le niveau cible",
+    "eu.aud.y1": "Chaque ann\u00e9e",
+    "eu.aud.y2": "Tous les 2 ans",
+    "eu.aud.y3": "Tous les 3 ans",
+    "eu.aud.y5": "Tous les 5 ans ou plus",
+    "eu.aud.free": "Sans cycle fixe",
+    "eu.t.audPyr": "Seuls {n} pays sur {total} fixent une fr\u00e9quence d'audit pour les entit\u00e9s essentielles",
+    "eu.k.audFixed": "pays avec une fr\u00e9quence fixe",
+    "eu.k.audFree": "audits fond\u00e9s sur le risque ou ponctuels",
+    "eu.t.audWho": "{n} pays demandent aux entit\u00e9s une auto-\u00e9valuation",
+    "eu.h.audOrg": "Organisme en charge de l'audit",
+    "eu.h.audSelf": "Auto-\u00e9valuation",
+    "eu.v.aud.multiple": "Plusieurs organismes",
+    "eu.v.aud.nationalauthority": "Autorit\u00e9 nationale",
+    "eu.v.aud.externalorganismaccredited": "Organisme externe accr\u00e9dit\u00e9",
+    "eu.v.aud.sectoralauthorities": "Autorit\u00e9s sectorielles",
+    "eu.aud.selfBoth": "Pour les EE et les EI",
+    "eu.aud.selfEI": "Pour les EI seulement",
+    "eu.aud.selfEE": "Pour les EE seulement",
+    "eu.aud.selfNo": "Pas d'auto-\u00e9valuation",
+    "eu.t.sanMgmt": "Un r\u00e9gime de sanctions harmonis\u00e9, avec une responsabilit\u00e9 des dirigeants renforc\u00e9e dans {n} pays",
+    "eu.san.base": "Tous les pays reprennent les sanctions de NIS 2\u2026",
+    "eu.san.b1": "Mesures de supervision et correctives",
+    "eu.san.b1D": "Avertissements, instructions contraignantes, audits, injonctions de mise en conformit\u00e9, responsable de contr\u00f4le, publicit\u00e9",
+    "eu.san.b2": "Sanctions financi\u00e8res contre l'entit\u00e9",
+    "eu.san.b2D": "Jusqu'\u00e0 10 M\u20ac ou 2 % du CA mondial pour les EE, 7 M\u20ac ou 1,4 % pour les EI",
+    "eu.san.b3": "Restrictions op\u00e9rationnelles",
+    "eu.san.b3D": "Suspension temporaire de certifications ou d'autorisations, interdiction temporaire de diriger pour les EE",
+    "eu.san.aligned": "{n} pays sur {total} d\u00e9clarent des sanctions align\u00e9es sur la directive.",
+    "eu.san.plus": "\u2026mais plusieurs renforcent la responsabilit\u00e9 des dirigeants",
+    "eu.san.fin": "pays pr\u00e9voient des <b>sanctions financi\u00e8res individuelles</b>",
+    "eu.san.ban": "pays pr\u00e9voient une <b>interdiction de diriger</b>",
+    "eu.san.crim": "pays pr\u00e9voient des <b>sanctions p\u00e9nales</b>",
+    "eu.t.sanMeasures": "{n} pays ajoutent des sanctions non pr\u00e9vues par la directive",
+    "eu.sanc.H": "Sanctions hors directive",
+    "eu.sanc.J": "Amendes r\u00e9currentes ou temporaires",
+    "eu.sanc.M": "Aggravation en cas de r\u00e9cidive",
+    "eu.sanc.N": "Injonction publique",
+    "eu.sanc.O": "Retrait de certifications",
+    "eu.sanc.P": "Suspension de tout ou partie des activit\u00e9s",
+    "eu.sanc.Q": "Mesures de contr\u00f4le correctives",
+    "eu.sanc.S": "Amendes pour le secteur public",
+    "eu.h.sanFin": "Sanctions financi\u00e8res",
+    "eu.dlOne": "T\u00e9l\u00e9charger ce visuel (PNG)",
+    "eu.editBtn": "Modifier le titre",
+    "eu.dlAll": "T\u00e9l\u00e9charger tous les visuels",
+    "eu.dlProgress": "Visuel {i} sur {n}\u2026",
+    "eu.dlFail": "Le visuel n'a pas pu \u00eatre export\u00e9 dans ce navigateur. Essayez Chrome ou Edge.",
+    "eu.san.moreFin": "Modalit\u00e9s plus sp\u00e9cifiques que la directive",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -19130,7 +19809,7 @@ const REG_SPECS = {
     full: "Directive (EU) 2022/2555 - transposition deadline 17 Oct 2024",
     titleKey: "ov.title", subKey: "ov.sub", footKey: "foot.nis2",
     countries: () => [...COUNTRIES_1, ...COUNTRIES_2, ...COUNTRIES_3, ...COUNTRIES_4],
-    tabs: ["overview", "countries", "inbox", "sources", "mapping"],
+    tabs: ["overview", "europe", "countries", "inbox", "sources", "mapping"],
     levels: {
       1: "lvl.1", 2: "lvl.2", 3: "lvl.3", 4: "lvl.4"
     },
@@ -19436,7 +20115,7 @@ function refreshBadge(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ["overview", "countries", "country", "inbox", "insights", "sources", "mapping",
+const VIEWS = ["overview", "europe", "countries", "country", "inbox", "insights", "sources", "mapping",
                "dev", "devchat"];
 let currentRoute = { v: "overview", arg: null };
 function parseHash(){
@@ -19448,6 +20127,7 @@ function renderCurrent(){ route(currentRoute.v, currentRoute.arg, true); }
 function route(v, arg, force){
   const render = {
     overview: renderOverview, countries: renderCountries,
+    europe: typeof renderEurope === "function" ? renderEurope : null,
     country: () => renderCountry(arg), inbox: renderInbox,
     insights: renderInsights, sources: renderSources,
     mapping: typeof renderMapping === "function" ? () => renderMapping(arg) : null,
@@ -20998,23 +21678,92 @@ const FICHE_EI = [
 /* Des lignes compactes plutot que des cartes : les dix-huit secteurs tiennent
    sans defilement, alors que l'annexe II etait coupee en bas de la fenetre sans
    que rien ne signale qu'elle continuait. */
-function ficheSectorsHtml(){
+/* Le perimetre retenu par le pays, lu dans la feuille « Sectors - P3 ».
+ *
+ * Chaque secteur porte au plus trois signaux : un sous-secteur de la directive
+ * que le pays ne reprend pas (ecart), des sous-secteurs ajoutes (elargi), des
+ * precisions sans changement de perimetre (precise). Sans aucun des trois, le
+ * secteur est repris tel quel. L'eau potable n'a pas de colonne dans la
+ * feuille : elle est dite « non suivie » plutot que presentee comme conforme.
+ *
+ * Le texte des ajouts et precisions est liste sous la grille, pas dans les
+ * tuiles : une tuile de trois lignes de texte juridique cassait l'alignement et
+ * noyait les dix-sept autres. */
+function sectorState(iso, key){
+  const row = typeof SECTOR_DATA !== "undefined" && SECTOR_DATA.rows[iso];
+  if (!row) return null;
+  const x = row[key];
+  if (!x) return { tracked: false };
+  const spec = SECTOR_DATA.sectors.find(s => s.k === key);
+  const gaps = x.cov.map((v, i) => v === "NO" ? (spec.subs[i] || spec.name) : null).filter(Boolean);
+  const nc = x.cov.length && x.cov.every(v => v === "NC" || v == null);
+  const txt = v => v && v !== "NC" ? v : null;
+  return { tracked: true, gaps, nc, add: txt(x.add), other: txt(x.other) };
+}
+function sectorTags(st){
+  if (!st) return "";
+  if (!st.tracked) return `<span class="stag mute">${t("sect.st.none")}</span>`;
+  if (st.nc) return `<span class="stag mute">${t("sect.st.nc")}</span>`;
+  const tags = [];
+  if (st.gaps.length) tags.push(`<span class="stag gap">${t("sect.st.gap")}</span>`);
+  if (st.add) tags.push(`<span class="stag add">${t("sect.st.add")}</span>`);
+  if (st.other) tags.push(`<span class="stag oth">${t("sect.st.other")}</span>`);
+  return tags.join("") || `<span class="stag same">${t("sect.st.same")}</span>`;
+}
+function ficheSectorsHtml(iso){
+  const has = iso && typeof SECTOR_DATA !== "undefined" && SECTOR_DATA.rows[iso];
+  const c = iso && byIso[iso];
+  const states = {};
+  FICHE_EE.concat(FICHE_EI).forEach(r => { states[r[0]] = has ? sectorState(iso, r[0]) : null; });
   const row = (r, cls) => `<li class="fs ${cls}">
       <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round">${SECT_ICONS[r[0]] || ""}</svg></span>
-      <span class="st"><b>${t(r[1])}</b><span>${t(r[2])}</span></span></li>`;
+      <span class="st"><b>${t(r[1])}</b><span>${t(r[2])}</span>
+        ${has ? `<span class="stags">${sectorTags(states[r[0]])}</span>` : ""}</span></li>`;
   const block = (label, list, cls) => `<section class="fann-b ${cls}">
       <h3 class="fann"><i></i>${label}<span>${t("fiche.sectorsCount", { n: list.length })}</span></h3>
       <ul class="fgrid">${list.map(r => row(r, cls)).join("")}</ul></section>`;
+
+  let details = "", summary = "";
+  if (has) {
+    const all = FICHE_EE.concat(FICHE_EI);
+    const n = { same: 0, add: 0, other: 0, gap: 0 };
+    const lines = [];
+    all.forEach(r => {
+      const st = states[r[0]];
+      if (!st || !st.tracked || st.nc) return;
+      if (!st.gaps.length && !st.add && !st.other) n.same++;
+      if (st.add) n.add++;
+      if (st.other) n.other++;
+      if (st.gaps.length) n.gap++;
+      const parts = [];
+      if (st.gaps.length) parts.push(`<p><span class="stag gap">${t("sect.st.gap")}</span>${esc(t("sect.gapL", { list: st.gaps.join(", ") }))}</p>`);
+      if (st.add) parts.push(`<p><span class="stag add">${t("sect.st.add")}</span>${esc(st.add)}</p>`);
+      if (st.other) parts.push(`<p><span class="stag oth">${t("sect.st.other")}</span>${esc(st.other)}</p>`);
+      if (parts.length) lines.push(`<li><b>${t(r[1])}</b>${parts.join("")}</li>`);
+    });
+    const extra = SECTOR_DATA.rows[iso]._new;
+    summary = `<div class="fsum">
+      <span><b>${n.same}</b> ${t("sect.sumSame")}</span>
+      <span><i class="stag add"></i><b>${n.add}</b> ${t("sect.sumAdd")}</span>
+      <span><i class="stag oth"></i><b>${n.other}</b> ${t("sect.sumOther")}</span>
+      <span><i class="stag gap"></i><b>${n.gap}</b> ${t("sect.sumGap")}</span></div>`;
+    details = `${extra && extra !== "NC" ? `<section class="fsnew">
+        <h3 class="fann"><i></i>${t("sect.newTitle")}</h3><p>${esc(extra)}</p></section>` : ""}
+      ${lines.length ? `<section class="fsdet"><h3 class="fann"><i></i>${t("sect.detTitle")}</h3>
+        <ul>${lines.join("")}</ul></section>` : ""}`;
+  }
   return `<div class="fmodal">
-    <div class="fmodal-h"><h2>${t("fiche.sectorsTitle")}</h2>
+    <div class="fmodal-h"><h2>${c && has ? t("sect.titleC", { c: esc(c.name) }) : t("fiche.sectorsTitle")}</h2>
       <button class="x" type="button" id="ficheSecClose" aria-label="${t("fiche.close")}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button></div>
     <div class="fmodal-b">
+      ${summary}
       ${block(t("fiche.annex1"), FICHE_EE, "ee")}
       ${block(t("fiche.annex2"), FICHE_EI, "ei")}
-      <p class="fmlg">${t("fiche.sectorsNote")}</p>
+      ${details}
+      <p class="fmlg">${has ? t("sect.noteC", { date: fmtDateL(SECTOR_DATA.updated) }) : t("fiche.sectorsNote")}</p>
     </div></div>`;
 }
 
@@ -21301,7 +22050,7 @@ function renderFiche(c, el){
     </div>
   </div>
 
-  <dialog id="ficheSectors">${ficheSectorsHtml()}</dialog>`;
+  <dialog id="ficheSectors">${ficheSectorsHtml(iso)}</dialog>`;
 
   ficheWire(el);
   /* La generation du rapport, reservee au validateur. app_report.js remplace
@@ -25280,6 +26029,1089 @@ function mapForCountry(iso){
     });
   });
   return out;
+}
+/* ---------- la vue europeenne ----------
+ *
+ * Les graphiques de l'etude comparative (NIS2_Comparative_Study), recalcules a
+ * chaque ouverture depuis le classeur Cyber Watch porte par l'outil. Rien n'est
+ * saisi ici : quand le classeur change et que l'outil est reconstruit, chaque
+ * compteur, chaque drapeau et chaque titre suit.
+ *
+ * Ce qui reste au consultant : le message. Le titre propose est une phrase
+ * factuelle calculee (« 19 pays sur 27… ») ; il peut le reecrire et ajouter son
+ * analyse sous le graphique. Ces textes sont enregistres dans le navigateur, par
+ * graphique, et un titre reecrit ne suit plus les donnees - un bouton le ramene
+ * a la phrase calculee.
+ *
+ * Organisation : les sections suivent la fiche pays (transposition, perimetre,
+ * incidents, enregistrement, referentiel, audits, sanctions), pour qu'un
+ * lecteur passe de la vue d'un pays a la comparaison sans changer de reperes.
+ *
+ * Sources : SHEET_DATA (une case par colonne du classeur) et SECTOR_DATA
+ * (feuille Sectors - P3). Les champs types de COUNTRIES ne servent qu'a la
+ * liste des pays : ils sont plus anciens que le classeur sur plusieurs retards,
+ * et deux sources pour un meme chiffre finiraient par se contredire a l'ecran.
+ *
+ * Lecture prudente : plusieurs colonnes numeriques portent du texte
+ * (« 36 ; ad-hoc », « 15 a 45 jours »). Le premier nombre est retenu quand il y
+ * en a un ; sinon le pays tombe dans une categorie explicite (« sans cycle
+ * fixe », « non precise ») et le texte d'origine reste lisible au survol.
+ */
+
+const EU_SECTIONS = [
+  { key: "tr", icon: "clock", tKey: "eu.s.tr" },
+  { key: "scope", icon: "grid", tKey: "eu.s.scope" },
+  { key: "inc", icon: "alert", tKey: "fiche.inc" },
+  { key: "reg", icon: "card", tKey: "fiche.reg" },
+  { key: "fw", icon: "shield", tKey: "fiche.fw" },
+  { key: "aud", icon: "search", tKey: "fiche.aud" },
+  { key: "san", icon: "scale", tKey: "fiche.san" }
+];
+
+/* ---------- lecture ---------- */
+function euCell(iso, key, col){
+  const r = typeof SHEET_DATA !== "undefined" && SHEET_DATA.rows[iso];
+  const v = r && r[key] && r[key][col];
+  return v == null ? null : String(v);
+}
+const euNC = v => v == null || v === "NC";
+const euYes = v => v != null && /^\s*(yes|oui)\b/i.test(v);
+const euNo = v => v != null && /^\s*(no|non)\b/i.test(v);
+function euNum(v){
+  if (euNC(v)) return null;
+  const m = /(\d+(?:[.,]\d+)?)/.exec(v);
+  if (!m) return null;
+  const n = parseFloat(m[1].replace(",", "."));
+  /* « 15 a 45 jours » : un delai en jours, ramene au mois */
+  return /jour|day/i.test(v) ? Math.round(n / 30 * 10) / 10 : n;
+}
+const euRound = n => Math.round(n * 10) / 10;
+const euFmt = n => String(euRound(n)).replace(".", lang === "fr" ? "," : ".");
+
+/* ---------- selection des pays ---------- */
+const EU_PRESETS = ["eu", "all", "done", "todo", "custom"];
+function euAll(){ return COUNTRIES.slice().sort((a, b) => a.name.localeCompare(b.name, lang)); }
+function euTransposed(iso){ return euYes(euCell(iso, "id", "F")); }
+function euSelState(){
+  const s = store.euSel || {};
+  return { preset: EU_PRESETS.includes(s.preset) ? s.preset : "eu",
+           isos: Array.isArray(s.isos) ? s.isos : [] };
+}
+function euSelection(){
+  const s = euSelState();
+  const all = euAll();
+  if (s.preset === "all") return all;
+  if (s.preset === "done") return all.filter(c => c.eu && euTransposed(c.iso));
+  if (s.preset === "todo") return all.filter(c => c.eu && !euTransposed(c.iso));
+  if (s.preset === "custom") return all.filter(c => s.isos.includes(c.iso));
+  return all.filter(c => c.eu);
+}
+
+/* ---------- textes du consultant ---------- */
+function euText(id){ return (store.euText || {})[id] || {}; }
+function euSaveText(id, field, value){
+  store.euText = store.euText || {};
+  const cur = Object.assign({}, store.euText[id]);
+  if (value) cur[field] = value; else delete cur[field];
+  if (Object.keys(cur).length) store.euText[id] = cur; else delete store.euText[id];
+  saveStore();
+}
+
+/* ---------- briques graphiques ---------- */
+const euName = iso => (byIso[iso] || {}).name || iso;
+function euFlag(iso, tipHtml){
+  const tipTxt = `<b>${esc(euName(iso))}</b>${tipHtml ? "<br>" + tipHtml : ""}`;
+  return `<a class="eu-flag" href="#/country/${iso}" data-tip="${esc(tipTxt)}" aria-label="${esc(euName(iso))}">${flagSvg(iso)}</a>`;
+}
+function euFlags(isos, max, tipOf){
+  const shown = max ? isos.slice(0, max) : isos;
+  const more = isos.length - shown.length;
+  return `<span class="eu-flags">${shown.map(i => euFlag(i, tipOf ? tipOf(i) : "")).join("")}${more > 0
+    ? `<span class="eu-more" data-tip="${esc(isos.slice(max).map(euName).join(", "))}">+${more}</span>` : ""}</span>`;
+}
+/* Jauge circulaire de l'etude : un nombre, sur le total de la selection. */
+function euRing(n, total, color, label, isos){
+  const r = 30, C = 2 * Math.PI * r, p = total ? n / total : 0;
+  return `<div class="eu-ring">
+    <div class="eu-ring-g"><svg viewBox="0 0 76 76" aria-hidden="true">
+      <circle cx="38" cy="38" r="${r}" fill="none" style="stroke:var(--surface3)" stroke-width="8"/>
+      <circle cx="38" cy="38" r="${r}" fill="none" style="stroke:${color}" stroke-width="8" stroke-linecap="round"
+        stroke-dasharray="${(C * p).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 38 38)"/>
+    </svg>
+    <div class="eu-ring-n"><b>${n}</b><span>/${total}</span></div></div>
+    <div class="eu-ring-l"><span>${label}</span>${isos && isos.length ? euFlags(isos, 12) : ""}</div>
+  </div>`;
+}
+function euLegend(items){
+  return `<div class="eu-legend">${items.map(it =>
+    `<span><i style="background:${it.color}"></i>${it.label} <em>${it.n}</em></span>`).join("")}</div>`;
+}
+/* Carte : une couleur par categorie ; hors selection, le pays s'efface. */
+function euMap(sel, catOf, cats){
+  const inSel = new Set(sel.map(c => c.iso));
+  let paths = "";
+  for (const [iso, d] of Object.entries(MAP_DATA.paths)) {
+    const c = byIso[iso];
+    if (!c || !inSel.has(iso)) {
+      paths += `<path d="${d}" style="fill:var(--untracked)" opacity="${c ? .55 : 1}" stroke-width=".7"/>`;
+      continue;
+    }
+    const k = catOf(c);
+    const cat = cats.find(x => x.k === k.k) || cats[cats.length - 1];
+    const tipTxt = `<b>${esc(c.name)}</b><span class="m">${cat.label}</span>${k.raw ? "<br>" + esc(k.raw) : ""}`;
+    paths += `<path class="ctry" data-iso="${iso}" d="${d}" style="fill:${cat.color}" stroke-width=".7"
+      data-tip="${esc(tipTxt)}"/>`;
+  }
+  return `<svg class="eu-map" viewBox="${MAP_DATA.viewBox}" role="img">${paths}</svg>`;
+}
+/* Paliers en escalier : chaque barre commence ou la precedente s'arrete, la
+   longueur est le nombre de pays. C'est la forme du « generalized delay » de
+   l'etude, et elle se lit comme une repartition cumulee. */
+function euStairs(groups, total){
+  let cum = 0;
+  const rows = groups.map(g => {
+    const n = g.isos.length;
+    const left = total ? cum / total * 100 : 0;
+    const w = total ? n / total * 100 : 0;
+    cum += n;
+    return `<div class="eu-st-row${n ? "" : " empty"}">
+      <div class="eu-st-f">${euFlags(g.isos, 0, g.tipOf)}</div>
+      <div class="eu-st-t">
+        <div class="eu-st-b" style="left:${left}%;width:max(${w}%,6px);background:${g.color}"
+          data-tip="${esc(`<b>${g.label}</b><br>${n} ${t("common.countries")}`)}"></div>
+        <span class="eu-st-l" style="left:${left + w > 72 ? left : left + w}%" data-side="${left + w > 72 ? "before" : "after"}">
+          <b>${g.label}</b> · ${n}</span>
+      </div></div>`;
+  }).join("");
+  return `<div class="eu-stairs">${rows}</div>`;
+}
+/* Barres de part : x pays sur n, et les drapeaux concernes. */
+function euShare(rows, total, opts){
+  opts = opts || {};
+  return `<div class="eu-share">${rows.map(r => {
+    if (r.head) return `<div class="eu-sh-h">${r.head}</div>`;
+    const n = r.isos.length;
+    const p = total ? n / total * 100 : 0;
+    return `<div class="eu-sh-row">
+      <div class="eu-sh-l">${r.label}</div>
+      <div class="eu-sh-t"><div class="eu-sh-b" style="width:${p}%;background:${r.color || "var(--accent)"}"></div></div>
+      <span class="eu-sh-n"><b>${n}</b>/${total}</span>
+      <div class="eu-sh-f">${euFlags(r.isos, opts.flags || 6, r.tipOf)}</div>
+    </div>`;
+  }).join("")}</div>`;
+}
+function euGroup(sel, fn){
+  const m = new Map();
+  sel.forEach(c => {
+    const k = fn(c);
+    if (k == null) return;
+    if (!m.has(k)) m.set(k, []);
+    m.get(k).push(c.iso);
+  });
+  return m;
+}
+
+/* ---------- les graphiques ---------- */
+const EU_C = {
+  good: "var(--m4)", mid: "var(--accent)", soft: "var(--m1)", warn: "#f5b82e",
+  bad: "#ff3b5c", nc: "var(--line2)", ee: "var(--ee)", ie: "var(--ie)"
+};
+
+function euTrState(c){
+  const f = euCell(c.iso, "id", "F");
+  const delay = euNum(euCell(c.iso, "id", "I"));
+  if (!euYes(f)) return { k: "todo", delay: null };
+  if (!delay || /in time/i.test(euCell(c.iso, "id", "G") || "")) return { k: "ontime", delay: 0 };
+  return { k: "late", delay };
+}
+
+const EU_CHARTS = {
+  tr: [
+    function trState(sel){
+      const n = sel.length;
+      const g = { ontime: [], late: [], todo: [] };
+      sel.forEach(c => g[euTrState(c).k].push(c.iso));
+      const cats = [
+        { k: "ontime", label: t("eu.cat.onTime"), color: EU_C.good },
+        { k: "late", label: t("eu.cat.late"), color: EU_C.mid },
+        { k: "todo", label: t("eu.cat.notYet"), color: EU_C.warn }
+      ];
+      return {
+        id: "tr-state", wide: true, src: "id!F, id!I",
+        title: t("eu.t.trState", { late: g.late.length, n, todo: g.todo.length }),
+        body: `<div class="eu-mapgrid">
+          <div>${euMap(sel, c => {
+            const s = euTrState(c);
+            return { k: s.k, raw: s.k === "late" ? t("eu.delayM", { n: euFmt(s.delay) }) : "" };
+          }, cats)}${euLegend(cats.map(x => Object.assign({ n: g[x.k].length }, x)))}</div>
+          <div class="eu-rings">
+            ${euRing(g.ontime.length, n, EU_C.good, t("eu.ring.onTime"), g.ontime)}
+            ${euRing(g.late.length, n, EU_C.mid, t("eu.ring.late"), g.late)}
+            ${euRing(g.todo.length, n, EU_C.warn, t("eu.ring.notYet"), g.todo)}
+          </div></div>`
+      };
+    },
+    function trDelay(sel){
+      const n = sel.length;
+      const B = [
+        { label: t("eu.cat.onTime"), test: d => d === 0, color: EU_C.good },
+        { label: t("eu.b.lt", { n: 6 }), test: d => d > 0 && d < 6, color: "var(--green)" },
+        { label: t("eu.b.range", { a: 6, b: 12 }), test: d => d >= 6 && d < 12, color: "color-mix(in srgb,var(--green) 55%,var(--accent))" },
+        { label: t("eu.b.range", { a: 12, b: 18 }), test: d => d >= 12 && d < 18, color: "var(--m2)" },
+        { label: t("eu.b.range", { a: 18, b: 24 }), test: d => d >= 18 && d < 24, color: "var(--accent2)" },
+        { label: t("eu.b.gt", { n: 24 }), test: d => d >= 24, color: "var(--ink)" }
+      ];
+      const groups = B.map(b => ({ label: b.label, color: b.color, isos: [],
+        tipOf: iso => t("eu.delayM", { n: euFmt(euTrState(byIso[iso]).delay || 0) }) }));
+      const todo = { label: t("eu.cat.notYet"), color: EU_C.warn, isos: [] };
+      const late = [];
+      sel.forEach(c => {
+        const s = euTrState(c);
+        if (s.k === "todo") { todo.isos.push(c.iso); return; }
+        if (s.k === "late") late.push(s.delay);
+        const i = B.findIndex(b => b.test(s.delay));
+        if (i >= 0) groups[i].isos.push(c.iso);
+      });
+      const avg = late.length ? late.reduce((a, b) => a + b, 0) / late.length : 0;
+      const all = groups.filter(g => g.isos.length).concat(todo.isos.length ? [todo] : []);
+      return {
+        id: "tr-delay", wide: true, src: "id!F, id!I",
+        title: late.length ? t("eu.t.trDelay", { n: late.length, avg: euFmt(avg) }) : t("eu.t.trDelayNone"),
+        body: `<div class="eu-side">
+          ${euStairs(all, n)}
+          <div class="eu-kpis">
+            <div class="eu-kpi"><b>${euFmt(avg)}</b><span>${t("eu.k.avgDelay")}</span></div>
+            <div class="eu-kpi"><b>${late.length ? Math.max(...late) : 0}</b><span>${t("eu.k.maxDelay")}</span></div>
+            <div class="eu-kpi"><b>${todo.isos.length}</b><span>${t("eu.k.notYet")}</span></div>
+          </div></div>`
+      };
+    },
+    function trSemester(sel){
+      const order = ["In time", "S2 2024", "S1 2025", "S2 2025", "S1 2026", "S2 2026", "S1 2027", "S2 2027"];
+      const g = euGroup(sel, c => {
+        const v = euCell(c.iso, "id", "G");
+        return euNC(v) || !euTransposed(c.iso) ? "NC" : v;
+      });
+      const keys = order.filter(k => g.has(k)).concat([...g.keys()].filter(k => !order.includes(k) && k !== "NC"));
+      const max = Math.max(1, ...keys.map(k => g.get(k).length));
+      const lab = k => k === "In time" ? t("eu.cat.onTime") : k;
+      const dated = keys.filter(k => k !== "In time");
+      const filled = keys.reduce((s, k) => s + g.get(k).length, 0);
+      return {
+        id: "tr-sem", src: "id!E, id!G", filled,
+        title: dated.length ? t("eu.t.trSem", { a: dated[0], b: dated[dated.length - 1], n: (g.get("In time") || []).length }) : "",
+        body: `<div class="eu-cols">${keys.map((k, i) => `<div class="eu-col">
+            <span class="eu-col-n">${g.get(k).length}</span>
+            <div class="eu-col-stack" style="height:${g.get(k).length / max * 100}%">
+              ${g.get(k).map(iso => euFlag(iso, esc(fmtDateL(euCell(iso, "id", "E")) || ""))).join("")}</div>
+            <span class="eu-col-l${i === 0 ? " first" : ""}">${lab(k)}</span></div>`).join("")}
+          </div>
+          ${g.has("NC") ? `<p class="eu-foot">${t("eu.notYetList")} ${euFlags(g.get("NC"), 0)}</p>` : ""}`
+      };
+    },
+    function trDoc(sel){
+      const g = euGroup(sel, c => euNC(euCell(c.iso, "id", "J")) ? null : euCell(c.iso, "id", "J"));
+      const rows = [...g.entries()].sort((a, b) => b[1].length - a[1].length)
+        .map(([k, isos], i) => ({ label: esc(euCat("doc", k)), isos, color: [EU_C.mid, EU_C.soft, EU_C.good][i] || EU_C.nc }));
+      const top = rows[0];
+      return {
+        id: "tr-doc", src: "id!J", filled: rows.reduce((s, r) => s + r.isos.length, 0),
+        title: top ? t("eu.t.trDoc", { n: top.isos.length, total: sel.length, kind: top.label.toLowerCase() }) : "",
+        body: euShare(rows, sel.length)
+      };
+    }
+  ],
+
+  scope: [
+    function scopeGrid(sel){
+      if (typeof SECTOR_DATA === "undefined") return null;
+      const isos = sel.map(c => c.iso).filter(i => SECTOR_DATA.rows[i]);
+      const tiles = list => list.map(r => {
+        const a = [], o = [], gp = [];
+        isos.forEach(iso => {
+          const st = sectorState(iso, r[0]);
+          if (!st || !st.tracked || st.nc) return;
+          if (st.add) a.push(iso);
+          if (st.other) o.push(iso);
+          if (st.gaps.length) gp.push(iso);
+        });
+        const txt = (iso, f) => { const st = sectorState(iso, r[0]); const v = f === "gaps" ? st.gaps.join(", ") : st[f]; return esc(String(v).slice(0, 220)) + (String(v).length > 220 ? "…" : ""); };
+        const tracked = SECTOR_DATA.sectors.some(s => s.k === r[0]);
+        return `<div class="eu-sec${a.length ? " hot" : ""}">
+          <div class="eu-sec-h"><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">${SECT_ICONS[r[0]] || ""}</svg></span><b>${t(r[1])}</b></div>
+          ${tracked ? `<div class="eu-sec-m">
+            ${a.length ? `<div><span class="stag add">${t("sect.st.add")} · ${a.length}</span>${euFlags(a, 6, i => txt(i, "add"))}</div>` : ""}
+            ${gp.length ? `<div><span class="stag gap">${t("sect.st.gap")} · ${gp.length}</span>${euFlags(gp, 6, i => txt(i, "gaps"))}</div>` : ""}
+            ${o.length ? `<div><span class="stag oth">${t("sect.st.other")} · ${o.length}</span>${euFlags(o, 6, i => txt(i, "other"))}</div>` : ""}
+            ${!a.length && !gp.length && !o.length ? `<span class="stag same">${t("eu.sec.same")}</span>` : ""}
+          </div>` : `<div class="eu-sec-m"><span class="stag mute">${t("sect.st.none")}</span></div>`}
+        </div>`;
+      }).join("");
+      let nAdd = new Set(), topK = null, topN = -1;
+      FICHE_EE.concat(FICHE_EI).forEach(r => {
+        let k = 0;
+        isos.forEach(iso => { const st = sectorState(iso, r[0]); if (st && st.tracked && (st.add || st.other)) k++; if (st && st.add) nAdd.add(iso); });
+        if (k > topN) { topN = k; topK = r; }
+      });
+      return {
+        id: "scope-grid", wide: true, src: "Sectors - P3", filled: isos.length,
+        title: t("eu.t.scopeGrid", { n: nAdd.size, total: sel.length, sector: topK ? t(topK[1]).toLowerCase() : "" }),
+        body: `<div class="eu-ann"><h4><i class="ee"></i>${t("fiche.annex1")}</h4><div class="eu-secs">${tiles(FICHE_EE)}</div></div>
+          <div class="eu-ann"><h4><i class="ei"></i>${t("fiche.annex2")}</h4><div class="eu-secs">${tiles(FICHE_EI)}</div></div>`
+      };
+    },
+    function scopeNew(sel){
+      if (typeof SECTOR_DATA === "undefined") return null;
+      const yes = [], no = [];
+      sel.forEach(c => {
+        const r = SECTOR_DATA.rows[c.iso];
+        if (!r) return;
+        (r._new && r._new !== "NC" ? yes : no).push(c.iso);
+      });
+      return {
+        id: "scope-new", wide: true, src: "Sectors - P3 · NEW SECTORS", filled: yes.length + no.length,
+        title: t("eu.t.scopeNew", { n: yes.length, total: sel.length }),
+        body: `<div class="eu-big">
+          ${euRing(yes.length, sel.length, "var(--ok)", t("eu.ring.newSectors"))}
+          <ul class="eu-list">${yes.map(iso => `<li>${euFlag(iso)}<div><b>${esc(euName(iso))}</b>
+            <span>${esc(SECTOR_DATA.rows[iso]._new.split("\n")[0].slice(0, 170))}${SECTOR_DATA.rows[iso]._new.length > 170 ? "…" : ""}</span></div></li>`).join("")}</ul>
+        </div>`
+      };
+    }
+  ],
+
+  inc: [
+    function incDef(sel){
+      const yes = [], no = [], nc = [];
+      sel.forEach(c => { const v = euCell(c.iso, "inc", "L"); (euYes(v) ? yes : euNo(v) ? no : nc).push(c.iso); });
+      const crit = iso => esc(String(euCell(iso, "inc", "N") || euCell(iso, "inc", "M") || "").slice(0, 200));
+      return {
+        id: "inc-def", wide: true, src: "inc!L, inc!M, inc!N", filled: yes.length + no.length,
+        title: t("eu.t.incDef", { yes: yes.length, no: no.length }),
+        body: `<div class="eu-duo">
+          <div class="eu-bub">
+            <div class="eu-bub-n" style="--bc:var(--accent)"><b>${yes.length}</b><span>${t("common.countries")}</span></div>
+            <div><h4>${t("eu.inc.same")}</h4><p>${t("eu.inc.sameD")}</p>${euFlags(yes, 0)}</div>
+          </div>
+          <div class="eu-bub">
+            <div class="eu-bub-n" style="--bc:var(--ok)"><b>${no.length}</b><span>${t("common.countries")}</span></div>
+            <div><h4>${t("eu.inc.more")}</h4><p>${t("eu.inc.moreD")}</p>${euFlags(no, 0, crit)}</div>
+          </div>
+        </div>
+        ${nc.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0)}</p>` : ""}`
+      };
+    },
+    function incOrg(sel){
+      const org = euGroup(sel, c => euNC(euCell(c.iso, "inc", "E")) ? null : euCell(c.iso, "inc", "E"));
+      const meth = euGroup(sel, c => { const v = euCell(c.iso, "inc", "H"); return euNC(v) ? null : /mail/i.test(v) ? "mail" : "platform"; });
+      const spec = euGroup(sel, c => euYes(euCell(c.iso, "inc", "P")) ? "yes" : null);
+      const orgRows = [...org.entries()].sort((a, b) => b[1].length - a[1].length)
+        .map(([k, isos]) => ({ label: esc(euCat("org", k)), isos, color: EU_C.mid }));
+      const top = orgRows[0];
+      return {
+        id: "inc-org", src: "inc!E, inc!H, inc!P",
+        title: top ? t("eu.t.incOrg", { n: top.isos.length, org: top.label }) : "",
+        body: euShare([{ head: t("eu.h.incOrg") }].concat(orgRows, [
+          { head: t("eu.h.incMethod") },
+          { label: t("eu.cat.platform"), isos: meth.get("platform") || [], color: EU_C.good },
+          { label: t("eu.cat.mail"), isos: meth.get("mail") || [], color: EU_C.soft },
+          { head: t("eu.h.incTimeline") },
+          { label: t("eu.inc.timelineDiff"), isos: spec.get("yes") || [], color: EU_C.warn,
+            tipOf: iso => esc(euCell(iso, "inc", "Q") || "") }
+        ]), sel.length)
+      };
+    },
+    function incSince(sel){
+      /* Date a laquelle la notification devient obligatoire, par semestre : la
+         meme lecture que l'entree en vigueur, mais sur la colonne propre aux
+         incidents - certains pays la decalent. */
+      const g = euGroup(sel, c => {
+        const v = euCell(c.iso, "inc", "G");
+        const m = /^(\d{4})-(\d{2})/.exec(v || "");
+        return m ? `S${+m[2] <= 6 ? 1 : 2} ${m[1]}` : null;
+      });
+      const keys = [...g.keys()].sort((a, b) => a.slice(3) + a[1] < b.slice(3) + b[1] ? -1 : 1);
+      const other = sel.filter(c => ![...g.values()].some(v => v.includes(c.iso))).map(c => c.iso);
+      const max = Math.max(1, ...keys.map(k => g.get(k).length));
+      return {
+        id: "inc-since", src: "inc!G", filled: sel.length - other.length,
+        title: keys.length ? t("eu.t.incSince", { a: keys[0], b: keys[keys.length - 1] }) : "",
+        body: `<div class="eu-cols">${keys.map(k => `<div class="eu-col">
+            <span class="eu-col-n">${g.get(k).length}</span>
+            <div class="eu-col-stack" style="height:${g.get(k).length / max * 100}%">
+              ${g.get(k).map(iso => euFlag(iso, esc(fmtDateL(euCell(iso, "inc", "G"))))).join("")}</div>
+            <span class="eu-col-l">${k}</span></div>`).join("")}</div>
+          ${other.length ? `<p class="eu-foot">${t("eu.otherList")} ${euFlags(other, 0, iso => esc(String(euCell(iso, "inc", "G") || t("fiche.nc")).slice(0, 160)))}</p>` : ""}`
+      };
+    }
+  ],
+
+  reg: [
+    function regMap(sel){
+      const n = sel.length;
+      const cat = c => {
+        const d = euCell(c.iso, "reg", "D"), m = euCell(c.iso, "reg", "I");
+        if (!euYes(d)) return { k: "none" };
+        if (/mail/i.test(m || "")) return { k: "mail" };
+        if (/platform/i.test(m || "")) return { k: "platform" };
+        return { k: "other", raw: m };
+      };
+      const cats = [
+        { k: "platform", label: t("eu.cat.platform"), color: EU_C.mid },
+        { k: "mail", label: t("eu.cat.mail"), color: EU_C.soft },
+        { k: "other", label: t("eu.cat.otherProcess"), color: EU_C.good },
+        { k: "none", label: t("eu.cat.regNone"), color: "var(--surface3)" }
+      ];
+      const g = euGroup(sel, c => cat(c).k);
+      const open = n - (g.get("none") || []).length;
+      return {
+        id: "reg-map", wide: true, src: "reg!D, reg!I",
+        title: t("eu.t.regMap", { n: open, total: n, p: (g.get("platform") || []).length }),
+        body: `<div class="eu-mapgrid">
+          <div>${euMap(sel, cat, cats)}${euLegend(cats.map(x => Object.assign({ n: (g.get(x.k) || []).length }, x)))}</div>
+          <div class="eu-rings">
+            ${euRing(open, n, EU_C.mid, t("eu.ring.regOpen"))}
+            <ul class="eu-bul">
+              <li><b>${(g.get("platform") || []).length}</b> ${t("eu.reg.platforms")}</li>
+              <li><b>${(g.get("mail") || []).length}</b> ${t("eu.reg.mail")}</li>
+              ${(g.get("other") || []).length ? `<li><b>${g.get("other").length}</b> ${t("eu.reg.other")}</li>` : ""}
+            </ul>
+            ${(g.get("none") || []).length ? `<div class="eu-ring-l">${t("eu.reg.none")}${euFlags(g.get("none"), 0)}</div>` : ""}
+          </div></div>`
+      };
+    },
+    function regDelay(sel){
+      const B = [
+        { label: t("eu.b.le1"), test: d => d <= 1, color: "#ff3b5c" },
+        { label: t("eu.b.months", { n: 2 }), test: d => d > 1 && d <= 2, color: "#f5b82e" },
+        { label: t("eu.b.months", { n: 3 }), test: d => d > 2 && d <= 3, color: "var(--green)" },
+        { label: t("eu.b.range", { a: 4, b: 6 }), test: d => d > 3 && d <= 6, color: "var(--m4)" },
+        { label: t("eu.b.gt", { n: 6 }), test: d => d > 6, color: "var(--accent)" }
+      ];
+      const groups = B.map(b => ({ label: b.label, color: b.color, isos: [],
+        tipOf: iso => esc(String(euCell(iso, "reg", "J")).slice(0, 140)) }));
+      const vals = [], other = [];
+      sel.forEach(c => {
+        const d = euNum(euCell(c.iso, "reg", "J"));
+        if (d == null) { other.push(c.iso); return; }
+        vals.push(d);
+        groups[B.findIndex(b => b.test(d))].isos.push(c.iso);
+      });
+      const avg = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+      const shown = groups.filter(g => g.isos.length);
+      const fmtD = d => d < 1 ? t("eu.days", { n: Math.round(d * 30) }) : t("eu.monthsN", { n: euFmt(d) });
+      return {
+        id: "reg-delay", wide: true, src: "reg!J", filled: vals.length,
+        title: vals.some(v => v > 0) ? t("eu.t.regDelay", { a: fmtD(Math.min(...vals.filter(v => v > 0))), b: fmtD(Math.max(...vals)) }) : "",
+        body: `<div class="eu-side">
+          ${euStairs(shown, vals.length)}
+          <div class="eu-kpis">
+            <div class="eu-kpi"><b>${euFmt(avg)}</b><span>${t("eu.k.avgReg")}</span></div>
+            <div class="eu-kpi"><b>${(groups[0].isos || []).length}</b><span>${t("eu.k.regShort")}</span></div>
+          </div></div>
+          ${other.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(other, 0)}</p>` : ""}`
+      };
+    },
+    function regInfo(sel){
+      /* Les deux familles de l'etude : ce qu'une entite a sous la main, et ce qui
+         demande d'aller chercher l'information aupres de plusieurs equipes. */
+      const QW = ["O", "P", "Q", "R", "Z", "S", "T", "U", "V"];
+      const CH = ["X", "Y", "AA", "AC", "AB"];
+      const row = col => ({ label: esc(euInfoLabel(col)),
+        isos: sel.filter(c => euYes(euCell(c.iso, "reg", col))).map(c => c.iso) });
+      const q = QW.map(row).map(r => Object.assign(r, { color: EU_C.good })).sort((a, b) => b.isos.length - a.isos.length);
+      const h = CH.map(row).map(r => Object.assign(r, { color: EU_C.warn })).sort((a, b) => b.isos.length - a.isos.length);
+      const common = q.concat(h).filter(r => r.isos.length >= sel.length * .8).length;
+      return {
+        id: "reg-info", wide: true, src: "reg!O:AC",
+        title: t("eu.t.regInfo", { n: common }),
+        body: `<div class="eu-two">
+          <div>${euShare([{ head: `<span class="stag add">${t("eu.reg.quick")}</span>${t("eu.reg.quickD")}` }].concat(q), sel.length, { flags: 6 })}</div>
+          <div>${euShare([{ head: `<span class="stag oth">${t("eu.reg.hard")}</span>${t("eu.reg.hardD")}` }].concat(h), sel.length, { flags: 6 })}</div>
+        </div>`
+      };
+    }
+  ],
+
+  fw: [
+    function fwMap(sel){
+      const n = sel.length;
+      const cat = c => {
+        const v = euCell(c.iso, "fw", "D") || "";
+        return { k: /final/i.test(v) ? "final" : /temp/i.test(v) ? "temp" : "none",
+                 raw: euCell(c.iso, "fw", "F") ? String(euCell(c.iso, "fw", "F")).split("\n")[0].slice(0, 90) : "" };
+      };
+      const cats = [
+        { k: "final", label: t("eu.cat.fwFinal"), color: EU_C.good },
+        { k: "temp", label: t("eu.cat.fwTemp"), color: "var(--m1)" },
+        { k: "none", label: t("eu.cat.fwNone"), color: "var(--surface3)" }
+      ];
+      const g = euGroup(sel, c => cat(c).k);
+      const L = k => g.get(k) || [];
+      return {
+        id: "fw-map", wide: true, src: "fw!D, fw!F",
+        title: t("eu.t.fwMap", { a: L("final").length, b: L("temp").length, total: n }),
+        body: `<div class="eu-mapgrid">
+          <div>${euMap(sel, cat, cats)}${euLegend(cats.map(x => Object.assign({ n: L(x.k).length }, x)))}</div>
+          <div class="eu-rings">
+            ${euRing(L("final").length, n, EU_C.good, t("eu.ring.fwFinal"), L("final"))}
+            ${euRing(L("temp").length, n, "var(--m1)", t("eu.ring.fwTemp"), L("temp"))}
+            ${euRing(L("none").length, n, "var(--line2)", t("eu.ring.fwNone"), L("none"))}
+          </div></div>`
+      };
+    },
+    function fwReq(sel){
+      const items = sel.map(c => ({ iso: c.iso, ee: euNum(euCell(c.iso, "fw", "L")), ie: euNum(euCell(c.iso, "fw", "M")),
+        name: String(euCell(c.iso, "fw", "F") || "").split(/\n|https?:/)[0].trim().slice(0, 60) }))
+        .filter(x => x.ee != null || x.ie != null)
+        .sort((a, b) => (b.ee || 0) - (a.ee || 0));
+      if (!items.length) return { id: "fw-req", wide: true, src: "fw!L:M", title: "", body: `<p class="eu-empty">${t("eu.empty")}</p>` };
+      /* Un referentiel hors d'echelle (l'E-ITS estonien, 1 852 exigences)
+         ecraserait tous les autres a quelques pixels : sa barre est coupee, sa
+         valeur ecrite, et il est exclu des moyennes, comme dans l'etude. */
+      const vals = items.map(x => x.ee || 0).sort((a, b) => a - b);
+      const med = vals[Math.floor(vals.length / 2)] || 1;
+      const out = x => Math.max(x.ee || 0, x.ie || 0) > med * 4;
+      const inScale = items.filter(x => !out(x));
+      const cap = Math.max(10, ...inScale.map(x => Math.max(x.ee || 0, x.ie || 0))) * 1.08;
+      const avg = k => { const v = inScale.map(x => x[k]).filter(v => v != null); return v.length ? Math.round(v.reduce((a, b) => a + b, 0) / v.length) : 0; };
+      const aEE = avg("ee"), aIE = avg("ie");
+      const bar = (v, cls, broken) => v == null ? `<i class="eu-rb ${cls} none"></i>`
+        : `<i class="eu-rb ${cls}${broken ? " cut" : ""}" style="height:${broken ? 100 : v / cap * 100}%"><em>${v}</em></i>`;
+      const step = Math.ceil(cap / 4 / 50) * 50;
+      const grid = [1, 2, 3, 4].map(i => i * step).filter(v => v < cap);
+      const lo = Math.min(...inScale.map(x => x.ee || Infinity)), hi = Math.max(...items.map(x => x.ee || 0));
+      return {
+        id: "fw-req", wide: true, src: "fw!L, fw!M", filled: items.length,
+        title: t("eu.t.fwReq", { a: lo, b: hi }),
+        body: `<div class="eu-req-wrap"><div class="eu-req">
+          <div class="eu-req-plot">
+            ${grid.map(v => `<span class="eu-gl" style="bottom:${v / cap * 100}%"><em>${v}</em></span>`).join("")}
+            <span class="eu-avg ee" style="bottom:${aEE / cap * 100}%"><em>${t("eu.avgEE", { n: aEE })}</em></span>
+            <span class="eu-avg ie" style="bottom:${aIE / cap * 100}%"><em>${t("eu.avgIE", { n: aIE })}</em></span>
+            ${items.map(x => `<div class="eu-rc" data-tip="${esc(`<b>${esc(euName(x.iso))}</b>${x.name ? `<span class="m">${esc(x.name)}</span>` : ""}<br>EE : ${x.ee == null ? "-" : x.ee} · IE : ${x.ie == null ? "-" : x.ie}`)}">
+              ${bar(x.ee, "ee", out(x))}${bar(x.ie, "ie", out(x))}</div>`).join("")}
+          </div>
+          <div class="eu-req-x">${items.map(x => `<div>${euFlag(x.iso)}<span>${esc(euName(x.iso))}</span></div>`).join("")}</div>
+        </div></div>
+        <div class="eu-legend">
+          <span><i style="background:var(--ee)"></i>${t("fiche.ee")}</span>
+          <span><i style="background:var(--ie)"></i>${t("fiche.ie")}</span>
+          ${items.some(out) ? `<span class="eu-note-s">${t("eu.outlier", { list: items.filter(out).map(x => euName(x.iso)).join(", ") })}</span>` : ""}
+        </div>`
+      };
+    },
+    function fwDeadline(sel){
+      const items = sel.map(c => ({ iso: c.iso, ee: euNum(euCell(c.iso, "fw", "AD")), ie: euNum(euCell(c.iso, "fw", "AE")) }))
+        .filter(x => x.ee != null).sort((a, b) => a.ee - b.ee);
+      const other = sel.filter(c => !items.some(x => x.iso === c.iso)).map(c => c.iso);
+      const max = Math.max(1, ...items.map(x => x.ee));
+      /* Du rouge au vert : le plus court est le plus pressant pour l'entite. */
+      const col = m => m <= 3 ? "#ff3b5c" : m <= 12 ? "#ff8a3d" : m <= 18 ? "#f5b82e" : m <= 24 ? "var(--green)" : "var(--m4)";
+      return {
+        id: "fw-deadline", wide: true, src: "fw!AD, fw!AE", filled: items.length,
+        title: items.length ? t("eu.t.fwDeadline", { n: items.length, a: items[0].ee, b: items[items.length - 1].ee }) : "",
+        body: `<div class="eu-hbars">
+          <div class="eu-hb-scale"><span>${t("eu.dl.now")}</span><span>${t("eu.dl.mid")}</span><span>${t("eu.dl.long")}</span></div>
+          ${items.map(x => `<div class="eu-hb">
+            <div class="eu-hb-l">${euFlag(x.iso)}<span>${esc(euName(x.iso))}</span></div>
+            <div class="eu-hb-t"><div class="eu-hb-b" style="width:max(${x.ee / max * 100}%,4px);background:${col(x.ee)}"></div>
+              <span>${x.ee === 0 ? t("eu.dl.immediate") : t("eu.monthsN", { n: x.ee })}${x.ie != null && x.ie !== x.ee ? ` <em>(IE : ${x.ie})</em>` : ""}</span></div>
+          </div>`).join("")}
+        </div>
+        ${other.length ? `<p class="eu-foot">${t("eu.ncDeadline")} ${euFlags(other, 0)}</p>` : ""}`
+      };
+    },
+    function fwSources(sel){
+      const cols = ["P", "R", "T", "U", "V", "Q", "S", "W", "Y"];
+      const rows = cols.map(col => ({ label: esc(euSrcLabel(col)), color: EU_C.mid,
+        isos: sel.filter(c => euYes(euCell(c.iso, "fw", col))).map(c => c.iso) }))
+        .sort((a, b) => b.isos.length - a.isos.length);
+      const pres = sel.filter(c => euYes(euCell(c.iso, "fw", "AA"))).map(c => c.iso);
+      return {
+        id: "fw-src", src: "fw!O:Y, fw!AA",
+        title: rows[0] ? t("eu.t.fwSrc", { src: rows[0].label, n: rows[0].isos.length }) : "",
+        body: euShare(rows.concat([{ head: t("eu.h.presumption") },
+          { label: t("eu.fw.presumption"), isos: pres, color: EU_C.good, tipOf: iso => esc(euCell(iso, "fw", "AB") || "") }]),
+          sel.length, { flags: 6 })
+      };
+    },
+    function fwGradual(sel){
+      const diff = sel.filter(c => euYes(euCell(c.iso, "fw", "AF"))).map(c => c.iso);
+      const grad = sel.filter(c => euYes(euCell(c.iso, "fw", "AJ"))).map(c => c.iso);
+      const dl = sel.filter(c => euYes(euCell(c.iso, "fw", "AC"))).map(c => c.iso);
+      const ded = sel.filter(c => /dedicated/i.test(euCell(c.iso, "fw", "E") || "")).map(c => c.iso);
+      return {
+        id: "fw-ee-ie", src: "fw!E, fw!AC, fw!AF, fw!AJ",
+        title: t("eu.t.fwEeIe", { n: diff.length }),
+        body: euShare([
+          { label: t("eu.fw.dedicated"), isos: ded, color: EU_C.mid },
+          { label: t("eu.fw.levelDiff"), isos: diff, color: EU_C.ie, tipOf: iso => esc(String(euCell(iso, "fw", "AG") || "").slice(0, 160)) },
+          { label: t("eu.fw.deadlineDiff"), isos: dl, color: EU_C.soft },
+          { label: t("eu.fw.gradual"), isos: grad, color: EU_C.good }
+        ], sel.length, { flags: 6 })
+      };
+    }
+  ],
+
+  aud: [
+    function audPyramid(sel){
+      const L = [
+        { k: "y1", label: t("eu.aud.y1"), test: m => m <= 12 },
+        { k: "y2", label: t("eu.aud.y2"), test: m => m > 12 && m <= 24 },
+        { k: "y3", label: t("eu.aud.y3"), test: m => m > 24 && m <= 36 },
+        { k: "y5", label: t("eu.aud.y5"), test: m => m > 36 }
+      ];
+      const g = { y1: [], y2: [], y3: [], y5: [], free: [], nc: [] };
+      sel.forEach(c => {
+        const v = euCell(c.iso, "aud", "M");
+        const m = /^\s*\d/.test(v || "") ? euNum(v) : null;
+        if (m != null) { g[L.find(l => l.test(m)).k].push(c.iso); return; }
+        if (euNC(v) || /^nc\b/i.test(v)) g.nc.push(c.iso); else g.free.push(c.iso);
+      });
+      const levels = L.concat([{ k: "free", label: t("eu.aud.free") }]);
+      const tipOf = iso => esc(String(euCell(iso, "aud", "M") || "").slice(0, 160));
+      const fixed = g.y1.length + g.y2.length + g.y3.length + g.y5.length;
+      const rows = levels.map((l, i) => {
+        const a = 7 + i * 8.6, b = 7 + (i + 1) * 8.6;   /* demi-largeurs haut / bas, en % */
+        return `<div class="eu-pyr-row">
+          <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
+            background:color-mix(in srgb,var(--accent) ${100 - i * 16}%,var(--accent-soft))">
+            <span style="color:${i < 3 ? "var(--accent-ink)" : "var(--accent2)"}">${l.label}</span></div>
+          <div class="eu-pyr-f"><b>${g[l.k].length}</b>${euFlags(g[l.k], 0, tipOf)}</div>
+        </div>`;
+      }).join("");
+      return {
+        id: "aud-pyr", wide: true, src: "aud!M", filled: sel.length - g.nc.length,
+        title: t("eu.t.audPyr", { n: fixed, total: sel.length }),
+        body: `<div class="eu-side"><div class="eu-pyr">${rows}</div>
+          <div class="eu-kpis">
+            <div class="eu-kpi"><b>${fixed}</b><span>${t("eu.k.audFixed")}</span></div>
+            <div class="eu-kpi"><b>${g.free.length}</b><span>${t("eu.k.audFree")}</span></div>
+          </div></div>
+          ${g.nc.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(g.nc, 0)}</p>` : ""}`
+      };
+    },
+    function audWho(sel){
+      const org = euGroup(sel, c => euNC(euCell(c.iso, "aud", "E")) ? null : euCell(c.iso, "aud", "E"));
+      const self = euGroup(sel, c => {
+        const v = euCell(c.iso, "aud", "I");
+        if (euNC(v)) return null;
+        return /both|ee and ei/i.test(v) ? "both" : /only for ei/i.test(v) ? "ei" : /only for ee/i.test(v) ? "ee" : euNo(v) ? "no" : null;
+      });
+      const orgRows = [...org.entries()].sort((a, b) => b[1].length - a[1].length)
+        .map(([k, isos]) => ({ label: esc(euCat("aud", k)), isos, color: EU_C.mid,
+          tipOf: iso => esc(String(euCell(iso, "aud", "G") || "").slice(0, 160)) }));
+      const selfN = ["both", "ei", "ee"].reduce((s, k) => s + (self.get(k) || []).length, 0);
+      return {
+        id: "aud-who", wide: true, src: "aud!E, aud!I",
+        title: t("eu.t.audWho", { n: selfN }),
+        body: `<div class="eu-two"><div>${euShare([{ head: t("eu.h.audOrg") }].concat(orgRows), sel.length, { flags: 6 })}</div>
+          <div>${euShare([{ head: t("eu.h.audSelf") },
+          { label: t("eu.aud.selfBoth"), isos: self.get("both") || [], color: EU_C.good },
+          { label: t("eu.aud.selfEI"), isos: self.get("ei") || [], color: EU_C.ie },
+          { label: t("eu.aud.selfEE"), isos: self.get("ee") || [], color: EU_C.ee },
+          { label: t("eu.aud.selfNo"), isos: self.get("no") || [], color: EU_C.nc }
+        ], sel.length, { flags: 6 })}</div></div>`
+      };
+    }
+  ],
+
+  san: [
+    function sanMgmt(sel){
+      const pick = col => sel.filter(c => euYes(euCell(c.iso, "san", col))).map(c => c.iso);
+      const fin = pick("K"), ban = pick("L"), crim = pick("R");
+      const n = sel.length;
+      return {
+        id: "san-mgmt", wide: true, src: "san!D, san!K, san!L, san!R",
+        title: t("eu.t.sanMgmt", { n: fin.length }),
+        body: `<div class="eu-san">
+          <div class="eu-san-base"><h4>${t("eu.san.base")}</h4>
+            <div class="eu-san-cards">
+              <div><b>${t("eu.san.b1")}</b><span>${t("eu.san.b1D")}</span></div>
+              <div><b>${t("eu.san.b2")}</b><span>${t("eu.san.b2D")}</span></div>
+              <div><b>${t("eu.san.b3")}</b><span>${t("eu.san.b3D")}</span></div>
+            </div>
+            <p class="eu-foot">${t("eu.san.aligned", { n: pick("D").length, total: n })}</p>
+          </div>
+          <div class="eu-san-plus"><h4>${t("eu.san.plus")}</h4>
+            <div class="eu-rings row">
+              ${euRing(fin.length, n, EU_C.mid, t("eu.san.fin"), fin)}
+              ${euRing(ban.length, n, EU_C.soft, t("eu.san.ban"), ban)}
+              ${euRing(crim.length, n, EU_C.bad, t("eu.san.crim"), crim)}
+            </div>
+          </div>
+        </div>`
+      };
+    },
+    function sanMeasures(sel){
+      const cols = ["Q", "N", "M", "P", "O", "J", "S", "H"];
+      const rows = cols.map(col => ({ label: esc(euSanLabel(col)), color: col === "H" ? EU_C.warn : EU_C.mid,
+        isos: sel.filter(c => euYes(euCell(c.iso, "san", col))).map(c => c.iso),
+        tipOf: col === "H" ? iso => esc(String(euCell(iso, "san", "I") || "").slice(0, 180)) : null }))
+        .sort((a, b) => b.isos.length - a.isos.length);
+      const more = sel.filter(c => /more specific/i.test(euCell(c.iso, "san", "F") || "")).map(c => c.iso);
+      return {
+        id: "san-measures", wide: true, src: "san!F, san!H:S",
+        title: t("eu.t.sanMeasures", { n: (rows.find(r => r.label === esc(euSanLabel("H"))) || { isos: [] }).isos.length }),
+        body: euShare(rows.concat([{ head: t("eu.h.sanFin") },
+          { label: t("eu.san.moreFin"), isos: more, color: EU_C.warn }]), sel.length)
+      };
+    }
+  ]
+};
+
+/* Libelles des categories du classeur : traduits quand on les connait, sinon
+   repris tels quels - verifiables contre la case. */
+function euCat(kind, raw){
+  const k = "eu.v." + kind + "." + String(raw).toLowerCase().replace(/[^a-z]+/g, "");
+  const s = t(k);
+  return s === k ? raw : s;
+}
+function euInfoLabel(col){ const k = "eu.info." + col; const s = t(k); return s === k ? ficheLabel("reg", col) : s; }
+function euSrcLabel(col){ const k = "eu.src." + col; const s = t(k); return s === k ? ficheLabel("fw", col) : s; }
+function euSanLabel(col){ const k = "eu.sanc." + col; const s = t(k); return s === k ? ficheLabel("san", col) : s; }
+
+/* ---------- la carte d'un graphique ---------- */
+function euCard(ch, sel){
+  const saved = euText(ch.id);
+  const title = saved.title || ch.title;
+  const filled = ch.filled != null ? ch.filled : null;
+  return `<figure class="eu-card${ch.wide ? " wide" : ""}" data-eu="${ch.id}">
+    <div class="eu-card-h">
+      <h3 class="eu-title" contenteditable="true" spellcheck="false" data-auto="${esc(ch.title)}"
+        title="${esc(t("eu.editTitle"))}">${esc(title)}</h3>
+      <button type="button" class="eu-edit" title="${esc(t("eu.editTitle"))}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg><span>${t("eu.editBtn")}</span></button>
+      <button type="button" class="eu-reset" ${saved.title ? "" : "hidden"} title="${esc(t("eu.resetTitle"))}" aria-label="${esc(t("eu.resetTitle"))}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <button type="button" class="eu-dl" title="${esc(t("eu.dlOne"))}" aria-label="${esc(t("eu.dlOne"))}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>PNG</span></button>
+    </div>
+    <div class="eu-body">${ch.body}</div>
+    <div class="eu-note" contenteditable="true" data-ph="${esc(t("eu.notePh"))}">${esc(saved.note || "")}</div>
+    <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code>${filled != null
+      ? ` · ${t("eu.filled", { n: filled, total: sel.length })}` : ""}</figcaption>
+  </figure>`;
+}
+
+/* ---------- la page ---------- */
+let euSpy = null;
+let euScrollBound = false;
+
+function renderEurope(){
+  const el = $("#v-europe");
+  if (!el) return;
+  if (typeof SHEET_DATA === "undefined" || regId() !== "nis2") {
+    el.innerHTML = `<h1 class="pg">${t("nav.europe")}</h1><p class="pg-sub">${t("eu.nis2only")}</p>`;
+    return;
+  }
+  const s = euSelState();
+  const sel = euSelection();
+  const all = euAll();
+  const presets = [
+    { k: "eu", label: t("eu.p.eu", { n: all.filter(c => c.eu).length }) },
+    { k: "all", label: t("eu.p.all", { n: all.length }) },
+    { k: "done", label: t("eu.p.done") },
+    { k: "todo", label: t("eu.p.todo") },
+    { k: "custom", label: t("eu.p.custom") }
+  ];
+
+  const sections = EU_SECTIONS.map(sec => {
+    const cards = sel.length ? EU_CHARTS[sec.key].map(fn => {
+      try { return fn(sel); } catch (e) { console.error("vue europeenne", sec.key, e); return null; }
+    }).filter(Boolean).map(ch => euCard(ch, sel)).join("") : "";
+    return `<section class="fsec eu-sec-w" id="eusec-${sec.key}" data-fsec="${sec.key}">
+      <div class="fsec-h"><div class="ic">${ficheIcon(sec.icon)}</div><h2>${t(sec.tKey)}</h2></div>
+      <div class="eu-grid">${cards || `<p class="eu-empty">${t("eu.noSel")}</p>`}</div>
+    </section>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="eu-head">
+      <div><h1 class="pg">${t("nav.europe")}</h1>
+        <p class="pg-sub">${t("eu.sub")}</p></div>
+      ${sel.length ? `<button type="button" class="btn eu-dlall" id="euDlAll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>${t("eu.dlAll")}</button>` : ""}
+    </div>
+    <div class="eu-filter" id="euFilter">
+      <span class="eu-fl">${t("eu.compare")}</span>
+      <div class="eu-presets" role="group">${presets.map(p =>
+        `<button type="button" data-preset="${p.k}" aria-pressed="${s.preset === p.k}">${p.label}</button>`).join("")}</div>
+      <span class="eu-count">${t("eu.count", { n: sel.length })}</span>
+      <div class="eu-pick" id="euPick" ${s.preset === "custom" ? "" : "hidden"}>
+        <div class="eu-pick-a">
+          <button type="button" data-pick="all">${t("eu.pickAll")}</button>
+          <button type="button" data-pick="eu">${t("eu.pickEU")}</button>
+          <button type="button" data-pick="none">${t("eu.pickNone")}</button>
+        </div>
+        <div class="eu-pick-g">${all.map(c => `<label class="eu-chk${sel.some(x => x.iso === c.iso) ? " on" : ""}">
+          <input type="checkbox" value="${c.iso}" ${sel.some(x => x.iso === c.iso) ? "checked" : ""}>
+          <span class="fi">${flagSvg(c.iso)}</span>${esc(c.name)}</label>`).join("")}</div>
+      </div>
+    </div>
+    <div class="fnav eu-nav" id="euNavWrap"><div class="fnav-in" id="euNav">
+      ${EU_SECTIONS.map(x => `<button type="button" data-fgo="${x.key}">${ficheIcon(x.icon)}${t(x.tKey)}</button>`).join("")}
+      <button type="button" class="eu-nav-sel" id="euNavSel" title="${esc(t("eu.compare"))}">${t("eu.count", { n: sel.length })}</button>
+    </div></div>
+    ${sections}
+    <p class="eu-disclaimer">${t("eu.saved")}</p>`;
+
+  euWire(el);
+}
+
+function euSetSel(next){
+  store.euSel = next;
+  saveStore();
+  const y = window.scrollY;
+  renderEurope();
+  window.scrollTo({ top: y });
+}
+
+function euWire(el){
+  if (typeof kpiWireTips === "function") kpiWireTips(el);
+
+  /* --- filtre --- */
+  el.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    const cur = euSelState();
+    const p = b.dataset.preset;
+    /* Passer en personnalise part de la selection affichee, pas d'une liste vide. */
+    euSetSel(p === "custom" ? { preset: "custom", isos: cur.preset === "custom" ? cur.isos : euSelection().map(c => c.iso) }
+                            : { preset: p, isos: cur.isos });
+  }));
+  el.querySelectorAll(".eu-chk input").forEach(i => i.addEventListener("change", () => {
+    const isos = [...el.querySelectorAll(".eu-chk input:checked")].map(x => x.value);
+    euSetSel({ preset: "custom", isos });
+  }));
+  el.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
+    const all = euAll();
+    const k = b.dataset.pick;
+    euSetSel({ preset: "custom", isos: k === "all" ? all.map(c => c.iso) : k === "eu" ? all.filter(c => c.eu).map(c => c.iso) : [] });
+  }));
+  const ns = $("#euNavSel", el);
+  if (ns) ns.addEventListener("click", () => $("#euFilter", el).scrollIntoView({ behavior: "smooth", block: "center" }));
+
+  /* --- telechargement --- */
+  el.querySelectorAll(".eu-dl").forEach(b => b.addEventListener("click", () => euDownloadCard(b.closest(".eu-card"), b)));
+  const dla = $("#euDlAll", el);
+  if (dla) dla.addEventListener("click", () => euDownloadAll(el, dla));
+
+  /* --- carte : clic vers la fiche --- */
+  el.querySelectorAll(".eu-map").forEach(svg => svg.addEventListener("click", e => {
+    const hit = e.target.closest(".ctry");
+    if (hit) { hideTip(); location.hash = "#/country/" + hit.dataset.iso; }
+  }));
+  el.querySelectorAll(".eu-flag").forEach(a => a.addEventListener("click", hideTip));
+
+  /* --- titres et analyses ---
+     Entree valide le titre ; un titre vide revient a la phrase calculee. */
+  el.querySelectorAll(".eu-card").forEach(card => {
+    const id = card.dataset.eu;
+    const h = $(".eu-title", card), reset = $(".eu-reset", card), note = $(".eu-note", card);
+    h.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); h.blur(); } });
+    h.addEventListener("paste", e => {
+      e.preventDefault();
+      document.execCommand("insertText", false, (e.clipboardData.getData("text/plain") || "").replace(/\s+/g, " "));
+    });
+    h.addEventListener("blur", () => {
+      const v = h.textContent.replace(/\s+/g, " ").trim();
+      const auto = h.dataset.auto;
+      if (!v) h.textContent = auto;
+      euSaveText(id, "title", v && v !== auto ? v : "");
+      reset.hidden = !(v && v !== auto);
+    });
+    /* Le bouton dit ce que le survol du titre laissait deviner : on y ecrit.
+       Il place le curseur dans le titre et en selectionne le texte, pret a
+       etre remplace. */
+    $(".eu-edit", card).addEventListener("click", () => {
+      h.focus();
+      const r = document.createRange();
+      r.selectNodeContents(h);
+      const s = window.getSelection();
+      s.removeAllRanges(); s.addRange(r);
+    });
+    h.addEventListener("focus", () => card.classList.add("editing"));
+    h.addEventListener("blur", () => card.classList.remove("editing"));
+    reset.addEventListener("click", () => { h.textContent = h.dataset.auto; euSaveText(id, "title", ""); reset.hidden = true; });
+    note.addEventListener("paste", e => {
+      e.preventDefault();
+      document.execCommand("insertText", false, e.clipboardData.getData("text/plain") || "");
+    });
+    note.addEventListener("blur", () => {
+      const v = note.innerText.replace(/\n{3,}/g, "\n\n").trim();
+      if (!v) note.textContent = "";
+      euSaveText(id, "note", v);
+    });
+  });
+
+  /* --- reperage des sections : meme logique que la fiche pays --- */
+  const nav = $("#euNav", el);
+  const secs = [...el.querySelectorAll(".eu-sec-w")];
+  if (!nav || !secs.length) return;
+  const btns = [...nav.querySelectorAll("button[data-fgo]")];
+  const mark = k => btns.forEach(b => b.setAttribute("aria-current", b.dataset.fgo === k ? "true" : "false"));
+  const current = () => {
+    const line = ficheHeader() + (nav.getBoundingClientRect().height || 52) + 12;
+    let cur = secs[0];
+    secs.forEach(x => { if (x.getBoundingClientRect().top <= line) cur = x; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = secs[secs.length - 1];
+    return cur;
+  };
+  ficheHeader();
+  euSpy = { secs, mark, current, lock: 0 };
+  if (!euScrollBound) {
+    euScrollBound = true;
+    let tick = false;
+    window.addEventListener("scroll", () => {
+      if (tick || !euSpy) return;
+      tick = true;
+      requestAnimationFrame(() => {
+        tick = false;
+        const sp = euSpy;
+        if (!sp || !document.body.contains(sp.secs[0]) || Date.now() < sp.lock) return;
+        sp.mark(sp.current().dataset.fsec);
+      });
+    }, { passive: true });
+  }
+  mark(current().dataset.fsec);
+  nav.addEventListener("click", e => {
+    const b = e.target.closest("button[data-fgo]");
+    if (!b) return;
+    euSpy.lock = Date.now() + 800;
+    mark(b.dataset.fgo);
+    const target = $("#eusec-" + b.dataset.fgo, el);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+/* ---------- telechargement des visuels ----------
+ *
+ * Les graphiques sont du HTML et du CSS, pas un canevas : pour en faire une
+ * image, la carte est clonee avec ses styles calcules recopies en ligne, placee
+ * dans un SVG <foreignObject>, puis dessinee sur un canevas au double de sa
+ * taille (net sur une slide projetee). Aucune bibliotheque : l'outil reste un
+ * fichier unique qui s'ouvre hors ligne.
+ *
+ * Ce qui part dans l'image : le titre tel qu'il est affiche (reecrit ou non),
+ * le graphique, l'analyse si elle existe, et la source. Les boutons et la zone
+ * d'analyse vide restent a l'ecran. Les couleurs sont celles du theme affiche.
+ */
+function euInlineClone(src){
+  const dst = src.cloneNode(false);
+  if (src.nodeType === 1) {
+    const cs = getComputedStyle(src);
+    let s = "";
+    for (let i = 0; i < cs.length; i++) {
+      const p = cs[i];
+      /* les transitions figeraient l'etat de survol au milieu d'une animation */
+      if (p.startsWith("transition") || p.startsWith("animation")) continue;
+      s += p + ":" + cs.getPropertyValue(p) + ";";
+    }
+    dst.setAttribute("style", s);
+    ["data-tip", "contenteditable", "title", "href"].forEach(a => dst.removeAttribute(a));
+  }
+  src.childNodes.forEach(ch => {
+    if (ch.nodeType === 1 || ch.nodeType === 3) dst.appendChild(euInlineClone(ch));
+  });
+  return dst;
+}
+
+function euSlug(s){
+  return String(s || "visuel").normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 70) || "visuel";
+}
+
+async function euCardPng(card, scale){
+  scale = scale || 2;
+  const w = Math.ceil(card.getBoundingClientRect().width);
+  const clone = euInlineClone(card);
+  clone.querySelectorAll(".eu-reset,.eu-dl,.eu-edit").forEach(n => n.remove());
+  const note = clone.querySelector(".eu-note");
+  if (note && !note.textContent.trim()) note.remove();
+  const pad = 16;
+  const bg = cssVar("--surface") || "#ffffff";
+  clone.style.width = w + "px";
+  clone.style.margin = "0";
+  /* Les hauteurs recopiees sont celles de la grille, ou une carte s'etire a la
+     hauteur de sa voisine : l'image garderait ce vide. */
+  [clone, $(".eu-body", clone), $(".eu-note", clone)].forEach(n => {
+    if (n) { n.style.height = "auto"; n.style.blockSize = "auto"; }
+  });
+  clone.style.boxShadow = "none";
+
+  /* La hauteur change des qu'on retire la zone d'analyse vide : on la mesure
+     sur le clone, pose hors ecran, plutot que sur la carte affichee. */
+  const host = document.createElement("div");
+  host.style.cssText = "position:fixed;left:-20000px;top:0;width:" + w + "px";
+  host.appendChild(clone);
+  document.body.appendChild(host);
+  const h = Math.ceil(clone.getBoundingClientRect().height);
+  host.remove();
+
+  const W = w + pad * 2, H = h + pad * 2;
+  const xhtml = new XMLSerializer().serializeToString(clone);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
+    <foreignObject x="${pad}" y="${pad}" width="${w}" height="${h}">${xhtml}</foreignObject></svg>`;
+  const img = new Image();
+  img.decoding = "sync";
+  await new Promise((ok, ko) => {
+    img.onload = ok; img.onerror = ko;
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  });
+  const canvas = document.createElement("canvas");
+  canvas.width = W * scale; canvas.height = H * scale;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.scale(scale, scale);
+  ctx.drawImage(img, 0, 0);
+  return await new Promise((ok, ko) => canvas.toBlob(b => b ? ok(b) : ko(new Error("toBlob")), "image/png"));
+}
+
+function euCardName(card, i){
+  const title = ($(".eu-title", card) || {}).textContent;
+  return (i != null ? String(i + 1).padStart(2, "0") + "-" : "") + euSlug(title) + ".png";
+}
+
+async function euDownloadCard(card, btn){
+  if (btn) btn.classList.add("busy");
+  try {
+    kpiSave(await euCardPng(card), euCardName(card));
+  } catch (e) {
+    console.error("export du visuel", e);
+    alert(t("eu.dlFail"));
+  } finally {
+    if (btn) btn.classList.remove("busy");
+  }
+}
+
+/* Tous les visuels de la page, dans l'ordre de lecture, en une archive. Les
+   PNG sont deja compresses : ils sont stockes tels quels (methode 0). */
+async function euDownloadAll(root, btn){
+  const cards = [...root.querySelectorAll(".eu-card")];
+  if (!cards.length) return;
+  const label = btn ? btn.innerHTML : "";
+  btn && (btn.disabled = true);
+  const entries = [];
+  const ZIP_TIME = ((2020 - 1980) << 25) | (1 << 21) | (1 << 16);
+  try {
+    for (let i = 0; i < cards.length; i++) {
+      if (btn) btn.textContent = t("eu.dlProgress", { i: i + 1, n: cards.length });
+      const bytes = new Uint8Array(await (await euCardPng(cards[i])).arrayBuffer());
+      const sec = cards[i].closest(".eu-sec-w");
+      const folder = sec ? String(EU_SECTIONS.findIndex(s => s.key === sec.dataset.fsec) + 1).padStart(2, "0")
+        + "-" + euSlug(t(EU_SECTIONS.find(s => s.key === sec.dataset.fsec).tKey)) + "/" : "";
+      entries.push({ name: folder + euCardName(cards[i], i), method: 0, flags: 0, time: ZIP_TIME,
+        crc: crc32(bytes), data: bytes, rawSize: bytes.length });
+    }
+    kpiSave(writeZip(entries, "application/zip"), "regwatch-vue-europeenne.zip");
+  } catch (e) {
+    console.error("export des visuels", e);
+    alert(t("eu.dlFail"));
+  } finally {
+    if (btn) { btn.disabled = false; btn.innerHTML = label; }
+  }
 }
 /* ================= Boot =================
  *

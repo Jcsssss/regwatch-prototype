@@ -111,6 +111,31 @@ python3 tools/veille_to_watchitems.py <classeur.xlsx>   # classeur -> file de ve
 `health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la
 veille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.
 
+## Vue européenne
+
+L'onglet **Vue européenne** reprend les graphiques de l'étude comparative NIS 2 (transposition,
+périmètre, incidents, enregistrement, référentiel, audits, sanctions), rangés comme la fiche
+pays. Tout est recalculé à l'ouverture depuis les données du classeur Cyber Watch embarquées
+dans l'outil : il suffit de régénérer les données et de reconstruire pour que les graphiques
+suivent. Un filtre limite la comparaison à l'UE, aux pays transposés ou non, ou à une
+sélection libre.
+
+Chaque graphique propose un titre calculé depuis les données. Le consultant peut le réécrire
+et ajouter son analyse ; ces textes restent dans son navigateur.
+
+Chaque visuel se télécharge en PNG (bouton sur le graphique), avec son titre, son analyse et
+sa source ; « Télécharger tous les visuels » les rassemble dans une archive ZIP, rangés par section.
+
+Données utilisées :
+
+```sh
+python3 tools/sheets_to_countries.py <classeur.xlsx>   # feuilles P1 à P3 -> data_sheets.js
+python3 tools/sectors_to_js.py <classeur.xlsx>         # feuille Sectors - P3 -> data_sectors.js
+```
+
+La feuille Sectors - P3 alimente aussi la fenêtre « Secteurs couverts » de la fiche pays, qui
+montre maintenant le périmètre retenu par le pays (sous-secteurs ajoutés, précisions, écarts).
+
 ## Correspondances entre référentiels
 
 L'onglet **Correspondances** montre ce qu'un référentiel couvre déjà d'un autre, exigence par

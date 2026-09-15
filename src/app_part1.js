@@ -146,7 +146,7 @@ function refreshBadge(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ["overview", "countries", "country", "inbox", "insights", "sources", "mapping",
+const VIEWS = ["overview", "europe", "countries", "country", "inbox", "insights", "sources", "mapping",
                "dev", "devchat"];
 let currentRoute = { v: "overview", arg: null };
 function parseHash(){
@@ -158,6 +158,7 @@ function renderCurrent(){ route(currentRoute.v, currentRoute.arg, true); }
 function route(v, arg, force){
   const render = {
     overview: renderOverview, countries: renderCountries,
+    europe: typeof renderEurope === "function" ? renderEurope : null,
     country: () => renderCountry(arg), inbox: renderInbox,
     insights: renderInsights, sources: renderSources,
     mapping: typeof renderMapping === "function" ? () => renderMapping(arg) : null,
