@@ -18981,7 +18981,7 @@ const REG_SPECS = {
     label: "NIS 2",
     full: "Directive (EU) 2022/2555 - transposition deadline 17 Oct 2024",
     titleKey: "ov.title", subKey: "ov.sub", footKey: "foot.nis2",
-    countries: () => [...COUNTRIES_1, ...COUNTRIES_2, ...COUNTRIES_3, ...COUNTRIES_4],
+    countries: () => [...COUNTRIES_1, ...COUNTRIES_2, ...COUNTRIES_3, ...COUNTRIES_4].map(regFromWorkbook),
     tabs: ["overview", "europe", "countries", "inbox", "sources", "mapping"],
     levels: {
       1: "lvl.1", 2: "lvl.2", 3: "lvl.3", 4: "lvl.4"
@@ -19077,6 +19077,36 @@ function regHasTab(v){
 
 /* `COUNTRIES` and `byIso` are what every view reads; switching regulation
    swaps them rather than threading a parameter through the whole app. */
+/* Le statut de transposition vient du classeur, pas de l'enregistrement.
+ *
+ * Les enregistrements NIS 2 (data_c1..c4.js) ont ete rediges a la main en juin
+ * 2026 ; le classeur Cyber Watch, lui, est tenu a jour. Tant que les deux
+ * cohabitaient, la fiche des Pays-Bas affichait « niveau 4 » (lu dans le
+ * classeur) a cote de « pas encore transpose » (lu dans l'enregistrement), la
+ * loi etant entree en vigueur le 15 aout. Le classeur fait donc foi pour les
+ * champs qu'il porte : niveau, transposition, retard, entree en vigueur,
+ * referentiel. Une case vide ou « NC » laisse la valeur de l'enregistrement. */
+function regFromWorkbook(c){
+  const row = typeof SHEET_DATA !== "undefined" && SHEET_DATA.rows[c.iso];
+  if (!row) return c;
+  const id = row.id || {}, fw = row.fw || {};
+  const has = v => v != null && v !== "NC";
+  if (has(id.D) && /^[1-4]$/.test(String(id.D))) c.maturity = +id.D;
+  if (has(id.F) && /^(yes|no)\b/i.test(id.F)) {
+    c.transposed = /^yes/i.test(id.F);
+    const m = /(\d+(?:[.,]\d+)?)/.exec(String(id.I || ""));
+    if (!c.transposed) { c.onTime = false; c.delayMonths = null; }
+    else if (/in time/i.test(String(id.G || "")) || (m && +m[1] === 0)) { c.onTime = true; c.delayMonths = 0; }
+    else if (m) { c.onTime = false; c.delayMonths = Math.round(parseFloat(m[1].replace(",", "."))); }
+  }
+  if (has(id.E) && /^\d{4}-\d{2}-\d{2}$/.test(id.E)) c.lawInForce = id.E;
+  if (has(fw.D)) {
+    const f = /final/i.test(fw.D) ? "final" : /temp/i.test(fw.D) ? "temporary" : /^no/i.test(fw.D) ? "none" : null;
+    if (f) c.fw = f;
+  }
+  return c;
+}
+
 function regApply(){
   const spec = regSpec();
   COUNTRIES = spec.countries();
