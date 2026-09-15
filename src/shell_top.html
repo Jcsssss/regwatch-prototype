@@ -188,7 +188,18 @@ nav.tabs .badge[hidden]{display:none}
 /* Le retour et le nom du pays, replies tant que l'en-tete de la fiche est
    visible : ils n'apparaissent que lorsqu'il sort de l'ecran, faute de quoi ils
    repeteraient le titre a dix pixels de distance. */
-.fnav-back,.fnav-id,.fnav-sep{display:none}
+.fnav-back,.fnav-id,.fnav-sep,.fnav-rpt{display:none}
+/* Generer les slides : n'apparait qu'une fois l'en-tete sorti de l'ecran, comme
+   le nom du pays - en haut de fiche, le bouton de l'en-tete est deja visible. */
+.fnav-in .fnav-rpt{margin-left:auto;flex:none;background:var(--accent);color:var(--accent-ink);
+  padding:7px 12px;gap:6px}
+.fnav-in .fnav-rpt:hover{background:var(--accent);color:var(--accent-ink);filter:brightness(1.1)}
+.fnav.stuck .fnav-rpt{display:inline-flex}
+/* Collee, la barre porte en plus le pays et ce bouton : les sections se
+   resserrent pour que tout tienne, et sous 1 380 px le bouton ne garde que son
+   icone - son libelle etait coupe au bord de la colonne. */
+.fnav.stuck .fnav-in button[data-fgo]{padding:8px 9px}
+@media (max-width:1380px){.fnav-in .fnav-rpt span{display:none}.fnav-in .fnav-rpt{padding:7px 9px}}
 .fnav.stuck .fnav-back{display:grid;place-items:center;width:30px;height:30px;flex:none;
   border-radius:8px;color:var(--ink2);text-decoration:none}
 .fnav.stuck .fnav-back:hover{background:var(--surface2);color:var(--ink);text-decoration:none}

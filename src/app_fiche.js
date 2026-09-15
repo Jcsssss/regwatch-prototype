@@ -81,7 +81,11 @@ const FICHE_ICONS = {
   grid: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h8"/>',
   folder: '<path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>',
   book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
-  bulb: '<path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3z"/><path d="M10 20h4"/>'
+  bulb: '<path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3z"/><path d="M10 20h4"/>',
+  /* quatre barres croissantes : l'echelle de 1 a 4, et non un panneau
+     d'avertissement, qui laissait croire a une alerte sur le pays */
+  levels: '<path d="M5 20v-3M10 20v-7M15 20v-11M20 20V4"/>',
+  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'
 };
 function ficheIcon(name, cls){
   return `<svg class="${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -296,7 +300,7 @@ function ficheFacts(c){
         `<div class="${l === mat ? "on" : ""}"><i style="background:var(--m${l})"></i>`
         + `<span>${l}</span>${esc(regLevelLabel(l))}</div>`).join("")}</div></div>`;
   const bubbles = [
-    { icon: "alert", lab: t("fiche.f.maturity"), cell: "id!D", tip: matTip,
+    { icon: "levels", lab: t("fiche.f.maturity"), cell: "id!D", tip: matTip,
       html: `<div class="fmat" style="--mc:var(--m${mat})"><b>${mat}</b>
         <span class="dots">${[1, 2, 3, 4].map(l => `<i class="${l <= mat ? "on" : ""}"></i>`).join("")}</span></div>` },
     { icon: "clock", lab: t("fiche.f.inForce"), cell: "id!E",
@@ -410,6 +414,8 @@ function renderFiche(c, el){
         <span class="fnav-sep"></span>
         ${FICHE_SECTIONS.map(s => `<button type="button" data-fgo="${s.key}">
           ${ficheIcon(s.icon)}${t(s.tKey)}</button>`).join("")}
+        ${role === "validator" ? `<button type="button" class="fnav-rpt" id="rptBtnNav"
+          title="${esc(t("rpt.navTitle"))}">${ficheIcon("download")}<span>${t("rpt.go")}</span></button>` : ""}
       </div></div>
       ${sections}
 
@@ -466,9 +472,14 @@ function renderFiche(c, el){
   /* La generation du rapport, reservee au validateur. app_report.js remplace
      l'ancien bouton a slide unique : quatre slides, un choix de contenu et de
      langue. L'ancien generateur reste en place pour la fiche d'origine (REC). */
-  const rb = $("#rptBtn", el);
-  if (rb && typeof reportDialog === "function")
-    rb.addEventListener("click", () => reportDialog(iso));
+  /* Le meme dialogue depuis la barre collante : une fois l'en-tete sorti de
+     l'ecran, le bouton du haut n'est plus a portee, et c'est souvent apres avoir
+     relu la fiche qu'on decide de generer les slides. */
+  ["#rptBtn", "#rptBtnNav"].forEach(sel => {
+    const rb = $(sel, el);
+    if (rb && typeof reportDialog === "function")
+      rb.addEventListener("click", () => reportDialog(iso));
+  });
 }
 
 /* Etat du reperage, partage entre les rendus : voir le commentaire dans
