@@ -894,7 +894,8 @@ function euWire(el){
   const ask = $("#euMineAsk", el);
   if (ask && typeof assistOpen === "function") ask.addEventListener("click", () => {
     assistOpen();
-    const p = $("#assistPanel"); if (p) p.classList.add("wide");
+    const p = $("#assistPanel");
+    if (p && (!store.assistSize || store.assistSize.w < 700)) { if (typeof assistClearSize === "function") assistClearSize(); p.classList.add("wide"); }
     if (typeof assistSync === "function") assistSync();
   });
 

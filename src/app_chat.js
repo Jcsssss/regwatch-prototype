@@ -482,7 +482,12 @@ async function chatAsk(question){
   chatBusy = false;
   /* Un visuel se lit mal a 430 pixels : le panneau s'elargit quand il en arrive un. */
   const last = chatLog[chatLog.length - 1];
-  if (last && last.visuals && last.visuals.length) { const p = $("#assistPanel"); if (p) p.classList.add("wide"); assistSync(); }
+  /* Une taille choisie a la main est respectee, sauf si elle est trop etroite pour un visuel. */
+  if (last && last.visuals && last.visuals.length) {
+    const p = $("#assistPanel");
+    if (p && (!store.assistSize || store.assistSize.w < 700)) { assistClearSize(); p.classList.add("wide"); }
+    assistSync();
+  }
   chatRender();
   assistNotify();
 }
@@ -763,9 +768,83 @@ function assistSync(){
   if (assistIsOpen() && !chatLog.length) chatRender();
 }
 
+/* ---------- taille du panneau ----------
+ * Trois poignees (bord gauche, bord haut, coin) pour la taille voulue, gardee
+ * dans le navigateur. Le bouton agrandir / reduire reste le raccourci : il
+ * efface la taille libre et bascule entre les deux tailles prevues. */
+const ASSIST_MIN_W = 340, ASSIST_MIN_H = 320;
+function assistClamp(w, h){
+  const maxW = Math.max(ASSIST_MIN_W, window.innerWidth - 44);
+  const maxH = Math.max(ASSIST_MIN_H, window.innerHeight - 110);
+  return { w: Math.round(Math.min(Math.max(w, ASSIST_MIN_W), maxW)),
+           h: Math.round(Math.min(Math.max(h, ASSIST_MIN_H), maxH)) };
+}
+function assistApplySize(){
+  const p = $("#assistPanel");
+  if (!p) return;
+  const s = store.assistSize;
+  if (!s) { p.style.width = ""; p.style.height = ""; return; }
+  const c = assistClamp(s.w, s.h);
+  p.style.width = c.w + "px";
+  p.style.height = c.h + "px";
+  /* Les suggestions passent en colonnes des que la place le permet, comme en mode large. */
+  p.classList.toggle("wide", c.w >= 700);
+}
+function assistClearSize(){
+  delete store.assistSize;
+  saveStore();
+  assistApplySize();
+}
+function assistWireResize(){
+  const p = $("#assistPanel");
+  if (!p || p.querySelector(".assist-rz")) return;
+  ["l", "t", "tl"].forEach(k => {
+    const h = document.createElement("div");
+    h.className = "assist-rz " + k;
+    h.setAttribute("aria-hidden", "true");
+    h.title = t("assist.resize");
+    p.appendChild(h);
+    h.addEventListener("dblclick", assistClearSize);
+    h.addEventListener("pointerdown", e => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      const r = p.getBoundingClientRect();
+      const x0 = e.clientX, y0 = e.clientY;
+      let size = { w: r.width, h: r.height };
+      try { h.setPointerCapture(e.pointerId); } catch (err) { /* evenement synthetique */ }
+      p.classList.add("resizing");
+      document.body.classList.add("assist-resizing");
+      document.body.style.cursor = getComputedStyle(h).cursor;
+      const move = ev => {
+        size = assistClamp(k === "t" ? r.width : r.width + (x0 - ev.clientX),
+                           k === "l" ? r.height : r.height + (y0 - ev.clientY));
+        p.style.width = size.w + "px";
+        p.style.height = size.h + "px";
+      };
+      const up = () => {
+        h.removeEventListener("pointermove", move);
+        h.removeEventListener("pointerup", up);
+        h.removeEventListener("pointercancel", up);
+        p.classList.remove("resizing");
+        document.body.classList.remove("assist-resizing");
+        document.body.style.cursor = "";
+        store.assistSize = size;
+        saveStore();
+        assistApplySize();
+        assistSync();
+      };
+      h.addEventListener("pointermove", move);
+      h.addEventListener("pointerup", up);
+      h.addEventListener("pointercancel", up);
+    });
+  });
+  window.addEventListener("resize", () => { if (store.assistSize) assistApplySize(); }, { passive: true });
+}
+
 function assistOpen(){
   const p = $("#assistPanel"), fab = $("#assistFab");
   if (!p) return;
+  assistApplySize();
   p.hidden = false;
   fab.setAttribute("aria-expanded", "true");
   fab.classList.remove("has-new");
@@ -797,9 +876,13 @@ function assistWire(){
   fab.addEventListener("click", () => assistIsOpen() ? assistClose() : assistOpen());
   $("#assistClose").addEventListener("click", assistClose);
   $("#assistGrow").addEventListener("click", () => {
-    $("#assistPanel").classList.toggle("wide");
+    const p = $("#assistPanel");
+    const wasWide = p.classList.contains("wide");
+    assistClearSize();
+    p.classList.toggle("wide", !wasWide);
     assistSync();
   });
+  assistWireResize();
   document.addEventListener("keydown", e => {
     const modal = $("#chatModal");
     if (e.key === "Escape" && assistIsOpen() && !(modal && !modal.hidden)) assistClose();

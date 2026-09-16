@@ -1216,6 +1216,20 @@ details.fold:not([open]) > summary{padding-bottom:13px}
   box-shadow:0 24px 60px -18px rgba(12,8,32,.45);transform-origin:100% 100%;
   animation:assistIn .18s ease-out}
 .assist-panel[hidden]{display:none}
+/* Poignees de redimensionnement : le panneau est ancre en bas a droite, il
+   grandit donc par son bord gauche, son bord haut et le coin qui les joint. */
+.assist-rz{position:absolute;z-index:5;touch-action:none}
+.assist-rz.l{left:0;top:14px;bottom:14px;width:8px;cursor:ew-resize}
+.assist-rz.t{top:0;left:14px;right:14px;height:8px;cursor:ns-resize}
+.assist-rz.tl{left:0;top:0;width:16px;height:16px;cursor:nwse-resize}
+.assist-rz.l::after{content:"";position:absolute;left:2px;top:50%;width:4px;height:44px;margin-top:-22px;border-radius:4px;
+  background:var(--line2);opacity:0;transition:opacity .15s}
+.assist-rz.t::after{content:"";position:absolute;top:2px;left:50%;height:4px;width:44px;margin-left:-22px;border-radius:4px;
+  background:var(--line2);opacity:0;transition:opacity .15s}
+.assist-panel:hover .assist-rz::after{opacity:.9}
+.assist-rz:hover::after,.assist-panel.resizing .assist-rz::after{background:var(--accent);opacity:1}
+.assist-panel.resizing{animation:none;user-select:none}
+body.assist-resizing,body.assist-resizing *{cursor:inherit!important;user-select:none!important}
 .assist-panel.wide{width:min(900px,calc(100vw - 44px));height:calc(100vh - 128px)}
 @keyframes assistIn{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 .assist-h{display:flex;align-items:center;gap:10px;padding:11px 12px 11px 14px;
@@ -1244,7 +1258,8 @@ details.fold:not([open]) > summary{padding-bottom:13px}
 .assist-tools{order:1;display:flex;gap:6px;justify-content:flex-end}
 .assist-tools .btn{padding:4px 10px;font-size:12px}
 @media (max-width:640px){
-  .assist-panel,.assist-panel.wide{right:0;bottom:0;width:100vw;height:100dvh;border-radius:0;border:0}
+  .assist-panel,.assist-panel.wide{right:0;bottom:0;width:100vw!important;height:100dvh!important;border-radius:0;border:0}
+  .assist-rz{display:none}
   body.assist-on .assist-fab{display:none}
   #assistGrow{display:none}
 }
@@ -18576,6 +18591,7 @@ const I18N = {
     "eu.val.morespecificmodalities": "More specific than the directive",
     "eu.val.nis2dedicatedframework": "Framework dedicated to NIS 2",
     "eu.val.notspecified": "Not specified",
+    "assist.resize": "Drag to resize, double-click to reset",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -19419,6 +19435,7 @@ const I18N = {
     "eu.val.morespecificmodalities": "Plus pr\u00e9cis que la directive",
     "eu.val.nis2dedicatedframework": "R\u00e9f\u00e9rentiel d\u00e9di\u00e9 \u00e0 NIS 2",
     "eu.val.notspecified": "Non pr\u00e9cis\u00e9",
+    "assist.resize": "Glisser pour redimensionner, double-clic pour revenir \u00e0 la taille par d\u00e9faut",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -24035,7 +24052,12 @@ async function chatAsk(question){
   chatBusy = false;
   /* Un visuel se lit mal a 430 pixels : le panneau s'elargit quand il en arrive un. */
   const last = chatLog[chatLog.length - 1];
-  if (last && last.visuals && last.visuals.length) { const p = $("#assistPanel"); if (p) p.classList.add("wide"); assistSync(); }
+  /* Une taille choisie a la main est respectee, sauf si elle est trop etroite pour un visuel. */
+  if (last && last.visuals && last.visuals.length) {
+    const p = $("#assistPanel");
+    if (p && (!store.assistSize || store.assistSize.w < 700)) { assistClearSize(); p.classList.add("wide"); }
+    assistSync();
+  }
   chatRender();
   assistNotify();
 }
@@ -24316,9 +24338,83 @@ function assistSync(){
   if (assistIsOpen() && !chatLog.length) chatRender();
 }
 
+/* ---------- taille du panneau ----------
+ * Trois poignees (bord gauche, bord haut, coin) pour la taille voulue, gardee
+ * dans le navigateur. Le bouton agrandir / reduire reste le raccourci : il
+ * efface la taille libre et bascule entre les deux tailles prevues. */
+const ASSIST_MIN_W = 340, ASSIST_MIN_H = 320;
+function assistClamp(w, h){
+  const maxW = Math.max(ASSIST_MIN_W, window.innerWidth - 44);
+  const maxH = Math.max(ASSIST_MIN_H, window.innerHeight - 110);
+  return { w: Math.round(Math.min(Math.max(w, ASSIST_MIN_W), maxW)),
+           h: Math.round(Math.min(Math.max(h, ASSIST_MIN_H), maxH)) };
+}
+function assistApplySize(){
+  const p = $("#assistPanel");
+  if (!p) return;
+  const s = store.assistSize;
+  if (!s) { p.style.width = ""; p.style.height = ""; return; }
+  const c = assistClamp(s.w, s.h);
+  p.style.width = c.w + "px";
+  p.style.height = c.h + "px";
+  /* Les suggestions passent en colonnes des que la place le permet, comme en mode large. */
+  p.classList.toggle("wide", c.w >= 700);
+}
+function assistClearSize(){
+  delete store.assistSize;
+  saveStore();
+  assistApplySize();
+}
+function assistWireResize(){
+  const p = $("#assistPanel");
+  if (!p || p.querySelector(".assist-rz")) return;
+  ["l", "t", "tl"].forEach(k => {
+    const h = document.createElement("div");
+    h.className = "assist-rz " + k;
+    h.setAttribute("aria-hidden", "true");
+    h.title = t("assist.resize");
+    p.appendChild(h);
+    h.addEventListener("dblclick", assistClearSize);
+    h.addEventListener("pointerdown", e => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      const r = p.getBoundingClientRect();
+      const x0 = e.clientX, y0 = e.clientY;
+      let size = { w: r.width, h: r.height };
+      try { h.setPointerCapture(e.pointerId); } catch (err) { /* evenement synthetique */ }
+      p.classList.add("resizing");
+      document.body.classList.add("assist-resizing");
+      document.body.style.cursor = getComputedStyle(h).cursor;
+      const move = ev => {
+        size = assistClamp(k === "t" ? r.width : r.width + (x0 - ev.clientX),
+                           k === "l" ? r.height : r.height + (y0 - ev.clientY));
+        p.style.width = size.w + "px";
+        p.style.height = size.h + "px";
+      };
+      const up = () => {
+        h.removeEventListener("pointermove", move);
+        h.removeEventListener("pointerup", up);
+        h.removeEventListener("pointercancel", up);
+        p.classList.remove("resizing");
+        document.body.classList.remove("assist-resizing");
+        document.body.style.cursor = "";
+        store.assistSize = size;
+        saveStore();
+        assistApplySize();
+        assistSync();
+      };
+      h.addEventListener("pointermove", move);
+      h.addEventListener("pointerup", up);
+      h.addEventListener("pointercancel", up);
+    });
+  });
+  window.addEventListener("resize", () => { if (store.assistSize) assistApplySize(); }, { passive: true });
+}
+
 function assistOpen(){
   const p = $("#assistPanel"), fab = $("#assistFab");
   if (!p) return;
+  assistApplySize();
   p.hidden = false;
   fab.setAttribute("aria-expanded", "true");
   fab.classList.remove("has-new");
@@ -24350,9 +24446,13 @@ function assistWire(){
   fab.addEventListener("click", () => assistIsOpen() ? assistClose() : assistOpen());
   $("#assistClose").addEventListener("click", assistClose);
   $("#assistGrow").addEventListener("click", () => {
-    $("#assistPanel").classList.toggle("wide");
+    const p = $("#assistPanel");
+    const wasWide = p.classList.contains("wide");
+    assistClearSize();
+    p.classList.toggle("wide", !wasWide);
     assistSync();
   });
+  assistWireResize();
   document.addEventListener("keydown", e => {
     const modal = $("#chatModal");
     if (e.key === "Escape" && assistIsOpen() && !(modal && !modal.hidden)) assistClose();
@@ -27175,7 +27275,8 @@ function euWire(el){
   const ask = $("#euMineAsk", el);
   if (ask && typeof assistOpen === "function") ask.addEventListener("click", () => {
     assistOpen();
-    const p = $("#assistPanel"); if (p) p.classList.add("wide");
+    const p = $("#assistPanel");
+    if (p && (!store.assistSize || store.assistSize.w < 700)) { if (typeof assistClearSize === "function") assistClearSize(); p.classList.add("wide"); }
     if (typeof assistSync === "function") assistSync();
   });
 
