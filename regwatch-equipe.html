@@ -676,7 +676,9 @@ body.fcells .fcell{display:inline}
 /* pyramide */
 .eu-pyr{display:grid;gap:3px}
 .eu-pyr-row{display:grid;grid-template-columns:minmax(220px,46%) 1fr;gap:14px;align-items:center}
+.eu-pyr-c{position:relative}
 .eu-pyr-s{height:46px;display:grid;place-items:center}
+.eu-pyr-out{position:absolute;top:50%;transform:translateY(-50%);font-size:12.5px;font-weight:750;color:var(--accent);white-space:nowrap}
 .eu-pyr-s span{font-size:12.5px;font-weight:750;text-align:center}
 .eu-pyr-f{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px dashed var(--line);min-height:40px}
 .eu-pyr-f>b{font-size:17px;color:var(--accent);min-width:22px}
@@ -26703,12 +26705,19 @@ const EU_CHARTS = {
       const levels = L.concat([{ k: "free", label: t("eu.aud.free") }]);
       const tipOf = iso => esc(String(euCell(iso, "aud", "M") || "").slice(0, 160));
       const fixed = g.y1.length + g.y2.length + g.y3.length + g.y5.length;
+      /* Un vrai sommet, comme dans l'etude : la premiere tranche est un triangle.
+         Trop etroite pour porter son libelle, elle l'ecrit a gauche de la pointe. */
+      const step = 50 / levels.length;
       const rows = levels.map((l, i) => {
-        const a = 7 + i * 8.6, b = 7 + (i + 1) * 8.6;   /* demi-largeurs haut / bas, en % */
+        const a = i * step, b = (i + 1) * step;   /* demi-largeurs haut / bas, en % */
+        const out = i === 0;
         return `<div class="eu-pyr-row">
-          <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
-            background:color-mix(in srgb,var(--accent) ${100 - i * 16}%,var(--accent-soft))">
-            <span style="color:${i < 3 ? "var(--accent-ink)" : "var(--accent2)"}">${l.label}</span></div>
+          <div class="eu-pyr-c">
+            <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
+              background:color-mix(in srgb,var(--accent) ${100 - i * 16}%,var(--accent-soft))">
+              ${out ? "" : `<span style="color:${i < 3 ? "var(--accent-ink)" : "var(--accent2)"}">${l.label}</span>`}</div>
+            ${out ? `<span class="eu-pyr-out" style="right:calc(50% + ${(a + b) / 2 + 3}%)">${l.label}</span>` : ""}
+          </div>
           <div class="eu-pyr-f"><b>${g[l.k].length}</b>${euFlags(g[l.k], 0, tipOf)}</div>
         </div>`;
       }).join("");

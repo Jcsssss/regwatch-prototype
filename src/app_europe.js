@@ -641,12 +641,19 @@ const EU_CHARTS = {
       const levels = L.concat([{ k: "free", label: t("eu.aud.free") }]);
       const tipOf = iso => esc(String(euCell(iso, "aud", "M") || "").slice(0, 160));
       const fixed = g.y1.length + g.y2.length + g.y3.length + g.y5.length;
+      /* Un vrai sommet, comme dans l'etude : la premiere tranche est un triangle.
+         Trop etroite pour porter son libelle, elle l'ecrit a gauche de la pointe. */
+      const step = 50 / levels.length;
       const rows = levels.map((l, i) => {
-        const a = 7 + i * 8.6, b = 7 + (i + 1) * 8.6;   /* demi-largeurs haut / bas, en % */
+        const a = i * step, b = (i + 1) * step;   /* demi-largeurs haut / bas, en % */
+        const out = i === 0;
         return `<div class="eu-pyr-row">
-          <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
-            background:color-mix(in srgb,var(--accent) ${100 - i * 16}%,var(--accent-soft))">
-            <span style="color:${i < 3 ? "var(--accent-ink)" : "var(--accent2)"}">${l.label}</span></div>
+          <div class="eu-pyr-c">
+            <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
+              background:color-mix(in srgb,var(--accent) ${100 - i * 16}%,var(--accent-soft))">
+              ${out ? "" : `<span style="color:${i < 3 ? "var(--accent-ink)" : "var(--accent2)"}">${l.label}</span>`}</div>
+            ${out ? `<span class="eu-pyr-out" style="right:calc(50% + ${(a + b) / 2 + 3}%)">${l.label}</span>` : ""}
+          </div>
           <div class="eu-pyr-f"><b>${g[l.k].length}</b>${euFlags(g[l.k], 0, tipOf)}</div>
         </div>`;
       }).join("");
