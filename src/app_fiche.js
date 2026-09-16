@@ -85,7 +85,8 @@ const FICHE_ICONS = {
   /* quatre barres croissantes : l'echelle de 1 a 4, et non un panneau
      d'avertissement, qui laissait croire a une alerte sur le pays */
   levels: '<path d="M5 20v-3M10 20v-7M15 20v-11M20 20V4"/>',
-  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'
+  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  sparkle: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>'
 };
 function ficheIcon(name, cls){
   return `<svg class="${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -116,10 +117,9 @@ function ficheCols(key){
 const FICHE_YES = /^(yes|oui|y)$/i;
 const FICHE_NO = /^(no|non|n)$/i;
 
-/* Une valeur telle que la fiche la montre. Trois etats se distinguent, et la
-   distinction compte : la case est vide (personne n'a regarde), la case dit
-   « NC » (on a cherche, on n'a pas trouve), ou elle porte une reponse. Les
-   confondre ferait passer une lacune de la veille pour une absence de regle. */
+/* Une valeur telle que la fiche la montre. Une case vide et une case « NC »
+   s'affichent toutes deux « Non communique », a la demande de l'equipe : une
+   seule mention pour le lecteur. Elles gardent leurs classes distinctes. */
 function ficheValue(v){
   if (v == null) return `<span class="fv-none">${t("fiche.empty")}</span>`;
   if (v === "NC") return `<span class="fv-nc">${t("fiche.nc")}</span>`;
@@ -149,23 +149,35 @@ const FICHE_TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const FICHE_CROSS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 8l8 8M16 8l-8 8"/></svg>';
 const FICHE_DOT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/></svg>';
 
+/* Quatre etats, et une legende qui ne montre que ceux presents : le bleu
+   (une reponse autre que oui ou non, recopiee a cote du libelle) ne se
+   devinait pas, et « non communique » se confondait avec « non » sous la meme
+   croix grise. */
+const FICHE_Q = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5h.01"/></svg>';
 function ficheList(iso, key, cols, titleKey){
+  const seen = new Set();
   const items = cols.map(col => {
     const label = ficheLabel(key, col);
     if (!label) return "";
     const v = ficheCell(iso, key, col);
-    if (v == null || v === "NC")
-      return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`;
-    if (FICHE_YES.test(v)) return `<div class="fck on">${FICHE_TICK}<span>${esc(label)}</span></div>`;
-    if (FICHE_NO.test(v)) return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`;
+    if (v == null || v === "NC") {
+      seen.add("nc");
+      return `<div class="fck nc">${FICHE_Q}<span>${esc(label)}</span></div>`;
+    }
+    if (FICHE_YES.test(v)) { seen.add("on"); return `<div class="fck on">${FICHE_TICK}<span>${esc(label)}</span></div>`; }
+    if (FICHE_NO.test(v)) { seen.add("off"); return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`; }
+    seen.add("other");
     return `<div class="fck other">${FICHE_DOT}<span>${esc(label)} <b>${esc(v)}</b></span></div>`;
   }).join("");
   if (!items) return "";
+  const legend = [["on", FICHE_TICK], ["other", FICHE_DOT], ["off", FICHE_CROSS], ["nc", FICHE_Q]]
+    .filter(([k]) => seen.has(k))
+    .map(([k, ic]) => `<span class="fck ${k}">${ic}${t("fiche.lg." + k)}</span>`).join("");
   const yes = cols.filter(c => { const v = ficheCell(iso, key, c); return v && FICHE_YES.test(v); }).length;
   return `<div class="fblock">
     <div class="flab">${t(titleKey)}<span class="fcell">${key}!${cols[0]}:${cols[cols.length - 1]}</span></div>
     <div class="fcks">${items}</div>
-    <div class="fnote">${t("fiche.listCount", { n: yes, total: cols.length })}</div>
+    <div class="fcklg">${legend}<span class="n">${t("fiche.listCount", { n: yes, total: cols.length })}</span></div>
   </div>`;
 }
 

@@ -33,7 +33,8 @@ const EU_SECTIONS = [
   { key: "reg", icon: "card", tKey: "fiche.reg" },
   { key: "fw", icon: "shield", tKey: "fiche.fw" },
   { key: "aud", icon: "search", tKey: "fiche.aud" },
-  { key: "san", icon: "scale", tKey: "fiche.san" }
+  { key: "san", icon: "scale", tKey: "fiche.san" },
+  { key: "mine", icon: "sparkle", tKey: "eu.s.mine" }
 ];
 
 /* ---------- lecture ---------- */
@@ -147,7 +148,7 @@ function euStairs(groups, total){
       <div class="eu-st-t">
         <div class="eu-st-b" style="left:${left}%;width:max(${w}%,6px);background:${g.color}"
           data-tip="${esc(`<b>${g.label}</b><br>${n} ${t("common.countries")}`)}"></div>
-        <span class="eu-st-l" style="left:${left + w > 72 ? left : left + w}%" data-side="${left + w > 72 ? "before" : "after"}">
+        <span class="eu-st-l" style="left:${left + w <= 72 ? left + w : left > 25 ? left : left + 1}%" data-side="${left + w <= 72 ? "after" : left > 25 ? "before" : "inside"}">
           <b>${g.label}</b> · ${n}</span>
       </div></div>`;
   }).join("");
@@ -762,13 +763,15 @@ function euCard(ch, sel){
       <button type="button" class="eu-reset" ${saved.title ? "" : "hidden"} title="${esc(t("eu.resetTitle"))}" aria-label="${esc(t("eu.resetTitle"))}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
+      ${ch.mine ? `<button type="button" class="eu-del" data-mine="${ch.mine}" title="${esc(t("eu.mine.delete"))}" aria-label="${esc(t("eu.mine.delete"))}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button>` : ""}
       <button type="button" class="eu-dl" title="${esc(t("eu.dlOne"))}" aria-label="${esc(t("eu.dlOne"))}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>PNG</span></button>
     </div>
     <div class="eu-body">${ch.body}</div>
     <div class="eu-note" contenteditable="true" data-ph="${esc(t("eu.notePh"))}">${esc(saved.note || "")}</div>
     <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code>${filled != null
-      ? ` · ${t("eu.filled", { n: filled, total: sel.length })}` : ""}</figcaption>
+      ? ` · ${t("eu.filled", { n: filled, total: ch.total || sel.length })}` : ""}${ch.meta ? ` · ${esc(ch.meta)}` : ""}</figcaption>
   </figure>`;
 }
 
@@ -776,7 +779,7 @@ function euCard(ch, sel){
 let euSpy = null;
 let euScrollBound = false;
 
-function renderEurope(){
+function renderEurope(arg){
   const el = $("#v-europe");
   if (!el) return;
   if (typeof SHEET_DATA === "undefined" || regId() !== "nis2") {
@@ -795,6 +798,11 @@ function renderEurope(){
   ];
 
   const sections = EU_SECTIONS.map(sec => {
+    if (sec.key === "mine") return `<section class="fsec eu-sec-w eu-mine" id="eusec-mine" data-fsec="mine">
+      <div class="fsec-h"><div class="ic">${ficheIcon(sec.icon)}</div><h2>${t(sec.tKey)}</h2>
+        <span class="cnt">${t("eu.mine.count", { n: euMine().length })}</span></div>
+      <div class="eu-grid">${euMineSection(sel)}</div>
+    </section>`;
     const cards = sel.length ? EU_CHARTS[sec.key].map(fn => {
       try { return fn(sel); } catch (e) { console.error("vue europeenne", sec.key, e); return null; }
     }).filter(Boolean).map(ch => euCard(ch, sel)).join("") : "";
@@ -827,13 +835,23 @@ function renderEurope(){
       </div>
     </div>
     <div class="fnav eu-nav" id="euNavWrap"><div class="fnav-in" id="euNav">
-      ${EU_SECTIONS.map(x => `<button type="button" data-fgo="${x.key}">${ficheIcon(x.icon)}${t(x.tKey)}</button>`).join("")}
+      ${EU_SECTIONS.map(x => `<button type="button" data-fgo="${x.key}"${x.key === "mine" ? ' class="eu-nav-mine"' : ""}>${ficheIcon(x.icon)}${t(x.tKey)}${
+        x.key === "mine" && euMine().length ? ` <em>${euMine().length}</em>` : ""}</button>`).join("")}
       <button type="button" class="eu-nav-sel" id="euNavSel" title="${esc(t("eu.compare"))}">${t("eu.count", { n: sel.length })}</button>
     </div></div>
     ${sections}
     <p class="eu-disclaimer">${t("eu.saved")}</p>`;
 
   euWire(el);
+  /* #/europe/mine : on arrive depuis l'assistant, directement sur ses visuels. */
+  if (arg === "mine") {
+    /* Une seule fois : sans cela, chaque nouveau rendu (theme, langue, visuel
+       ajoute) ramenerait la page sur la section. */
+    if (typeof currentRoute !== "undefined") currentRoute.arg = null;
+    history.replaceState(null, "", "#/europe");
+    const m = $("#eusec-mine", el);
+    if (m) setTimeout(() => { if (euSpy) euSpy.lock = Date.now() + 900; m.scrollIntoView({ block: "start" }); euSpy && euSpy.mark("mine"); }, 30);
+  }
 }
 
 function euSetSel(next){
@@ -866,6 +884,19 @@ function euWire(el){
   }));
   const ns = $("#euNavSel", el);
   if (ns) ns.addEventListener("click", () => $("#euFilter", el).scrollIntoView({ behavior: "smooth", block: "center" }));
+
+  /* --- mes visuels --- */
+  el.querySelectorAll(".eu-del").forEach(b => b.addEventListener("click", () => {
+    if (!confirm(t("eu.mine.confirm"))) return;
+    euMineRemove(b.dataset.mine);
+    const y = window.scrollY; renderEurope(); window.scrollTo({ top: y });
+  }));
+  const ask = $("#euMineAsk", el);
+  if (ask && typeof assistOpen === "function") ask.addEventListener("click", () => {
+    assistOpen();
+    const p = $("#assistPanel"); if (p) p.classList.add("wide");
+    if (typeof assistSync === "function") assistSync();
+  });
 
   /* --- telechargement --- */
   el.querySelectorAll(".eu-dl").forEach(b => b.addEventListener("click", () => euDownloadCard(b.closest(".eu-card"), b)));
@@ -1001,7 +1032,7 @@ async function euCardPng(card, scale){
   scale = scale || 2;
   const w = Math.ceil(card.getBoundingClientRect().width);
   const clone = euInlineClone(card);
-  clone.querySelectorAll(".eu-reset,.eu-dl,.eu-edit").forEach(n => n.remove());
+  clone.querySelectorAll(".eu-reset,.eu-dl,.eu-edit,.eu-del,.chat-vis-act,.chat-vis-where").forEach(n => n.remove());
   const note = clone.querySelector(".eu-note");
   if (note && !note.textContent.trim()) note.remove();
   const pad = 16;
@@ -1087,4 +1118,304 @@ async function euDownloadAll(root, btn){
   } finally {
     if (btn) { btn.disabled = false; btn.innerHTML = label; }
   }
+}
+
+/* ---------- visuels sur demande ----------
+ *
+ * L'assistant ne dessine rien et ne calcule aucun chiffre. Il traduit une
+ * demande en une description courte - une feuille, une ou plusieurs colonnes,
+ * une forme, eventuellement des regroupements - et c'est l'outil qui compte les
+ * pays dans le classeur et dessine avec les briques de la vue europeenne. Un
+ * visuel ajoute a « Mes visuels » garde cette description, pas ses chiffres :
+ * il se recalcule quand le classeur change, comme les autres.
+ *
+ * Seule part d'interpretation : les colonnes en texte libre, que l'assistant
+ * regroupe par mots-cles. Le regroupement est alors affiche sous le visuel, et
+ * la valeur d'origine de chaque pays reste lisible au survol de son drapeau.
+ */
+const EU_FORMS = ["map", "rings", "share", "stairs", "columns", "pyramid", "bars"];
+const EU_PALETTE = ["var(--accent)", "var(--m4)", "#f5b82e", "var(--ie)", "var(--m1)", "#ff3b5c", "var(--accent2)", "#ff8a3d"];
+
+function euNorm(v){
+  if (euNC(v)) return null;
+  if (euYes(v)) return "YES";
+  if (euNo(v)) return "NO";
+  return String(v).replace(/\s+/g, " ").trim();
+}
+/* Les valeurs courantes du classeur, traduites ; les autres restent telles
+   qu'ecrites, verifiables contre la case. */
+function euValLabel(k){
+  if (k === "YES") return t("eu.v.yes");
+  if (k === "NO") return t("eu.v.no");
+  const slug = String(k).toLowerCase().replace(/[^a-z]+/g, "");
+  for (const p of ["eu.val.", "eu.v.org.", "eu.v.aud.", "eu.v.doc."]) {
+    const s = t(p + slug);
+    if (s !== p + slug) return s;
+  }
+  return k;
+}
+
+/* Ce que l'assistant lit avant de choisir : les colonnes de chaque feuille,
+   leur remplissage et leurs valeurs les plus frequentes. */
+function euDescribeColumns(a){
+  if (typeof SHEET_DATA === "undefined") return { error: "no workbook data" };
+  const keys = (a && a.sheets && a.sheets.length ? a.sheets : Object.keys(SHEET_DATA.sheets))
+    .filter(k => SHEET_DATA.sheets[k]);
+  const rows = Object.values(SHEET_DATA.rows);
+  const sheets = {};
+  keys.forEach(k => {
+    const sh = SHEET_DATA.sheets[k];
+    sheets[k] = { name: sh.name, columns: sh.fields.filter(f => f.c !== "C").map(f => {
+      const vals = rows.map(r => (r[k] || {})[f.c]).filter(v => !euNC(v));
+      const cnt = {};
+      vals.forEach(v => { const n = euNorm(v); const s = n.length > 50 ? n.slice(0, 50) + "…" : n; cnt[s] = (cnt[s] || 0) + 1; });
+      const top = Object.entries(cnt).sort((x, y) => y[1] - x[1]);
+      return { col: f.c, label: f.l, filled: vals.length, distinct: top.length,
+        numeric: vals.length > 0 && vals.filter(v => /^\s*\d/.test(v)).length >= vals.length * .6,
+        top: top.slice(0, 5).map(([v, n]) => v + " (" + n + ")") };
+    }) };
+  });
+  return { countries: COUNTRIES.length, sheets,
+    note: "Sheets: id=transposition, inc=incident reporting, reg=registration, fw=framework, "
+      + "aud=audit, san=sanctions, auth=authorities. 'NC' and blanks mean not communicated and are "
+      + "never counted. A column with more than 8 distinct values needs `groups`." };
+}
+
+/* La description, verifiee et resolue. Une erreur explique quoi corriger :
+   l'assistant la lit et relance l'outil. */
+function euSpecCheck(spec){
+  spec = Object.assign({}, spec || {});
+  if (typeof SHEET_DATA === "undefined") throw new Error("no workbook data");
+  const sh = SHEET_DATA.sheets[spec.sheet];
+  if (!sh) throw new Error("unknown sheet '" + spec.sheet + "'. Use one of: " + Object.keys(SHEET_DATA.sheets).join(", "));
+  const cols = [].concat(spec.columns || [], spec.column || []).map(c => String(c).toUpperCase());
+  if (!cols.length) throw new Error("give `column` (or `columns` for a share of YES over several columns)");
+  const bad = cols.filter(c => !sh.fields.some(f => f.c === c));
+  if (bad.length) throw new Error("unknown column(s) " + bad.join(", ") + " in sheet " + spec.sheet + ". Call describe_columns.");
+  spec.form = EU_FORMS.includes(spec.form) ? spec.form : "share";
+  spec.cols = [...new Set(cols)];
+  /* Plusieurs colonnes, c'est « combien de pays disent oui a chacune » : sur des
+     colonnes de categories, le compte serait zero partout et le visuel absurde.
+     Le modele a fait l'erreur en test ; on la refuse avec la correction. */
+  if (spec.cols.length > 1) {
+    const rows = Object.values(SHEET_DATA.rows);
+    const notYesNo = spec.cols.filter(c => {
+      const vals = rows.map(r => (r[spec.sheet] || {})[c]).filter(v => !euNC(v));
+      return vals.length && vals.filter(v => euYes(v) || euNo(v)).length < vals.length * .6;
+    });
+    if (notYesNo.length) throw new Error("`columns` only counts YES answers across YES/NO columns, and "
+      + notYesNo.map(c => spec.sheet + "!" + c).join(", ") + " is not a YES/NO column. For the categories of one "
+      + "column, pass `column` alone (and `groups` to merge its values).");
+  }
+  return spec;
+}
+
+function euVisualBuild(spec, selDefault){
+  spec = euSpecCheck(spec);
+  const isos = spec.countries && spec.countries.length && typeof corpusIsos === "function"
+    ? corpusIsos(spec.countries) : null;
+  const unknown = isos ? spec.countries.filter(x => !corpusIsos([x]).length) : [];
+  const sel = isos ? euAll().filter(c => isos.includes(c.iso)) : selDefault;
+  if (!sel.length) throw new Error("no country matches the selection");
+  /* Ce que le modele doit pouvoir dire : les pays qu'il a nommes et que RegWatch
+     ne suit pas, et ceux dont la case ne dit rien. */
+  const facts = { notTracked: unknown,
+    notCommunicated: sel.filter(c => spec.cols.every(k => euNC(euCell(c.iso, spec.sheet, k)))).map(c => c.name) };
+  const n = sel.length;
+  const key = spec.sheet, col = spec.cols[0];
+  const raw = iso => euCell(iso, key, col);
+  const rawTip = iso => esc(String(raw(iso) == null ? t("fiche.nc") : raw(iso)).slice(0, 180));
+  const src = key + "!" + spec.cols.join(", " + key + "!");
+  let body = "", filled = null, groupsNote = "";
+
+  /* --- plusieurs colonnes : combien de pays repondent oui a chacune --- */
+  if (spec.cols.length > 1) {
+    const rows = spec.cols.map((c, i) => ({ label: esc(ficheLabel(key, c)), color: EU_PALETTE[i % 2 ? 1 : 0],
+      isos: sel.filter(x => euYes(euCell(x.iso, key, c))).map(x => x.iso),
+      tipOf: iso => esc(String(euCell(iso, key, c) || t("fiche.nc")).slice(0, 160)) }))
+      .sort((a, b) => b.isos.length - a.isos.length);
+    return { title: spec.title || ficheLabel(key, col), src, filled: null, total: n,
+      body: euShare(rows, n, { flags: 6 }), facts, summary: rows.map(r => ficheLabel(key, spec.cols[rows.indexOf(r)] || col) + ": " + r.isos.length + "/" + n) };
+  }
+
+  /* --- une valeur numerique par pays --- */
+  const numeric = spec.form === "bars" || (spec.buckets && spec.buckets.length);
+  if (numeric) {
+    const items = sel.map(c => ({ iso: c.iso, v: euNum(raw(c.iso)) }));
+    const known = items.filter(x => x.v != null).sort((a, b) => a.v - b.v);
+    const nc = items.filter(x => x.v == null).map(x => x.iso);
+    filled = known.length;
+    if (!known.length) throw new Error("no numeric value in " + src + " for this selection");
+    if (spec.form === "bars") {
+      const max = Math.max(1, ...known.map(x => x.v));
+      body = `<div class="eu-hbars">${known.map(x => `<div class="eu-hb">
+          <div class="eu-hb-l">${euFlag(x.iso, rawTip(x.iso))}<span>${esc(euName(x.iso))}</span></div>
+          <div class="eu-hb-t"><div class="eu-hb-b" style="width:max(${x.v / max * 100}%,4px);background:var(--accent)"></div>
+            <span>${euFmt(x.v)}${spec.unit ? " " + esc(spec.unit) : ""}</span></div></div>`).join("")}</div>`;
+      if (nc.length) body += `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0, rawTip)}</p>`;
+      return { title: spec.title || ficheLabel(key, col), src, filled, total: n, body, facts,
+        summary: known.map(x => x.iso + "=" + x.v) };
+    }
+    /* paliers : des bornes donnees par l'assistant */
+    const B = spec.buckets.map((b, i) => ({ label: esc(b.label || ""), min: b.min != null ? +b.min : -Infinity,
+      max: b.max != null ? +b.max : Infinity, color: EU_PALETTE[i % EU_PALETTE.length], isos: [], tipOf: rawTip }));
+    known.forEach(x => { const b = B.find(g => x.v >= g.min && x.v <= g.max); if (b) b.isos.push(x.iso); else nc.push(x.iso); });
+    return Object.assign(euVisualForm(spec, sel, B, nc, rawTip, src, filled), { facts });
+  }
+
+  /* --- des categories : valeurs du classeur, ou regroupements par mots-cles --- */
+  let groups;
+  const nc = [];
+  if (spec.groups && spec.groups.length) {
+    groups = spec.groups.map((g, i) => ({ label: esc(g.label || ""), kw: [].concat(g.keywords || []).map(k => String(k).toLowerCase()),
+      color: EU_PALETTE[i % EU_PALETTE.length], isos: [], tipOf: rawTip }));
+    const other = { label: t("eu.v.other"), color: "var(--line2)", isos: [], tipOf: rawTip };
+    sel.forEach(c => {
+      const v = raw(c.iso);
+      if (euNC(v)) { nc.push(c.iso); return; }
+      const low = String(v).toLowerCase();
+      const g = groups.find(gr => gr.kw.some(k => k === "yes" ? euYes(v) : k === "no" ? euNo(v) : low.includes(k)));
+      (g || other).isos.push(c.iso);
+    });
+    if (other.isos.length) groups.push(other);
+    groupsNote = `<p class="eu-mine-g"><b>${t("eu.mine.groups")}</b> ${spec.groups.map(g =>
+      `${esc(g.label)} ← « ${[].concat(g.keywords || []).map(esc).join(" », « ")} »`).join(" · ")}</p>`;
+  } else {
+    const m = new Map();
+    sel.forEach(c => {
+      const k = euNorm(raw(c.iso));
+      if (k == null) { nc.push(c.iso); return; }
+      if (!m.has(k)) m.set(k, []);
+      m.get(k).push(c.iso);
+    });
+    if (m.size > 8) {
+      throw new Error(m.size + " distinct values in " + src + ": pass `groups` with keywords. Values: "
+        + [...m.keys()].map(v => v.slice(0, 60)).slice(0, 30).join(" | "));
+    }
+    /* Oui avant Non quel que soit le compte : on lit « qui le fait » d'abord. */
+    const rank = k => k === "YES" ? 0 : k === "NO" ? 2 : 1;
+    groups = [...m.entries()].sort((a, b) => rank(a[0]) - rank(b[0]) || b[1].length - a[1].length)
+      .map(([k, list], i) => ({ label: esc(euValLabel(k)), isos: list, tipOf: rawTip,
+        color: k === "YES" ? "var(--m4)" : k === "NO" ? "var(--m1)" : EU_PALETTE[i % EU_PALETTE.length] }));
+  }
+  filled = n - nc.length;
+  const out = euVisualForm(spec, sel, groups, nc, rawTip, src, filled);
+  out.body += groupsNote;
+  out.facts = facts;
+  return out;
+}
+
+function euVisualForm(spec, sel, groups, nc, rawTip, src, filled){
+  const n = sel.length;
+  const shown = groups.filter(g => g.isos.length);
+  const title = spec.title || ficheLabel(spec.sheet, spec.cols[0]);
+  const ncFoot = nc.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0, rawTip)}</p>` : "";
+  let body;
+  if (spec.form === "map") {
+    const of = {};
+    groups.forEach((g, i) => g.isos.forEach(iso => { of[iso] = "g" + i; }));
+    const cats = groups.map((g, i) => ({ k: "g" + i, label: g.label, color: g.color }))
+      .concat([{ k: "nc", label: t("fiche.nc"), color: "var(--surface3)" }]);
+    body = `<div class="eu-mapgrid">
+      <div>${euMap(sel, c => ({ k: of[c.iso] || "nc", raw: String(euCell(c.iso, spec.sheet, spec.cols[0]) || "").slice(0, 120) }), cats)}
+        ${euLegend(cats.map(x => Object.assign({ n: x.k === "nc" ? nc.length : groups[+x.k.slice(1)].isos.length }, x)))}</div>
+      <div>${euShare(shown, n, { flags: 6 })}</div></div>`;
+  } else if (spec.form === "rings") {
+    body = `<div class="eu-rings row">${shown.slice(0, 6).map(g => euRing(g.isos.length, n, g.color, `<b>${g.label}</b>`, g.isos)).join("")}</div>${ncFoot}`;
+  } else if (spec.form === "stairs") {
+    body = euStairs(shown, filled) + ncFoot;
+  } else if (spec.form === "columns") {
+    const max = Math.max(1, ...shown.map(g => g.isos.length));
+    body = `<div class="eu-cols">${shown.map(g => `<div class="eu-col">
+        <span class="eu-col-n">${g.isos.length}</span>
+        <div class="eu-col-stack" style="height:${g.isos.length / max * 100}%">${g.isos.map(iso => euFlag(iso, rawTip(iso))).join("")}</div>
+        <span class="eu-col-l">${g.label}</span></div>`).join("")}</div>${ncFoot}`;
+  } else if (spec.form === "pyramid") {
+    const step = 50 / Math.max(1, groups.length);
+    body = `<div class="eu-pyr">${groups.map((g, i) => {
+      const a = i * step, b = (i + 1) * step;
+      return `<div class="eu-pyr-row"><div class="eu-pyr-c">
+          <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
+            background:color-mix(in srgb,var(--accent) ${100 - i * (70 / groups.length)}%,var(--accent-soft))">
+            ${i ? `<span style="color:${i < groups.length / 2 ? "var(--accent-ink)" : "var(--accent2)"}">${g.label}</span>` : ""}</div>
+          ${i ? "" : `<span class="eu-pyr-out" style="right:calc(50% + ${(a + b) / 2 + 3}%)">${g.label}</span>`}
+        </div><div class="eu-pyr-f"><b>${g.isos.length}</b>${euFlags(g.isos, 0, g.tipOf)}</div></div>`;
+    }).join("")}</div>${ncFoot}`;
+  } else {
+    body = euShare(shown, n) + ncFoot;
+  }
+  return { title, src, filled, total: n, body, summary: shown.map(g => g.label.replace(/&#39;/g, "'").replace(/&amp;/g, "&") + ": " + g.isos.length + "/" + n) };
+}
+
+/* ---------- Mes visuels ---------- */
+function euMine(){ return Array.isArray(store.euMine) ? store.euMine : []; }
+function euMineAdd(spec){
+  const id = "v" + Date.now().toString(36);
+  store.euMine = euMine().concat([{ id, spec, created: new Date().toISOString().slice(0, 10) }]);
+  saveStore();
+  return id;
+}
+function euMineRemove(id){
+  store.euMine = euMine().filter(v => v.id !== id);
+  if (store.euText) delete store.euText["mine-" + id];
+  saveStore();
+}
+
+function euMineSection(sel){
+  const list = euMine();
+  const cards = list.map(v => {
+    let ch;
+    try { ch = euVisualBuild(v.spec, sel); }
+    catch (e) { ch = { title: v.spec.title || "-", src: (v.spec.sheet || "") + "!" + (v.spec.column || ""),
+      body: `<p class="eu-empty">${esc(t("eu.mine.broken", { err: e.message }))}</p>` }; }
+    ch.id = "mine-" + v.id;
+    ch.wide = v.spec.form === "map" || v.spec.form === "pyramid" || v.spec.form === "stairs" || v.spec.form === "bars";
+    ch.meta = t("eu.mine.created", { date: fmtDateL(v.created) });
+    ch.mine = v.id;
+    return euCard(ch, sel);
+  }).join("");
+  return `<div class="eu-mine-intro">
+      <div class="ic">${ficheIcon("sparkle")}</div>
+      <div><b>${t("eu.mine.title")}</b><p>${t("eu.mine.intro")}</p></div>
+      <button type="button" class="btn primary" id="euMineAsk">${t("eu.mine.create")}</button>
+    </div>
+    ${cards || `<p class="eu-empty eu-mine-empty">${t("eu.mine.empty")}</p>`}`;
+}
+
+/* ---------- l'outil de l'assistant ---------- */
+let chatPendingVisuals = [];
+function chatCreateVisual(a){
+  let ch;
+  try { ch = euVisualBuild(a, euAll().filter(c => c.eu)); }
+  catch (e) { return { error: e.message }; }
+  const spec = {};
+  ["title", "form", "sheet", "column", "columns", "groups", "buckets", "countries", "unit"].forEach(k => {
+    if (a[k] != null && !(Array.isArray(a[k]) && !a[k].length)) spec[k] = a[k];
+  });
+  chatPendingVisuals.push({ spec });
+  return { rendered: true, title: ch.title, source: ch.src, counts: ch.summary,
+    notTracked: (ch.facts || {}).notTracked, notCommunicated: (ch.facts || {}).notCommunicated,
+    note: "The visual is displayed under your reply with an 'Add to My visuals' button. Tell the user, "
+      + "in one sentence, that once added it is available in " + t("nav.europe") + " > " + t("eu.s.mine")
+      + " (use these exact names). Mention countries not tracked by RegWatch and countries whose answer "
+      + "is not communicated, if any. If you used groups, say the grouping is yours and should be checked." };
+}
+
+function chatVisualHTML(v, key){
+  let ch;
+  try { ch = euVisualBuild(v.spec, euAll().filter(c => c.eu)); }
+  catch (e) { return `<p class="q-note">${esc(e.message)}</p>`; }
+  const added = v.addedId && euMine().some(m => m.id === v.addedId);
+  return `<figure class="eu-card chat-visual" data-vis="${key}">
+    <div class="eu-card-h"><h3 class="eu-title" style="cursor:default">${esc(ch.title)}</h3></div>
+    <div class="eu-body">${ch.body}</div>
+    <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code></figcaption>
+    <div class="chat-vis-act">
+      ${added
+        ? `<span class="chat-vis-ok">${t("eu.mine.added")}</span><a class="btn" href="#/europe/mine">${t("eu.mine.open")}</a>`
+        : `<button type="button" class="btn primary chat-vis-add" data-vis="${key}">${ficheIcon("sparkle")}${t("eu.mine.add")}</button>`}
+      <button type="button" class="btn chat-vis-png" data-vis="${key}">PNG</button>
+    </div>
+    ${added ? "" : `<p class="q-note chat-vis-where">${t("eu.mine.where")}</p>`}
+  </figure>`;
 }

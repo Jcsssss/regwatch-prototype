@@ -261,6 +261,11 @@ body.fcells .fcell{display:inline}
 .fck.on{background:var(--st-ok-bg);color:var(--st-ok-ink)}
 .fck.off{color:var(--muted);font-weight:500}
 .fck.other{background:var(--info-bg);color:var(--info)}
+.fck.nc{color:var(--muted);font-weight:500;background:transparent;border:1px dashed var(--line2)}
+.fcklg{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:10px}
+.fcklg .fck{padding:3px 8px;font-size:11px;border-radius:6px}
+.fcklg .fck svg{width:11px;height:11px}
+.fcklg .n{margin-left:auto;font-size:11.5px;color:var(--muted)}
 .fbars{display:grid;gap:12px}
 .fbar{display:grid;grid-template-columns:130px 1fr auto;gap:12px;align-items:center}
 .fbar .k{font-size:12.5px;font-weight:700;color:var(--ink2)}
@@ -493,6 +498,38 @@ body.fcells .fcell{display:inline}
 .eu-reset{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:7px;cursor:pointer;
   border:1px solid var(--line2);background:var(--surface2);color:var(--muted)}
 .eu-reset[hidden]{display:none}
+.eu-del{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--surface2);color:var(--muted)}
+.eu-del svg{width:13px;height:13px}
+.eu-del:hover{color:var(--bad);border-color:var(--bad)}
+/* mes visuels */
+.eu-mine-intro{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;
+  background:linear-gradient(100deg,var(--accent-soft),color-mix(in srgb,var(--green) 12%,var(--surface)));
+  border:1px solid color-mix(in srgb,var(--accent) 25%,var(--line))}
+.eu-mine-intro .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;
+  background:var(--accent);color:var(--accent-ink)}
+.eu-mine-intro .ic svg{width:20px;height:20px}
+.eu-mine-intro b{font-size:14px;color:var(--ink)}
+.eu-mine-intro p{margin:3px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink2);max-width:80ch}
+.eu-mine-intro .btn{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:6px}
+.eu-mine .eu-grid{grid-auto-flow:row dense}
+.eu-mine-empty{grid-column:1/-1;text-align:center;padding:18px 0}
+.eu-mine-g{margin:10px 0 0;font-size:12px;line-height:1.5;color:var(--warn);background:color-mix(in srgb,var(--warn) 9%,transparent);
+  padding:7px 10px;border-radius:8px}
+.eu-nav .eu-nav-mine{color:var(--accent)}
+.eu-nav .eu-nav-mine em{font-style:normal;font-size:10.5px;font-weight:800;background:var(--accent);color:var(--accent-ink);
+  border-radius:999px;padding:1px 6px;margin-left:2px}
+.eu-nav .eu-nav-mine[aria-current="true"] em{background:var(--accent-ink);color:var(--accent)}
+@media (max-width:700px){.eu-mine-intro{flex-wrap:wrap}.eu-mine-intro .btn{margin-left:0}}
+/* un visuel dans l'assistant */
+.chat-visual{margin:12px 0 0;padding:12px 12px 10px}
+.chat-visual .eu-title{font-size:13.5px;border:0;padding:0;margin:0}
+.chat-vis-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.chat-vis-act .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.chat-vis-act .btn svg{width:14px;height:14px}
+.chat-vis-ok{font-size:12.5px;font-weight:700;color:var(--ok)}
+.chat-vis-ok::before{content:"✓ "}
+.chat-vis-where{margin:6px 0 0}
 .eu-edit{flex:none;height:26px;display:inline-flex;align-items:center;gap:5px;padding:0 9px;border-radius:7px;cursor:pointer;
   border:1px solid var(--line2);background:var(--surface2);color:var(--ink2);font:inherit;font-size:11px;font-weight:750;white-space:nowrap}
 .eu-edit svg{width:13px;height:13px}
@@ -569,6 +606,8 @@ body.fcells .fcell{display:inline}
 .eu-st-b{position:absolute;top:3px;bottom:3px;border-radius:6px}
 .eu-st-l{position:absolute;top:50%;transform:translateY(-50%);margin-left:8px;font-size:12px;color:var(--ink2);white-space:nowrap}
 .eu-st-l[data-side="before"]{transform:translate(-100%,-50%);margin-left:-8px}
+.eu-st-l[data-side="inside"]{margin-left:4px;color:var(--accent-ink)}
+.eu-st-l[data-side="inside"] b{color:var(--accent-ink)}
 .eu-st-l b{color:var(--ink);font-weight:750}
 .eu-kpis{display:grid;gap:10px}
 .eu-kpi{display:flex;flex-direction:column;padding:10px 12px;border-radius:10px;background:var(--surface2);border-left:3px solid var(--green)}
@@ -693,18 +732,22 @@ body.fcells .fcell{display:inline}
 .eu-san .eu-rings.row{flex-direction:column}
 .eu-san .eu-rings.row .eu-ring{flex:none}
 
-@media (max-width:980px){
-  .eu-grid{grid-template-columns:1fr}
+/* Les graphiques s'adaptent a la largeur de leur carte, pas a celle de l'ecran :
+   le meme visuel s'affiche en pleine page et dans le panneau de l'assistant. */
+.eu-card{container-type:inline-size}
+@media (max-width:980px){.eu-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.eu-grid{padding:10px}}
+@container (max-width:720px){
   .eu-mapgrid,.eu-side,.eu-two,.eu-duo,.eu-san,.eu-big,.eu-list{grid-template-columns:1fr}
 }
-@media (max-width:560px){
-  .eu-grid{padding:10px}
+@container (max-width:520px){
   .eu-sh-row{grid-template-columns:1fr 44px}
   .eu-sh-t{grid-column:1/-1;grid-row:2}
   .eu-sh-f{grid-column:1/-1}
   .eu-st-row{grid-template-columns:1fr}
   .eu-st-f{justify-content:flex-start}
   .eu-pyr-row{grid-template-columns:1fr}
+  .eu-hb{grid-template-columns:110px 1fr}
 }
 
 @media (max-width:1080px){.ffacts{grid-template-columns:repeat(2,1fr)}}
@@ -18156,14 +18199,18 @@ const I18N = {
     "fiche.f.docType": "Type of document",
     "fiche.f.mainText": "Principal text",
     "fiche.f.extraText": "Additional texts",
-    "fiche.empty": "Not recorded",
-    "fiche.emptyShort": "n/a",
+    "fiche.empty": "Not communicated",
+    "fiche.emptyShort": "NC",
     "fiche.nc": "Not communicated",
     "fiche.yes": "Yes",
     "fiche.no": "No",
     "fiche.filled": "{n} of {total} fields filled",
     "fiche.more": "Show {n} more fields from the sheet",
     "fiche.listCount": "{n} of {total} apply.",
+    "fiche.lg.on": "Yes",
+    "fiche.lg.other": "Detailed answer",
+    "fiche.lg.off": "No",
+    "fiche.lg.nc": "Not communicated",
     "fiche.regList": "Information required at registration",
     "fiche.fwList": "Frameworks it relies on",
     "fiche.audList": "What the audit expects",
@@ -18180,7 +18227,7 @@ const I18N = {
     "fiche.tl1m": "1 month",
     "fiche.tlFinal": "Final report",
     "fiche.tlAligned": "Aligned on the NIS 2 directive, no national specificity declared.",
-    "fiche.tlUnknown": "Deviation from the directive not recorded in the workbook.",
+    "fiche.tlUnknown": "Deviation from the directive not communicated.",
     "fiche.transposed": "Transposed",
     "fiche.delay": "{n} months late",
     "fiche.upd": "Up to date as of {date}",
@@ -18492,6 +18539,43 @@ const I18N = {
     "eu.dlProgress": "Visual {i} of {n}…",
     "eu.dlFail": "The visual could not be exported in this browser. Try Chrome or Edge.",
     "eu.san.moreFin": "More specific modalities than the directive",
+    "eu.s.mine": "My visuals",
+    "eu.mine.title": "Your visuals, created with the assistant",
+    "eu.mine.intro": "Ask the assistant (the whale, bottom right) for a visual in your own words. Under each visual it creates, \u201cAdd to My visuals\u201d saves it here. Your visuals are recalculated from the workbook every time, follow the country filter unless your request named countries, and are saved in this browser.",
+    "eu.mine.create": "Create a visual with the assistant",
+    "eu.mine.empty": "No visual yet: the ones you add from the assistant will appear here.",
+    "eu.mine.count": "{n} visual(s)",
+    "eu.mine.created": "created with the assistant on {date}",
+    "eu.mine.delete": "Remove from My visuals",
+    "eu.mine.confirm": "Remove this visual from My visuals?",
+    "eu.mine.groups": "Grouping proposed by the assistant, to check:",
+    "eu.mine.broken": "This visual can no longer be computed: {err}",
+    "eu.mine.add": "Add to My visuals",
+    "eu.mine.added": "Added to My visuals",
+    "eu.mine.open": "Open My visuals",
+    "eu.mine.where": "Once added, the visual stays available in European view \u203a My visuals.",
+    "eu.v.other": "Other",
+    "eu.v.yes": "Yes",
+    "eu.v.no": "No",
+    "chat.e1": "Make a map of the countries that ask for IP ranges at registration",
+    "chat.e2": "Compare the registration deadlines of the Nordic countries in a visual",
+    "chat.e3": "Show in rings which countries provide criminal penalties",
+    "chat.e4": "Chart the number of cyber requirements for essential entities by country",
+    "eu.val.final": "Final",
+    "eu.val.temporary": "Temporary",
+    "eu.val.platform": "Platform",
+    "eu.val.electronicmail": "Email",
+    "eu.val.electroniquemail": "Email",
+    "eu.val.intime": "On time",
+    "eu.val.fordeeandei": "For EE and IE",
+    "eu.val.foreeandei": "For EE and IE",
+    "eu.val.yesforeeandei": "Yes, for EE and IE",
+    "eu.val.yesonlyforei": "Yes, only for IE",
+    "eu.val.yesonlyforee": "Yes, only for EE",
+    "eu.val.samemodalitiesasinthedirectives": "Same as the directive",
+    "eu.val.morespecificmodalities": "More specific than the directive",
+    "eu.val.nis2dedicatedframework": "Framework dedicated to NIS 2",
+    "eu.val.notspecified": "Not specified",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -18725,7 +18809,7 @@ const I18N = {
     "reg.f.alignment": "Alignment with other regulations",
     "reg.recCaveat": "REC module, first pass. The transposition workbook is younger than the NIS 2 one: identity, maturity and summary are complete for all 27 countries, the authority, criticality and registration columns are filled for a third to a half of them. A blank here means not yet recorded, not \"none\".",
     "reg.recSub": "Directive (EU) 2022/2557 - resilience of critical entities. 27 EU countries.",
-    "cp.notStated": "not recorded yet",
+    "cp.notStated": "not communicated",
     "cp.inForceOn": "In force since {date}",
     "sec.prog": "Progress of the transposition",
     "chat.title": "Assistant",
@@ -18767,7 +18851,7 @@ const I18N = {
     "chat.err429": "Rate limit or quota reached (429). Wait a moment, or check the deployment's quota.",
     "chat.errHttp": "The endpoint answered with an error (HTTP {code}).",
     "kpi.crossRows": "{n} rows",
-    "kpi.unknown": "not stated",
+    "kpi.unknown": "not communicated",
     "kpi.form.matrix": "Crossed table",
     "kpi.form.grouped": "Grouped bars",
     "kpi.sheetCross": "Crossed",
@@ -18958,14 +19042,18 @@ const I18N = {
     "fiche.f.docType": "Type de document",
     "fiche.f.mainText": "Texte principal",
     "fiche.f.extraText": "Textes additionnels",
-    "fiche.empty": "Non renseign\u00e9",
-    "fiche.emptyShort": "n.r.",
+    "fiche.empty": "Non communiqu\u00e9",
+    "fiche.emptyShort": "NC",
     "fiche.nc": "Non communiqu\u00e9",
     "fiche.yes": "Oui",
     "fiche.no": "Non",
     "fiche.filled": "{n} champs renseign\u00e9s sur {total}",
     "fiche.more": "Voir les {n} champs suppl\u00e9mentaires de la feuille",
     "fiche.listCount": "{n} sur {total} s\u2019appliquent.",
+    "fiche.lg.on": "Oui",
+    "fiche.lg.other": "R\u00e9ponse pr\u00e9cis\u00e9e",
+    "fiche.lg.off": "Non",
+    "fiche.lg.nc": "Non communiqu\u00e9",
     "fiche.regList": "Informations demand\u00e9es \u00e0 l\u2019enregistrement",
     "fiche.fwList": "R\u00e9f\u00e9rentiels sur lesquels il s\u2019appuie",
     "fiche.audList": "Attendus de l\u2019audit",
@@ -18982,7 +19070,7 @@ const I18N = {
     "fiche.tl1m": "1 mois",
     "fiche.tlFinal": "Rapport final",
     "fiche.tlAligned": "Align\u00e9 sur la directive NIS 2, sans sp\u00e9cificit\u00e9 nationale d\u00e9clar\u00e9e.",
-    "fiche.tlUnknown": "\u00c9cart avec la directive non renseign\u00e9 dans le classeur.",
+    "fiche.tlUnknown": "\u00c9cart avec la directive non communiqu\u00e9.",
     "fiche.transposed": "Transpos\u00e9e",
     "fiche.delay": "{n} mois de retard",
     "fiche.upd": "\u00c0 jour le {date}",
@@ -19294,6 +19382,43 @@ const I18N = {
     "eu.dlProgress": "Visuel {i} sur {n}\u2026",
     "eu.dlFail": "Le visuel n'a pas pu \u00eatre export\u00e9 dans ce navigateur. Essayez Chrome ou Edge.",
     "eu.san.moreFin": "Modalit\u00e9s plus sp\u00e9cifiques que la directive",
+    "eu.s.mine": "Mes visuels",
+    "eu.mine.title": "Vos visuels, cr\u00e9\u00e9s avec l'assistant",
+    "eu.mine.intro": "Demandez un visuel \u00e0 l'assistant (la baleine, en bas \u00e0 droite) avec vos propres mots. Sous chaque visuel cr\u00e9\u00e9, \u00ab Ajouter \u00e0 Mes visuels \u00bb l'enregistre ici. Vos visuels sont recalcul\u00e9s depuis le classeur \u00e0 chaque ouverture, suivent le filtre de pays sauf si votre demande nommait des pays, et sont enregistr\u00e9s dans ce navigateur.",
+    "eu.mine.create": "Cr\u00e9er un visuel avec l'assistant",
+    "eu.mine.empty": "Aucun visuel pour l'instant : ceux que vous ajoutez depuis l'assistant appara\u00eetront ici.",
+    "eu.mine.count": "{n} visuel(s)",
+    "eu.mine.created": "cr\u00e9\u00e9 avec l'assistant le {date}",
+    "eu.mine.delete": "Retirer de Mes visuels",
+    "eu.mine.confirm": "Retirer ce visuel de Mes visuels ?",
+    "eu.mine.groups": "Regroupement propos\u00e9 par l'assistant, \u00e0 v\u00e9rifier :",
+    "eu.mine.broken": "Ce visuel ne peut plus \u00eatre calcul\u00e9 : {err}",
+    "eu.mine.add": "Ajouter \u00e0 Mes visuels",
+    "eu.mine.added": "Ajout\u00e9 \u00e0 Mes visuels",
+    "eu.mine.open": "Ouvrir Mes visuels",
+    "eu.mine.where": "Une fois ajout\u00e9, le visuel reste accessible dans Vue europ\u00e9enne \u203a Mes visuels.",
+    "eu.v.other": "Autre",
+    "eu.v.yes": "Oui",
+    "eu.v.no": "Non",
+    "chat.e1": "Fais une carte des pays qui demandent les plages IP \u00e0 l'enregistrement",
+    "chat.e2": "Compare en visuel les d\u00e9lais d'enregistrement des pays nordiques",
+    "chat.e3": "Montre en jauges quels pays pr\u00e9voient des sanctions p\u00e9nales",
+    "chat.e4": "Fais un graphique du nombre d'exigences cyber pour les entit\u00e9s essentielles par pays",
+    "eu.val.final": "Final",
+    "eu.val.temporary": "Provisoire",
+    "eu.val.platform": "Plateforme",
+    "eu.val.electronicmail": "Courriel",
+    "eu.val.electroniquemail": "Courriel",
+    "eu.val.intime": "\u00c0 temps",
+    "eu.val.fordeeandei": "Pour les EE et les EI",
+    "eu.val.foreeandei": "Pour les EE et les EI",
+    "eu.val.yesforeeandei": "Oui, pour les EE et les EI",
+    "eu.val.yesonlyforei": "Oui, pour les EI seulement",
+    "eu.val.yesonlyforee": "Oui, pour les EE seulement",
+    "eu.val.samemodalitiesasinthedirectives": "Comme la directive",
+    "eu.val.morespecificmodalities": "Plus pr\u00e9cis que la directive",
+    "eu.val.nis2dedicatedframework": "R\u00e9f\u00e9rentiel d\u00e9di\u00e9 \u00e0 NIS 2",
+    "eu.val.notspecified": "Non pr\u00e9cis\u00e9",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -19527,7 +19652,7 @@ const I18N = {
     "reg.f.alignment": "Cohérence avec les autres réglementations",
     "reg.recCaveat": "Module REC, première version. Le classeur de transposition est plus jeune que celui de NIS 2 : identité, maturité et résumé sont complets pour les 27 pays, les colonnes autorité, criticité et enregistrement le sont pour un tiers à la moitié d'entre eux. Une case vide signifie non encore renseigné, pas « aucun ».",
     "reg.recSub": "Directive (UE) 2022/2557 - résilience des entités critiques. 27 pays de l'UE.",
-    "cp.notStated": "non renseigné",
+    "cp.notStated": "non communiqué",
     "cp.inForceOn": "En vigueur depuis le {date}",
     "sec.prog": "Avancement de la transposition",
     "chat.title": "Assistant",
@@ -19569,7 +19694,7 @@ const I18N = {
     "chat.err429": "Limite de débit ou quota atteint (429). Patientez un instant, ou vérifiez le quota du déploiement.",
     "chat.errHttp": "L'endpoint a répondu par une erreur (HTTP {code}).",
     "kpi.crossRows": "{n} lignes",
-    "kpi.unknown": "non renseigné",
+    "kpi.unknown": "non communiqué",
     "kpi.form.matrix": "Tableau croisé",
     "kpi.form.grouped": "Barres groupées",
     "kpi.sheetCross": "Croisement",
@@ -20159,7 +20284,7 @@ function renderCurrent(){ route(currentRoute.v, currentRoute.arg, true); }
 function route(v, arg, force){
   const render = {
     overview: renderOverview, countries: renderCountries,
-    europe: typeof renderEurope === "function" ? renderEurope : null,
+    europe: typeof renderEurope === "function" ? () => renderEurope(arg) : null,
     country: () => renderCountry(arg), inbox: renderInbox,
     insights: renderInsights, sources: renderSources,
     mapping: typeof renderMapping === "function" ? () => renderMapping(arg) : null,
@@ -21527,7 +21652,8 @@ const FICHE_ICONS = {
   /* quatre barres croissantes : l'echelle de 1 a 4, et non un panneau
      d'avertissement, qui laissait croire a une alerte sur le pays */
   levels: '<path d="M5 20v-3M10 20v-7M15 20v-11M20 20V4"/>',
-  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'
+  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  sparkle: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>'
 };
 function ficheIcon(name, cls){
   return `<svg class="${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -21558,10 +21684,9 @@ function ficheCols(key){
 const FICHE_YES = /^(yes|oui|y)$/i;
 const FICHE_NO = /^(no|non|n)$/i;
 
-/* Une valeur telle que la fiche la montre. Trois etats se distinguent, et la
-   distinction compte : la case est vide (personne n'a regarde), la case dit
-   « NC » (on a cherche, on n'a pas trouve), ou elle porte une reponse. Les
-   confondre ferait passer une lacune de la veille pour une absence de regle. */
+/* Une valeur telle que la fiche la montre. Une case vide et une case « NC »
+   s'affichent toutes deux « Non communique », a la demande de l'equipe : une
+   seule mention pour le lecteur. Elles gardent leurs classes distinctes. */
 function ficheValue(v){
   if (v == null) return `<span class="fv-none">${t("fiche.empty")}</span>`;
   if (v === "NC") return `<span class="fv-nc">${t("fiche.nc")}</span>`;
@@ -21591,23 +21716,35 @@ const FICHE_TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const FICHE_CROSS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 8l8 8M16 8l-8 8"/></svg>';
 const FICHE_DOT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/></svg>';
 
+/* Quatre etats, et une legende qui ne montre que ceux presents : le bleu
+   (une reponse autre que oui ou non, recopiee a cote du libelle) ne se
+   devinait pas, et « non communique » se confondait avec « non » sous la meme
+   croix grise. */
+const FICHE_Q = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5h.01"/></svg>';
 function ficheList(iso, key, cols, titleKey){
+  const seen = new Set();
   const items = cols.map(col => {
     const label = ficheLabel(key, col);
     if (!label) return "";
     const v = ficheCell(iso, key, col);
-    if (v == null || v === "NC")
-      return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`;
-    if (FICHE_YES.test(v)) return `<div class="fck on">${FICHE_TICK}<span>${esc(label)}</span></div>`;
-    if (FICHE_NO.test(v)) return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`;
+    if (v == null || v === "NC") {
+      seen.add("nc");
+      return `<div class="fck nc">${FICHE_Q}<span>${esc(label)}</span></div>`;
+    }
+    if (FICHE_YES.test(v)) { seen.add("on"); return `<div class="fck on">${FICHE_TICK}<span>${esc(label)}</span></div>`; }
+    if (FICHE_NO.test(v)) { seen.add("off"); return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`; }
+    seen.add("other");
     return `<div class="fck other">${FICHE_DOT}<span>${esc(label)} <b>${esc(v)}</b></span></div>`;
   }).join("");
   if (!items) return "";
+  const legend = [["on", FICHE_TICK], ["other", FICHE_DOT], ["off", FICHE_CROSS], ["nc", FICHE_Q]]
+    .filter(([k]) => seen.has(k))
+    .map(([k, ic]) => `<span class="fck ${k}">${ic}${t("fiche.lg." + k)}</span>`).join("");
   const yes = cols.filter(c => { const v = ficheCell(iso, key, c); return v && FICHE_YES.test(v); }).length;
   return `<div class="fblock">
     <div class="flab">${t(titleKey)}<span class="fcell">${key}!${cols[0]}:${cols[cols.length - 1]}</span></div>
     <div class="fcks">${items}</div>
-    <div class="fnote">${t("fiche.listCount", { n: yes, total: cols.length })}</div>
+    <div class="fcklg">${legend}<span class="n">${t("fiche.listCount", { n: yes, total: cols.length })}</span></div>
   </div>`;
 }
 
@@ -23498,7 +23635,7 @@ function chatSystemPrompt(){
        "and the designation of critical entities by the state, NOT about cybersecurity;",
        "do not answer a REC question with what you know about NIS 2.",
        "The REC records are a first pass over a younger workbook: many fields are simply",
-       "not recorded yet. Say 'not recorded in RegWatch yet' - never read a blank as 'none'.",
+       "not communicated yet. Say 'not communicated' - never read a blank as 'none'.",
        "You have no KPI table, no watch items, no charts and no document folders for REC;",
        "if one of those is asked for, say the REC module does not carry it yet."];
   return [
@@ -23540,6 +23677,22 @@ function chatSystemPrompt(){
     "- Give figures with their unit and their country.",
     "- When a comparison across countries would read better as a chart, call",
     "  draw_chart. It renders under your reply; refer to it, do not describe it.",
+    ...(regId() === "nis2" ? [
+    "",
+    "VISUALS - when the user asks for a visual, graph, map or chart, prefer create_visual:",
+    "- First call describe_columns to find the exact sheet and column: pick the sheet by the",
+    "  topic of the request (a registration deadline is in reg, not in id), then pick the column",
+    "  whose label matches the request word for word. Never invent a column.",
+    "- Forms: map = categories across Europe; rings = 2 to 4 categories; share = several",
+    "  categories, or several YES/NO columns counted together (pass `columns`); stairs =",
+    "  ordered ranges (pass `buckets`); columns = dates or periods; pyramid = ordered",
+    "  frequency levels; bars = one number per country.",
+    "- Free-text columns (more than 8 distinct values): pass `groups` with keywords, and say",
+    "  in your reply that the grouping is yours and must be checked.",
+    "- Pass `countries` only when the user names countries; otherwise the visual follows",
+    "  the European view filter. Title and unit in the user's language, short and factual.",
+    "- After it renders, say in one sentence that the button under the visual adds it to the",
+    "  My visuals section of the European view (use the names the tool result gives)."] : []),
     "- Plain markdown only: paragraphs, - bullets, **bold**. No headings, no tables."
   ].join("\n");
 }
@@ -23614,6 +23767,45 @@ const CHAT_TOOLS = [
       countries: { type: "array", items: { type: "string" } }
     }, required: ["countries"] },
     run: a => corpusOfficialDocs(a) },
+
+  { name: "describe_columns", regs: ["nis2"],
+    description: "The Cyber Watch workbook columns usable in a visual: for each sheet, each column's "
+      + "letter, label, how many countries filled it, whether it is numeric and its most frequent values. "
+      + "Call before create_visual.",
+    parameters: { type: "object", properties: {
+      sheets: { type: "array", items: { type: "string", enum: ["id", "inc", "reg", "fw", "aud", "san", "auth"] },
+        description: "Optional: limit to these sheets. " + "id = transposition (law, entry into force, months of delay against the EU deadline); "
+          + "inc = incident reporting; reg = registration of entities (registration deadlines, method, information requested); "
+          + "fw = cybersecurity framework (requirements, compliance deadlines, inspiration standards); "
+          + "aud = audits and self-assessment; san = sanctions; auth = authorities" }
+    } },
+    run: a => euDescribeColumns(a) },
+
+  { name: "create_visual", regs: ["nis2"],
+    description: "Build a European-view quality visual from the Cyber Watch workbook and show it under your "
+      + "reply, with a button to add it to European view > My visuals. RegWatch counts the countries; you "
+      + "only describe the visual.",
+    parameters: { type: "object", properties: {
+      title: { type: "string", description: "Short factual title, in the user's language" },
+      form: { type: "string", enum: ["map", "rings", "share", "stairs", "columns", "pyramid", "bars"] },
+      sheet: { type: "string", enum: ["id", "inc", "reg", "fw", "aud", "san", "auth"], description: "id = transposition (law, entry into force, months of delay against the EU deadline); "
+          + "inc = incident reporting; reg = registration of entities (registration deadlines, method, information requested); "
+          + "fw = cybersecurity framework (requirements, compliance deadlines, inspiration standards); "
+          + "aud = audits and self-assessment; san = sanctions; auth = authorities" },
+      column: { type: "string", description: "Column letter, e.g. 'J'" },
+      columns: { type: "array", items: { type: "string" },
+        description: "Several YES/NO column letters to count together (form share)" },
+      groups: { type: "array", items: { type: "object", properties: {
+        label: { type: "string" }, keywords: { type: "array", items: { type: "string" } } } },
+        description: "Optional categories for free-text values: a country goes to the first group whose "
+          + "keyword appears in its value ('yes' / 'no' match YES / NO answers). Order = display order." },
+      buckets: { type: "array", items: { type: "object", properties: {
+        label: { type: "string" }, min: { type: "number" }, max: { type: "number" } } },
+        description: "Optional numeric ranges, inclusive, in display order (form stairs, pyramid, columns)" },
+      countries: { type: "array", items: { type: "string" }, description: "Only if the user named countries" },
+      unit: { type: "string", description: "Optional unit for bars, e.g. 'months'" }
+    }, required: ["form", "sheet"] },
+    run: a => chatCreateVisual(a) },
 
   { name: "draw_chart", regs: ["nis2"],
     description: "Render a chart from the workbook indicators and show it to the user under "
@@ -23775,6 +23967,7 @@ async function chatAsk(question){
   if (!chatReady()) { chatOpenSettings(); return; }
   chatBusy = true;
   chatPendingCharts = [];
+  if (typeof chatPendingVisuals !== "undefined") chatPendingVisuals = [];
 
   chatLog.push({ role: "user", text: question });
   chatLog.push({ role: "pending", text: t("chat.thinking"), tools: [] });
@@ -23802,7 +23995,8 @@ async function chatAsk(question){
       if (!calls.length) {
         chatLog.pop();
         chatLog.push({ role: "assistant", text: msg.content || t("chat.empty"),
-                       charts: chatPendingCharts.slice(), tools: pending.tools });
+                       charts: chatPendingCharts.slice(), tools: pending.tools,
+                       visuals: typeof chatPendingVisuals !== "undefined" ? chatPendingVisuals.slice() : [] });
         break;
       }
 
@@ -23826,7 +24020,8 @@ async function chatAsk(question){
       if (round === CHAT_MAX_ROUNDS - 1) {
         chatLog.pop();
         chatLog.push({ role: "assistant", text: t("chat.tooManyRounds"),
-                       charts: chatPendingCharts.slice(), tools: pending.tools });
+                       charts: chatPendingCharts.slice(), tools: pending.tools,
+                       visuals: typeof chatPendingVisuals !== "undefined" ? chatPendingVisuals.slice() : [] });
       }
     }
   } catch (err) {
@@ -23838,6 +24033,9 @@ async function chatAsk(question){
     chatWire.pop();
   }
   chatBusy = false;
+  /* Un visuel se lit mal a 430 pixels : le panneau s'elargit quand il en arrive un. */
+  const last = chatLog[chatLog.length - 1];
+  if (last && last.visuals && last.visuals.length) { const p = $("#assistPanel"); if (p) p.classList.add("wide"); assistSync(); }
   chatRender();
   assistNotify();
 }
@@ -23892,7 +24090,9 @@ function chatBubble(m, idx){
       ${steps}</div></div>`;
   }
   const charts = (m.charts || []).map((c, i) => chatChartHTML(c, idx + "-" + i)).join("");
-  return `<div class="chat-m bot"><div class="chat-b">${steps}${chatMarkdown(m.text)}${charts}</div></div>`;
+  const visuals = typeof chatVisualHTML === "function"
+    ? (m.visuals || []).map((v, i) => chatVisualHTML(v, idx + "-" + i)).join("") : "";
+  return `<div class="chat-m bot"><div class="chat-b">${steps}${chatMarkdown(m.text)}${charts}${visuals}</div></div>`;
 }
 
 const CHAT_SUGGESTIONS_BY_REG = {
@@ -23906,6 +24106,9 @@ function chatSuggestions(){
   const ctx = assistContext();
   if (ctx.iso && regId() === "nis2")
     return ["chat.c1", "chat.c2", "chat.c3", "chat.c4"].map(k => ({ k: k, v: { country: ctx.label } }));
+  /* Depuis la vue europeenne, on vient chercher un visuel. */
+  if (regId() === "nis2" && typeof currentRoute !== "undefined" && currentRoute.v === "europe")
+    return ["chat.e1", "chat.e2", "chat.e3", "chat.e4"].map(k => ({ k: k }));
   return (CHAT_SUGGESTIONS_BY_REG[regId()] || CHAT_SUGGESTIONS_BY_REG.nis2).map(k => ({ k: k }));
 }
 
@@ -24001,6 +24204,20 @@ function chatWire2(){
     const m = chatLog[mi];
     if (m && m.charts && m.charts[ci]) kpiExportXlsx(m.charts[ci].sel);
   }));
+  const visOf = key => { const [mi, vi] = key.split("-").map(Number); const m = chatLog[mi]; return m && m.visuals && m.visuals[vi]; };
+  document.querySelectorAll(".chat-vis-add").forEach(b => b.addEventListener("click", () => {
+    const v = visOf(b.dataset.vis);
+    if (!v) return;
+    v.addedId = euMineAdd(v.spec);
+    chatRender();
+    if (currentRoute.v === "europe") renderCurrent();
+  }));
+  document.querySelectorAll('.chat-vis-act a[href="#/europe/mine"]').forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    route("europe", "mine");
+  }));
+  document.querySelectorAll(".chat-vis-png").forEach(b => b.addEventListener("click", () =>
+    euDownloadCard(b.closest(".chat-visual"), b)));
   kpiWireTips($("#assistBody"));
   chatWireSettings();
   if (!chatBusy && assistIsOpen()) { const i = $("#chatIn"); if (i && chatLog.length) i.focus(); }
@@ -24081,7 +24298,7 @@ function assistContext(){
   const r = typeof currentRoute !== "undefined" ? currentRoute : { v: "overview" };
   if (r.v === "country" && r.arg && byIso[r.arg])
     return { iso: r.arg, label: byIso[r.arg].name };
-  const labels = { overview: "nav.overview", countries: "nav.countries", inbox: "nav.inbox",
+  const labels = { overview: "nav.overview", europe: "nav.europe", countries: "nav.countries", inbox: "nav.inbox",
                    sources: "nav.sources", dev: "nav.dev", devchat: "nav.devchat" };
   return { iso: null, label: t(labels[r.v] || "nav.overview") };
 }
@@ -26097,7 +26314,8 @@ const EU_SECTIONS = [
   { key: "reg", icon: "card", tKey: "fiche.reg" },
   { key: "fw", icon: "shield", tKey: "fiche.fw" },
   { key: "aud", icon: "search", tKey: "fiche.aud" },
-  { key: "san", icon: "scale", tKey: "fiche.san" }
+  { key: "san", icon: "scale", tKey: "fiche.san" },
+  { key: "mine", icon: "sparkle", tKey: "eu.s.mine" }
 ];
 
 /* ---------- lecture ---------- */
@@ -26211,7 +26429,7 @@ function euStairs(groups, total){
       <div class="eu-st-t">
         <div class="eu-st-b" style="left:${left}%;width:max(${w}%,6px);background:${g.color}"
           data-tip="${esc(`<b>${g.label}</b><br>${n} ${t("common.countries")}`)}"></div>
-        <span class="eu-st-l" style="left:${left + w > 72 ? left : left + w}%" data-side="${left + w > 72 ? "before" : "after"}">
+        <span class="eu-st-l" style="left:${left + w <= 72 ? left + w : left > 25 ? left : left + 1}%" data-side="${left + w <= 72 ? "after" : left > 25 ? "before" : "inside"}">
           <b>${g.label}</b> · ${n}</span>
       </div></div>`;
   }).join("");
@@ -26826,13 +27044,15 @@ function euCard(ch, sel){
       <button type="button" class="eu-reset" ${saved.title ? "" : "hidden"} title="${esc(t("eu.resetTitle"))}" aria-label="${esc(t("eu.resetTitle"))}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
+      ${ch.mine ? `<button type="button" class="eu-del" data-mine="${ch.mine}" title="${esc(t("eu.mine.delete"))}" aria-label="${esc(t("eu.mine.delete"))}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button>` : ""}
       <button type="button" class="eu-dl" title="${esc(t("eu.dlOne"))}" aria-label="${esc(t("eu.dlOne"))}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>PNG</span></button>
     </div>
     <div class="eu-body">${ch.body}</div>
     <div class="eu-note" contenteditable="true" data-ph="${esc(t("eu.notePh"))}">${esc(saved.note || "")}</div>
     <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code>${filled != null
-      ? ` · ${t("eu.filled", { n: filled, total: sel.length })}` : ""}</figcaption>
+      ? ` · ${t("eu.filled", { n: filled, total: ch.total || sel.length })}` : ""}${ch.meta ? ` · ${esc(ch.meta)}` : ""}</figcaption>
   </figure>`;
 }
 
@@ -26840,7 +27060,7 @@ function euCard(ch, sel){
 let euSpy = null;
 let euScrollBound = false;
 
-function renderEurope(){
+function renderEurope(arg){
   const el = $("#v-europe");
   if (!el) return;
   if (typeof SHEET_DATA === "undefined" || regId() !== "nis2") {
@@ -26859,6 +27079,11 @@ function renderEurope(){
   ];
 
   const sections = EU_SECTIONS.map(sec => {
+    if (sec.key === "mine") return `<section class="fsec eu-sec-w eu-mine" id="eusec-mine" data-fsec="mine">
+      <div class="fsec-h"><div class="ic">${ficheIcon(sec.icon)}</div><h2>${t(sec.tKey)}</h2>
+        <span class="cnt">${t("eu.mine.count", { n: euMine().length })}</span></div>
+      <div class="eu-grid">${euMineSection(sel)}</div>
+    </section>`;
     const cards = sel.length ? EU_CHARTS[sec.key].map(fn => {
       try { return fn(sel); } catch (e) { console.error("vue europeenne", sec.key, e); return null; }
     }).filter(Boolean).map(ch => euCard(ch, sel)).join("") : "";
@@ -26891,13 +27116,23 @@ function renderEurope(){
       </div>
     </div>
     <div class="fnav eu-nav" id="euNavWrap"><div class="fnav-in" id="euNav">
-      ${EU_SECTIONS.map(x => `<button type="button" data-fgo="${x.key}">${ficheIcon(x.icon)}${t(x.tKey)}</button>`).join("")}
+      ${EU_SECTIONS.map(x => `<button type="button" data-fgo="${x.key}"${x.key === "mine" ? ' class="eu-nav-mine"' : ""}>${ficheIcon(x.icon)}${t(x.tKey)}${
+        x.key === "mine" && euMine().length ? ` <em>${euMine().length}</em>` : ""}</button>`).join("")}
       <button type="button" class="eu-nav-sel" id="euNavSel" title="${esc(t("eu.compare"))}">${t("eu.count", { n: sel.length })}</button>
     </div></div>
     ${sections}
     <p class="eu-disclaimer">${t("eu.saved")}</p>`;
 
   euWire(el);
+  /* #/europe/mine : on arrive depuis l'assistant, directement sur ses visuels. */
+  if (arg === "mine") {
+    /* Une seule fois : sans cela, chaque nouveau rendu (theme, langue, visuel
+       ajoute) ramenerait la page sur la section. */
+    if (typeof currentRoute !== "undefined") currentRoute.arg = null;
+    history.replaceState(null, "", "#/europe");
+    const m = $("#eusec-mine", el);
+    if (m) setTimeout(() => { if (euSpy) euSpy.lock = Date.now() + 900; m.scrollIntoView({ block: "start" }); euSpy && euSpy.mark("mine"); }, 30);
+  }
 }
 
 function euSetSel(next){
@@ -26930,6 +27165,19 @@ function euWire(el){
   }));
   const ns = $("#euNavSel", el);
   if (ns) ns.addEventListener("click", () => $("#euFilter", el).scrollIntoView({ behavior: "smooth", block: "center" }));
+
+  /* --- mes visuels --- */
+  el.querySelectorAll(".eu-del").forEach(b => b.addEventListener("click", () => {
+    if (!confirm(t("eu.mine.confirm"))) return;
+    euMineRemove(b.dataset.mine);
+    const y = window.scrollY; renderEurope(); window.scrollTo({ top: y });
+  }));
+  const ask = $("#euMineAsk", el);
+  if (ask && typeof assistOpen === "function") ask.addEventListener("click", () => {
+    assistOpen();
+    const p = $("#assistPanel"); if (p) p.classList.add("wide");
+    if (typeof assistSync === "function") assistSync();
+  });
 
   /* --- telechargement --- */
   el.querySelectorAll(".eu-dl").forEach(b => b.addEventListener("click", () => euDownloadCard(b.closest(".eu-card"), b)));
@@ -27065,7 +27313,7 @@ async function euCardPng(card, scale){
   scale = scale || 2;
   const w = Math.ceil(card.getBoundingClientRect().width);
   const clone = euInlineClone(card);
-  clone.querySelectorAll(".eu-reset,.eu-dl,.eu-edit").forEach(n => n.remove());
+  clone.querySelectorAll(".eu-reset,.eu-dl,.eu-edit,.eu-del,.chat-vis-act,.chat-vis-where").forEach(n => n.remove());
   const note = clone.querySelector(".eu-note");
   if (note && !note.textContent.trim()) note.remove();
   const pad = 16;
@@ -27151,6 +27399,306 @@ async function euDownloadAll(root, btn){
   } finally {
     if (btn) { btn.disabled = false; btn.innerHTML = label; }
   }
+}
+
+/* ---------- visuels sur demande ----------
+ *
+ * L'assistant ne dessine rien et ne calcule aucun chiffre. Il traduit une
+ * demande en une description courte - une feuille, une ou plusieurs colonnes,
+ * une forme, eventuellement des regroupements - et c'est l'outil qui compte les
+ * pays dans le classeur et dessine avec les briques de la vue europeenne. Un
+ * visuel ajoute a « Mes visuels » garde cette description, pas ses chiffres :
+ * il se recalcule quand le classeur change, comme les autres.
+ *
+ * Seule part d'interpretation : les colonnes en texte libre, que l'assistant
+ * regroupe par mots-cles. Le regroupement est alors affiche sous le visuel, et
+ * la valeur d'origine de chaque pays reste lisible au survol de son drapeau.
+ */
+const EU_FORMS = ["map", "rings", "share", "stairs", "columns", "pyramid", "bars"];
+const EU_PALETTE = ["var(--accent)", "var(--m4)", "#f5b82e", "var(--ie)", "var(--m1)", "#ff3b5c", "var(--accent2)", "#ff8a3d"];
+
+function euNorm(v){
+  if (euNC(v)) return null;
+  if (euYes(v)) return "YES";
+  if (euNo(v)) return "NO";
+  return String(v).replace(/\s+/g, " ").trim();
+}
+/* Les valeurs courantes du classeur, traduites ; les autres restent telles
+   qu'ecrites, verifiables contre la case. */
+function euValLabel(k){
+  if (k === "YES") return t("eu.v.yes");
+  if (k === "NO") return t("eu.v.no");
+  const slug = String(k).toLowerCase().replace(/[^a-z]+/g, "");
+  for (const p of ["eu.val.", "eu.v.org.", "eu.v.aud.", "eu.v.doc."]) {
+    const s = t(p + slug);
+    if (s !== p + slug) return s;
+  }
+  return k;
+}
+
+/* Ce que l'assistant lit avant de choisir : les colonnes de chaque feuille,
+   leur remplissage et leurs valeurs les plus frequentes. */
+function euDescribeColumns(a){
+  if (typeof SHEET_DATA === "undefined") return { error: "no workbook data" };
+  const keys = (a && a.sheets && a.sheets.length ? a.sheets : Object.keys(SHEET_DATA.sheets))
+    .filter(k => SHEET_DATA.sheets[k]);
+  const rows = Object.values(SHEET_DATA.rows);
+  const sheets = {};
+  keys.forEach(k => {
+    const sh = SHEET_DATA.sheets[k];
+    sheets[k] = { name: sh.name, columns: sh.fields.filter(f => f.c !== "C").map(f => {
+      const vals = rows.map(r => (r[k] || {})[f.c]).filter(v => !euNC(v));
+      const cnt = {};
+      vals.forEach(v => { const n = euNorm(v); const s = n.length > 50 ? n.slice(0, 50) + "…" : n; cnt[s] = (cnt[s] || 0) + 1; });
+      const top = Object.entries(cnt).sort((x, y) => y[1] - x[1]);
+      return { col: f.c, label: f.l, filled: vals.length, distinct: top.length,
+        numeric: vals.length > 0 && vals.filter(v => /^\s*\d/.test(v)).length >= vals.length * .6,
+        top: top.slice(0, 5).map(([v, n]) => v + " (" + n + ")") };
+    }) };
+  });
+  return { countries: COUNTRIES.length, sheets,
+    note: "Sheets: id=transposition, inc=incident reporting, reg=registration, fw=framework, "
+      + "aud=audit, san=sanctions, auth=authorities. 'NC' and blanks mean not communicated and are "
+      + "never counted. A column with more than 8 distinct values needs `groups`." };
+}
+
+/* La description, verifiee et resolue. Une erreur explique quoi corriger :
+   l'assistant la lit et relance l'outil. */
+function euSpecCheck(spec){
+  spec = Object.assign({}, spec || {});
+  if (typeof SHEET_DATA === "undefined") throw new Error("no workbook data");
+  const sh = SHEET_DATA.sheets[spec.sheet];
+  if (!sh) throw new Error("unknown sheet '" + spec.sheet + "'. Use one of: " + Object.keys(SHEET_DATA.sheets).join(", "));
+  const cols = [].concat(spec.columns || [], spec.column || []).map(c => String(c).toUpperCase());
+  if (!cols.length) throw new Error("give `column` (or `columns` for a share of YES over several columns)");
+  const bad = cols.filter(c => !sh.fields.some(f => f.c === c));
+  if (bad.length) throw new Error("unknown column(s) " + bad.join(", ") + " in sheet " + spec.sheet + ". Call describe_columns.");
+  spec.form = EU_FORMS.includes(spec.form) ? spec.form : "share";
+  spec.cols = [...new Set(cols)];
+  /* Plusieurs colonnes, c'est « combien de pays disent oui a chacune » : sur des
+     colonnes de categories, le compte serait zero partout et le visuel absurde.
+     Le modele a fait l'erreur en test ; on la refuse avec la correction. */
+  if (spec.cols.length > 1) {
+    const rows = Object.values(SHEET_DATA.rows);
+    const notYesNo = spec.cols.filter(c => {
+      const vals = rows.map(r => (r[spec.sheet] || {})[c]).filter(v => !euNC(v));
+      return vals.length && vals.filter(v => euYes(v) || euNo(v)).length < vals.length * .6;
+    });
+    if (notYesNo.length) throw new Error("`columns` only counts YES answers across YES/NO columns, and "
+      + notYesNo.map(c => spec.sheet + "!" + c).join(", ") + " is not a YES/NO column. For the categories of one "
+      + "column, pass `column` alone (and `groups` to merge its values).");
+  }
+  return spec;
+}
+
+function euVisualBuild(spec, selDefault){
+  spec = euSpecCheck(spec);
+  const isos = spec.countries && spec.countries.length && typeof corpusIsos === "function"
+    ? corpusIsos(spec.countries) : null;
+  const unknown = isos ? spec.countries.filter(x => !corpusIsos([x]).length) : [];
+  const sel = isos ? euAll().filter(c => isos.includes(c.iso)) : selDefault;
+  if (!sel.length) throw new Error("no country matches the selection");
+  /* Ce que le modele doit pouvoir dire : les pays qu'il a nommes et que RegWatch
+     ne suit pas, et ceux dont la case ne dit rien. */
+  const facts = { notTracked: unknown,
+    notCommunicated: sel.filter(c => spec.cols.every(k => euNC(euCell(c.iso, spec.sheet, k)))).map(c => c.name) };
+  const n = sel.length;
+  const key = spec.sheet, col = spec.cols[0];
+  const raw = iso => euCell(iso, key, col);
+  const rawTip = iso => esc(String(raw(iso) == null ? t("fiche.nc") : raw(iso)).slice(0, 180));
+  const src = key + "!" + spec.cols.join(", " + key + "!");
+  let body = "", filled = null, groupsNote = "";
+
+  /* --- plusieurs colonnes : combien de pays repondent oui a chacune --- */
+  if (spec.cols.length > 1) {
+    const rows = spec.cols.map((c, i) => ({ label: esc(ficheLabel(key, c)), color: EU_PALETTE[i % 2 ? 1 : 0],
+      isos: sel.filter(x => euYes(euCell(x.iso, key, c))).map(x => x.iso),
+      tipOf: iso => esc(String(euCell(iso, key, c) || t("fiche.nc")).slice(0, 160)) }))
+      .sort((a, b) => b.isos.length - a.isos.length);
+    return { title: spec.title || ficheLabel(key, col), src, filled: null, total: n,
+      body: euShare(rows, n, { flags: 6 }), facts, summary: rows.map(r => ficheLabel(key, spec.cols[rows.indexOf(r)] || col) + ": " + r.isos.length + "/" + n) };
+  }
+
+  /* --- une valeur numerique par pays --- */
+  const numeric = spec.form === "bars" || (spec.buckets && spec.buckets.length);
+  if (numeric) {
+    const items = sel.map(c => ({ iso: c.iso, v: euNum(raw(c.iso)) }));
+    const known = items.filter(x => x.v != null).sort((a, b) => a.v - b.v);
+    const nc = items.filter(x => x.v == null).map(x => x.iso);
+    filled = known.length;
+    if (!known.length) throw new Error("no numeric value in " + src + " for this selection");
+    if (spec.form === "bars") {
+      const max = Math.max(1, ...known.map(x => x.v));
+      body = `<div class="eu-hbars">${known.map(x => `<div class="eu-hb">
+          <div class="eu-hb-l">${euFlag(x.iso, rawTip(x.iso))}<span>${esc(euName(x.iso))}</span></div>
+          <div class="eu-hb-t"><div class="eu-hb-b" style="width:max(${x.v / max * 100}%,4px);background:var(--accent)"></div>
+            <span>${euFmt(x.v)}${spec.unit ? " " + esc(spec.unit) : ""}</span></div></div>`).join("")}</div>`;
+      if (nc.length) body += `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0, rawTip)}</p>`;
+      return { title: spec.title || ficheLabel(key, col), src, filled, total: n, body, facts,
+        summary: known.map(x => x.iso + "=" + x.v) };
+    }
+    /* paliers : des bornes donnees par l'assistant */
+    const B = spec.buckets.map((b, i) => ({ label: esc(b.label || ""), min: b.min != null ? +b.min : -Infinity,
+      max: b.max != null ? +b.max : Infinity, color: EU_PALETTE[i % EU_PALETTE.length], isos: [], tipOf: rawTip }));
+    known.forEach(x => { const b = B.find(g => x.v >= g.min && x.v <= g.max); if (b) b.isos.push(x.iso); else nc.push(x.iso); });
+    return Object.assign(euVisualForm(spec, sel, B, nc, rawTip, src, filled), { facts });
+  }
+
+  /* --- des categories : valeurs du classeur, ou regroupements par mots-cles --- */
+  let groups;
+  const nc = [];
+  if (spec.groups && spec.groups.length) {
+    groups = spec.groups.map((g, i) => ({ label: esc(g.label || ""), kw: [].concat(g.keywords || []).map(k => String(k).toLowerCase()),
+      color: EU_PALETTE[i % EU_PALETTE.length], isos: [], tipOf: rawTip }));
+    const other = { label: t("eu.v.other"), color: "var(--line2)", isos: [], tipOf: rawTip };
+    sel.forEach(c => {
+      const v = raw(c.iso);
+      if (euNC(v)) { nc.push(c.iso); return; }
+      const low = String(v).toLowerCase();
+      const g = groups.find(gr => gr.kw.some(k => k === "yes" ? euYes(v) : k === "no" ? euNo(v) : low.includes(k)));
+      (g || other).isos.push(c.iso);
+    });
+    if (other.isos.length) groups.push(other);
+    groupsNote = `<p class="eu-mine-g"><b>${t("eu.mine.groups")}</b> ${spec.groups.map(g =>
+      `${esc(g.label)} ← « ${[].concat(g.keywords || []).map(esc).join(" », « ")} »`).join(" · ")}</p>`;
+  } else {
+    const m = new Map();
+    sel.forEach(c => {
+      const k = euNorm(raw(c.iso));
+      if (k == null) { nc.push(c.iso); return; }
+      if (!m.has(k)) m.set(k, []);
+      m.get(k).push(c.iso);
+    });
+    if (m.size > 8) {
+      throw new Error(m.size + " distinct values in " + src + ": pass `groups` with keywords. Values: "
+        + [...m.keys()].map(v => v.slice(0, 60)).slice(0, 30).join(" | "));
+    }
+    /* Oui avant Non quel que soit le compte : on lit « qui le fait » d'abord. */
+    const rank = k => k === "YES" ? 0 : k === "NO" ? 2 : 1;
+    groups = [...m.entries()].sort((a, b) => rank(a[0]) - rank(b[0]) || b[1].length - a[1].length)
+      .map(([k, list], i) => ({ label: esc(euValLabel(k)), isos: list, tipOf: rawTip,
+        color: k === "YES" ? "var(--m4)" : k === "NO" ? "var(--m1)" : EU_PALETTE[i % EU_PALETTE.length] }));
+  }
+  filled = n - nc.length;
+  const out = euVisualForm(spec, sel, groups, nc, rawTip, src, filled);
+  out.body += groupsNote;
+  out.facts = facts;
+  return out;
+}
+
+function euVisualForm(spec, sel, groups, nc, rawTip, src, filled){
+  const n = sel.length;
+  const shown = groups.filter(g => g.isos.length);
+  const title = spec.title || ficheLabel(spec.sheet, spec.cols[0]);
+  const ncFoot = nc.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0, rawTip)}</p>` : "";
+  let body;
+  if (spec.form === "map") {
+    const of = {};
+    groups.forEach((g, i) => g.isos.forEach(iso => { of[iso] = "g" + i; }));
+    const cats = groups.map((g, i) => ({ k: "g" + i, label: g.label, color: g.color }))
+      .concat([{ k: "nc", label: t("fiche.nc"), color: "var(--surface3)" }]);
+    body = `<div class="eu-mapgrid">
+      <div>${euMap(sel, c => ({ k: of[c.iso] || "nc", raw: String(euCell(c.iso, spec.sheet, spec.cols[0]) || "").slice(0, 120) }), cats)}
+        ${euLegend(cats.map(x => Object.assign({ n: x.k === "nc" ? nc.length : groups[+x.k.slice(1)].isos.length }, x)))}</div>
+      <div>${euShare(shown, n, { flags: 6 })}</div></div>`;
+  } else if (spec.form === "rings") {
+    body = `<div class="eu-rings row">${shown.slice(0, 6).map(g => euRing(g.isos.length, n, g.color, `<b>${g.label}</b>`, g.isos)).join("")}</div>${ncFoot}`;
+  } else if (spec.form === "stairs") {
+    body = euStairs(shown, filled) + ncFoot;
+  } else if (spec.form === "columns") {
+    const max = Math.max(1, ...shown.map(g => g.isos.length));
+    body = `<div class="eu-cols">${shown.map(g => `<div class="eu-col">
+        <span class="eu-col-n">${g.isos.length}</span>
+        <div class="eu-col-stack" style="height:${g.isos.length / max * 100}%">${g.isos.map(iso => euFlag(iso, rawTip(iso))).join("")}</div>
+        <span class="eu-col-l">${g.label}</span></div>`).join("")}</div>${ncFoot}`;
+  } else if (spec.form === "pyramid") {
+    const step = 50 / Math.max(1, groups.length);
+    body = `<div class="eu-pyr">${groups.map((g, i) => {
+      const a = i * step, b = (i + 1) * step;
+      return `<div class="eu-pyr-row"><div class="eu-pyr-c">
+          <div class="eu-pyr-s" style="clip-path:polygon(${50 - a}% 0,${50 + a}% 0,${50 + b}% 100%,${50 - b}% 100%);
+            background:color-mix(in srgb,var(--accent) ${100 - i * (70 / groups.length)}%,var(--accent-soft))">
+            ${i ? `<span style="color:${i < groups.length / 2 ? "var(--accent-ink)" : "var(--accent2)"}">${g.label}</span>` : ""}</div>
+          ${i ? "" : `<span class="eu-pyr-out" style="right:calc(50% + ${(a + b) / 2 + 3}%)">${g.label}</span>`}
+        </div><div class="eu-pyr-f"><b>${g.isos.length}</b>${euFlags(g.isos, 0, g.tipOf)}</div></div>`;
+    }).join("")}</div>${ncFoot}`;
+  } else {
+    body = euShare(shown, n) + ncFoot;
+  }
+  return { title, src, filled, total: n, body, summary: shown.map(g => g.label.replace(/&#39;/g, "'").replace(/&amp;/g, "&") + ": " + g.isos.length + "/" + n) };
+}
+
+/* ---------- Mes visuels ---------- */
+function euMine(){ return Array.isArray(store.euMine) ? store.euMine : []; }
+function euMineAdd(spec){
+  const id = "v" + Date.now().toString(36);
+  store.euMine = euMine().concat([{ id, spec, created: new Date().toISOString().slice(0, 10) }]);
+  saveStore();
+  return id;
+}
+function euMineRemove(id){
+  store.euMine = euMine().filter(v => v.id !== id);
+  if (store.euText) delete store.euText["mine-" + id];
+  saveStore();
+}
+
+function euMineSection(sel){
+  const list = euMine();
+  const cards = list.map(v => {
+    let ch;
+    try { ch = euVisualBuild(v.spec, sel); }
+    catch (e) { ch = { title: v.spec.title || "-", src: (v.spec.sheet || "") + "!" + (v.spec.column || ""),
+      body: `<p class="eu-empty">${esc(t("eu.mine.broken", { err: e.message }))}</p>` }; }
+    ch.id = "mine-" + v.id;
+    ch.wide = v.spec.form === "map" || v.spec.form === "pyramid" || v.spec.form === "stairs" || v.spec.form === "bars";
+    ch.meta = t("eu.mine.created", { date: fmtDateL(v.created) });
+    ch.mine = v.id;
+    return euCard(ch, sel);
+  }).join("");
+  return `<div class="eu-mine-intro">
+      <div class="ic">${ficheIcon("sparkle")}</div>
+      <div><b>${t("eu.mine.title")}</b><p>${t("eu.mine.intro")}</p></div>
+      <button type="button" class="btn primary" id="euMineAsk">${t("eu.mine.create")}</button>
+    </div>
+    ${cards || `<p class="eu-empty eu-mine-empty">${t("eu.mine.empty")}</p>`}`;
+}
+
+/* ---------- l'outil de l'assistant ---------- */
+let chatPendingVisuals = [];
+function chatCreateVisual(a){
+  let ch;
+  try { ch = euVisualBuild(a, euAll().filter(c => c.eu)); }
+  catch (e) { return { error: e.message }; }
+  const spec = {};
+  ["title", "form", "sheet", "column", "columns", "groups", "buckets", "countries", "unit"].forEach(k => {
+    if (a[k] != null && !(Array.isArray(a[k]) && !a[k].length)) spec[k] = a[k];
+  });
+  chatPendingVisuals.push({ spec });
+  return { rendered: true, title: ch.title, source: ch.src, counts: ch.summary,
+    notTracked: (ch.facts || {}).notTracked, notCommunicated: (ch.facts || {}).notCommunicated,
+    note: "The visual is displayed under your reply with an 'Add to My visuals' button. Tell the user, "
+      + "in one sentence, that once added it is available in " + t("nav.europe") + " > " + t("eu.s.mine")
+      + " (use these exact names). Mention countries not tracked by RegWatch and countries whose answer "
+      + "is not communicated, if any. If you used groups, say the grouping is yours and should be checked." };
+}
+
+function chatVisualHTML(v, key){
+  let ch;
+  try { ch = euVisualBuild(v.spec, euAll().filter(c => c.eu)); }
+  catch (e) { return `<p class="q-note">${esc(e.message)}</p>`; }
+  const added = v.addedId && euMine().some(m => m.id === v.addedId);
+  return `<figure class="eu-card chat-visual" data-vis="${key}">
+    <div class="eu-card-h"><h3 class="eu-title" style="cursor:default">${esc(ch.title)}</h3></div>
+    <div class="eu-body">${ch.body}</div>
+    <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code></figcaption>
+    <div class="chat-vis-act">
+      ${added
+        ? `<span class="chat-vis-ok">${t("eu.mine.added")}</span><a class="btn" href="#/europe/mine">${t("eu.mine.open")}</a>`
+        : `<button type="button" class="btn primary chat-vis-add" data-vis="${key}">${ficheIcon("sparkle")}${t("eu.mine.add")}</button>`}
+      <button type="button" class="btn chat-vis-png" data-vis="${key}">PNG</button>
+    </div>
+    ${added ? "" : `<p class="q-note chat-vis-where">${t("eu.mine.where")}</p>`}
+  </figure>`;
 }
 /* ================= Boot =================
  *

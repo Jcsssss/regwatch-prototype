@@ -82,7 +82,7 @@ function chatSystemPrompt(){
        "and the designation of critical entities by the state, NOT about cybersecurity;",
        "do not answer a REC question with what you know about NIS 2.",
        "The REC records are a first pass over a younger workbook: many fields are simply",
-       "not recorded yet. Say 'not recorded in RegWatch yet' - never read a blank as 'none'.",
+       "not communicated yet. Say 'not communicated' - never read a blank as 'none'.",
        "You have no KPI table, no watch items, no charts and no document folders for REC;",
        "if one of those is asked for, say the REC module does not carry it yet."];
   return [
@@ -124,6 +124,22 @@ function chatSystemPrompt(){
     "- Give figures with their unit and their country.",
     "- When a comparison across countries would read better as a chart, call",
     "  draw_chart. It renders under your reply; refer to it, do not describe it.",
+    ...(regId() === "nis2" ? [
+    "",
+    "VISUALS - when the user asks for a visual, graph, map or chart, prefer create_visual:",
+    "- First call describe_columns to find the exact sheet and column: pick the sheet by the",
+    "  topic of the request (a registration deadline is in reg, not in id), then pick the column",
+    "  whose label matches the request word for word. Never invent a column.",
+    "- Forms: map = categories across Europe; rings = 2 to 4 categories; share = several",
+    "  categories, or several YES/NO columns counted together (pass `columns`); stairs =",
+    "  ordered ranges (pass `buckets`); columns = dates or periods; pyramid = ordered",
+    "  frequency levels; bars = one number per country.",
+    "- Free-text columns (more than 8 distinct values): pass `groups` with keywords, and say",
+    "  in your reply that the grouping is yours and must be checked.",
+    "- Pass `countries` only when the user names countries; otherwise the visual follows",
+    "  the European view filter. Title and unit in the user's language, short and factual.",
+    "- After it renders, say in one sentence that the button under the visual adds it to the",
+    "  My visuals section of the European view (use the names the tool result gives)."] : []),
     "- Plain markdown only: paragraphs, - bullets, **bold**. No headings, no tables."
   ].join("\n");
 }
@@ -198,6 +214,45 @@ const CHAT_TOOLS = [
       countries: { type: "array", items: { type: "string" } }
     }, required: ["countries"] },
     run: a => corpusOfficialDocs(a) },
+
+  { name: "describe_columns", regs: ["nis2"],
+    description: "The Cyber Watch workbook columns usable in a visual: for each sheet, each column's "
+      + "letter, label, how many countries filled it, whether it is numeric and its most frequent values. "
+      + "Call before create_visual.",
+    parameters: { type: "object", properties: {
+      sheets: { type: "array", items: { type: "string", enum: ["id", "inc", "reg", "fw", "aud", "san", "auth"] },
+        description: "Optional: limit to these sheets. " + "id = transposition (law, entry into force, months of delay against the EU deadline); "
+          + "inc = incident reporting; reg = registration of entities (registration deadlines, method, information requested); "
+          + "fw = cybersecurity framework (requirements, compliance deadlines, inspiration standards); "
+          + "aud = audits and self-assessment; san = sanctions; auth = authorities" }
+    } },
+    run: a => euDescribeColumns(a) },
+
+  { name: "create_visual", regs: ["nis2"],
+    description: "Build a European-view quality visual from the Cyber Watch workbook and show it under your "
+      + "reply, with a button to add it to European view > My visuals. RegWatch counts the countries; you "
+      + "only describe the visual.",
+    parameters: { type: "object", properties: {
+      title: { type: "string", description: "Short factual title, in the user's language" },
+      form: { type: "string", enum: ["map", "rings", "share", "stairs", "columns", "pyramid", "bars"] },
+      sheet: { type: "string", enum: ["id", "inc", "reg", "fw", "aud", "san", "auth"], description: "id = transposition (law, entry into force, months of delay against the EU deadline); "
+          + "inc = incident reporting; reg = registration of entities (registration deadlines, method, information requested); "
+          + "fw = cybersecurity framework (requirements, compliance deadlines, inspiration standards); "
+          + "aud = audits and self-assessment; san = sanctions; auth = authorities" },
+      column: { type: "string", description: "Column letter, e.g. 'J'" },
+      columns: { type: "array", items: { type: "string" },
+        description: "Several YES/NO column letters to count together (form share)" },
+      groups: { type: "array", items: { type: "object", properties: {
+        label: { type: "string" }, keywords: { type: "array", items: { type: "string" } } } },
+        description: "Optional categories for free-text values: a country goes to the first group whose "
+          + "keyword appears in its value ('yes' / 'no' match YES / NO answers). Order = display order." },
+      buckets: { type: "array", items: { type: "object", properties: {
+        label: { type: "string" }, min: { type: "number" }, max: { type: "number" } } },
+        description: "Optional numeric ranges, inclusive, in display order (form stairs, pyramid, columns)" },
+      countries: { type: "array", items: { type: "string" }, description: "Only if the user named countries" },
+      unit: { type: "string", description: "Optional unit for bars, e.g. 'months'" }
+    }, required: ["form", "sheet"] },
+    run: a => chatCreateVisual(a) },
 
   { name: "draw_chart", regs: ["nis2"],
     description: "Render a chart from the workbook indicators and show it to the user under "
@@ -359,6 +414,7 @@ async function chatAsk(question){
   if (!chatReady()) { chatOpenSettings(); return; }
   chatBusy = true;
   chatPendingCharts = [];
+  if (typeof chatPendingVisuals !== "undefined") chatPendingVisuals = [];
 
   chatLog.push({ role: "user", text: question });
   chatLog.push({ role: "pending", text: t("chat.thinking"), tools: [] });
@@ -386,7 +442,8 @@ async function chatAsk(question){
       if (!calls.length) {
         chatLog.pop();
         chatLog.push({ role: "assistant", text: msg.content || t("chat.empty"),
-                       charts: chatPendingCharts.slice(), tools: pending.tools });
+                       charts: chatPendingCharts.slice(), tools: pending.tools,
+                       visuals: typeof chatPendingVisuals !== "undefined" ? chatPendingVisuals.slice() : [] });
         break;
       }
 
@@ -410,7 +467,8 @@ async function chatAsk(question){
       if (round === CHAT_MAX_ROUNDS - 1) {
         chatLog.pop();
         chatLog.push({ role: "assistant", text: t("chat.tooManyRounds"),
-                       charts: chatPendingCharts.slice(), tools: pending.tools });
+                       charts: chatPendingCharts.slice(), tools: pending.tools,
+                       visuals: typeof chatPendingVisuals !== "undefined" ? chatPendingVisuals.slice() : [] });
       }
     }
   } catch (err) {
@@ -422,6 +480,9 @@ async function chatAsk(question){
     chatWire.pop();
   }
   chatBusy = false;
+  /* Un visuel se lit mal a 430 pixels : le panneau s'elargit quand il en arrive un. */
+  const last = chatLog[chatLog.length - 1];
+  if (last && last.visuals && last.visuals.length) { const p = $("#assistPanel"); if (p) p.classList.add("wide"); assistSync(); }
   chatRender();
   assistNotify();
 }
@@ -476,7 +537,9 @@ function chatBubble(m, idx){
       ${steps}</div></div>`;
   }
   const charts = (m.charts || []).map((c, i) => chatChartHTML(c, idx + "-" + i)).join("");
-  return `<div class="chat-m bot"><div class="chat-b">${steps}${chatMarkdown(m.text)}${charts}</div></div>`;
+  const visuals = typeof chatVisualHTML === "function"
+    ? (m.visuals || []).map((v, i) => chatVisualHTML(v, idx + "-" + i)).join("") : "";
+  return `<div class="chat-m bot"><div class="chat-b">${steps}${chatMarkdown(m.text)}${charts}${visuals}</div></div>`;
 }
 
 const CHAT_SUGGESTIONS_BY_REG = {
@@ -490,6 +553,9 @@ function chatSuggestions(){
   const ctx = assistContext();
   if (ctx.iso && regId() === "nis2")
     return ["chat.c1", "chat.c2", "chat.c3", "chat.c4"].map(k => ({ k: k, v: { country: ctx.label } }));
+  /* Depuis la vue europeenne, on vient chercher un visuel. */
+  if (regId() === "nis2" && typeof currentRoute !== "undefined" && currentRoute.v === "europe")
+    return ["chat.e1", "chat.e2", "chat.e3", "chat.e4"].map(k => ({ k: k }));
   return (CHAT_SUGGESTIONS_BY_REG[regId()] || CHAT_SUGGESTIONS_BY_REG.nis2).map(k => ({ k: k }));
 }
 
@@ -585,6 +651,20 @@ function chatWire2(){
     const m = chatLog[mi];
     if (m && m.charts && m.charts[ci]) kpiExportXlsx(m.charts[ci].sel);
   }));
+  const visOf = key => { const [mi, vi] = key.split("-").map(Number); const m = chatLog[mi]; return m && m.visuals && m.visuals[vi]; };
+  document.querySelectorAll(".chat-vis-add").forEach(b => b.addEventListener("click", () => {
+    const v = visOf(b.dataset.vis);
+    if (!v) return;
+    v.addedId = euMineAdd(v.spec);
+    chatRender();
+    if (currentRoute.v === "europe") renderCurrent();
+  }));
+  document.querySelectorAll('.chat-vis-act a[href="#/europe/mine"]').forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    route("europe", "mine");
+  }));
+  document.querySelectorAll(".chat-vis-png").forEach(b => b.addEventListener("click", () =>
+    euDownloadCard(b.closest(".chat-visual"), b)));
   kpiWireTips($("#assistBody"));
   chatWireSettings();
   if (!chatBusy && assistIsOpen()) { const i = $("#chatIn"); if (i && chatLog.length) i.focus(); }
@@ -665,7 +745,7 @@ function assistContext(){
   const r = typeof currentRoute !== "undefined" ? currentRoute : { v: "overview" };
   if (r.v === "country" && r.arg && byIso[r.arg])
     return { iso: r.arg, label: byIso[r.arg].name };
-  const labels = { overview: "nav.overview", countries: "nav.countries", inbox: "nav.inbox",
+  const labels = { overview: "nav.overview", europe: "nav.europe", countries: "nav.countries", inbox: "nav.inbox",
                    sources: "nav.sources", dev: "nav.dev", devchat: "nav.devchat" };
   return { iso: null, label: t(labels[r.v] || "nav.overview") };
 }

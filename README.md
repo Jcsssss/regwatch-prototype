@@ -126,6 +126,14 @@ et ajouter son analyse ; ces textes restent dans son navigateur.
 Chaque visuel se télécharge en PNG (bouton sur le graphique), avec son titre, son analyse et
 sa source ; « Télécharger tous les visuels » les rassemble dans une archive ZIP, rangés par section.
 
+**Mes visuels.** L'assistant (la baleine) crée des visuels du même style sur demande : « fais une
+carte des pays qui demandent les plages IP à l'enregistrement ». L'IA ne calcule aucun chiffre :
+elle choisit la feuille, la colonne et la forme (outils `describe_columns` puis `create_visual`),
+et l'outil compte les pays dans le classeur. Le bouton « Ajouter à Mes visuels » enregistre la
+description du visuel (pas ses chiffres) dans la section **Mes visuels** de la vue européenne, où
+il se recalcule avec les données. Quand l'IA regroupe des réponses en texte libre, le
+regroupement est affiché sous le visuel pour vérification.
+
 Données utilisées :
 
 ```sh
