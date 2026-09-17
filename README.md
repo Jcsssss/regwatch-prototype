@@ -144,18 +144,26 @@ python3 tools/sectors_to_js.py <classeur.xlsx>         # feuille Sectors - P3 ->
 La feuille Sectors - P3 alimente aussi la fenêtre « Secteurs couverts » de la fiche pays, qui
 montre maintenant le périmètre retenu par le pays (sous-secteurs ajoutés, précisions, écarts).
 
-## Correspondances entre référentiels
+## Deux langues
 
-L'onglet **Correspondances** montre ce qu'un référentiel couvre déjà d'un autre, exigence par
-exigence : taux de couverture, répartition (entièrement, largement, partiellement,
-indirectement, non couverte), couverture par catégorie ENISA, et pour chaque exigence
-l'exigence correspondante, l'écart et un plan d'action. La section Framework de la fiche pays
-renvoie aux correspondances qui concernent son référentiel.
+Tout le site s'affiche en français ou en anglais, y compris le contenu : cases du classeur,
+fiches rédigées, secteurs, exigences, thèmes, REC, registre des sources. Le contenu n'est tenu
+que dans une langue ; ses traductions sont faites une fois, hors ligne, et embarquées :
 
-Les résultats viennent de l'agent de correspondance (`ressources/Agent-Mapping-NIS2-main`) :
-le moteur ne tourne pas dans l'outil, seuls ses classeurs **validés** (`Validated_*.xlsx`)
-sont embarqués, par `python3 tools/mapping_to_js.py`. Le détail est compressé et n'est
-décompressé qu'à l'ouverture de la page.
+```sh
+node tools/content_i18n.js        # traduit les textes nouveaux -> src/data_content_i18n.js
+```
+
+À relancer après chaque mise à jour des données, avant le build. Le script lit la
+configuration Azure OpenAI dans `.env`, ne traduit que ce qui manque, et garde tout dans
+`data/content-i18n.json` (versionné) : une traduction corrigée à la main dans ce fichier est
+conservée. Les noms officiels (lois, autorités, plateformes, référentiels) restent tels quels.
+Un texte absent du dictionnaire s'affiche dans sa langue d'origine.
+
+À l'affichage, `tc(texte)` donne la version de la langue courante. Les valeurs du classeur
+sont traduites au moment de l'affichage seulement : la vue européenne classe les pays sur
+leurs valeurs anglaises d'origine. Les slides générées suivent la langue choisie dans la
+fenêtre de génération, dates comprises.
 
 ## Assistant
 

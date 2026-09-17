@@ -172,42 +172,6 @@ const I18N = {
     "chat.c3": "Which framework applies in {country}, and how many requirements does it set?",
     "chat.c4": "Who carries out audits in {country}, and how often?",
     "fiche.matTip": "Maturity level {n} of 4",
-    "nav.mapping": "Mappings",
-    "map.title": "Framework mappings",
-    "map.sub": "What one cybersecurity framework already covers of another, requirement by requirement, with the remaining gap and an action plan. Produced by the mapping agent; only reviewed mappings are shown.",
-    "map.subClient": "What one cybersecurity framework already covers of another, requirement by requirement, with the remaining gap. Produced by the mapping agent; only reviewed mappings are shown.",
-    "map.none": "No reviewed mapping is available yet.",
-    "map.validated": "Reviewed",
-    "map.coversPart": "covers",
-    "map.dirCovers": "What {to} covers of {from}",
-    "map.avg": "average coverage of {from} requirements",
-    "map.reqs": "{from} requirements compared",
-    "map.gaps": "with no equivalent in {to}",
-    "map.read": "Each requirement of {from} is scored from 0 to 100 on how much {to} covers it. An entity already compliant with {to} should focus on the partial, indirect and uncovered ones.",
-    "map.rel.full": "Fully covered",
-    "map.rel.large": "Largely covered",
-    "map.rel.partial": "Partially covered",
-    "map.rel.indirect": "Indirectly covered",
-    "map.rel.none": "Not covered",
-    "map.byCat": "Coverage by ENISA category",
-    "map.catN": "{n} requirements",
-    "map.catGaps": "{n} not covered",
-    "map.detail": "Requirement by requirement",
-    "map.search": "Search an identifier, a requirement, a gap",
-    "map.clearFilter": "Show all",
-    "map.loading": "Loading the details\u2026",
-    "map.noDecompress": "This browser cannot unpack the embedded details (DecompressionStream missing).",
-    "map.shown": "{n} of {total} requirements",
-    "map.cat": "ENISA category",
-    "map.target": "Matched in {to}",
-    "map.noTarget": "No matching requirement",
-    "map.gap": "Gap",
-    "map.detGap": "Detailed gap",
-    "map.action": "Action plan",
-    "map.priority": "Review priority",
-    "map.onFiche": "Mappings with other frameworks",
-    "map.ficheLine": "{to} covers {pct} of {from} on average",
-    "map.ficheGaps": "{n} of {total} requirements have no equivalent \u00b7 see the detail",
     "theme.light": "Light mode",
     "theme.dark": "Dark mode",
     "fiche.sectorsCount": "{n} sectors",
@@ -464,6 +428,9 @@ const I18N = {
     "eu.val.nis2dedicatedframework": "Framework dedicated to NIS 2",
     "eu.val.notspecified": "Not specified",
     "assist.resize": "Drag to resize, double-click to reset",
+    "map.nonEU": "non-EU",
+    "map.aria": "Map of Europe coloured by transposition maturity level",
+    "reg.planned": "Planned module - same data model",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -920,9 +887,9 @@ const I18N = {
     "manual.optUnofficial": "Non officielle - à vérifier",
     "manual.optManual": "Manuelle - saisie consultant",
     "role.developer": "Développeur",
-    "fiche.inc": "Incident reporting",
-    "fiche.reg": "Registration",
-    "fiche.fw": "Framework",
+    "fiche.inc": "Notification des incidents",
+    "fiche.reg": "Enregistrement",
+    "fiche.fw": "R\u00e9f\u00e9rentiel",
     "fiche.aud": "Audits",
     "fiche.san": "Sanctions",
     "fiche.f.maturity": "Niveau de maturit\u00e9",
@@ -1016,42 +983,6 @@ const I18N = {
     "chat.c3": "Quel r\u00e9f\u00e9rentiel s'applique en {country}, et combien d'exigences porte-t-il ?",
     "chat.c4": "Qui r\u00e9alise les audits en {country}, et \u00e0 quelle fr\u00e9quence ?",
     "fiche.matTip": "Niveau de maturit\u00e9 {n} sur 4",
-    "nav.mapping": "Correspondances",
-    "map.title": "Correspondances entre r\u00e9f\u00e9rentiels",
-    "map.sub": "Ce qu'un r\u00e9f\u00e9rentiel de cybers\u00e9curit\u00e9 couvre d\u00e9j\u00e0 d'un autre, exigence par exigence, avec l'\u00e9cart restant et un plan d'action. Produites par l'agent de correspondance ; seules les correspondances relues sont affich\u00e9es.",
-    "map.subClient": "Ce qu'un r\u00e9f\u00e9rentiel de cybers\u00e9curit\u00e9 couvre d\u00e9j\u00e0 d'un autre, exigence par exigence, avec l'\u00e9cart restant. Produites par l'agent de correspondance ; seules les correspondances relues sont affich\u00e9es.",
-    "map.none": "Aucune correspondance relue n'est encore disponible.",
-    "map.validated": "Relue",
-    "map.coversPart": "couvre",
-    "map.dirCovers": "Ce que {to} couvre de {from}",
-    "map.avg": "de couverture moyenne des exigences de {from}",
-    "map.reqs": "exigences de {from} compar\u00e9es",
-    "map.gaps": "sans \u00e9quivalent dans {to}",
-    "map.read": "Chaque exigence de {from} re\u00e7oit une note de 0 \u00e0 100 selon ce que {to} en couvre. Une entit\u00e9 d\u00e9j\u00e0 conforme \u00e0 {to} doit concentrer ses efforts sur les exigences partiellement, indirectement ou non couvertes.",
-    "map.rel.full": "Enti\u00e8rement couverte",
-    "map.rel.large": "Largement couverte",
-    "map.rel.partial": "Partiellement couverte",
-    "map.rel.indirect": "Indirectement couverte",
-    "map.rel.none": "Non couverte",
-    "map.byCat": "Couverture par cat\u00e9gorie ENISA",
-    "map.catN": "{n} exigences",
-    "map.catGaps": "{n} non couvertes",
-    "map.detail": "Exigence par exigence",
-    "map.search": "Chercher un identifiant, une exigence, un \u00e9cart",
-    "map.clearFilter": "Tout afficher",
-    "map.loading": "Chargement du d\u00e9tail\u2026",
-    "map.noDecompress": "Ce navigateur ne sait pas d\u00e9compresser le d\u00e9tail embarqu\u00e9 (DecompressionStream absent).",
-    "map.shown": "{n} exigences sur {total}",
-    "map.cat": "Cat\u00e9gorie ENISA",
-    "map.target": "Correspondance dans {to}",
-    "map.noTarget": "Aucune exigence correspondante",
-    "map.gap": "\u00c9cart",
-    "map.detGap": "\u00c9cart d\u00e9taill\u00e9",
-    "map.action": "Plan d'action",
-    "map.priority": "Priorit\u00e9 de revue",
-    "map.onFiche": "Correspondances avec d'autres r\u00e9f\u00e9rentiels",
-    "map.ficheLine": "{to} couvre en moyenne {pct} de {from}",
-    "map.ficheGaps": "{n} exigences sur {total} sans \u00e9quivalent \u00b7 voir le d\u00e9tail",
     "theme.light": "Mode clair",
     "theme.dark": "Mode sombre",
     "fiche.sectorsCount": "{n} secteurs",
@@ -1308,6 +1239,9 @@ const I18N = {
     "eu.val.nis2dedicatedframework": "R\u00e9f\u00e9rentiel d\u00e9di\u00e9 \u00e0 NIS 2",
     "eu.val.notspecified": "Non pr\u00e9cis\u00e9",
     "assist.resize": "Glisser pour redimensionner, double-clic pour revenir \u00e0 la taille par d\u00e9faut",
+    "map.nonEU": "hors UE",
+    "map.aria": "Carte de l'Europe colorée selon le niveau de maturité de la transposition",
+    "reg.planned": "Module prévu - même modèle de données",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -1758,7 +1692,61 @@ const COUNTRY_FR = {
   RO: "Roumanie", SE: "Suède", SI: "Slovénie", SK: "Slovaquie",
 };
 
+/* ---------- le contenu, dans la langue de l'interface ----------
+ *
+ * Les donnees ne sont tenues que dans une langue : le classeur en anglais (avec
+ * quelques cases en francais), les phrases generees en francais. Leurs
+ * traductions sont faites une fois, hors ligne (tools/content_i18n.js), et
+ * embarquees dans CONTENT_I18N : texte source -> [anglais, francais], 0 voulant
+ * dire « identique a la source ». Les noms officiels restent tels quels.
+ *
+ * tc(texte) donne la version de la langue courante, tc(texte, "en") celle d'une
+ * langue imposee (les slides choisissent la leur). */
+function tc(s, l){
+  if (s == null || typeof CONTENT_I18N === "undefined") return s;
+  const e = CONTENT_I18N[s];
+  if (!e) return s;
+  const v = e[(l || lang) === "fr" ? 1 : 0];
+  return v === 0 || v == null ? s : v;
+}
+
+/* Les enregistrements rediges (fiches, secteurs, exigences, themes) sont
+   traduits en place, comme les noms de pays : une soixantaine d'endroits les
+   affichent, et aucune logique ne depend de leur texte. Une copie d'origine est
+   gardee au premier passage, pour pouvoir revenir a l'autre langue.
+
+   Le classeur (SHEET_DATA) n'est PAS traduit en place : la vue europeenne classe
+   les pays sur ses valeurs anglaises (« Platform », « Final »...). Ses valeurs
+   passent par tc() au moment de l'affichage. */
+let contentPristine = null;
+function contentRoots(){
+  const g = n => { try { return eval("typeof " + n + " === 'undefined' ? null : " + n); } catch (e) { return null; } };
+  return ["COUNTRIES_1", "COUNTRIES_2", "COUNTRIES_3", "COUNTRIES_4", "REC_COUNTRIES",
+          "SECTOR_DATA", "FW_REQUIREMENTS", "FW_THEMES", "CYBER_THEMES"].map(g);
+}
+function applyContentLang(l){
+  if (typeof CONTENT_I18N === "undefined") return;
+  const roots = contentRoots();
+  if (!contentPristine) contentPristine = roots.map(r => r ? JSON.parse(JSON.stringify(r)) : null);
+  const target = l || lang;
+  /* Le nom d'un pays a sa propre traduction (COUNTRY_FR) ; le « name » d'une
+     mesure ou d'un theme, lui, est un texte a traduire. */
+  const SKIP = { nameEn: 1, nameFr: 1, cov: 1, iso: 1, id: 1, url: 1, fw: 1 };
+  const swap = (src, dst) => {
+    if (!src || !dst || typeof src !== "object") return;
+    const keys = Array.isArray(src) ? src.map((_, i) => i) : Object.keys(src);
+    keys.forEach(k => {
+      if (!Array.isArray(src) && (SKIP[k] || (k === "name" && src.iso))) return;
+      const v = src[k];
+      if (typeof v === "string") { if (CONTENT_I18N[v]) dst[k] = tc(v, target); }
+      else if (v && typeof v === "object") swap(v, dst[k]);
+    });
+  };
+  roots.forEach((r, i) => swap(contentPristine[i], r));
+}
+
 function applyCountryNames(){
+  applyContentLang();
   if (typeof COUNTRIES === "undefined") return;
   COUNTRIES.forEach(c => {
     if (c.nameEn === undefined) c.nameEn = c.name;

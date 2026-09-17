@@ -265,7 +265,7 @@ function rptProse(iso, key){
   const blk = bag && bag[key];
   if (!blk || !blk.b || !blk.b.length) return null;
   if (blk.d) rptDraftUsed = true;
-  return blk.b;
+  return blk.b.map(x => tc(x, rptLang));
 }
 
 /* Une valeur du classeur, prete a etre ecrite. Les cases vides et les « NC »
@@ -274,7 +274,16 @@ function rptProse(iso, key){
 function rptCell(iso, key, col){
   const v = typeof ficheCell === "function" ? ficheCell(iso, key, col) : null;
   if (v == null || v === "NC") return null;
-  return String(v);
+  /* Dans la langue des slides, pas dans celle de l'interface. */
+  return tc(String(v), rptLang);
+}
+let rptLang = "fr";
+/* Les dates des slides suivent la langue des slides, pas celle de l'interface. */
+function rptDate(iso){
+  if (!iso) return "";
+  const d = new Date(iso + (iso.length === 10 ? "T00:00:00" : ""));
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString(rptLang === "fr" ? "fr-FR" : "en-GB", { day: "numeric", month: "short", year: "numeric" });
 }
 function rptYes(v){ return v != null && /^(yes|oui|y)$/i.test(v); }
 
@@ -434,7 +443,7 @@ function rptSlide4(c, lang){
 function rptEvents(c, lang, max){
   const evs = [...(c.timeline || [])].sort((a, b) => b.date < a.date ? -1 : 1);
   return evs.slice(0, max).map(ev =>
-    "<b>" + (typeof fmtDateL === "function" ? fmtDateL(ev.date) : ev.date) + "</b> : "
+    "<b>" + (typeof fmtDateL === "function" ? rptDate(ev.date) : ev.date) + "</b> : "
     + (typeof evText === "function" ? evText(ev) : ev.text));
 }
 
@@ -699,10 +708,17 @@ async function generateCountryReport(iso, opts){
     throw new Error(t("rpt.noTemplate"));
   const lang = opts.lang || "fr";
   rptDraftUsed = false;
-
+  /* Le contenu redige (fiches, themes) suit la langue des slides le temps de la
+     generation, puis revient a celle de l'interface. */
+  rptLang = lang;
+  if (typeof applyContentLang === "function") applyContentLang(lang);
   const wanted = [];
-  if (opts.what !== "fw") wanted.push(rptSlide1(c, lang), rptSlide2(c, lang), rptSlide3(c, lang));
-  if (opts.what !== "country") wanted.push(rptSlide4(c, lang));
+  try {
+    if (opts.what !== "fw") wanted.push(rptSlide1(c, lang), rptSlide2(c, lang), rptSlide3(c, lang));
+    if (opts.what !== "country") wanted.push(rptSlide4(c, lang));
+  } finally {
+    if (typeof applyContentLang === "function") applyContentLang();
+  }
 
   /* La mention de brouillon est posee ici, avant que les slides ne soient
      serialisees : ajoutee plus bas, elle modifiait des objets deja ecrits dans

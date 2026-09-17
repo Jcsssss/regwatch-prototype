@@ -43,6 +43,9 @@ function euCell(iso, key, col){
   const v = r && r[key] && r[key][col];
   return v == null ? null : String(v);
 }
+/* Pour l'affichage seulement : la valeur dans la langue de l'interface. Les
+   tests (euYes, /platform/...) lisent euCell, la valeur d'origine. */
+const euShow = (iso, key, col) => { const v = euCell(iso, key, col); return v == null ? v : tc(v); };
 const euNC = v => v == null || v === "NC";
 const euYes = v => v != null && /^\s*(yes|oui)\b/i.test(v);
 const euNo = v => v != null && /^\s*(no|non)\b/i.test(v);
@@ -354,7 +357,7 @@ const EU_CHARTS = {
     function incDef(sel){
       const yes = [], no = [], nc = [];
       sel.forEach(c => { const v = euCell(c.iso, "inc", "L"); (euYes(v) ? yes : euNo(v) ? no : nc).push(c.iso); });
-      const crit = iso => esc(String(euCell(iso, "inc", "N") || euCell(iso, "inc", "M") || "").slice(0, 200));
+      const crit = iso => esc(String(euShow(iso, "inc", "N") || euShow(iso, "inc", "M") || "").slice(0, 200));
       return {
         id: "inc-def", wide: true, src: "inc!L, inc!M, inc!N", filled: yes.length + no.length,
         title: t("eu.t.incDef", { yes: yes.length, no: no.length }),
@@ -387,7 +390,7 @@ const EU_CHARTS = {
           { label: t("eu.cat.mail"), isos: meth.get("mail") || [], color: EU_C.soft },
           { head: t("eu.h.incTimeline") },
           { label: t("eu.inc.timelineDiff"), isos: spec.get("yes") || [], color: EU_C.warn,
-            tipOf: iso => esc(euCell(iso, "inc", "Q") || "") }
+            tipOf: iso => esc(euShow(iso, "inc", "Q") || "") }
         ]), sel.length)
       };
     },
@@ -411,7 +414,7 @@ const EU_CHARTS = {
             <div class="eu-col-stack" style="height:${g.get(k).length / max * 100}%">
               ${g.get(k).map(iso => euFlag(iso, esc(fmtDateL(euCell(iso, "inc", "G"))))).join("")}</div>
             <span class="eu-col-l">${k}</span></div>`).join("")}</div>
-          ${other.length ? `<p class="eu-foot">${t("eu.otherList")} ${euFlags(other, 0, iso => esc(String(euCell(iso, "inc", "G") || t("fiche.nc")).slice(0, 160)))}</p>` : ""}`
+          ${other.length ? `<p class="eu-foot">${t("eu.otherList")} ${euFlags(other, 0, iso => esc(String(euShow(iso, "inc", "G") || t("fiche.nc")).slice(0, 160)))}</p>` : ""}`
       };
     }
   ],
@@ -424,7 +427,7 @@ const EU_CHARTS = {
         if (!euYes(d)) return { k: "none" };
         if (/mail/i.test(m || "")) return { k: "mail" };
         if (/platform/i.test(m || "")) return { k: "platform" };
-        return { k: "other", raw: m };
+        return { k: "other", raw: tc(m) };
       };
       const cats = [
         { k: "platform", label: t("eu.cat.platform"), color: EU_C.mid },
@@ -459,7 +462,7 @@ const EU_CHARTS = {
         { label: t("eu.b.gt", { n: 6 }), test: d => d > 6, color: "var(--accent)" }
       ];
       const groups = B.map(b => ({ label: b.label, color: b.color, isos: [],
-        tipOf: iso => esc(String(euCell(iso, "reg", "J")).slice(0, 140)) }));
+        tipOf: iso => esc(String(euShow(iso, "reg", "J")).slice(0, 140)) }));
       const vals = [], other = [];
       sel.forEach(c => {
         const d = euNum(euCell(c.iso, "reg", "J"));
@@ -509,7 +512,7 @@ const EU_CHARTS = {
       const cat = c => {
         const v = euCell(c.iso, "fw", "D") || "";
         return { k: /final/i.test(v) ? "final" : /temp/i.test(v) ? "temp" : "none",
-                 raw: euCell(c.iso, "fw", "F") ? String(euCell(c.iso, "fw", "F")).split("\n")[0].slice(0, 90) : "" };
+                 raw: euShow(c.iso, "fw", "F") ? String(euShow(c.iso, "fw", "F")).split("\n")[0].slice(0, 90) : "" };
       };
       const cats = [
         { k: "final", label: t("eu.cat.fwFinal"), color: EU_C.good },
@@ -532,7 +535,7 @@ const EU_CHARTS = {
     },
     function fwReq(sel){
       const items = sel.map(c => ({ iso: c.iso, ee: euNum(euCell(c.iso, "fw", "L")), ie: euNum(euCell(c.iso, "fw", "M")),
-        name: String(euCell(c.iso, "fw", "F") || "").split(/\n|https?:/)[0].trim().slice(0, 60) }))
+        name: String(euShow(c.iso, "fw", "F") || "").split(/\n|https?:/)[0].trim().slice(0, 60) }))
         .filter(x => x.ee != null || x.ie != null)
         .sort((a, b) => (b.ee || 0) - (a.ee || 0));
       if (!items.length) return { id: "fw-req", wide: true, src: "fw!L:M", title: "", body: `<p class="eu-empty">${t("eu.empty")}</p>` };
@@ -602,7 +605,7 @@ const EU_CHARTS = {
         id: "fw-src", src: "fw!O:Y, fw!AA",
         title: rows[0] ? t("eu.t.fwSrc", { src: rows[0].label, n: rows[0].isos.length }) : "",
         body: euShare(rows.concat([{ head: t("eu.h.presumption") },
-          { label: t("eu.fw.presumption"), isos: pres, color: EU_C.good, tipOf: iso => esc(euCell(iso, "fw", "AB") || "") }]),
+          { label: t("eu.fw.presumption"), isos: pres, color: EU_C.good, tipOf: iso => esc(euShow(iso, "fw", "AB") || "") }]),
           sel.length, { flags: 6 })
       };
     },
@@ -616,7 +619,7 @@ const EU_CHARTS = {
         title: t("eu.t.fwEeIe", { n: diff.length }),
         body: euShare([
           { label: t("eu.fw.dedicated"), isos: ded, color: EU_C.mid },
-          { label: t("eu.fw.levelDiff"), isos: diff, color: EU_C.ie, tipOf: iso => esc(String(euCell(iso, "fw", "AG") || "").slice(0, 160)) },
+          { label: t("eu.fw.levelDiff"), isos: diff, color: EU_C.ie, tipOf: iso => esc(String(euShow(iso, "fw", "AG") || "").slice(0, 160)) },
           { label: t("eu.fw.deadlineDiff"), isos: dl, color: EU_C.soft },
           { label: t("eu.fw.gradual"), isos: grad, color: EU_C.good }
         ], sel.length, { flags: 6 })
@@ -640,7 +643,7 @@ const EU_CHARTS = {
         if (euNC(v) || /^nc\b/i.test(v)) g.nc.push(c.iso); else g.free.push(c.iso);
       });
       const levels = L.concat([{ k: "free", label: t("eu.aud.free") }]);
-      const tipOf = iso => esc(String(euCell(iso, "aud", "M") || "").slice(0, 160));
+      const tipOf = iso => esc(String(euShow(iso, "aud", "M") || "").slice(0, 160));
       const fixed = g.y1.length + g.y2.length + g.y3.length + g.y5.length;
       /* Un vrai sommet, comme dans l'etude : la premiere tranche est un triangle.
          Trop etroite pour porter son libelle, elle l'ecrit a gauche de la pointe. */
@@ -678,7 +681,7 @@ const EU_CHARTS = {
       });
       const orgRows = [...org.entries()].sort((a, b) => b[1].length - a[1].length)
         .map(([k, isos]) => ({ label: esc(euCat("aud", k)), isos, color: EU_C.mid,
-          tipOf: iso => esc(String(euCell(iso, "aud", "G") || "").slice(0, 160)) }));
+          tipOf: iso => esc(String(euShow(iso, "aud", "G") || "").slice(0, 160)) }));
       const selfN = ["both", "ei", "ee"].reduce((s, k) => s + (self.get(k) || []).length, 0);
       return {
         id: "aud-who", wide: true, src: "aud!E, aud!I",
@@ -725,7 +728,7 @@ const EU_CHARTS = {
       const cols = ["Q", "N", "M", "P", "O", "J", "S", "H"];
       const rows = cols.map(col => ({ label: esc(euSanLabel(col)), color: col === "H" ? EU_C.warn : EU_C.mid,
         isos: sel.filter(c => euYes(euCell(c.iso, "san", col))).map(c => c.iso),
-        tipOf: col === "H" ? iso => esc(String(euCell(iso, "san", "I") || "").slice(0, 180)) : null }))
+        tipOf: col === "H" ? iso => esc(String(euShow(iso, "san", "I") || "").slice(0, 180)) : null }))
         .sort((a, b) => b.isos.length - a.isos.length);
       const more = sel.filter(c => /more specific/i.test(euCell(c.iso, "san", "F") || "")).map(c => c.iso);
       return {
@@ -743,7 +746,7 @@ const EU_CHARTS = {
 function euCat(kind, raw){
   const k = "eu.v." + kind + "." + String(raw).toLowerCase().replace(/[^a-z]+/g, "");
   const s = t(k);
-  return s === k ? raw : s;
+  return s === k ? tc(raw) : s;
 }
 function euInfoLabel(col){ const k = "eu.info." + col; const s = t(k); return s === k ? ficheLabel("reg", col) : s; }
 function euSrcLabel(col){ const k = "eu.src." + col; const s = t(k); return s === k ? ficheLabel("fw", col) : s; }
@@ -1153,7 +1156,7 @@ function euValLabel(k){
     const s = t(p + slug);
     if (s !== p + slug) return s;
   }
-  return k;
+  return tc(k);
 }
 
 /* Ce que l'assistant lit avant de choisir : les colonnes de chaque feuille,
@@ -1225,7 +1228,7 @@ function euVisualBuild(spec, selDefault){
   const n = sel.length;
   const key = spec.sheet, col = spec.cols[0];
   const raw = iso => euCell(iso, key, col);
-  const rawTip = iso => esc(String(raw(iso) == null ? t("fiche.nc") : raw(iso)).slice(0, 180));
+  const rawTip = iso => esc(String(raw(iso) == null ? t("fiche.nc") : tc(raw(iso))).slice(0, 180));
   const src = key + "!" + spec.cols.join(", " + key + "!");
   let body = "", filled = null, groupsNote = "";
 
@@ -1233,7 +1236,7 @@ function euVisualBuild(spec, selDefault){
   if (spec.cols.length > 1) {
     const rows = spec.cols.map((c, i) => ({ label: esc(ficheLabel(key, c)), color: EU_PALETTE[i % 2 ? 1 : 0],
       isos: sel.filter(x => euYes(euCell(x.iso, key, c))).map(x => x.iso),
-      tipOf: iso => esc(String(euCell(iso, key, c) || t("fiche.nc")).slice(0, 160)) }))
+      tipOf: iso => esc(String(euShow(iso, key, c) || t("fiche.nc")).slice(0, 160)) }))
       .sort((a, b) => b.isos.length - a.isos.length);
     return { title: spec.title || ficheLabel(key, col), src, filled: null, total: n,
       body: euShare(rows, n, { flags: 6 }), facts, summary: rows.map(r => ficheLabel(key, spec.cols[rows.indexOf(r)] || col) + ": " + r.isos.length + "/" + n) };
@@ -1318,7 +1321,7 @@ function euVisualForm(spec, sel, groups, nc, rawTip, src, filled){
     const cats = groups.map((g, i) => ({ k: "g" + i, label: g.label, color: g.color }))
       .concat([{ k: "nc", label: t("fiche.nc"), color: "var(--surface3)" }]);
     body = `<div class="eu-mapgrid">
-      <div>${euMap(sel, c => ({ k: of[c.iso] || "nc", raw: String(euCell(c.iso, spec.sheet, spec.cols[0]) || "").slice(0, 120) }), cats)}
+      <div>${euMap(sel, c => ({ k: of[c.iso] || "nc", raw: String(euShow(c.iso, spec.sheet, spec.cols[0]) || "").slice(0, 120) }), cats)}
         ${euLegend(cats.map(x => Object.assign({ n: x.k === "nc" ? nc.length : groups[+x.k.slice(1)].isos.length }, x)))}</div>
       <div>${euShare(shown, n, { flags: 6 })}</div></div>`;
   } else if (spec.form === "rings") {

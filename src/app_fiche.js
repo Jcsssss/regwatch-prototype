@@ -105,7 +105,7 @@ function ficheLabel(key, col){
   if (fr) return fr;
   const sheet = (SHEET_DATA.sheets || {})[key];
   const f = sheet && sheet.fields.find(x => x.c === col);
-  return f ? f.l : col;
+  return f ? tc(f.l) : col;
 }
 function ficheCols(key){
   const sheet = (SHEET_DATA.sheets || {})[key];
@@ -125,7 +125,9 @@ function ficheValue(v){
   if (v === "NC") return `<span class="fv-nc">${t("fiche.nc")}</span>`;
   if (FICHE_YES.test(v)) return `<span class="ftag y">${t("fiche.yes")}</span>`;
   if (FICHE_NO.test(v)) return `<span class="ftag n">${t("fiche.no")}</span>`;
-  const safe = esc(v).replace(/\n/g, "<br>");
+  /* Une date seule suit la langue : « 5 sept. 2025 », pas « 2025-09-05 ». */
+  if (/^\d{4}-\d{2}-\d{2}$/.test(v)) return esc(fmtDateL(v));
+  const safe = esc(tc(v)).replace(/\n/g, "<br>");
   /* Plusieurs cases portent une URL au milieu d'une phrase. */
   return safe.replace(/(https?:\/\/[^\s<]+)/g,
     '<a href="$1" target="_blank" rel="noopener">$1</a>');
@@ -167,7 +169,7 @@ function ficheList(iso, key, cols, titleKey){
     if (FICHE_YES.test(v)) { seen.add("on"); return `<div class="fck on">${FICHE_TICK}<span>${esc(label)}</span></div>`; }
     if (FICHE_NO.test(v)) { seen.add("off"); return `<div class="fck off">${FICHE_CROSS}<span>${esc(label)}</span></div>`; }
     seen.add("other");
-    return `<div class="fck other">${FICHE_DOT}<span>${esc(label)} <b>${esc(v)}</b></span></div>`;
+    return `<div class="fck other">${FICHE_DOT}<span>${esc(label)} <b>${esc(tc(v))}</b></span></div>`;
   }).join("");
   if (!items) return "";
   const legend = [["on", FICHE_TICK], ["other", FICHE_DOT], ["off", FICHE_CROSS], ["nc", FICHE_Q]]
@@ -434,12 +436,12 @@ function reqDialog(iso, tab){
         <div><b>${n.reqIE != null ? n.reqIE : "—"}</b><span>${t("req.reqIE")}</span></div>
         ${n.reqEE && n.reqIE ? `<div><b>×${(n.reqEE / n.reqIE).toFixed(1).replace(".", lang === "fr" ? "," : ".")}</b><span>${t("req.ratio")}</span></div>` : ""}
       </div>
-      ${R.texts.req ? `<p class="rq-p">${esc(reqSentence(R.texts.req, /^Requirements:\s*/))}</p>` : ""}
+      ${R.texts.req ? `<p class="rq-p">${esc(reqSentence(R.texts.req, /^(Requirements|Exigences)\s*:\s*/))}</p>` : ""}
       ${R.texts.intro ? `<p class="rq-p">${esc(R.texts.intro)}</p>` : ""}
       ${R.texts.caveat ? `<div class="rq-caveat"><b>${t("req.caveat")}</b> ${esc(R.texts.caveat)}</div>` : ""}
       <p class="rq-p rq-hint">${t("req.noSplit", { n: ms.length })}</p>`;
     const themeTab = `
-      ${R.texts.themes ? `<p class="rq-p">${esc(reqSentence(R.texts.themes, /^Themes:\s*/))}</p>` : ""}
+      ${R.texts.themes ? `<p class="rq-p">${esc(reqSentence(R.texts.themes, /^(Themes|Th\u00e8mes)\s*:\s*/))}</p>` : ""}
       <div class="rq-who" role="group">
         <button type="button" data-who="ee" class="${who === "ee" ? "on" : ""}">${t("req.whoEE", { n: n.themesEE != null ? n.themesEE : ms.filter(m => m.ee).length })}</button>
         <button type="button" data-who="ie" class="${who === "ie" ? "on" : ""}">${t("req.whoIE", { n: n.themesIE != null ? n.themesIE : ms.filter(m => m.ie).length })}</button>
@@ -521,24 +523,16 @@ function renderFiche(c, el){
     let extras = "";
     if (s.key === "inc") extras += ficheTimeline(iso);
     if (s.key === "fw") {
-      extras += ficheBars(iso, "fw",
-        [{ col: "L", tKey: "fiche.ee", color: "var(--ee)" },
-         { col: "M", tKey: "fiche.ie", color: "var(--ie)" }],
-        "fiche.reqTitle", "fiche.barsEmpty", "req");
+      /* Les themes avant les exigences : on lit d'abord comment le referentiel
+         est organise, puis ce qu'il demande. */
       extras += ficheBars(iso, "fw",
         [{ col: "J", tKey: "fiche.ee", color: "var(--ee)" },
          { col: "K", tKey: "fiche.ie", color: "var(--ie)" }],
         "fiche.themeTitle", "fiche.barsEmpty", "themes");
-    }
-    if (s.key === "fw" && typeof mapForCountry === "function") {
-      const maps = mapForCountry(iso);
-      if (maps.length) extras += `<div class="fblock"><div class="flab">${t("map.onFiche")}</div>
-        <div class="fmap">${maps.map(m => `<a href="#/mapping/${m.pid}~${m.dir}">
-          <span class="l">${t("map.ficheLine", { to: "<b>" + esc(m.d.to.name) + "</b>",
-            from: "<b>" + esc(m.d.from.name) + "</b>", pct: "<b>" + mapPct(m.d.avg) + "</b>" })}</span>
-          ${mapStack(m.d.counts, m.d.n, false).split('<div class="mp-legend">')[0]}
-          <span class="fnote" style="margin:0">${t("map.ficheGaps", { n: m.d.counts.none, total: m.d.n })}</span>
-        </a>`).join("")}</div></div>`;
+      extras += ficheBars(iso, "fw",
+        [{ col: "L", tKey: "fiche.ee", color: "var(--ee)" },
+         { col: "M", tKey: "fiche.ie", color: "var(--ie)" }],
+        "fiche.reqTitle", "fiche.barsEmpty", "req");
     }
     if (s.key === "aud")
       extras += `<div class="fblock"><div class="flab">${t("fiche.selfAssess")}<span class="fcell">aud!I:K</span></div>
@@ -581,7 +575,7 @@ function renderFiche(c, el){
       <h1>${esc(c.name)}</h1>
       <div class="fpills">
         ${statusPill}${delay}
-        <span class="fpill upd">${ficheIcon("clock")}${t("fiche.upd", { date: fmtDate(c.lastUpdate) })}</span>
+        <span class="fpill upd">${ficheIcon("clock")}${t("fiche.upd", { date: fmtDateL(c.lastUpdate) })}</span>
         <label class="fcellsw"><input type="checkbox" id="ficheCells"> ${t("fiche.showCells")}</label>
         ${role === "validator" ? `<button class="btn fdeck" id="rptBtn">${t("rpt.go")}</button>` : ""}
       </div>

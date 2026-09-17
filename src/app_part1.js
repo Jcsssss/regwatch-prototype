@@ -146,7 +146,7 @@ function refreshBadge(){
 }
 
 /* ---------- routing ---------- */
-const VIEWS = ["overview", "europe", "countries", "country", "inbox", "insights", "sources", "mapping",
+const VIEWS = ["overview", "europe", "countries", "country", "inbox", "insights", "sources",
                "dev", "devchat"];
 let currentRoute = { v: "overview", arg: null };
 function parseHash(){
@@ -161,7 +161,6 @@ function route(v, arg, force){
     europe: typeof renderEurope === "function" ? () => renderEurope(arg) : null,
     country: () => renderCountry(arg), inbox: renderInbox,
     insights: renderInsights, sources: renderSources,
-    mapping: typeof renderMapping === "function" ? () => renderMapping(arg) : null,
     /* Absents de la version client : le rendu comme la vue. */
     dev: typeof renderDev === "function" ? renderDev : null,
     devchat: typeof renderDevChat === "function" ? renderDevChat : null,
@@ -279,7 +278,7 @@ function renderOverview(){
   COUNTRIES.forEach(c => c.timeline.forEach(t => events.push({ ...t, c })));
   events.sort((a, b) => b.date < a.date ? -1 : 1);
   $("#feed").innerHTML = events.slice(0, 7).map(e => `
-    <div class="feed-it"><div class="d">${fmtDate(e.date)}</div>
+    <div class="feed-it"><div class="d">${fmtDateL(e.date)}</div>
       <div class="t"><span class="c"><i class="fi">${flagSvg(e.c.iso)}</i> ${esc(e.c.name)}</span> - ${esc(evText(e))}</div></div>`).join("");
   $("#lvlHelp").innerHTML = [4, 3, 2, 1].map(l => `
     <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:9px">
@@ -292,7 +291,7 @@ function renderOverview(){
 /* ---------- Map ---------- */
 const SMALL = ["MT", "LU", "CY"];
 function drawMap(host, legendHost, counts){
-  let svg = `<svg id="euromap" viewBox="${MAP_DATA.viewBox}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Europe coloured by NIS 2 transposition maturity level">`;
+  let svg = `<svg id="euromap" viewBox="${MAP_DATA.viewBox}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(t("map.aria"))}">`;
   svg += `<rect x="-2000" y="-2000" width="6000" height="6000" fill="${cssVar('--surface')}"/>`;
   const stroke = cssVar("--map-stroke");
   for (const [iso, d] of Object.entries(MAP_DATA.paths)) {
@@ -327,7 +326,7 @@ function drawMap(host, legendHost, counts){
     const hit = e.target.closest(".ctry");
     if (!hit) { hideTip(); return; }
     const c = byIso[hit.dataset.iso];
-    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (non-EU)"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">${t("map.lastUpdate")} ${fmtDate(c.lastUpdate)}</span>`, e.clientX, e.clientY);
+    showTip(`<b>${c.flag} ${esc(c.name)}${c.eu ? "" : " (" + t("map.nonEU") + ")"}</b><span class="m">${esc(regLevelLabel(c.maturity))}</span><br>${esc(c.summary)}<br><span class="m">${t("map.lastUpdate")} ${fmtDateL(c.lastUpdate)}</span>`, e.clientX, e.clientY);
   });
   svgEl.addEventListener("mouseleave", hideTip);
   svgEl.addEventListener("click", e => {

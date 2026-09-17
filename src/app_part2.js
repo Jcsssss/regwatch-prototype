@@ -31,11 +31,11 @@ function renderCountries(){
         <td><b><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</b>${c.eu ? "" : ` <span class="chip eu">${t("cty.nonEu")}</span>`}</td>
         <td>${t("reg." + c.region)}</td>
         <td>${lvlChip(c)}</td>
-        <td>${c.lawInForce ? fmtDate(c.lawInForce) : `<span style="color:var(--muted)">${t("common.notYet")}</span>`}</td>
+        <td>${c.lawInForce ? fmtDateL(c.lawInForce) : `<span style="color:var(--muted)">${t("common.notYet")}</span>`}</td>
         <td class="num">${c.onTime ? t("common.onTime") : (c.delayMonths != null ? "+" + c.delayMonths : "-")}</td>
         <td>${fwChip(c)}</td>
         <td class="num">${c.reqEE ?? "-"}</td><td class="num">${c.reqIE ?? "-"}</td>
-        <td><span class="num">${fmtDate(c.lastUpdate)}</span></td>
+        <td><span class="num">${fmtDateL(c.lastUpdate)}</span></td>
       </tr>`).join("");
     rows.querySelectorAll("tr").forEach(tr => {
       tr.addEventListener("click", () => location.hash = "#/country/" + tr.dataset.iso);
@@ -196,7 +196,7 @@ function renderCountry(iso){
       </div>
       <p style="margin:9px 0 0;color:var(--ink2);max-width:78ch">${esc(regLevelLabel(c.maturity))}. ${esc(c.summary)}</p>
     </div>
-    <div class="upd">${t("cp.lastUpdate")}<br><b class="num" style="color:var(--ink)">${fmtDate(c.lastUpdate)}</b><br>${regId() !== "nis2" ? (c.transposed ? t("cp.inForceOn", { date: fmtDateL(c.lawInForce) }) : t("cp.notTransposed"))
+    <div class="upd">${t("cp.lastUpdate")}<br><b class="num" style="color:var(--ink)">${fmtDateL(c.lastUpdate)}</b><br>${regId() !== "nis2" ? (c.transposed ? t("cp.inForceOn", { date: fmtDateL(c.lawInForce) }) : t("cp.notTransposed"))
         : c.transposed ? (c.onTime ? t("cp.onTime") : t("cp.inForce", { date: fmtDateL(c.lawInForce), n: c.delayMonths })) : t("cp.notTransposed")}${role === "validator" ? `<br><button class="btn" id="deckBtn" style="margin-top:9px">${t("cp.genSlides")}</button>` : ""}</div>
   </div>
   <div class="facts">${facts.map(f => `<div class="fact"><div class="k">${f[0]}</div><div class="v">${f[1]}</div></div>`).join("")}</div>
@@ -936,8 +936,8 @@ function renderSources(){
   /* The global list was written for NIS 2 - ENISA's registry of digital
      entities is not a REC source - so REC shows only what its own workbook
      names. */
-  if (regId() === "nis2") GLOBAL_SOURCES.forEach(x => rows.push({ scope: x.scope, name: x.name,
-    url: x.url, type: x.type, note: x.note || "" }));
+  if (regId() === "nis2") GLOBAL_SOURCES.forEach(x => rows.push({ scope: tc(x.scope), name: tc(x.name),
+    url: x.url, type: x.type, note: tc(x.note || "") }));
   COUNTRIES.forEach(c => c.sources.forEach(x => rows.push({ scope: c.name, iso: c.iso,
     name: x.name, url: x.url, type: x.type, note: "" })));
   customSources().forEach((x, n) => rows.push({ ...x, custom: true, idx: n,

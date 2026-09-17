@@ -40,7 +40,7 @@ const REG_SPECS = {
     full: "Directive (EU) 2022/2555 - transposition deadline 17 Oct 2024",
     titleKey: "ov.title", subKey: "ov.sub", footKey: "foot.nis2",
     countries: () => [...COUNTRIES_1, ...COUNTRIES_2, ...COUNTRIES_3, ...COUNTRIES_4].map(regFromWorkbook),
-    tabs: ["overview", "europe", "countries", "inbox", "sources", "mapping"],
+    tabs: ["overview", "europe", "countries", "inbox", "sources"],
     levels: {
       1: "lvl.1", 2: "lvl.2", 3: "lvl.3", 4: "lvl.4"
     },
