@@ -35,13 +35,13 @@ const DEV_DOCS = [
  {
   "src": "README.md",
   "title": "Prise en main de l'outil - La chaîne de veille, en bref",
-  "text": "L'agent de collecte vit **dans un autre dépôt** (celui de son auteur) ; ce dépôt-ci porte ce\nqui l'entoure : le registre de sources, la conversion de son classeur vers la file de veille,\nle routage vers les cellules du classeur comparatif, le score de fiabilité et les mesures.\n`agent-veille/README.md` détaille l'organisation.\n\n```sh\npython3 agent-veille/health.py     # l'état de la file, et ce qui a bougé depuis la référence\npython3 agent-veille/collect.py    # une passe de collecte sur le registre de l'agent\npython3 tools/veille_to_watchitems.py <classeur.xlsx>   # classeur -> file de veille\n```\n\n`health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la\nveille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.",
+  "text": "L'agent de veille tourne **depuis ce dépôt** (`agent-veille/regwatch_agent.py`) : registre des\nsources, détections et mémoire sont dans `data/veille/`. Il remplace l'agent tenu dans un autre\ndépôt, dont il a repris le registre et l'historique complet. Ce dépôt porte aussi la conversion\nvers la file de veille, le routage vers les cellules du classeur comparatif, le score de\nfiabilité et les mesures. `agent-veille/README.md` détaille l'organisation.\n\n```sh\npython3 agent-veille/regwatch_agent.py pipeline   # une passe de veille, jusqu'au site reconstruit\npython3 agent-veille/health.py     # l'état de la file, et ce qui a bougé depuis la référence\npython3 agent-veille/health.py --probe   # en plus : quelles sources du registre bloquent l'agent\npython3 agent-veille/collect.py    # une passe de collecte sur le registre de l'agent\npython3 tools/veille_to_watchitems.py <classeur.xlsx>   # classeur -> file de veille\n```\n\nLes liens Google News mènent à une page de consentement, pas à l'article.\n`tools/fetch_excerpts.py` retrouve alors l'article chez son éditeur (même identifiant\nd'article dans la recherche RSS de Google News, puis flux, recherche WordPress ou plan de site\nde l'éditeur) ; la file affiche l'extrait et le lien direct. Cela marche surtout sur les\narticles récents : la recherche de Google News ne remonte pas loin.\n\n`health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la\nveille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.",
   "id": "d005"
  },
  {
   "src": "README.md",
   "title": "Prise en main de l'outil - Vue européenne",
-  "text": "L'onglet **Vue européenne** reprend les graphiques de l'étude comparative NIS 2 (transposition,\npérimètre, incidents, enregistrement, référentiel, audits, sanctions), rangés comme la fiche\npays. Tout est recalculé à l'ouverture depuis les données du classeur Cyber Watch embarquées\ndans l'outil : il suffit de régénérer les données et de reconstruire pour que les graphiques\nsuivent. Un filtre limite la comparaison à l'UE, aux pays transposés ou non, ou à une\nsélection libre.\n\nChaque graphique propose un titre calculé depuis les données. Le consultant peut le réécrire\net ajouter son analyse ; ces textes restent dans son navigateur.\n\nChaque visuel se télécharge en PNG (bouton sur le graphique), avec son titre, son analyse et\nsa source ; « Télécharger tous les visuels » les rassemble dans une archive ZIP, rangés par section.\n\n**Mes visuels.** L'assistant (la baleine) crée des visuels du même style sur demande : « fais une\ncarte des pays qui demandent les plages IP à l'enregistrement ». L'IA ne calcule aucun chiffre :\nelle choisit la feuille, la colonne et la forme (outils `describe_columns` puis `create_visual`),\net l'outil compte les pays dans le classeur. Le bouton « Ajouter à Mes visuels » enregistre la\ndescription du visuel (pas ses chiffres) dans la section **Mes visuels** de la vue européenne, où\nil se recalcule avec les données. Quand l'IA regroupe des réponses en texte libre, le\nregroupement est affiché sous le visuel pour vérification.\n\nDonnées utilisées :\n\n```sh\npython3 tools/sheets_to_countries.py <classeur.xlsx>   # feuilles P1 à P3 -> data_sheets.js\npython3 tools/sectors_to_js.py <classeur.xlsx>         # feuille Sectors - P3 -> data_sectors.js\n```\n\nLa feuille Sectors - P3 alimente aussi la fenêtre « Secteurs couverts » de la fiche pays, qui\nmontre maintenant le périmètre retenu par le pays (sous-secteurs ajoutés, précisions, écarts).",
+  "text": "L'onglet **Vue européenne** reprend les graphiques de l'étude comparative NIS 2 (transposition,\npérimètre, incidents, enregistrement, référentiel, audits, sanctions), rangés comme la fiche\npays. Tout est recalculé à l'ouverture depuis les données du classeur Cyber Watch embarquées\ndans l'outil : il suffit de régénérer les données et de reconstruire pour que les graphiques\nsuivent. Un filtre limite la comparaison à des régions de l'UE (Nord, Sud, Est, Ouest, à cocher ;\naucune par défaut : la vue s'ouvre sur tous les pays suivis), aux pays transposés ou non, ou à une\nsélection libre. La région de chaque pays est le champ `region` des fiches (`data_c*.js`).\n\nChaque graphique propose un titre calculé depuis les données. Le consultant peut le réécrire\net ajouter son analyse ; ces textes restent dans son navigateur.\n\nChaque visuel se télécharge en PNG (bouton sur le graphique), avec son titre, son analyse et\nsa source ; « Télécharger tous les visuels » les rassemble dans une archive ZIP, rangés par section.\n\n**Mes visuels.** L'assistant (la baleine) crée des visuels du même style sur demande : « fais une\ncarte des pays qui demandent les plages IP à l'enregistrement ». L'IA ne calcule aucun chiffre :\nelle choisit la feuille, la colonne et la forme (outils `describe_columns` puis `create_visual`),\net l'outil compte les pays dans le classeur. Le bouton « Ajouter à Mes visuels » enregistre la\ndescription du visuel (pas ses chiffres) dans la section **Mes visuels** de la vue européenne, où\nil se recalcule avec les données. Quand l'IA regroupe des réponses en texte libre, le\nregroupement est affiché sous le visuel pour vérification.\n\nDonnées utilisées :\n\n```sh\npython3 tools/sheets_to_countries.py <classeur.xlsx>   # feuilles P1 à P3 -> data_sheets.js\npython3 tools/sectors_to_js.py <classeur.xlsx>         # feuille Sectors - P3 -> data_sectors.js\n```\n\nLa feuille Sectors - P3 alimente aussi la fenêtre « Secteurs couverts » de la fiche pays, qui\nmontre maintenant le périmètre retenu par le pays (sous-secteurs ajoutés, précisions, écarts).",
   "id": "d006"
  },
  {
@@ -52,485 +52,497 @@ const DEV_DOCS = [
  },
  {
   "src": "README.md",
+  "title": "Prise en main de l'outil - Vos retours",
+  "text": "Le bouton **Vos retours**, à droite des onglets, ouvre le Microsoft Forms de l'équipe dans une\nfenêtre, avec un lien pour l'ouvrir dans un nouvel onglet (utile quand le navigateur refuse la\nconnexion Microsoft dans une page tierce). Les réponses arrivent dans le tableau du formulaire,\net son propriétaire est prévenu par courriel. Les deux adresses du formulaire sont en tête de\n`src/app_feedback.js`.",
+  "id": "d008"
+ },
+ {
+  "src": "README.md",
   "title": "Prise en main de l'outil - Assistant",
   "text": "L'assistant métier n'est plus un onglet : il s'ouvre depuis la **baleine en bas à droite**\nde chaque page, dans un panneau qui se superpose à la page sans la quitter, à la manière du\nvolet Copilot des applications Office. Il sait quelle page est consultée : sur une fiche pays,\nil l'annonce, propose des questions sur ce pays, et y rapporte les questions qui n'en nomment\npas. L'ancienne adresse `#/insights` ouvre le panneau.\n\nLes deux assistants — métier et technique — passent par le proxy Azure du cabinet, qui porte\nla clé : elle n'est **jamais** dans la page. Conséquence à connaître : le proxy n'accepte que\nl'origine publiée, donc **les assistants ne fonctionnent pas depuis un fichier ouvert en\nlocal**. Le message affiché explique alors comment lancer le proxy local\n(`python3 tools/chat_proxy.py`). Tout le reste de l'outil fonctionne hors ligne.",
-  "id": "d008"
+  "id": "d009"
  },
  {
   "src": "README.md",
   "title": "Prise en main de l'outil - Charte graphique",
   "text": "Violet `#451DC7` (titres, accent principal), vert `#04F06A` (accentuation ≤ 5 %, jamais de\ntexte blanc dessus), `#250F6B` en accent profond, fonctionnels `#4682B4` (infographies) et\n`#FFCA4A` / `#FF2A49` (statuts). Police Aptos, repli Segoe UI. Les palettes de la carte et\ndes graphiques sont validées contraste et daltonisme, en clair comme en sombre.",
-  "id": "d009"
+  "id": "d010"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges",
   "text": "# RegWatch — Cahier des charges",
-  "id": "d010"
+  "id": "d011"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - Outil interne de veille réglementaire multi-directives (module 1 : NIS 2)",
   "text": "**Version 1.2 — juillet 2026 — document de travail interne Wavestone**\nPrototype fonctionnel associé : *RegWatch — NIS 2 Transposition Tracker* (artifact web).\n\n---",
-  "id": "d011"
+  "id": "d012"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 1. Contexte et objectifs",
   "text": "### 1.1 Constat\nLe suivi des transpositions de la directive NIS 2 (27 États membres + Royaume-Uni + Norvège) repose aujourd'hui sur :\n- des stagiaires qui se répartissent les pays et recherchent manuellement les nouveautés (sites officiels, presse, LinkedIn) ;\n- un classeur Excel de KPIs et des supports PowerPoint (decks WATCH, WID) mis à jour à la main ;\n- un agent de collecte développé récemment en interne (scraping de sources + classification/analyse par IA) qui écrit lui aussi dans un classeur Excel, sans porte de validation humaine avant publication ;\n- une connaissance dispersée entre documents, sans point d'accès unique ni historique structuré.\n\nCe fonctionnement est chronophage, à faible valeur ajoutée pour les équipes, et fragile (perte de connaissance à chaque rotation de stagiaires, risque d'incohérences entre supports).\n\n### 1.2 Objectifs de l'outil\n1. **Centraliser** toutes les informations de veille NIS 2 (statuts, lois, frameworks, autorités, échéances, KPIs, sources) dans un référentiel unique consultable par tous les employés Wavestone — l'outil **se substitue intégralement aux classeurs Excel actuels** : toute information qu'on pouvait y consulter ou y mettre à jour doit exister dans l'outil et rester modifiable à la main.\n2. **Automatiser la collecte** : surveillance des sources officielles et non officielles, détection et pré-résumé des nouveautés par IA, à charge pour un consultant de **valider avant publication**.\n3. **Visualiser** l'avancement via une cartographie européenne interactive (niveaux de maturité 1–4, sémantique identique aux supports WID) et des KPIs comparatifs.\n4. **Exporter** les données (Excel/CSV, image de carte, à terme trames de slides) pour alimenter les livrables clients.\n5. **Être extensible** à d'autres réglementations (DORA, CER, CRA, AI Act…) sans refonte : le modèle de données est générique, NIS 2 n'est que le premier module.\n\n### 1.3 Bénéfices attendus\n- Temps stagiaires réorienté de la recherche brute vers la validation et l'analyse.\n- Une seule source de vérité, datée et sourcée, pour les consultants et les livrables (WID, articles RiskInsight).\n- Traçabilité complète : qui a validé quoi, quand, sur la base de quelle source.\n\n---",
-  "id": "d012"
+  "id": "d013"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 2. Utilisateurs et rôles",
   "text": "| Rôle | Qui | Droits |\n|---|---|---|\n| **Lecteur** | Tout employé Wavestone (SSO) | Consultation de tout le contenu **publié**, exports |\n| **Validateur** | Core team NIS 2 (désignée par réglementation) | Lecteur + accès à la file de validation, valider/rejeter/éditer, saisie manuelle, gestion des sources |\n| **Administrateur** (V2) | 1–2 personnes | Validateur + gestion des rôles, des réglementations et du paramétrage du pipeline |\n\n- Volumétrie cible : **quelques dizaines d'utilisateurs** ; pas d'exigence de montée en charge.\n- Les items **en attente de validation ne sont visibles que des validateurs**.\n- Les saisies manuelles issues d'échanges de place (informations pas encore publiques) portent un indicateur **« interne — ne pas diffuser »** jusqu'à publication officielle.\n\n---",
-  "id": "d013"
+  "id": "d014"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 3. Périmètre fonctionnel",
   "text": "### 3.1 V1 (must have)\n1. **Dashboard cartographique** : carte d'Europe choroplèthe par niveau de maturité (1 = travaux préliminaires, 2 = projet de loi au parlement, 3 = loi approuvée / framework provisoire ou indisponible, 4 = loi + framework final), tuiles KPI calculées (x/27 transposés, à l'heure, retard moyen, statuts frameworks), fil des dernières mises à jour validées, export PNG de la carte.\n2. **Fiches pays structurées** (29 pays) : identité et statut, loi de transposition, framework et nombre d'exigences EE/IE, autorités, enregistrement, notification d'incidents, contrôles/audits, spécificités de périmètre, articulation avec les autres réglementations, recommandations Wavestone, prochaines étapes, **chronologie des événements**, **sources typées** (officielle / non officielle à vérifier / saisie consultant).\n3. **File de validation (« Watch inbox »)** : file des items détectés (pipeline) et saisis (manuel) ; actions valider → publication (ajout à la chronologie du pays, mise à jour de la date de fiche) / rejeter (avec motif) ; journal des items traités.\n4. **Saisie manuelle** : formulaire pays/date/titre/résumé/source/type, alimentant la même file.\n5. **Édition manuelle complète des fiches** (validateurs) : chaque fiche pays est modifiable **champ à champ** — statut/maturité, tous les champs KPI, rubriques (ajout/modification/suppression de puces), chronologie, autorités, sources. Les fiches combinent ainsi deux flux : la **partie automatique** (événements publiés depuis la file de veille validée, marqués comme tels) et la **partie manuelle** (le reste du contenu, maintenu par les consultants). Chaque fiche éditée porte un marqueur « edited » avec la date ; retour possible aux données importées ; en production, journalisation auteur + horodatage.\n6. **Vue Insights/KPIs** : tableau comparatif filtrable reprenant **toutes les colonnes du classeur KPI** (maturité, transposition, retard, framework, exigences EE/IE, échéances de conformité EE/IE, fréquences d'audit EE/IE, auto-évaluation, organe d'audit, canal d'enregistrement, canal incidents), graphiques (exigences EE vs IE, retards de transposition), **export CSV (séparateur « ; »)**.\n7. **Registre des sources** : liste des sources surveillées et citées, avec niveau de confiance.\n8. **Rôles lecteur/validateur** (SSO Entra ID en production).\n\n### 3.2 V2 (should have)\n- **Pipeline de collecte automatisé en production** (voir §5) — la V1 peut démarrer avec la file alimentée manuellement + alertes simples (RSS/newsletters), l'UX étant déjà prête.\n- Notifications Teams/e-mail : nouvel item en file, changement de niveau d'un pays.\n- Export XLSX natif et génération de trames PPTX (carte + tuiles au format WID).\n- Deuxième réglementation activée (DORA ou CER) pour valider la généricité.\n- Historique des modifications au niveau du champ (audit trail complet), diff entre versions de fiche.\n\n### 3.3 Hors périmètre\n- Données clients ou livrables clients (l'outil ne contient que de l'information réglementaire).\n- Accès externe (clients) — pourrait devenir un produit dérivé, non couvert ici.\n\n---",
-  "id": "d014"
+  "id": "d015"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 4. Modèle de données (générique multi-réglementations)",
   "text": "```\nRegulation (nis2, dora, cer…)\n ├─ MaturityScale        # libellés des niveaux 1..n, propres à la réglementation\n ├─ CountryStatus        # 1 par (regulation × pays)\n │   ├─ maturity_level, framework_status (final|temporaire|aucun)\n │   ├─ kpi_fields (JSON typé : loi, dates, retard, req_EE/IE, délais, audit, enregistrement, incident…)\n │   ├─ Section[]        # rubriques configurables (framework, enregistrement, incidents, audits, périmètre, autres régl., reco)\n │   │   └─ Bullet[] ── source_ref\n │   ├─ Event[]          # chronologie : date, texte, source_ref, origine (pipeline|manuel), validated_by/at\n │   ├─ Authority[]\n │   └─ SourceRef[]\n ├─ Source               # registre : nom, URL, type (officielle|non officielle|manuelle), portée (UE|pays), méthode de collecte\n └─ WatchItem            # file de veille : detected_at, pays, titre, résumé, source, statut (pending|validated|rejected),\n                         #   flag interne, action suggérée, validé_par/le, motif de rejet,\n                         #   score_pertinence + justification, obligations, impact (issus de l'agent de collecte, cf. §5)\n```\n\nPrincipes :\n- **Toute assertion publiée référence une source** (officielle, ou non officielle validée, ou saisie consultant).\n- Les rubriques de fiche sont **configurables par réglementation** : DORA n'aura pas les mêmes sections que NIS 2, sans changement de schéma.\n- Les KPIs sont des champs typés pour rester filtrables/exportables (pas du texte libre).\n- Reprise de l'existant : import initial depuis le classeur KPI et les decks WATCH (déjà réalisé dans le prototype pour NIS 2 — 29 pays).\n\n---",
-  "id": "d015"
+  "id": "d016"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 5. Pipeline de collecte automatisée et workflow de validation",
   "text": "### 5.1 Décision retenue : intégrer l'agent de veille existant plutôt qu'en construire un nouveau\nUn agent de collecte NIS 2 a déjà été développé en interne (par un stagiaire, toujours présent dans les équipes) et couvre l'essentiel de la chaîne décrite plus bas. **RegWatch ne redéveloppe pas cette brique : il l'intègre**, ce qui réduit le chantier V2 à un travail d'adaptation/branchement plutôt qu'à un développement neuf (cf. roadmap §9). Le pipeline cible reste néanmoins décrit ci-dessous pour documenter ce que fait l'agent et ce qui doit changer pour s'insérer dans RegWatch.\n\n### 5.2 Chaîne de traitement — état actuel de l'agent existant\n```\n[Task Scheduler] → [Sources déclarées (RSS/pages web/API)] → [Nettoyage & dédoublonnage] →\n[Classification IA — Mistral : score de pertinence + justification] → [Analyse détaillée IA — Mistral : résumé, obligations, impact] →\n[Écriture dans le classeur Excel de veille] + [Découverte de nouvelles sources → à valider]\n```\nChaque étape, telle qu'implémentée aujourd'hui :\n1. **Déclenchement récurrent** par Task Scheduler (Windows), fréquence paramétrable.\n2. **Collecte** : le script lit la liste des sources déclarées dans un onglet Excel (RSS, pages web, API) et récupère les nouveaux contenus.\n3. **Nettoyage** : suppression des doublons, contrôle des dates, exclusion des contenus trop anciens.\n4. **Classification IA (Mistral)** : score de pertinence NIS 2 + justification pour chaque contenu collecté.\n5. **Analyse détaillée IA (Mistral)** : pour les contenus retenus — résumé, obligations identifiées, impact.\n6. **Publication actuelle** : les résultats sont ajoutés directement dans la table Excel de veille (ligne = source + analyse). L'agent régénère aussi un dashboard de suivi à chaque exécution (articles analysés, ajouts, erreurs).\n7. **Découverte de sources** : l'agent peut proposer de nouvelles sources, ajoutées dans Excel comme « à valider ».\n\n### 5.3 Ce qui doit changer pour l'intégrer à RegWatch\n| Point | État actuel de l'agent | Adaptation nécessaire |\n|---|---|---|\n| **Sortie / cible d'écriture** | Écrit directement dans le classeur Excel (publication immédiate, pas de porte de validation humaine) | Rediriger la sortie vers la **file de validation RegWatch** (`WatchItem`, statut `pending`) via un appel API ou un fichier d'échange le temps que l'API existe. **Aucun item ne doit être publié sur une fiche pays sans passage par un validateur** — c'est une exigence non négociable posée dès le §1.2 de ce document ; le score IA de l'agent est une aide au tri, jamais une décision de publication. |\n| **Champs produits** | Score + justification, résumé, obligations, impact | Mapper sur `WatchItem` : `score`/`justification` (déjà prévus comme aide à la priorisation dans la file), `résumé`, et deux champs à ajouter au modèle — `obligations` et `impact` (cf. §4) — affichés sur la carte de l'item en file de validation. |\n| **Découverte de sources** | Ajoute les nouvelles sources dans Excel, « à valider » | Alimente directement le **registre de sources RegWatch** avec le statut « à valider » (même sémantique, cible différente) — pas de nouveau concept à créer. |\n| **Déclenchement** | Task Scheduler sur un poste/serveur donné | Conservable tel quel en V1 (le script appelle l'API RegWatch en fin de run) ; en V2, migration possible vers un déclencheur cloud (Azure Function planifiée) si le poste actuel n'est pas fiable en continu (cf. risques §10). |\n| **Fournisseur IA** | Mistral, déjà en usage et déjà budgété | Le sujet « quel LLM utiliser » est donc déjà tranché par l'existant — Azure OpenAI n'est plus une recommandation par défaut mais une **alternative** si Mistral devait être remplacé. L'interface IA de RegWatch reste conçue de façon pluggable (entrée : texte source + contexte pays ; sortie : JSON typé) pour ne pas dépendre de ce choix. |\n\n### 5.4 Règles de gouvernance\n- Rien n'est visible des lecteurs sans validation ; les items pending sont réservés aux validateurs — **y compris les items produits par l'agent existant**, qui doivent transiter par la Watch inbox comme n'importe quelle détection automatique.\n- Le score de pertinence et l'analyse Mistral sont affichés au validateur comme aide",
-  "id": "d016"
+  "id": "d017"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 6. Exports",
   "text": "| Export | Contenu | Version |\n|---|---|---|\n| XLSX | L'indicateur affiché, ses données **et son graphique**, en classeur natif | ✅ fait — a remplacé l'export CSV, qui obligeait à refaire les graphiques à la main |\n| PNG | Carte de maturité (fond + couleurs du thème) | ✅ fait |\n| PPTX | Trames de slides par pays | ✅ fait (`tools/build_country_deck.py`) |\n| CSV (« ; ») | Matrice KPI complète | ⛔ retiré au profit du XLSX |\n| PPTX | Trames de slides format WID (carte, tuiles, tableaux) | V2 |\n\n---",
-  "id": "d017"
+  "id": "d018"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 7. Exigences non fonctionnelles",
   "text": "- **Langue** : interface et contenu en **anglais** (réutilisable par les bureaux internationaux).\n- **Sécurité** : outil interne uniquement ; SSO Entra ID ; pas de données clients ; les items « internes » (informations de place non publiques) sont limités aux validateurs jusqu'à publication officielle ; HTTPS ; journalisation des actions de validation.\n- **Simplicité** : lecture « 3 clics max » — carte → pays → détail ; tout élément détaillé accessible mais jamais imposé.\n- **Identité visuelle** : conformité à la **charte graphique Wavestone** (appliquée dans le prototype) — violet `#451DC7` pour les titres et l'accent principal, vert énergique `#04F06A` réservé à l'accentuation (≤ 5 % des surfaces, jamais de texte blanc sur vert), Accent 3 `#250F6B` en fin de rampe de maturité, couleurs fonctionnelles de la charte pour les infographies (`#4682B4`) et les statuts (`#FFCA4A` avertissement, `#FF2A49` alerte), typographie **Aptos / Aptos SemiBold** (repli Segoe UI).\n- **Accessibilité** : palettes validées daltonisme et contrastes (rampe séquentielle mono-teinte, paires de séries testées CVD) en modes clair **et** sombre, navigation clavier.\n- **Disponibilité** : usage bureau, criticité faible (best effort) ; sauvegarde quotidienne de la base suffit.\n- **Traçabilité** : chaque donnée publiée = source + date + validateur.\n\n---",
-  "id": "d018"
+  "id": "d019"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 8. Architecture cible et options d'hébergement",
   "text": "### 8.1 V0 — le prototype livré (démonstration)\nApplication web **autonome monofichier** (HTML/CSS/JS, aucune dépendance externe), données NIS 2 réelles embarquées, workflow de validation simulé en local, habillage conforme à la charte graphique Wavestone. Sert à démontrer l'usage et obtenir le go interne — pas de backend, pas de persistance partagée.\n\nDistribution du prototype :\n- **fichier local** `regwatch.html` (dossier `regwatch-prototype/`, avec sources et README) : s'ouvre par double-clic sur n'importe quel poste, sans installation ni réseau ;\n- **version en ligne** (artifact Claude, privé par défaut, partageable par lien) pour les démonstrations à distance.\n\n### 8.2 V1/V2 — architecture de production proposée\n```\n[SPA web (même UX que le prototype)]\n        │ HTTPS + SSO Entra ID\n[API backend (REST)]  ──  [Base de données PostgreSQL]\n        │\n[Agent de collecte existant — Task Scheduler, sources RSS/web/API, Mistral (score + analyse)]\n        │ adapté pour écrire dans la file de validation RegWatch (au lieu du classeur Excel), cf. §5.3\n[Notifications Teams / e-mail]  (V2)\n```\n- **Option A — Azure Wavestone (recommandée)** : App Service ou Container Apps + Azure Database for PostgreSQL + Entra ID ; l'agent de collecte existant est conservé (poste/scheduler actuel ou migration vers Azure Functions en V2 si besoin de fiabilité continue), Mistral reste le fournisseur IA. Cohérent avec l'écosystème interne, coût modeste (< 200 €/mois d'infrastructure à cette volumétrie) — d'autant réduit que la brique collecte + IA est déjà amortie.\n- **Option B — Power Platform** (Power Apps + Dataverse + Power Automate + Copilot Studio) : plus rapide à faire valider, mais carte interactive, exports et pipeline multi-sources nettement plus contraints. À réserver si la DSI refuse tout développement spécifique.\n- **Option C — mutualisation** sur une plateforme interne existante si disponible.\n\nStack proposée (option A) : front léger (le prototype est déjà en vanilla JS, portable vers React si standard interne), API Node.js ou Python (FastAPI), PostgreSQL, IaC minimal.\n\n### 8.3 Reprise de données\n- Import du classeur KPI (mapping direct — déjà modélisé) et des fiches WATCH (copier/structurer, une fois).\n- Le prototype contient déjà la totalité du contenu NIS 2 à jour de juin–juillet 2026 : il peut servir de **jeu de données initial** exporté en JSON.\n\n---",
-  "id": "d019"
+  "id": "d020"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 9. Roadmap indicative",
   "text": "| Phase | Contenu | Durée indicative |\n|---|---|---|\n| **V0 — Démo** | Prototype livré (ce document + artifact) ; recueil de feedback consultants/CTC | fait |\n| **Cadrage DSI** | Choix hébergement + accès IA, validation sécurité | 2–3 semaines |\n| **V1** | Backend + base + SSO + reprise de données + UX du prototype + saisie/validation + exports CSV/PNG | 6–8 semaines (1–2 dev) |\n| **V1.5** | **Intégration de l'agent de collecte existant** : ajout de l'endpoint API pour recevoir ses résultats en `pending`, mapping des champs (score, obligations, impact), bascule découverte de sources → registre RegWatch ; test en parallèle de l'Excel avant coupure. Notifications Teams. | +2–3 semaines (intégration, pas un pipeline à écrire) |\n| **V2** | XLSX/PPTX, 2ᵉ réglementation (DORA ou CER), audit trail fin, éventuelle migration du scheduler vers le cloud | 4–6 semaines |\n\nCharge de fonctionnement cible : **≈ 0,5 à 1 j/semaine de validation** pour la core team (contre plusieurs jours de recherche manuelle aujourd'hui), + maintenance technique légère.\n\n---",
-  "id": "d020"
+  "id": "d021"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 10. Risques et points d'attention",
   "text": "| Risque | Impact | Mitigation |\n|---|---|---|\n| Sites d'autorités hétérogènes / sans RSS, scraping fragile | Trous de collecte | Registre de sources avec état de santé ; fallback recherche web ; la validation humaine reste le filet |\n| Qualité IA (faux positifs, mauvais pays) | Bruit dans la file | Score de confiance, règles de routage simples, feedback de rejet réinjecté dans les prompts |\n| Langues sources (23+) | Résumés inexacts | LLM multilingues + lien systématique vers la source originale pour vérification |\n| Adoption (retour à l'Excel) | Outil mort | Exports = ce que les équipes produisent déjà ; import initial complet pour être utile dès le jour 1 |\n| Informations non publiques saisies à la main | Fuite | Flag « interne », visibilité restreinte aux validateurs, revue avant toute diffusion |\n| Dépendance à un fournisseur IA | Blocage | Interface IA pluggable (cf. §5.3) — Mistral aujourd'hui, remplaçable sans refonte |\n| Divergences entre sources internes (ex. délais du classeur KPI vs decks WATCH) | Incohérences | Règle « le document le plus récent fait foi », champ « dernière mise à jour » visible sur chaque fiche |\n| Agent de collecte jamais exécuté en production réelle | Fiabilité et volumétrie réelles inconnues au moment du cadrage | Phase de test en parallèle (agent alimente la file de validation RegWatch pendant plusieurs semaines, Excel actuel conservé en secours) avant toute coupure de l'ancien processus |\n| Connaissance de l'agent concentrée sur un seul stagiaire (encore présent à ce jour) | Risque classique de perte de connaissance si le stagiaire part avant la passation | Documenter le fonctionnement de l'agent et faire la passation technique **pendant que le stagiaire est disponible** — priorité avant tout autre chantier V1.5 |\n| Sortie actuelle de l'agent = écriture directe en Excel, sans porte de validation humaine | Contredit l'exigence de validation obligatoire avant publication (§1.2) si l'agent est branché tel quel | Adapter impérativement la sortie de l'agent pour alimenter la file `pending` de RegWatch avant toute mise en production (cf. §5.3) — ne jamais autoriser une écriture directe sur une fiche pays |\n\n---",
-  "id": "d021"
+  "id": "d022"
  },
  {
   "src": "regwatch-cahier-des-charges.md",
   "title": "Cahier des charges - 11. Annexe — couverture du prototype livré",
   "text": "| Exigence | Statut dans le prototype |\n|---|---|\n| Carte maturité 1–4 + non-UE suivis (UK, NO) | ✅ interactive, export PNG, thèmes clair/sombre |\n| 29 fiches pays complètes (données réelles juin–juillet 2026) | ✅ |\n| Chronologies d'événements par pays | ✅ |\n| Rôles lecteur/validateur/développeur | ✅ (sélecteur en en-tête ; SSO en production). Le rôle développeur n'existe que dans la version équipe : diagnostic local et assistant technique. |\n| File de validation + saisie manuelle + traçabilité | ✅ (persistance locale navigateur, simulée) |\n| Édition manuelle complète des fiches (statut, KPIs, rubriques, chronologie, autorités, sources) | ⛔ **retirée** — le classeur SharePoint est devenu la source de vérité unique et RegWatch en est un miroir en lecture (commit `88546af`). Deux surfaces d'écriture pour une même donnée produisaient des divergences que rien n'arbitrait. Les seules écritures restantes sont la validation d'un élément de veille et l'ajout d'une source. |\n| KPIs, graphiques et export | ✅ export Excel natif, graphiques compris — l'export CSV a été remplacé, un classeur qui ne porte que des nombres oblige à refaire les graphiques à la main. |\n| Registre des sources typées | ✅ |\n| Multi-réglementations | ✅ maquetté (onglets DORA/CER/CRA « planned », modèle générique) |\n| Intégration de l'agent de collecte existant (branchement sur la file de validation, mapping des champs), notifications, XLSX/PPTX | ❌ V1.5/V2 (cf. roadmap §9 — travail d'intégration, la brique collecte + IA existe déjà) |",
-  "id": "d022"
+  "id": "d023"
  },
  {
   "src": "agent-veille/README.md",
   "title": "Agent de veille - organisation",
   "text": "# Agent de veille — tout ce qui touche à la collecte\n\nCe dossier regroupe le code RegWatch relatif à l'agent de veille réglementaire :\npréflight, tests, patchs à appliquer à l'agent, et intégration.",
-  "id": "d023"
+  "id": "d024"
  },
  {
   "src": "agent-veille/README.md",
-  "title": "Agent de veille - organisation - Où vit l'agent, et où vivent nos modifications",
+  "title": "Agent de veille - organisation - L'agent RegWatch (depuis le 18 septembre 2026)",
+  "text": "La veille tourne désormais **depuis ce dépôt** : `regwatch_agent.py`. Il reprend le déroulé\nde l'ancien agent (flux RSS, pages web avec sélecteur CSS et récolte des liens, API ; tri par\nle modèle ; contenus anciens écartés ; doublons ; fiche complète) et écrit **les mêmes colonnes**\nque l'ancien classeur, dans `data/veille/records.json`. Le convertisseur les lit comme il lisait\nle classeur : la file de veille de l'interface garde tous ses champs.\n\n```sh\npython3 agent-veille/regwatch_agent.py pipeline    # une passe complète, jusqu'au site reconstruit\npython3 agent-veille/regwatch_agent.py run --dry   # lire les sources sans appeler le modèle\npython3 agent-veille/regwatch_agent.py run --only \"BSI\"   # une seule source, pour tester\n```\n\n| Fichier | Contenu |\n|---|---|\n| `data/veille/sources.json` | le registre (76 sources, 51 actives), à modifier à la main |\n| `data/veille/records.json` | toutes les détections, anciennes et nouvelles |\n| `data/veille/state.json` | pages déjà vues, URL déjà jugées, date de la dernière passe complète |\n\nLa fenêtre de recherche part de la **dernière passe complète** (moins 3 jours, 60 jours au plus) :\nun agent qui n'a pas tourné pendant un mois ne perd pas ce mois-là. Configuration Azure dans\n`.env`. Le registre, les détections et la mémoire de l'ancien agent ont été importés le\n18 septembre 2026 (`regwatch_agent.py import <classeur> --state <state.json>`), y compris les\n33 détections du 28 août qui n'étaient jamais arrivées dans l'outil.",
+  "id": "d025"
+ },
+ {
+  "src": "agent-veille/README.md",
+  "title": "Agent de veille - organisation - Historique : l'ancien agent, et nos modifications",
   "text": "| | Dépôt | Qui peut y écrire |\n|---|---|---|\n| **L'agent** `nis2_agent_v2.py` | `aurelienbrun-alt/Agent_mapping` | son auteur |\n| **Nos adaptations** | ici, `agent-veille/` | nous |\n\nNous n'avons pas les droits sur le dépôt de l'agent, et le modifier directement\nne serait pas souhaitable même si nous les avions : c'est son travail, et il\ntourne en production chez lui. Nos changements prennent donc la forme de\n**modules déposés à côté de l'agent** plus un **patch documenté**, pas d'un fork\nsilencieux.\n\n**À trancher avec l'équipe** : l'agent est un livrable interne Wavestone hébergé\nsur un compte personnel, sans fichier de licence, écrit par un stagiaire. Le jour\noù il part, la veille dépend d'un dépôt que personne ne contrôle. Rapatrier le\ncode sous un dépôt d'équipe est une décision à prendre avec lui et l'équipe, pas\nune chose à faire unilatéralement. Ce dossier est prêt à l'accueillir.",
-  "id": "d024"
+  "id": "d026"
  },
  {
   "src": "agent-veille/README.md",
   "title": "Agent de veille - organisation - Réutiliser l'agent pour d'autres réglementations (REC, DORA, CRA)",
   "text": "L'agent est **déjà partiellement multi-réglementation** : son message de\ndémarrage annonce « NIS2 / CRA / PWDE » et `tblVeille` porte une colonne\n`Règlementation IA`. Ce qui reste spécifique à NIS 2 :\n\n| Élément | Aujourd'hui | Pour généraliser |\n|---|---|---|\n| Liste de sources | un onglet `tblSources` unique | une colonne `Réglementation` par source, ou un classeur par réglementation |\n| Invites IA | « pertinence NIS 2 » en dur | le nom et le périmètre de la réglementation en paramètre |\n| Table de sortie | `tblVeille` unique | une table par réglementation, ou la colonne `Règlementation` comme clé |\n| Cellules cibles | carte du classeur NIS 2 | une carte par classeur comparatif (voir `tools/excel_cellmap.py`) |\n\nAucune de ces généralisations ne demande de réécriture : ce sont des paramètres\nà extraire. Le vrai travail pour REC sera de **constituer le registre de sources**,\npas d'adapter le code.",
-  "id": "d025"
+  "id": "d027"
  },
  {
   "src": "agent-veille/README.md",
   "title": "Agent de veille - organisation - Fichiers",
   "text": "| Fichier | Rôle |\n|---|---|\n| `regwatch_fields.py` | correctifs Tier 1 à déposer près de l'agent (voir `patch-tier1.md`) |\n| `patch-tier1.md` | les points d'insertion exacts, avec le pourquoi |\n| `regwatch_push.py` | envoi de fin de run vers l'API RegWatch (mode B) |\n| `integration-regwatch.md` | contrat d'API et modes d'intégration |\n| `check_azure.py` | préflight de la configuration Azure OpenAI |\n| `smoke_agent.py` | test de la moitié « collecte », sans clé ni coût |\n| `probe_dates.py` | mesure la part des pages exposant une vraie date |\n| `translate_items.py` | traduit titres et synthèses en anglais, avec cache |",
-  "id": "d026"
+  "id": "d028"
  },
  {
   "src": "agent-veille/integration-regwatch.md",
   "title": "Agent de veille - intégration",
   "text": "# Brancher l'agent de veille sur RegWatch\n\nDeux modes, selon l'infrastructure disponible. Le mode A marche aujourd'hui, sans rien\nhéberger. Le mode B est la cible, et devient possible dès que RegWatch a un backend.\n\n---",
-  "id": "d027"
+  "id": "d029"
  },
  {
   "src": "agent-veille/integration-regwatch.md",
   "title": "Agent de veille - intégration - Mode A — export manuel (actif aujourd'hui)",
   "text": "Aucune infrastructure. L'agent tourne comme d'habitude et écrit dans son classeur ;\nRegWatch lit ce classeur.\n\n```bash\n# 1. après un run de l'agent, régénérer les items\npython3 tools/veille_to_watchitems.py \"<chemin>/agent_veille_NIS2.xlsx\"\n\n# 2. reconstruire le site\nzsh src/build.sh\n```\n\nProduit `data/watch-items.json` (le contrat) et `src/data_watch.js` (le bundle standalone).\nSans `src/data_watch.js`, le build retombe sur la file de démo de `data_c4.js` — la démo\nreste donc toujours constructible, y compris sans le classeur.\n\n**Limite assumée** : deux commandes manuelles après chaque run hebdomadaire.\n\n---",
-  "id": "d028"
+  "id": "d030"
  },
  {
   "src": "agent-veille/integration-regwatch.md",
   "title": "Agent de veille - intégration - Mode B — push automatique (cible)",
   "text": "L'agent appelle RegWatch en fin de run. Plus d'étape manuelle : un run de l'agent\nalimente directement la file de validation.\n\n### Côté agent — 3 lignes\n\nCopier `regwatch_push.py` à côté de `nis2_agent_v2.py`, puis dans `run_agent()`,\n**juste après `save_state(state)`** :\n\n```python\nfrom regwatch_push import push_to_regwatch\npush_to_regwatch(added_items)\n```\n\nPlacement volontaire : le classeur est déjà sauvegardé, donc un échec du push ne coûte\nni la collecte ni les appels Azure OpenAI du run. Le module ne lève jamais d'exception\net ne fait rien tant que `REGWATCH_API_URL` n'est pas défini — on peut donc le poser\ndans le repo avant que l'API existe.\n\nAjouter au `.env` de l'agent :\n\n```\nREGWATCH_API_URL=https://regwatch.<host>/api/watch-items\nREGWATCH_API_TOKEN=<jeton émis par RegWatch>\nREGWATCH_PUSH_TIMEOUT=30\n```\n\n### Côté RegWatch — l'endpoint à implémenter\n\n`POST /api/watch-items` — `Authorization: Bearer <token>`\n\n```json\n{\n  \"source\": \"agent de veille NIS2\",\n  \"runAt\": \"2026-08-17T08:41:12+02:00\",\n  \"count\": 14,\n  \"items\": [\n    {\n      \"id\": \"REG-20260814115203\",\n      \"detected\": \"2026-08-14\",\n      \"iso\": \"IT\",\n      \"title\": \"…\",\n      \"summary\": \"…\",\n      \"source\": { \"name\": \"ACN\", \"url\": \"https://…\", \"type\": \"official\" },\n      \"status\": \"pending\",\n      \"action\": \"…\",\n      \"agent\": {\n        \"score\": 8,\n        \"justification\": \"…\",\n        \"obligations\": \"…\",\n        \"impact\": \"Fort\",\n        \"entities\": \"…\",\n        \"publishedOn\": \"2026-08-07\",\n        \"inForceOn\": \"\",\n        \"textType\": \"actualité réglementaire\"\n      }\n    }\n  ]\n}\n```\n\nTrois règles non négociables côté serveur :\n\n1. **`status` est forcé à `pending` à l'ingestion**, quoi que contienne la charge utile.\n   Rien ne se publie sans validateur humain (cahier des charges §1.2 et §5.4).\n2. **`id` est la clé d'idempotence.** Un re-run qui repousse le même item ne doit pas\n   créer de doublon ni écraser une décision de validation déjà prise.\n3. **`iso` est validé contre la liste des fiches pays.** Un code inconnu est rejeté avec\n   un message explicite, pas silencieusement ignoré.\n\nRéponse attendue : `200` avec `{ \"accepted\": n, \"duplicates\": n, \"rejected\": [...] }`.\n\n---",
-  "id": "d029"
+  "id": "d031"
  },
  {
   "src": "agent-veille/integration-regwatch.md",
   "title": "Agent de veille - intégration - Ce qui reste à corriger en amont",
   "text": "Ces points sont des rustines côté RegWatch tant qu'ils ne sont pas traités dans l'agent :\n\n| Problème | Rustine actuelle | Vrai correctif |\n|---|---|---|\n| `Pays / Zone` en texte libre français, séparateurs incohérents (`France; UE`, `France;Union Européenne`) | table de correspondance dupliquée dans `veille_to_watchitems.py` et `regwatch_push.py` | ajouter une colonne `ISO` à `tblVeille` et supprimer les deux tables |\n| `Date détection` tantôt ISO, tantôt série Excel | normalisation à la lecture | écrire une date ISO systématiquement |\n| Items UE (~20 %) sans fiche pays cible | `iso: \"EU\"`, affichés mais non publiables | créer une fiche « Union européenne » dans RegWatch |\n| Analyses en français, interface en anglais | aucune | trancher la langue de l'outil |\n| Agent attaché à un poste (`run_agent.bat` → chemin OneDrive nominatif) | aucune | Azure Function planifiée (cahier des charges §5.3) |",
-  "id": "d030"
+  "id": "d032"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer",
   "text": "# Patch Tier 1 — champs fiables en sortie d'agent\n\nDéposer `regwatch_fields.py` à côté de `nis2_agent_v2.py`, puis appliquer les\nquatre points ci-dessous. Chacun est indépendant et réversible.\n\n```python\nfrom regwatch_fields import (\n    iso_codes, iso_date, resolve_publish_date, source_excerpt,\n)\n```\n\n---",
-  "id": "d031"
+  "id": "d033"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 1. La date de publication cesse d'être inventée",
   "text": "**C'est le correctif le plus important du lot.**\n\nAujourd'hui, `fetch_web_page_items()` (~ligne 641) fait :\n\n```python\ntoday = datetime.now().strftime(\"%Y-%m-%d\")\nreturn [{..., \"publish_date\": today, ...}]\n```\n\npuis `run_agent()` (~ligne 2102) laisse le modèle écraser cette valeur :\n\n```python\neffective_publish_date = publish_date\nif is_web_page and real_date_str:\n    effective_publish_date = real_date_str\n```\n\nUne page web reçoit donc **la date du jour**, corrigée au mieux par une\n**supposition** du modèle. D'où des articles réellement publiés en 2024 datés de\n2026 dans le classeur.\n\n### Ce que dit la mesure\n\nSonde sur les URLs réellement suivies (`probe_dates.py`) :\n\n- **7 %** des pages surveillées exposent une date lisible par machine ;\n- **37 %** des items pointent vers des **pages institutionnelles permanentes** —\n  `ncsc.nl/en/about-us/statutory-mandate`, `acn.gov.it/portale/home`,\n  `digital-strategy.ec.europa.eu/en/policies/…`, `gov.pl/web/cyfryzacja`.\n\nCes pages n'ont pas de date de publication **parce que ce ne sont pas des\npublications**. Ce sont des pages permanentes qu'on édite. Le problème n'est donc\npas une extraction défaillante : c'est qu'on affirme une date qui n'existe pas.\n\n### Le remplacement\n\n```python\npublish_date, date_source = resolve_publish_date(\n    source_type=item.get(\"source_type\"),\n    feed_date=item.get(\"publish_date_feed\"),   # date du flux RSS, si flux\n    html=item.get(\"pending_html\"),             # HTML brut, si page web\n    model_date=real_date_str,                  # la supposition, en dernier recours\n)\nrow_values[\"Date publication\"] = publish_date          # peut rester vide\nrow_values[\"Origine date\"] = date_source               # flux | page | ia | inconnue\n```\n\nOrdre volontaire : la date d'un flux est publiée par l'autorité elle-même, une\ndate extraite est lue dans la page, une date du modèle est une inférence. **La\ndate du jour n'est plus une option** — une page modifiée aujourd'hui ne dit rien\nde la date de son contenu.\n\nPrérequis : conserver le HTML brut dans l'item (`pending_html`), déjà téléchargé\ndans `fetch_web_page_items()`, et garder la date du flux séparément dans\n`fetch_rss_items()`.\n\nAjouter la colonne **`Origine date`** à `tblVeille`. Elle permet de distinguer un\nfait d'une inférence sans ouvrir la source, et de filtrer sur les seules dates\nfiables.\n\n---",
-  "id": "d032"
+  "id": "d034"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 2. Codes ISO à côté des noms de pays",
   "text": "`Pays / Zone` reste tel quel ; on ajoute une colonne **`ISO`** :\n\n```python\nrow_values[\"ISO\"] = iso_codes(row_values[\"Pays / Zone\"])   # \"France; UE\" -> \"FR;EU\"\n```\n\nSupprime la table de correspondance dupliquée côté RegWatch, qui casse\nsilencieusement à chaque orthographe nouvelle (`France;Union Européenne`,\n`France; UE`, `Republique tcheque`…).\n\n---",
-  "id": "d033"
+  "id": "d035"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 3. Dates normalisées à l'écriture",
   "text": "Le classeur mélange chaînes ISO et numéros de série Excel dans la même colonne.\nPasser chaque date par `iso_date()` avant écriture :\n\n```python\nrow_values[\"Date détection\"]        = iso_date(now)\nrow_values[\"Date entrée en vigueur\"] = iso_date(analysis.get(\"date_entree_vigueur\"))\n```\n\n---",
-  "id": "d034"
+  "id": "d036"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 4. Conserver le texte de la source",
   "text": "L'agent télécharge déjà le contenu (`MAX_WEB_CHARS = 12000`), l'envoie à l'IA,\npuis le jette. Ajouter une colonne **`Extrait source`** :\n\n```python\nrow_values[\"Extrait source\"] = source_excerpt(\n    item.get(\"pending_text\")     # pages web : le texte de la page\n    or item.get(\"summary\"))      # RSS : le resume du flux, ecrit par la source\n```\n\nSix cents caractères suffisent. Aujourd'hui RegWatch retélécharge chaque article\npour récupérer ce texte et n'y parvient que pour **83 items sur 164** — les liens\nd'agrégateur résolvent vers un mur de consentement. L'agent, lui, a le texte en\nmain au moment de l'analyse.\n\nCette seule colonne rend `tools/fetch_excerpts.py` inutile et fait passer la\ncouverture de 51 % à 100 %.\n\n---",
-  "id": "d035"
+  "id": "d037"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - Colonnes à ajouter à `tblVeille`",
   "text": "| Colonne | Contenu | Remplace |\n|---|---|---|\n| `ISO` | `FR`, `FR;EU` | la table de correspondance côté RegWatch |\n| `Origine date` | `flux` / `page` / `ia` / `inconnue` | une date affirmée sans preuve |\n| `Extrait source` | 600 premiers caractères | un retéléchargement à 51 % de réussite |\n\nAucune colonne existante n'est modifiée ni supprimée : le patch est additif, et\nun run non patché continue de fonctionner.\n\n\n---",
-  "id": "d036"
+  "id": "d038"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 5. Une page d'index n'est pas une publication",
   "text": "Ajouté après vérification de trois items signalés comme faux : une FAQ, une page\nde politique de la Commission, et une catégorie de FAQ - trois pages permanentes\ndéposées dans la file comme s'il s'agissait d'articles parus le jour même.\n\n`classify_page(url, html)` tranche sur des signaux vérifiables, pas sur un avis\nde modèle : forme de l'URL, `og:type`, densité de liens, présence d'une date\nlisible. Il rend `article`, `index` ou `incertain` avec ses motifs.\n\n```python\npage_kind, page_why = classify_page(url, item.get(\"pending_html\"))\nif page_kind == \"index\":\n    continue          # journalisé, compté, jamais écrit dans tblVeille\n```\n\nMesuré sur six pages réelles, dont les trois signalées : **6/6 conformes**.\nLe seuil de densité de liens est calé pour ne pas attraper un vrai article de\nl'ANSSI (55 liens, ratio 115), qui serait autrement écarté par sa navigation.\n\nAjouter la colonne **`Type de page`** à `tblVeille` pour garder la trace de la\ndécision.",
-  "id": "d037"
+  "id": "d039"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 6. La date lue dans le corps de la page",
   "text": "`page_date()` ne lisait que les métadonnées. La page d'aide NIS 2 de l'ANSSI\naffiche « Mis à jour le : 24/10/2024 » dans son texte, sans le déclarer en\nmétadonnée - l'outil affichait donc « publié le 11 juin 2026 » pour un contenu\nde 2024.\n\n`page_text_date()` lit ces mentions en français, anglais, allemand et\nnéerlandais. Sur l'exemple ci-dessus, la date remonte correctement à 2024-10-24.\n\n\n---",
-  "id": "d038"
+  "id": "d040"
  },
  {
   "src": "agent-veille/patch-tier1.md",
   "title": "Agent de veille - correctifs à appliquer - 7. Une page d'index devient l'annuaire des articles",
   "text": "Écarter une page de sommaire évite un faux article, mais perd l'information : la\npage a changé parce qu'un vrai article y est paru. `harvest_links()` en lit les\nliens, l'agent va chercher chacun, le classe, et ce sont les ARTICLES qui\nentrent dans la file.\n\n```python\npage_kind, page_why = classify_page(url, response.text)\nif page_kind == \"index\":\n    web_state[url] = page_hash          # valider tout de suite, sinon on\n    web_texts[url] = page_text          # recolterait la page a chaque run\n    ... harvest_links(...) -> fetch -> classify -> items\n```\n\nLes articles récoltés portent `pending_hash = None` : ils suivent alors le\ndédoublonnage par URL de la boucle principale, exactement comme une entrée de\nflux. `harvested_urls` dans `state.json` évite de re-examiner un lien déjà vu,\net `HARVEST_MAX_PER_RUN` (8 par défaut) empêche un run de se transformer en\naspirateur.\n\nC'est aussi ce qui remplace le flux RSS pour les autorités qui n'en publient\npas : lire les liens de leur page d'actualités revient à fabriquer le flux\nmanquant.\n\nMesuré sur un run réel : 6 pages d'index ont produit 45 liens, dont 5 articles\nretenus - trois du NÚKIB tchèque avec leur vraie date lue sur la page\n(2026-08-21, 2026-08-20, 2026-07-29).\n\nLimite connue : sur nis.gv.at, la récolte ramène des pages de FAQ. Une page de\nFAQ est une feuille avec un slug, donc indistinguable d'un article par la forme\nseule. Le filtre de pertinence IA reste la seconde barrière.",
-  "id": "d039"
+  "id": "d041"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure",
   "text": "# Le proxy RegWatch sur Azure\n\nRegWatch est un fichier statique : **tout ce qu'on y écrit est publié**. La page\ndéployée se télécharge sans authentification — une clé Azure OpenAI glissée\ndedans serait une clé publique, facturée au cabinet par qui la trouve.\n\nCe proxy est l'endroit où la clé vit à la place. La page l'appelle et ne voit\njamais de secret.\n\nIl parle la forme *chat completions* d'OpenAI, donc le mode **Compatible\nOpenAI** de RegWatch pointe dessus sans changer une ligne de l'outil.\n\n---",
-  "id": "d040"
+  "id": "d042"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure - 0. Depuis un poste sans git ni compte GitHub — Azure Cloud Shell",
   "text": "C'est le chemin à prendre quand les accès Azure sont sur une machine qui ne peut\npas cloner ce dépôt. Cloud Shell tourne dans le navigateur du portail : elle a\ndéjà `az`, son propre système de fichiers, et ne demande aucune installation.\n\n1. Portail Azure → l'icône `>_` en haut → **Bash**. À l'écran d'accueil,\n   *No storage account required* suffit.\n2. **Étape 1** — coller tout le contenu de `deploy-cloudshell.sh`. Ce bloc\n   n'exécute rien : il écrit `~/regwatch-deploy.sh`.\n3. **Étape 2** — lancer le script :\n\n   ```sh\n   bash ~/regwatch-deploy.sh\n   # ou, pour réutiliser un groupe de ressources existant :\n   RG=Agent_mapping bash ~/regwatch-deploy.sh\n   ```\n\nIl crée les ressources, publie, vérifie, et affiche à la fin l'endpoint et le\nsecret à reporter dans RegWatch.\n\n**Pourquoi en deux temps.** Un bloc collé s'exécute *dans* le shell interactif :\nun `set -e` ou un `exit` y ferme la session, et `read` peut avaler un retour à\nla ligne resté dans le tampon du collage et revenir vide. Les deux sont arrivés.\nÉcrit puis lancé, `read` reçoit un vrai terminal et un échec arrête le script,\npas la console.\n\nLe script est rejouable : groupe, stockage et Function App existants sont\nréutilisés au lieu d'échouer, et le nom du compte de stockage est déterministe\npour ne pas en semer un nouveau à chaque essai.\n\nIl **ne contient aucun secret** — la clé Azure est demandée à la saisie, en\ninvisible, et n'est écrite ni dans le script ni dans l'historique du shell. Il\npeut donc voyager par n'importe quel canal : un copier-coller depuis l'autre\nposte, un mail à soi-même, ou la vue GitHub du fichier dans le navigateur du PC\n(bouton *Copy raw file*).\n\nLe script est **généré** depuis les fichiers de ce dossier :\n\n```sh\npython3 tools/make_cloudshell_script.py\n```\n\nNe le modifiez pas à la main — corrigez `function_app.py` et régénérez, sinon le\ncode déployé cesse d'être le code du dépôt.\n\nSi `config-zip` échoue sur une version récente d'`az`, la commande équivalente\nest `az functionapp deploy --src-path proxy.zip --type zip -n \"$APP\" -g \"$RG\"`.\n\n---",
-  "id": "d041"
+  "id": "d043"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure - 1. Déployer depuis un poste qui a le dépôt",
   "text": "Une fois, depuis ce dossier. Remplacez le nom de l'application par le vôtre —\nil doit être unique dans tout Azure.\n\n```sh\naz login\naz group create -n rg-regwatch -l westeurope\n\naz storage account create -n stregwatchproxy -g rg-regwatch -l westeurope --sku Standard_LRS\n\naz functionapp create \\\n  -n regwatch-proxy -g rg-regwatch \\\n  --storage-account stregwatchproxy \\\n  --consumption-plan-location westeurope \\\n  --runtime python --runtime-version 3.11 --functions-version 4 \\\n  --os-type Linux\n```\n\nLes réglages. **C'est le seul endroit où la clé est écrite.**\n\n```sh\naz functionapp config appsettings set -n regwatch-proxy -g rg-regwatch --settings \\\n  AZURE_OPENAI_API_KEY=\"<la clé du cabinet>\" \\\n  AZURE_OPENAI_ENDPOINT=\"https://nis2agent-resource.services.ai.azure.com\" \\\n  AZURE_OPENAI_DEPLOYMENT=\"gpt-5.4-mini\" \\\n  AZURE_OPENAI_API_VERSION=\"2024-10-21\" \\\n  REGWATCH_ALLOWED_ORIGINS=\"https://jcsssss.github.io\"\n```\n\nPuis publier :\n\n```sh\nfunc azure functionapp publish regwatch-proxy --python\n```\n\nAjoutez un secret partagé pour que l'endpoint ne soit pas ouvert à tous — le\nscript Cloud Shell le fait automatiquement :\n\n```sh\nNEW=$(openssl rand -hex 24); echo \"Nouveau secret : $NEW\"\naz functionapp config appsettings set -n regwatch-proxy -g rg-regwatch \\\n  --settings REGWATCH_SHARED_SECRET=\"$NEW\" -o none\n```\n\nOn génère, on lit, **puis** on envoie : les versions récentes d'`az` masquent\nles valeurs dans la sortie de `set`, donc un secret posé directement depuis\n`$(openssl …)` n'est jamais affiché et devient introuvable.\n\n(`func` vient d'Azure Functions Core Tools : `brew tap azure/functions && brew install azure-functions-core-tools@4`.)\n\nVérifier — cette route ne révèle aucune valeur, seulement ce qui manque :\n\n```sh\ncurl https://regwatch-proxy.azurewebsites.net/api/v1/health\n```",
-  "id": "d042"
+  "id": "d044"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure - 2. Brancher RegWatch",
   "text": "Engrenage → mode **Compatible OpenAI** → endpoint :\n\n```\nhttps://regwatch-proxy.azurewebsites.net/api/v1\n```\n\nLe champ « Clé API » : n'importe quoi si vous n'avez pas mis de\n`REGWATCH_SHARED_SECRET`, le secret sinon (voir plus bas).",
-  "id": "d043"
+  "id": "d045"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure - 3. Ce qui protège réellement cet endpoint",
   "text": "À lire avant de le laisser tourner. Les trois options ne sont pas équivalentes.\n\n### La liste d'origines — un garde-fou de coût, pas une serrure\n\n`REGWATCH_ALLOWED_ORIGINS` empêche une page d'un autre site d'utiliser votre\nquota : un navigateur ne ment pas sur son `Origin`. Mais `curl` envoie l'en-tête\nqu'il veut. **C'est une protection contre l'abus par navigateur, pas contre\nquelqu'un qui vise votre endpoint.** Nécessaire, jamais suffisante.\n\n### Le secret partagé — un limiteur, pas un secret\n\n```sh\nNEW=$(openssl rand -hex 24); echo \"Nouveau secret : $NEW\"\naz functionapp config appsettings set -n regwatch-proxy -g rg-regwatch \\\n  --settings REGWATCH_SHARED_SECRET=\"$NEW\" -o none\n```\n\nOn génère, on lit, **puis** on envoie : les versions récentes d'`az` masquent\nles valeurs dans la sortie de `set`, donc un secret posé directement depuis\n`$(openssl …)` n'est jamais affiché et devient introuvable.\n\nIl est accepté dans l'en-tête `x-regwatch-key` **ou comme jeton bearer** — c'est\nce que le champ « Clé API » de RegWatch envoie déjà, donc rien ne change dans la\npage : le consultant colle ce secret au lieu de la clé Azure.\n\nGain réel : la vraie clé ne quitte jamais Azure, et ce secret-ci se révoque en\nune commande sans toucher au compte Azure OpenAI. Limite : il doit atteindre le\nnavigateur, donc il finit dans un `localStorage` et peut être lu par qui a accès\nau poste. **Traitez-le comme un limiteur d'usage.**\n\n### Easy Auth — la vraie serrure, et elle ne demande aucun code\n\nPortail → la Function App → **Authentication** → *Add identity provider* →\nMicrosoft → *Require authentication*. Seuls les comptes du tenant passent.\n\nUne réserve technique qui compte : le cookie de session Easy Auth est\n*same-site*. Il ne sera donc **pas** envoyé par une page servie depuis\n`jcsssss.github.io` vers `azurewebsites.net`. Pour que cette option fonctionne,\nil faut servir la page depuis la même origine que le proxy — ce qui, au passage,\nrègle aussi le fait que la page soit publique aujourd'hui :\n\n```sh\n# la page rejoint le proxy, tout devient une seule origine protégée\naz functionapp deployment source config-zip -n regwatch-proxy -g rg-regwatch --src site.zip\n```\n\nC'est la configuration cible si l'outil doit tourner sur tous les postes sans\nque personne ne saisisse quoi que ce soit. Elle demande d'abandonner GitHub\nPages comme lieu de publication — ce qui est plutôt une bonne nouvelle.",
-  "id": "d044"
+  "id": "d046"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure - 4. Ce qui n'est pas journalisé",
   "text": "Rien du contenu. Les corps de requête portent des questions de consultants et du\ncontenu réglementaire client ; seules la taille et le code de retour amont sont\ntracés. Si vous activez Application Insights, cela reste vrai.",
-  "id": "d045"
+  "id": "d047"
  },
  {
   "src": "azure-proxy/README.md",
   "title": "Proxy Azure - 5. Coût",
   "text": "Le plan Consumption facture à l'exécution : le premier million d'appels par mois\nest gratuit, et RegWatch en fait 2 ou 3 par question. Le coût réel de l'outil\nreste celui des jetons du modèle, mesuré autour de quelques dizaines de dollars\npar mois pour dix consultants — le proxy n'y ajoute rien de perceptible.",
-  "id": "d046"
+  "id": "d048"
  },
  {
   "src": "tools/README-assistant.md",
   "title": "Assistant - conception",
   "text": "# L'assistant RegWatch — mise en route\n\nL'onglet **Assistant** répond aux questions des consultants à partir des seules\ndonnées RegWatch. Il a besoin d'un endpoint de modèle ; la clé reste chez vous.",
-  "id": "d047"
+  "id": "d049"
  },
  {
   "src": "tools/README-assistant.md",
   "title": "Assistant - conception - Mise en route pour un consultant",
   "text": "L'endpoint du proxy de l'équipe est déjà pré-rempli dans l'outil. Il ne reste\nqu'une chose à faire, une seule fois par navigateur :\n\n1. Ouvrir `https://jcsssss.github.io/regwatch-prototype`, onglet **Assistant**.\n2. Bouton ⚙ → coller la **clé du proxy** dans « Clé API » → Enregistrer.\n\nCette clé n'est pas la clé Azure : c'est un secret propre au proxy, demandez-la\nà l'équipe NIS 2. Elle reste dans le `localStorage` de ce navigateur et n'est\nenvoyée qu'au proxy.\n\n**Ouvrez la page publiée, pas le fichier local.** Un `regwatch.html` ouvert en\ndouble-clic a pour origine `null`, que le proxy refuse (403).",
-  "id": "d048"
+  "id": "d050"
  },
  {
   "src": "tools/README-assistant.md",
   "title": "Assistant - conception - Où vit la clé Azure",
   "text": "Nulle part dans l'outil. Elle est dans les réglages de la Function App\n(`azure-proxy/`), et ne descend jamais dans un navigateur. Le proxy est ce qui\nrend cela possible — voir `azure-proxy/README.md` pour son déploiement et pour\nce qui protège réellement son endpoint.",
-  "id": "d049"
+  "id": "d051"
  },
  {
   "src": "tools/README-assistant.md",
   "title": "Assistant - conception - Utiliser sa propre clé Azure plutôt que le proxy",
   "text": "Toujours possible : ⚙ → mode **Azure OpenAI** → endpoint, déploiement, clé. Une\nconfiguration déjà présente dans un navigateur n'est jamais écrasée par les\nvaleurs par défaut.\n\nSi le test échoue avec une erreur réseau, c'est le CORS : Azure OpenAI ne répond\npas au préflight depuis une page web. Repli local :\n\n```sh\npython3 tools/chat_proxy.py     # lit le .env du dépôt\n```\n\npuis mode **Compatible OpenAI**, endpoint `http://localhost:8787/v1`.",
-  "id": "d050"
+  "id": "d052"
  },
  {
   "src": "tools/README-assistant.md",
   "title": "Assistant - conception - Ce que l'assistant peut lire",
   "text": "Il n'a rien dans son prompt : il appelle des outils et lit ce qu'ils renvoient.\nLes outils sont dans `src/app_corpus.js`.\n\n| Outil | Ce qu'il sert |\n|---|---|\n| `list_countries` | une ligne par pays — maturité, transposition, retard, organisme d'audit |\n| `get_country` | la fiche complète, jusqu'à 8 pays, sections citables |\n| `query_kpi` | les 33 indicateurs du classeur comparatif × 29 pays |\n| `search_corpus` | recherche par mots-clés dans les sections et la veille |\n| `scope_rules` | les règles de périmètre nationales |\n| `official_documents` | les dossiers SharePoint par pays |\n| `draw_chart` | dessine un graphique sous la réponse (moteur `src/app_kpi.js`) |\n\nLes puces grises au-dessus de chaque réponse montrent quels outils ont tourné :\nc'est ce qui rend la réponse vérifiable.",
-  "id": "d051"
+  "id": "d053"
  },
  {
   "src": "tools/README-assistant.md",
   "title": "Assistant - conception - Limites à connaître avant de montrer l'outil à un client",
   "text": "- **Aucun inventaire de sites.** RegWatch ne connaît aucune entité cliente. Sur\n  une question de périmètre, l'assistant expose les règles nationales et le dit :\n  la conclusion est une hypothèse à confirmer par le consultant.\n- **La conversation n'est pas enregistrée.** Recharger la page l'efface. C'est\n  volontaire : un consultant y colle du détail client, qui n'a rien à faire sur\n  disque dans un prototype.\n- **Les éléments de veille sont de l'actualité datée**, pas du droit établi.\n  L'assistant doit les étiqueter comme tels ; vérifiez qu'il le fait.\n- Le modèle peut toujours se tromper en *résumant* ce qu'un outil a renvoyé.\n  Les sources citées sont là pour que ce soit rattrapable en un clic.",
-  "id": "d052"
+  "id": "d054"
  },
  {
   "src": "tools/README-sync.md",
   "title": "Synchronisation avec le classeur",
   "text": "# Synchronisation classeur comparatif → fiches pays\n\nSens unique : **le classeur sur SharePoint fait foi**, RegWatch en est un miroir\nen lecture. Rien n'est jamais réécrit dans le classeur — ni par le code, ni par\nl'outil. C'est ce qui garantit que les formules, la mise en forme conditionnelle\net les slicers du classeur client ne peuvent pas être abîmés par un bug d'ici.",
-  "id": "d053"
+  "id": "d055"
  },
  {
   "src": "tools/README-sync.md",
   "title": "Synchronisation avec le classeur - La chaîne",
   "text": "```\nSharePoint ──(1)──> copie locale ──(2)──> src/data_excel.js ──(3)──> le site\n```\n\nTout se lance depuis **le dossier du projet**, dans le Terminal, avec le\n`venv/` du projet — le python du système n'a pas `requests` :\n\n```bash\ncd ~/Downloads/regwatch-prototype\n\n# 1. récupérer le classeur depuis SharePoint (Microsoft Graph, lecture seule)\n./venv/bin/python tools/sharepoint_fetch.py\n\n# 2. l'importer via la cartographie des champs\n./venv/bin/python tools/excel_to_countries.py data/.cache/comparative.xlsx\n\n# 3. reconstruire le site\nzsh src/build.sh\n```\n\nLa copie locale atterrit dans `data/.cache/`, qui est ignoré par git — comme le\ncache de jeton, qui contient un jeton de rafraîchissement.",
-  "id": "d054"
+  "id": "d056"
  },
  {
   "src": "tools/README-sync.md",
   "title": "Synchronisation avec le classeur - Ce qu'il faut obtenir de l'IT avant que ça tourne",
   "text": "`sharepoint_fetch.py` est écrit et son encodage de lien est vérifié, mais il n'a\npas encore été exécuté contre le vrai SharePoint : cela demande des éléments que\nnous n'avons pas.\n\n| | Pour démarrer (code d'appareil) | Pour planifier (app-only) |\n|---|---|---|\n| Inscription d'application Entra ID | souhaitable | **obligatoire** |\n| Permission | `Sites.Read.All` **déléguée** | **`Sites.Selected`** (application) |\n| Portée réelle | ce que vous pouvez déjà ouvrir | **un seul site**, autorisé par l'admin |\n| Consentement administrateur | non | **oui** |\n| Intervention humaine | une connexion, puis silence | aucune |\n\n### La permission à demander : `Sites.Selected`, jamais `Files.Read.All`\n\nEn **délégué**, l'application agit en votre nom : elle ne peut atteindre aucun\nfichier que vous ne pouvez pas déjà ouvrir. Aucune exposition nouvelle.\n\nEn **application**, il n'y a plus d'utilisateur derrière. `Files.Read.All`\nsignifierait alors *tous les fichiers du tenant*, sites privés compris — hors de\nquestion pour lire un classeur. `Sites.Selected` n'accorde **rien** par défaut :\nun administrateur autorise ensuite l'application sur les seuls sites choisis. La\nrestriction tient à la configuration du tenant, pas à la bonne conduite du code.\n\nLe brouillon de demande est dans `tools/demande-IT.md`.\n\n### Avant le premier lancement\n\nLe `venv/` du projet et le `.env` sont déjà en place. Si tu repars d'un clone :\n\n```bash\npython3 -m venv venv\n./venv/bin/pip install requests openpyxl\ncp .env.example .env      # puis renseigner l'URL et le tenant\n```\n\n`.env` et `venv/` sont ignorés par git.\n\n**Commence par le code d'appareil.** Il fonctionne sur un compte ordinaire, sans\nconsentement administrateur : tu signes une fois dans le navigateur, le jeton de\nrafraîchissement est mis en cache, les exécutions suivantes sont silencieuses.\nC'est suffisant pour prouver la chaîne de bout en bout.\n\nL'app-only est la cible pour la synchro planifiée, mais il demande une\ninscription d'application et un consentement administrateur — donc l'IT.\n\n### Configuration\n\n```\nSHAREPOINT_FILE_URL=<le lien « Copier le lien » du classeur dans SharePoint>\nGRAPH_TENANT_ID=<identifiant de tenant, ou wavestone.com>\nGRAPH_CLIENT_ID=<inscription d'application>          # optionnel en test\nGRAPH_CLIENT_SECRET=<secret>                         # app-only uniquement\n```\n\nPas d'identifiant de site ni de drive à chercher : Graph résout le lien de\npartage directement.\n\nEn l'absence de `GRAPH_CLIENT_ID`, le script utilise le client public d'Azure\nCLI pour prouver la plomberie. **À remplacer par une inscription Wavestone avant\ntoute planification** — un outil interne ne doit pas s'authentifier sous\nl'identité d'un client Microsoft.",
-  "id": "d055"
+  "id": "d057"
  },
  {
   "src": "tools/README-sync.md",
   "title": "Synchronisation avec le classeur - Ce que l'import fait, et ne fait pas",
   "text": "Il **ajoute** ce que la fiche pays n'a pas : sept champs typés et deux sections\nentières (sanctions, autorités détaillées).\n\nIl **n'écrase pas** les champs existants. La comparaison classeur / fiches donne\n145 valeurs concordantes et **132 divergentes**, de deux natures :\n\n- le classeur est plus succinct et la fiche enrichie — écraser perdrait de\n  l'information ;\n- les deux se contredisent sur un fait — quelqu'un doit arbitrer.\n\nTant que cet arbitrage n'a pas eu lieu, appliquer mécaniquement « le classeur\nfait foi » dégraderait l'outil sur la moitié des champs, sans que personne ne le\nvoie. La réconciliation est la seconde moitié du travail.\n\n---",
-  "id": "d056"
+  "id": "d058"
  },
  {
   "src": "tools/README-sync.md",
   "title": "Synchronisation avec le classeur - Depuis quel poste ? (et faut-il tout cloner ?)",
   "text": "Seule **l'étape 1** a besoin du poste professionnel : c'est la seule qui\ns'authentifie auprès de SharePoint. Les étapes 2 et 3 travaillent sur un fichier\ndéjà téléchargé et tournent n'importe où.\n\n### Le plus simple aujourd'hui : pas de Graph du tout\n\nPour rafraîchir les fiches maintenant, **télécharge le classeur à la main**\ndepuis SharePoint (Fichier → Télécharger une copie), pose-le où tu veux, et\nlance l'import dessus :\n\n```bash\n./venv/bin/python tools/excel_to_countries.py ~/Downloads/CYBER\\ WATCH5_Technical\\ inventory.xlsx\nzsh src/build.sh\n```\n\nC'est légitime : c'est ton fichier, tu y as accès. Dix secondes, aucune\npermission à demander. **Microsoft Graph ne sert qu'à supprimer ce geste manuel**\n— c'est-à-dire pour la synchronisation planifiée, qui doit tourner sans\npersonne devant.\n\n### Si tu veux quand même tester Graph depuis le poste pro\n\nInutile de cloner le dépôt. `sharepoint_fetch.py` est **autonome** : un seul\nfichier, `requests` pour seule dépendance non standard. Vérifié hors du dépôt.\n\n1. Copie `tools/sharepoint_fetch.py` sur le poste pro (mail, clé, Teams).\n2. `pip install requests` (ou `python -m pip install --user requests`).\n3. ```\n   python sharepoint_fetch.py -o classeur.xlsx\n   ```\n   en ayant défini `SHAREPOINT_FILE_URL` et `GRAPH_TENANT_ID`, ou en passant\n   l'URL à `--check` pour vérifier d'abord.\n4. Rapatrie le `.xlsx` obtenu et reprends à l'étape 2 sur ton poste.\n\nCloner un dépôt GitHub personnel sur une machine d'entreprise peut par ailleurs\nposer une question de politique interne : un fichier copié n'en pose aucune.\n\n### Cloner tout le dépôt, quand ?\n\nLe jour où l'outil sera hébergé et la synchro planifiée, tout tournera côté\nserveur et la question disparaîtra. Cloner sur le poste pro n'a d'intérêt que si\ntu veux y faire du développement.",
-  "id": "d057"
+  "id": "d059"
  },
  {
   "src": "tools/demande-IT.md",
   "title": "Demande IT",
   "text": "# Demande à l'IT — accès en lecture à un classeur SharePoint\n\nBrouillon à adapter. Deux versions : **A** pour démarrer (souvent aucune action\nIT nécessaire), **B** pour la mise en production.\n\nLe point qui décide de tout : **`Sites.Selected`**. C'est la permission qui\nn'accorde **rien** par défaut et qu'un administrateur restreint ensuite à un\nsite unique. C'est elle qu'il faut demander, jamais `Files.Read.All` en\npermission application, qui donnerait accès à l'ensemble du tenant.\n\n---",
-  "id": "d058"
+  "id": "d060"
  },
  {
   "src": "tools/demande-IT.md",
   "title": "Demande IT - A — À tenter d'abord, sans solliciter l'IT",
   "text": "En mode délégué (code d'appareil), l'application agit **en votre nom** et ne peut\natteindre aucun fichier que vous ne pouvez pas déjà ouvrir. Aucune exposition\nnouvelle, donc aucun arbitrage de sécurité à demander.\n\n```bash\npython3 tools/sharepoint_fetch.py\n```\n\nSi le classeur se télécharge, il n'y a rien à demander pour l'instant. Passez à\nla version B seulement pour la synchronisation planifiée, ou si vous obtenez une\nerreur `AADSTS7000218` (flux client public bloqué) ou `AADSTS50076` (accès\nconditionnel).\n\n---",
-  "id": "d059"
+  "id": "d061"
  },
  {
   "src": "tools/demande-IT.md",
   "title": "Demande IT - B — Le message à envoyer",
   "text": "> **Objet : demande d'inscription d'application Entra ID — lecture d'un classeur SharePoint (équipe Cyber)**\n>\n> Bonjour,\n>\n> Je travaille sur un outil interne à l'équipe Cyber qui centralise notre veille\n> réglementaire NIS 2 pour l'Europe. Aujourd'hui, cette veille vit dans un\n> classeur Excel sur SharePoint que les consultants mettent à jour à la main.\n> L'outil doit **lire ce classeur** pour afficher les informations sous une forme\n> consultable et comparable entre pays.\n>\n> **Ce dont j'ai besoin**\n>\n> Une inscription d'application Entra ID, avec la permission Microsoft Graph\n> **`Sites.Selected`** en **permission d'application**, puis l'autorisation de\n> cette application **sur un seul site SharePoint** :\n>\n> ```\n> Site        : /sites/WICCYB-DIGITALCOMPLIANCE\n> Fichier     : .../01 - Cyber watch EU/CYBER WATCH5_Technical inventory.xlsx\n> Rôle demandé: read  (lecture seule)\n> ```\n>\n> **Pourquoi `Sites.Selected` et pas `Files.Read.All`**\n>\n> `Files.Read.All` en permission d'application donnerait à l'outil un accès en\n> lecture à **l'ensemble des fichiers du tenant**. Ce n'est ni nécessaire ni\n> souhaitable pour lire un seul classeur.\n>\n> `Sites.Selected` fonctionne à l'inverse : elle n'accorde **aucun accès** par\n> elle-même. Après le consentement, vous exécutez une commande qui autorise\n> l'application sur les sites de votre choix — ici un seul. Tout autre site,\n> y compris les sites privés, reste **inaccessible**, et cela ne dépend pas de la\n> bonne conduite de l'outil mais de la configuration côté tenant.\n>\n> La commande d'autorisation, pour information :\n>\n> ```http\n> POST https://graph.microsoft.com/v1.0/sites/{site-id}/permissions\n> {\n>   \"roles\": [\"read\"],\n>   \"grantedToIdentities\": [{ \"application\": { \"id\": \"{app-id}\", \"displayName\": \"RegWatch\" } }]\n> }\n> ```\n>\n> **Sur les données concernées**\n>\n> - Le contenu est de la **veille réglementaire publique** : lois de\n>   transposition NIS 2, autorités nationales, échéances, référentiels de\n>   cybersécurité. Aucune donnée client, aucune donnée personnelle.\n> - L'accès demandé est **strictement en lecture**. L'outil n'écrit jamais dans\n>   le classeur — c'est délibéré : une portée en écriture mettrait les formules\n>   et la mise en forme conditionnelle du fichier à portée d'un défaut logiciel,\n>   sans contrepartie.\n> - Un seul fichier est lu, à une fréquence faible (une fois par jour au plus).\n> - L'outil est **interne à Wavestone** et n'est pas exposé à l'extérieur.\n>\n> **Ce que je vous demande concrètement**\n>\n> 1. Créer l'inscription d'application (nom proposé :\n>    `RegWatch — lecture veille NIS 2`).\n> 2. Accorder `Sites.Selected` en permission d'application, avec le consentement\n>    administrateur.\n> 3. Autoriser l'application en **lecture** sur le seul site\n>    `WICCYB-DIGITALCOMPLIANCE`.\n> 4. Me transmettre l'**ID d'application (client ID)** et le mode\n>    d'authentification retenu (secret client, certificat, ou identité managée si\n>    l'outil est hébergé sur Azure — c'est l'option que je privilégie, elle évite\n>    tout secret à faire tourner).\n>\n> Si vous préférez commencer sans inscription d'application, le mode **délégué**\n> (code d'appareil) fonctionne avec mon propre compte et ne donne accès à rien de\n> plus que ce que je peux déjà ouvrir. C'est ce que j'utilise aujourd'hui pour les\n> tests ; l'inscription ne devient nécessaire que pour la synchronisation\n> automatique, qui doit tourner sans intervention humaine.\n>\n> Je reste disponible pour en discuter.\n>\n> Bien cordialement,\n\n---",
-  "id": "d060"
+  "id": "d062"
  },
  {
   "src": "tools/demande-IT.md",
   "title": "Demande IT - Ce qu'il faut leur transmettre, prêt à copier",
   "text": "| Élément | Valeur |\n|---|---|\n| Tenant | `5de96c96-c87c-4dce-aad9-f5c557b52ac1` (`digiplace.onmicrosoft.com`) |\n| Hôte SharePoint | `digiplace.sharepoint.com` |\n| Site | `WICCYB-DIGITALCOMPLIANCE` |\n| Fichier | `CYBER WATCH5_Technical inventory.xlsx` |\n| Permission | `Sites.Selected` (application), rôle `read` |\n| Alternative sans IT | délégué / code d'appareil |",
-  "id": "d061"
+  "id": "d063"
  },
  {
   "src": "tools/demande-IT.md",
   "title": "Demande IT - Si l'IT propose autre chose",
   "text": "- **« Prenez `Sites.Read.All` en application »** → refusez poliment : même\n  problème que `Files.Read.All`, c'est tout le tenant. `Sites.Selected` existe\n  précisément pour ce cas.\n- **« Utilisez un compte de service »** → acceptable, mais l'identité managée\n  est meilleure : pas de mot de passe à faire tourner ni à stocker.\n- **« Passez par un export automatique du fichier »** → viable en dépannage,\n  mais le fichier exporté devra vivre quelque part, et vous aurez déplacé la\n  question de la confidentialité plutôt que de la résoudre.",
-  "id": "d062"
+  "id": "d064"
  },
  {
   "src": "src/app_chat.js",
   "title": "Assistant : transport et outils",
   "keys": "assistant modèle appel outils invite proxy jetons",
   "text": "================= The assistant =================\n\nA consultant asks a question in their own words; the model answers using the\ntools in app_corpus.js and nothing else.\n\nThree decisions shape this file.\n\n1. The key belongs to the person, not to the page. RegWatch is a static file\n   served publicly, so a shared key baked into it would be a published key.\n   Each consultant pastes their own; it lives in this browser's localStorage\n   and is never sent anywhere but their own model endpoint. When the team\n   moves to a proxy, only the endpoint field changes - `compat` mode already\n   speaks to one (tools/chat_proxy.py).\n\n2. The model reads the corpus through tools, never through the prompt. So an\n   answer can only repeat what a tool returned, every item carries its\n   source, and the transcript shows which tools ran. That is what makes the\n   answer checkable, which is the whole point for regulatory content.\n\n3. The conversation stays in memory. A consultant will paste client detail\n   into it (\"our sites in Italy and Spain\"); that has no business being\n   written to disk by a prototype, so a reload starts clean.\n\nFailures are reported as what they are. Called straight from a browser, the\nthree ways this breaks - CORS, a bad key, a wrong deployment name - look\nidentical from the outside and need completely different fixes, which is the\nsame reason agent-veille/check_azure.py exists.",
-  "id": "d063"
+  "id": "d065"
  },
  {
   "src": "src/app_corpus.js",
   "title": "Assistant : accès aux données",
   "keys": "assistant données pays recherche outils ancrage sources citées",
   "text": "================= What the assistant is allowed to know =================\n\nThe model never sees the corpus in its prompt. It calls these functions and\nreads what comes back - which is the whole safety story: an answer can only\nrepeat something a tool returned, and every returned item carries where it\ncame from, so a claim about Croatian audit frequency can be traced to the\nCroatian record rather than to the model's memory of the directive.\n\nThe corpus is small enough that none of this needs embeddings or a vector\nstore: 29 country records (~27k tokens all told), 957 KPI rows, 118 watch\nitems. A question naming one country pulls about a thousand tokens.\n\nEvery function returns a plain object. app_chat.js serialises it to JSON and\nhands it back to the model as a tool result.",
-  "id": "d064"
+  "id": "d066"
  },
  {
   "src": "src/app_reg.js",
   "title": "Registre des réglementations",
   "keys": "réglementation NIS2 REC DORA CRA onglets bascule module ajouter",
   "text": "================= One tool, several regulations =================\n\nRegWatch started as a NIS 2 tool and the data model was generic from the\nstart; this is where that promise gets cashed in. Each regulation brings its\nown data files (src/reg/<id>/) and its own spec, and the app reads whichever\none is active.\n\nThe spec is what keeps REC from being either a clone or a fork. Three things\ndiffer between regulations and nothing else does:\n\n  which tabs exist    REC has no watch agent yet, so it has no inbox and no\n                      sources tab. Showing empty ones would be worse than\n                      not showing them.\n  which fields matter NIS 2 counts cyber requirements and audit frequencies;\n                      REC turns on whether the state designated its critical\n                      entities. Forcing one shape on both would leave a dozen\n                      empty columns on each side.\n  what a level means  The 1-4 maturity scale is shared - which is lucky and\n                      not accidental, both workbooks use it - but the wording\n                      of each level is per regulation.\n\nEverything else - the map, the country list, the level chips, the ordering,\nthe charts, the slide generator - is written against the core fields and\nneeds no branch.\n\nAdding DORA later means: a src/reg/dora/ folder, one entry here, and nothing\nelse. If that stops being true, this file is where the leak is.",
-  "id": "d065"
+  "id": "d067"
  },
  {
   "src": "src/app_kpi.js",
   "title": "Moteur de graphiques",
   "keys": "graphique indicateur KPI croisement barres camembert palette",
   "text": "================= Chart engine over the KPI table =================\n\nThe workbook's KPI sheet is a tidy table: one row per country per indicator.\nThis draws it. Nothing here owns a view - the assistant (app_chat.js) asks\nfor a chart through `kpiChart()` and drops the markup into a message, which\nis why every entry point takes its scope as an argument rather than reading\na filter off the page.\n\nOne indicator, form following its type:\n  numeric      a ranked bar - magnitude, single hue\n  categorical  share bar, donut or one square per country - identity\n\nSeveral indicators are crossed into ONE picture: countries down the side,\nindicators across the top, every cell coloured on its own column's scale.\nThat is the only single-chart form that takes a numeric and a categorical\nindicator side by side without lying about either. When every indicator is\nnumeric and their ranges are comparable, grouped bars are offered too.\n\nPalette: four categorical hues, validated with the dataviz palette checker in\nboth light and dark mode (lightness band, chroma floor, CVD separation,\nnormal-vision floor, contrast); anything beyond four folds into \"Other\"\nrather than inventing a fifth. Magnitude uses a sequential ramp of the brand\nviolet, light to dark, never a second hue.",
-  "id": "d066"
+  "id": "d068"
  },
  {
   "src": "src/app_kpi_xlsx.js",
   "title": "Export Excel",
   "keys": "export Excel xlsx classeur graphiques feuille téléchargement",
   "text": "================= KPI board -> .xlsx, in the browser =================\n\nA CSV carries the numbers and nothing else. What a consultant actually hands\nover is a workbook where each indicator has its own sheet, with the table AND\nthe chart that reads it - so the chart is a real Excel chart, bound to the\ncells beside it, editable and recolourable once it lands in a deck.\n\nEverything is written by hand: a minimal SpreadsheetML package (workbook,\nsheets, a drawing and a chart part per panel) zipped with the same writer the\ndeck generator uses. Entries are STORED, not deflated, which keeps the whole\nexport synchronous - an async export loses the user gesture and iOS Safari\nthen refuses the download.",
-  "id": "d067"
+  "id": "d069"
  },
  {
   "src": "src/app_part2.js",
   "title": "Vues pays, file de veille, sources",
   "keys": "fiche pays file veille validation sources registre affichage rôle",
   "text": "---------- Countries list ----------",
-  "id": "d068"
+  "id": "d070"
  },
  {
   "src": "src/build.sh",
   "title": "Construction du fichier unique",
   "keys": "build construire compiler fichier unique bundle zsh reconstruire déployer",
   "text": "Ce script a besoin de zsh : les listes de fichiers ci-dessous sont des\ntableaux, et bash ne les eclate pas - `cat $APP` n'y prend que le premier\nfichier. Lance sous bash, le build produisait un bundle ampute de 90 % de\nl'application, et `node --check` le validait sans rien dire. On se relance\ndonc sous zsh plutot que de faire confiance a l'appelant.",
-  "id": "d069"
+  "id": "d071"
  },
  {
   "src": "tools/veille_to_watchitems.py",
   "title": "Conversion du classeur de veille",
   "keys": "conversion classeur tblVeille routage router cellule thème verbatim extrait date provenance élément de veille",
-  "text": "Convert the NIS 2 watch agent's Excel output into RegWatch WatchItems.\n\nSource  : agent_veille_NIS2.xlsx / table `tblVeille`\n          (github.com/aurelienbrun-alt/Agent_mapping - \"agent de veille\")\nTargets : data/watch-items.json  - the exchange contract, for a hosted RegWatch\n          src/reg/nis2/data_watch.js      - `const WATCH_QUEUE = [...]`, for the standalone build\n\nStdlib only: the workbook is read straight from the OOXML zip, so this runs on any\nPython 3 without openpyxl and without touching the agent's repository.\n\n    python3 tools/veille_to_watchitems.py <path/to/agent_veille_NIS2.xlsx>",
-  "id": "d070"
+  "text": "Convert the NIS 2 watch agent's Excel output into RegWatch WatchItems.\n\nSource  : agent_veille_NIS2.xlsx / table `tblVeille`\n          (github.com/aurelienbrun-alt/Agent_mapping - \"agent de veille\")\nTargets : data/watch-items.json  - the exchange contract, for a hosted RegWatch\n          src/reg/nis2/data_watch.js      - `const WATCH_QUEUE = [...]`, for the standalone build\n\nStdlib only: the workbook is read straight from the OOXML zip, so this runs on any\nPython 3 without openpyxl and without touching the agent's repository.\n\n    python3 tools/veille_to_watchitems.py                  # data/veille/records.json (agent RegWatch)\n    python3 tools/veille_to_watchitems.py <path/to/agent_veille_NIS2.xlsx>   # ancien classeur",
+  "id": "d072"
  },
  {
   "src": "tools/reliability.py",
   "title": "Score de fiabilité",
   "keys": "score fiabilité note doublon pénalité composante objectif",
   "text": "An objective reliability score for a watch item, and duplicate detection.\n\n    python3 tools/reliability.py            # score the current items, report\n    python3 tools/reliability.py --write    # write scores back into the data\n\nWhy not use the agent's own score. It exists, and it sorts nothing: across 89\nitems it returns 8 for 37 of them and 9 for 38 more. Eighty-four percent of the\nqueue sits on two adjacent values, so a validator ordering by it works through\nan essentially random list. It is a model's opinion of relevance, which is a\ndifferent question from \"how far can this be trusted\", and it cannot be audited.\n\nEvery component below is a fact about the item, computable without a model, and\nreported alongside the total so a validator can see which one is missing rather\nthan being handed a number.\n\n  Source          30   the domain. An authority is not an opinion.\n  Own words       25   did we get the source's text, or only a paraphrase\n  Date            20   how the publication date was established, if at all\n  Actionability   15   does it point at cells of the comparative workbook\n  Freshness       10   published recently, when we know when\n\n  penalties       -10  a publication date later than the detection date, which\n                       is impossible and means a page's \"last updated\" line was\n                       read as a publication date\n                  -15  a near-duplicate of an item already seen from the same\n                       domain\n\nWhat was measured and left out\n  Corroboration - the same story from two independent sources - is the textbook\n  objectivity test and does not work here: of twenty groups of near-identical\n  titles, nineteen are the same domain repeating itself and one is a genuine\n  cross-confirmation. Two percent of items. A component that fires on 2% ranks\n  nothing, so it is not one; it is reported as a flag when it happens.",
-  "id": "d071"
+  "id": "d073"
  },
  {
   "src": "tools/theme_terms.py",
   "title": "Vocabulaire des thèmes",
   "keys": "thème vocabulaire langue terme routage mots-clés multilingue",
   "text": "Theme vocabulary in the languages the sources are actually written in.\n\nThe cell router matched French and English only. That was invisible for as long\nas it read the agent's summary - the agent writes French whatever the source\nlanguage, so it was doing translation work without anyone noticing. The moment\nthe router started reading article bodies, the gap opened: a Czech NÚKIB page\nnever contains the word \"sanction\", and a German BSI page never contains\n\"référentiel\".\n\nMeasured on sixteen live pages before this existed: routing on the body alone\nlost 22 themes it should have kept, and the language mismatch was one of the two\ncauses.\n\nCoverage is deliberately shallow and wide rather than exhaustive: two to five\nunmistakable words per theme per language. A router wants recall - a theme\nraised wrongly is dismissed by the validator in a second, a theme never raised\nis invisible - and a long tail of near-synonyms buys little while inviting false\nmatches on unrelated pages.\n\nLanguages: the twenty-four the authority registry actually publishes in, plus\nNorwegian. Greek and Bulgarian are written in their own scripts, which makes\nthem safer to match than the Latin ones, not riskier.\n\nUsed by tools/veille_to_watchitems.py, which composes the final patterns.",
-  "id": "d072"
+  "id": "d074"
  },
  {
   "src": "tools/excel_cellmap.py",
   "title": "Carte des cellules du classeur",
   "keys": "cellule classeur comparatif carte feuille colonne ligne pays",
   "text": "Build the address book of the comparative KPI workbook.\n\nEvery fact RegWatch shows lives in one cell of `CYBER WATCH5_Technical inventory.xlsx`,\naddressed by (sheet, country row, field column). This script extracts that addressing\nonce, so two things become possible:\n\n  1. the watch agent can name the exact cells a source would change, instead of\n     emitting a vague \"suggested action\";\n  2. RegWatch can read the workbook back and know which field it is looking at.\n\nOutput: data/excel-cellmap.json\n\n    python3 tools/excel_cellmap.py \"ressources/CYBER WATCH5_Technical inventory.xlsx\"\n\nRead-only: the workbook is never written back. Columns holding formulas are flagged\n`writable: false` — those are computed by Excel and must never be overwritten.",
-  "id": "d073"
+  "id": "d075"
  },
  {
   "src": "tools/fetch_excerpts.py",
   "title": "Récupération des articles",
   "keys": "article extrait corps page scraping récupérer texte source cache",
   "text": "Fetch the opening lines of each watched article.\n\nThe agent stores an AI-written summary, never the source text. A validator wants\nto read the article's own first lines before trusting anything generated, so we\nfetch them here and cache them.\n\n    python3 tools/fetch_excerpts.py            # fill the cache for pending items\n    python3 tools/fetch_excerpts.py --refresh  # refetch even cached URLs\n\nReads data/watch-items.json, writes data/excerpt-cache.json keyed by URL.\n`veille_to_watchitems.py` then reads that cache offline, so the conversion stays\nfast and works with no network.\n\nFailures are cached too, with their reason: a paywalled or WAF-blocked source\nshould not be retried on every run, and the card falls back to the AI summary.",
-  "id": "d074"
+  "id": "d076"
  },
  {
   "src": "tools/export_sources.py",
   "title": "Export des sources vers l'agent",
   "keys": "source registre tblSources export flux autorité ajouter",
   "text": "Emit the authority feeds as tblSources rows, ready to paste into the agent.\n\n    python3 tools/export_sources.py                       # the gap, as a table\n    python3 tools/export_sources.py --csv                 # the rows, as CSV\n    python3 tools/export_sources.py --patch <workbook>    # a corrected copy\n\nWhy this exists. The watch agent collects 53% of its items from Google News and\n21% from the national authorities, while the registry holds 22 authority feeds\nthat were probed and found to work. The imbalance is not a scraping problem - it\nis a source-list problem, and it has three consequences:\n\n  unreadable   a Google News link resolves to a consent wall. Its article text\n               can never be fetched, so those items carry no excerpt, no\n               publication date read off the page, and nothing for the router to\n               read beyond the agent's own summary.\n  second-hand  the aggregator reports on the authority. The authority is the\n               source, and it publishes first.\n  unstable     the aggregator's URL is an opaque token that neither decodes nor\n               redirects; the authority's URL is permanent.\n\nThis does not say \"drop Google News\". It says put the authorities in front of\nit: an aggregator is good at telling you a subject exists in a country whose\nauthority publishes nothing, which is exactly the 7 countries whose feed is\npage-only or down.\n\nColumns match the agent's own tblSources, read from the workbook when one is\ngiven so the copy keeps every other column - CSS selector, API paths, the\ndiscovery metadata - untouched.\n\nThe original is never written to. --patch writes a new file beside it.",
-  "id": "d075"
+  "id": "d077"
  },
  {
   "src": "tools/compare_watch.py",
   "title": "Comparaison avec la veille du cabinet",
   "keys": "comparaison veille presse cabinet manque bruit couverture",
   "text": "Confronter la veille de l'agent à la veille presse du cabinet.\n\n    python3 tools/compare_watch.py              # la comparaison, hors ligne\n    python3 tools/compare_watch.py --probe      # sonde en plus les domaines\n\nLe cabinet reçoit une veille presse (agrégateur de type Factiva) sur les mêmes\nsujets que l'agent. Les deux listes ne se recouvrent presque pas, et la question\nposée est : pourquoi l'agent n'a-t-il pas ces articles.\n\nTrois causes possibles, qu'il faut séparer avant de conclure quoi que ce soit :\n\n  fenêtre     l'agent n'a pas tourné sur la période. Rien à corriger dans le\n              scraping ; c'est une question d'exploitation.\n  registre    le domaine n'est pas dans tblSources. L'agent ne l'a pas raté :\n              il ne l'a jamais regardé.\n  collecte    le domaine est surveillé mais la page n'a pas pu être lue.\n\nEt une quatrième, qui va dans l'autre sens : une bonne part de la liste du\ncabinet n'a rien à voir avec NIS 2. Un agrégateur qui filtre sur la chaîne\n« Network and Information Security » ramène des appels d'offres chinois, et\n« DSP » ramène du traitement du signal audio. Compter ces lignes comme des\nmanques de l'agent fausserait la mesure dans l'autre sens.\n\nLa liste du cabinet est saisie ici telle que reçue, avec pour chaque ligne le\nmotif de son classement, pour que le jugement soit relisible et discutable.",
-  "id": "d076"
+  "id": "d078"
  },
  {
   "src": "tools/make_deck_pptx.py",
   "title": "Génération de la présentation",
   "keys": "présentation slides PowerPoint pptx deck charte",
   "text": "La présentation RegWatch en trois slides, au format PowerPoint.\n\n    python3 tools/make_deck_pptx.py            # -> RegWatch - presentation.pptx\n\nTrois slides pour comprendre l'outil en entier : ce que le consultant a sous les\nyeux, comment la veille remonte de la source publiée jusqu'à la cellule du\nclasseur comparatif, et ce qui fait tenir l'assistant.\n\nC'est un deck de lecture, pas de projection : la densité y est voulue, on doit\npouvoir le parcourir seul, sans commentaire. Les schémas sont dessinés en formes\nPowerPoint natives et le graphique est un vrai graphique - tout reste editable,\nrien n'est aplati en image.\n\nLa police est Aptos : la charte du cabinet, et le défaut de Microsoft 365, donc\nprésente sur le poste pro.\n\nChaque chiffre est repris du jeu de données ou du code de l'outil, avec sa source\nen commentaire, pour qu'aucune affirmation du deck ne soit invérifiable.",
-  "id": "d077"
+  "id": "d079"
  },
  {
   "src": "agent-veille/collect.py",
   "title": "Passe de collecte",
   "keys": "collecte flux RSS fenêtre agrégateur éditeur notation pertinence",
   "text": "Une passe de collecte sur le registre de l'agent, depuis une date donnée.\n\n    python3 agent-veille/collect.py                     # depuis le dernier run\n    python3 agent-veille/collect.py --since 2026-08-14\n    python3 agent-veille/collect.py --score             # note la pertinence (Azure)\n    python3 agent-veille/collect.py --publishers        # qui écrit derrière l'agrégateur\n\nCe n'est pas l'agent du stagiaire et cela ne le remplace pas : son code vit dans\nson dépôt, avec sa logique de sélecteurs CSS, ses invites et son écriture dans\ntblVeille. Ce fichier lit le même registre `tblSources` et interroge les mêmes\nflux, pour répondre à une question précise que son agent ne peut pas répondre\ntant qu'il ne tourne pas : qu'y avait-il à prendre pendant la fenêtre non\ncouverte.\n\nLa collecte ne coûte rien et ne touche pas à la clé : le tri est lexical, donc\ngrossier et vérifiable à l'oeil - il écarte d'abord les avis de vulnérabilité,\nqui forment l'essentiel des flux de CERT, puis retient ce qui parle de\ntransposition, d'enregistrement, de sanction ou d'autorité.\n\n`--score` appelle le modèle du cabinet, et seulement sur ce que le filtre a déjà\nretenu : le lexical fait le gros du tri pour rien, le modèle ne juge que la\ncourte liste. Le coût réel en jetons est affiché à la fin de chaque exécution,\nparce qu'une dépense qu'on ne voit pas est une dépense qu'on ne contrôle pas.\n\nRien n'est écrit dans le classeur de l'agent, jamais. Sortie : un rapport, et\ndata/collect-<date>.json si --write.",
-  "id": "d078"
+  "id": "d080"
  },
  {
   "src": "agent-veille/health.py",
   "title": "Rapport de santé",
   "keys": "santé indicateurs régression référence fraîcheur exploitation vérifier",
   "text": "One page telling you whether the watch pipeline is healthier than last time.\n\n    python3 agent-veille/health.py              # the state, and the drift\n    python3 agent-veille/health.py --save       # make this run the reference\n\nEvery improvement to this pipeline over the past week was measured by hand, once,\nand then forgotten. That is how a fix to the excerpts silently breaks the dates:\nnobody looks at the dates that day. This reads the same numbers every time, from\nthe files the pipeline actually produces, and prints what moved since the last\nsaved run.\n\nIt computes nothing new and repairs nothing. It is a thermometer, and a\nthermometer that changed the temperature would be useless.\n\nRead it as: a metric that drops is a regression to explain, not a number to\naccept. Several of these are known to be low - about half the items come from an\naggregator whose article text cannot be reached, which caps excerpts and dates at\nonce. The point is the direction, not the absolute.",
-  "id": "d079"
+  "id": "d081"
  },
  {
   "src": "agent-veille/discover_sources.py",
   "title": "Découverte de sources",
   "keys": "découverte source candidat proposition validateur crawl domaine",
   "text": "Propose new watch sources, for a human to accept or reject.\n\n    python3 agent-veille/discover_sources.py             # crawl and propose\n    python3 agent-veille/discover_sources.py --limit 20  # fewer seeds, quicker\n\ndiscover_feeds.py answers \"does this authority publish a feed\" for a list we\nalready have. This answers the other question: what else is out there.\n\nIt never adds anything. It writes candidates; the Watch inbox shows them to a\nvalidator, and only an accepted candidate reaches the source registry. That is\nthe same rule the watch items follow, for the same reason: an automated pipeline\nthat can widen its own inputs without a human in the loop will eventually widen\nthem somewhere nobody wanted to go.\n\nHow a candidate is found\n  Seeds are the pages we already trust: the authority sites, the official links\n  on the country records, the sources of the current watch items. Their outbound\n  links are read, and a link survives three filters:\n\n    unknown      its domain is not already watched, and was not rejected before\n    plausible    the host names itself a cyber authority (cert, csirt, ncsc,\n                 cyber, nukib...), or the link text says it is about NIS 2. A\n                 bare government suffix is NOT enough: six Latvian ministry\n                 portals came through on \".gov.lv\" alone, linked from a shared\n                 template and unrelated to the subject.\n    reachable    it answers, and if it announces a feed the feed parses\n\nHow a candidate is classified\n  On the domain, not on the model's opinion: a European or national government\n  domain is `Officielle`, everything else is `Non officielle - à vérifier`.\n  That is the classification the registry already uses, applied mechanically so\n  it cannot drift.\n\nOutput: data/source-candidates.json, src/reg/nis2/data_candidates.js",
-  "id": "d080"
+  "id": "d082"
  },
  {
   "src": "agent-veille/discover_feeds.py",
   "title": "Sondage des flux d'autorités",
   "keys": "flux autorité sondage RSS vérifier disponible",
   "text": "Find and verify the RSS feeds of every national cyber authority.\n\n    python3 agent-veille/discover_feeds.py            # probe all\n    python3 agent-veille/discover_feeds.py FR DE      # probe some\n\nWhy probe rather than list: a hand-written list of 29 feed URLs is stale the day\nit is written, and a dead feed is invisible - the agent simply stops seeing that\ncountry. This asks each authority site what feeds it advertises, then checks the\nfeed actually parses and carries dated entries.\n\nFor each candidate site it tries, in order:\n  1. <link rel=\"alternate\" type=\"application/rss+xml\"> in the homepage head\n  2. the usual paths (/feed, /rss, /rss.xml, /atom.xml, ...)\nand keeps whatever returns a feed with at least one dated entry.\n\nOutput: data/authority-feeds.json - the registry the Sources tab reads and the\nagent's tblSources can absorb.",
-  "id": "d081"
+  "id": "d083"
  },
  {
   "src": "agent-veille/translate_items.py",
   "title": "Traduction des éléments",
   "keys": "traduction traduire anglais français cache lot vérification",
   "text": "Translate watch items into the interface languages.\n\n    python3 agent-veille/translate_items.py \"<path to agent de veille>/.env\"\n\nTwo different problems, one pass.\n\nThe agent writes its analysis in French whatever the source language, so an\nEnglish-speaking reader got a French interface's worth of content: title and\nsummary are translated to English.\n\nThe excerpt is a harder case. It is the source's own opening lines, so it\narrives in Polish, Czech, Dutch or German — unreadable to most of the team in\neither interface language. It is now translated into BOTH English and French,\nand the original is kept: the card shows the reader's language and offers the\nsource's own words underneath. That was the reason for not translating it\nbefore — a validator checking a regulatory text must be able to read it as\npublished — and keeping the original satisfies it without leaving fifteen\nitems unreadable.\n\nCache shape: {source text: {\"en\": ..., \"fr\": ...}}, only the languages actually\nrequested. Values written by an older version were plain strings meaning\nEnglish, and are read as such.\n\nOutput: data/translations-cache.json. veille_to_watchitems.py reads it offline\nand emits titleEn / summaryEn / excerptEn / excerptFr.",
-  "id": "d082"
+  "id": "d084"
  },
  {
   "src": "azure-proxy/function_app.py",
   "title": "Proxy Azure - code",
   "keys": "proxy Azure clé secret CORS origine plafond jetons déploiement",
   "text": "RegWatch chat proxy — an Azure Function that holds the key so the page does not.\n\nRegWatch is a static file. Anything written into it is published: the deployed\npage is downloadable by anyone, so a shared Azure OpenAI key baked in would be a\npublic key, billed to the firm by whoever finds it. This Function is where the\nkey lives instead. The page calls it and never sees a secret.\n\nIt speaks the OpenAI chat-completions shape on purpose, so RegWatch's existing\n\"OpenAI-compatible\" mode points at it with no code change:\n\n    endpoint = https://<app>.azurewebsites.net/api/v1\n\nApplication settings (Azure portal -> Configuration, or `az functionapp config\nappsettings set`):\n\n    AZURE_OPENAI_API_KEY        the firm's key — set here, nowhere else\n    AZURE_OPENAI_ENDPOINT       https://<resource>.services.ai.azure.com\n    AZURE_OPENAI_DEPLOYMENT     e.g. gpt-5.4-mini\n    AZURE_OPENAI_API_VERSION    optional, defaults below\n    REGWATCH_ALLOWED_ORIGINS    comma-separated, e.g. https://jcsssss.github.io\n                                (a server-side check; the BROWSER-side CORS\n                                 headers come from the Function App's own CORS\n                                 settings — see `az functionapp cors add`)\n    REGWATCH_SHARED_SECRET      optional; when set, callers must send it in\n                                the x-regwatch-key header\n\nOn what protects this endpoint — worth reading before deploying:\n\n  The origin allowlist stops a browser on another site from using your quota,\n  because a browser will not lie about Origin. It is NOT a security boundary:\n  curl sends whatever header it likes. It is a cost guard, not a lock.\n\n  A real lock is Easy Auth (Authentication -> Microsoft, require authentication),\n  which admits only tenant accounts and needs no code here. Its session cookie is\n  same-site, so it works when the page is served from this same Function App —\n  which is also how you stop publishing the page itself. See README.md.\n\n  REGWATCH_SHARED_SECRET sits in between: revocable and rate-limitable, but it\n  has to reach the browser, so treat it as a throttle rather than a secret. It\n  is accepted as a bearer token too, which is what RegWatch's \"API key\" box\n  already sends - so switching to it needs no change in the page.\n\nNothing about a request is logged beyond its shape. The bodies carry client\nquestions and regulatory content, and an internal tool has no business keeping\nthem in Application Insights.",
-  "id": "d083"
+  "id": "d085"
  },
  {
   "src": "data/health-baseline.json",
   "title": "Chiffres mesurés",
   "text": "Rapport de santé du 2026-09-07 (agent-veille/health.py) :\n  éléments dans la file de veille : 89\n  % issus d'une source officielle : 51\n  % issus d'un agrégateur : 49\n  % avec un extrait de la source : 36\n  % dont la date de publication est établie : 46\n  % dont la date vient d'un flux : 0\n  % routés vers une cellule du classeur : 74\n  % avec un passage cité de la source : 25\n  score de fiabilité médian sur 100 : 30\n  flux d'autorités exploitables : 22\n  sources proposées en attente : 35",
-  "id": "d084"
+  "id": "d086"
  }
 ];

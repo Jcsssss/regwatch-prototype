@@ -89,7 +89,21 @@ DROP = re.compile(
 
 
 def sources(workbook):
-    """Les sources actives du registre de l'agent, telles qu'il les lit."""
+    """Les sources actives du registre, telles que l'agent les lit.
+
+    Le registre vit desormais dans le depot (data/veille/sources.json, tenu par
+    regwatch_agent.py) ; le classeur de l'ancien agent ne sert plus que s'il
+    n'a pas encore ete importe."""
+    reg = ROOT / "data" / "veille" / "sources.json"
+    if reg.exists():
+        out = []
+        for r in json.loads(reg.read_text(encoding="utf-8")).get("sources", []):
+            if str(r.get("Actif", "")).strip().lower() != "oui" or not r.get("URL / Endpoint"):
+                continue
+            out.append({"name": str(r.get("Source") or "").strip(), "url": str(r["URL / Endpoint"]).strip(),
+                        "type": str(r.get("Type") or "").strip(),
+                        "iso": str(r.get("Pays / zone") or r.get("Pays / zone ") or "").strip()})
+        return out
     try:
         import openpyxl
     except ImportError:

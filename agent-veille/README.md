@@ -3,7 +3,33 @@
 Ce dossier regroupe le code RegWatch relatif à l'agent de veille réglementaire :
 préflight, tests, patchs à appliquer à l'agent, et intégration.
 
-## Où vit l'agent, et où vivent nos modifications
+## L'agent RegWatch (depuis le 18 septembre 2026)
+
+La veille tourne désormais **depuis ce dépôt** : `regwatch_agent.py`. Il reprend le déroulé
+de l'ancien agent (flux RSS, pages web avec sélecteur CSS et récolte des liens, API ; tri par
+le modèle ; contenus anciens écartés ; doublons ; fiche complète) et écrit **les mêmes colonnes**
+que l'ancien classeur, dans `data/veille/records.json`. Le convertisseur les lit comme il lisait
+le classeur : la file de veille de l'interface garde tous ses champs.
+
+```sh
+python3 agent-veille/regwatch_agent.py pipeline    # une passe complète, jusqu'au site reconstruit
+python3 agent-veille/regwatch_agent.py run --dry   # lire les sources sans appeler le modèle
+python3 agent-veille/regwatch_agent.py run --only "BSI"   # une seule source, pour tester
+```
+
+| Fichier | Contenu |
+|---|---|
+| `data/veille/sources.json` | le registre (76 sources, 51 actives), à modifier à la main |
+| `data/veille/records.json` | toutes les détections, anciennes et nouvelles |
+| `data/veille/state.json` | pages déjà vues, URL déjà jugées, date de la dernière passe complète |
+
+La fenêtre de recherche part de la **dernière passe complète** (moins 3 jours, 60 jours au plus) :
+un agent qui n'a pas tourné pendant un mois ne perd pas ce mois-là. Configuration Azure dans
+`.env`. Le registre, les détections et la mémoire de l'ancien agent ont été importés le
+18 septembre 2026 (`regwatch_agent.py import <classeur> --state <state.json>`), y compris les
+33 détections du 28 août qui n'étaient jamais arrivées dans l'outil.
+
+## Historique : l'ancien agent, et nos modifications
 
 | | Dépôt | Qui peut y écrire |
 |---|---|---|

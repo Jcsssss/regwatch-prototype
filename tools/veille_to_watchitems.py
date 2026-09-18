@@ -9,7 +9,8 @@ Targets : data/watch-items.json  - the exchange contract, for a hosted RegWatch
 Stdlib only: the workbook is read straight from the OOXML zip, so this runs on any
 Python 3 without openpyxl and without touching the agent's repository.
 
-    python3 tools/veille_to_watchitems.py <path/to/agent_veille_NIS2.xlsx>
+    python3 tools/veille_to_watchitems.py                  # data/veille/records.json (agent RegWatch)
+    python3 tools/veille_to_watchitems.py <path/to/agent_veille_NIS2.xlsx>   # ancien classeur
 """
 
 import json
@@ -661,14 +662,24 @@ def build_items(rows):
     return items, report
 
 
-def main():
-    if len(sys.argv) < 2:
-        raise SystemExit(__doc__)
-    xlsx = Path(sys.argv[1]).expanduser()
-    if not xlsx.exists():
-        raise SystemExit("workbook not found: %s" % xlsx)
+def read_records(path):
+    """Les detections de l'agent RegWatch (agent-veille/regwatch_agent.py).
 
-    items, report = build_items(read_table(xlsx, WATCH_TABLE))
+    Memes colonnes que tblVeille, memes noms : chaque valeur est rendue sous la
+    forme texte qu'avait la cellule, pour que build_items n'y voie aucune
+    difference avec le classeur."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for r in data.get("records", []):
+        yield {k: ("" if v is None else str(v)) for k, v in r.items()}
+
+
+def main():
+    src = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else ROOT / "data" / "veille" / "records.json"
+    if not src.exists():
+        raise SystemExit("introuvable : %s" % src)
+
+    rows = read_records(src) if src.suffix == ".json" else read_table(src, WATCH_TABLE)
+    items, report = build_items(rows)
 
     json_path = ROOT / "data" / "watch-items.json"
     json_path.parent.mkdir(exist_ok=True)

@@ -97,12 +97,14 @@ python3 tools/build_devcode.py   # code source   -> src/data_devcode.js
 
 ## La chaîne de veille, en bref
 
-L'agent de collecte vit **dans un autre dépôt** (celui de son auteur) ; ce dépôt-ci porte ce
-qui l'entoure : le registre de sources, la conversion de son classeur vers la file de veille,
-le routage vers les cellules du classeur comparatif, le score de fiabilité et les mesures.
-`agent-veille/README.md` détaille l'organisation.
+L'agent de veille tourne **depuis ce dépôt** (`agent-veille/regwatch_agent.py`) : registre des
+sources, détections et mémoire sont dans `data/veille/`. Il remplace l'agent tenu dans un autre
+dépôt, dont il a repris le registre et l'historique complet. Ce dépôt porte aussi la conversion
+vers la file de veille, le routage vers les cellules du classeur comparatif, le score de
+fiabilité et les mesures. `agent-veille/README.md` détaille l'organisation.
 
 ```sh
+python3 agent-veille/regwatch_agent.py pipeline   # une passe de veille, jusqu'au site reconstruit
 python3 agent-veille/health.py     # l'état de la file, et ce qui a bougé depuis la référence
 python3 agent-veille/health.py --probe   # en plus : quelles sources du registre bloquent l'agent
 python3 agent-veille/collect.py    # une passe de collecte sur le registre de l'agent
