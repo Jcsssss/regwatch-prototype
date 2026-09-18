@@ -65,17 +65,15 @@ const EU_REGIONS = ["North", "South", "East", "West"];
 const EU_PRESETS = ["all", "done", "todo", "regions", "custom"];
 function euAll(){ return COUNTRIES.slice().sort((a, b) => a.name.localeCompare(b.name, lang)); }
 function euTransposed(iso){ return euYes(euCell(iso, "id", "F")); }
-/* Par defaut : les quatre regions cochees, soit les 27 Etats membres - la base
-   de comparaison de l'etude. Les anciens choix enregistres (« UE 27 », une
-   region seule) sont repris sous cette forme. */
+/* Par defaut : tous les pays suivis, et aucune region cochee - on choisit ses
+   regions soi-meme. Les anciens choix enregistres (« UE 27 », une region seule)
+   sont repris sous cette forme. */
 function euSelState(){
   const s = store.euSel || {};
-  let preset = s.preset, regions = Array.isArray(s.regions) ? s.regions.filter(r => EU_REGIONS.includes(r)) : null;
-  if (preset === "eu" || !EU_PRESETS.includes(preset)) {
-    if (typeof preset === "string" && preset.startsWith("r:")) regions = [preset.slice(2)];
-    preset = "regions";
-  }
-  return { preset, isos: Array.isArray(s.isos) ? s.isos : [], regions: regions || EU_REGIONS.slice() };
+  let preset = s.preset, regions = Array.isArray(s.regions) ? s.regions.filter(r => EU_REGIONS.includes(r)) : [];
+  if (typeof preset === "string" && preset.startsWith("r:")) { regions = [preset.slice(2)]; preset = "regions"; }
+  if (!EU_PRESETS.includes(preset)) preset = "all";
+  return { preset, isos: Array.isArray(s.isos) ? s.isos : [], regions };
 }
 function euSelection(){
   const s = euSelState();
@@ -819,7 +817,7 @@ function renderEurope(arg){
     }).filter(Boolean).map(ch => euCard(ch, sel)).join("") : "";
     return `<section class="fsec eu-sec-w" id="eusec-${sec.key}" data-fsec="${sec.key}">
       <div class="fsec-h"><div class="ic">${ficheIcon(sec.icon)}</div><h2>${t(sec.tKey)}</h2></div>
-      <div class="eu-grid">${cards || `<p class="eu-empty">${t("eu.noSel")}</p>`}</div>
+      <div class="eu-grid">${cards || `<p class="eu-empty">${t(s.preset === "regions" && !s.regions.length ? "eu.noRegion" : "eu.noSel")}</p>`}</div>
     </section>`;
   }).join("");
 
@@ -836,10 +834,6 @@ function renderEurope(arg){
 
       <span class="eu-count">${t("eu.count", { n: sel.length })}</span>
       <div class="eu-pick" id="euRegions" ${s.preset === "regions" ? "" : "hidden"}>
-        <div class="eu-pick-a">
-          <button type="button" data-rpick="all">${t("eu.pickAllR")}</button>
-          <button type="button" data-rpick="none">${t("eu.pickNoneR")}</button>
-        </div>
         <div class="eu-pick-g eu-rgrid">${EU_REGIONS.map(r => {
           const list = all.filter(c => c.eu && c.region === r);
           const on = s.regions.includes(r);
@@ -894,9 +888,10 @@ function euWire(el){
   el.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
     const cur = euSelState();
     const p = b.dataset.preset;
-    /* Passer en personnalise part de la selection affichee, pas d'une liste vide. */
+    /* La selection personnalisee s'ouvre vide, comme les regions : on coche ses
+       pays soi-meme. Rester sur « personnalise » garde ce qui est coche. */
     euSetSel(p === "custom" ? { preset: "custom", regions: cur.regions,
-                                isos: cur.preset === "custom" ? cur.isos : euSelection().map(c => c.iso) }
+                                isos: cur.preset === "custom" ? cur.isos : [] }
                             : { preset: p, isos: cur.isos, regions: cur.regions });
   }));
   el.querySelectorAll("#euPick .eu-chk input").forEach(i => i.addEventListener("change", () => {
@@ -907,8 +902,7 @@ function euWire(el){
     const regions = [...el.querySelectorAll("#euRegions .eu-chk input:checked")].map(x => x.value);
     euSetSel({ preset: "regions", regions, isos: euSelState().isos });
   }));
-  el.querySelectorAll("[data-rpick]").forEach(b => b.addEventListener("click", () =>
-    euSetSel({ preset: "regions", regions: b.dataset.rpick === "all" ? EU_REGIONS.slice() : [], isos: euSelState().isos })));
+
   el.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
     const all = euAll();
     const k = b.dataset.pick;

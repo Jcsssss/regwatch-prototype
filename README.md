@@ -125,7 +125,7 @@ périmètre, incidents, enregistrement, référentiel, audits, sanctions), rang�
 pays. Tout est recalculé à l'ouverture depuis les données du classeur Cyber Watch embarquées
 dans l'outil : il suffit de régénérer les données et de reconstruire pour que les graphiques
 suivent. Un filtre limite la comparaison à des régions de l'UE (Nord, Sud, Est, Ouest, à cocher ;
-les quatre par défaut, soit les 27 États membres), aux pays transposés ou non, ou à une
+aucune par défaut : la vue s'ouvre sur tous les pays suivis), aux pays transposés ou non, ou à une
 sélection libre. La région de chaque pays est le champ `region` des fiches (`data_c*.js`).
 
 Chaque graphique propose un titre calculé depuis les données. Le consultant peut le réécrire
