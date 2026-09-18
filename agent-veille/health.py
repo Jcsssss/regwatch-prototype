@@ -33,6 +33,7 @@ EXCERPTS = ROOT / "data" / "excerpt-cache.json"
 FEEDS_JS = ROOT / "src" / "reg" / "nis2" / "data_authorities.js"
 CANDIDATES = ROOT / "data" / "source-candidates.json"
 BASELINE = ROOT / "data" / "health-baseline.json"
+PROBE = ROOT / "data" / "source-probe.json"
 
 AGGREGATORS = ("news.google.com", "news.yahoo.", "flipboard.", "msn.com")
 MIN_BODY = 500
@@ -46,7 +47,7 @@ BETTER_UP = {
 }
 BETTER_DOWN = {
     "aggregatorShare", "impossibleDates", "duplicates", "reliabilityLow",
-    "indexPagesRejected", "unreachableFeeds", "daysSinceRun",
+    "indexPagesRejected", "unreachableFeeds", "daysSinceRun", "sourcesBlocked",
 }
 
 # Au-delà, la file ne reflète plus la réalité : l'agent tourne une fois par
@@ -119,7 +120,61 @@ def measure():
         "feedsWorking": sum(1 for f in feeds if f.get("kind") == "rss"),
         "unreachableFeeds": sum(1 for f in feeds if f.get("kind") == "down"),
         "candidatesWaiting": len((cands or {}).get("candidates") or []),
+        "sourcesBlocked": sum(1 for v in ((load(PROBE, {}) or {}).get("sources") or {}).values()
+                              if v.get("state") == "bloquee"),
     }
+
+
+# ---------- les sources qui bloquent l'agent ----------
+#
+# Un site qui refuse les robots ne produit pas d'erreur dans la file : il ne
+# produit plus rien. Le trou ne se voit donc pas, sauf a aller frapper a chaque
+# porte. --probe le fait, avec l'identite qu'utilise la collecte, et garde pour
+# chaque source la date depuis laquelle elle est bloquee.
+#
+# On ne contourne rien : une page de verification anti-robot est signalee, pas
+# forcee. La reponse est de trouver un canal prevu pour les programmes (flux,
+# API officielle) ou de suivre la source a la main.
+CHALLENGE = re.compile(r"cf-chl|just a moment|captcha|access denied|attention required|"
+                       r"are you a robot|incapsula|verify you are human|awswaf|challenge-platform", re.I)
+
+
+def probe_sources():
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import requests
+    from concurrent.futures import ThreadPoolExecutor
+    from collect import sources, WORKBOOK, UA, TIMEOUT
+    srcs = sources(WORKBOOK)
+
+    def one(src):
+        try:
+            r = requests.get(src["url"], headers=UA, timeout=TIMEOUT, allow_redirects=True)
+            head = r.text[:6000]
+            # AWS WAF (EUR-Lex) repond 202 avec un corps vide et l'en-tete
+            # x-amzn-waf-action : challenge. Ce n'est pas une page, c'est un refus.
+            if (r.headers.get("x-amzn-waf-action") or "").lower() in ("challenge", "captcha", "block"):
+                return src, "bloquee", "HTTP %d (verification anti-robot AWS)" % r.status_code
+            if r.status_code in (401, 403, 429) or CHALLENGE.search(head):
+                return src, "bloquee", "HTTP %d%s" % (r.status_code, " (verification anti-robot)" if CHALLENGE.search(head) else "")
+            if r.status_code >= 400:
+                return src, "erreur", "HTTP %d" % r.status_code
+            if "consent.google" in r.url:
+                return src, "bloquee", "page de consentement"
+            return src, "ok", "HTTP %d" % r.status_code
+        except Exception as error:                      # noqa: BLE001
+            return src, "erreur", type(error).__name__
+
+    before = load(PROBE, {}) or {}
+    prev = before.get("sources", {})
+    today = date.today().isoformat()
+    out = {}
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for src, state, detail in pool.map(one, srcs):
+            since = prev.get(src["url"], {}).get("since") if prev.get(src["url"], {}).get("state") == state else today
+            out[src["url"]] = {"name": src["name"], "iso": src["iso"], "state": state, "detail": detail, "since": since}
+    PROBE.write_text(json.dumps({"date": today, "sources": out}, ensure_ascii=False, indent=1) + "\n",
+                     encoding="utf-8")
+    return out
 
 
 LABELS = [
@@ -156,6 +211,7 @@ LABELS = [
         ("feedsWorking", "flux d'autorités exploitables", ""),
         ("unreachableFeeds", "autorités injoignables", ""),
         ("candidatesWaiting", "sources proposées en attente", ""),
+        ("sourcesBlocked", "sources qui bloquent l'agent (--probe)", ""),
     ]),
 ]
 
@@ -177,8 +233,13 @@ def verdict(key, now, before):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--save", action="store_true", help="prendre cette exécution comme référence")
+    ap.add_argument("--probe", action="store_true",
+                    help="interroger chaque source du registre et repérer celles qui bloquent l'agent")
     args = ap.parse_args()
 
+    if args.probe:
+        print("sondage des sources du registre…")
+        probe_sources()
     now = measure()
     before = load(BASELINE)
     if before:
@@ -193,6 +254,23 @@ def main():
         print("!! L'agent n'a rien détecté depuis %d jours (dernière détection le %s)."
               % (now["daysSinceRun"], now["lastRun"] or "?"))
         print("   Tout ce qui suit décrit une photo, pas la situation.\n")
+
+    # Les sources bloquees sont nommees, pas seulement comptees : c'est une
+    # liste a traiter, source par source.
+    probe = load(PROBE, {}) or {}
+    blocked = [v for v in (probe.get("sources") or {}).values() if v.get("state") == "bloquee"]
+    if probe:
+        age = (date.today() - date.fromisoformat(probe["date"])).days
+        if blocked:
+            print("!! %d source(s) du registre bloquent l'agent (sondage du %s) :" % (len(blocked), probe["date"]))
+            for v in sorted(blocked, key=lambda x: x["since"]):
+                print("   %-6s %-44s %-34s depuis le %s" % (v["iso"][:6], v["name"][:44], v["detail"][:34], v["since"]))
+            print("   Chercher un canal prévu pour les programmes (flux, API officielle),")
+            print("   ou suivre ces pages à la main. Ne pas forcer une vérification anti-robot.\n")
+        if age >= STALE_DAYS:
+            print("   (sondage vieux de %d jours : relancer avec --probe)\n" % age)
+    else:
+        print("   Aucun sondage des sources : lancer avec --probe pour repérer les blocages.\n")
 
     alerts = 0
     for section, rows in LABELS:

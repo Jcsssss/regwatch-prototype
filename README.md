@@ -104,9 +104,16 @@ le routage vers les cellules du classeur comparatif, le score de fiabilité et l
 
 ```sh
 python3 agent-veille/health.py     # l'état de la file, et ce qui a bougé depuis la référence
+python3 agent-veille/health.py --probe   # en plus : quelles sources du registre bloquent l'agent
 python3 agent-veille/collect.py    # une passe de collecte sur le registre de l'agent
 python3 tools/veille_to_watchitems.py <classeur.xlsx>   # classeur -> file de veille
 ```
+
+Les liens Google News mènent à une page de consentement, pas à l'article.
+`tools/fetch_excerpts.py` retrouve alors l'article chez son éditeur (même identifiant
+d'article dans la recherche RSS de Google News, puis flux, recherche WordPress ou plan de site
+de l'éditeur) ; la file affiche l'extrait et le lien direct. Cela marche surtout sur les
+articles récents : la recherche de Google News ne remonte pas loin.
 
 `health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la
 veille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.

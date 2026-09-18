@@ -124,7 +124,7 @@ const WATCH_QUEUE_AGENT = [
       }
     ],
     "reliability": {
-      "score": 95,
+      "score": 80,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -132,9 +132,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 10
       },
-      "penalties": {},
-      "notes": [],
-      "duplicateOf": null
+      "penalties": {
+        "duplicate": -15
+      },
+      "notes": [
+        "duplicate"
+      ],
+      "duplicateOf": "REG-20260814114913-001-EU"
     }
   },
   {
@@ -225,7 +229,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-NL"
+      "duplicateOf": "REG-20260814114913-001-EU"
     }
   },
   {
@@ -316,7 +320,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-NL"
+      "duplicateOf": "REG-20260814114913-001-EU"
     }
   },
   {
@@ -351,7 +355,7 @@ const WATCH_QUEUE_AGENT = [
     "targetCells": [],
     "verbatim": [],
     "reliability": {
-      "score": 65,
+      "score": 80,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -359,13 +363,9 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 10
       },
-      "penalties": {
-        "duplicate": -15
-      },
-      "notes": [
-        "duplicate"
-      ],
-      "duplicateOf": "REG-20260814114913-001-NL"
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
     }
   },
   {
@@ -456,7 +456,7 @@ const WATCH_QUEUE_AGENT = [
       "notes": [
         "duplicate"
       ],
-      "duplicateOf": "REG-20260814114913-001-NL"
+      "duplicateOf": "REG-20260814114913-001-EU"
     }
   },
   {
@@ -924,16 +924,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-10",
     "iso": "EU",
     "title": "NIS2 : saisine de la CJUE par la Commission européenne pour défaut de transposition",
-    "excerpt": "",
+    "excerpt": "Cela pendait au nez de la France : fatiguée de l'inertie de l'hexagone, la Commission européenne a décidé de saisir la Cour de Justice de l'Union européenne pour défaut de transposition de la directive NIS2. Nous avons fait le choix d'un modèle sans paywall, ni publicité. Si l'objectif mensuel est atteint, le média reste entièrement accessible à tous. Votre soutien permet de rendre cela possible. Il s'agit d'un texte, que les États devaient transposer en droit interne, portant sur la stratégie à déployer en matière de sécurité informatique. Ce texte devait être transposé en octobre 2024. […]",
     "summary": "La Commission européenne a saisi la Cour de justice de l'Union européenne (CJUE) contre plusieurs États membres, dont la France, pour non-respect des délais de transposition de la directive NIS2. Cette action vise à garantir l'application uniforme de la directive et à éviter des risques de fragmentation du marché unique numérique.",
     "titleEn": "NIS2: referral to the CJEU by the European Commission for failure to transpose",
     "summaryEn": "The European Commission has brought several Member States, including France, before the Court of Justice of the European Union (CJEU) for failure to comply with the transposition deadlines of the NIS2 Directive. This action aims to ensure the uniform application of the Directive and to avoid risks of fragmentation of the digital single market.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "This had been looming over France: tired of the hexagon's inertia, the European Commission decided to refer the matter to the Court of Justice of the European Union for failure to transpose the NIS2 directive. We have chosen a model without a paywall or advertising. If the monthly target is reached, the media remains entirely accessible to everyone. Your support makes this possible. It is a text that the Member States were required to transpose into national law, concerning the strategy to be deployed in matters of computer security. This text had to be transposed in October 2024. […]",
+    "excerptFr": "Cela pendait au nez de la France : fatiguée de l’inertie de l’Hexagone, la Commission européenne a décidé de saisir la Cour de justice de l’Union européenne pour défaut de transposition de la directive NIS2. Nous avons fait le choix d’un modèle sans paywall ni publicité. Si l’objectif mensuel est atteint, le média reste entièrement accessible à tous. Votre soutien permet de rendre cela possible. Il s’agit d’un texte que les États devaient transposer en droit interne, portant sur la stratégie à déployer en matière de sécurité informatique. Ce texte devait être transposé en octobre 2024. […]",
     "source": {
       "name": "Commission européenne",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5qT1V2UFVTdUlkUjl0QWdwUVpLWTA1V0NuQUc0NmROOHdvaFJ2VUJJY29GSEFVOWdzam4wMFJuU1FjVVNWMVhOVk90dGJPOHJKMUhpODJEaw?oc=5",
-      "type": "unofficial"
+      "url": "https://projetarcadie.com/nis2-saisine-cjue/",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5qT1V2UFVTdUlkUjl0QWdwUVpLWTA1V0NuQUc0NmROOHdvaFJ2VUJJY29GSEFVOWdzam4wMFJuU1FjVVNWMVhOVk90dGJPOHJKMUhpODJEaw?oc=5"
     },
     "status": "pending",
     "clientAdvice": "Vérifier le statut de transposition de la directive NIS2 dans son pays; anticiper les ajustements réglementaires nationaux; renforcer les collaborations avec les autorités nationales pour garantir la conformité; préparer les audits et contrôles futurs.",
@@ -951,24 +952,20 @@ const WATCH_QUEUE_AGENT = [
     "targetCells": [],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 27,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
-        "aggregator",
-        "noSourceText",
-        "noDate",
-        "duplicate"
+        "openingOnly",
+        "noDate"
       ],
-      "duplicateOf": "REG-20260710155218-003-NL"
+      "duplicateOf": null
     }
   },
   {
@@ -976,16 +973,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "FR",
     "title": "Guide ReCyF sur la conduite de la mise en conformité NIS2 avant la version finale du référentiel",
-    "excerpt": "",
+    "excerpt": "Avec ReCyF (le Référentiel Cyber France), l'Anssi traduit les obligations de la directive NIS 2 en vingt objectifs de sécurité assortis de moyens de conformité acceptables. Le référentiel, encore en version de travail, distingue ce que l'entité doit atteindre de la manière d'y parvenir, et module l'effort selon qu'elle est importante ou essentielle. Pour une direction informatique, il fournit la grille qui manquait pour engager la mise en conformité sans attendre la transposition définitive de la directive en droit français. […]",
     "summary": "Le guide ReCyF propose des méthodes pour anticiper la mise en conformité avec la directive NIS2, avant même la finalisation du référentiel national ou sectoriel. Il cible les organisations souhaitant se préparer activement malgré l'absence de version définitive, en s'appuyant sur des bonnes pratiques et des retours d'expérience.",
     "titleEn": "ReCyF guide on conducting NIS2 compliance before the final version of the framework",
     "summaryEn": "The ReCyF guide proposes methods for anticipating compliance with the NIS2 directive, even before the national or sectoral framework is finalized. It targets organizations wishing to prepare actively despite the absence of a final version, relying on best practices and feedback from experience.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "With ReCyF (the Référentiel Cyber France), ANSSI translates the obligations of the NIS 2 directive into twenty security objectives accompanied by acceptable means of compliance. The reference framework, still in working version, distinguishes what the entity must achieve from how to do so, and modulates the effort depending on whether it is important or essential. For an IT department, it provides the framework that was missing to begin compliance efforts without waiting for the directive to be definitively transposed into French law. […]",
+    "excerptFr": "Avec ReCyF (le Référentiel Cyber France), l’Anssi traduit les obligations de la directive NIS 2 en vingt objectifs de sécurité assortis de moyens de conformité acceptables. Le référentiel, encore en version de travail, distingue ce que l’entité doit atteindre de la manière d’y parvenir, et module l’effort selon qu’elle est importante ou essentielle. Pour une direction informatique, il fournit la grille qui manquait pour engager la mise en conformité sans attendre la transposition définitive de la directive en droit français. […]",
     "source": {
       "name": "ReCyF; it social",
-      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOVmxOcFFRYVo2Q011SlBsLWhhejZjS2NneHNTNkpNcklWWHdyZnRqd1hIaF9rTV9tYkJJNmN6ZXhYQ29mbEd0UjV1MWlNR2JXRDZBTGpTUVhqVVQ3VDRPRzBQcVgzendaXzBfNUNCSzJ1QXh3TF9NTUhRZ0hLaGdNdWxnaVJLNmpuUWZKdVZidUt3Z0g1alloby0teF92ZmM5czl4Q2sycTN2QXdlTHdUaE93TElWa3NZWnkzZTJIcUFZcjR4cElCYjBjMkNJUWtkajBFWW50elIydlF4d09uZjBkcWlHM1E?oc=5",
-      "type": "unofficial"
+      "url": "https://itsocial.fr/cybersecurite/cybersecurite-articles/recyf-comment-conduire-la-mise-en-conformite-nis-2-avant-meme-la-version-finale-du-referentiel/",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOVmxOcFFRYVo2Q011SlBsLWhhejZjS2NneHNTNkpNcklWWHdyZnRqd1hIaF9rTV9tYkJJNmN6ZXhYQ29mbEd0UjV1MWlNR2JXRDZBTGpTUVhqVVQ3VDRPRzBQcVgzendaXzBfNUNCSzJ1QXh3TF9NTUhRZ0hLaGdNdWxnaVJLNmpuUWZKdVZidUt3Z0g1alloby0teF92ZmM5czl4Q2sycTN2QXdlTHdUaE93TElWa3NZWnkzZTJIcUFZcjR4cElCYjBjMkNJUWtkajBFWW50elIydlF4d09uZjBkcWlHM1E?oc=5"
     },
     "status": "pending",
     "clientAdvice": "réaliser un audit de maturité NIS2; identifier les écarts par rapport aux exigences anticipées; prioriser les actions correctives; former les équipes aux nouvelles obligations; consulter les projets de référentiels sectoriels",
@@ -1002,45 +1000,60 @@ const WATCH_QUEUE_AGENT = [
     },
     "targetCells": [
       {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Name and link of framework",
-        "cell": "F13"
+        "sheet": "Incident reporting - P1",
+        "field": "Organism official name to report incident",
+        "cell": "F14"
       },
       {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Framework last publication date",
-        "cell": "G13"
+        "sheet": "Incident reporting - P1",
+        "field": "Method for incident reporting",
+        "cell": "H14"
       },
       {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Dedicated framework to NIS 2",
-        "cell": "E13"
+        "sheet": "Incident reporting - P1",
+        "field": "Date of incident reporting becoming mandatory",
+        "cell": "G14"
       },
       {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Number of cyber requirements for EE",
-        "cell": "L13"
+        "sheet": "Incident reporting - P1",
+        "field": "Name and link of web platform",
+        "cell": "I14"
       },
       {
-        "sheet": "Authority - P3",
-        "field": "Consolidated list of authorities",
+        "sheet": "Audit & Controls - P1",
+        "field": "Audit explicitly planned by the transposition",
+        "cell": "D13"
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "field": "Organism in charge of the audit",
         "cell": "E13"
       }
     ],
-    "verbatim": [],
+    "verbatim": [
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Le quatrième organise la réponse et la résilience, des objectifs 13 à 15 : gestion des incidents, sauvegardes et tests de restauration, gestion de crise et exercices réguliers."
+      },
+      {
+        "sheet": "Audit & Controls - P1",
+        "term": "audit",
+        "text": "Les cinq objectifs supplémentaires, 16 à 20, ne s’appliquent qu’aux entités essentielles, et ajoutent une approche fondée sur les risques, des audits de sécurité réguliers, des configurations renforcées, une administration depuis des ressources dédiées et une supervision continue."
+      }
+    ],
     "reliability": {
-      "score": 15,
+      "score": 42,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 15,
         "freshness": 0
       },
       "penalties": {},
       "notes": [
-        "aggregator",
-        "noSourceText",
+        "openingOnly",
         "noDate"
       ],
       "duplicateOf": null
@@ -1441,16 +1454,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-07",
     "iso": "FR",
     "title": "Transposition de la directive NIS2 : examen du texte reporté à septembre 2026 en France",
-    "excerpt": "",
+    "excerpt": "Ce projet de loi critique pour la cybersécurité française est toujours englué à l'Assemblée nationale. La suite de l'examen à l'Assemblée nationale du projet de loi transposant la directive européenne NIS (Network and information security) 2 était attendue pour juillet . C'est finalement un rendez-vous loupé, s'est excusée récemment Anne Le Hénanff, au cours d'une intervention lors d'un événement du Clusif (Club de la sécurité de l'information français). De façon peu rassurante, la ministre déléguée a signalé ensuite son espoir de voir le texte examiné en septembre prochain. […]",
     "summary": "L'examen du projet de transposition de la directive NIS2 en droit français, initialement prévu avant l'été 2026, est désormais reporté à septembre 2026. Ce texte vise à renforcer la cybersécurité des entités critiques et importantes au niveau européen.",
     "titleEn": "Transposition of the NIS2 directive: examination of the text postponed to September 2026 in France",
     "summaryEn": "Examination of the draft transposition of the NIS2 directive into French law, initially scheduled before summer 2026, is now postponed to September 2026. This text aims to strengthen the cybersecurity of critical and important entities at European level.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "This bill, critical for French cybersecurity, is still bogged down in the National Assembly. The continuation of the examination in the National Assembly of the bill transposing the European NIS (Network and information security) 2 directive was expected in July. It was ultimately a missed appointment, recently apologized for by Anne Le Hénanff during an intervention at an event of Clusif (Club de la sécurité de l'information français). Rather worryingly, the minister delegated then signaled her hope of seeing the text examined next September. […]",
+    "excerptFr": "Ce projet de loi critique pour la cybersécurité française est toujours englué à l'Assemblée nationale. La suite de l'examen à l'Assemblée nationale du projet de loi transposant la directive européenne NIS (Network and information security) 2 était attendue pour juillet . C'est finalement un rendez-vous loupé, s'est excusée récemment Anne Le Hénanff, au cours d'une intervention lors d'un événement du Clusif (Club de la sécurité de l'information français). De façon peu rassurante, la ministre déléguée a signalé ensuite son espoir de voir le texte examiné en septembre prochain. […]",
     "source": {
       "name": "Gouvernement français",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOYTFTMmNaQnFoSUQ2RUNNd0hCY0RHRjhPMGhTZEdLcTdpVDI2MGdVWDljYmdiNEVYUGhVQUZIQlFPd0ZxaGMtMjBDUWg4VnRGRnJoWmtHOTE0SHZITmhCNWVYVnRZQlMzOFJ6QllCMGFVZEYwQ0s5eW5ZdFZRUWRyX3ZxNzBsaWg5MTZUQjZXVEFua2hMdmdpUGlSMTlHYmJxVnVyV20tS1RqY3Q3X1Vub01uRjQ3M1lENTlXd3JhSmotR05XVVVr?oc=5",
-      "type": "unofficial"
+      "url": "https://www.zdnet.fr/actualites/transposition-de-la-directive-nis-2-lexamen-du-texte-maintenant-espere-pour-septembre-498370.htm",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOYTFTMmNaQnFoSUQ2RUNNd0hCY0RHRjhPMGhTZEdLcTdpVDI2MGdVWDljYmdiNEVYUGhVQUZIQlFPd0ZxaGMtMjBDUWg4VnRGRnJoWmtHOTE0SHZITmhCNWVYVnRZQlMzOFJ6QllCMGFVZEYwQ0s5eW5ZdFZRUWRyX3ZxNzBsaWg5MTZUQjZXVEFua2hMdmdpUGlSMTlHYmJxVnVyV20tS1RqY3Q3X1Vub01uRjQ3M1lENTlXd3JhSmotR05XVVVr?oc=5"
     },
     "status": "pending",
     "clientAdvice": "Surveiller les publications officielles du texte final; anticiper les adaptations nécessaires (gouvernance, documentation, outils); préparer les équipes à la mise en conformité; évaluer l'impact sur les contrats et partenariats existants",
@@ -1467,6 +1481,26 @@ const WATCH_QUEUE_AGENT = [
     },
     "targetCells": [
       {
+        "sheet": "Registration - P1",
+        "field": "Registration availability",
+        "cell": "D14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Authority in charge of registration",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration deadline",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Method of registration",
+        "cell": "I14"
+      },
+      {
         "sheet": "Incident reporting - P1",
         "field": "Organism official name to report incident",
         "cell": "F14"
@@ -1475,42 +1509,32 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Incident reporting - P1",
         "field": "Method for incident reporting",
         "cell": "H14"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Date of incident reporting becoming mandatory",
-        "cell": "G14"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Name and link of web platform",
-        "cell": "I14"
-      },
-      {
-        "sheet": "Sanctions - P2",
-        "field": "Financial sanctions",
-        "cell": "F14"
-      },
-      {
-        "sheet": "Sanctions - P2",
-        "field": "Types of additional penalties",
-        "cell": "I14"
       }
     ],
-    "verbatim": [],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "enregistr",
+        "text": "Après avoir ouvert son guichet de pré-enregistrement il y a neuf mois , le cyber-pompier vient par exemple de signer un accord avec la Banque de France et l'Autorité de contrôle prudentiel et de résolution."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "L’incident met en lumière un angle mort de sécurité méconnu, les comptes personnels connectés à des outils d’entreprise comme Gmail échappant largement au contrôle des services informatiques."
+      }
+    ],
     "reliability": {
-      "score": 15,
+      "score": 42,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 15,
         "freshness": 0
       },
       "penalties": {},
       "notes": [
-        "aggregator",
-        "noSourceText",
+        "openingOnly",
         "noDate"
       ],
       "duplicateOf": null
@@ -1660,7 +1684,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -1668,13 +1692,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172307-023-ES"
     }
   },
   {
@@ -1877,13 +1904,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145257-007-DE"
     }
   },
   {
@@ -1949,7 +1979,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -1957,16 +1987,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145257-007-EU"
+      "duplicateOf": null
     }
   },
   {
@@ -2032,7 +2059,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2040,13 +2067,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172256-022"
     }
   },
   {
@@ -2089,13 +2119,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260707145243-005-DE"
     }
   },
   {
@@ -2161,7 +2194,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2169,16 +2202,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145243-005-EU"
+      "duplicateOf": null
     }
   },
   {
@@ -2244,7 +2274,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2252,13 +2282,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172240-020"
     }
   },
   {
@@ -2310,7 +2343,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260707145234-004-FR"
+      "duplicateOf": "REG-20260703172240-020"
     }
   },
   {
@@ -2387,7 +2420,7 @@ const WATCH_QUEUE_AGENT = [
       }
     ],
     "reliability": {
-      "score": 85,
+      "score": 70,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -2396,12 +2429,14 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10
+        "impossibleDate": -10,
+        "duplicate": -15
       },
       "notes": [
-        "impossibleDate"
+        "impossibleDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172101-011-DE"
     }
   },
   {
@@ -2768,7 +2803,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 15,
+      "score": 0,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2776,13 +2811,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172325-025-BE"
     }
   },
   {
@@ -2848,7 +2886,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -2856,16 +2894,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172325-025-NL"
+      "duplicateOf": null
     }
   },
   {
@@ -2997,7 +3032,7 @@ const WATCH_QUEUE_AGENT = [
         "noDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260707152305-012"
+      "duplicateOf": "REG-20260703172307-023-ES"
     }
   },
   {
@@ -3048,7 +3083,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3056,16 +3091,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707152305-012"
+      "duplicateOf": null
     }
   },
   {
@@ -3131,7 +3163,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3139,16 +3171,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145250-006"
+      "duplicateOf": null
     }
   },
   {
@@ -3294,7 +3323,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3302,16 +3331,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260707145234-004-FR"
+      "duplicateOf": null
     }
   },
   {
@@ -3354,13 +3380,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172228-019-DE"
     }
   },
   {
@@ -3426,7 +3455,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3434,16 +3463,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172228-019-EU"
+      "duplicateOf": null
     }
   },
   {
@@ -3486,13 +3512,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172220-018-DE"
     }
   },
   {
@@ -3558,7 +3587,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3566,16 +3595,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172220-018-EU"
+      "duplicateOf": null
     }
   },
   {
@@ -3698,13 +3724,16 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {},
+      "penalties": {
+        "duplicate": -15
+      },
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate"
+        "noDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703172155-016-BE"
     }
   },
   {
@@ -3770,7 +3799,7 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 15,
       "parts": {
         "source": 0,
         "evidence": 0,
@@ -3778,16 +3807,13 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 15,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "aggregator",
         "noSourceText",
-        "noDate",
-        "duplicate"
+        "noDate"
       ],
-      "duplicateOf": "REG-20260703172155-016-EU"
+      "duplicateOf": null
     }
   },
   {
@@ -3955,16 +3981,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "NIS2 : le retard de la France pourrait la mener à une sanction",
-    "excerpt": "",
+    "excerpt": "La France est en retard dans sa transposition de la directive européenne NIS2. Le texte de loi est à l'agenda de l'Assemblée nationale, mais n'a toujours pas été examiné. La Commission européenne envisagerait une action en justice. A force de traîner des pieds, la France pourrait se retrouver en porte à faux avec la Commission européenne. Celle-ci envisagerait en effet de poursuivre la France et l'Espagne devant la Cour de Justice de l'Union Européenne (CJUE) pour avoir trop tardé à transposer la directive NIS2 dans leur droit national. […]",
     "summary": "La France accuse un retard dans la transposition de la directive NIS2, ce qui pourrait entraîner des sanctions de la part de l'Union Européenne. Ce retard impacte directement les obligations nationales en matière de cybersécurité et expose le pays à des mesures coercitives.",
     "titleEn": "NIS2: France’s delay could lead to sanctions",
     "summaryEn": "France is lagging behind in transposing the NIS2 Directive, which could lead to sanctions from the European Union. This delay directly affects national cybersecurity obligations and exposes the country to coercive measures.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "France is late in transposing the European NIS2 directive. The bill is on the National Assembly's agenda, but has still not been examined. The European Commission is reportedly considering legal action. By dragging its feet, France could find itself at odds with the European Commission. The latter is in fact considering taking France and Spain to the Court of Justice of the European Union (CJUE) for having taken too long to transpose the NIS2 directive into their national law. […]",
+    "excerptFr": "La France est en retard dans sa transposition de la directive européenne NIS2. Le texte de loi est à l'agenda de l'Assemblée nationale, mais n'a toujours pas été examiné. La Commission européenne envisagerait une action en justice. À force de traîner des pieds, la France pourrait se retrouver en porte-à-faux avec la Commission européenne. Celle-ci envisagerait en effet de poursuivre la France et l'Espagne devant la Cour de justice de l'Union européenne (CJUE) pour avoir trop tardé à transposer la directive NIS2 dans leur droit national. […]",
     "source": {
       "name": "Union Européenne; Gouvernement français",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRlNzc1NJU21HMnZBSU1XWFdBTjRyTjc4OVBTdEhHbE9YZjlfZHZDNWVwanFpdENHR0tzT3MwelYtZW5jRjg0enZjdXFmR3NjVUdaX2FWdGZvQ3ZEWGZ5TTRrdm9pMEZPMUJIZXVTZjU1Yzl0X09qQ00tNE5ILVVWazFJZUwxM2NfQmNiVEt6ZnZsV1V1aUVvbjRsQ2wyWFpuN3FQMDNR?oc=5",
-      "type": "unofficial"
+      "url": "https://www.zdnet.fr/actualites/nis2-le-retard-de-la-france-pourrait-la-mener-a-une-sanction-496668.htm",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRlNzc1NJU21HMnZBSU1XWFdBTjRyTjc4OVBTdEhHbE9YZjlfZHZDNWVwanFpdENHR0tzT3MwelYtZW5jRjg0enZjdXFmR3NjVUdaX2FWdGZvQ3ZEWGZ5TTRrdm9pMEZPMUJIZXVTZjU1Yzl0X09qQ00tNE5ILVVWazFJZUwxM2NfQmNiVEt6ZnZsV1V1aUVvbjRsQ2wyWFpuN3FQMDNR?oc=5"
     },
     "status": "pending",
     "clientAdvice": "Vérifier le statut de transposition de la directive NIS2 en droit français; Identifier les écarts entre les exigences NIS2 et le cadre réglementaire national actuel; Préparer un plan d'action pour combler ces écarts avant les échéances; Anticiper les risques de sanctions en engageant un dialogue avec la Commission Européenne; Renforcer les mesures de cybersécurité pour les opérateurs concernés",
@@ -4011,20 +4038,25 @@ const WATCH_QUEUE_AGENT = [
         "cell": "I14"
       }
     ],
-    "verbatim": [],
+    "verbatim": [
+      {
+        "sheet": "Sanctions - P2",
+        "term": "amende",
+        "text": "Si la procédure se poursuit jusqu'à la CJUE et que le jugement reconnaît que la France a failli à ses obligations, la Commission peut demander une amende dont le montant final sera fixé par la Cour."
+      }
+    ],
     "reliability": {
-      "score": 15,
+      "score": 42,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 15,
         "freshness": 0
       },
       "penalties": {},
       "notes": [
-        "aggregator",
-        "noSourceText",
+        "openingOnly",
         "noDate"
       ],
       "duplicateOf": null
@@ -4035,16 +4067,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "NIS2 : le retard de la France pourrait la mener à une sanction",
-    "excerpt": "",
+    "excerpt": "La France est en retard dans sa transposition de la directive européenne NIS2. Le texte de loi est à l'agenda de l'Assemblée nationale, mais n'a toujours pas été examiné. La Commission européenne envisagerait une action en justice. A force de traîner des pieds, la France pourrait se retrouver en porte à faux avec la Commission européenne. Celle-ci envisagerait en effet de poursuivre la France et l'Espagne devant la Cour de Justice de l'Union Européenne (CJUE) pour avoir trop tardé à transposer la directive NIS2 dans leur droit national. […]",
     "summary": "La France accuse un retard dans la transposition de la directive NIS2, ce qui pourrait entraîner des sanctions de la part de l'Union Européenne. Ce retard impacte directement les obligations nationales en matière de cybersécurité et expose le pays à des mesures coercitives.",
     "titleEn": "NIS2: France’s delay could lead to sanctions",
     "summaryEn": "France is lagging behind in transposing the NIS2 Directive, which could lead to sanctions from the European Union. This delay directly affects national cybersecurity obligations and exposes the country to coercive measures.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "France is late in transposing the European NIS2 directive. The bill is on the National Assembly's agenda, but has still not been examined. The European Commission is reportedly considering legal action. By dragging its feet, France could find itself at odds with the European Commission. The latter is in fact considering taking France and Spain to the Court of Justice of the European Union (CJUE) for having taken too long to transpose the NIS2 directive into their national law. […]",
+    "excerptFr": "La France est en retard dans sa transposition de la directive européenne NIS2. Le texte de loi est à l'agenda de l'Assemblée nationale, mais n'a toujours pas été examiné. La Commission européenne envisagerait une action en justice. À force de traîner des pieds, la France pourrait se retrouver en porte-à-faux avec la Commission européenne. Celle-ci envisagerait en effet de poursuivre la France et l'Espagne devant la Cour de justice de l'Union européenne (CJUE) pour avoir trop tardé à transposer la directive NIS2 dans leur droit national. […]",
     "source": {
       "name": "Union Européenne; Gouvernement français",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRlNzc1NJU21HMnZBSU1XWFdBTjRyTjc4OVBTdEhHbE9YZjlfZHZDNWVwanFpdENHR0tzT3MwelYtZW5jRjg0enZjdXFmR3NjVUdaX2FWdGZvQ3ZEWGZ5TTRrdm9pMEZPMUJIZXVTZjU1Yzl0X09qQ00tNE5ILVVWazFJZUwxM2NfQmNiVEt6ZnZsV1V1aUVvbjRsQ2wyWFpuN3FQMDNR?oc=5",
-      "type": "unofficial"
+      "url": "https://www.zdnet.fr/actualites/nis2-le-retard-de-la-france-pourrait-la-mener-a-une-sanction-496668.htm",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRlNzc1NJU21HMnZBSU1XWFdBTjRyTjc4OVBTdEhHbE9YZjlfZHZDNWVwanFpdENHR0tzT3MwelYtZW5jRjg0enZjdXFmR3NjVUdaX2FWdGZvQ3ZEWGZ5TTRrdm9pMEZPMUJIZXVTZjU1Yzl0X09qQ00tNE5ILVVWazFJZUwxM2NfQmNiVEt6ZnZsV1V1aUVvbjRsQ2wyWFpuN3FQMDNR?oc=5"
     },
     "status": "pending",
     "clientAdvice": "Vérifier le statut de transposition de la directive NIS2 en droit français; Identifier les écarts entre les exigences NIS2 et le cadre réglementaire national actuel; Préparer un plan d'action pour combler ces écarts avant les échéances; Anticiper les risques de sanctions en engageant un dialogue avec la Commission Européenne; Renforcer les mesures de cybersécurité pour les opérateurs concernés",
@@ -4062,10 +4095,10 @@ const WATCH_QUEUE_AGENT = [
     "targetCells": [],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 12,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 0,
         "freshness": 0
@@ -4074,8 +4107,7 @@ const WATCH_QUEUE_AGENT = [
         "duplicate": -15
       },
       "notes": [
-        "aggregator",
-        "noSourceText",
+        "openingOnly",
         "noDate",
         "duplicate"
       ],
@@ -4087,16 +4119,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "FR",
     "title": "Cybersécurité : la transposition de NIS2 continue de traîner des pieds",
-    "excerpt": "",
+    "excerpt": "Alors que la transposition de NIS2 était prévue avant la fin de l'été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n'est pas au programme de la trentaine de projets de loi qui va être examinée. Alors que la transposition de NIS2 était prévue avant la fin de l'été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n'est pas au programme de la trentaine de projets de loi qui va être examinée. […]",
     "summary": "La transposition de la directive NIS2 en droit national français et européen accuse des retards significatifs, ce qui pourrait impacter la mise en conformité des entités concernées et leur préparation aux obligations renforcées.",
     "titleEn": "Cybersecurity: the transposition of NIS2 continues to drag on",
     "summaryEn": "The transposition of the NIS2 Directive into French and European national law is experiencing significant delays, which could affect the compliance of the entities concerned and their preparation for the strengthened obligations.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "While transposition of NIS2 was scheduled before the end of the summer, that will ultimately not be the case. MPs are indeed convened for an extraordinary session, but NIS2 is not on the agenda of the thirty or so bills that will be examined. While transposition of NIS2 was scheduled before the end of the summer, that will ultimately not be the case. MPs are indeed convened for an extraordinary session, but NIS2 is not on the agenda of the thirty or so bills that will be examined. […]",
+    "excerptFr": "Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. […]",
     "source": {
       "name": "next.ink",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3Fia2xiNDFsY1ZOY2dEN1k5MTFDb09CYWlkcHBiMDFzR0tDeWE3VDAxUkkzX1RPWmNpUkhvVE9hRGFRckNqMmVDVDAtdUZLQURRdGV0cVdjdE9XT2NWR3l6Z3g2ZkJGeDkwUGVSQWVnTWloMm5XalN4MWhqOXJRWkkwd2hZRjhCdngwSXQ1dGZxbHhVVHVTTQ?oc=5",
-      "type": "unofficial"
+      "url": "https://next.ink/242574/cybersecurite-la-transposition-de-nis2-continue-de-trainer-des-pieds/",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3Fia2xiNDFsY1ZOY2dEN1k5MTFDb09CYWlkcHBiMDFzR0tDeWE3VDAxUkkzX1RPWmNpUkhvVE9hRGFRckNqMmVDVDAtdUZLQURRdGV0cVdjdE9XT2NWR3l6Z3g2ZkJGeDkwUGVSQWVnTWloMm5XalN4MWhqOXJRWkkwd2hZRjhCdngwSXQ1dGZxbHhVVHVTTQ?oc=5"
     },
     "status": "pending",
     "clientAdvice": "suivre l'avancement de la transposition nationale;anticiper les adaptations nécessaires;renforcer les échanges avec les autorités compétentes;préparer les plans de conformité en conséquence",
@@ -4113,6 +4146,26 @@ const WATCH_QUEUE_AGENT = [
     },
     "targetCells": [
       {
+        "sheet": "Registration - P1",
+        "field": "Registration availability",
+        "cell": "D14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Authority in charge of registration",
+        "cell": "F14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration deadline",
+        "cell": "H14"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Method of registration",
+        "cell": "I14"
+      },
+      {
         "sheet": "Incident reporting - P1",
         "field": "Organism official name to report incident",
         "cell": "F14"
@@ -4121,42 +4174,27 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Incident reporting - P1",
         "field": "Method for incident reporting",
         "cell": "H14"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Date of incident reporting becoming mandatory",
-        "cell": "G14"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Name and link of web platform",
-        "cell": "I14"
-      },
-      {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Name and link of framework",
-        "cell": "F13"
-      },
-      {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Framework last publication date",
-        "cell": "G13"
       }
     ],
-    "verbatim": [],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "enregistr",
+        "text": "Quelques semaines plus tard , toujours sans passage à l’Assemblée nationale (ni calendrier prévisionnel), l’ANSSI ouvrait son bureau de pré-enregistrement."
+      }
+    ],
     "reliability": {
-      "score": 15,
+      "score": 42,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 15,
         "freshness": 0
       },
       "penalties": {},
       "notes": [
-        "aggregator",
-        "noSourceText",
+        "openingOnly",
         "noDate"
       ],
       "duplicateOf": null
@@ -4167,16 +4205,17 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-07-03",
     "iso": "EU",
     "title": "Cybersécurité : la transposition de NIS2 continue de traîner des pieds",
-    "excerpt": "",
+    "excerpt": "Alors que la transposition de NIS2 était prévue avant la fin de l'été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n'est pas au programme de la trentaine de projets de loi qui va être examinée. Alors que la transposition de NIS2 était prévue avant la fin de l'été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n'est pas au programme de la trentaine de projets de loi qui va être examinée. […]",
     "summary": "La transposition de la directive NIS2 en droit national français et européen accuse des retards significatifs, ce qui pourrait impacter la mise en conformité des entités concernées et leur préparation aux obligations renforcées.",
     "titleEn": "Cybersecurity: the transposition of NIS2 continues to drag on",
     "summaryEn": "The transposition of the NIS2 Directive into French and European national law is experiencing significant delays, which could affect the compliance of the entities concerned and their preparation for the strengthened obligations.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "While transposition of NIS2 was scheduled before the end of the summer, that will ultimately not be the case. MPs are indeed convened for an extraordinary session, but NIS2 is not on the agenda of the thirty or so bills that will be examined. While transposition of NIS2 was scheduled before the end of the summer, that will ultimately not be the case. MPs are indeed convened for an extraordinary session, but NIS2 is not on the agenda of the thirty or so bills that will be examined. […]",
+    "excerptFr": "Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. […]",
     "source": {
       "name": "next.ink",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3Fia2xiNDFsY1ZOY2dEN1k5MTFDb09CYWlkcHBiMDFzR0tDeWE3VDAxUkkzX1RPWmNpUkhvVE9hRGFRckNqMmVDVDAtdUZLQURRdGV0cVdjdE9XT2NWR3l6Z3g2ZkJGeDkwUGVSQWVnTWloMm5XalN4MWhqOXJRWkkwd2hZRjhCdngwSXQ1dGZxbHhVVHVTTQ?oc=5",
-      "type": "unofficial"
+      "url": "https://next.ink/242574/cybersecurite-la-transposition-de-nis2-continue-de-trainer-des-pieds/",
+      "type": "unofficial",
+      "viaAggregator": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3Fia2xiNDFsY1ZOY2dEN1k5MTFDb09CYWlkcHBiMDFzR0tDeWE3VDAxUkkzX1RPWmNpUkhvVE9hRGFRckNqMmVDVDAtdUZLQURRdGV0cVdjdE9XT2NWR3l6Z3g2ZkJGeDkwUGVSQWVnTWloMm5XalN4MWhqOXJRWkkwd2hZRjhCdngwSXQ1dGZxbHhVVHVTTQ?oc=5"
     },
     "status": "pending",
     "clientAdvice": "suivre l'avancement de la transposition nationale;anticiper les adaptations nécessaires;renforcer les échanges avec les autorités compétentes;préparer les plans de conformité en conséquence",
@@ -4194,10 +4233,10 @@ const WATCH_QUEUE_AGENT = [
     "targetCells": [],
     "verbatim": [],
     "reliability": {
-      "score": 0,
+      "score": 12,
       "parts": {
-        "source": 0,
-        "evidence": 0,
+        "source": 12,
+        "evidence": 15,
         "date": 0,
         "actionability": 0,
         "freshness": 0
@@ -4206,8 +4245,7 @@ const WATCH_QUEUE_AGENT = [
         "duplicate": -15
       },
       "notes": [
-        "aggregator",
-        "noSourceText",
+        "openingOnly",
         "noDate",
         "duplicate"
       ],
@@ -4262,7 +4300,7 @@ const WATCH_QUEUE_AGENT = [
         "impossibleDate",
         "duplicate"
       ],
-      "duplicateOf": "REG-20260707145226-003"
+      "duplicateOf": "REG-20260703172101-011-DE"
     }
   },
   {
@@ -4339,7 +4377,7 @@ const WATCH_QUEUE_AGENT = [
       }
     ],
     "reliability": {
-      "score": 70,
+      "score": 85,
       "parts": {
         "source": 30,
         "evidence": 25,
@@ -4348,14 +4386,12 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10,
-        "duplicate": -15
+        "impossibleDate": -10
       },
       "notes": [
-        "impossibleDate",
-        "duplicate"
+        "impossibleDate"
       ],
-      "duplicateOf": "REG-20260707145226-003"
+      "duplicateOf": null
     }
   },
   {
@@ -4756,16 +4792,18 @@ const WATCH_QUEUE_AGENT = [
       }
     ],
     "reliability": {
-      "score": 95,
+      "score": 85,
       "parts": {
         "source": 30,
         "evidence": 25,
         "date": 15,
         "actionability": 15,
-        "freshness": 10
+        "freshness": 0
       },
       "penalties": {},
-      "notes": [],
+      "notes": [
+        "old"
+      ],
       "duplicateOf": null
     }
   },
@@ -4877,7 +4915,7 @@ const WATCH_QUEUE_AGENT = [
     "targetCells": [],
     "verbatim": [],
     "reliability": {
-      "score": 45,
+      "score": 30,
       "parts": {
         "source": 30,
         "evidence": 0,
@@ -4886,13 +4924,15 @@ const WATCH_QUEUE_AGENT = [
         "freshness": 10
       },
       "penalties": {
-        "impossibleDate": -10
+        "impossibleDate": -10,
+        "duplicate": -15
       },
       "notes": [
         "noSourceText",
-        "impossibleDate"
+        "impossibleDate",
+        "duplicate"
       ],
-      "duplicateOf": null
+      "duplicateOf": "REG-20260703171902-001"
     }
   },
   {
@@ -4927,7 +4967,7 @@ const WATCH_QUEUE_AGENT = [
     "targetCells": [],
     "verbatim": [],
     "reliability": {
-      "score": 30,
+      "score": 45,
       "parts": {
         "source": 30,
         "evidence": 0,
@@ -4935,15 +4975,12 @@ const WATCH_QUEUE_AGENT = [
         "actionability": 0,
         "freshness": 0
       },
-      "penalties": {
-        "duplicate": -15
-      },
+      "penalties": {},
       "notes": [
         "noSourceText",
-        "old",
-        "duplicate"
+        "old"
       ],
-      "duplicateOf": "REG-20260703171910-002"
+      "duplicateOf": null
     }
   },
   {
@@ -5009,17 +5046,18 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 55,
+      "score": 45,
       "parts": {
         "source": 30,
         "evidence": 0,
         "date": 0,
         "actionability": 15,
-        "freshness": 10
+        "freshness": 0
       },
       "penalties": {},
       "notes": [
-        "noSourceText"
+        "noSourceText",
+        "old"
       ],
       "duplicateOf": null
     }

@@ -1,0 +1,362 @@
+{
+ "date": "2026-09-18",
+ "sources": {
+  "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive": {
+   "name": "Commission européenne - NIS2 Directive",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://digital-strategy.ec.europa.eu/en/policies/nis-transposition": {
+   "name": "Commission européenne - Transposition NIS2 par pays",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://digital-strategy.ec.europa.eu/en/policies/nis-cooperation-group": {
+   "name": "Commission européenne - NIS Cooperation Group",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://ec.europa.eu/commission/presscorner/api/rss": {
+   "name": "Commission européenne - Press Corner RSS",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022L2555": {
+   "name": "EUR-Lex - Directive NIS2 CELEX 32022L2555",
+   "iso": "",
+   "state": "bloquee",
+   "detail": "HTTP 202 (verification anti-robot AWS)",
+   "since": "2026-09-18"
+  },
+  "https://www.enisa.europa.eu/publications/nis2-technical-implementation-guidance": {
+   "name": "ENISA - NIS2 Technical Implementation Guidance",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.enisa.europa.eu/publications": {
+   "name": "ENISA - Publications",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.enisa.europa.eu/news": {
+   "name": "ENISA - News",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/directive-nis-2/": {
+   "name": "ANSSI - Directive NIS 2",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://cyber.gouv.fr/actualites/rss/": {
+   "name": "ANSSI - Actualités RSS",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.cert.ssi.gouv.fr/dur/feed/": {
+   "name": "CERT-FR - Durcissement et recommandations RSS",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://feeds.ncsc.nl/nieuws.rss": {
+   "name": "NCSC Pays-Bas - News RSS",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://ccb.belgium.be/regulation/nis2": {
+   "name": "CCB Belgique - NIS2",
+   "iso": "",
+   "state": "bloquee",
+   "detail": "HTTP 403 (verification anti-robot)",
+   "since": "2026-09-18"
+  },
+  "https://www.kyberturvallisuuskeskus.fi/en/our-activities/regulation-and-supervision/nis2-european-union-cybersecurity-directive": {
+   "name": "Traficom / NCSC-FI - NIS2 Directive",
+   "iso": "",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://ccb.belgium.be/fr/news/adoption-de-larrete-royal-nis2": {
+   "name": "CCB Belgique - Arrêté royal NIS2",
+   "iso": "Belgique",
+   "state": "bloquee",
+   "detail": "HTTP 403 (verification anti-robot)",
+   "since": "2026-09-18"
+  },
+  "https://ccb.belgium.be/news/nis2-18-april-2026-deadline-what-essential-entities-must-have-place": {
+   "name": "CCB Belgique - Échéance 18 avril 2026",
+   "iso": "Belgique",
+   "state": "bloquee",
+   "detail": "HTTP 403 (verification anti-robot)",
+   "since": "2026-09-18"
+  },
+  "https://www.ncsc.gov.ie/nis2/FAQ/": {
+   "name": "NCSC Irlande - FAQ NIS2",
+   "iso": "Irlande",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://aide.monespacenis2.cyber.gouv.fr/fr/category/obligations-9vpf70/": {
+   "name": "MonEspaceNIS2 (ANSSI) - Obligations",
+   "iso": "France",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.acn.gov.it/portale/en/regolazione": {
+   "name": "ACN Italie - Regolazione",
+   "iso": "Italie",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.ncsc.nl/en/about-us/statutory-mandate": {
+   "name": "NCSC Pays-Bas - Mandat légal",
+   "iso": "Pays-Bas",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.ncsc.gov.ie/pdfs/NIS2_Draft_Risk_Management_Measures_Guidance.pdf": {
+   "name": "NCSC Irlande - Guide gestion des risques (PDF)",
+   "iso": "Irlande",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://aide.monespacenis2.cyber.gouv.fr/fr/article/quelles-sont-les-exigences-en-matiere-de-cybersecurite-auxquelles-les-entites-regulees-a-la-directive-nis-2-devront-se-soumettre-193huwi/": {
+   "name": "MonEspaceNIS2 (ANSSI) - Exigences cyber NIS2",
+   "iso": "France",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://aide.monespacenis2.cyber.gouv.fr/fr/article/existe-t-il-des-liens-entre-les-exigences-de-la-norme-iso-27001-et-les-futures-regles-de-cybersecurite-de-la-directive-nis-2-87mx33/": {
+   "name": "MonEspaceNIS2 (ANSSI) - ISO 27001 et NIS2",
+   "iso": "France",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://aide.monespacenis2.cyber.gouv.fr/fr/article/toutes-les-nouvelles-entites-concernees-seront-elles-soumises-aux-memes-obligations-1p7fzlk/": {
+   "name": "MonEspaceNIS2 (ANSSI) - Obligations par type d'entité",
+   "iso": "France",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://messervices.cyber.gouv.fr/simulateur-nis2": {
+   "name": "ANSSI - Simulateur NIS2",
+   "iso": "France",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://ccb.belgium.be/fr/news/nis2-enregistrez-votre-organisation-maintenant": {
+   "name": "CCB Belgique - Enregistrement NIS2",
+   "iso": "Belgique",
+   "state": "bloquee",
+   "detail": "HTTP 403 (verification anti-robot)",
+   "since": "2026-09-18"
+  },
+  "https://www.bsi.bund.de/DE/Themen/Regulierte-Wirtschaft/NIS-2-regulierte-Unternehmen/NIS-2-Infopakete/NIS-2-Risikomanagementmassnahmen/NIS-2-Risikomanagementmassnahmen_node.html": {
+   "name": "BSI Allemagne - Mesures de gestion des risques NIS2",
+   "iso": "Allemagne",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.bsi.bund.de/DE/Themen/Regulierte-Wirtschaft/NIS-2-regulierte-Unternehmen/nis-2-regulierte-unternehmen_node.html": {
+   "name": "BSI Allemagne - NIS2 entités régulées (vue d'ensemble)",
+   "iso": "Allemagne",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20transposition&hl=fr&gl=FR&ceid=FR:fr": {
+   "name": "Google News FR - NIS2 transposition",
+   "iso": "France / UE",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20directive%20implementation&hl=en-IE&gl=IE&ceid=IE:en": {
+   "name": "Google News EN - NIS2 implementation",
+   "iso": "UE",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20Umsetzung&hl=de&gl=DE&ceid=DE:de": {
+   "name": "Google News DE - NIS2 Umsetzung",
+   "iso": "Allemagne / Autriche",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20recepimento&hl=it&gl=IT&ceid=IT:it": {
+   "name": "Google News IT - NIS2 recepimento",
+   "iso": "Italie",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20transposici%C3%B3n&hl=es&gl=ES&ceid=ES:es": {
+   "name": "Google News ES - NIS2 transposicion",
+   "iso": "Espagne",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20omzetting&hl=nl&gl=NL&ceid=NL:nl": {
+   "name": "Google News NL - NIS2 omzetting",
+   "iso": "Pays-Bas / Belgique",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://digital-strategy.ec.europa.eu/en/rss.xml": {
+   "name": "Commission européenne - Digital Strategy RSS",
+   "iso": "UE",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.nis.gv.at/": {
+   "name": "NIS.gv.at - Autriche",
+   "iso": "Autriche",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.ncsc.gov.ie/news/": {
+   "name": "NCSC Irlande - News",
+   "iso": "Irlande",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.gov.pl/web/cyfryzacja": {
+   "name": "Gov.pl - Cyfryzacja (loi KSC / NIS2)",
+   "iso": "Pologne",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.cfcs.dk/da/nyheder/": {
+   "name": "CFCS Danemark - Nyheder",
+   "iso": "Danemark",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://nukib.gov.cz/cs/infoservis/aktuality/": {
+   "name": "NUKIB Tchéquie - Aktuality",
+   "iso": "Tchéquie",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.acn.gov.it/portale/home": {
+   "name": "ACN Italie - Portale (accueil)",
+   "iso": "Italie",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.ilr.lu/": {
+   "name": "ILR Luxembourg",
+   "iso": "Luxembourg",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.nc3.lu/": {
+   "name": "NC3 Luxembourg (House of Cybersecurity)",
+   "iso": "Luxembourg",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://hcpn.gouvernement.lu/fr.html": {
+   "name": "HCPN Luxembourg",
+   "iso": "Luxembourg",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.incibe.es/": {
+   "name": "INCIBE Espagne",
+   "iso": "Espagne",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://www.mcf.se/sv/aktuellt/nyheter/": {
+   "name": "MCF/MSB Suède - Nyheter",
+   "iso": "Suède",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2&hl=fr&gl=BE&ceid=BE:fr": {
+   "name": "Google News BE (fr) - NIS2",
+   "iso": "Belgique",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20OR%20%22ustawa%20KSC%22&hl=pl&gl=PL&ceid=PL:pl": {
+   "name": "Google News PL - NIS2 / ustawa KSC",
+   "iso": "Pologne",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20transposi%C3%A7%C3%A3o&hl=pt-PT&gl=PT&ceid=PT:pt-150": {
+   "name": "Google News PT - NIS2 transposicao",
+   "iso": "Portugal",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2&hl=fr&gl=LU&ceid=LU:fr": {
+   "name": "Google News LU - NIS2",
+   "iso": "Luxembourg",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  },
+  "https://news.google.com/rss/search?q=NIS2%20(law%20OR%20act%20OR%20transposition)%20(Sweden%20OR%20Denmark%20OR%20Poland%20OR%20Czech%20OR%20Romania%20OR%20Greece)&hl=en-IE&gl=IE&ceid=IE:en": {
+   "name": "Google News CEE/Nordics - NIS2 law",
+   "iso": "Europe centrale / Nordiques",
+   "state": "ok",
+   "detail": "HTTP 200",
+   "since": "2026-09-18"
+  }
+ }
+}

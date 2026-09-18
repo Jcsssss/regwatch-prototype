@@ -117,7 +117,8 @@
  },
  "https://news.google.com/rss/articles/CBMinAFBVV95cUxNaDRyZTFVV21kNENBVnI5WHh4UjdoZktCd1NBdVR6R3ozNHRWVi1kSllQMkU2dGNRZXN6NG1UUWhRY0tmVU53aFUtSHB4ZVNXbG9zbHlMNmJOeTlwaHAtRkZSWTl2cWJkN0prVUZQQmR4VGtrWTJXV1ZEaFZGOTBVN0dGTWJrR05BQkVTa3pCaDQ3SWpjTFF1bXYtcHg?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://digital-strategy.ec.europa.eu/en/library/eu-action-plan-cybersecurity-and-artificial-intelligence": {
   "ok": true,
@@ -127,71 +128,94 @@
  },
  "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUHBIR3pTdUxtOFBXemFXc1ViQ2dJY1NQZmU3ak53MHFka283eG45cnl2d1FsejVWd29pSi03NEx1NFUwQkRESlFxMHpTU0ZURWcyS0JGM2U2N1BrRTR0WVVUTEtIeHF0RUZKelJoMUVVNno0WTMzajktak82V1c3U1hRWGFwd3ZuQVRXWGFYZWttOV80WUV1ZGVRekFLTy1vSFhMUmUteVhlSWhiVjU0TFhBOC1zN2lYYkNsdQ?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1TSEpMQ2YtMG5xVFE3NFZOZEg3alA5TGlLeHVSQndxMVdDb1pFa2xNdjdoZmlUMEVFc1plMm9KbXU2azBTZ29LM3FfLVVjV01uUEpwWFBpLTZUZmJGbnljZll3bw?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5qT1V2UFVTdUlkUjl0QWdwUVpLWTA1V0NuQUc0NmROOHdvaFJ2VUJJY29GSEFVOWdzam4wMFJuU1FjVVNWMVhOVk90dGJPOHJKMUhpODJEaw?oc=5": {
-  "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "ok": true,
+  "text": "Cela pendait au nez de la France : fatiguée de l’inertie de l’hexagone, la Commission européenne a décidé de saisir la Cour de Justice de l’Union européenne pour défaut de transposition de la directive NIS2. Nous avons fait le choix d’un modèle sans paywall, ni publicité. Si l’objectif mensuel est atteint, le média reste entièrement accessible à tous. Votre soutien permet de rendre cela possible. Il s’agit d’un texte, que les États devaient transposer en droit interne, portant sur la stratégie à déployer en matière de sécurité informatique. Ce texte devait être transposé en octobre 2024. […]",
+  "body": "Cela pendait au nez de la France : fatiguée de l’inertie de l’hexagone, la Commission européenne a décidé de saisir la Cour de Justice de l’Union européenne pour défaut de transposition de la directive NIS2. Nous avons fait le choix d’un modèle sans paywall, ni publicité. Si l’objectif mensuel est atteint, le média reste entièrement accessible à tous. Votre soutien permet de rendre cela possible. Il s’agit d’un texte, que les États devaient transposer en droit interne, portant sur la stratégie à déployer en matière de sécurité informatique. Ce texte devait être transposé en octobre 2024. Mais, dissolution oblige, le gouvernement avait mis le texte dans un coin et ne l’a jamais sorti de la naphtaline. Pourtant, une commission spéciale avait été mise en place, aussi bien à l’Assemblée nationale qu’au Sénat, afin de travailler sur la version française. Plusieurs députés, dont Philippe Latombe et Éric Bothorel avaient enjoint le gouvernement à mettre le texte à l’ordre du jour, d’autant que les incidents de sécurité s’étaient multipliés : fuite de l’ANTS, piratages divers, etc. Pourtant, la France avait été prévenue. Comme l’indique le communiqué de presse , « la Commission a envoyé des lettres de mise en demeure à ces États membres le 28 novembre 2024, puis des avis motivés le 7 mai 2025 ». En dépit de ces alertes, le gouvernement n’a jamais inscrit le texte, préférant appuyer des propositions de loi diverses ou imposer un texte sur le contrôle d’âge pour s’inscrire sur les réseaux sociaux. Le dossier est désormais entre les mains de la Cour de Justice de l’Union européenne et la commission lui demande d’imposer des sanctions financières à la France, qui peuvent se matérialiser par une somme forfaitaire et des astreintes journalières jusqu’à ce que le texte soit totalement transposé. L’un des points d’achoppements de ce texte réside dans la volonté des services de renseignements français d’ajouter, dans le texte, la possibilité d’étendre l’usage des « boîtes noires », ce qui est refusé par les parlementaires . L’obsession des services pour les backdoors se traduira donc par des sanctions financières pour la France. La France n’est pas le seul État concerné par cette transmission devant la CJUE : l’Irlande, l’Espagne et les Pays-Bas sont également concernés par cette épidémie de procrastination.",
+  "bodyChars": 2332,
+  "resolvedUrl": "https://projetarcadie.com/nis2-saisine-cjue/"
  },
  "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOVmxOcFFRYVo2Q011SlBsLWhhejZjS2NneHNTNkpNcklWWHdyZnRqd1hIaF9rTV9tYkJJNmN6ZXhYQ29mbEd0UjV1MWlNR2JXRDZBTGpTUVhqVVQ3VDRPRzBQcVgzendaXzBfNUNCSzJ1QXh3TF9NTUhRZ0hLaGdNdWxnaVJLNmpuUWZKdVZidUt3Z0g1alloby0teF92ZmM5czl4Q2sycTN2QXdlTHdUaE93TElWa3NZWnkzZTJIcUFZcjR4cElCYjBjMkNJUWtkajBFWW50elIydlF4d09uZjBkcWlHM1E?oc=5": {
-  "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "ok": true,
+  "text": "Avec ReCyF (le Référentiel Cyber France), l’Anssi traduit les obligations de la directive NIS 2 en vingt objectifs de sécurité assortis de moyens de conformité acceptables. Le référentiel, encore en version de travail, distingue ce que l’entité doit atteindre de la manière d’y parvenir, et module l’effort selon qu’elle est importante ou essentielle. Pour une direction informatique, il fournit la grille qui manquait pour engager la mise en conformité sans attendre la transposition définitive de la directive en droit français. […]",
+  "body": "Avec ReCyF (le Référentiel Cyber France), l’Anssi traduit les obligations de la directive NIS 2 en vingt objectifs de sécurité assortis de moyens de conformité acceptables. Le référentiel, encore en version de travail, distingue ce que l’entité doit atteindre de la manière d’y parvenir, et module l’effort selon qu’elle est importante ou essentielle. Pour une direction informatique, il fournit la grille qui manquait pour engager la mise en conformité sans attendre la transposition définitive de la directive en droit français. La directive européenne NIS 2 élève le niveau de sécurité exigé des organisations jugées importantes ou essentielles pour le fonctionnement de l’économie et de la société. Sa transposition française fera entrer près de 15 000 entités dans le champ de la conformité, contre quelques centaines sous le régime précédent. Cette extension ouvre un marché de prestataires considérable, mais elle laisse chaque direction informatique devant une question concrète : par où commencer, et avec quelle grille de lecture. L’Anssi a apporté un élément de réponse en dévoilant le Référentiel Cyber France en mars, ReCyF, dans une version de travail. Ce document traduit les obligations de la directive en objectifs opérationnels et propose, pour chacun, des moyens d’y répondre. Il reste provisoire tant que la loi de transposition n’est pas adoptée, mais le directeur général de l’agence a invité les entités à ne pas attendre cette échéance pour s’en saisir. Là où l’arrivée de NIS 2 a d’abord été analysée comme un marché de la conformité , ReCyF en éclaire la conduite. La structure de ReCyF repose sur une distinction que la direction informatique a intérêt à s’approprier d’emblée. D’un côté, les objectifs de sécurité, le « quoi », fixés par le décret et opposables à l’entité. De l’autre, les moyens de conformité acceptables, le « comment », que l’Anssi propose sans les rendre obligatoires, et qui permettent de démontrer l’atteinte de l’objectif lors d’un contrôle. Une entité reste libre d’employer d’autres moyens, à condition de pouvoir prouver qu’ils satisfont l’objectif. Cette séparation a une conséquence pratique. Le travail de mise en conformité vise à atteindre des résultats de sécurité dont l’entité garde la charge de la preuve, au-delà du simple suivi d’une liste de mesures techniques. Elle oriente aussi le dialogue avec un prestataire : ce dernier peut fournir les moyens, mais l’objectif et la responsabilité de sa démonstration restent du côté de l’entité assujettie, dont les dirigeants demeurent comptables. La distinction protège enfin la liberté d’architecture, une organisation déjà certifiée sur un autre référentiel pouvant faire valoir l’équivalence de ses mesures. ReCyF range ses vingt objectifs en quatre ensembles qui dessinent un ordre de marche. Le premier bloc porte sur la gouvernance et le pilotage, des objectifs 1 à 5 : cartographie du système d’information, définition des rôles et des responsabilités, politique de sécurité, maîtrise des tiers et de la chaîne d’approvisionnement. Le deuxième couvre la protection des systèmes, des objectifs 6 à 10 : contrôle d’accès, chiffrement, gestion des configurations, sécurité des réseaux, articulation des sécurités physique et logique. Le troisième bloc traite de la défense et de la détection, avec la surveillance des systèmes et la gestion des journaux d’événements. Le quatrième organise la réponse et la résilience, des objectifs 13 à 15 : gestion des incidents, sauvegardes et tests de restauration, gestion de crise et exercices réguliers. La logique de cette séquence guide la priorisation. Une entité ne peut pas protéger ni surveiller ce qu’elle n’a pas d’abord cartographié, ce qui place la connaissance du système d’information et la gouvernance en première marche, avant tout investissement technique. ReCyF applique un principe de proportionnalité qui détermine l’ampleur de l’effort attendu. Les entités importantes, comme les entités essentielles, sont soumises aux objectifs 1 à 15, qui couvrent les fondamentaux de la cybersécurité. Les cinq objectifs supplémentaires, 16 à 20, ne s’appliquent qu’aux entités essentielles, et ajoutent une approche fondée sur les risques, des audits de sécurité réguliers, des configurations renforcées, une administration depuis des ressources dédiées et une supervision continue. Pour la direction informatique, ce découpage est d’abord un outil de cadrage. Il faut commencer par déterminer la catégorie dont relève l’organisation, importante ou essentielle, car elle fixe le périmètre des objectifs applicables. La proportionnalité signifie aussi que le niveau attendu s’adapte à la maturité et aux ressources de l’entité, ce qui autorise une trajectoire progressive plutôt qu’une mise à niveau immédiate. L’Anssi a annoncé un outil de comparaison entre ReCyF et les autres référentiels existants, qui aide une organisation déjà engagée dans une démarche de sécurité à mesurer l’écart à combler. Le caractère non définitif de ReCyF ne justifie pas l’attente. Le référentiel restera un document de travail jusqu’à l’adoption de la loi de transposition, dont le calendrier parlementaire demeure incertain, et jusqu’à la publication des décrets et arrêtés techniques qui suivront, au sein d’un calendrier réglementaire européen qui se déploie jusqu’en 2028. Les objectifs fondamentaux, eux, sont stables, car ils découlent directement de la directive et de l’état de l’art que l’Anssi consolide depuis des années. Une entité qui engage dès maintenant sa cartographie, sa gouvernance et ses sauvegardes travaille sur des acquis qui ne seront pas remis en cause par la version finale. La conduite raisonnable consiste donc à traiter ReCyF comme une feuille de route et non comme une grille d’audit. Commencer par les objectifs 1 à 5, mesurer l’écart sur les objectifs 6 à 15, puis, pour les entités essentielles, planifier les objectifs 16 à 20 dont la mise en œuvre est la plus longue. Cette anticipation transforme une obligation subie en trajectoire maîtrisée, et place l’entité en position de choisir ses prestataires sur des objectifs précis plutôt que de leur déléguer la définition même de son besoin. C’est dans cette appropriation, plus que dans l’achat de prestations, que se joue la conformité réelle.",
+  "bodyChars": 6273,
+  "resolvedUrl": "https://itsocial.fr/cybersecurite/cybersecurite-articles/recyf-comment-conduire-la-mise-en-conformite-nis-2-avant-meme-la-version-finale-du-referentiel/"
  },
  "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNZ1FGODh0aGVwQUFCSkV0OVktV096QXVCUTRPWHF5bXBSdkVrNFRJQ1lRcTRHLUVFQllfRTdVdHVFRlBwLVc4SC1uSEtmR0IwMzZxdjFxTmJ4SVBqNE5xSXhDYnFmc1NBV0owWUJhYWxkaW5qQjhnMXJXN2t5SDlycC0tdWg0Rk43YXBpRDJhcTNleElyM3ZjNXJ6eGt5cDg0cVRJYkhIMjc?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMivgFBVV95cUxQNHdNQS1PVnRCeTlRMEk1bkYtQXVaZ2VJd090Y1ZTVGp0TkE5RDU4VEJYdndnXzdHNFlJTHgxODRnVkJZS0JSX3RENHg4WlhrblVfWEc0eG9Rd3lHbWFDWi0wVEVCMU5iVFlvSW1Pand6cVJnQWNldzZ6czYzM0VWNWVqdE9HS2hET2JzYXQxV0RYa3ZCcm1TSUE5YnZmZUI0eFRVVGQtR1pQV3huMS15MDQ1VmJ0SHZLZUxjQnBB?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMie0FVX3lxTFBSQmwyWGNnaFBpYnU5ZTNLTGxmaWlBN0RIMUlHR3UyMWt6VkxSWVNWaEphYi0xWE5kTnZXZTlYcmE0WmpjRDVsTWJFam9HblRhenRVWk1sdWxxd0tFazM3RlBtMk5JMWpiZHFXZGYyT1dxdld6anBuemVrNA?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiowFBVV95cUxNaEZhZlhudmZPTzBNVmlGQjMybm5md2o4NFlNRkxYblNVYmdwUER6ODJGZUZNaVdKYWpnZkgyU05LbE5RbllJMUpjb3FWWlZXb1dYQ0ZJa24zREp4aF9ZNmRsUldxTEZFYlY0RTNRMGppalFxUFJpV2ltazd2Q0FhMHk3bE9oNXp5Y1BONlMtX3pwOFJKSzlEbGRNMWFMeWNfcnNv?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMihAFBVV95cUxPenVuWDNaSXdGUmRrQTlLTXlPWWEwUDlwT3V3RHliM2s0WXlnWXRwTWVXQjB1SnEyZ1gyVTlfWDNfWVc2aWI3UTlPalNxaWJOSmpKdUd4bnpmcnhjR3FtX25HT1pFY3pQSDBZVEhfZnBqZFVuQ3hNNGZBUEhiVm5lOF9JTEM?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMixwFBVV95cUxOYTFTMmNaQnFoSUQ2RUNNd0hCY0RHRjhPMGhTZEdLcTdpVDI2MGdVWDljYmdiNEVYUGhVQUZIQlFPd0ZxaGMtMjBDUWg4VnRGRnJoWmtHOTE0SHZITmhCNWVYVnRZQlMzOFJ6QllCMGFVZEYwQ0s5eW5ZdFZRUWRyX3ZxNzBsaWg5MTZUQjZXVEFua2hMdmdpUGlSMTlHYmJxVnVyV20tS1RqY3Q3X1Vub01uRjQ3M1lENTlXd3JhSmotR05XVVVr?oc=5": {
-  "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "ok": true,
+  "text": "Ce projet de loi critique pour la cybersécurité française est toujours englué à l’Assemblée nationale. La suite de l’examen à l’Assemblée nationale du projet de loi transposant la directive européenne NIS (Network and information security) 2 était attendue pour juillet . C’est finalement un rendez-vous loupé, s’est excusée récemment Anne Le Hénanff, au cours d’une intervention lors d’un événement du Clusif (Club de la sécurité de l’information français). De façon peu rassurante, la ministre déléguée a signalé ensuite son espoir de voir le texte examiné en septembre prochain. […]",
+  "body": "Ce projet de loi critique pour la cybersécurité française est toujours englué à l’Assemblée nationale. La suite de l’examen à l’Assemblée nationale du projet de loi transposant la directive européenne NIS (Network and information security) 2 était attendue pour juillet . C’est finalement un rendez-vous loupé, s’est excusée récemment Anne Le Hénanff, au cours d’une intervention lors d’un événement du Clusif (Club de la sécurité de l’information français). De façon peu rassurante, la ministre déléguée a signalé ensuite son espoir de voir le texte examiné en septembre prochain. Si cela reste un « texte prioritaire » pour l’exécutif, notamment poussé par les ministres Jean-Noël Barrot et Marina Ferrari, a-t-elle ajouté, ce délai devrait permettre l’aboutissement entre-temps de la mission confiée au député Florent Boudié (Ensemble pour la république), qui vient d'être prolongée . Ce dernier est chargé de faire le point sur le chiffrement de bout en bout et d’examiner ses deux facettes. Soit à la fois comment il contribue à protéger des données sensibles tout en faisant « obstacle » à des enquêtes, résumait sa lettre de mission. Or l’un des amendements du projet de loi, le 16 bis, vise à sanctuariser le chiffrement. En l’état actuel, cet article, présenterait « un risque majeur pour la politique publique du renseignement », a alerté récemment la délégation parlementaire au renseignement. Le dispositif envisagé « paraît aller au-delà des ambitions initiales de ses auteurs », écrivait cette structure. Menaçant ainsi l’emploi de techniques de renseignement visant à l’accès « non consenti » à des « données protégées ». Des craintes peu du goût du sénateur à l’origine de l’article 16 bis, Olivier Cadic (Union centriste). Il y a un mois, ce dernier avait fustigé avec le député Philippe Latombe (Les démocrates) le retard pris dans la transposition. « Son examen en hémicycle semblait une formalité qui allait permettre la mise en conformité de notre pays avec la réglementation européenne. Et puis, plus rien ! Ce texte, en dépit de nos alertes répétées, est sans cesse repoussé aux calendes », regrettaient les deux parlementaires . Un retard également peu apprécié par la Commission européenne, qui s’apprêterait à poursuivre l’exécutif français devant la Cour de justice de l’Union européenne, avait dévoilé un peu plus tôt Politico . Cela pourrait « se concrétiser par une amende pouvant atteindre plusieurs dizaines millions d’euros », s’inquiétaient Olivier Cadic et Philippe Latombe. Contrainte par cet embouteillage législatif, l’Anssi continue de son côté à se mettre en ordre de bataille pour la transposition tant attendue. Après avoir ouvert son guichet de pré-enregistrement il y a neuf mois , le cyber-pompier vient par exemple de signer un accord avec la Banque de France et l'Autorité de contrôle prudentiel et de résolution. Après son piratage, les gendarmes : les déboires d’YggTorrent se poursuivent Depuis près de quatre ans, la commune de Rosny-sous-Bois croise le fer devant la justice administrative avec son ancien directeur des systèmes d’information, licencié quelques mois après son embauche. En empoisonnant les routeurs, les hackers interceptent le trafic des collaborateurs en déplacement sans toucher à leurs ordinateurs. Voici la marche à suivre pour protéger vos accès. La formation restreinte de l’autorité administrative indépendante vient de prononcer une amende de 500 000 euros contre l’Hôpital privé de la Loire, victime d’une importante fuite de données en juillet 2025. L’incident met en lumière un angle mort de sécurité méconnu, les comptes personnels connectés à des outils d’entreprise comme Gmail échappant largement au contrôle des services informatiques. Mail, SMS ou faux site imitant PayPal, Amazon ou votre banque : voici comment reconnaître un phishing, le signaler et sécuriser vos comptes. Family Link encadre applis, écran et contenu sur Android, mais ne bloque pas tout. Voici ce que le contrôle parental Google protège, et ses limites réelles. Norton, Bitdefender, McAfee, Avast ou Surfshark proposent un antivirus avec VPN inclus. Voici ce que ces offres apportent vraiment, et leurs limites. Windows intègre Microsoft Defender par défaut. Suffit-il face aux virus, au phishing et aux ransomwares, ou faut-il un antivirus tiers ? Ça y est, les vacances sont là ! Mais voilà : la connexion de votre location rame complètement. Quelqu'un est-il en train de squatter discrètement votre réseau ? Voici comment débusquer les intrus de l'été. En ces heures cruciales, chaque kilobit de votre bande passante compte pour éviter le redoutable écran de mise en mémoire tampon lors de votre match de foot. Si votre connexion ralentit brutalement au coup d'envoi, le coupable n'est peut-être pas votre opérateur, mais un voisin indélicat qui pille votre réseau Wi-Fi. Voici comment repérer les intrus, les éjecter et sécuriser votre connexion pour ne manquer aucune action. Une connexion non vérifiée dans un espace public peut compromettre les données de votre smartphone. La dernière version 17 de l’OS mobile est en mesure de vous avertir d’un tel risque, mais uniquement si vous l'autorisez. Apprenez à repérer les signes indiquant que votre compte est surveillé ou piraté, et reprenez le contrôle.",
+  "bodyChars": 5267,
+  "resolvedUrl": "https://www.zdnet.fr/actualites/transposition-de-la-directive-nis-2-lexamen-du-texte-maintenant-espere-pour-septembre-498370.htm"
  },
  "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBWa2RkaVp4R2JOWU5reW05RjZ4d2NEOWJlSVVELWJxbDE1MzJMWW9fYUNyby03T3ZCZHd6UWtPNmRYVVY4bElBLW5PejlybjJG?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMisgFBVV95cUxQRWgtbFotZExsWVZMVlZwYVVId0NTdC1LQzN1dFBCZGJWVU5uaGV5aHFzMDRPeGNpVXNHSEdiUGVjX21LXzR4UHBvRWFRenEzM0p0enFBd2hYUzR3d2I0M3lkTXA5T3A0OGZNYVVnSFJLM0E3TGJnai11alZZcXRHdGt1V3F0eHJQcUNzRHFCd25sdzNOWmY2Ml9WUzRBanFBSWc5bmN4Mlg4alJhV2c4cEd3?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNZm85QllCZEVQTnVWdXY2TkU0ODNHZS1WOGx1cjN3Yjgybm15aGQwa3lqbnRncVhGZnJNWmhQdHJWTDJoRTFMay1HUVYwVHM3RFRKZUV4cGFHU2pZM0RNRzd6UkM5bzFqUEFZLVRvLWdnLUt0aWFaLTNqajhlRk40WDlROTBMMDRLQzhlUXBnc0U0TGFIb1cyaW0yVlZPdkZjWGZlUEFISmttOF9XbWhTYjNwbzdQcVlQbW1JOEJIUVNtOHM?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMioAFBVV95cUxPTFdZWGZqQlZURkY1SUNqMFI4RUpiNnBhbkN0RTJVSnlHOHFHVnpqb1VQaVR3TzZSeU96S0dFRWdTY3dWNGQ5XzhaSUZrUDNJaWRpOENrVEx4dWp6UlhyYU80M2FmdjR6ZXVQR29SNVlfY0JPZVdROVNEV2EyV3NSLW14dUxpS2xlZk82akZVWEFwcThmV3J1d1l1OGlFckJY?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTHluNGRXN05BNUtUQWotcmNFTGF3WXV3a1JSc1lTb1FMbk9yQ2lRYkRzZDRiRUEtQkN2NThqQTEta3ZIaVBsbTRlbkJOVlNRSGVYclJGS2VmQTh2LXlYX3JvNzlWa0FqVHJmVGV0Sk0xMXZqNElpU0laUUNmeXhRTWExZTVQbVRwbUFMUVR1NThqaklKMFJaN1Fhdy1MbzgzVzF3a3ZuVUdhYnBB?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNODA3bkxmTG5BUW1BWF9sakQ4bVNMRmNTT2tlazN4N2YtY04wckoxd0dMZDBiY0NiNUN1cUUtM2UxM0RkeVBGY1RLakFfUWNxNWFOS1c5eXhSRVQzSUJrOUJhUHFUOVNwTXBTSW1leHVXeVlvSDFodUZ0SHhfRnhBTnc5NFVKNkM1dExLakZ1WGxDSVd2OVp1TnlaVDRCSW9QSmRzUWVOMjJYSTZqWi1MTnVERDRzNkYtMWJSOVNyN2xyV1lkbmQ2Rl9ZVVRXRm9odlVHSlVNSWo3RkJmcDZlMlNwNEQwQk1CN3ZvQVB5cG1sbmVGczV3?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiekFVX3lxTE1XeFRHTGNRdlVCU2NMTzRzOUhKYzRZNTBmbDdGZmtLa0wyOFQ5eGpBbVdqS1M5Wk9XNm9FWEhENi1Gb0xEZVh0LTFxQXFmQUtVVVhPUWRCbGRCU29fQUxRVXM1V0VwZXV4Q2xKY1lsT3pkczBKalNQT1FB?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://www.bsi.bund.de/DE/Themen/Regulierte-Wirtschaft/NIS-2-regulierte-Unternehmen/nis-2-regulierte-unternehmen_node.html": {
   "ok": true,
@@ -219,59 +243,77 @@
  },
  "https://news.google.com/rss/articles/CBMiTkFVX3lxTE13Nkgza09tTlJTUkxOWXB0ZzRJbWxGQmtaVXVYM2hiZHNYNmpweGE5Rjl6T3pOdHVaMTh1TVNfX29TcVBHeFdMMEl0QzdEUQ?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiswFBVV95cUxPMXFSSV9rMHFObms4d1hZeml2QmtVS2MxbFVFVWdIdXAxQ000ZEhVVlk4d1RKcjNDeG42OVd1X3g3NWxfM0RzVGlNTGFBWGs2d0xHQzVCRHVycGN1cGx0Y1FhRnRfYU8wTVhVQVZrdktDVWp5QUdhVHNXd2VWOG9DdEZRTTRGMnQyRzR3X1NnbzZUay1na0F6YzFrdE9nV0RubHNkNk1jNWtndzlZanlFNjNTMA?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPcUVsVnM2TThrcXBOUDRBMjJTT0VtZ3pJclF3cU84TTk2SkJxVnprTnJNU3YybnRuSjlOTVdrVE50Nm9nZU5sY2FzV3I3NlBUWERTSFlWdHV6b0p4NUZfZ1RYa0ttX3NOQlh3LThJS28tT0hTU3VscDZMNUxCU3h1WUJ1czBIdjdZa3VEMTQ4XzNnVXp3WFp6UndGT0M5UjlmNFlQWXltRHBOeDFsSUd6U2stbkx3VDFzVVVlTmtSWGQxTUxNVVc3WEFWQ0JObWlHZkRKakpuZ2w2dzUxQU5Td1FZdTROX0Y3QnlIYjU4V2pWN0xMVlE?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiugFBVV95cUxOc21kSkp4elZYU3JlY05KVFhnaERrSVRTNjRmckVqdFVsZDdfN2k4WTNBT0lMLTVTRDJvVGhwUUtZMmRmN0padGFPVEpnM0tmZXNqR0VKVkxNRFltaHFVOV9LdENDd2VqQ0JKR2lRYW9tZTdtTkNsdmg5WHJ0dTNmenlxMjBoNXpBcVcyRE9mU0d5Y2dWYTNtNmZnMHZ0UWV0WFlGTGkxaXZ5UjZTVUt1dnI3am01Rk5WMlE?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiswFBVV95cUxOa0NwSVRWZEwwMjZ4TmhERy0ybTZkR1h3ck0tbldLMWtmT1ctVkdfZzlaN1hQWjFsNW9WcV9ZMWs5S016d1l5NjZmWmpMTXhCLTdOcWV1WThrUExfbERtZ2NPUVVXSXA3cVFTZVlYcEpYdVVfWE41cWZnQ0xBRjF3cUhySFBaU0Jyd0dfM2pYWWxiWXo2ZkFHWmlFdFpLbWNYVEVGOTlnS0kxMTBUckdfRjFxVQ?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNZDA3NlpqZ2FGVk5XRVJ2Z0pfcHBrUE9LbmExZDJSU2U3NFNhaVh1M3ROZ0lrb1FHbXhrUlk1QzUwX1ZTaW9wamVrbmQ0WmJMOGpvUUxMVEhPT2ZEeEtLc1JEdTVha213SWpkTzhyMWtaWXFUd2l1NDVJRVJCREQwRGMyLXloTjQ3c2VDWWRqQVBmTS1rckJkNUhtbGpfNVRCbFVhR2tnV3ZYc2M?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMimwFBVV95cUxQODRZX0o3R21sb19PczdqR28zSFEtYkJSaERnSmtZTzlPZjRlZ3BNN0dLcGVObXBKX0Z5SFpjTDc2aGdBLVBYSXUwcWkyaTNGaURxTGZnQUdvakNXZ2VIU1dCMXZYMTJZdUREOFZnY0QyRzd1eWxDWk50WFlqVUpzTFRTaW15LW43R1BNRU5ESnh2QVRKUERIMUZtOA?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9vazh6U3EwRTBiOVp0a21zX2RGb1lKN3lTZ3VTMDFHODlpLXBoUlk2bHFEd0ExUmxJU19JWERMWGkzcXEzUDhXbmdNeVFDVUZBUTVYbHhlOVprSTRRWkZzeDVZRQ?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWXV5eUVXcmJIU3hIbjB2d3lKRWxBYVptRW9XemhEcVRleWtyam5ycDI1dWN0WFU1RHhQblpzSWVIODNGbXV4ZHVkRUdKYktDVHlMTE1ENE1oSWd2cWZ1RmtXS0pkX285YnVFUlNXNFQ2YW5ZQ0xONzZuOWl5MjdlV3N2WU4tNzJQSkliU0EyM0g3a3huZGhDbTBnRkh4NTJqT3hRNEh2WQ?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMiowFBVV95cUxQOGVhNmJXV29TRlZiT3huRHE0dnBmV05WblVrbXZrNGppd1p6V2hEMUgzcGZQX3BKUkxmVUZ5UDFLdTZHTTcxTjRNQjIwUHdkNVE2MjNaZk9JdlVfU1pKcWZtNlUtaDUzQ25rOHVDUGRHa0E4VGMzdlZKZ1c2S09jVWhKMndnWmR5Q3hxaWc0ai1DWDF5M0g1bHo2QXpLT3RvTmsw?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMimgFBVV95cUxOZFl6dFpCald0Qy1QNXV2ZHZya3RIYUR1bjFCUXgxdzJuZ18zdF9OdHBoNU5XQnJYUmxUUXRRWUtHNkplRURJTDBid1lXM0JxaFhaUlp2S3Z5OGRaVVZnZlpac1R3VTVsQUdVb29TQ2FXWTFpM0FXUWtGQXZjOXNNMjhiU1dBRGxrQzhOYzNqRzZMcWpfUjBTVm53?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNNjlTVjBpZnhzV0tUWmZ1ZlppWloyLVFxN1UzMllvdUVpelpiQTlmUm11cnpJSHh6NDlXR3hOVDUtTVc1bk1ZUTFHWEN1TUYzRXgzam16bUg5ZWIwOXZ2NTFtZERIUEt6dy1KOXE0Z3NmNU1Gd0o4MEhhYkFZU3JSdFJ5NG9uOVNVV3B2cEhyX0wtVG5tZU5uTGhWc1BYY1FjUm40V1ViWUktTlBjVTBCbWhVSUlYckgtRDZqRWRWX19fTmd0S2dDUWhaakZ3clJFVW1HWHlFRmU?oc=5": {
   "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "reason": "article d'origine introuvable",
+  "unresolved": true
  },
  "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRlNzc1NJU21HMnZBSU1XWFdBTjRyTjc4OVBTdEhHbE9YZjlfZHZDNWVwanFpdENHR0tzT3MwelYtZW5jRjg0enZjdXFmR3NjVUdaX2FWdGZvQ3ZEWGZ5TTRrdm9pMEZPMUJIZXVTZjU1Yzl0X09qQ00tNE5ILVVWazFJZUwxM2NfQmNiVEt6ZnZsV1V1aUVvbjRsQ2wyWFpuN3FQMDNR?oc=5": {
-  "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "ok": true,
+  "text": "La France est en retard dans sa transposition de la directive européenne NIS2. Le texte de loi est à l'agenda de l'Assemblée nationale, mais n'a toujours pas été examiné. La Commission européenne envisagerait une action en justice. A force de traîner des pieds, la France pourrait se retrouver en porte à faux avec la Commission européenne. Celle-ci envisagerait en effet de poursuivre la France et l'Espagne devant la Cour de Justice de l'Union Européenne (CJUE) pour avoir trop tardé à transposer la directive NIS2 dans leur droit national. […]",
+  "body": "La France est en retard dans sa transposition de la directive européenne NIS2. Le texte de loi est à l'agenda de l'Assemblée nationale, mais n'a toujours pas été examiné. La Commission européenne envisagerait une action en justice. A force de traîner des pieds, la France pourrait se retrouver en porte à faux avec la Commission européenne. Celle-ci envisagerait en effet de poursuivre la France et l'Espagne devant la Cour de Justice de l'Union Européenne (CJUE) pour avoir trop tardé à transposer la directive NIS2 dans leur droit national. Cette directive vise à renforcer et étendre les obligations de cybersécurité relatives aux entités et secteurs essentiels. L'information a initialement été rapportée par Politico , citant une source de la Commission européenne souhaitant rester anonyme. Celle-ci précise que l'affaire pourrait être portée devant la CJUE juste avant ou après les vacances d'été. Côté français, le Secrétariat général aux affaires européennes a assuré \"préparer sa défense devant la CJUE\" dans l'éventualité de cette procédure. La directive NIS2 a été adoptée par les institutions européennes en 2022 et son entrée en vigueur était prévue pour octobre 2024. A cette date, les différents États membres devaient avoir adopté une loi visant à transposer les dispositions de NIS2, ce que la France a tenté de faire avec le Projet de loi Résilience. Mais ce texte, présenté au Sénat en octobre 2024 et adopté par la chambre haute en début d'année 2025 doit encore être débattu par l'Assemblée nationale avant son adoption et sa ratification. Depuis, le texte attend d'être mis à l'ordre du jour de l'assemblée par le gouvernement et son adoption est effectivement bloquée. La procédure envisagée par la Commission européenne ne concerne pas que la France. Sur l'ensemble des États membres de l'union européenne, seuls quatre pays ont effectivement transposé la directive dans les temps. La Commission avait déjà adressé un avis motivé à 19 pays pour les inviter à transposer la directive NIS2 au mois de mai 2025. La Commission envisage des procédures similaires contre d'autres pays mais n'a pas précisé lesquels. Si la procédure se poursuit jusqu'à la CJUE et que le jugement reconnaît que la France a failli à ses obligations, la Commission peut demander une amende dont le montant final sera fixé par la Cour. Mais la Cour peut également décider d'accorder un délai supplémentaire pour permettre au pays de se mettre en règle. Les parlementaires Olivier Cadic et Philippe Latombe avaient déjà tiré la sonnette d'alarme concernant le blocage de ce texte au mois de février 2026 . Ils expliquaient alors que le blocage de l'examen du texte de loi par l'exécutif était lié à un article adopté par le Sénat et visant à interdire l'introduction de porte dérobées et de dispositifs visant à affaiblir la sécurité des systèmes d'informations et de communication. Dans un nouveau communiqué , les deux parlementaires rappellent que l'adoption de ce texte est \"une urgence absolue\" afin de renforcer la protection des infrastructures numériques critiques face aux cyber attaques. Les deux parlementaires rappellent que ces dispositions s'imposent de plus en plus dans un \"contexte international très dégradé et menaçant.\" Valve alerte ses clients européens après le piratage de son partenaire logistique CEVA A la fin du mois d'août, l'administration américaine plaçait l'organisation italienne Autistici/inventati sous sanction pour ses liens supposés avec des militants d'extrême gauche. Plusieurs associations de défense de l'internet libre dénoncent la décision. Depuis près de quatre ans, la commune de Rosny-sous-Bois croise le fer devant la justice administrative avec son ancien directeur des systèmes d’information, licencié quelques mois après son embauche. En empoisonnant les routeurs, les hackers interceptent le trafic des collaborateurs en déplacement sans toucher à leurs ordinateurs. Voici la marche à suivre pour protéger vos accès. Capgemini poursuit ses activités avec l'ICE, la police américaine de l'immigration. L'administration américaine a publié un document fin août montrant que l'activité se poursuit. La filiale chargée de cette activité n'est toujours pas vendue. Mail, SMS ou faux site imitant PayPal, Amazon ou votre banque : voici comment reconnaître un phishing, le signaler et sécuriser vos comptes. Family Link encadre applis, écran et contenu sur Android, mais ne bloque pas tout. Voici ce que le contrôle parental Google protège, et ses limites réelles. Norton, Bitdefender, McAfee, Avast ou Surfshark proposent un antivirus avec VPN inclus. Voici ce que ces offres apportent vraiment, et leurs limites. Windows intègre Microsoft Defender par défaut. Suffit-il face aux virus, au phishing et aux ransomwares, ou faut-il un antivirus tiers ? De nos jours, dans la lutte contre les menaces en ligne, les certifications et les années d'expérience ne suffisent plus. Avec l'automatisation renforcée par l’IA, trois compétences prennent le relais. Pas de clim ? Moi non plus. Voici comment rester au frais et rafraîchir votre intérieur pendant une vague de chaleur. Ça y est, les vacances sont là ! Mais voilà : la connexion de votre location rame complètement. Quelqu'un est-il en train de squatter discrètement votre réseau ? Voici comment débusquer les intrus de l'été. En ces heures cruciales, chaque kilobit de votre bande passante compte pour éviter le redoutable écran de mise en mémoire tampon lors de votre match de foot. Si votre connexion ralentit brutalement au coup d'envoi, le coupable n'est peut-être pas votre opérateur, mais un voisin indélicat qui pille votre réseau Wi-Fi. Voici comment repérer les intrus, les éjecter et sécuriser votre connexion pour ne manquer aucune action.",
+  "bodyChars": 5745,
+  "resolvedUrl": "https://www.zdnet.fr/actualites/nis2-le-retard-de-la-france-pourrait-la-mener-a-une-sanction-496668.htm"
  },
  "https://news.google.com/rss/articles/CBMimAFBVV95cUxQT3Fia2xiNDFsY1ZOY2dEN1k5MTFDb09CYWlkcHBiMDFzR0tDeWE3VDAxUkkzX1RPWmNpUkhvVE9hRGFRckNqMmVDVDAtdUZLQURRdGV0cVdjdE9XT2NWR3l6Z3g2ZkJGeDkwUGVSQWVnTWloMm5XalN4MWhqOXJRWkkwd2hZRjhCdngwSXQ1dGZxbHhVVHVTTQ?oc=5": {
-  "ok": false,
-  "reason": "mur de consentement (agrégateur)"
+  "ok": true,
+  "text": "Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. […]",
+  "body": "Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. Alors que la transposition de NIS2 était prévue avant la fin de l’été, ce ne sera finalement pas le cas. Les députés sont certes convoqués pour une session extraordinaire, mais NIS2 n’est pas au programme de la trentaine de projets de loi qui va être examinée. 17 octobre 2024 : c’était la date limite pour transposer le projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité, plus connu sous le nom NIS2. Vincent Strubel (patron de l’ANSSI) avait déjà prévenu début 2024 : « le 17 octobre, il ne va pas se passer grand-chose de spécial, en tout cas dans le domaine de NIS2 ». Effectivement, rien le 17 octobre et toujours en attente d’un vote final mi-2026. Quelques semaines auparavant, le 9 juin, Emmanuel Macron décidait de dissoudre l’Assemblée nationale. Le gouvernement démissionnaire s’occupait alors simplement d’expédier « les affaires courantes ». Les gouvernements se sont ensuite enchaînés : Attal, Barnier et Bayrou sur les derniers mois de 2024. NIS2 n’était pas la priorité des équipes respectives. Début 2025 , les transpositions des directives européennes NIS2, DORA et REC passaient l’étape du Sénat. Avant d’être applicable, le texte doit aussi être examiné par l’Assemblée nationale. Nous avions contacté la Commission des lois à l’époque, qui nous répondait que le gouvernement avait évoqué la fin mai (spoiler : c’est loin d’être le cas), mais que la date précise ne serait connue qu’un mois avant environ. En juin , la Cour des comptes publiait un long rapport sur la cybersécurité et y parlait évidemment de NIS2. Elle souhaitait à ce sujet que l’ANSSI évolue davantage vers une logique de contrôle et de sanction. Vincent Strubel a déjà fait part de son opposition à plusieurs reprises, affirmant son rôle de cyber-pompier et pas cyber-gendarme: « Un cyber pompier, ça ne remplit pas un PV en même temps que ça a éteint le feu ». Sécurité Cybersécurité : les ambitions de NIS 2 décortiquées par Vincent Strubel (ANSSI) Sécurité Vendredi 27 décembre 2024 à 14h03 27/12/2024 14h03 8 Vendredi 27 décembre 2024 à 14h03 27/12/2024 14h03 En septembre 2025 , le projet de loi était adopté par une commission spéciale de l’Assemblée nationale. Philippe Latombe, président de cette commission, ajoutait au passage un amendement afin de sanctuariser le chiffrement de bout en bout (dans l’article 16 bis). Ne restait donc que l’examen final du texte et son vote en séance publique. Quelques semaines plus tard , toujours sans passage à l’Assemblée nationale (ni calendrier prévisionnel), l’ANSSI ouvrait son bureau de pré-enregistrement. C’était « la première brique de l’entrée en vigueur de NIS 2 et un premier pas pour les entités dans le respect de leurs obligations ». En février, retournement de situation : la DGSI était accusée par deux députés (les présidents de la commission spéciale) de bloquer l’adoption de la loi. « Je le dis de façon claire et je ne vais pas me faire de copains en disant ça mais c’est pas grave, la DGSI et les services veulent la fin de l’article 16 bis », expliquait Philippe Latombe en conférence de presse. En mars , l’ANSSI publiait son REférentiel CYber France (ReCyF), en version bêta. Il « liste les mesures recommandées par l’ANSSI pour atteindre les objectifs de sécurité fixés par NIS2 ». Vincent Strubel expliquait qu’il « restera un document de travail jusqu’à la transposition de NIS2 en droit français, mais il ne faut surtout pas attendre pour le mettre en œuvre ». En avril , Vincent Strubel revenait une nouvelle fois sur ce sujet et expliquait l’impasse actuelle : « On est face à deux impératifs de même valeur : celui de la protection de la vie privée et de la sécurité nationale […]. S’il y avait une solution magique qui permette de les préserver ensemble sans impact sur l’un ou sur l’autre, elle aurait déjà été trouvée… In fine, cela relèvera d’une décision politique du législateur, qui sera un choix entre plusieurs mauvaises solutions ». Sécurité La DGSI accusée de bloquer l’adoption d’une loi renforçant la cybersécurité Sécurité Mercredi 25 février 2026 à 13h24 25/02/2026 13h24 13 Mercredi 25 février 2026 à 13h24 25/02/2026 13h24 Dix-huit mois après la date butoir de transposition, la Commission supérieure du numérique et des postes (CSNP) venait mettre son grain de sel. Elle expliquait que ce retard venait « d’un point de clivage politique : l’article 16 bis, introduit au Sénat afin de consacrer dans la loi la protection du chiffrement et d’interdire l’imposition de dispositifs de portes dérobées (« backdoors ») aux messageries instantanées, fait l’objet d’une opposition du gouvernement ». Toujours selon la Commission, le programme législatif du gouvernement « prévoit désormais un examen du texte en juillet 2026, et ce sous réserve de la convocation d’une session extraordinaire ». Caramba, encore raté. Comme le rapporte Éric Bothorel sur X , un décret a bien été publié au Journal officiel pour une convocation du Parlement en session extraordinaire à partir du mercredi 1ᵉʳ juillet 2026. Les députés devraient siéger jusqu’à la semaine du 20 juillet incluse pour examiner plusieurs textes. L’ordre du jour comprend une trentaine d’examens sur des projets et propositions de loi. Mais, on a beau chercher, rien sur NIS2 ou le projet de loi relatif à la résilience des infrastructures critiques et au renforcement de la cybersécurité (le mot cyber n’apparait pas dans le décret). Il y a quelques jours, nous apprenions que l’Europe serait sur le point de déposer plainte contre la France (devant la Cour de justice de l’Union européenne) pour son retard dans la transposition de la directive. Sur le site de l’European Cyber Security Organisation (ECSO), on peut voir que l’Espagne, l’Irlande et les Pays-Bas sont également en retard et n’ont toujours pas de transposition. On se souviendra d’une phrase de Vincent Strubel aux Assises de la cybersécurité de Monaco en octobre 2025 à propos de l’ultime vote de la transposition de NIS2 en droit français : c’est « une étape indispensable et essentielle, mais ce n’est qu’une étape et pas la plus difficile ». Pas si sûr. Accédez en illimité aux articles d'un média expert Profitez d'au moins 1 To de stockage pour vos sauvegardes Intégrez la communauté et prenez part aux débats Partagez des articles premium à vos contacts Voulez-vous vraiment signaler ce commentaire ?",
+  "bodyChars": 6630,
+  "resolvedUrl": "https://next.ink/242574/cybersecurite-la-transposition-de-nis2-continue-de-trainer-des-pieds/"
  },
  "https://www.ncsc.gov.ie/pdfs/NIS2_Draft_Risk_Management_Measures_Guidance.pdf": {
   "ok": false,

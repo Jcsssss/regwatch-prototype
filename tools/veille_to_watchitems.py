@@ -138,6 +138,18 @@ def load_excerpts():
     return {url: v["text"] for url, v in cache.items() if v.get("ok") and v.get("text")}
 
 
+def load_resolved():
+    """Lien Google News -> article chez l'editeur, retrouve par fetch_excerpts.py.
+
+    Le validateur ouvre alors l'article lui-meme, et non une page de consentement.
+    L'adresse de l'agregateur est gardee a cote, pour la tracabilite."""
+    path = ROOT / "data" / "excerpt-cache.json"
+    if not path.exists():
+        return {}
+    cache = json.loads(path.read_text(encoding="utf-8"))
+    return {url: v["resolvedUrl"] for url, v in cache.items() if v.get("ok") and v.get("resolvedUrl")}
+
+
 # Below this, a "body" is a stub, a language switcher or a consent page rather
 # than an article. Measured: real bodies run to 2 500 characters and beyond,
 # while the failures came back at 20, 110 and 278.
@@ -501,6 +513,7 @@ def build_items(rows):
     cellmap = load_cellmap()
     excerpts = load_excerpts()
     bodies = load_bodies()
+    resolved = load_resolved()
     trans = load_translations()
     dates = load_dates()
     if not trans:
@@ -578,8 +591,10 @@ def build_items(rows):
                     first(record, "Extrait source") or excerpts.get(first(record, "URL source"), "")), "fr"),
                 "source": {
                     "name": first(record, "Autorité émettrice", "Source d'origine") or "Watch agent",
-                    "url": first(record, "URL source"),
+                    "url": resolved.get(first(record, "URL source")) or first(record, "URL source"),
                     "type": source_type,
+                    **({"viaAggregator": first(record, "URL source")}
+                       if first(record, "URL source") in resolved else {}),
                 },
                 "status": STATUS_MAP.get(fold(record.get("Statut")), "pending"),
                 # Advice aimed at a client company - kept, but it is NOT what the
