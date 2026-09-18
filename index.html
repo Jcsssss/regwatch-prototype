@@ -465,6 +465,12 @@ body.fcells .fcell{display:inline}
 .eu-chk:hover{background:var(--surface2)}
 .eu-chk.on{background:var(--accent-soft);color:var(--ink);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
 .eu-chk input{accent-color:var(--accent);margin:0}
+.eu-rgrid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.eu-rchk{align-items:flex-start;padding:8px 10px}
+.eu-rchk input{margin-top:3px}
+.eu-rtxt{display:flex;flex-direction:column;gap:2px}
+.eu-rtxt b{font-size:13px;color:var(--ink)}
+.eu-rtxt span{font-size:11.5px;color:var(--muted);line-height:1.4}
 .eu-chk .fi{width:20px;height:14px;border-radius:2px;overflow:hidden;display:inline-block;flex:none;box-shadow:0 0 0 1px var(--line)}
 .eu-chk .fi svg{width:100%;height:100%;display:block}
 .eu-nav .fnav-in{align-items:center}
@@ -17462,7 +17468,6 @@ const I18N = {
     "eu.nis2only": "The European view is available for NIS 2.",
     "eu.compare": "Countries compared",
     "eu.count": "{n} countries",
-    "eu.p.eu": "EU {n}",
     "eu.p.all": "All tracked ({n})",
     "eu.p.done": "Transposed",
     "eu.p.todo": "Not transposed",
@@ -17684,6 +17689,13 @@ const I18N = {
     "fb.title": "Your feedback on the tool",
     "fb.newTab": "Open in a new tab",
     "fb.help": "Your answer goes to the RegWatch team through Microsoft Forms. If the form asks you to sign in and stays blank, open it in a new tab.",
+    "eu.regions": "Regions",
+    "eu.r.North": "Northern Europe",
+    "eu.r.South": "Southern Europe",
+    "eu.r.East": "Eastern Europe",
+    "eu.r.West": "Western Europe",
+    "eu.pickAllR": "All regions",
+    "eu.pickNoneR": "None",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -18272,7 +18284,6 @@ const I18N = {
     "eu.nis2only": "La vue europ\u00e9enne est disponible pour NIS 2.",
     "eu.compare": "Pays compar\u00e9s",
     "eu.count": "{n} pays",
-    "eu.p.eu": "UE {n}",
     "eu.p.all": "Tous les pays suivis ({n})",
     "eu.p.done": "Transpos\u00e9s",
     "eu.p.todo": "Non transpos\u00e9s",
@@ -18494,6 +18505,13 @@ const I18N = {
     "fb.title": "Vos retours sur l'outil",
     "fb.newTab": "Ouvrir dans un nouvel onglet",
     "fb.help": "Votre r\u00e9ponse est transmise \u00e0 l'\u00e9quipe RegWatch via Microsoft Forms. Si le formulaire demande une connexion et reste vide, ouvrez-le dans un nouvel onglet.",
+    "eu.regions": "R\u00e9gions",
+    "eu.r.North": "Europe du Nord",
+    "eu.r.South": "Europe du Sud",
+    "eu.r.East": "Europe de l'Est",
+    "eu.r.West": "Europe de l'Ouest",
+    "eu.pickAllR": "Toutes les régions",
+    "eu.pickNoneR": "Aucune",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -24894,13 +24912,21 @@ const euRound = n => Math.round(n * 10) / 10;
 const euFmt = n => String(euRound(n)).replace(".", lang === "fr" ? "," : ".");
 
 /* ---------- selection des pays ---------- */
-const EU_PRESETS = ["eu", "all", "done", "todo", "custom"];
+const EU_REGIONS = ["North", "South", "East", "West"];
+const EU_PRESETS = ["all", "done", "todo", "regions", "custom"];
 function euAll(){ return COUNTRIES.slice().sort((a, b) => a.name.localeCompare(b.name, lang)); }
 function euTransposed(iso){ return euYes(euCell(iso, "id", "F")); }
+/* Par defaut : les quatre regions cochees, soit les 27 Etats membres - la base
+   de comparaison de l'etude. Les anciens choix enregistres (« UE 27 », une
+   region seule) sont repris sous cette forme. */
 function euSelState(){
   const s = store.euSel || {};
-  return { preset: EU_PRESETS.includes(s.preset) ? s.preset : "eu",
-           isos: Array.isArray(s.isos) ? s.isos : [] };
+  let preset = s.preset, regions = Array.isArray(s.regions) ? s.regions.filter(r => EU_REGIONS.includes(r)) : null;
+  if (preset === "eu" || !EU_PRESETS.includes(preset)) {
+    if (typeof preset === "string" && preset.startsWith("r:")) regions = [preset.slice(2)];
+    preset = "regions";
+  }
+  return { preset, isos: Array.isArray(s.isos) ? s.isos : [], regions: regions || EU_REGIONS.slice() };
 }
 function euSelection(){
   const s = euSelState();
@@ -24909,7 +24935,9 @@ function euSelection(){
   if (s.preset === "done") return all.filter(c => c.eu && euTransposed(c.iso));
   if (s.preset === "todo") return all.filter(c => c.eu && !euTransposed(c.iso));
   if (s.preset === "custom") return all.filter(c => s.isos.includes(c.iso));
-  return all.filter(c => c.eu);
+  /* Les regions se lisent parmi les Etats membres : le Royaume-Uni et la
+     Norvege restent des comparateurs, pas un voisinage. */
+  return all.filter(c => c.eu && s.regions.includes(c.region));
 }
 
 /* ---------- textes du consultant ---------- */
@@ -25624,10 +25652,10 @@ function renderEurope(arg){
   const sel = euSelection();
   const all = euAll();
   const presets = [
-    { k: "eu", label: t("eu.p.eu", { n: all.filter(c => c.eu).length }) },
     { k: "all", label: t("eu.p.all", { n: all.length }) },
     { k: "done", label: t("eu.p.done") },
     { k: "todo", label: t("eu.p.todo") },
+    { k: "regions", label: t("eu.regions") },
     { k: "custom", label: t("eu.p.custom") }
   ];
 
@@ -25656,7 +25684,21 @@ function renderEurope(arg){
       <span class="eu-fl">${t("eu.compare")}</span>
       <div class="eu-presets" role="group">${presets.map(p =>
         `<button type="button" data-preset="${p.k}" aria-pressed="${s.preset === p.k}">${p.label}</button>`).join("")}</div>
+
       <span class="eu-count">${t("eu.count", { n: sel.length })}</span>
+      <div class="eu-pick" id="euRegions" ${s.preset === "regions" ? "" : "hidden"}>
+        <div class="eu-pick-a">
+          <button type="button" data-rpick="all">${t("eu.pickAllR")}</button>
+          <button type="button" data-rpick="none">${t("eu.pickNoneR")}</button>
+        </div>
+        <div class="eu-pick-g eu-rgrid">${EU_REGIONS.map(r => {
+          const list = all.filter(c => c.eu && c.region === r);
+          const on = s.regions.includes(r);
+          return `<label class="eu-chk eu-rchk${on ? " on" : ""}">
+            <input type="checkbox" value="${r}" ${on ? "checked" : ""}>
+            <span class="eu-rtxt"><b>${t("eu.r." + r)}</b><span>${list.map(c => esc(c.name)).join(", ")}</span></span></label>`;
+        }).join("")}</div>
+      </div>
       <div class="eu-pick" id="euPick" ${s.preset === "custom" ? "" : "hidden"}>
         <div class="eu-pick-a">
           <button type="button" data-pick="all">${t("eu.pickAll")}</button>
@@ -25704,17 +25746,25 @@ function euWire(el){
     const cur = euSelState();
     const p = b.dataset.preset;
     /* Passer en personnalise part de la selection affichee, pas d'une liste vide. */
-    euSetSel(p === "custom" ? { preset: "custom", isos: cur.preset === "custom" ? cur.isos : euSelection().map(c => c.iso) }
-                            : { preset: p, isos: cur.isos });
+    euSetSel(p === "custom" ? { preset: "custom", regions: cur.regions,
+                                isos: cur.preset === "custom" ? cur.isos : euSelection().map(c => c.iso) }
+                            : { preset: p, isos: cur.isos, regions: cur.regions });
   }));
-  el.querySelectorAll(".eu-chk input").forEach(i => i.addEventListener("change", () => {
-    const isos = [...el.querySelectorAll(".eu-chk input:checked")].map(x => x.value);
-    euSetSel({ preset: "custom", isos });
+  el.querySelectorAll("#euPick .eu-chk input").forEach(i => i.addEventListener("change", () => {
+    const isos = [...el.querySelectorAll("#euPick .eu-chk input:checked")].map(x => x.value);
+    euSetSel({ preset: "custom", isos, regions: euSelState().regions });
   }));
+  el.querySelectorAll("#euRegions .eu-chk input").forEach(i => i.addEventListener("change", () => {
+    const regions = [...el.querySelectorAll("#euRegions .eu-chk input:checked")].map(x => x.value);
+    euSetSel({ preset: "regions", regions, isos: euSelState().isos });
+  }));
+  el.querySelectorAll("[data-rpick]").forEach(b => b.addEventListener("click", () =>
+    euSetSel({ preset: "regions", regions: b.dataset.rpick === "all" ? EU_REGIONS.slice() : [], isos: euSelState().isos })));
   el.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
     const all = euAll();
     const k = b.dataset.pick;
-    euSetSel({ preset: "custom", isos: k === "all" ? all.map(c => c.iso) : k === "eu" ? all.filter(c => c.eu).map(c => c.iso) : [] });
+    euSetSel({ preset: "custom", regions: euSelState().regions,
+               isos: k === "all" ? all.map(c => c.iso) : k === "eu" ? all.filter(c => c.eu).map(c => c.iso) : [] });
   }));
   const ns = $("#euNavSel", el);
   if (ns) ns.addEventListener("click", () => $("#euFilter", el).scrollIntoView({ behavior: "smooth", block: "center" }));

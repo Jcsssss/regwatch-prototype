@@ -124,8 +124,9 @@ L'onglet **Vue européenne** reprend les graphiques de l'étude comparative NIS 
 périmètre, incidents, enregistrement, référentiel, audits, sanctions), rangés comme la fiche
 pays. Tout est recalculé à l'ouverture depuis les données du classeur Cyber Watch embarquées
 dans l'outil : il suffit de régénérer les données et de reconstruire pour que les graphiques
-suivent. Un filtre limite la comparaison à l'UE, aux pays transposés ou non, ou à une
-sélection libre.
+suivent. Un filtre limite la comparaison à des régions de l'UE (Nord, Sud, Est, Ouest, à cocher ;
+les quatre par défaut, soit les 27 États membres), aux pays transposés ou non, ou à une
+sélection libre. La région de chaque pays est le champ `region` des fiches (`data_c*.js`).
 
 Chaque graphique propose un titre calculé depuis les données. Le consultant peut le réécrire
 et ajouter son analyse ; ces textes restent dans son navigateur.

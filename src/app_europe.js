@@ -61,13 +61,21 @@ const euRound = n => Math.round(n * 10) / 10;
 const euFmt = n => String(euRound(n)).replace(".", lang === "fr" ? "," : ".");
 
 /* ---------- selection des pays ---------- */
-const EU_PRESETS = ["eu", "all", "done", "todo", "custom"];
+const EU_REGIONS = ["North", "South", "East", "West"];
+const EU_PRESETS = ["all", "done", "todo", "regions", "custom"];
 function euAll(){ return COUNTRIES.slice().sort((a, b) => a.name.localeCompare(b.name, lang)); }
 function euTransposed(iso){ return euYes(euCell(iso, "id", "F")); }
+/* Par defaut : les quatre regions cochees, soit les 27 Etats membres - la base
+   de comparaison de l'etude. Les anciens choix enregistres (« UE 27 », une
+   region seule) sont repris sous cette forme. */
 function euSelState(){
   const s = store.euSel || {};
-  return { preset: EU_PRESETS.includes(s.preset) ? s.preset : "eu",
-           isos: Array.isArray(s.isos) ? s.isos : [] };
+  let preset = s.preset, regions = Array.isArray(s.regions) ? s.regions.filter(r => EU_REGIONS.includes(r)) : null;
+  if (preset === "eu" || !EU_PRESETS.includes(preset)) {
+    if (typeof preset === "string" && preset.startsWith("r:")) regions = [preset.slice(2)];
+    preset = "regions";
+  }
+  return { preset, isos: Array.isArray(s.isos) ? s.isos : [], regions: regions || EU_REGIONS.slice() };
 }
 function euSelection(){
   const s = euSelState();
@@ -76,7 +84,9 @@ function euSelection(){
   if (s.preset === "done") return all.filter(c => c.eu && euTransposed(c.iso));
   if (s.preset === "todo") return all.filter(c => c.eu && !euTransposed(c.iso));
   if (s.preset === "custom") return all.filter(c => s.isos.includes(c.iso));
-  return all.filter(c => c.eu);
+  /* Les regions se lisent parmi les Etats membres : le Royaume-Uni et la
+     Norvege restent des comparateurs, pas un voisinage. */
+  return all.filter(c => c.eu && s.regions.includes(c.region));
 }
 
 /* ---------- textes du consultant ---------- */
@@ -791,10 +801,10 @@ function renderEurope(arg){
   const sel = euSelection();
   const all = euAll();
   const presets = [
-    { k: "eu", label: t("eu.p.eu", { n: all.filter(c => c.eu).length }) },
     { k: "all", label: t("eu.p.all", { n: all.length }) },
     { k: "done", label: t("eu.p.done") },
     { k: "todo", label: t("eu.p.todo") },
+    { k: "regions", label: t("eu.regions") },
     { k: "custom", label: t("eu.p.custom") }
   ];
 
@@ -823,7 +833,21 @@ function renderEurope(arg){
       <span class="eu-fl">${t("eu.compare")}</span>
       <div class="eu-presets" role="group">${presets.map(p =>
         `<button type="button" data-preset="${p.k}" aria-pressed="${s.preset === p.k}">${p.label}</button>`).join("")}</div>
+
       <span class="eu-count">${t("eu.count", { n: sel.length })}</span>
+      <div class="eu-pick" id="euRegions" ${s.preset === "regions" ? "" : "hidden"}>
+        <div class="eu-pick-a">
+          <button type="button" data-rpick="all">${t("eu.pickAllR")}</button>
+          <button type="button" data-rpick="none">${t("eu.pickNoneR")}</button>
+        </div>
+        <div class="eu-pick-g eu-rgrid">${EU_REGIONS.map(r => {
+          const list = all.filter(c => c.eu && c.region === r);
+          const on = s.regions.includes(r);
+          return `<label class="eu-chk eu-rchk${on ? " on" : ""}">
+            <input type="checkbox" value="${r}" ${on ? "checked" : ""}>
+            <span class="eu-rtxt"><b>${t("eu.r." + r)}</b><span>${list.map(c => esc(c.name)).join(", ")}</span></span></label>`;
+        }).join("")}</div>
+      </div>
       <div class="eu-pick" id="euPick" ${s.preset === "custom" ? "" : "hidden"}>
         <div class="eu-pick-a">
           <button type="button" data-pick="all">${t("eu.pickAll")}</button>
@@ -871,17 +895,25 @@ function euWire(el){
     const cur = euSelState();
     const p = b.dataset.preset;
     /* Passer en personnalise part de la selection affichee, pas d'une liste vide. */
-    euSetSel(p === "custom" ? { preset: "custom", isos: cur.preset === "custom" ? cur.isos : euSelection().map(c => c.iso) }
-                            : { preset: p, isos: cur.isos });
+    euSetSel(p === "custom" ? { preset: "custom", regions: cur.regions,
+                                isos: cur.preset === "custom" ? cur.isos : euSelection().map(c => c.iso) }
+                            : { preset: p, isos: cur.isos, regions: cur.regions });
   }));
-  el.querySelectorAll(".eu-chk input").forEach(i => i.addEventListener("change", () => {
-    const isos = [...el.querySelectorAll(".eu-chk input:checked")].map(x => x.value);
-    euSetSel({ preset: "custom", isos });
+  el.querySelectorAll("#euPick .eu-chk input").forEach(i => i.addEventListener("change", () => {
+    const isos = [...el.querySelectorAll("#euPick .eu-chk input:checked")].map(x => x.value);
+    euSetSel({ preset: "custom", isos, regions: euSelState().regions });
   }));
+  el.querySelectorAll("#euRegions .eu-chk input").forEach(i => i.addEventListener("change", () => {
+    const regions = [...el.querySelectorAll("#euRegions .eu-chk input:checked")].map(x => x.value);
+    euSetSel({ preset: "regions", regions, isos: euSelState().isos });
+  }));
+  el.querySelectorAll("[data-rpick]").forEach(b => b.addEventListener("click", () =>
+    euSetSel({ preset: "regions", regions: b.dataset.rpick === "all" ? EU_REGIONS.slice() : [], isos: euSelState().isos })));
   el.querySelectorAll("[data-pick]").forEach(b => b.addEventListener("click", () => {
     const all = euAll();
     const k = b.dataset.pick;
-    euSetSel({ preset: "custom", isos: k === "all" ? all.map(c => c.iso) : k === "eu" ? all.filter(c => c.eu).map(c => c.iso) : [] });
+    euSetSel({ preset: "custom", regions: euSelState().regions,
+               isos: k === "all" ? all.map(c => c.iso) : k === "eu" ? all.filter(c => c.eu).map(c => c.iso) : [] });
   }));
   const ns = $("#euNavSel", el);
   if (ns) ns.addEventListener("click", () => $("#euFilter", el).scrollIntoView({ behavior: "smooth", block: "center" }));
