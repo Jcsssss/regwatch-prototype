@@ -489,33 +489,19 @@ nav.tabs .fb-open{margin-left:auto;align-self:center;display:inline-flex;align-i
   background:var(--surface);color:var(--ink2);border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;font-weight:650;cursor:pointer}
 nav.tabs .fb-open:hover{border-color:var(--accent);color:var(--accent)}
 nav.tabs .fb-open svg{width:15px;height:15px}
-#fbDlg{border:0;padding:0;background:transparent;max-width:min(560px,94vw);width:100%;color:var(--ink)}
+#fbDlg{border:0;padding:0;background:transparent;max-width:min(760px,94vw);width:100%;color:var(--ink)}
 #fbDlg::backdrop{background:rgba(10,8,20,.55)}
-.fb{background:var(--surface);border:1px solid var(--line2);border-radius:16px;overflow:hidden;margin:0}
-.fb-h{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line)}
-.fb-h h2{margin:0;font-size:17px;font-weight:800;color:var(--ink)}
-.fb-h .x{margin-left:auto;background:var(--surface2);border:1px solid var(--line2);border-radius:9px;width:32px;height:32px;
-  display:grid;place-items:center;cursor:pointer;color:var(--ink2)}
+.fb{background:var(--surface);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
+.fb-h{display:flex;align-items:center;gap:10px;padding:13px 16px 13px 20px;border-bottom:1px solid var(--line)}
+.fb-h h2{margin:0;font-size:17px;font-weight:800;color:var(--ink);flex:1;min-width:0}
+.fb-tab{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.fb-tab svg{width:13px;height:13px}
+.fb-h .x{background:var(--surface2);border:1px solid var(--line2);border-radius:9px;width:32px;height:32px;
+  display:grid;place-items:center;cursor:pointer;color:var(--ink2);flex:none}
 .fb-h .x svg{width:14px;height:14px}
-.fb-b{padding:16px 20px 6px;display:grid;gap:12px}
-.fb-intro{margin:0;font-size:13px;color:var(--ink2);line-height:1.5}
-.fb-kinds{display:flex;gap:6px;flex-wrap:wrap}
-.fb-kinds label{cursor:pointer}
-.fb-kinds input{position:absolute;opacity:0;pointer-events:none}
-.fb-kinds span{display:inline-block;padding:6px 13px;border-radius:999px;border:1px solid var(--line2);font-size:12.5px;font-weight:650;color:var(--ink2)}
-.fb-kinds input:checked+span{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.fb-kinds input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
-.fb-f{display:grid;gap:5px}
-.fb-f>span{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.fb-f textarea,.fb-f input{font:inherit;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line2);
-  border-radius:10px;padding:9px 11px;resize:vertical}
-.fb-f textarea:focus,.fb-f input:focus{outline:none;border-color:var(--accent)}
-.fb-ctx{margin:0;font-size:12px;color:var(--muted)}
-.fb-ctx b{color:var(--ink2)}
-.fb-msg{margin:0;min-height:1.2em;font-size:12.5px;font-weight:650;color:var(--accent)}
-.fb-f2{display:flex;justify-content:flex-end;gap:8px;padding:10px 20px 4px}
-.fb-f2 .btn:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.4)}
-.fb-note{margin:0;padding:6px 20px 16px;font-size:11.5px;color:var(--muted);line-height:1.45}
+.fb-frame{position:relative;height:min(72vh,720px);background:#fff}
+.fb-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.fb-note{margin:0;padding:9px 20px 12px;font-size:11.5px;color:var(--muted);line-height:1.45;border-top:1px solid var(--line)}
 @media (max-width:700px){nav.tabs .fb-open span{display:none}}
 .eu-del{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:7px;cursor:pointer;
   border:1px solid var(--line2);background:var(--surface2);color:var(--muted)}
@@ -17698,27 +17684,8 @@ const I18N = {
     "reg.planned": "Planned module - same data model",
     "fb.btn": "Your feedback",
     "fb.title": "Your feedback on the tool",
-    "fb.intro": "An idea, a problem, a missing piece of information? Tell us: every message is read.",
-    "fb.kind": "Type of feedback",
-    "fb.k.idea": "Suggestion",
-    "fb.k.bug": "Problem",
-    "fb.k.other": "Other",
-    "fb.msg": "Your message",
-    "fb.msgPh": "What would you like to tell us?",
-    "fb.name": "Your name (optional)",
-    "fb.namePh": "So that we can get back to you",
-    "fb.ctx": "Sent from",
-    "fb.from": "From",
-    "fb.team": "team version",
-    "fb.client": "client version",
-    "fb.send": "Send by email",
-    "fb.copy": "Copy the message",
-    "fb.empty": "Write a message first.",
-    "fb.opened": "Your email app has opened with the message ready: you just need to send it.",
-    "fb.copied": "Message copied: paste it into an email or a Teams message.",
-    "fb.copyFail": "Copy was not allowed by the browser: select the text and copy it by hand.",
-    "fb.note": "The button opens your own email app with the message pre-filled. Nothing is sent without your click.",
-    "fb.noAddress": "The receiving address is not set yet: copy the message and send it to the RegWatch team.",
+    "fb.newTab": "Open in a new tab",
+    "fb.help": "Your answer goes to the RegWatch team through Microsoft Forms. If the form asks you to sign in and stays blank, open it in a new tab.",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -18529,27 +18496,8 @@ const I18N = {
     "reg.planned": "Module prévu - même modèle de données",
     "fb.btn": "Vos retours",
     "fb.title": "Vos retours sur l'outil",
-    "fb.intro": "Une id\u00e9e, un probl\u00e8me, une information manquante ? Dites-le nous : chaque message est lu.",
-    "fb.kind": "Type de retour",
-    "fb.k.idea": "Suggestion",
-    "fb.k.bug": "Probl\u00e8me",
-    "fb.k.other": "Autre",
-    "fb.msg": "Votre message",
-    "fb.msgPh": "Que souhaitez-vous nous dire ?",
-    "fb.name": "Votre nom (facultatif)",
-    "fb.namePh": "Pour pouvoir vous r\u00e9pondre",
-    "fb.ctx": "Envoy\u00e9 depuis",
-    "fb.from": "De",
-    "fb.team": "version \u00e9quipe",
-    "fb.client": "version client",
-    "fb.send": "Envoyer par e-mail",
-    "fb.copy": "Copier le message",
-    "fb.empty": "\u00c9crivez d'abord un message.",
-    "fb.opened": "Votre messagerie s'est ouverte avec le message pr\u00eat : il ne reste qu'\u00e0 l'envoyer.",
-    "fb.copied": "Message copi\u00e9 : collez-le dans un e-mail ou un message Teams.",
-    "fb.copyFail": "Le navigateur a refus\u00e9 la copie : s\u00e9lectionnez le texte et copiez-le \u00e0 la main.",
-    "fb.note": "Le bouton ouvre votre propre messagerie avec le message pr\u00e9-rempli. Rien n'est envoy\u00e9 sans votre clic.",
-    "fb.noAddress": "L'adresse de r\u00e9ception n'est pas encore renseign\u00e9e : copiez le message et envoyez-le \u00e0 l'\u00e9quipe RegWatch.",
+    "fb.newTab": "Ouvrir dans un nouvel onglet",
+    "fb.help": "Votre r\u00e9ponse est transmise \u00e0 l'\u00e9quipe RegWatch via Microsoft Forms. Si le formulaire demande une connexion et reste vide, ouvrez-le dans un nouvel onglet.",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -26314,26 +26262,19 @@ function chatVisualHTML(v, key){
 }
 /* ---------- vos retours sur l'outil ----------
  *
- * Le site n'a pas de serveur : il ne peut pas envoyer un courriel lui-meme sans
- * un service tiers, qui verrait passer les retours et ferait entrer une cle dans
- * une page publique. On passe donc par la messagerie de l'utilisateur : le
- * bouton ouvre un courriel deja adresse et rempli (lien mailto), qu'il n'a plus
- * qu'a envoyer. Rien ne part sans son clic, et le retour arrive depuis sa propre
- * adresse, ce qui permet de lui repondre.
+ * Les retours passent par un Microsoft Forms du tenant Wavestone : les reponses
+ * sont rangees dans un tableau, et son proprietaire est prevenu par courriel a
+ * chacune. Le site n'a ainsi ni serveur ni cle a porter.
  *
- * Le contexte (page, version, langue) est ajoute au message : c'est ce qu'on
- * demande toujours en premier devant un « ca ne marche pas ».
+ * Le formulaire s'affiche dans la fenetre, charge seulement a l'ouverture. Un
+ * lien l'ouvre aussi dans un nouvel onglet : quand le formulaire est reserve aux
+ * comptes Wavestone, certains navigateurs refusent la connexion Microsoft a
+ * l'interieur d'une page tierce (cookies tiers bloques), et la fenetre resterait
+ * sur un ecran de connexion.
  */
-const FEEDBACK_TO = "";   /* adresse de reception - a renseigner */
-
-function feedbackContext(){
-  const r = typeof currentRoute !== "undefined" ? currentRoute : { v: "overview" };
-  const page = r.v === "country" && r.arg && byIso[r.arg] ? t("nav.countries") + " › " + byIso[r.arg].name
-    : (typeof assistContext === "function" ? assistContext().label : r.v);
-  const team = typeof renderDev === "function";
-  return { page, version: team ? t("fb.team") : t("fb.client"), lang: lang.toUpperCase(),
-           date: new Date().toLocaleDateString(lang === "fr" ? "fr-FR" : "en-GB") };
-}
+const FEEDBACK_FORM = "https://forms.cloud.microsoft/e/jQvtSwVTpK";
+const FEEDBACK_EMBED = "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id="
+  + "lmzpXXzIzk2q2fXFV7Uqwa9tl5VL_81BvSrkWj_JKMBUNkNYMElHWjJTWTVRNE9IRTlTMkVLMDhOVi4u&embed=true";
 
 function feedbackOpen(){
   let dlg = document.getElementById("fbDlg");
@@ -26343,70 +26284,19 @@ function feedbackOpen(){
     document.body.appendChild(dlg);
     dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
   }
-  const ctx = feedbackContext();
-  const kinds = [["idea", t("fb.k.idea")], ["bug", t("fb.k.bug")], ["other", t("fb.k.other")]];
-  dlg.innerHTML = `<form class="fb" method="dialog">
+  dlg.innerHTML = `<div class="fb">
     <div class="fb-h"><h2>${t("fb.title")}</h2>
+      <a class="btn fb-tab" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">${t("fb.newTab")}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       <button class="x" type="button" id="fbClose" aria-label="${t("fiche.close")}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button></div>
-    <div class="fb-b">
-      <p class="fb-intro">${t("fb.intro")}</p>
-      <div class="fb-kinds" role="radiogroup" aria-label="${esc(t("fb.kind"))}">${kinds.map(([k, l], i) =>
-        `<label><input type="radio" name="fbKind" value="${k}" ${i ? "" : "checked"}><span>${l}</span></label>`).join("")}</div>
-      <label class="fb-f"><span>${t("fb.msg")}</span>
-        <textarea id="fbMsg" rows="6" placeholder="${esc(t("fb.msgPh"))}"></textarea></label>
-      <label class="fb-f"><span>${t("fb.name")}</span>
-        <input id="fbName" type="text" autocomplete="name" placeholder="${esc(t("fb.namePh"))}"></label>
-      <p class="fb-ctx">${t("fb.ctx")} <b>${esc(ctx.page)}</b> · ${esc(ctx.version)} · ${ctx.lang}</p>
-      <p class="fb-msg" id="fbStatus" role="status"></p>
-    </div>
-    <div class="fb-f2">
-      <button type="button" class="btn" id="fbCopy">${t("fb.copy")}</button>
-      <button type="button" class="btn primary" id="fbSend" ${FEEDBACK_TO ? "" : "disabled"}>${t("fb.send")}</button>
-    </div>
-    <p class="fb-note">${FEEDBACK_TO ? t("fb.note") : t("fb.noAddress")}</p>
-  </form>`;
-
-  const text = () => {
-    const kind = (dlg.querySelector("input[name=fbKind]:checked") || {}).value || "other";
-    const label = (kinds.find(k => k[0] === kind) || kinds[2])[1];
-    const name = $("#fbName", dlg).value.trim();
-    return {
-      subject: "[RegWatch] " + label + " - " + ctx.page,
-      body: $("#fbMsg", dlg).value.trim() + "\n\n---\n"
-        + (name ? t("fb.from") + " : " + name + "\n" : "")
-        + t("fb.ctx") + " " + ctx.page + " · " + ctx.version + " · " + ctx.lang + " · " + ctx.date
-    };
-  };
-  const status = s => { $("#fbStatus", dlg).textContent = s; };
-  const empty = () => {
-    if ($("#fbMsg", dlg).value.trim()) return false;
-    status(t("fb.empty"));
-    $("#fbMsg", dlg).focus();
-    return true;
-  };
-
+    <div class="fb-frame">
+      <iframe src="${FEEDBACK_EMBED}" title="${esc(t("fb.title"))}" allowfullscreen></iframe></div>
+    <p class="fb-note">${t("fb.help")}</p>
+  </div>`;
   $("#fbClose", dlg).addEventListener("click", () => dlg.close());
-  $("#fbSend", dlg).addEventListener("click", () => {
-    if (empty()) return;
-    const m = text();
-    location.href = "mailto:" + FEEDBACK_TO + "?subject=" + encodeURIComponent(m.subject)
-      + "&body=" + encodeURIComponent(m.body);
-    status(t("fb.opened"));
-  });
-  $("#fbCopy", dlg).addEventListener("click", async () => {
-    if (empty()) return;
-    const m = text();
-    try {
-      await navigator.clipboard.writeText(m.subject + "\n\n" + m.body);
-      status(t("fb.copied"));
-    } catch (e) {
-      status(t("fb.copyFail"));
-    }
-  });
   dlg.showModal();
-  $("#fbMsg", dlg).focus();
 }
 
 function feedbackWire(){

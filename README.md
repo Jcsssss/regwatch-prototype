@@ -174,11 +174,11 @@ fenêtre de génération, dates comprises.
 
 ## Vos retours
 
-Le bouton **Vos retours**, à droite des onglets, ouvre une fenêtre (suggestion, problème,
-autre). « Envoyer par e-mail » ouvre la messagerie de l'utilisateur avec un courriel adressé
-et rempli, contexte compris (page, version, langue) : le site n'a pas de serveur pour envoyer
-lui-même. L'adresse de réception se règle dans `FEEDBACK_TO` (`src/app_feedback.js`) ; tant
-qu'elle est vide, seul « Copier le message » est proposé.
+Le bouton **Vos retours**, à droite des onglets, ouvre le Microsoft Forms de l'équipe dans une
+fenêtre, avec un lien pour l'ouvrir dans un nouvel onglet (utile quand le navigateur refuse la
+connexion Microsoft dans une page tierce). Les réponses arrivent dans le tableau du formulaire,
+et son propriétaire est prévenu par courriel. Les deux adresses du formulaire sont en tête de
+`src/app_feedback.js`.
 
 ## Assistant
 
