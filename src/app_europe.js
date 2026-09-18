@@ -756,7 +756,6 @@ function euSanLabel(col){ const k = "eu.sanc." + col; const s = t(k); return s =
 function euCard(ch, sel){
   const saved = euText(ch.id);
   const title = saved.title || ch.title;
-  const filled = ch.filled != null ? ch.filled : null;
   return `<figure class="eu-card${ch.wide ? " wide" : ""}" data-eu="${ch.id}">
     <div class="eu-card-h">
       <h3 class="eu-title" contenteditable="true" spellcheck="false" data-auto="${esc(ch.title)}"
@@ -773,8 +772,7 @@ function euCard(ch, sel){
     </div>
     <div class="eu-body">${ch.body}</div>
     <div class="eu-note" contenteditable="true" data-ph="${esc(t("eu.notePh"))}">${esc(saved.note || "")}</div>
-    <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code>${filled != null
-      ? ` · ${t("eu.filled", { n: filled, total: ch.total || sel.length })}` : ""}${ch.meta ? ` · ${esc(ch.meta)}` : ""}</figcaption>
+    ${ch.meta ? `<figcaption class="eu-src">${esc(ch.meta)}</figcaption>` : ""}
   </figure>`;
 }
 
@@ -1049,6 +1047,17 @@ async function euCardPng(card, scale){
     if (n) { n.style.height = "auto"; n.style.blockSize = "auto"; }
   });
   clone.style.boxShadow = "none";
+  /* L'image est prise au clic sur « PNG » : la souris survole alors l'en-tete,
+     et le titre porte son cadre pointille d'edition. Il n'a rien a faire sur
+     un visuel exporte. */
+  const ttl = $(".eu-title", clone);
+  if (ttl) {
+    /* Toutes les bordures, y compris les logiques (border-inline-*, border-block-*)
+       recopiees du style calcule : remettre « border » a zero ne les touche pas. */
+    [...ttl.style].filter(p => /^(border|outline)/.test(p)).forEach(p => ttl.style.removeProperty(p));
+    ttl.style.border = "0";
+    ttl.style.background = "transparent";
+  }
 
   /* La hauteur change des qu'on retire la zone d'analyse vide : on la mesure
      sur le clone, pose hors ecran, plutot que sur la carte affichee. */
@@ -1413,7 +1422,6 @@ function chatVisualHTML(v, key){
   return `<figure class="eu-card chat-visual" data-vis="${key}">
     <div class="eu-card-h"><h3 class="eu-title" style="cursor:default">${esc(ch.title)}</h3></div>
     <div class="eu-body">${ch.body}</div>
-    <figcaption class="eu-src">${t("eu.source")} <code>${esc(ch.src)}</code></figcaption>
     <div class="chat-vis-act">
       ${added
         ? `<span class="chat-vis-ok">${t("eu.mine.added")}</span><a class="btn" href="#/europe/mine">${t("eu.mine.open")}</a>`
