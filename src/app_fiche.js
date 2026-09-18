@@ -599,11 +599,6 @@ function renderFiche(c, el){
       </div></div>
       ${sections}
 
-      <div class="freco">
-        <div class="freco-h">${ficheIcon("bulb")}<h2>${t("fiche.reco")}</h2>
-          <span class="by">${t("fiche.recoBy")}</span></div>
-        <div class="freco-b"><div class="none">${t("fiche.recoNone")}</div></div>
-      </div>
     </div>
 
     <div class="fasidew" id="ficheAsideW">

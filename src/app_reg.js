@@ -148,6 +148,9 @@ function regFromWorkbook(c){
   const row = typeof SHEET_DATA !== "undefined" && SHEET_DATA.rows[c.iso];
   if (!row) return c;
   const id = row.id || {}, fw = row.fw || {};
+  /* « A jour le » : la date du dernier passage complet sur le classeur. Une
+     validation de veille posterieure la depasse, et reste affichee. */
+  if (SHEET_DATA.scanned && !(c.lastUpdate > SHEET_DATA.scanned)) c.lastUpdate = SHEET_DATA.scanned;
   const has = v => v != null && v !== "NC";
   if (has(id.D) && /^[1-4]$/.test(String(id.D))) c.maturity = +id.D;
   if (has(id.F) && /^(yes|no)\b/i.test(id.F)) {

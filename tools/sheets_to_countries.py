@@ -139,7 +139,11 @@ def main():
             rows.setdefault(iso, {})[key] = bag
 
     wb.close()
-    payload = {"workbook": src.name, "sheets": sheets, "rows": rows}
+    # La date du passage : c'est elle que la fiche affiche comme date de mise a
+    # jour. Le classeur n'a pas de date par pays, et les dates de ses feuilles
+    # disent quand quelqu'un l'a edite, pas quand l'outil l'a relu.
+    payload = {"workbook": src.name, "scanned": date.today().isoformat(),
+               "sheets": sheets, "rows": rows}
     OUT.write_text(
         "/* ---- Le classeur comparatif, porte case par case.\n"
         "   Genere par tools/sheets_to_countries.py - ne pas editer a la main.\n"

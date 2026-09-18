@@ -172,6 +172,14 @@ sont traduites au moment de l'affichage seulement : la vue européenne classe le
 leurs valeurs anglaises d'origine. Les slides générées suivent la langue choisie dans la
 fenêtre de génération, dates comprises.
 
+## Vos retours
+
+Le bouton **Vos retours**, à droite des onglets, ouvre une fenêtre (suggestion, problème,
+autre). « Envoyer par e-mail » ouvre la messagerie de l'utilisateur avec un courriel adressé
+et rempli, contexte compris (page, version, langue) : le site n'a pas de serveur pour envoyer
+lui-même. L'adresse de réception se règle dans `FEEDBACK_TO` (`src/app_feedback.js`) ; tant
+qu'elle est vide, seul « Copier le message » est proposé.
+
 ## Assistant
 
 L'assistant métier n'est plus un onglet : il s'ouvre depuis la **baleine en bas à droite**
