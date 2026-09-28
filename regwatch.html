@@ -489,6 +489,8 @@ body.fcells .fcell{display:inline}
 :root:not([data-theme="light"]) .eu-title{color:var(--accent2)}
 .eu-reset{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:7px;cursor:pointer;
   border:1px solid var(--line2);background:var(--surface2);color:var(--muted)}
+.tile-flags{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:8px}
+.tile-flags>span{font-size:11px;color:var(--muted);margin-right:2px}
 .eu-reset[hidden]{display:none}
 /* vos retours */
 nav.tabs .fb-open{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);
@@ -20013,6 +20015,14 @@ const I18N = {
     "eu.r.East": "Eastern Europe",
     "eu.r.West": "Western Europe",
     "eu.noRegion": "Tick one or more regions to display the charts.",
+    "ov.mapHint": "Click a country on the map or in the list to open its full record.",
+    "ov.tileNotYet": "Not transposed yet:",
+    "ov.pending": "Waiting for your validation",
+    "ov.pendingGo": "Open the watch inbox",
+    "ov.pendingNone": "Nothing to validate: the queue is clear.",
+    "src.listTitle": "All monitored sources",
+    "src.listSub": "Search a country to see its sources, or filter the full list.",
+    "hub.cardTitle": "Pending detections by country",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -20095,20 +20105,20 @@ const I18N = {
     "common.notYet": "not yet",
     "common.none": "-",
     "ov.title": "NIS 2 transposition across Europe",
-    "ov.sub": "EU-27 plus the United Kingdom and Norway. Every figure below is computed from validated country records; click a country on the map or in the list to open its full record.",
+    "ov.sub": "The 27 Member States, plus the United Kingdom and Norway. Every figure below is computed from validated country records.",
     "ov.tileTransposed": "EU members with a transposition law adopted",
     "ov.tileOnTime": "Transposed on time (17 Oct 2024)",
     "ov.tileDelay": "Average delay of late transposers",
-    "ov.tileFw": "Cybersecurity frameworks (EU-27)",
-    "ov.sFinal": "final",
-    "ov.sTemp": "temp.",
+    "ov.tileFw": "National frameworks (EU-27)",
+    "ov.sFinal": "published",
+    "ov.sTemp": "provisional",
     "ov.sNone": "none",
     "ov.map": "Transposition maturity map",
     "ov.exportPng": "Export PNG",
     "ov.latest": "Latest validated updates",
     "ov.levels": "Maturity levels",
     "cty.title": "Country records",
-    "cty.sub": "One structured record per country: status, authorities, framework, registration, incident notification, audits, event timeline and verified sources.",
+    "cty.sub": "Search a country, filter by region or maturity level, then open its record: status, authorities, framework, registration, incident reporting, audits, timeline and sources \u2014 and generate its slides.",
     "cty.search": "Search a country…",
     "cty.allRegions": "All regions",
     "cty.allLevels": "All levels",
@@ -20298,9 +20308,9 @@ const I18N = {
     "kpi.form.grid": "One square per country",
     "kpi.countries": "countries",
     "src.title": "Source registry",
-    "src.sub": "Every source monitored by the collection pipeline or cited in a country record. Official sources are trusted; unofficial ones are monitored but require validation by a Wavestone consultant; manual entries come from consultants (e.g. sector working groups) and can be flagged internal.",
+    "src.sub": "This page lists every source the tool monitors or cites in a country record. Official sources are taken as authoritative; the others are monitored but must be validated by a Wavestone consultant before anything is published.",
     "src.add": "Add a source",
-    "src.addSub": "Sources added here feed the watch agent's next run. They are the registry the collection pipeline reads - curate them and the collection improves.",
+    "src.addSub": "Add a source that is missing here: the watch agent will read it on its next pass. The better the registry is kept, the more complete the watch.",
     "src.fName": "Source name",
     "src.fUrl": "URL or feed",
     "src.fCountry": "Country / scope",
@@ -20345,15 +20355,15 @@ const I18N = {
     "hub.w30": "Last 30 days",
     "hub.w90": "Last 90 days",
     "hub.wAll": "All pending",
-    "hub.sub": "Pick a country to review its pending sources. Counts below are for the selected window.",
+    "hub.sub": "Pick a country to review what the agent detected for it and decide, item by item, what goes into its record. The counts below cover the selected window.",
     "hub.empty": "No detection in this window.",
-    "hub.fallback": "Nothing detected in the last {n} days - showing {m} instead. The agent runs weekly, so a missed run leaves a short window empty.",
+    "hub.fallback": "Nothing detected in the last {n} days, so the view widens to {m}. The watch agent runs once a week: if a pass is missed, the shortest window stays empty.",
     "hub.noneAtAll": "Nothing pending. The queue is clear.",
     "hub.euTile": "EU-wide",
     "hub.euNote": "No country record - cannot be published to a record.",
     "cand.title": "Proposed sources",
     "cand.count": "{n} awaiting a decision",
-    "cand.sub": "Found by following links out of the sources already trusted, crawled {date}. Nothing is watched until you accept it; a refusal is remembered and never proposed again.",
+    "cand.sub": "The agent proposes sources it found by following links out of the sources it already trusts (crawled {date}). Accept the ones worth monitoring and they join the registry; a source you refuse is never proposed again.",
     "cand.feed": "Feed · {n} entries",
     "cand.page": "No feed - page only",
     "cand.seen": "linked from {n} trusted page(s)",
@@ -20385,7 +20395,7 @@ const I18N = {
     "hub.backlog": "Show every pending item ({n})",
     "hub.countries": "{n} countries in this window",
     "hub.otherCountries": "Countries with nothing in this window",
-    "hub.showOthers": "Show the {n} quiet countries",
+    "hub.showOthers": "Show the {n} countries with no detection",
     "ctry.back": "← Back",
     "ctry.title": "{country} - pending sources",
     "date.flux": "from the source's feed",
@@ -20828,6 +20838,14 @@ const I18N = {
     "eu.r.East": "Europe de l'Est",
     "eu.r.West": "Europe de l'Ouest",
     "eu.noRegion": "Cochez une ou plusieurs régions pour afficher les graphiques.",
+    "ov.mapHint": "Cliquez un pays sur la carte ou dans la liste pour ouvrir sa fiche compl\u00e8te.",
+    "ov.tileNotYet": "Pas encore transpos\u00e9 :",
+    "ov.pending": "En attente de votre validation",
+    "ov.pendingGo": "Ouvrir la file de veille",
+    "ov.pendingNone": "Rien \u00e0 valider : la file est vide.",
+    "src.listTitle": "Toutes les sources suivies",
+    "src.listSub": "Cherchez un pays pour voir ses sources, ou filtrez la liste compl\u00e8te.",
+    "hub.cardTitle": "D\u00e9tections en attente, par pays",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -20910,20 +20928,20 @@ const I18N = {
     "common.notYet": "pas encore",
     "common.none": "-",
     "ov.title": "Transposition de NIS 2 en Europe",
-    "ov.sub": "Les 27 États membres, plus le Royaume-Uni et la Norvège. Chaque chiffre est calculé à partir des fiches pays validées ; cliquez un pays sur la carte ou dans la liste pour ouvrir sa fiche complète.",
+    "ov.sub": "Les 27 \u00c9tats membres, plus le Royaume-Uni et la Norv\u00e8ge. Chaque chiffre est calcul\u00e9 \u00e0 partir des fiches pays valid\u00e9es.",
     "ov.tileTransposed": "États membres ayant adopté une loi de transposition",
     "ov.tileOnTime": "Transposés dans les délais (17 oct. 2024)",
     "ov.tileDelay": "Retard moyen des transpositions tardives",
-    "ov.tileFw": "Cadres de cybersécurité (UE-27)",
-    "ov.sFinal": "finaux",
-    "ov.sTemp": "provis.",
+    "ov.tileFw": "Frameworks nationaux (UE-27)",
+    "ov.sFinal": "publi\u00e9s",
+    "ov.sTemp": "provisoires",
     "ov.sNone": "aucun",
     "ov.map": "Carte de maturité de la transposition",
     "ov.exportPng": "Exporter en PNG",
     "ov.latest": "Dernières mises à jour validées",
     "ov.levels": "Niveaux de maturité",
     "cty.title": "Fiches pays",
-    "cty.sub": "Une fiche structurée par pays : statut, autorités, cadre, enregistrement, notification d'incidents, audits, chronologie et sources vérifiées.",
+    "cty.sub": "Cherchez un pays, filtrez par r\u00e9gion ou par niveau de maturit\u00e9, puis ouvrez sa fiche : statut, autorit\u00e9s, framework, enregistrement, notification des incidents, audits, chronologie et sources \u2014 et g\u00e9n\u00e9ration de ses slides.",
     "cty.search": "Rechercher un pays…",
     "cty.allRegions": "Toutes les régions",
     "cty.allLevels": "Tous les niveaux",
@@ -21113,9 +21131,9 @@ const I18N = {
     "kpi.form.grid": "Un carré par pays",
     "kpi.countries": "pays",
     "src.title": "Registre des sources",
-    "src.sub": "Toute source surveillée par la chaîne de collecte ou citée dans une fiche pays. Les sources officielles font foi ; les non officielles sont surveillées mais exigent la validation d'un consultant Wavestone ; les saisies manuelles proviennent des consultants (groupes de travail sectoriels par ex.) et peuvent être marquées internes.",
+    "src.sub": "Cette page r\u00e9unit toutes les sources que l'outil surveille ou cite dans une fiche pays. Les sources officielles font foi ; les autres sont surveill\u00e9es, mais un consultant Wavestone doit les valider avant toute publication.",
     "src.add": "Ajouter une source",
-    "src.addSub": "Les sources ajoutées ici alimentent le prochain run de l'agent de veille. C'est le registre que lit la chaîne de collecte - mieux il est tenu, meilleure est la collecte.",
+    "src.addSub": "Ajoutez ici une source qui manque : l'agent de veille la lira \u00e0 sa prochaine passe. Mieux le registre est tenu, plus la veille est compl\u00e8te.",
     "src.fName": "Nom de la source",
     "src.fUrl": "URL ou flux",
     "src.fCountry": "Pays / périmètre",
@@ -21160,15 +21178,15 @@ const I18N = {
     "hub.w30": "30 derniers jours",
     "hub.w90": "90 derniers jours",
     "hub.wAll": "Tout ce qui est en attente",
-    "hub.sub": "Choisissez un pays pour examiner ses sources en attente. Les compteurs portent sur la fenêtre sélectionnée.",
+    "hub.sub": "Choisissez un pays pour examiner ce que l'agent a d\u00e9tect\u00e9 pour lui et d\u00e9cider, \u00e9l\u00e9ment par \u00e9l\u00e9ment, de ce qui entre dans sa fiche. Les compteurs portent sur la fen\u00eatre s\u00e9lectionn\u00e9e.",
     "hub.empty": "Aucune détection sur cette fenêtre.",
-    "hub.fallback": "Rien détecté sur les {n} derniers jours - affichage sur {m}. L'agent tourne une fois par semaine : un run manqué vide une fenêtre courte.",
+    "hub.fallback": "Rien d\u00e9tect\u00e9 sur les {n} derniers jours : l'affichage s'\u00e9largit \u00e0 {m}. L'agent de veille tourne une fois par semaine ; si une passe n'a pas eu lieu, la fen\u00eatre la plus courte reste vide.",
     "hub.noneAtAll": "Rien en attente. La file est vide.",
     "hub.euTile": "Union européenne",
     "hub.euNote": "Pas de fiche pays - non publiable sur une fiche.",
     "cand.title": "Sources proposées",
     "cand.count": "{n} en attente de décision",
-    "cand.sub": "Trouvées en suivant les liens sortants des sources déjà fiables, exploration du {date}. Rien n'est surveillé tant que vous n'avez pas accepté ; un refus est retenu et n'est plus proposé.",
+    "cand.sub": "L'agent propose ici des sources trouv\u00e9es en suivant les liens des sources d\u00e9j\u00e0 fiables (exploration du {date}). Acceptez celles qui m\u00e9ritent d'\u00eatre suivies : elles rejoignent le registre. Une source refus\u00e9e ne vous sera plus propos\u00e9e.",
     "cand.feed": "Flux · {n} entrées",
     "cand.page": "Pas de flux - page seule",
     "cand.seen": "liée depuis {n} page(s) fiable(s)",
@@ -21200,7 +21218,7 @@ const I18N = {
     "hub.backlog": "Afficher tous les éléments en attente ({n})",
     "hub.countries": "{n} pays sur cette fenêtre",
     "hub.otherCountries": "Pays sans rien sur cette fenêtre",
-    "hub.showOthers": "Afficher les {n} pays silencieux",
+    "hub.showOthers": "Afficher les {n} pays sans d\u00e9tection",
     "ctry.back": "← Retour",
     "ctry.title": "{country} - sources en attente",
     "date.flux": "issue du flux de la source",
@@ -21825,6 +21843,26 @@ function kpis(){
   return { eu: eu.length, transposed: transposed.length, onTime: onTime.length, late: late.length, avgDelay, fwFinal, fwTemp, fwNone };
 }
 
+/* Ce qui attend une decision, a cote de ce qui est deja valide : sans cet
+   encart, la file de veille ne se voyait que depuis son onglet, et un
+   validateur pouvait ouvrir l'outil sans savoir qu'elle l'attendait. Un lecteur
+   n'a pas cet onglet : on ne lui montre rien d'incertain. */
+function pendingCard(){
+  if (role === "reader" || !regHasTab("inbox")) return "";
+  const pending = queue.filter(q => q.status === "pending")
+    .sort((a, b) => (b.detected || "").localeCompare(a.detected || ""));
+  const line = q => {
+    const c = byIso[q.iso];
+    return `<div class="feed-it"><div class="d">${fmtDateL(q.detected)}</div>
+      <div class="t"><span class="c">${c ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}` : t("hub.euTile")}</span> - ${esc(q.title || "")}</div></div>`;
+  };
+  return `<div class="card"><div class="cap"><h2>${t("ov.pending")}${pending.length ? ` (${pending.length})` : ""}</h2>
+      <a class="btn" href="#/inbox">${t("ov.pendingGo")}</a></div>
+    <div class="bd"><div class="feed">${pending.length
+      ? pending.slice(0, 5).map(line).join("")
+      : `<p class="q-note" style="margin:0">${t("ov.pendingNone")}</p>`}</div></div></div>`;
+}
+
 /* ---------- Overview ---------- */
 function renderOverview(){
   const k = kpis();
@@ -21836,8 +21874,13 @@ function renderOverview(){
      against a deadline it has passed; REC's question at this stage is how far
      each country has got, so it counts levels instead. Reusing the NIS 2 tiles
      would have shown "0 on time" for 27 countries and meant nothing. */
+  /* Les pays qui manquent a l'appel sont nommes, pas seulement soustraits : un
+     « 24 / 27 » laisse chercher lesquels. */
+  const late = COUNTRIES.filter(c => c.eu && !c.transposed);
   const tiles = regId() === "nis2" ? `
-    <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileTransposed")}</div></div>
+    <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileTransposed")}</div>
+      ${late.length ? `<div class="tile-flags"><span>${t("ov.tileNotYet")}</span>${late.map(c =>
+        `<a class="eu-flag" href="#/country/${c.iso}" data-tip="${esc(c.name)}" aria-label="${esc(c.name)}">${flagSvg(c.iso)}</a>`).join("")}</div>` : ""}</div>
     <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
     <div class="tile"><div class="v">≈&nbsp;${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
     <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>` : `
@@ -21855,11 +21898,13 @@ function renderOverview(){
     <div class="card">
       <div class="cap"><h2>${t("ov.map")}</h2><button class="btn" id="expMap">${t("ov.exportPng")}</button></div>
       <div class="bd">
+        <p class="q-note" style="margin:0 0 10px">${t("ov.mapHint")}</p>
         <div class="map-wrap" id="mapHost"></div>
         <div class="map-legend" id="mapLegend"></div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:18px">
+      ${pendingCard()}
       <div class="card"><div class="cap"><h2>${t("ov.latest")}</h2></div><div class="bd"><div class="feed" id="feed"></div></div></div>
       <div class="card"><div class="cap"><h2>${t("ov.levels")}</h2></div><div class="bd" id="lvlHelp"></div></div>
     </div>
@@ -21878,6 +21923,7 @@ function renderOverview(){
       <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> - ${esc(regLevelLabel(l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
     </div>`).join("");
   $("#expMap").addEventListener("click", exportMapPNG);
+  if (typeof kpiWireTips === "function") kpiWireTips(el);
 }
 
 /* ---------- Map ---------- */
@@ -22469,7 +22515,7 @@ function renderInboxHub(el, pending, done){
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
   <p class="pg-sub">${t("hub.sub")}</p>
-  <div class="card"><div class="bd">
+  <div class="card"><div class="cap"><h2>${t("hub.cardTitle")}</h2></div><div class="bd">
     <div class="filters">
       <label class="q-toggle">${t("hub.window")}
         <select id="hubW">${WINDOWS.map(([d, k]) =>
@@ -22907,6 +22953,24 @@ function renderSources(){
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
   <p class="pg-sub">${regId() === "nis2" ? t("src.sub") : t("src.recSub")}</p>
+  ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
+  <details class="card fold" open><summary class="cap"><h2>${t("src.authTitle")}</h2>
+    <span class="q-note">${t("src.authOk", {
+      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span>
+    <span class="fold-car" aria-hidden="true">▾</span></summary>
+    <div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.authSub")}</p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th><th>${t("src.thFeed")}</th><th>${t("src.thState")}</th><th class="num">${t("src.thEntries")}</th></tr></thead>
+      <tbody>${AUTHORITY_FEEDS.map(a => `<tr>
+        <td style="white-space:nowrap"><i class="fi">${flagSvg(a.iso)}</i> ${esc(byIso[a.iso] ? byIso[a.iso].name : a.iso)}</td>
+        <td>${esc(a.name)}</td>
+        <td><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, "").slice(0, 46))}</a></td>
+        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "down" ? "st-rejected" : "src-unofficial"}">${
+          t({ rss: "src.kRss", harvest: "src.kHarvest", page: "src.kPage" }[a.kind] || "src.kDown")}</span></td>
+        <td class="num">${a.entries || "-"}</td></tr>`).join("")}
+      </tbody></table></div>
+  </div></details>` : ""}
   ${regId() === "nis2" ? "" : recAuthorities()}
   ${isVal ? `
   <div class="card"><div class="cap"><h2>${t("src.add")}</h2></div><div class="bd">
@@ -22926,25 +22990,8 @@ function renderSources(){
   ${customSources().length ? `<div class="card"><div class="cap"><h2>${t("src.pending")} (${customSources().length})</h2>
     <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
-  ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
-  <details class="card fold"><summary class="cap"><h2>${t("src.authTitle")}</h2>
-    <span class="q-note">${t("src.authOk", {
-      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span>
-    <span class="fold-car" aria-hidden="true">▾</span></summary>
-    <div class="bd">
-    <p class="q-note" style="margin-top:0">${t("src.authSub")}</p>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th><th>${t("src.thFeed")}</th><th>${t("src.thState")}</th><th class="num">${t("src.thEntries")}</th></tr></thead>
-      <tbody>${AUTHORITY_FEEDS.map(a => `<tr>
-        <td style="white-space:nowrap"><i class="fi">${flagSvg(a.iso)}</i> ${esc(byIso[a.iso] ? byIso[a.iso].name : a.iso)}</td>
-        <td>${esc(a.name)}</td>
-        <td><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, "").slice(0, 46))}</a></td>
-        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "down" ? "st-rejected" : "src-unofficial"}">${
-          t({ rss: "src.kRss", harvest: "src.kHarvest", page: "src.kPage" }[a.kind] || "src.kDown")}</span></td>
-        <td class="num">${a.entries || "-"}</td></tr>`).join("")}
-      </tbody></table></div>
-  </div></details>` : ""}
-  <div class="card"><div class="bd">
+  <div class="card"><div class="cap"><h2>${t("src.listTitle")}</h2></div><div class="bd">
+    <p class="q-note" style="margin:0 0 10px">${t("src.listSub")}</p>
     <div class="filters">
       <input id="sSearch" type="search" class="q-search" autocomplete="off"
         placeholder="${t("src.searchCountry")}" value="${esc(srcSearch)}"

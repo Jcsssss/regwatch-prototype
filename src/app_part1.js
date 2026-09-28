@@ -233,6 +233,26 @@ function kpis(){
   return { eu: eu.length, transposed: transposed.length, onTime: onTime.length, late: late.length, avgDelay, fwFinal, fwTemp, fwNone };
 }
 
+/* Ce qui attend une decision, a cote de ce qui est deja valide : sans cet
+   encart, la file de veille ne se voyait que depuis son onglet, et un
+   validateur pouvait ouvrir l'outil sans savoir qu'elle l'attendait. Un lecteur
+   n'a pas cet onglet : on ne lui montre rien d'incertain. */
+function pendingCard(){
+  if (role === "reader" || !regHasTab("inbox")) return "";
+  const pending = queue.filter(q => q.status === "pending")
+    .sort((a, b) => (b.detected || "").localeCompare(a.detected || ""));
+  const line = q => {
+    const c = byIso[q.iso];
+    return `<div class="feed-it"><div class="d">${fmtDateL(q.detected)}</div>
+      <div class="t"><span class="c">${c ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}` : t("hub.euTile")}</span> - ${esc(q.title || "")}</div></div>`;
+  };
+  return `<div class="card"><div class="cap"><h2>${t("ov.pending")}${pending.length ? ` (${pending.length})` : ""}</h2>
+      <a class="btn" href="#/inbox">${t("ov.pendingGo")}</a></div>
+    <div class="bd"><div class="feed">${pending.length
+      ? pending.slice(0, 5).map(line).join("")
+      : `<p class="q-note" style="margin:0">${t("ov.pendingNone")}</p>`}</div></div></div>`;
+}
+
 /* ---------- Overview ---------- */
 function renderOverview(){
   const k = kpis();
@@ -244,8 +264,13 @@ function renderOverview(){
      against a deadline it has passed; REC's question at this stage is how far
      each country has got, so it counts levels instead. Reusing the NIS 2 tiles
      would have shown "0 on time" for 27 countries and meant nothing. */
+  /* Les pays qui manquent a l'appel sont nommes, pas seulement soustraits : un
+     « 24 / 27 » laisse chercher lesquels. */
+  const late = COUNTRIES.filter(c => c.eu && !c.transposed);
   const tiles = regId() === "nis2" ? `
-    <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileTransposed")}</div></div>
+    <div class="tile"><div class="v">${k.transposed}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileTransposed")}</div>
+      ${late.length ? `<div class="tile-flags"><span>${t("ov.tileNotYet")}</span>${late.map(c =>
+        `<a class="eu-flag" href="#/country/${c.iso}" data-tip="${esc(c.name)}" aria-label="${esc(c.name)}">${flagSvg(c.iso)}</a>`).join("")}</div>` : ""}</div>
     <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
     <div class="tile"><div class="v">≈&nbsp;${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
     <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>` : `
@@ -263,11 +288,13 @@ function renderOverview(){
     <div class="card">
       <div class="cap"><h2>${t("ov.map")}</h2><button class="btn" id="expMap">${t("ov.exportPng")}</button></div>
       <div class="bd">
+        <p class="q-note" style="margin:0 0 10px">${t("ov.mapHint")}</p>
         <div class="map-wrap" id="mapHost"></div>
         <div class="map-legend" id="mapLegend"></div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:18px">
+      ${pendingCard()}
       <div class="card"><div class="cap"><h2>${t("ov.latest")}</h2></div><div class="bd"><div class="feed" id="feed"></div></div></div>
       <div class="card"><div class="cap"><h2>${t("ov.levels")}</h2></div><div class="bd" id="lvlHelp"></div></div>
     </div>
@@ -286,6 +313,7 @@ function renderOverview(){
       <div style="font-size:12.5px;color:var(--ink2)"><b style="color:var(--ink)">${t("common.level")} ${l}</b> - ${esc(regLevelLabel(l))} <span style="color:var(--muted)">(${counts[l]} ${t("common.countries")})</span></div>
     </div>`).join("");
   $("#expMap").addEventListener("click", exportMapPNG);
+  if (typeof kpiWireTips === "function") kpiWireTips(el);
 }
 
 /* ---------- Map ---------- */

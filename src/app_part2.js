@@ -512,7 +512,7 @@ function renderInboxHub(el, pending, done){
   el.innerHTML = `
   <h1 class="pg">${t("inbox.title")}</h1>
   <p class="pg-sub">${t("hub.sub")}</p>
-  <div class="card"><div class="bd">
+  <div class="card"><div class="cap"><h2>${t("hub.cardTitle")}</h2></div><div class="bd">
     <div class="filters">
       <label class="q-toggle">${t("hub.window")}
         <select id="hubW">${WINDOWS.map(([d, k]) =>
@@ -950,6 +950,24 @@ function renderSources(){
   el.innerHTML = `
   <h1 class="pg">${t("src.title")}</h1>
   <p class="pg-sub">${regId() === "nis2" ? t("src.sub") : t("src.recSub")}</p>
+  ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
+  <details class="card fold" open><summary class="cap"><h2>${t("src.authTitle")}</h2>
+    <span class="q-note">${t("src.authOk", {
+      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span>
+    <span class="fold-car" aria-hidden="true">▾</span></summary>
+    <div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.authSub")}</p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th><th>${t("src.thFeed")}</th><th>${t("src.thState")}</th><th class="num">${t("src.thEntries")}</th></tr></thead>
+      <tbody>${AUTHORITY_FEEDS.map(a => `<tr>
+        <td style="white-space:nowrap"><i class="fi">${flagSvg(a.iso)}</i> ${esc(byIso[a.iso] ? byIso[a.iso].name : a.iso)}</td>
+        <td>${esc(a.name)}</td>
+        <td><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, "").slice(0, 46))}</a></td>
+        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "down" ? "st-rejected" : "src-unofficial"}">${
+          t({ rss: "src.kRss", harvest: "src.kHarvest", page: "src.kPage" }[a.kind] || "src.kDown")}</span></td>
+        <td class="num">${a.entries || "-"}</td></tr>`).join("")}
+      </tbody></table></div>
+  </div></details>` : ""}
   ${regId() === "nis2" ? "" : recAuthorities()}
   ${isVal ? `
   <div class="card"><div class="cap"><h2>${t("src.add")}</h2></div><div class="bd">
@@ -969,25 +987,8 @@ function renderSources(){
   ${customSources().length ? `<div class="card"><div class="cap"><h2>${t("src.pending")} (${customSources().length})</h2>
     <button class="btn" id="sExport">${t("src.export")}</button></div><div class="bd">
     <p class="q-note" style="margin-top:0">${t("src.pendingNote")}</p></div></div>` : ""}` : ""}
-  ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
-  <details class="card fold"><summary class="cap"><h2>${t("src.authTitle")}</h2>
-    <span class="q-note">${t("src.authOk", {
-      n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span>
-    <span class="fold-car" aria-hidden="true">▾</span></summary>
-    <div class="bd">
-    <p class="q-note" style="margin-top:0">${t("src.authSub")}</p>
-    <div class="tbl-wrap"><table class="tbl">
-      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thAuth")}</th><th>${t("src.thFeed")}</th><th>${t("src.thState")}</th><th class="num">${t("src.thEntries")}</th></tr></thead>
-      <tbody>${AUTHORITY_FEEDS.map(a => `<tr>
-        <td style="white-space:nowrap"><i class="fi">${flagSvg(a.iso)}</i> ${esc(byIso[a.iso] ? byIso[a.iso].name : a.iso)}</td>
-        <td>${esc(a.name)}</td>
-        <td><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.url.replace(/^https?:\/\//, "").slice(0, 46))}</a></td>
-        <td><span class="chip ${a.kind === "rss" ? "src-official" : a.kind === "down" ? "st-rejected" : "src-unofficial"}">${
-          t({ rss: "src.kRss", harvest: "src.kHarvest", page: "src.kPage" }[a.kind] || "src.kDown")}</span></td>
-        <td class="num">${a.entries || "-"}</td></tr>`).join("")}
-      </tbody></table></div>
-  </div></details>` : ""}
-  <div class="card"><div class="bd">
+  <div class="card"><div class="cap"><h2>${t("src.listTitle")}</h2></div><div class="bd">
+    <p class="q-note" style="margin:0 0 10px">${t("src.listSub")}</p>
     <div class="filters">
       <input id="sSearch" type="search" class="q-search" autocomplete="off"
         placeholder="${t("src.searchCountry")}" value="${esc(srcSearch)}"
