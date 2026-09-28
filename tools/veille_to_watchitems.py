@@ -35,7 +35,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # A validator's real question is "which cells do I edit?", not "what should a
 # client do?". This router answers it deterministically: theme keywords -> a
 # short list of field labels, resolved to real cell references through
-# data/excel-cellmap.json (country -> row, field -> column).
+# data/cellmap/<reg>.json (country -> row, field -> column), voir tools/cellmap.py.
 #
 # Deliberately rule-based for now. Once the agent runs against RegWatch, the
 # model picks from the SAME catalogue of field labels and the code still
@@ -272,7 +272,9 @@ def load_dates():
 
 
 def load_cellmap():
-    path = ROOT / "data" / "excel-cellmap.json"
+    sys.path.insert(0, str(ROOT / "tools"))
+    from cellmap import path_for
+    path = path_for("nis2")
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))["sheets"]
@@ -524,7 +526,7 @@ def build_items(rows):
         print("  note: data/excerpt-cache.json absent - pas d'extraits d'article "
               "(lance tools/fetch_excerpts.py)")
     if cellmap is None:
-        print("  note: data/excel-cellmap.json absent - no target cells "
+        print("  note: data/cellmap/nis2.json absent - no target cells "
               "(run tools/excel_cellmap.py first)")
 
     for record in rows:

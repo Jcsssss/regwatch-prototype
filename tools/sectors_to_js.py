@@ -33,7 +33,11 @@ except ImportError:
     raise SystemExit("pip install openpyxl")
 
 ROOT = Path(__file__).resolve().parent.parent
-CELLMAP = ROOT / "data" / "excel-cellmap.json"
+# Une carte par reglementation : data/cellmap/<reg>.json (voir tools/cellmap.py).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cellmap import path_for  # noqa: E402
+
+CELLMAP = path_for("nis2")
 OUT = ROOT / "src" / "reg" / "nis2" / "data_sectors.js"
 SHEET = "Sectors - P3"
 

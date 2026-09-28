@@ -7188,16 +7188,18 @@ const WATCH_QUEUE_AGENT = [
     ],
     "verbatim": [],
     "reliability": {
-      "score": 95,
+      "score": 85,
       "parts": {
         "source": 30,
         "evidence": 25,
         "date": 15,
         "actionability": 15,
-        "freshness": 10
+        "freshness": 0
       },
       "penalties": {},
-      "notes": [],
+      "notes": [
+        "old"
+      ],
       "duplicateOf": null
     }
   },

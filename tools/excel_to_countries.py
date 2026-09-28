@@ -32,7 +32,11 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 MAPPING = ROOT / "data" / "field-mapping.json"
-CELLMAP = ROOT / "data" / "excel-cellmap.json"
+# Une carte par reglementation : data/cellmap/<reg>.json (voir tools/cellmap.py).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cellmap import path_for  # noqa: E402
+
+CELLMAP = path_for("nis2")
 OUT_JSON = ROOT / "data" / "countries-from-excel.json"
 OUT_JS = ROOT / "src" / "reg" / "nis2" / "data_excel.js"
 

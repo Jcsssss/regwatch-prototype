@@ -120,6 +120,42 @@ articles récents : la recherche de Google News ne remonte pas loin.
 `health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la
 veille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.
 
+## La carte des cellules du classeur
+
+La file de veille ne dit pas seulement « il s'est passé quelque chose en Pologne » : elle nomme
+**les cellules du classeur comparatif** qu'un élément validé ferait changer. Cette adresse vient
+d'une carte, construite une fois à partir du classeur :
+
+```sh
+python3 tools/excel_cellmap.py "<classeur.xlsx>"                 # -> data/cellmap/nis2.json
+python3 tools/excel_cellmap.py "<classeur.xlsx>" --reg rec       # un autre classeur, une autre carte
+python3 tools/excel_cellmap.py "<classeur.xlsx>" --check         # comparer sans rien écrire
+```
+
+**Une carte par réglementation**, dans `data/cellmap/<reg>.json` : NIS 2 et REC n'ont pas le même
+classeur. `tools/cellmap.py` dit où chercher, et lit encore l'ancien chemin
+(`data/excel-cellmap.json`) pour une copie du dépôt antérieure à ce découpage.
+
+**À relancer après chaque modification de structure du classeur** (colonne ajoutée ou renommée,
+ligne d'un pays déplacée, feuille renommée). `--check` compare la carte au classeur et nomme ce
+qui a bougé :
+
+```
+3 écart(s) entre data/cellmap/nis2.json et le classeur CYBER WATCH5_Technical inventory.xlsx :
+  !! Registration - P1 : ligne d'en-tête 2 -> 4
+  !! Registration - P1!E : « Ancien libellé » -> « Tools for self assessment »
+  !! Registration - P1 : FR ligne 99 -> 14
+```
+
+Il renvoie le code 1 en cas d'écart, ce qui permet de l'enchaîner dans un script. La passe de
+veille (`regwatch_agent.py pipeline`) le lance automatiquement sur le classeur présent dans
+`ressources/` et affiche l'avertissement, sans s'arrêter : le routage reste alors à vérifier.
+
+**Sans ce contrôle, un routage devenu faux ne se voit pas** : la veille continuerait de désigner
+une cellule, mais ce ne serait plus la bonne. C'est le seul fichier de l'outil qui dépend de la
+**position** des colonnes ; tout le reste lit le classeur par ses en-têtes et supporte donc un
+ajout de colonne sans rien changer.
+
 ## Vue européenne
 
 L'onglet **Vue européenne** reprend les graphiques de l'étude comparative NIS 2 (transposition,
@@ -149,6 +185,7 @@ Données utilisées :
 ```sh
 python3 tools/sheets_to_countries.py <classeur.xlsx>   # feuilles P1 à P3 -> data_sheets.js
 python3 tools/sectors_to_js.py <classeur.xlsx>         # feuille Sectors - P3 -> data_sectors.js
+python3 tools/excel_cellmap.py <classeur.xlsx> --check  # la carte des cellules suit-elle le classeur ?
 ```
 
 La feuille Sectors - P3 alimente aussi la fenêtre « Secteurs couverts » de la fiche pays, qui

@@ -9,18 +9,30 @@ once, so two things become possible:
      emitting a vague "suggested action";
   2. RegWatch can read the workbook back and know which field it is looking at.
 
-Output: data/excel-cellmap.json
+Sortie : data/cellmap/<reg>.json - une carte par reglementation (voir tools/cellmap.py).
 
     python3 tools/excel_cellmap.py "ressources/CYBER WATCH5_Technical inventory.xlsx"
+    python3 tools/excel_cellmap.py "<classeur.xlsx>" --reg rec        # un autre classeur
+    python3 tools/excel_cellmap.py "<classeur.xlsx>" --check          # rien n'est ecrit
+
+--check compare la carte enregistree au classeur et nomme ce qui a bouge :
+feuille disparue, ligne d'en-tete deplacee, colonne renommee, pays deplace de
+ligne. C'est le controle a lancer apres chaque mise a jour du classeur : sans
+lui, un routage devenu faux ne se voit pas - la veille designerait la mauvaise
+cellule sans qu'aucune erreur n'apparaisse. Code de sortie 1 en cas d'ecart.
 
 Read-only: the workbook is never written back. Columns holding formulas are flagged
 `writable: false` — those are computed by Excel and must never be overwritten.
 """
 
+import argparse
 import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from cellmap import DEFAULT_REG, path_for  # noqa: E402
 
 try:
     import openpyxl
@@ -119,20 +131,71 @@ def build(path):
     return sheets
 
 
+def compare(stored, fresh):
+    """Ce qui a bouge entre la carte enregistree et le classeur d'aujourd'hui."""
+    drift = []
+    for name, was in stored.items():
+        now = fresh.get(name)
+        if not now:
+            drift.append("feuille absente du classeur : %s" % name)
+            continue
+        if was.get("headerRow") != now["headerRow"]:
+            drift.append("%s : ligne d'en-tête %s -> %s" % (name, was.get("headerRow"), now["headerRow"]))
+        if was.get("countryColumn") != now["countryColumn"]:
+            drift.append("%s : colonne des pays %s -> %s" % (name, was.get("countryColumn"), now["countryColumn"]))
+        by_now = {f["column"]: f["label"] for f in now["fields"]}
+        for f in was.get("fields", []):
+            label = by_now.get(f["column"])
+            if label is None:
+                drift.append("%s!%s : colonne disparue (était « %s »)" % (name, f["column"], f["label"]))
+            elif label != f["label"]:
+                drift.append("%s!%s : « %s » -> « %s »" % (name, f["column"], f["label"], label))
+        for col, label in by_now.items():
+            if col not in {f["column"] for f in was.get("fields", [])}:
+                drift.append("%s!%s : nouvelle colonne « %s »" % (name, col, label))
+        for iso, row in (was.get("rows") or {}).items():
+            if now["rows"].get(iso) != row:
+                drift.append("%s : %s ligne %s -> %s" % (name, iso, row, now["rows"].get(iso, "absent")))
+    for name in fresh:
+        if name not in stored:
+            drift.append("nouvelle feuille : %s" % name)
+    return drift
+
+
 def main():
-    if len(sys.argv) < 2:
-        raise SystemExit(__doc__)
-    path = Path(sys.argv[1]).expanduser()
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("workbook")
+    ap.add_argument("--reg", default=DEFAULT_REG, help="réglementation (nis2 par défaut)")
+    ap.add_argument("--check", action="store_true",
+                    help="comparer la carte enregistrée au classeur, sans rien écrire")
+    args = ap.parse_args()
+    path = Path(args.workbook).expanduser()
     if not path.exists():
-        raise SystemExit("workbook not found: %s" % path)
+        raise SystemExit("classeur introuvable : %s" % path)
 
     sheets = build(path)
+
+    out = path_for(args.reg)
+    if args.check:
+        if not out.exists():
+            raise SystemExit("aucune carte enregistrée pour « %s » : lancer sans --check" % args.reg)
+        stored = json.loads(out.read_text(encoding="utf-8"))
+        drift = compare(stored.get("sheets", {}), sheets)
+        if not drift:
+            print("\ncarte à jour : %s correspond au classeur %s" % (out.relative_to(ROOT), path.name))
+            return 0
+        print("\n%d écart(s) entre %s et le classeur %s :" % (len(drift), out.relative_to(ROOT), path.name))
+        for d in drift:
+            print("  !! %s" % d)
+        print("\nRelancer sans --check pour reconstruire la carte, puis vérifier le routage")
+        print("de la file de veille (tools/veille_to_watchitems.py).")
+        return 1
+
     total = sum(len(s["rows"]) * len(s["fields"]) for s in sheets.values())
     writable = sum(len(s["rows"]) * sum(1 for f in s["fields"] if f["writable"])
                    for s in sheets.values())
 
-    out = ROOT / "data" / "excel-cellmap.json"
-    out.parent.mkdir(exist_ok=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         "workbook": path.name,
         "sheets": sheets,
@@ -142,7 +205,8 @@ def main():
 
     print("\n%d addressable cells (%d writable) -> %s"
           % (total, writable, out.relative_to(ROOT)))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -605,6 +605,17 @@ def cmd_pipeline(args):
     if args.dry:
         return
     py = sys.executable
+    # La file de veille nomme les cellules du classeur comparatif a mettre a
+    # jour : si le classeur a change de structure depuis la derniere carte, ces
+    # cellules designent autre chose. On le dit ici, une fois, plutot que de
+    # laisser un routage faux passer inapercu.
+    wb = next((p for p in (ROOT / "ressources").glob("CYBER WATCH*.xlsx")), None) \
+        if (ROOT / "ressources").exists() else None
+    if wb:
+        check = subprocess.run([py, "tools/excel_cellmap.py", str(wb), "--check"], cwd=ROOT)
+        if check.returncode:
+            print("\n!! La carte des cellules ne correspond plus au classeur (voir ci-dessus).")
+            print("   Relancer : python3 tools/excel_cellmap.py \"%s\"\n" % wb.name)
     steps = [[py, "tools/fetch_excerpts.py"],
              [py, "agent-veille/translate_items.py", ".env"],
              [py, "tools/veille_to_watchitems.py"],
