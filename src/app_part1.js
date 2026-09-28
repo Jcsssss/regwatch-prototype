@@ -273,7 +273,8 @@ function renderOverview(){
         `<a class="eu-flag" href="#/country/${c.iso}" data-tip="${esc(c.name)}" aria-label="${esc(c.name)}">${flagSvg(c.iso)}</a>`).join("")}</div>` : ""}</div>
     <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
     <div class="tile"><div class="v">≈&nbsp;${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
-    <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>` : `
+    <div class="tile"><div class="v">${k.fwFinal + k.fwTemp}<small> ${t("ov.sPublished")}*</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div>
+      <div class="s">${t("ov.tileFw")}<br><span class="tile-note">${t("ov.sTempNote", { n: k.fwTemp })}</span></div></div>` : `
     <div class="tile"><div class="v">${counts[4]}<small> / ${COUNTRIES.length}</small></div><div class="s">${t("ov.recAdopted")}</div></div>
     <div class="tile"><div class="v">${counts[3]}</div><div class="s">${t("ov.recInParliament")}</div></div>
     <div class="tile"><div class="v">${counts[1] + counts[2]}</div><div class="s">${t("ov.recEarly")}</div></div>

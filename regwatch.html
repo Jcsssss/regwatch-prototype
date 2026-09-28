@@ -493,10 +493,11 @@ body.fcells .fcell{display:inline}
 .tile-flags>span{font-size:11px;color:var(--muted);margin-right:2px}
 .eu-reset[hidden]{display:none}
 /* vos retours */
-nav.tabs .fb-open{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);
-  background:var(--surface);color:var(--ink2);border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;font-weight:650;cursor:pointer}
-nav.tabs .fb-open:hover{border-color:var(--accent);color:var(--accent)}
-nav.tabs .fb-open svg{width:15px;height:15px}
+/* Discret : c'est une porte ouverte, pas un appel a l'action. */
+nav.tabs .fb-open{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:5px;border:0;
+  background:transparent;color:var(--muted);border-radius:999px;padding:4px 8px;font:inherit;font-size:11.5px;font-weight:600;cursor:pointer}
+nav.tabs .fb-open:hover{background:var(--surface2);color:var(--accent)}
+nav.tabs .fb-open svg{width:13px;height:13px;opacity:.8}
 #fbDlg{border:0;padding:0;background:transparent;max-width:min(760px,94vw);width:100%;color:var(--ink)}
 #fbDlg::backdrop{background:rgba(10,8,20,.55)}
 .fb{background:var(--surface);border:1px solid var(--line2);border-radius:16px;overflow:hidden}
@@ -824,6 +825,7 @@ main{max-width:1240px;margin:0 auto;padding:22px 24px 60px}
 .tile .v{font-size:26px;font-weight:750;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums;color:var(--accent2)}
 .tile .v small{font-size:15px;color:var(--muted);font-weight:600}
 .tile .s{font-size:12px;color:var(--muted);margin-top:2px}
+.tile .tile-note{font-size:11px;opacity:.85}
 
 /* ================= Map ================= */
 .map-wrap{position:relative}
@@ -1390,7 +1392,7 @@ body.assist-resizing,body.assist-resizing *{cursor:inherit!important;user-select
 footer{max-width:1240px;margin:0 auto;padding:0 24px 40px;color:var(--muted);font-size:12px}
 footer .line{border-top:1px solid var(--line);padding-top:14px;max-width:none}
 h1.pg{font-size:21px;font-weight:750;letter-spacing:-.01em;margin:2px 0 4px;color:var(--accent)}
-p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:88ch}
+p.pg-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:none}
 
 /* ================= Mobile =================
    Two breakpoints. 760px is the tablet/large-phone fold, where the two-column
@@ -20025,6 +20027,8 @@ const I18N = {
     "src.listTitle": "All monitored sources",
     "src.listSub": "Search a country to see its sources, or filter the full list.",
     "hub.cardTitle": "Pending detections by country",
+    "ov.sPublished": "published",
+    "ov.sTempNote": "* including {n} provisional",
     "nav.dev": "Diagnostics",
     "gear.diag": "Show the Diagnostics tab - what this browser reports about itself",
     "nav.devchat": "Tech assistant",
@@ -20840,7 +20844,7 @@ const I18N = {
     "eu.r.East": "Europe de l'Est",
     "eu.r.West": "Europe de l'Ouest",
     "eu.noRegion": "Cochez une ou plusieurs régions pour afficher les graphiques.",
-    "ov.mapHint": "Cliquez un pays sur la carte ou dans la liste pour ouvrir sa fiche compl\u00e8te.",
+    "ov.mapHint": "Cliquez sur un pays de la carte ou dans la liste pour ouvrir sa fiche compl\u00e8te.",
     "ov.tileNotYet": "Pas encore transpos\u00e9 :",
     "ov.pending": "En attente de votre validation",
     "ov.pendingGo": "Ouvrir la file de veille",
@@ -20848,6 +20852,8 @@ const I18N = {
     "src.listTitle": "Toutes les sources suivies",
     "src.listSub": "Cherchez un pays pour voir ses sources, ou filtrez la liste compl\u00e8te.",
     "hub.cardTitle": "D\u00e9tections en attente, par pays",
+    "ov.sPublished": "publi\u00e9s",
+    "ov.sTempNote": "* dont {n} provisoires",
     "nav.dev": "Diagnostic",
     "gear.diag": "Afficher l'onglet Diagnostic - ce que ce navigateur déclare de lui-même",
     "nav.devchat": "Assistant technique",
@@ -21885,7 +21891,8 @@ function renderOverview(){
         `<a class="eu-flag" href="#/country/${c.iso}" data-tip="${esc(c.name)}" aria-label="${esc(c.name)}">${flagSvg(c.iso)}</a>`).join("")}</div>` : ""}</div>
     <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
     <div class="tile"><div class="v">≈&nbsp;${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
-    <div class="tile"><div class="v">${k.fwFinal}<small> ${t("ov.sFinal")}</small> · ${k.fwTemp}<small> ${t("ov.sTemp")}</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div><div class="s">${t("ov.tileFw")}</div></div>` : `
+    <div class="tile"><div class="v">${k.fwFinal + k.fwTemp}<small> ${t("ov.sPublished")}*</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div>
+      <div class="s">${t("ov.tileFw")}<br><span class="tile-note">${t("ov.sTempNote", { n: k.fwTemp })}</span></div></div>` : `
     <div class="tile"><div class="v">${counts[4]}<small> / ${COUNTRIES.length}</small></div><div class="s">${t("ov.recAdopted")}</div></div>
     <div class="tile"><div class="v">${counts[3]}</div><div class="s">${t("ov.recInParliament")}</div></div>
     <div class="tile"><div class="v">${counts[1] + counts[2]}</div><div class="s">${t("ov.recEarly")}</div></div>
