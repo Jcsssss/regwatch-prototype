@@ -30,6 +30,7 @@ const EU_SECTIONS = [
   { key: "tr", icon: "clock", tKey: "eu.s.tr" },
   { key: "scope", icon: "grid", tKey: "eu.s.scope" },
   { key: "inc", icon: "alert", tKey: "fiche.inc" },
+  { key: "tl", icon: "clock", tKey: "eu.s.tl" },
   { key: "reg", icon: "card", tKey: "fiche.reg" },
   { key: "fw", icon: "shield", tKey: "fiche.fw" },
   { key: "aud", icon: "search", tKey: "fiche.aud" },
@@ -205,6 +206,18 @@ function euTrState(c){
   return { k: "late", delay };
 }
 
+/* La colonne « précisions prévues » n'existe pas encore dans le classeur :
+   l'etude distinguait pourtant les pays qui annoncent des precisions a venir
+   de ceux qui en ont deja inscrit dans leur loi. Des qu'une colonne portant
+   ce libelle sera ajoutee a la feuille, elle sera lue ici sans retoucher le
+   code - et le troisieme groupe se remplira. */
+function incPlannedCol(){
+  const sh = (SHEET_DATA.sheets || {}).inc;
+  const f = sh && sh.fields.find(x => /pr[ée]cision|precision/i.test(x.l)
+    && /(pr[ée]vue|planned|to come|later|à venir|a venir)/i.test(x.l));
+  return f ? f.c : null;
+}
+
 const EU_CHARTS = {
   tr: [
     function trState(sel){
@@ -363,21 +376,27 @@ const EU_CHARTS = {
 
   inc: [
     function incDef(sel){
-      const yes = [], no = [], nc = [];
-      sel.forEach(c => { const v = euCell(c.iso, "inc", "L"); (euYes(v) ? yes : euNo(v) ? no : nc).push(c.iso); });
+      const col = incPlannedCol();
+      const same = [], planned = [], added = [], nc = [];
+      sel.forEach(c => {
+        const v = euCell(c.iso, "inc", "L");
+        if (euNo(v)) return added.push(c.iso);
+        if (!euYes(v)) return nc.push(c.iso);
+        (col && euYes(euCell(c.iso, "inc", col)) ? planned : same).push(c.iso);
+      });
       const crit = iso => esc(String(euShow(iso, "inc", "N") || euShow(iso, "inc", "M") || "").slice(0, 200));
+      const bub = (n, color, title, desc, isos, tip) => `<div class="eu-bub">
+        <div class="eu-bub-n" style="--bc:${color}"><b>${n}</b><span>${t("common.countries")}</span></div>
+        <div><h4>${title}</h4><p>${desc}</p>${isos.length ? euFlags(isos, 0, tip) : ""}</div></div>`;
       return {
-        id: "inc-def", wide: true, src: "inc!L, inc!M, inc!N", filled: yes.length + no.length,
-        title: t("eu.t.incDef", { yes: yes.length, no: no.length }),
-        body: `<div class="eu-duo">
-          <div class="eu-bub">
-            <div class="eu-bub-n" style="--bc:var(--accent)"><b>${yes.length}</b><span>${t("common.countries")}</span></div>
-            <div><h4>${t("eu.inc.same")}</h4><p>${t("eu.inc.sameD")}</p>${euFlags(yes, 0)}</div>
-          </div>
-          <div class="eu-bub">
-            <div class="eu-bub-n" style="--bc:var(--ok)"><b>${no.length}</b><span>${t("common.countries")}</span></div>
-            <div><h4>${t("eu.inc.more")}</h4><p>${t("eu.inc.moreD")}</p>${euFlags(no, 0, crit)}</div>
-          </div>
+        id: "inc-def", wide: true, src: "inc!L, inc!M, inc!N" + (col ? ", inc!" + col : ""),
+        filled: same.length + planned.length + added.length,
+        title: t("eu.t.incDef", { yes: same.length + planned.length, no: added.length }),
+        body: `<div class="eu-trio">
+          ${bub(same.length, "var(--accent)", t("eu.inc.same"), t("eu.inc.sameD"), same)}
+          ${bub(col ? planned.length : "–", "#f5b82e", t("eu.inc.planned"),
+                col ? t("eu.inc.plannedD") : t("eu.inc.plannedMissing"), planned)}
+          ${bub(added.length, "var(--ok)", t("eu.inc.more"), t("eu.inc.moreD"), added, crit)}
         </div>
         ${nc.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0)}</p>` : ""}`
       };
@@ -385,21 +404,43 @@ const EU_CHARTS = {
     function incOrg(sel){
       const org = euGroup(sel, c => euNC(euCell(c.iso, "inc", "E")) ? null : euCell(c.iso, "inc", "E"));
       const meth = euGroup(sel, c => { const v = euCell(c.iso, "inc", "H"); return euNC(v) ? null : /mail/i.test(v) ? "mail" : "platform"; });
-      const spec = euGroup(sel, c => euYes(euCell(c.iso, "inc", "P")) ? "yes" : null);
       const orgRows = [...org.entries()].sort((a, b) => b[1].length - a[1].length)
         .map(([k, isos]) => ({ label: esc(euCat("org", k)), isos, color: EU_C.mid }));
       const top = orgRows[0];
       return {
-        id: "inc-org", src: "inc!E, inc!H, inc!P",
+        id: "inc-org", src: "inc!E, inc!H",
         title: top ? t("eu.t.incOrg", { n: top.isos.length, org: top.label }) : "",
         body: euShare([{ head: t("eu.h.incOrg") }].concat(orgRows, [
           { head: t("eu.h.incMethod") },
           { label: t("eu.cat.platform"), isos: meth.get("platform") || [], color: EU_C.good },
-          { label: t("eu.cat.mail"), isos: meth.get("mail") || [], color: EU_C.soft },
-          { head: t("eu.h.incTimeline") },
-          { label: t("eu.inc.timelineDiff"), isos: spec.get("yes") || [], color: EU_C.warn,
-            tipOf: iso => esc(euShow(iso, "inc", "Q") || "") }
+          { label: t("eu.cat.mail"), isos: meth.get("mail") || [], color: EU_C.soft }
         ]), sel.length)
+      };
+    },
+
+  ],
+
+  /* Les delais ont leur propre section : ce que la directive fixe (24 h, 72 h,
+     un mois), qui s'en ecarte, et depuis quand la notification est due. */
+  tl: [
+    function tlSpecific(sel){
+      const spec = [], aligned = [], nc = [];
+      sel.forEach(c => {
+        const v = euCell(c.iso, "inc", "P");
+        (euYes(v) ? spec : euNo(v) ? aligned : nc).push(c.iso);
+      });
+      return {
+        id: "tl-spec", src: "inc!P, inc!Q", filled: spec.length + aligned.length,
+        title: t("eu.t.tlSpec", { n: spec.length, total: sel.length }),
+        body: `<div class="eu-steps">${[["24 h", t("eu.tl.early")], ["72 h", t("eu.tl.full")],
+            [t("eu.tl.oneMonth"), t("eu.tl.final")]].map(([d, l]) =>
+          `<div class="eu-step"><b>${d}</b><span>${l}</span></div>`).join("")}</div>
+          ${euShare([
+            { label: t("eu.tl.aligned"), isos: aligned, color: EU_C.mid },
+            { label: t("eu.tl.specific"), isos: spec, color: "#f5b82e",
+              tipOf: iso => esc(euShow(iso, "inc", "Q") || "") }
+          ], sel.length)}
+          ${nc.length ? `<p class="eu-foot">${t("eu.ncList")} ${euFlags(nc, 0)}</p>` : ""}`
       };
     },
     function incSince(sel){
@@ -517,13 +558,15 @@ const EU_CHARTS = {
   fw: [
     function fwMap(sel){
       const n = sel.length;
-      const cat = c => {
-        const v = euCell(c.iso, "fw", "D") || "";
-        return { k: /final/i.test(v) ? "final" : /temp/i.test(v) ? "temp" : "none",
-                 raw: euShow(c.iso, "fw", "F") ? String(euShow(c.iso, "fw", "F")).split("\n")[0].slice(0, 90) : "" };
-      };
+      /* Les quatre etats de regFromWorkbook : un referentiel repris d'un autre
+         (l'Irlande et la Roumanie reprennent CyFun 2025) n'est pas un
+         referentiel provisoire. */
+      const cat = c => ({ k: c.fw === "reference" ? "ref" : c.fw === "temporary" ? "temp"
+                             : c.fw === "final" ? "final" : "none",
+        raw: euShow(c.iso, "fw", "F") ? String(euShow(c.iso, "fw", "F")).split("\n")[0].slice(0, 90) : "" });
       const cats = [
         { k: "final", label: t("eu.cat.fwFinal"), color: EU_C.good },
+        { k: "ref", label: t("eu.cat.fwRef"), color: EU_C.ie },
         { k: "temp", label: t("eu.cat.fwTemp"), color: "var(--m1)" },
         { k: "none", label: t("eu.cat.fwNone"), color: "var(--surface3)" }
       ];
@@ -531,11 +574,12 @@ const EU_CHARTS = {
       const L = k => g.get(k) || [];
       return {
         id: "fw-map", wide: true, src: "fw!D, fw!F",
-        title: t("eu.t.fwMap", { a: L("final").length, b: L("temp").length, total: n }),
+        title: t("eu.t.fwMap", { a: L("final").length, r: L("ref").length, b: L("temp").length, total: n }),
         body: `<div class="eu-mapgrid">
           <div>${euMap(sel, cat, cats)}${euLegend(cats.map(x => Object.assign({ n: L(x.k).length }, x)))}</div>
           <div class="eu-rings">
             ${euRing(L("final").length, n, EU_C.good, t("eu.ring.fwFinal"), L("final"))}
+            ${euRing(L("ref").length, n, EU_C.ie, t("eu.ring.fwRef"), L("ref"))}
             ${euRing(L("temp").length, n, "var(--m1)", t("eu.ring.fwTemp"), L("temp"))}
             ${euRing(L("none").length, n, "var(--line2)", t("eu.ring.fwNone"), L("none"))}
           </div></div>`

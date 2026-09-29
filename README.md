@@ -89,7 +89,8 @@ python3 tools/build_devcode.py   # code source   -> src/data_devcode.js
 ### Dans `src/`
 
 - `shell_top.html` — squelette de page et feuille de style (charte Wavestone)
-- `app_*.js` — l'application : routage, carte, fiches, file de veille, KPI, assistant
+- `app_*.js` — l'application : routage, carte, fiches, file de veille, KPI, assistant,
+  générateur de slides (`app_report.js`) et générateur de rapports (`app_docgen.js`)
 - `reg/nis2/`, `reg/rec/` — les données propres à chaque réglementation ; ajouter DORA,
   c'est ajouter un dossier et une ligne dans `build.sh`
 - `map_data.js` — fond de carte, généré par `convert_map.py`
@@ -233,6 +234,67 @@ la clé : elle n'est **jamais** dans la page. Conséquence à connaître : le pr
 l'origine publiée, donc **les assistants ne fonctionnent pas depuis un fichier ouvert en
 local**. Le message affiché explique alors comment lancer le proxy local
 (`python3 tools/chat_proxy.py`). Tout le reste de l'outil fonctionne hors ligne.
+
+## Générateur de rapports
+
+Depuis l'assistant : **« Ce que je sais faire »** puis **« Construire un rapport »**, ou le
+bouton sur l'écran d'accueil du panneau. Le générateur pose quatre questions, puis récapitule
+avant de produire un `.pptx`.
+
+| Question | Ce qu'elle change |
+| --- | --- |
+| Pour qui | Note interne ou support client. En client, les recommandations Wavestone des fiches pays sont omises, comme dans la version client du site. Le titre et le destinataire vont en couverture. |
+| Quels pays | La sélection de la vue européenne (par défaut), les 27 États membres, ceux qui ont transposé, ceux qui n'ont pas transposé, ou une sélection au drapeau. De 1 à 29 pays. |
+| Quelles rubriques | Neuf blocs : synthèse, transposition, référentiels, notification des incidents, enregistrement, actualités, fiches pays, détail des référentiels, sources et méthode. Les deux blocs par pays annoncent leur volume avant d'être cochés. |
+| Qui rédige l'analyse | Les chiffres seuls, ou un texte proposé par l'IA. |
+
+Ce que le fichier contient, et pourquoi c'est écrit ainsi :
+
+- **La charte, et la mise en page des supports CYBER WATCH.** Fond blanc, bandeau gris à
+  droite, titre violet, filet pointillé sous chaque rubrique, police Aptos : les slides du
+  rapport ressemblent à celles que l'outil génère déjà pour un pays, et les couleurs sont
+  celles de la charte (violet `#451DC7`, vert `#04F06A` en accent, `#4682B4`, `#FFCA4A`,
+  `#FF2A49` pour les statuts).
+- **Rien n'est une image.** Les chiffres sont des zones de texte, les barres des rectangles,
+  les tableaux de vrais tableaux PowerPoint. Un consultant corrige un mot, insère une ligne
+  ou reprend une slide dans un autre support sans revenir dans l'outil. C'est la contrainte
+  qui a décidé de la forme de toutes les slides.
+- **L'analyse de l'IA est signée.** Elle arrive dans un encadré rouge intitulé « Analyse
+  proposée par l'IA - à relire et à modifier avant diffusion ». Le modèle ne reçoit que les
+  chiffres du rapport, déjà calculés, et il lui est demandé de ne rien ajouter. Un seul appel
+  pour tout le rapport : un appel par bloc coûtait quatre fois plus et produisait quatre
+  analyses qui se répétaient.
+- **Les intitulés viennent du classeur.** Une colonne de tableau porte le nom que la colonne
+  porte dans `CYBER WATCH*.xlsx`, lu par `tools/sheets_to_countries.py`. Une colonne renommée
+  là-bas n'oblige à rien ici.
+- **Une case vide devient un tiret**, jamais un blanc : dans un tableau, « - » se lit comme
+  une absence, un blanc comme un oubli.
+- **La pagination suit la hauteur réelle des lignes**, pas leur nombre : les noms de textes
+  légaux tiennent sur deux ou trois lignes, et un tableau paginé à vingt et une lignes sortait
+  par le bas de la slide.
+- **Le pied de page** nomme le classeur et la date à laquelle il a été lu. Un rapport qui
+  circule sans cette ligne se fait citer un an plus tard.
+
+Un garde-fou est posé dans `rptPackage` : une slide construite sans compteur d'identifiants
+écrivait `id="NaN"`, ce que LibreOffice ouvre sans rien dire et ce que PowerPoint propose de
+réparer, la réparation échouant. La génération échoue maintenant à cet endroit plutôt que chez
+le lecteur.
+
+Le code est dans `src/app_docgen.js`. Les slides de fiche pays et l'emballage du `.pptx`
+(`rptPackage`) restent ceux de `src/app_report.js` : il n'y a qu'un générateur de PowerPoint
+dans l'outil, et une seule façon d'assembler le fichier — c'est la partie que PowerPoint
+refuse le plus volontiers quand elle dérive.
+
+Ajouter une rubrique, c'est ajouter une entrée dans `DG_BLOCKS` : le formulaire, le
+récapitulatif, le sommaire de la couverture et l'analyse la reprennent sans y toucher.
+
+## « Ce que je sais faire »
+
+L'écran des capacités de l'assistant est **construit à partir des outils réellement déclarés
+au modèle** (`CHAT_TOOLS`), pas d'un texte tenu à côté : un outil ajouté y apparaît, un outil
+retiré en disparaît. Chaque ligne porte un exemple sur lequel on clique — c'est la seule façon
+de découvrir ce qu'une phrase permet. Nommer un nouvel outil dans `DG_SKILL_BY_TOOL` et
+ajouter ses trois clés `sk.<nom>.t/.d/.ex` suffit.
 
 ## Charte graphique
 

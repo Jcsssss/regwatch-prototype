@@ -13,6 +13,7 @@ function renderCountries(){
       <select id="fL" aria-label="Filter by level"><option value="">${t("cty.allLevels")}</option>${[1,2,3,4].map(l => `<option value="${l}" ${ctyFilter.lvl == l ? "selected" : ""}>${t("common.level")} ${l}</option>`).join("")}</select>
       <span class="q-note" id="fCount"></span>
     </div>
+    <div class="sflags" id="ctyFlags"></div>
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>${t("cty.thCountry")}</th><th>${t("cty.thRegion")}</th><th>${t("cty.thMaturity")}</th><th>${t("cty.thLaw")}</th><th class="num">${t("cty.thDelay")}</th><th>${t("cty.thFw")}</th><th class="num">${t("cty.thReqEE")}</th><th class="num">${t("cty.thReqIE")}</th><th>${t("cty.thUpd")}</th></tr></thead>
       <tbody id="ctyRows"></tbody>
@@ -26,6 +27,15 @@ function renderCountries(){
       .filter(c => !ctyFilter.lvl || c.maturity == ctyFilter.lvl)
       .sort((a, b) => a.name.localeCompare(b.name));
     $("#fCount").textContent = t("cty.count", { n: list.length, total: COUNTRIES.length });
+    /* Les drapeaux suivent les filtres : ils donnent l'acces direct a une fiche
+       sans parcourir le tableau, et montrent d'un coup d'oeil ce que le filtre
+       courant retient. */
+    $("#ctyFlags").innerHTML = list.map(c => `<button class="sflag" data-iso="${c.iso}" type="button"
+        title="${esc(c.name)}"><i class="fi">${flagSvg(c.iso)}</i><span>${esc(c.name)}</span>
+        <span class="sflag-n">${t("common.level")} ${c.maturity}</span></button>`).join("")
+      || `<span class="q-note">${t("cty.noneFlags")}</span>`;
+    $("#ctyFlags").querySelectorAll(".sflag").forEach(b =>
+      b.addEventListener("click", () => { location.hash = "#/country/" + b.dataset.iso; }));
     rows.innerHTML = list.map(c => `
       <tr class="rowlink" data-iso="${c.iso}" tabindex="0">
         <td><b><i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}</b>${c.eu ? "" : ` <span class="chip eu">${t("cty.nonEu")}</span>`}</td>
@@ -951,7 +961,7 @@ function renderSources(){
   <h1 class="pg">${t("src.title")}</h1>
   <p class="pg-sub">${regId() === "nis2" ? t("src.sub") : t("src.recSub")}</p>
   ${regId() === "nis2" && typeof AUTHORITY_FEEDS !== "undefined" ? `
-  <details class="card fold" open><summary class="cap"><h2>${t("src.authTitle")}</h2>
+  <details class="card fold"><summary class="cap"><h2>${t("src.authTitle")}</h2>
     <span class="q-note">${t("src.authOk", {
       n: AUTHORITY_FEEDS.filter(a => a.kind === "rss").length, total: AUTHORITY_FEEDS.length })}</span>
     <span class="fold-car" aria-hidden="true">▾</span></summary>

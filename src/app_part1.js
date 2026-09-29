@@ -228,9 +228,11 @@ function kpis(){
   const late = eu.filter(c => c.transposed && !c.onTime && c.delayMonths != null);
   const avgDelay = late.length ? Math.round(late.reduce((s, c) => s + c.delayMonths, 0) / late.length) : 0;
   const fwFinal = eu.filter(c => c.fw === "final").length;
+  const fwRef = eu.filter(c => c.fw === "reference").length;
   const fwTemp = eu.filter(c => c.fw === "temporary").length;
   const fwNone = eu.filter(c => c.fw === "none").length;
-  return { eu: eu.length, transposed: transposed.length, onTime: onTime.length, late: late.length, avgDelay, fwFinal, fwTemp, fwNone };
+  return { eu: eu.length, transposed: transposed.length, onTime: onTime.length, late: late.length,
+           avgDelay, fwFinal, fwRef, fwTemp, fwNone };
 }
 
 /* Ce qui attend une decision, a cote de ce qui est deja valide : sans cet
@@ -273,8 +275,8 @@ function renderOverview(){
         `<a class="eu-flag" href="#/country/${c.iso}" data-tip="${esc(c.name)}" aria-label="${esc(c.name)}">${flagSvg(c.iso)}</a>`).join("")}</div>` : ""}</div>
     <div class="tile"><div class="v">${k.onTime}<small> / ${k.eu}</small></div><div class="s">${t("ov.tileOnTime")}</div></div>
     <div class="tile"><div class="v">≈&nbsp;${k.avgDelay}<small> ${t("common.months")}</small></div><div class="s">${t("ov.tileDelay")}</div></div>
-    <div class="tile"><div class="v">${k.fwFinal + k.fwTemp}<small> ${t("ov.sPublished")}*</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div>
-      <div class="s">${t("ov.tileFw")}<br><span class="tile-note">${t("ov.sTempNote", { n: k.fwTemp })}</span></div></div>` : `
+    <div class="tile"><div class="v">${k.fwFinal + k.fwRef + k.fwTemp}<small> ${t("ov.sPublished")}*</small> · ${k.fwNone}<small> ${t("ov.sNone")}</small></div>
+      <div class="s">${t("ov.tileFw")}<br><span class="tile-note">${t("ov.sTempNote", { n: k.fwTemp, r: k.fwRef })}</span></div></div>` : `
     <div class="tile"><div class="v">${counts[4]}<small> / ${COUNTRIES.length}</small></div><div class="s">${t("ov.recAdopted")}</div></div>
     <div class="tile"><div class="v">${counts[3]}</div><div class="s">${t("ov.recInParliament")}</div></div>
     <div class="tile"><div class="v">${counts[1] + counts[2]}</div><div class="s">${t("ov.recEarly")}</div></div>

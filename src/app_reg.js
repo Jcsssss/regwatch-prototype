@@ -161,8 +161,15 @@ function regFromWorkbook(c){
     else if (m) { c.onTime = false; c.delayMonths = Math.round(parseFloat(m[1].replace(",", "."))); }
   }
   if (has(id.E) && /^\d{4}-\d{2}-\d{2}$/.test(id.E)) c.lawInForce = id.E;
+  /* Quatre etats, pas trois. Un pays marque « temporaire » qui renvoie a un
+     referentiel existant - l'Irlande et la Roumanie reprennent CyFun 2025 - n'a
+     pas un referentiel provisoire : il a un referentiel, celui d'un autre. La
+     colonne « Dedicated framework to NIS 2 » le dit ; sans elle, ces pays
+     etaient comptes comme s'ils n'avaient encore rien publie. */
   if (has(fw.D)) {
-    const f = /final/i.test(fw.D) ? "final" : /temp/i.test(fw.D) ? "temporary" : /^no/i.test(fw.D) ? "none" : null;
+    const ref = has(fw.E) && /reference/i.test(fw.E);
+    const f = ref && !/^no/i.test(fw.D) ? "reference"
+      : /final/i.test(fw.D) ? "final" : /temp/i.test(fw.D) ? "temporary" : /^no/i.test(fw.D) ? "none" : null;
     if (f) c.fw = f;
   }
   return c;

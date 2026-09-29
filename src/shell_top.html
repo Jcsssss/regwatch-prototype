@@ -677,6 +677,12 @@ nav.tabs .fb-open svg{width:13px;height:13px;opacity:.8}
 
 /* incidents */
 .eu-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.eu-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.eu-steps{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.eu-step{flex:1;min-width:120px;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:10px;
+  background:var(--surface2);border-left:3px solid var(--accent)}
+.eu-step b{font-size:18px;color:var(--accent);line-height:1.1}
+.eu-step span{font-size:12px;color:var(--ink2);line-height:1.35}
 .eu-bub{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;background:var(--surface2)}
 .eu-bub-n{flex:none;width:84px;height:84px;border-radius:50%;background:var(--bc);color:var(--accent-ink);display:flex;flex-direction:column;
   align-items:center;justify-content:center;box-shadow:0 0 0 5px color-mix(in srgb,var(--bc) 22%,transparent)}
@@ -750,7 +756,7 @@ nav.tabs .fb-open svg{width:13px;height:13px;opacity:.8}
 @media (max-width:980px){.eu-grid{grid-template-columns:1fr}}
 @media (max-width:560px){.eu-grid{padding:10px}}
 @container (max-width:720px){
-  .eu-mapgrid,.eu-side,.eu-two,.eu-duo,.eu-san,.eu-big,.eu-list{grid-template-columns:1fr}
+  .eu-mapgrid,.eu-side,.eu-two,.eu-duo,.eu-trio,.eu-san,.eu-big,.eu-list{grid-template-columns:1fr}
 }
 @container (max-width:520px){
   .eu-sh-row{grid-template-columns:1fr 44px}
@@ -798,6 +804,59 @@ nav.tabs .fb-open svg{width:13px;height:13px;opacity:.8}
   border-radius:9px;padding:11px 13px}
 .rpt-f{display:flex;align-items:center;gap:12px;padding:13px 18px;border-top:1px solid var(--line)}
 .rpt-msg{font-size:11.5px;color:var(--muted);flex:1;min-width:0;overflow-wrap:anywhere}
+
+/* --- questionnaire du generateur de rapports (app_docgen.js) ---
+   Plus large que le dialogue de fiche pays : une question par ecran, mais la
+   grille des drapeaux et celle des rubriques ont besoin de deux colonnes. */
+#dgDlg{border:0;padding:0;background:transparent;max-width:min(680px,94vw);width:100%}
+#dgDlg::backdrop{background:rgba(10,8,20,.62)}
+.dg-box{max-height:88vh;display:flex;flex-direction:column}
+.dg-box .rpt-b{overflow:auto}
+.dg-steps{display:flex;align-items:center;gap:6px;padding:10px 18px 0}
+.dg-dot{width:22px;height:4px;border-radius:3px;background:var(--line2)}
+.dg-dot.done{background:var(--accent);opacity:.45}
+.dg-dot.on{background:var(--accent)}
+.dg-stepn{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--muted)}
+.dg-q{margin:0;font-size:15px;font-weight:800;line-height:1.35}
+.dg-f{display:grid;gap:5px}
+.dg-f span{font-size:10.5px;font-weight:800;letter-spacing:.075em;text-transform:uppercase;color:var(--muted)}
+.dg-f input{font-family:inherit;font-size:13px;padding:8px 10px;border-radius:8px;
+  border:1px solid var(--line2);background:var(--surface2);color:var(--ink)}
+.dg-flags{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;
+  max-height:38vh;overflow:auto;padding:2px}
+.dg-flag{display:flex;align-items:center;gap:7px;border:1px solid var(--line2);background:transparent;
+  border-radius:8px;padding:6px 8px;font-family:inherit;font-size:12px;font-weight:600;
+  color:var(--ink2);cursor:pointer;text-align:left}
+.dg-flag .fi{width:18px;height:13px;flex:none;display:block;border-radius:2px;overflow:hidden}
+.dg-flag .fi svg{width:100%;height:100%;display:block}
+.dg-flag span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dg-flag:hover{background:var(--surface2);color:var(--ink)}
+.dg-flag[aria-pressed="true"]{border-color:var(--accent);background:var(--surface2);color:var(--ink)}
+.dg-blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.dg-block{display:grid;gap:2px;border:1px solid var(--line2);background:transparent;border-radius:10px;
+  padding:9px 11px;font-family:inherit;text-align:left;cursor:pointer;color:var(--ink2)}
+.dg-block b{font-size:12.5px;color:var(--ink)}
+.dg-block span{font-size:11.5px;line-height:1.4;color:var(--muted)}
+.dg-block em{font-size:10.5px;font-style:normal;font-weight:700;color:var(--accent)}
+.dg-block:hover{background:var(--surface2)}
+.dg-block[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);
+  background:var(--surface2);color:var(--ink)}
+.dg-recap{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:12.5px}
+.dg-recap dt{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding-top:2px}
+.dg-recap dd{margin:0;color:var(--ink);line-height:1.45;overflow-wrap:anywhere}
+
+/* --- l'ecran « ce que je sais faire », dans le panneau de l'assistant --- */
+.chat-entry{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.dg-skills{display:grid;gap:7px;padding:4px 2px 2px}
+.dg-skills-h{margin:0;font-size:14px;font-weight:800}
+.dg-skill{display:grid;gap:2px;width:100%;border:1px solid var(--line2);background:transparent;
+  border-radius:10px;padding:9px 11px;font-family:inherit;text-align:left;cursor:pointer}
+.dg-skill b{font-size:12.5px;color:var(--ink)}
+.dg-skill span{font-size:11.5px;line-height:1.4;color:var(--muted)}
+.dg-skill em{font-size:11.5px;font-style:normal;font-weight:700;color:var(--accent)}
+.dg-skill:hover{background:var(--surface2)}
+.dg-skill.report{border-color:var(--accent)}
 
 /* ================= Layout ================= */
 main{max-width:1240px;margin:0 auto;padding:22px 24px 60px}

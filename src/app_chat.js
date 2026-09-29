@@ -70,6 +70,11 @@ const chatReady = () => {
 let chatLog = [];        /* {role, text, charts?, tools?, error?} shown on screen */
 let chatWire = [];       /* the message array actually sent to the model */
 let chatBusy = false;
+/* « Que peut faire ton chatbot ? » est la question que les consultants posent le
+   plus souvent. Elle se posait parce qu'une zone de saisie vide ne repond rien :
+   l'ecran des capacites (app_docgen.js) la remplace, et il vit dans le panneau
+   plutot que dans une page d'aide qu'il faudrait aller chercher. */
+let chatShowSkills = false;
 
 function chatSystemPrompt(){
   const today = new Date().toISOString().slice(0, 10);
@@ -410,6 +415,7 @@ function chatExplainError(err){
 /* ---------- the turn ---------- */
 
 async function chatAsk(question){
+  chatShowSkills = false;
   if (chatBusy || !question.trim()) return;
   if (!chatReady()) { chatOpenSettings(); return; }
   chatBusy = true;
@@ -570,10 +576,17 @@ function chatRender(){
   const el = $("#assistBody");
   if (!el) return;
   const cfg = chatCfg();
-  const body = chatLog.length
+  const body = chatShowSkills && typeof dgSkillsHTML === "function"
+    ? dgSkillsHTML()
+    : chatLog.length
     ? chatLog.map(chatBubble).join("")
     : `<div class="chat-empty">
         <p class="chat-hello">${t("chat.hello")}</p>
+        <div class="chat-entry">
+          <button type="button" class="btn" id="chatSkillsOpen">${t("chat.skills")}</button>
+          ${typeof docgenDialog === "function"
+            ? `<button type="button" class="btn" id="chatReportOpen">${t("chat.report")}</button>` : ""}
+        </div>
         <div class="chat-sugs">${chatSuggestions().map(s =>
           `<button type="button" class="chat-sug">${kpiEsc(t(s.k, s.v))}</button>`).join("")}</div>
       </div>`;
@@ -594,6 +607,7 @@ function chatRender(){
   <div class="assist-foot">
     <span class="q-note">${t("chat.foot", { model: cfg.mode === "azure" ? (cfg.deployment || "-") : (cfg.model || "-") })}</span>
     <span class="assist-tools">
+      <button class="btn" id="chatSkills" type="button" aria-pressed="${chatShowSkills}">${t("chat.skills")}</button>
       <button class="btn" id="chatClear" type="button" ${chatLog.length ? "" : "disabled"}>${t("chat.clear")}</button>
       <button class="btn icon" id="chatGear" type="button" aria-label="${t("chat.settings")}" title="${t("chat.settings")}">⚙</button>
     </span>
@@ -632,7 +646,9 @@ function chatRender(){
 
 function chatWire2(){
   const log = $("#chatLog");
-  if (log) log.scrollTop = log.scrollHeight;
+  /* La conversation se lit par le bas, l'ecran des capacites par le haut : il
+     s'ouvrait sur sa derniere ligne, titre hors champ. */
+  if (log) log.scrollTop = chatShowSkills ? 0 : log.scrollHeight;
 
   $("#chatForm").addEventListener("submit", e => {
     e.preventDefault();
@@ -646,6 +662,21 @@ function chatWire2(){
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("#chatForm").requestSubmit(); }
   });
   $("#chatClear").addEventListener("click", () => { chatLog = []; chatWire = []; chatRender(); });
+  /* L'ecran des capacites se ferme comme il s'ouvre, par le meme bouton : un
+     ecran dont on ne sait pas revenir est un cul-de-sac. */
+  const skills = () => { chatShowSkills = !chatShowSkills; chatRender(); };
+  $("#chatSkills").addEventListener("click", skills);
+  const so = $("#chatSkillsOpen");
+  if (so) so.addEventListener("click", skills);
+  const ro = $("#chatReportOpen");
+  if (ro) ro.addEventListener("click", () => docgenDialog());
+  /* Une capacite se decouvre en l'essayant : la ligne envoie son exemple. */
+  document.querySelectorAll(".dg-skill[data-ask]").forEach(b => b.addEventListener("click", () => {
+    chatShowSkills = false;
+    chatAsk(b.dataset.ask);
+  }));
+  const sr = $("#dgSkillReport");
+  if (sr) sr.addEventListener("click", () => { chatShowSkills = false; chatRender(); docgenDialog(); });
   $("#chatGear").addEventListener("click", chatOpenSettings);
   const setup = $("#chatSetup");
   if (setup) setup.addEventListener("click", chatOpenSettings);

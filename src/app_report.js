@@ -259,6 +259,11 @@ function rptMaturity(n, lang){
  * document qui sort de l'outil doit annoncer lui-meme ce qu'il vaut.
  */
 let rptDraftUsed = false;
+
+/* Un support destine au client ne porte pas les recommandations internes : le
+   generateur de rapports leve ce drapeau pour cette destination-la, comme la
+   version client du site se passe des plans d'action. */
+let rptNoReco = false;
 function rptProse(iso, key){
   if (typeof PROSE === "undefined") return null;
   const bag = PROSE[iso];
@@ -347,8 +352,10 @@ function rptSlide2(c, lang){
   right.bullets(rptCorrespondence(c, iso, lang));
   right.rub(L ? "Registration process" : "Processus d'enregistrement");
   right.bullets(rptRegProcess(iso, lang));
-  right.rub(L ? "Wavestone recommendations" : "Recommandations Wavestone");
-  right.bullets(rptReco(c, iso, lang));
+  if (!rptNoReco) {
+    right.rub(L ? "Wavestone recommendations" : "Recommandations Wavestone");
+    right.bullets(rptReco(c, iso, lang));
+  }
 
   return { shapes: [rptRect(99, RPT_SPLIT, 0, RPT_W - RPT_SPLIT, RPT_H, RPT_GREY)]
     .concat(head.shapes, left.render(RPT_BOT), right.render(RPT_BOT)) };
@@ -701,39 +708,14 @@ function rptSlideXml(slide){
     + '</p:spTree></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sld>';
 }
 
-async function generateCountryReport(iso, opts){
-  const c = byIso[iso];
-  if (!c) throw new Error("pays inconnu");
-  if (typeof DECK_TEMPLATE_B64 === "undefined")
-    throw new Error(t("rpt.noTemplate"));
-  const lang = opts.lang || "fr";
-  rptDraftUsed = false;
-  /* Le contenu redige (fiches, themes) suit la langue des slides le temps de la
-     generation, puis revient a celle de l'interface. */
-  rptLang = lang;
-  if (typeof applyContentLang === "function") applyContentLang(lang);
-  const wanted = [];
-  try {
-    if (opts.what !== "fw") wanted.push(rptSlide1(c, lang), rptSlide2(c, lang), rptSlide3(c, lang));
-    if (opts.what !== "country") wanted.push(rptSlide4(c, lang));
-  } finally {
-    if (typeof applyContentLang === "function") applyContentLang();
-  }
-
-  /* La mention de brouillon est posee ici, avant que les slides ne soient
-     serialisees : ajoutee plus bas, elle modifiait des objets deja ecrits dans
-     le zip et n'apparaissait nulle part. Elle se signale sur chaque slide et
-     pas seulement dans la conversation qui l'a produite, car le fichier circule
-     sans elle. */
-  if (rptDraftUsed) {
-    const note = lang === "en"
-      ? "Draft — sentences drawn from the legal texts, not yet reviewed"
-      : "Brouillon — phrases tirées des textes légaux, non encore relues";
-    wanted.forEach(sl => sl.shapes.push(
-      rptTextBox(9000, rptEmu(0.45), RPT_H - rptEmu(0.32), rptEmu(7.5), rptH(1, 7, 0),
-        [{ runs: [{ t: note, sz: 700, b: true, color: "FF2A49" }] }])));
-  }
-
+/* ---------- le paquet .pptx ----------
+ * Les slides de la fiche pays et celles du generateur de rapports partagent le
+ * meme gabarit et le meme assemblage. Une seule fonction les emballe : la
+ * seconde copie aurait vieilli a son rythme, et c'est cette partie-la que
+ * PowerPoint refuse le plus volontiers quand elle derive.
+ */
+async function rptPackage(wanted){
+  if (typeof DECK_TEMPLATE_B64 === "undefined") throw new Error(t("rpt.noTemplate"));
   const bin = atob(DECK_TEMPLATE_B64);
   const bytes = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
@@ -772,7 +754,15 @@ async function generateCountryReport(iso, opts){
                 crc: crc32(out), rawSize: out.length, data: await deflateRaw(out) });
   }
   for (let i = 0; i < wanted.length; i++) {
-    await put("ppt/slides/slide" + (i + 1) + ".xml", rptSlideXml(wanted[i]));
+    const xml = rptSlideXml(wanted[i]);
+    /* Un identifiant de forme absent ou non numerique produit un fichier que
+       PowerPoint propose de reparer, et dont la reparation echoue - une slide
+       construite sans compteur d'identifiants ecrivait id="NaN". LibreOffice
+       l'ouvrait sans rien dire, donc la relecture des rendus ne le voyait pas.
+       On echoue ici, a la generation, plutot que chez le lecteur. */
+    if (/(?:\bid)="(?:NaN|undefined|)"/.test(xml))
+      throw new Error("slide " + (i + 1) + " : identifiant de forme invalide");
+    await put("ppt/slides/slide" + (i + 1) + ".xml", xml);
     await put("ppt/slides/_rels/slide" + (i + 1) + ".xml.rels", relsXml);
   }
 
@@ -814,8 +804,46 @@ async function generateCountryReport(iso, opts){
     + "<SharedDoc>false</SharedDoc><HyperlinksChanged>false</HyperlinksChanged>"
     + "<AppVersion>16.0000</AppVersion></Properties>");
 
+  return writeZip(kept);
+}
+
+async function generateCountryReport(iso, opts){
+  const c = byIso[iso];
+  if (!c) throw new Error("pays inconnu");
+  if (typeof DECK_TEMPLATE_B64 === "undefined")
+    throw new Error(t("rpt.noTemplate"));
+  const lang = opts.lang || "fr";
+  rptDraftUsed = false;
+  /* Le contenu redige (fiches, themes) suit la langue des slides le temps de la
+     generation, puis revient a celle de l'interface. */
+  rptLang = lang;
+  if (typeof applyContentLang === "function") applyContentLang(lang);
+  const wanted = [];
+  try {
+    if (opts.what !== "fw") wanted.push(rptSlide1(c, lang), rptSlide2(c, lang), rptSlide3(c, lang));
+    if (opts.what !== "country") wanted.push(rptSlide4(c, lang));
+  } finally {
+    if (typeof applyContentLang === "function") applyContentLang();
+  }
+
+  /* La mention de brouillon est posee ici, avant que les slides ne soient
+     serialisees : ajoutee plus bas, elle modifiait des objets deja ecrits dans
+     le zip et n'apparaissait nulle part. Elle se signale sur chaque slide et
+     pas seulement dans la conversation qui l'a produite, car le fichier circule
+     sans elle. */
+  if (rptDraftUsed) {
+    const note = lang === "en"
+      ? "Draft — sentences drawn from the legal texts, not yet reviewed"
+      : "Brouillon — phrases tirées des textes légaux, non encore relues";
+    wanted.forEach(sl => sl.shapes.push(
+      rptTextBox(9000, rptEmu(0.45), RPT_H - rptEmu(0.32), rptEmu(7.5), rptH(1, 7, 0),
+        [{ runs: [{ t: note, sz: 700, b: true, color: "FF2A49" }] }])));
+  }
+
+  const blob = await rptPackage(wanted);
+
   const suffix = opts.what === "fw" ? " - framework" : opts.what === "country" ? " - transposition" : "";
-  return { blob: writeZip(kept),
+  return { blob: blob,
            filename: "RegWatch - " + rptCountryName(c, lang) + suffix + ".pptx" };
 }
 
