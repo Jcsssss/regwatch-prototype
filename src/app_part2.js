@@ -978,6 +978,35 @@ function renderSources(){
         <td class="num">${a.entries || "-"}</td></tr>`).join("")}
       </tbody></table></div>
   </div></details>` : ""}
+  <!-- Le registre de l'agent : ce que l'outil lit reellement, source par
+       source. Sans lui, une source ajoutee au registre restait invisible
+       jusqu'a ce qu'elle rapporte quelque chose, et personne ne pouvait dire
+       ce que la veille couvrait. Replie par defaut, comme les autorites : la
+       liste est longue et ce n'est pas la premiere question qu'on se pose. -->
+  ${regId() === "nis2" && typeof WATCH_REGISTRY !== "undefined" ? `
+  <details class="card fold"><summary class="cap"><h2>${t("src.regTitle")}</h2>
+    <span class="q-note">${t("src.regCount", {
+      n: WATCH_REGISTRY.active, total: WATCH_REGISTRY.sources.length })}</span>
+    <span class="fold-car" aria-hidden="true">▾</span></summary>
+    <div class="bd">
+    <p class="q-note" style="margin-top:0">${t("src.regSub")}</p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thState")}</th>
+        <th class="num">${t("src.regItems")}</th><th>${t("src.regLast")}</th></tr></thead>
+      <tbody>${WATCH_REGISTRY.sources.map(r => `<tr>
+        <td style="white-space:nowrap">${r.iso && r.iso !== "EU" ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.zone) || "-"}</td>
+        <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
+                    : esc(r.name)}
+          <span class="chip ${r.kind === "rss" ? "src-official" : r.kind === "api" ? "src-manual" : "src-unofficial"}">${
+            t({ rss: "src.kRss", api: "src.kApi" }[r.kind] || "src.kPage")}</span></td>
+        <td>${r.active
+          ? (r.items ? `<span class="chip st-validated">${t("src.regOn")}</span>`
+                     : `<span class="chip st-pending">${t("src.regQuiet")}</span>`)
+          : `<span class="chip st-rejected">${t("src.regOff")}</span>`}</td>
+        <td class="num">${r.items || "-"}</td>
+        <td style="color:var(--muted);white-space:nowrap">${r.last ? fmtDateL(r.last) : "-"}</td></tr>`).join("")}
+      </tbody></table></div>
+  </div></details>` : ""}
   ${regId() === "nis2" ? "" : recAuthorities()}
   ${isVal ? `
   <div class="card"><div class="cap"><h2>${t("src.add")}</h2></div><div class="bd">

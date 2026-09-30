@@ -54,6 +54,42 @@ Trois garde-fous, du plus mou au plus dur :
 
 Chaque rejet écrit maintenant sa raison et son fait commun dans le journal.
 
+### L'espace de « NIS 2 », et ce qu'il cachait
+
+Google News traite `NIS2` et `NIS 2` comme deux mots différents. Les requêtes du registre
+étaient écrites collées : tout ce qui écrit « NIS 2 » avec l'espace — c'est-à-dire une bonne
+part de la presse française — était invisible depuis le premier jour. Le rapport de la Cour des
+comptes européenne sur la non-application de la directive (21 septembre 2026) n'est jamais
+arrivé dans la file pour cette seule raison.
+
+Les neuf requêtes Google News du registre demandent maintenant les deux graphies
+(`"NIS 2" OR NIS2`). Trois sources françaises ont été ajoutées le 30 septembre 2026 :
+
+| Source | Type | Pourquoi |
+| --- | --- | --- |
+| Assemblée nationale, dossier législatif `DLR5L17N50731` | Page web | L'étape parlementaire à la source, sans passer par la presse. Le sélecteur ne retient que le titre et le bloc des étapes : la page ne « bouge » que quand la procédure avance. |
+| IT Social | RSS | Presse spécialisée française qui suit la transposition ; son flux est propre et daté. |
+| L'Embarqué | Page web | Absent de Google News : aucune requête ne pouvait le voir. Pas de flux non plus, donc la une du site est surveillée. |
+
+Une page surveillée n'est pas analysée à sa première visite : l'agent mémorise son contenu et
+ne signale que ce qui s'y ajoute ensuite. Ces deux sources se tairont donc jusqu'au prochain
+changement de la page.
+
+### Un tri qui garde ce qu'un consultant attend
+
+Le tri écartait « les rapports sans obligation ». C'est juste pour une étude d'éditeur, faux
+pour un rapport public qui constate qu'un État n'applique pas la directive : c'est précisément
+une information de veille. Le prompt distingue maintenant les deux, et garde explicitement les
+étapes parlementaires d'un texte de transposition.
+
+Deux garde-fous complètent la règle :
+
+- **chaque rejet écrit sa raison** dans le journal, avec le score. Un rejet muet ne se relit
+  pas, et c'est ce silence qui avait laissé passer le rapport de la Cour des comptes ;
+- **une étape nommée dans le titre est rattrapée** : si le titre contient un mot d'étape
+  (`STEP_WORDS`) et parle de NIS 2, l'élément entre dans la file comme « incertain », et c'est
+  le validateur qui tranche — pas le modèle.
+
 ### Rattraper une passe
 
 ```sh

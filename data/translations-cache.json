@@ -962,5 +962,26 @@
   "en": "ANSSI published on 17 June 2026 an call for expressions of interest (AMI) to support the creation and […]",
   "fr": "L'ANSSI a publié le 17 juin 2026 un appel à manifestation d'intérêt (AMI) pour le soutien à la création et […]",
   "frSame": true
+ },
+ "Lacunes de mise en œuvre de NIS 2 dans l’UE signalées par la Cour des comptes européenne ; rapport ; 2026-09-21 ; Union européenne": {
+  "en": "Gaps in the implementation of NIS 2 in the EU reported by the European Court of Auditors; report; 2026-09-21; European Union"
+ },
+ "La Cour des comptes européenne alerte sur une application encore incomplète de la directive NIS 2 dans l’Union européenne; le rapport souligne des lacunes de transposition et un partage d’information limité entre acteurs publics; cette nouveauté de veille signale un risque de mise en conformité hétérogène selon les États membres et de surveillance accrue des autorités européennes": {
+  "en": "The European Court of Auditors warns of an application of the NIS 2 directive in the European Union that is still incomplete; the report highlights transposition gaps and limited information sharing between public actors; this watch item signals a risk of uneven compliance across Member States and increased oversight by European authorities"
+ },
+ "Directive \"NIS 2\" pas appliquée, partage d'information \"limité\": la Cour des comptes européenne alerte sur les lacunes de l'UE en matière de cybersécurité BFM": {
+  "en": "\"NIS 2\" directive not applied, information sharing \"limited\": the European Court of Auditors warns of gaps in EU cybersecurity BFM",
+  "fr": "Directive « NIS 2 » pas appliquée, partage d’information « limité » : la Cour des comptes européenne alerte sur les lacunes de l’UE en matière de cybersécurité BFM"
+ },
+ "Projet Arcadie : la transposition de NIS 2 enfin à l’agenda parlementaire en France": {
+  "en": "Project Arcadie: the transposition of NIS 2 finally on the parliamentary agenda in France"
+ },
+ "Le sujet signale une avancée parlementaire récente autour du projet Arcadie, marquant l’entrée à l’agenda législatif de la transposition de NIS 2 en France; il s’agit d’un signal de veille important indiquant une prochaine montée en charge des obligations de cybersécurité pour les entités concernées.": {
+  "en": "The subject indicates a recent parliamentary development around the Arcadie project, marking the entry onto the legislative agenda of the transposition of NIS 2 in France; this is an important watch signal indicating an upcoming scaling-up of cybersecurity obligations for the entities concerned."
+ },
+ "NIS 2 enfin à l'agenda parlementaire Projet Arcadie": {
+  "en": "NIS 2 finally on the parliamentary agenda Project Arcadie",
+  "fr": "NIS 2 enfin à l'agenda parlementaire Projet Arcadie",
+  "frSame": true
  }
 }

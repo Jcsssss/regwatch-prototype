@@ -403,8 +403,12 @@ Garde : textes de transposition nationaux (lois, décrets, arrêtés, consultati
 enregistrement des entités, notification d'incident, autorités compétentes, supervision, audits et sanctions,
 référentiels et guides d'autorités (ANSSI, BSI, CCB, NCSC, NÚKIB, ENISA...), normes liées à NIS 2.
 Garde aussi un contenu incertain mais potentiellement important.
-Écarte : marketing, événements, alertes de vulnérabilité ou de menace, rapports sans obligation, sujets
-uniquement RGPD, AI Act ou DSA.
+Garde aussi : les étapes parlementaires d'un texte de transposition (dépôt, inscription à l'ordre du jour,
+examen en commission, vote, adoption, promulgation), et les rapports d'institutions publiques sur l'APPLICATION de
+NIS 2 (Cour des comptes européenne, Commission, ENISA, autorité nationale, régulateur) : un rapport qui constate
+qu'un État n'applique pas la directive est une information de veille, même s'il ne crée aucune obligation.
+Écarte : marketing, événements, alertes de vulnérabilité ou de menace, rapports d'éditeurs ou d'études de marché,
+sujets uniquement RGPD, AI Act ou DSA.
 C'est une veille : seule une NOUVEAUTÉ datée compte (nouveau texte, nouvelle version, nouvelle échéance, nouvelle
 décision). Une page qui présente un texte ancien ou une page institutionnelle générale n'en est pas une.
 Ne confonds pas la date d'un texte cité (la directive de 2022) avec celle de l'événement décrit.
@@ -561,9 +565,26 @@ def cmd_run(args):
                 keep = (rel.get("est_pertinent") is True and score >= MIN_SCORE) \
                     or (decision == "garder" and score >= MIN_SCORE) or (decision == "incertain" and KEEP_UNCERTAIN)
                 if not keep:
-                    n["écartés IA"] += 1
-                    remember(decision or "ignorer", score)
-                    continue
+                    # Le meme aveuglement que pour les doublons : un rejet muet
+                    # ne se relit pas. Le rapport de la Cour des comptes
+                    # europeenne sur la non-application de NIS 2 a ete ecarte
+                    # sans que rien ne le dise.
+                    titre_ext = it["title"] + " " + clean(it["summary"])[:400]
+                    etape = step_words(it["title"])
+                    if etape and re.search(r"nis\s?-?2", fold(titre_ext)):
+                        # Une etape de procedure nommee dans le titre est un
+                        # fait de transposition : on la garde comme incertaine
+                        # et c'est le validateur qui tranche, pas le modele.
+                        print("  ~ rattrapé (étape : %s) %s"
+                              % (", ".join(sorted(etape))[:40], clean(it["title"])[:60]))
+                        decision, keep = "incertain", True
+                    else:
+                        n["écartés IA"] += 1
+                        remember(decision or "ignorer", score)
+                        print("  - écarté (%s, %s) %s\n      %s"
+                              % (decision or "ignorer", score, clean(it["title"])[:60],
+                                 str(rel.get("raison") or "")[:110]))
+                        continue
                 real = iso_date(rel.get("date_contenu_estimee"))
                 too_old = real and real < (today - timedelta(days=MAX_CONTENT_AGE_DAYS)).isoformat()
                 if (pending is not None and rel.get("nouveaute_recente") is False) or too_old:
@@ -693,7 +714,8 @@ def cmd_pipeline(args):
         if check.returncode:
             print("\n!! La carte des cellules ne correspond plus au classeur (voir ci-dessus).")
             print("   Relancer : python3 tools/excel_cellmap.py \"%s\"\n" % wb.name)
-    steps = [[py, "tools/fetch_excerpts.py"],
+    steps = [[py, "tools/registry_to_js.py"],
+             [py, "tools/fetch_excerpts.py"],
              [py, "agent-veille/translate_items.py", ".env"],
              [py, "tools/veille_to_watchitems.py"],
              [py, "tools/veille_to_watchitems.py"]]    # la seconde integre les traductions faites entre-temps

@@ -1,8 +1,135 @@
 {
   "generatedOn": "2026-09-30",
   "source": "agent de veille NIS2 - tblVeille",
-  "count": 126,
+  "count": 128,
   "items": [
+    {
+      "id": "REG-20260930145441-002",
+      "detected": "2026-09-30",
+      "iso": "EU",
+      "title": "Lacunes de mise en œuvre de NIS 2 dans l’UE signalées par la Cour des comptes européenne ; rapport ; 2026-09-21 ; Union européenne",
+      "excerpt": "Directive \"NIS 2\" pas appliquée, partage d'information \"limité\": la Cour des comptes européenne alerte sur les lacunes de l'UE en matière de cybersécurité BFM",
+      "summary": "La Cour des comptes européenne alerte sur une application encore incomplète de la directive NIS 2 dans l’Union européenne; le rapport souligne des lacunes de transposition et un partage d’information limité entre acteurs publics; cette nouveauté de veille signale un risque de mise en conformité hétérogène selon les États membres et de surveillance accrue des autorités européennes",
+      "titleEn": "Gaps in the implementation of NIS 2 in the EU reported by the European Court of Auditors; report; 2026-09-21; European Union",
+      "summaryEn": "The European Court of Auditors warns of an application of the NIS 2 directive in the European Union that is still incomplete; the report highlights transposition gaps and limited information sharing between public actors; this watch item signals a risk of uneven compliance across Member States and increased oversight by European authorities",
+      "excerptEn": "\"NIS 2\" directive not applied, information sharing \"limited\": the European Court of Auditors warns of gaps in EU cybersecurity BFM",
+      "excerptFr": "Directive « NIS 2 » pas appliquée, partage d’information « limité » : la Cour des comptes européenne alerte sur les lacunes de l’UE en matière de cybersécurité BFM",
+      "source": {
+        "name": "Cour des comptes européenne",
+        "url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxPTWJHa25NWnh2UzQ1YUFPdS1TMldnRHBDV1ZhN09xWHFxMm9hUVVjbHZWWWdpM1c1MlpRRU5Leno0Q3J1aUwxaFpUeGFqVi1PdldzaGJKSlpQMFZ2T3VkTTJadGZfMkU3aDQ4UE9UVm5IXzBaQVNpOGlfbm1TRXdJLUJDb2RuWXUzVUlnQWxBQWU4ZWxKMzQzdV9waFU3VjVvektpWkxQdWNwYlB4cllCX1hyVUprY003N0ltQ0NJMkplLTlndFNHMnFidzc4YmI0QUNPVUVfWG5kSVRNSnFWTi03RkZib0ZQN0RXdW5OWWRzdklkWDRYSjRuQUxZYW1GN01ScnVnWG1GS0tEM3hocVUtZWJheDJtbU1LNkZWNlJPalJyTGtyUWNHX2RLVWJXMjRHNw?oc=5",
+        "type": "unofficial"
+      },
+      "status": "pending",
+      "clientAdvice": "Cartographier les pays d’implantation et leur niveau de transposition NIS 2; comparer les procédures internes aux exigences les plus récentes; renforcer la documentation de conformité et les preuves de contrôles; préparer un point de suivi avec les équipes cyber, juridique et conformité sur les écarts éventuels; surveiller les positions de la Commission européenne et des autorités nationales",
+      "agent": {
+        "score": 8,
+        "justification": "Rapport d’une institution publique sur l’application de NIS2, signalant des lacunes de mise en œuvre et donc une nouveauté de veille utile.",
+        "obligations": "Renforcer la veille sur l’état de transposition et d’application de NIS 2 dans chaque État membre; vérifier l’alignement des mesures de gouvernance, de gestion des risques et de notification d’incident avec les exigences NIS 2; anticiper d’éventuelles demandes renforcées des autorités en matière de preuves de conformité; améliorer les mécanismes internes de partage d’information cybersécurité et de remontée d’incidents",
+        "impact": "Moyen",
+        "entities": "Entités essentielles et importantes soumises à NIS 2; autorités nationales compétentes; organismes publics impliqués dans la cybersécurité; prestataires et sous-traitants critiques dans l’UE",
+        "publishedOn": "2026-09-21",
+        "dateOrigin": "flux",
+        "inForceOn": "2026-09-21",
+        "textType": "rapport"
+      },
+      "targetCells": [],
+      "verbatim": [],
+      "reliability": {
+        "score": 45,
+        "parts": {
+          "source": 0,
+          "evidence": 15,
+          "date": 20,
+          "actionability": 0,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "openingOnly"
+        ],
+        "duplicateOf": null
+      }
+    },
+    {
+      "id": "REG-20260930145433-001",
+      "detected": "2026-09-30",
+      "iso": "FR",
+      "title": "Projet Arcadie : la transposition de NIS 2 enfin à l’agenda parlementaire en France",
+      "excerpt": "NIS 2 enfin à l'agenda parlementaire Projet Arcadie",
+      "summary": "Le sujet signale une avancée parlementaire récente autour du projet Arcadie, marquant l’entrée à l’agenda législatif de la transposition de NIS 2 en France; il s’agit d’un signal de veille important indiquant une prochaine montée en charge des obligations de cybersécurité pour les entités concernées.",
+      "titleEn": "Project Arcadie: the transposition of NIS 2 finally on the parliamentary agenda in France",
+      "summaryEn": "The subject indicates a recent parliamentary development around the Arcadie project, marking the entry onto the legislative agenda of the transposition of NIS 2 in France; this is an important watch signal indicating an upcoming scaling-up of cybersecurity obligations for the entities concerned.",
+      "excerptEn": "NIS 2 finally on the parliamentary agenda Project Arcadie",
+      "excerptFr": "NIS 2 enfin à l'agenda parlementaire Projet Arcadie",
+      "source": {
+        "name": "Parlement français",
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9Gc0NfakJQU0NJN1ZYVlBiZXl4Z0NnbXdINEtMUUt6cVNkcWNmMFg3SkFfTmh3RDFnd3FtVzBGRXZhSF9aRFV6c0RYZ0ltbFRrbUxVOWxtY1VNYXVuN1ZJR1VtQURfTDdqNEg0NU1udw?oc=5",
+        "type": "unofficial"
+      },
+      "status": "pending",
+      "clientAdvice": "Suivre l’avancement parlementaire et le texte final; cartographier les entités et services potentiellement soumis à NIS 2; lancer un écart d’analyse entre l’existant et les exigences attendues; préparer un plan d’adaptation cyber, gouvernance et notification; sensibiliser la direction et les métiers impactés",
+      "agent": {
+        "score": 7,
+        "justification": "Le contenu signale une étape parlementaire récente liée à la transposition de NIS 2, ce qui constitue une nouveauté de veille à conserver.",
+        "obligations": "Anticiper l’adoption du cadre national de transposition; identifier le périmètre d’application et les catégories d’entités concernées; préparer la mise à niveau des mesures de gestion des risques cyber; organiser les capacités de déclaration d’incidents; documenter la gouvernance, les politiques et les contrôles de sécurité attendus",
+        "impact": "Moyen",
+        "entities": "Opérateurs et entités relevant ou susceptibles de relever du champ NIS 2 en France; organismes publics et privés concernés par la transposition; prestataires critiques et chaînes de sous-traitance associées",
+        "publishedOn": "2026-09-22",
+        "dateOrigin": "flux",
+        "inForceOn": "2026-09-22",
+        "textType": "Actualité parlementaire"
+      },
+      "targetCells": [
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Organism official name to report incident",
+          "cell": "F14"
+        },
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Method for incident reporting",
+          "cell": "H14"
+        },
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Date of incident reporting becoming mandatory",
+          "cell": "G14"
+        },
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Name and link of web platform",
+          "cell": "I14"
+        },
+        {
+          "sheet": "Audit & Controls - P1",
+          "field": "Audit explicitly planned by the transposition",
+          "cell": "D13"
+        },
+        {
+          "sheet": "Audit & Controls - P1",
+          "field": "Organism in charge of the audit",
+          "cell": "E13"
+        }
+      ],
+      "verbatim": [],
+      "reliability": {
+        "score": 60,
+        "parts": {
+          "source": 0,
+          "evidence": 15,
+          "date": 20,
+          "actionability": 15,
+          "freshness": 10
+        },
+        "penalties": {},
+        "notes": [
+          "aggregator",
+          "openingOnly"
+        ],
+        "duplicateOf": null
+      }
+    },
     {
       "id": "REG-20260930143032-001",
       "detected": "2026-09-30",
@@ -143,20 +270,24 @@
           "cell": "E13"
         }
       ],
-      "verbatim": [],
+      "verbatim": [
+        {
+          "sheet": "Audit & Controls - P1",
+          "term": "supervis",
+          "text": "La détection : Aucune de ces deux vagues d’exfiltration n’a été détectée, ni par les moyens de supervision de la DGFiP ni par ceux de l’ANSSI, révélant les lacunes dans la supervision des systèmes d’information de la DGFiP."
+        }
+      ],
       "reliability": {
-        "score": 90,
+        "score": 100,
         "parts": {
           "source": 30,
-          "evidence": 15,
+          "evidence": 25,
           "date": 20,
           "actionability": 15,
           "freshness": 10
         },
         "penalties": {},
-        "notes": [
-          "openingOnly"
-        ],
+        "notes": [],
         "duplicateOf": null
       }
     },
@@ -191,6 +322,26 @@
       },
       "targetCells": [
         {
+          "sheet": "Incident reporting - P1",
+          "field": "Organism official name to report incident",
+          "cell": "F14"
+        },
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Method for incident reporting",
+          "cell": "H14"
+        },
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Date of incident reporting becoming mandatory",
+          "cell": "G14"
+        },
+        {
+          "sheet": "Incident reporting - P1",
+          "field": "Name and link of web platform",
+          "cell": "I14"
+        },
+        {
           "sheet": "Authority - P3",
           "field": "Consolidated list of authorities",
           "cell": "E13"
@@ -199,32 +350,31 @@
           "sheet": "ID - P1",
           "field": "Entry into force of the transposition",
           "cell": "E13"
-        },
-        {
-          "sheet": "ID - P1",
-          "field": "Name of principal transposition text",
-          "cell": "K13"
-        },
-        {
-          "sheet": "ID - P1",
-          "field": "Additional texts (in support of principal text)",
-          "cell": "L13"
         }
       ],
-      "verbatim": [],
+      "verbatim": [
+        {
+          "sheet": "Authority - P3",
+          "term": "autorité",
+          "text": "En tant qu’autorité nationale en matière de cybersécurité et de cyberdéfense, l’Agence nationale de la sécurité des systèmes d’information (ANSSI) prépare et accompagne la montée en maturité cyber de la Nation."
+        },
+        {
+          "sheet": "ID - P1",
+          "term": "publi",
+          "text": "L’ANSSI a publié le 17 juin 2026 un appel à manifestation d‘intérêt (AMI) pour le soutien à la création et le développement d’entités chargées de l’accompagnement sectoriel aux enjeux de cybersécurité (AMI SEC), AMI clos le 27 juillet 2026."
+        }
+      ],
       "reliability": {
-        "score": 90,
+        "score": 100,
         "parts": {
           "source": 30,
-          "evidence": 15,
+          "evidence": 25,
           "date": 20,
           "actionability": 15,
           "freshness": 10
         },
         "penalties": {},
-        "notes": [
-          "openingOnly"
-        ],
+        "notes": [],
         "duplicateOf": null
       }
     },

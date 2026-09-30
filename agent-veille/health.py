@@ -24,7 +24,7 @@ import json
 import re
 import sys
 import urllib.parse as up
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -34,6 +34,12 @@ FEEDS_JS = ROOT / "src" / "reg" / "nis2" / "data_authorities.js"
 CANDIDATES = ROOT / "data" / "source-candidates.json"
 BASELINE = ROOT / "data" / "health-baseline.json"
 PROBE = ROOT / "data" / "source-probe.json"
+REGISTRY = ROOT / "data" / "watch-registry.json"
+
+# Au-dela de ce silence, une source active merite une question : la requete
+# est-elle encore bonne, le site a-t-il change d'adresse ? Deux mois laissent
+# passer une autorite qui publie rarement sans laisser dormir une requete morte.
+QUIET_DAYS = 60
 
 AGGREGATORS = ("news.google.com", "news.yahoo.", "flipboard.", "msn.com")
 MIN_BODY = 500
@@ -48,6 +54,7 @@ BETTER_UP = {
 BETTER_DOWN = {
     "aggregatorShare", "impossibleDates", "duplicates", "reliabilityLow",
     "indexPagesRejected", "unreachableFeeds", "daysSinceRun", "sourcesBlocked",
+    "sourcesQuiet", "sourcesNeverHeard",
 }
 
 # Au-delà, la file ne reflète plus la réalité : l'agent tourne une fois par
@@ -122,6 +129,12 @@ def measure():
         "candidatesWaiting": len((cands or {}).get("candidates") or []),
         "sourcesBlocked": sum(1 for v in ((load(PROBE, {}) or {}).get("sources") or {}).values()
                               if v.get("state") == "bloquee"),
+        # Une source allumee qui ne rapporte plus ne produit aucune erreur :
+        # elle lit, ne trouve rien, et se tait. C'est ainsi qu'une requete
+        # Google News ecrite « NIS2 » a cesse pendant des mois de voir les
+        # articles qui ecrivent « NIS 2 », sans que rien ne le signale.
+        "sourcesQuiet": len(quiet_sources()[0]),
+        "sourcesNeverHeard": len(quiet_sources()[1]),
     }
 
 
@@ -177,6 +190,23 @@ def probe_sources():
     return out
 
 
+def quiet_sources():
+    """(muettes depuis longtemps, jamais entendues) parmi les sources actives."""
+    reg = (load(REGISTRY, {}) or {}).get("sources") or []
+    limit = (date.today() - timedelta(days=QUIET_DAYS)).isoformat()
+    quiet, never = [], []
+    for r in reg:
+        if not r.get("active"):
+            continue
+        if not r.get("last"):
+            never.append(r)
+        elif r["last"] < limit:
+            quiet.append(r)
+    quiet.sort(key=lambda r: r.get("last") or "")
+    never.sort(key=lambda r: r.get("name", ""))
+    return quiet, never
+
+
 LABELS = [
     ("COLLECTE", [
         ("daysSinceRun", "jours depuis la dernière détection", ""),
@@ -212,6 +242,8 @@ LABELS = [
         ("unreachableFeeds", "autorités injoignables", ""),
         ("candidatesWaiting", "sources proposées en attente", ""),
         ("sourcesBlocked", "sources qui bloquent l'agent (--probe)", ""),
+        ("sourcesQuiet", "sources actives muettes depuis %d jours" % QUIET_DAYS, ""),
+        ("sourcesNeverHeard", "sources actives qui n'ont jamais rien donné", ""),
     ]),
 ]
 
@@ -271,6 +303,19 @@ def main():
             print("   (sondage vieux de %d jours : relancer avec --probe)\n" % age)
     else:
         print("   Aucun sondage des sources : lancer avec --probe pour repérer les blocages.\n")
+
+    # Le silence d'une source ne remonte nulle part ailleurs : ni erreur, ni
+    # chiffre en baisse. On le nomme donc, avec la date de sa derniere trouvaille.
+    quiet, never = quiet_sources()
+    if quiet or never:
+        print("!! %d source(s) active(s) ne rapportent plus rien :" % (len(quiet) + len(never)))
+        for r in quiet[:8]:
+            print("   %-52s rien depuis le %s" % (r["name"][:52], r["last"]))
+        for r in never[:8]:
+            print("   %-52s rien depuis son ajout" % r["name"][:52])
+        if len(quiet) + len(never) > 16:
+            print("   ... et %d autres (data/watch-registry.json)" % (len(quiet) + len(never) - 16))
+        print("   Vérifier la requête ou l'adresse avant de conclure que le pays est calme.\n")
 
     alerts = 0
     for section, rows in LABELS:

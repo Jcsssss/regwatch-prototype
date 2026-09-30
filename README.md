@@ -121,6 +121,23 @@ articles récents : la recherche de Google News ne remonte pas loin.
 `health.py` crie quand la file vieillit : les pourcentages restent identiques pendant que la
 veille s'arrête, c'est le seul symptôme qui ne se voit pas tout seul.
 
+## Ce que l'agent surveille, dans l'onglet Sources
+
+L'onglet Sources montrait les sources officielles, les flux d'autorités et les sources
+proposées — mais pas le registre sur lequel l'agent travaille. Une source ajoutée au registre
+restait donc invisible jusqu'à ce qu'elle rapporte quelque chose, et personne ne pouvait
+répondre à « qu'est-ce que l'outil surveille ? ».
+
+La section **« Ce que lit l'agent de veille »** liste maintenant les 79 sources du registre :
+zone, adresse, type, état, nombre d'éléments rapportés et date du dernier. Elle est générée par
+`tools/registry_to_js.py` depuis `data/veille/sources.json`, à chaque passe de veille — la
+liste ne peut donc pas diverger de ce que l'agent lit réellement.
+
+Trois états : **active** (elle a déjà rapporté), **active, rien encore**, **éteinte**. Le
+deuxième n'est pas une faute en soi, une autorité peut publier deux fois par an ; c'est la
+première chose à regarder quand un pays devient silencieux. `health.py` compte les sources
+actives muettes depuis plus de 60 jours et celles qui n'ont jamais rien donné, et les nomme.
+
 ## La carte des cellules du classeur
 
 La file de veille ne dit pas seulement « il s'est passé quelque chose en Pologne » : elle nomme
