@@ -4,6 +4,99 @@
    demo WATCH_QUEUE in data_c4.js when it is not. Do not edit by hand. ---- */
 const WATCH_QUEUE_AGENT = [
   {
+    "id": "REG-20260930141335-002",
+    "detected": "2026-09-30",
+    "iso": "EU",
+    "title": "NIS 2 : responsabilité de la direction et délais de mise en conformité, 2026-09-17, Union européenne",
+    "excerpt": "NIS2 and management liability: obligations and implementation deadlines Crowe",
+    "summary": "L’actualité met en avant les obligations NIS 2 liées à la responsabilité des dirigeants et les échéances d’application à respecter; elle souligne l’enjeu de gouvernance et de pilotage de la conformité pour les entités concernées; le contenu porte surtout sur la préparation organisationnelle et la traçabilité des mesures de cybersécurité",
+    "titleEn": "NIS 2: management liability and compliance deadlines, 2026-09-17, European Union",
+    "summaryEn": "The current update highlights the NIS 2 obligations linked to the liability of managers and the application deadlines to be respected; it underscores the governance challenge and the steering of compliance for the entities concerned; the content mainly concerns organisational preparation and the traceability of cybersecurity measures",
+    "excerptEn": "NIS2 and management liability: obligations and implementation deadlines Crowe",
+    "excerptFr": "NIS2 et responsabilité de la direction : obligations et délais de mise en œuvre Crowe",
+    "source": {
+      "name": "Crowe",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBscG9ybVFYZVROMnZ4anlwNUNNNWpiWENDVkZYMlV4emZJN2ZFVUxoYS1JcmgtNjFlanViMTJEak1lVk5Eb213QzN0akVXaHhIMG1FMHhHSnVoWWpsLWdSY21GNV93eE1LbGNYSTNPSTlvZExGd1E1RA?oc=5",
+      "type": "unofficial"
+    },
+    "status": "pending",
+    "clientAdvice": "vérifier le statut NIS 2 de l’entité et la date applicable dans le pays concerné; formaliser la gouvernance cyber avec un sponsor direction; revoir le plan de conformité et les preuves associées; programmer une sensibilisation spécifique des dirigeants; suivre les échéances nationales et les éventuels textes d’exécution",
+    "agent": {
+      "score": 7,
+      "justification": "Contenu potentiellement utile sur les obligations de gouvernance et les délais d’application NIS2, à suivre même si la nature exacte de la source n’est pas claire.",
+      "obligations": "assurer l’implication et la supervision de la direction sur la cybersécurité; mettre en place des mesures techniques et organisationnelles adaptées au risque; documenter la conformité et les responsabilités internes; respecter les délais nationaux de transposition et d’application; sensibiliser et former les dirigeants aux obligations NIS 2",
+      "impact": "Fort",
+      "entities": "entités essentielles et importantes relevant de NIS 2; membres de la direction et organes de gouvernance; RSSI; responsables conformité et juridique; sociétés opérant dans les secteurs couverts par NIS 2",
+      "publishedOn": "2026-09-17",
+      "dateOrigin": "flux",
+      "inForceOn": "2026-09-17",
+      "textType": "actualité"
+    },
+    "targetCells": [],
+    "verbatim": [],
+    "reliability": {
+      "score": 45,
+      "parts": {
+        "source": 0,
+        "evidence": 15,
+        "date": 20,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [
+        "aggregator",
+        "openingOnly"
+      ],
+      "duplicateOf": null
+    }
+  },
+  {
+    "id": "REG-20260930141218-001",
+    "detected": "2026-09-30",
+    "iso": "EU",
+    "title": "NIS2 Directive : nouveaux contenus 2026 de la Commission européenne sur l’application de la directive NIS2 ; Union européenne ; 2026-07-02",
+    "excerpt": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2 , replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "summary": "La Commission européenne a mis à jour sa page NIS2 le 2026-07-02 avec de nouveaux contenus de veille : questions-réponses ; lignes directrices sur l’application de l’article 4(1) et (2) et de l’article 3(4) de la directive (UE) 2022/2555 ; amendements ciblés 2026. La page rappelle le cadre harmonisé de la directive NIS2 dans 18 secteurs critiques ; le renforcement des exigences de gestion des risques ; les obligations de notification des incidents significatifs ; et l’implication de la direction dans la conformité.",
+    "titleEn": "NIS2 Directive: new 2026 contents from the European Commission on the application of the NIS2 Directive; European Union; 2026-07-02",
+    "summaryEn": "The European Commission updated its NIS2 page on 2026-07-02 with new monitoring content: questions and answers; guidelines on the application of Article 4(1) and (2) and Article 3(4) of Directive (EU) 2022/2555; targeted 2026 amendments. The page recalls the harmonised framework of the NIS2 Directive in 18 critical sectors; the strengthening of risk management requirements; the obligations to notify significant incidents; and the involvement of management in compliance.",
+    "excerptEn": "The NIS2 Directive establishes a unified legal framework to uphold cybersecurity in 18 critical sectors across the EU. It also calls on Member States to define national cybersecurity strategies and collaborate with the EU for cross-border reaction and enforcement. Cybersecurity involves protecting network and information systems (NIS), their users, and other affected individuals from cyber incidents and threats. To respond to the increased exposure of Europe to cyber threats, Directive 2022/2555, also known as NIS2, replaced its predecessor, Directive 2016/1148 or NIS1. […]",
+    "excerptFr": "La directive NIS2 établit un cadre juridique unifié pour garantir la cybersécurité dans 18 secteurs critiques à travers l’UE. Elle appelle également les États membres à définir des stratégies nationales de cybersécurité et à collaborer avec l’UE pour la réaction transfrontalière et l’application. La cybersécurité consiste à protéger les réseaux et les systèmes d’information (NIS), leurs utilisateurs et les autres personnes concernées contre les incidents et les menaces cyber. Afin de répondre à l’exposition accrue de l’Europe aux cybermenaces, la directive 2022/2555, également connue sous le nom de NIS2, a remplacé sa prédécesseure, la directive 2016/1148 ou NIS1. […]",
+    "source": {
+      "name": "Commission européenne",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/nis2-directive",
+      "type": "official"
+    },
+    "status": "pending",
+    "clientAdvice": "Analyser les nouveaux Q&A et lignes directrices publiés par la Commission ; vérifier l’alignement du périmètre NIS2 et des critères de classification ; mettre à jour la cartographie des obligations ; contrôler les procédures de gestion et de notification des incidents ; préparer un point de gouvernance avec la direction et le conseil ; suivre les amendements ciblés 2026 pour anticiper tout ajustement de conformité",
+    "agent": {
+      "score": 6,
+      "justification": "La page Commission a été mise à jour le 2 juillet 2026 et signale de nouveaux contenus liés à NIS2 (guidelines, Q&A, amendments 2026), donc c’est une nouveauté utile de veille même si la page est surtout institutionnelle.",
+      "obligations": "Mettre en place des mesures de gestion des risques cybersécurité adaptées ; notifier sans délai les incidents significatifs aux autorités compétentes ; intégrer la cybersécurité dans la gouvernance et la responsabilité du management ; appliquer les exigences nationales transposant NIS2 et suivre les lignes directrices et Q&A publiés par la Commission ; renforcer la coordination avec les CSIRTs et les dispositifs nationaux de supervision",
+      "impact": "Fort",
+      "entities": "Entités essentielles et importantes au sens de NIS2 ; opérateurs de services essentiels ; entreprises de taille moyenne et grande dans les secteurs critiques ; fournisseurs de services numériques ; opérateurs de communications électroniques ; administrations publiques concernées ; acteurs des secteurs énergie ; transport ; santé ; finance ; eau ; infrastructures numériques ; déchets ; eaux usées ; fabrication de produits critiques ; poste et courrier ; espace",
+      "publishedOn": "2026-07-02",
+      "dateOrigin": "page",
+      "inForceOn": "2026-07-02",
+      "textType": "Page institutionnelle ; directives ; questions-réponses ; lignes directrices ; amendements ciblés"
+    },
+    "targetCells": [],
+    "verbatim": [],
+    "reliability": {
+      "score": 80,
+      "parts": {
+        "source": 30,
+        "evidence": 25,
+        "date": 15,
+        "actionability": 0,
+        "freshness": 10
+      },
+      "penalties": {},
+      "notes": [],
+      "duplicateOf": null
+    }
+  },
+  {
     "id": "REG-20260918173113-002-EU",
     "detected": "2026-09-18",
     "iso": "EU",
@@ -138,12 +231,12 @@ const WATCH_QUEUE_AGENT = [
     "detected": "2026-09-18",
     "iso": "NL",
     "title": "Entrée en vigueur de la meldplicht du Cyber Resilience Act aux Pays-Bas le 2026-09-11",
-    "excerpt": "",
+    "excerpt": "Fabrikanten van producten met digitale componenten moeten vanaf vandaag, 11 september 2026, actief misbruikte kwetsbaarheden en ernstige incidenten melden. Zij doen die melding bij het Nationaal Cyber Security Centrum (NCSC). De meldplicht komt uit de Cyber Resilience Act (CRA), een Europese verordening over de cyberbeveiliging van hardware en software. De meldplicht is het eerste onderdeel van deze verordening dat gaat gelden. De overige verplichtingen, zoals de producteisen en de CE-markering, volgen op 11 december 2027. Je meldt in 2 situaties. […]",
     "summary": "Le NCSC annonce l’entrée en vigueur, aux Pays-Bas, de l’obligation de notification prévue par le Cyber Resilience Act pour les acteurs concernés par des produits avec éléments numériques. Cette nouveauté renforce la surveillance et la remontée rapide des vulnérabilités exploitées, des incidents de sécurité et des risques liés aux produits mis sur le marché.",
     "titleEn": "Entry into force of the meldplicht of the Cyber Resilience Act in the Netherlands on 2026-09-11",
     "summaryEn": "The NCSC announces the entry into force, in the Netherlands, of the notification obligation provided for by the Cyber Resilience Act for actors concerned by products with digital elements. This development strengthens monitoring and the rapid reporting of exploited vulnerabilities, security incidents and risks related to products placed on the market.",
-    "excerptEn": "",
-    "excerptFr": "",
+    "excerptEn": "Manufacturers of products with digital components must, as of today, 11 September 2026, report actively exploited vulnerabilities and serious incidents. They report these to the National Cyber Security Centre (NCSC). The reporting obligation comes from the Cyber Resilience Act (CRA), a European regulation on the cybersecurity of hardware and software. The reporting obligation is the first part of this regulation to enter into force. The other obligations, such as product requirements and the CE marking, will follow on 11 December 2027. You report in 2 situations. […]",
+    "excerptFr": "Les fabricants de produits comportant des composants numériques doivent, à compter d'aujourd'hui, le 11 septembre 2026, signaler les vulnérabilités activement exploitées et les incidents graves. Ils effectuent cette notification auprès du Nationaal Cyber Security Centrum (NCSC). L'obligation de notification découle du Cyber Resilience Act (CRA), un règlement européen sur la cybersécurité du matériel et des logiciels. L'obligation de notification est le premier élément de ce règlement à entrer en vigueur. Les autres obligations, telles que les exigences relatives aux produits et le marquage CE, suivront le 11 décembre 2027. Vous effectuez une notification dans 2 situations. […]",
     "source": {
       "name": "NCSC",
       "url": "https://www.ncsc.nl/nieuws/meldplicht-cyber-resilience-act-gaat-vandaag-in",
@@ -164,6 +257,26 @@ const WATCH_QUEUE_AGENT = [
     },
     "targetCells": [
       {
+        "sheet": "Registration - P1",
+        "field": "Registration availability",
+        "cell": "D24"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Authority in charge of registration",
+        "cell": "F24"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Registration deadline",
+        "cell": "H24"
+      },
+      {
+        "sheet": "Registration - P1",
+        "field": "Method of registration",
+        "cell": "I24"
+      },
+      {
         "sheet": "Incident reporting - P1",
         "field": "Organism official name to report incident",
         "cell": "F24"
@@ -172,42 +285,31 @@ const WATCH_QUEUE_AGENT = [
         "sheet": "Incident reporting - P1",
         "field": "Method for incident reporting",
         "cell": "H24"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Date of incident reporting becoming mandatory",
-        "cell": "G24"
-      },
-      {
-        "sheet": "Incident reporting - P1",
-        "field": "Name and link of web platform",
-        "cell": "I24"
-      },
-      {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Name and link of framework",
-        "cell": "F23"
-      },
-      {
-        "sheet": "Cybersecurity frameworks - P1",
-        "field": "Framework last publication date",
-        "cell": "G23"
       }
     ],
-    "verbatim": [],
+    "verbatim": [
+      {
+        "sheet": "Registration - P1",
+        "term": "registratie",
+        "text": "De CRA kent geen registratieplicht, dus melden zonder account kan ook."
+      },
+      {
+        "sheet": "Incident reporting - P1",
+        "term": "incident",
+        "text": "Daarna volgt een eindverslag: bij een kwetsbaarheid uiterlijk 14 dagen nadat je een oplossing beschikbaar stelt, bij een incident binnen 1 maand na je melding."
+      }
+    ],
     "reliability": {
-      "score": 75,
+      "score": 100,
       "parts": {
         "source": 30,
-        "evidence": 0,
+        "evidence": 25,
         "date": 20,
         "actionability": 15,
         "freshness": 10
       },
       "penalties": {},
-      "notes": [
-        "noSourceText"
-      ],
+      "notes": [],
       "duplicateOf": null
     }
   },

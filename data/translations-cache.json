@@ -909,5 +909,26 @@
  "NIS2-Richtlinie: EU-weit 160.000 Entitäten unter Cybersicherheitspflicht &nbsp;&nbsp; Börse Express": {
   "en": "NIS2 Directive: 160,000 entities across the EU subject to cybersecurity obligations &nbsp;&nbsp; Börse Express",
   "fr": "Directive NIS2 : 160 000 entités soumises à des obligations de cybersécurité dans toute l’UE    Börse Express"
+ },
+ "NIS 2 : responsabilité de la direction et délais de mise en conformité, 2026-09-17, Union européenne": {
+  "en": "NIS 2: management liability and compliance deadlines, 2026-09-17, European Union"
+ },
+ "L’actualité met en avant les obligations NIS 2 liées à la responsabilité des dirigeants et les échéances d’application à respecter; elle souligne l’enjeu de gouvernance et de pilotage de la conformité pour les entités concernées; le contenu porte surtout sur la préparation organisationnelle et la traçabilité des mesures de cybersécurité": {
+  "en": "The current update highlights the NIS 2 obligations linked to the liability of managers and the application deadlines to be respected; it underscores the governance challenge and the steering of compliance for the entities concerned; the content mainly concerns organisational preparation and the traceability of cybersecurity measures"
+ },
+ "NIS2 and management liability: obligations and implementation deadlines Crowe": {
+  "en": "NIS2 and management liability: obligations and implementation deadlines Crowe",
+  "fr": "NIS2 et responsabilité de la direction : obligations et délais de mise en œuvre Crowe",
+  "enSame": true
+ },
+ "NIS2 Directive : nouveaux contenus 2026 de la Commission européenne sur l’application de la directive NIS2 ; Union européenne ; 2026-07-02": {
+  "en": "NIS2 Directive: new 2026 contents from the European Commission on the application of the NIS2 Directive; European Union; 2026-07-02"
+ },
+ "La Commission européenne a mis à jour sa page NIS2 le 2026-07-02 avec de nouveaux contenus de veille : questions-réponses ; lignes directrices sur l’application de l’article 4(1) et (2) et de l’article 3(4) de la directive (UE) 2022/2555 ; amendements ciblés 2026. La page rappelle le cadre harmonisé de la directive NIS2 dans 18 secteurs critiques ; le renforcement des exigences de gestion des risques ; les obligations de notification des incidents significatifs ; et l’implication de la direction dans la conformité.": {
+  "en": "The European Commission updated its NIS2 page on 2026-07-02 with new monitoring content: questions and answers; guidelines on the application of Article 4(1) and (2) and Article 3(4) of Directive (EU) 2022/2555; targeted 2026 amendments. The page recalls the harmonised framework of the NIS2 Directive in 18 critical sectors; the strengthening of risk management requirements; the obligations to notify significant incidents; and the involvement of management in compliance."
+ },
+ "Fabrikanten van producten met digitale componenten moeten vanaf vandaag, 11 september 2026, actief misbruikte kwetsbaarheden en ernstige incidenten melden. Zij doen die melding bij het Nationaal Cyber Security Centrum (NCSC). De meldplicht komt uit de Cyber Resilience Act (CRA), een Europese verordening over de cyberbeveiliging van hardware en software. De meldplicht is het eerste onderdeel van deze verordening dat gaat gelden. De overige verplichtingen, zoals de producteisen en de CE-markering, volgen op 11 december 2027. Je meldt in 2 situaties. […]": {
+  "en": "Manufacturers of products with digital components must, as of today, 11 September 2026, report actively exploited vulnerabilities and serious incidents. They report these to the National Cyber Security Centre (NCSC). The reporting obligation comes from the Cyber Resilience Act (CRA), a European regulation on the cybersecurity of hardware and software. The reporting obligation is the first part of this regulation to enter into force. The other obligations, such as product requirements and the CE marking, will follow on 11 December 2027. You report in 2 situations. […]",
+  "fr": "Les fabricants de produits comportant des composants numériques doivent, à compter d'aujourd'hui, le 11 septembre 2026, signaler les vulnérabilités activement exploitées et les incidents graves. Ils effectuent cette notification auprès du Nationaal Cyber Security Centrum (NCSC). L'obligation de notification découle du Cyber Resilience Act (CRA), un règlement européen sur la cybersécurité du matériel et des logiciels. L'obligation de notification est le premier élément de ce règlement à entrer en vigueur. Les autres obligations, telles que les exigences relatives aux produits et le marquage CE, suivront le 11 décembre 2027. Vous effectuez une notification dans 2 situations. […]"
  }
 }
