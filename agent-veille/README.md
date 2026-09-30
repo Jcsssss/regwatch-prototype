@@ -29,6 +29,42 @@ un agent qui n'a pas tourné pendant un mois ne perd pas ce mois-là. Configurat
 18 septembre 2026 (`regwatch_agent.py import <classeur> --state <state.json>`), y compris les
 33 détections du 28 août qui n'étaient jamais arrivées dans l'outil.
 
+### Ce qu'un doublon doit prouver
+
+Un élément écarté comme doublon ne revient jamais : c'est le seul rejet que personne ne voit,
+et il a coûté une détection. Le 30 septembre 2026, l'article annonçant l'inscription de la
+transposition française à l'ordre du jour de l'Assemblée nationale a été rangé comme doublon
+d'un article du 23 août sur une réflexion d'organisation après le piratage de la DGFiP. Même
+pays, même directive, fait différent.
+
+Trois garde-fous, du plus mou au plus dur :
+
+1. **la règle écrite** : un doublon rapporte le même **événement**, pas le même sujet ; une
+   étape de procédure franchie n'est jamais un doublon d'un contenu qui ne l'annonce pas ; en
+   cas d'hésitation, ce n'est pas un doublon. Un élément en trop se rejette d'un clic dans la
+   file, un élément manquant ne se voit pas ;
+2. **le fait commun doit être nommé**, et l'identifiant désigné doit exister dans la liste
+   montrée au modèle. Sur la même détection, le modèle a répondu « doublon de
+   `REG-202609301409??-001` » — un identifiant inventé ;
+3. **les mots d'étape sont vérifiés par le code** (`STEP_WORDS`) : si le nouvel élément nomme
+   une étape — ordre du jour, vote, adoption, promulgation, publication au journal officiel,
+   entrée en vigueur, ouverture d'un enregistrement — que l'élément désigné ne nomme pas, ce
+   n'est pas un doublon, quoi qu'en dise le modèle. C'est ce troisième garde-fou qui a récupéré
+   la détection ; les deux premiers n'ont pas suffi.
+
+Chaque rejet écrit maintenant sa raison et son fait commun dans le journal.
+
+### Rattraper une passe
+
+```sh
+python3 agent-veille/regwatch_agent.py run --since 2026-09-15 --recheck --only "Google News FR"
+```
+
+`--since` élargit la fenêtre, `--recheck` rouvre les URL déjà écartées (les éléments déjà
+retenus ne sont pas retouchés), `--only` limite aux sources dont le nom contient ce texte. Une
+passe ainsi bornée ne devient pas la « dernière passe complète » : la fenêtre ordinaire de la
+prochaine passe reste celle qu'elle aurait été.
+
 ## Historique : l'ancien agent, et nos modifications
 
 | | Dépôt | Qui peut y écrire |

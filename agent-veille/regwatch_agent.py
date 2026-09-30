@@ -413,11 +413,38 @@ Réponds en JSON : {"est_pertinent": bool, "decision": "garder"|"incertain"|"ign
 "type_contenu": "texte réglementaire"|"consultation"|"guide"|"norme"|"actualité"|"rapport"|"page institutionnelle"|"API"|"autre",
 "nouveaute_recente": bool, "date_contenu_estimee": "AAAA-MM-JJ" ou null}"""
 
-DUPLICATE = """Tu repères les doublons d'une veille NIS 2. Deux contenus sont doublons s'ils rapportent le même fait :
-même pays et même texte, même échéance ou même décision, quelle que soit la langue, la source ou l'angle. Un contenu
-sur le même thème qui apporte un fait nouveau n'est pas un doublon. En cas d'hésitation, même pays et même texte
-ou même échéance : doublon.
-Réponds en JSON : {"est_doublon": bool, "doublon_de": "ID existant" ou null, "raison": "une phrase"}"""
+# Les mots qui nomment une etape de procedure. Le prompt de deduplication dit
+# deja qu'une etape franchie n'est pas un doublon ; le modele l'oubliait, et
+# repondait « doublon » sur un air de famille - meme pays, meme directive. Le
+# code le verifie donc lui-meme, sur les mots, ce qui ne depend pas de l'humeur
+# du modele et se relit dans le journal.
+STEP_WORDS = [
+    "ordre du jour", "première lecture", "premiere lecture", "deuxième lecture", "deuxieme lecture",
+    "commission", "séance publique", "seance publique", "voté", "vote", "adopté", "adoptee", "adoptée",
+    "promulgu", "publié au journal officiel", "publie au journal officiel", "journal officiel",
+    "entrée en vigueur", "entree en vigueur", "enregistrement ouvert", "ouverture de l'enregistrement",
+    "décret", "decret", "arrêté", "arrete", "consultation publique", "saisine", "amendement",
+    "agenda", "first reading", "second reading", "adopted", "enacted", "published in the official journal",
+    "entry into force", "registration opens", "decree", "public consultation"
+]
+
+
+def step_words(text):
+    low = fold(text or "")
+    return {w for w in STEP_WORDS if fold(w) in low}
+
+
+DUPLICATE = """Tu repères les doublons d'une veille NIS 2. Deux contenus sont doublons s'ils rapportent LE MÊME
+ÉVÉNEMENT : la même décision, le même texte publié, la même échéance, quelle que soit la langue, la source ou l'angle.
+Le même pays et le même sujet ne suffisent pas : deux articles sur la transposition d'un pays rapportent souvent deux
+étapes différentes. Un contenu qui nomme une étape de procédure - dépôt, inscription à l'ordre du jour, examen en
+commission, vote, adoption, promulgation, publication, entrée en vigueur, ouverture d'un enregistrement, nouvelle
+échéance - n'est jamais un doublon d'un contenu qui n'annonce pas cette même étape.
+Nomme l'événement partagé dans "fait_commun". Si tu ne peux pas le nommer en une phrase précise, ce n'est pas un
+doublon. En cas d'hésitation, ce n'est pas un doublon : un élément en trop se rejette d'un clic dans la file, un
+élément manquant ne se voit pas.
+Réponds en JSON : {"est_doublon": bool, "doublon_de": "ID existant" ou null, "fait_commun": "une phrase" ou null,
+"raison": "une phrase"}"""
 
 ANALYSE = """Tu rédiges la fiche d'une nouveauté réglementaire NIS 2 pour un tableau de veille de consultants. Le contenu
 a déjà été jugé pertinent. Écris en français. Dates au format AAAA-MM-JJ. Aucune liste : sépare les éléments par des
@@ -452,21 +479,36 @@ def cmd_run(args):
 
     known = {str(r.get("URL source") or "").rstrip("/") for r in records}
     judged = state.setdefault("classified_urls", {})
+    # Une URL ecartee ne se represente jamais : c'est ce qui rend les passes
+    # rapides, et ce qui fige une erreur de jugement le jour ou la regle change.
+    # --recheck rouvre ces dossiers-la sans toucher aux elements deja retenus.
+    recheck = getattr(args, "recheck", False)
+    if recheck:
+        print("  (--recheck : %d URL déjà écartées seront rejugées)" % len(judged))
     # La fenetre part de la derniere passe COMPLETE (toutes les sources, sans
     # limite), memorisee dans l'etat. Partir de la derniere detection etait
     # faux : une passe de test limitee a deux ajouts datait la veille
     # d'aujourd'hui, et la passe suivante sautait trois semaines.
     last = state.get("last_full_run") or max((r.get("Date détection") or "" for r in records), default="")
     today = date.today()
-    if last:
+    if getattr(args, "since", None):
+        # Un rattrapage part de la date demandee, sans la borne des soixante
+        # jours : c'est un geste explicite, pas la fenetre ordinaire.
+        start = date.fromisoformat(args.since)
+    elif last:
         start = date.fromisoformat(last) - timedelta(days=WINDOW_MARGIN_DAYS)
         start = max(start, today - timedelta(days=WINDOW_MAX_DAYS))
     else:
         start = today - timedelta(days=WINDOW_DEFAULT_DAYS)
+    # Les identifiants montres au modele : un doublon ne peut renvoyer qu'a l'un
+    # d'eux.
     recent = [{"id": r.get("ID"), "titre": str(r.get("Titre") or "")[:120], "resume": str(r.get("Résumé") or "")[:180]}
               for r in sorted(records, key=lambda r: r.get("Date détection") or "", reverse=True)
               if (r.get("Date détection") or "") >= (today - timedelta(days=DEDUP_DAYS)).isoformat()][:DEDUP_MAX]
 
+    known_ids = {str(r["id"]) for r in recent if r.get("id")}
+    recent_text = {str(r["id"]): (r.get("titre") or "") + " " + (r.get("resume") or "")
+                   for r in recent if r.get("id")}
     print("registre : %d sources actives — fenêtre depuis le %s (dernière passe complète : %s)"
           % (len(sources), start, last or "aucune"))
     n = {"lus": 0, "connus": 0, "sans date": 0, "anciens": 0, "écartés IA": 0, "doublons": 0,
@@ -488,7 +530,10 @@ def cmd_run(args):
             if not url:
                 continue
             key = url.rstrip("/")
-            if pending is None and (key in known or key in judged):
+            # Sous --recheck, la memoire des rejets ne filtre plus, mais elle
+            # continue d'etre tenue : la vider aurait fait rejuger tout le
+            # registre a la passe suivante, pour rien.
+            if pending is None and (key in known or (not recheck and key in judged)):
                 n["connus"] += 1
                 continue
 
@@ -528,10 +573,41 @@ def cmd_run(args):
                 if recent:
                     dup = model.ask(DUPLICATE, "NOUVEL ARTICLE\nTITRE : %s\nEXTRAIT : %s\n\nDÉJÀ DANS LA VEILLE :\n%s" % (
                         it["title"], clean(it["summary"])[:600], json.dumps(recent, ensure_ascii=False)))
-                    if dup.get("est_doublon") is True:
+                    # Un doublon doit nommer l'evenement partage et l'element
+                    # dont il double. Sans cela, le modele repondait « doublon »
+                    # sur un simple air de famille : l'article annoncant
+                    # l'inscription de la transposition francaise a l'ordre du
+                    # jour de l'Assemblee a ete rejete comme doublon d'un
+                    # article du mois precedent sur une reflexion d'organisation.
+                    fait = str(dup.get("fait_commun") or "").strip()
+                    # L'identifiant designe doit exister dans la liste qu'on
+                    # vient de montrer au modele. Il a repondu « doublon de
+                    # REG-202609301409??-001 » : un identifiant qui n'existe
+                    # pas, et un fait commun qui etait justement le fait
+                    # nouveau. Un renvoi invente ne peut pas etre un doublon.
+                    cible = str(dup.get("doublon_de") or "").strip()
+                    if cible and cible not in known_ids:
+                        print("  ! renvoi inconnu (%s) : l'élément est gardé, pas un doublon" % cible[:30])
+                        cible = ""
+                    # Une etape que l'element designe ne nomme pas : le fait est
+                    # nouveau, quoi qu'en dise le modele. C'est ce cas qui avait
+                    # fait disparaitre l'inscription de la transposition
+                    # francaise a l'ordre du jour de l'Assemblee, rangee comme
+                    # doublon d'un article du mois precedent.
+                    if cible:
+                        neuf = step_words(it["title"] + " " + clean(it["summary"])[:600]) \
+                            - step_words(recent_text.get(cible, ""))
+                        if neuf:
+                            print("  ! étape non rapportée par %s (%s) : gardé"
+                                  % (cible, ", ".join(sorted(neuf))[:60]))
+                            cible = ""
+                    if dup.get("est_doublon") is True and cible and fait:
                         n["doublons"] += 1
                         remember("doublon", score)
-                        print("  = doublon de %s : %s" % (dup.get("doublon_de"), clean(it["title"])[:60]))
+                        # La raison est ecrite : sans elle, un rejet a tort ne se
+                        # relit pas, et c'est le seul ecart que personne ne voit.
+                        print("  = doublon de %s : %s\n      fait commun : %s"
+                              % (cible, clean(it["title"])[:60], fait[:110]))
                         continue
                 fiche = model.ask(ANALYSE, "CLASSIFICATION : %s\nTITRE : %s\nCONTENU : %s\nURL : %s\nDATE : %s" % (
                     json.dumps(rel, ensure_ascii=False), it["title"], clean(it["summary"])[:8000], url, d or "inconnue"))
@@ -589,7 +665,8 @@ def cmd_run(args):
             time.sleep(0.2)
 
     if not args.dry:
-        if not args.only and not args.limit and n["erreurs IA"] == 0:
+        if not args.only and not args.limit and not getattr(args, "since", None) \
+                and n["erreurs IA"] == 0:
             state["last_full_run"] = today.isoformat()
         save(RECORDS, store)
         save(STATE, state)
@@ -640,6 +717,9 @@ def main():
         p.add_argument("--dry", action="store_true", help="lire les sources sans appeler le modèle ni rien écrire")
         p.add_argument("--limit", type=int, default=0, help="s'arrêter après N ajouts")
         p.add_argument("--only", help="ne traiter que les sources dont le nom contient ce texte")
+        p.add_argument("--since", help="AAAA-MM-JJ : élargir la fenêtre, pour rattraper une passe")
+        p.add_argument("--recheck", action="store_true",
+                       help="reconsidérer les URL déjà écartées, après un changement de règle")
     args = ap.parse_args()
     {"import": cmd_import, "run": cmd_run, "pipeline": cmd_pipeline}[args.cmd](args)
 

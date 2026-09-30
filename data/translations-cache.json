@@ -930,5 +930,37 @@
  "Fabrikanten van producten met digitale componenten moeten vanaf vandaag, 11 september 2026, actief misbruikte kwetsbaarheden en ernstige incidenten melden. Zij doen die melding bij het Nationaal Cyber Security Centrum (NCSC). De meldplicht komt uit de Cyber Resilience Act (CRA), een Europese verordening over de cyberbeveiliging van hardware en software. De meldplicht is het eerste onderdeel van deze verordening dat gaat gelden. De overige verplichtingen, zoals de producteisen en de CE-markering, volgen op 11 december 2027. Je meldt in 2 situaties. […]": {
   "en": "Manufacturers of products with digital components must, as of today, 11 September 2026, report actively exploited vulnerabilities and serious incidents. They report these to the National Cyber Security Centre (NCSC). The reporting obligation comes from the Cyber Resilience Act (CRA), a European regulation on the cybersecurity of hardware and software. The reporting obligation is the first part of this regulation to enter into force. The other obligations, such as product requirements and the CE marking, will follow on 11 December 2027. You report in 2 situations. […]",
   "fr": "Les fabricants de produits comportant des composants numériques doivent, à compter d'aujourd'hui, le 11 septembre 2026, signaler les vulnérabilités activement exploitées et les incidents graves. Ils effectuent cette notification auprès du Nationaal Cyber Security Centrum (NCSC). L'obligation de notification découle du Cyber Resilience Act (CRA), un règlement européen sur la cybersécurité du matériel et des logiciels. L'obligation de notification est le premier élément de ce règlement à entrer en vigueur. Les autres obligations, telles que les exigences relatives aux produits et le marquage CE, suivront le 11 décembre 2027. Vous effectuez une notification dans 2 situations. […]"
+ },
+ "France : inscription à l’ordre du jour de l’Assemblée nationale du projet de transposition de NIS 2, échéance législative à suivre": {
+  "en": "France: inclusion on the agenda of the National Assembly of the NIS 2 transposition bill, legislative deadline to follow"
+ },
+ "La transposition française de NIS 2 entre enfin dans le calendrier parlementaire avec son inscription à l’ordre du jour de l’Assemblée nationale; cette étape marque une avancée réglementaire majeure mais ne constitue pas encore l’entrée en vigueur des obligations applicables aux entités concernées; les entreprises doivent suivre de près le contenu du texte et le calendrier d’adoption afin d’anticiper les exigences de gouvernance, de gestion des risques et de notification des incidents.": {
+  "en": "The French transposition of NIS 2 is finally entering the parliamentary timetable with its inclusion on the agenda of the National Assembly; this step marks a major regulatory advance but does not yet constitute the entry into force of the obligations applicable to the entities concerned; companies must closely follow the content of the text and the adoption timetable in order to anticipate the requirements for governance, risk management and incident notification."
+ },
+ "Alléluia ! La transposition de NIS2 est enfin à l'ordre du jour de l'Assemblée nationale next.ink": {
+  "en": "Hallelujah! The transposition of NIS2 is finally on the agenda of the National Assembly next.ink",
+  "fr": "Alléluia ! La transposition de NIS2 est enfin à l’ordre du jour de l’Assemblée nationale next.ink"
+ },
+ "Publication par l’ANSSI du rapport d’incident sur les cyberattaques ayant touché la DGFiP en France": {
+  "en": "Publication by ANSSI of the incident report on the cyberattacks that affected DGFiP in France"
+ },
+ "L’ANSSI publie un rapport d’incident à la suite de cyberattaques ayant visé la DGFiP, dans un contexte de retour d’expérience et d’analyse des mesures de sécurité et de réponse. Cette publication n’instaure pas une nouvelle règle, mais elle illustre les attentes de l’autorité nationale en matière de détection, d’investigation, de coopération avec l’autorité compétente et de traçabilité des incidents, en ligne avec l’esprit de NIS2.": {
+  "en": "ANSSI publishes an incident report following cyberattacks targeting DGFiP, in a context of lessons learned and analysis of security and response measures. This publication does not establish a new rule, but it illustrates the expectations of the national authority regarding detection, investigation, cooperation with the competent authority and incident traceability, in line with the spirit of NIS2."
+ },
+ "Le Premier ministre a demandé à l'Agence nationale de la sécurité des systèmes d'information (ANSSI) un audit approfondi de la […]": {
+  "en": "The Prime Minister asked the Agence nationale de la sécurité des systèmes d'information (ANSSI) for an in-depth audit of the […]",
+  "fr": "Le Premier ministre a demandé à l'Agence nationale de la sécurité des systèmes d'information (ANSSI) un audit approfondi de la […]",
+  "frSame": true
+ },
+ "France : publication du résultat de l’appel à manifestation d’intérêt pour la sécurité des écosystèmes de cybersécurité le 2026-06-17": {
+  "en": "France: publication of the result of the call for expressions of interest for the security of cybersecurity ecosystems on 2026-06-17"
+ },
+ "L’ANSSI a publié le 2026-06-17 le résultat de son appel à manifestation d’intérêt consacré à la sécurité des écosystèmes de cybersécurité; l’initiative vise à soutenir la création et la structuration d’acteurs et de solutions contribuant à renforcer l’écosystème cyber français; cette publication relève d’un signal de marché et de préparation capacitaire plus que d’une obligation NIS 2 directement applicable.": {
+  "en": "ANSSI published on 2026-06-17 the result of its call for expressions of interest dedicated to the security of cybersecurity ecosystems; the initiative aims to support the creation and structuring of actors and solutions contributing to strengthening the French cyber ecosystem; this publication is more of a market signal and capacity-preparedness measure than a directly applicable NIS 2 obligation."
+ },
+ "L'ANSSI a publié le 17 juin 2026 un appel à manifestation d'intérêt (AMI) pour le soutien à la création et […]": {
+  "en": "ANSSI published on 17 June 2026 an call for expressions of interest (AMI) to support the creation and […]",
+  "fr": "L'ANSSI a publié le 17 juin 2026 un appel à manifestation d'intérêt (AMI) pour le soutien à la création et […]",
+  "frSame": true
  }
 }
