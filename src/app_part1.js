@@ -288,18 +288,23 @@ function renderOverview(){
   ${spec.caveat ? `<div class="rolenote">${t(spec.caveat)}</div>` : ""}
   <div class="tiles">${tiles}</div>
   <div class="grid-ov">
-    <div class="card">
-      <div class="cap"><h2>${t("ov.map")}</h2><button class="btn" id="expMap">${t("ov.exportPng")}</button></div>
-      <div class="bd">
-        <p class="q-note" style="margin:0 0 10px">${t("ov.mapHint")}</p>
-        <div class="map-wrap" id="mapHost"></div>
-        <div class="map-legend" id="mapLegend"></div>
+    <!-- La legende des niveaux suit la carte plutot que la colonne de droite :
+         c'est en regardant les couleurs de la carte qu'on se demande ce qu'un
+         niveau veut dire, et la reponse etait a cote, sous la chronologie. -->
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="card">
+        <div class="cap"><h2>${t("ov.map")}</h2><button class="btn" id="expMap">${t("ov.exportPng")}</button></div>
+        <div class="bd">
+          <p class="q-note" style="margin:0 0 10px">${t("ov.mapHint")}</p>
+          <div class="map-wrap" id="mapHost"></div>
+          <div class="map-legend" id="mapLegend"></div>
+        </div>
       </div>
+      <div class="card"><div class="cap"><h2>${t("ov.levels")}</h2></div><div class="bd" id="lvlHelp"></div></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:18px">
       ${pendingCard()}
       <div class="card"><div class="cap"><h2>${t("ov.latest")}</h2></div><div class="bd"><div class="feed" id="feed"></div></div></div>
-      <div class="card"><div class="cap"><h2>${t("ov.levels")}</h2></div><div class="bd" id="lvlHelp"></div></div>
     </div>
   </div>`;
   drawMap($("#mapHost"), $("#mapLegend"), counts);
