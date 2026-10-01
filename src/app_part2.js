@@ -994,7 +994,11 @@ function renderSources(){
       <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thState")}</th>
         <th class="num">${t("src.regItems")}</th><th>${t("src.regLast")}</th></tr></thead>
       <tbody>${WATCH_REGISTRY.sources.map(r => `<tr>
-        <td style="white-space:nowrap">${r.iso && r.iso !== "EU" ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.zone) || "-"}</td>
+        <td style="white-space:nowrap">${r.iso && r.iso !== "EU" ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${
+          /* La zone du registre est un texte libre en francais : quand elle
+             designe un pays connu, on affiche son nom dans la langue de
+             l'interface. */
+          esc(r.iso && byIso[r.iso] ? byIso[r.iso].name : r.iso === "EU" ? t("src.eu") : r.zone) || "-"}</td>
         <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
                     : esc(r.name)}
           <span class="chip ${r.kind === "rss" ? "src-official" : r.kind === "api" ? "src-manual" : "src-unofficial"}">${

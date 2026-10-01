@@ -22655,6 +22655,9 @@ function kpis(){
    encart, la file de veille ne se voyait que depuis son onglet, et un
    validateur pouvait ouvrir l'outil sans savoir qu'elle l'attendait. Un lecteur
    n'a pas cet onglet : on ne lui montre rien d'incertain. */
+/* Le titre suit la langue de l'interface, comme dans la file de veille
+   (itemTitle, app_part2.js) : l'encart lisait le titre d'origine et montrait
+   des titres francais sur l'interface anglaise. */
 function pendingCard(){
   if (role === "reader" || !regHasTab("inbox")) return "";
   const pending = queue.filter(q => q.status === "pending")
@@ -22662,7 +22665,7 @@ function pendingCard(){
   const line = q => {
     const c = byIso[q.iso];
     return `<div class="feed-it"><div class="d">${fmtDateL(q.detected)}</div>
-      <div class="t"><span class="c">${c ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}` : t("hub.euTile")}</span> - ${esc(q.title || "")}</div></div>`;
+      <div class="t"><span class="c">${c ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}` : t("hub.euTile")}</span> - ${esc(itemTitle(q) || "")}</div></div>`;
   };
   return `<div class="card"><div class="cap"><h2>${t("ov.pending")}${pending.length ? ` (${pending.length})` : ""}</h2>
       <a class="btn" href="#/inbox">${t("ov.pendingGo")}</a></div>
@@ -23811,7 +23814,11 @@ function renderSources(){
       <thead><tr><th>${t("src.thScope")}</th><th>${t("src.thSource")}</th><th>${t("src.thState")}</th>
         <th class="num">${t("src.regItems")}</th><th>${t("src.regLast")}</th></tr></thead>
       <tbody>${WATCH_REGISTRY.sources.map(r => `<tr>
-        <td style="white-space:nowrap">${r.iso && r.iso !== "EU" ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${esc(r.zone) || "-"}</td>
+        <td style="white-space:nowrap">${r.iso && r.iso !== "EU" ? `<i class="fi">${flagSvg(r.iso)}</i> ` : ""}${
+          /* La zone du registre est un texte libre en francais : quand elle
+             designe un pays connu, on affiche son nom dans la langue de
+             l'interface. */
+          esc(r.iso && byIso[r.iso] ? byIso[r.iso].name : r.iso === "EU" ? t("src.eu") : r.zone) || "-"}</td>
         <td>${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
                     : esc(r.name)}
           <span class="chip ${r.kind === "rss" ? "src-official" : r.kind === "api" ? "src-manual" : "src-unofficial"}">${
@@ -26031,7 +26038,9 @@ function chatSystemPrompt(){
     "  that is what the rules turn on.",
     "",
     "STYLE:",
-    "- Reply in the language of the question.",
+    "- Reply in the language of the question, even when the records and watch",
+    "  items your tools return are written in another language: translate what",
+    "  you quote. An English question about France gets an English answer.",
     "- Lead with the answer, then the detail. Short paragraphs, no preamble.",
     "- Give figures with their unit and their country.",
     "- When a comparison across countries would read better as a chart, call",

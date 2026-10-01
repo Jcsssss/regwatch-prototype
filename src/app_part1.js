@@ -239,6 +239,9 @@ function kpis(){
    encart, la file de veille ne se voyait que depuis son onglet, et un
    validateur pouvait ouvrir l'outil sans savoir qu'elle l'attendait. Un lecteur
    n'a pas cet onglet : on ne lui montre rien d'incertain. */
+/* Le titre suit la langue de l'interface, comme dans la file de veille
+   (itemTitle, app_part2.js) : l'encart lisait le titre d'origine et montrait
+   des titres francais sur l'interface anglaise. */
 function pendingCard(){
   if (role === "reader" || !regHasTab("inbox")) return "";
   const pending = queue.filter(q => q.status === "pending")
@@ -246,7 +249,7 @@ function pendingCard(){
   const line = q => {
     const c = byIso[q.iso];
     return `<div class="feed-it"><div class="d">${fmtDateL(q.detected)}</div>
-      <div class="t"><span class="c">${c ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}` : t("hub.euTile")}</span> - ${esc(q.title || "")}</div></div>`;
+      <div class="t"><span class="c">${c ? `<i class="fi">${flagSvg(c.iso)}</i> ${esc(c.name)}` : t("hub.euTile")}</span> - ${esc(itemTitle(q) || "")}</div></div>`;
   };
   return `<div class="card"><div class="cap"><h2>${t("ov.pending")}${pending.length ? ` (${pending.length})` : ""}</h2>
       <a class="btn" href="#/inbox">${t("ov.pendingGo")}</a></div>
