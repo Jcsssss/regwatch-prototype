@@ -504,8 +504,16 @@ nav.tabs .co2-open svg{color:#04B84F;opacity:1}
 #co2Dlg::backdrop{background:rgba(10,8,20,.55)}
 .co2-box .rpt-h h2{color:var(--ink)}
 .co2-head{display:grid;gap:2px}
+.co2-kick{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .co2-big{font-size:30px;font-weight:800;color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums}
-.co2-sub{font-size:12px;color:var(--muted)}
+.co2-bigrow{display:flex;align-items:center;gap:10px}
+.co2-info{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--accent);background:transparent;color:var(--accent);
+  font:700 13px/1 Georgia,"Times New Roman",serif;font-style:italic;cursor:pointer;display:grid;place-items:center;padding:0}
+.co2-info:hover,.co2-info[aria-expanded="true"]{background:var(--accent);color:#fff}
+.co2-tip{margin-top:6px;padding:9px 12px;border-radius:10px;background:var(--surface2);border:1px solid var(--line2);
+  font-size:12px;line-height:1.45;color:var(--ink)}
+.co2-tip p{margin:0}
+.co2-tip p+p{margin-top:3px}
 .co2-eqs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 @media (max-width:620px){.co2-eqs{grid-template-columns:repeat(2,1fr)}}
 .co2-eqc{display:grid;justify-items:center;text-align:center;gap:3px;padding:12px 8px;border-radius:12px;background:var(--surface2);
@@ -21258,6 +21266,10 @@ const I18N = {
     "rpt.noTemplate": "the slide template is not embedded in this build",
     "dg.title": "Build a report",
     "co2.btn": "Carbon impact",
+    "co2.infoBtn": "What does this figure cover?",
+    "co2.infoL1": "Everything emitted since the first day of development, including your use in this browser.",
+    "co2.infoL2": "CO\u2082e (CO\u2082 equivalent): all greenhouse gases expressed as the CO\u2082 that would warm the climate as much.",
+    "co2.kicker": "Total footprint of RegWatch since it was created",
     "co2.sCoffee": "Equivalence: coffee",
     "co2.fCoffee": "635 g CO\u2082e per litre, i.e. 127 g for a 20 cl cup",
     "co2.srcAgri": "ADEME, Agribalyse 3.2 (update of 15 January 2025), published on impactco2.fr",
@@ -21266,7 +21278,6 @@ const I18N = {
     "co2.approx": "About",
     "co2.g": "{v} g CO\u2082e",
     "co2.kg": "{v} kg CO\u2082e",
-    "co2.sub": "Emitted to build RegWatch and to use it in this browser.",
     "co2.eqTgv": "Paris - Marseille round trips by TGV",
     "co2.eqCar": "km in a petrol car",
     "co2.eqBeef": "meals with beef",
@@ -22253,6 +22264,10 @@ const I18N = {
     "rpt.noTemplate": "le gabarit de slides n'est pas embarqu\u00e9 dans cette version",
     "dg.title": "Construire un rapport",
     "co2.btn": "Impact carbone",
+    "co2.infoBtn": "Que couvre ce chiffre ?",
+    "co2.infoL1": "Tout ce qui a \u00e9t\u00e9 \u00e9mis depuis le premier jour de d\u00e9veloppement, votre utilisation dans ce navigateur comprise.",
+    "co2.infoL2": "CO\u2082e (\u00e9quivalent CO\u2082) : tous les gaz \u00e0 effet de serre ramen\u00e9s \u00e0 la quantit\u00e9 de CO\u2082 qui r\u00e9chaufferait autant le climat.",
+    "co2.kicker": "Empreinte totale de RegWatch depuis sa cr\u00e9ation",
     "co2.sCoffee": "\u00c9quivalence : caf\u00e9",
     "co2.fCoffee": "635 g CO\u2082e par litre, soit 127 g pour une tasse de 20 cl",
     "co2.srcAgri": "ADEME, Agribalyse 3.2 (mise \u00e0 jour du 15 janvier 2025), publi\u00e9e sur impactco2.fr",
@@ -22261,7 +22276,6 @@ const I18N = {
     "co2.approx": "Environ",
     "co2.g": "{v} g CO\u2082e",
     "co2.kg": "{v} kg CO\u2082e",
-    "co2.sub": "\u00c9mis pour construire RegWatch et pour l'utiliser dans ce navigateur.",
     "co2.eqTgv": "allers-retours Paris - Marseille en TGV",
     "co2.eqCar": "km en voiture thermique",
     "co2.eqBeef": "repas avec du b\u0153uf",
@@ -33089,8 +33103,13 @@ function carbonHTML(){
   const pct = r => b.total ? 100 * r.g / b.total : 0;
   return `
     <div class="co2-head">
-      <div class="co2-big" id="co2Big">${t("co2.approx")} ${co2Mass(b.total)}</div>
-      <div class="co2-sub">${t("co2.sub")}</div>
+      <div class="co2-kick">${t("co2.kicker")}</div>
+      <div class="co2-bigrow">
+        <div class="co2-big" id="co2Big">${t("co2.approx")} ${co2Mass(b.total)}</div>
+        <button type="button" class="co2-info" id="co2Info" aria-expanded="false" aria-controls="co2Tip"
+          title="${esc(t("co2.infoL1") + " " + t("co2.infoL2"))}" aria-label="${esc(t("co2.infoBtn"))}">i</button>
+      </div>
+      <div class="co2-tip" id="co2Tip" hidden><p>${t("co2.infoL1")}</p><p>${t("co2.infoL2")}</p></div>
     </div>
     <div class="co2-eqs">${co2Equiv(b.total).map(e => `
       <div class="co2-eqc"><span class="co2-ico">${e.icon}</span>
@@ -33133,6 +33152,13 @@ function carbonOpen(){
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="rpt-b">${carbonHTML()}</div></div>`;
   dlg.querySelector("#co2X").addEventListener("click", () => dlg.close());
+  /* Le bouton d'information : deux lignes sur ce que le chiffre couvre et sur
+     le « e » de CO2e, ouvertes a la demande pour garder le chiffre en avant. */
+  const info = dlg.querySelector("#co2Info"), tip = dlg.querySelector("#co2Tip");
+  info.addEventListener("click", () => {
+    tip.hidden = !tip.hidden;
+    info.setAttribute("aria-expanded", String(!tip.hidden));
+  });
   if (!dlg.open) dlg.showModal();
   /* Le temps reel : on ne redessine que les chiffres, pour ne pas refermer le
      detail ouvert ni faire sauter la page. */

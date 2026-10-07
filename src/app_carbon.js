@@ -160,8 +160,13 @@ function carbonHTML(){
   const pct = r => b.total ? 100 * r.g / b.total : 0;
   return `
     <div class="co2-head">
-      <div class="co2-big" id="co2Big">${t("co2.approx")} ${co2Mass(b.total)}</div>
-      <div class="co2-sub">${t("co2.sub")}</div>
+      <div class="co2-kick">${t("co2.kicker")}</div>
+      <div class="co2-bigrow">
+        <div class="co2-big" id="co2Big">${t("co2.approx")} ${co2Mass(b.total)}</div>
+        <button type="button" class="co2-info" id="co2Info" aria-expanded="false" aria-controls="co2Tip"
+          title="${esc(t("co2.infoL1") + " " + t("co2.infoL2"))}" aria-label="${esc(t("co2.infoBtn"))}">i</button>
+      </div>
+      <div class="co2-tip" id="co2Tip" hidden><p>${t("co2.infoL1")}</p><p>${t("co2.infoL2")}</p></div>
     </div>
     <div class="co2-eqs">${co2Equiv(b.total).map(e => `
       <div class="co2-eqc"><span class="co2-ico">${e.icon}</span>
@@ -204,6 +209,13 @@ function carbonOpen(){
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="rpt-b">${carbonHTML()}</div></div>`;
   dlg.querySelector("#co2X").addEventListener("click", () => dlg.close());
+  /* Le bouton d'information : deux lignes sur ce que le chiffre couvre et sur
+     le « e » de CO2e, ouvertes a la demande pour garder le chiffre en avant. */
+  const info = dlg.querySelector("#co2Info"), tip = dlg.querySelector("#co2Tip");
+  info.addEventListener("click", () => {
+    tip.hidden = !tip.hidden;
+    info.setAttribute("aria-expanded", String(!tip.hidden));
+  });
   if (!dlg.open) dlg.showModal();
   /* Le temps reel : on ne redessine que les chiffres, pour ne pas refermer le
      detail ouvert ni faire sauter la page. */
