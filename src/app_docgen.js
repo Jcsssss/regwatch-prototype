@@ -6,17 +6,23 @@
  * vingt pays veut vingt pays ; une note interne en veut trois.
  *
  * Le plan plutot que le bouton
- *   Un rapport est decrit par un plan : une destination (note interne ou
- *   support client), un perimetre de pays, une liste de blocs, une langue. Le
+ *   Un rapport est decrit par un plan : les pays, la langue, les graphiques de
+ *   la vue europeenne a y joindre, et l'analyse de l'IA (avec quel modele). Le
  *   plan est une donnee : il se garde d'une fois sur l'autre, se relit, et
- *   pourra un jour venir d'ailleurs que du formulaire - de l'assistant, par
- *   exemple, qui n'aurait qu'a le remplir.
+ *   pourra un jour venir d'ailleurs que du formulaire.
+ *
+ * Un seul usage : le support client
+ *   Une premiere version demandait la destination (note interne ou support
+ *   client), un titre, un destinataire, et laissait choisir les rubriques. A
+ *   l'usage, le rapport part chez un client : les recommandations internes en
+ *   sont toujours retirees, la couverture porte un titre fixe, et les rubriques
+ *   sont celles du rapport de veille habituel (DG_DEFAULT_BLOCKS). Ce qui
+ *   varie d'un client a l'autre, ce sont ses pays et les graphiques qu'on lui
+ *   montre.
  *
  * Le questionnaire plutot que la case a cocher
- *   Une seule page de vingt reglages fait renoncer. On pose donc quatre
- *   questions, dans l'ordre ou on se les pose : pour qui, sur quels pays, avec
- *   quoi dedans, et qui redige l'analyse. Chaque etape affiche ce qu'elle
- *   change sur le rapport, et la derniere recapitule avant de generer.
+ *   Quatre ecrans : les pays (un par un) et la langue, les graphiques de la vue
+ *   europeenne, l'analyse de l'IA, le recapitulatif.
  *
  * Tout doit rester modifiable dans le PowerPoint
  *   C'est la contrainte qui a decide de la forme des slides. Pas d'image : les
@@ -55,36 +61,399 @@ const DG_DEFAULT_BLOCKS = ["synth", "matrix", "fw", "inc", "reg", "news", "sourc
 
 function dgPlan(){
   const s = store.docgen || {};
-  const ids = DG_BLOCKS.map(b => b.id);
   return {
-    purpose: s.purpose === "client" ? "client" : "internal",
-    title: typeof s.title === "string" ? s.title : "",
-    audience: typeof s.audience === "string" ? s.audience : "",
-    scope: ["sel", "eu", "done", "todo", "pick"].includes(s.scope) ? s.scope : "sel",
+    purpose: "client",
     isos: Array.isArray(s.isos) ? s.isos.filter(i => byIso[i]) : [],
-    blocks: Array.isArray(s.blocks) ? s.blocks.filter(b => ids.includes(b)) : DG_DEFAULT_BLOCKS.slice(),
-    ai: s.ai !== false,
+    blocks: DG_DEFAULT_BLOCKS.slice(),
+    charts: Array.isArray(s.charts) ? s.charts.filter(x => typeof x === "string") : [],
+    ai: s.ai === true,
+    model: typeof s.model === "string" ? s.model : "",
     lang: s.lang === "en" ? "en" : s.lang === "fr" ? "fr" : lang
   };
 }
 function dgSavePlan(p){
-  store.docgen = { purpose: p.purpose, title: p.title, audience: p.audience,
-                   scope: p.scope, isos: p.isos, blocks: p.blocks, ai: p.ai, lang: p.lang };
+  store.docgen = { isos: p.isos, charts: p.charts, ai: p.ai, model: p.model, lang: p.lang };
   saveStore();
 }
 
-/* Le perimetre. « La selection de la vue europeenne » est propose en premier :
-   c'est le perimetre que le consultant vient de composer a l'ecran, et le
-   reconstituer ici serait lui demander deux fois la meme chose. */
+/* Le perimetre : les pays choisis un par un. Les raccourcis d'avant (la
+   selection de la vue europeenne, les 27, les pays transposes) produisaient des
+   rapports dont personne ne savait plus dire, une semaine apres, pourquoi tel
+   pays y figurait. */
 function dgCountries(plan){
-  const all = COUNTRIES.slice().sort((a, b) =>
-    rptCountryName(a, plan.lang).localeCompare(rptCountryName(b, plan.lang), plan.lang));
-  if (plan.scope === "pick") return all.filter(c => plan.isos.includes(c.iso));
-  if (plan.scope === "eu") return all.filter(c => c.eu);
-  if (plan.scope === "done") return all.filter(c => c.eu && euYes(euCell(c.iso, "id", "F")));
-  if (plan.scope === "todo") return all.filter(c => c.eu && !euYes(euCell(c.iso, "id", "F")));
-  const sel = euSelection().map(c => c.iso);
-  return all.filter(c => sel.includes(c.iso));
+  return COUNTRIES.slice()
+    .sort((a, b) => rptCountryName(a, plan.lang).localeCompare(rptCountryName(b, plan.lang), plan.lang))
+    .filter(c => plan.isos.includes(c.iso));
+}
+
+/* ---------- les graphiques de la vue europeenne ----------
+ * Les memes que sur la page « Vue europeenne », recalcules sur les pays du
+ * rapport, plus « Mes visuels ». Ils entrent dans le rapport comme images : un
+ * graphique de la vue europeenne est du HTML, et le refaire en formes
+ * PowerPoint serait une seconde implementation de chacun. Le titre de la slide,
+ * lui, reste une zone de texte.
+ */
+function dgChartCatalog(sel){
+  if (typeof EU_CHARTS === "undefined" || typeof SHEET_DATA === "undefined"
+      || regId() !== "nis2" || !sel.length) return [];
+  const out = [];
+  EU_SECTIONS.forEach(sec => {
+    if (sec.key === "mine") {
+      euMine().forEach(v => {
+        let ch;
+        try { ch = euVisualBuild(v.spec, sel); } catch (e) { return; }
+        ch.id = "mine-" + v.id;
+        ch.wide = ["map", "pyramid", "stairs", "bars"].includes(v.spec.form);
+        out.push({ id: ch.id, sec: sec, ch: ch });
+      });
+      return;
+    }
+    (EU_CHARTS[sec.key] || []).forEach(fn => {
+      let ch = null;
+      try { ch = fn(sel); } catch (e) { console.error("graphique", sec.key, e); }
+      if (ch && ch.id) out.push({ id: ch.id, sec: sec, ch: ch });
+    });
+  });
+  return out;
+}
+const dgChartTitle = it => (euText(it.id).title || it.ch.title);
+
+/* La capture se fait dans la langue du rapport et sur fond clair, quel que soit
+   l'ecran : un rapport anglais tire d'une interface francaise en theme sombre
+   portait sinon des graphiques francais sur fond noir. Les deux reglages sont
+   rendus a l'interface dans le finally. */
+async function dgChartImages(plan, cs){
+  if (!plan.charts.length) return [];
+  const root = document.documentElement;
+  const prevLang = lang, prevTheme = root.dataset.theme;
+  const host = document.createElement("div");
+  host.style.cssText = "position:fixed;left:-30000px;top:0";
+  document.body.appendChild(host);
+  const out = [];
+  try {
+    lang = plan.lang;
+    if (typeof applyCountryNames === "function") applyCountryNames();
+    root.dataset.theme = "light";
+    const items = dgChartCatalog(cs).filter(it => plan.charts.includes(it.id));
+    for (const it of items) {
+      const box = document.createElement("div");
+      box.style.width = (it.ch.wide ? 1100 : 620) + "px";
+      box.innerHTML = euCard(it.ch, cs);
+      host.appendChild(box);
+      const card = box.firstElementChild;
+      const title = ($(".eu-title", card) || {}).textContent || it.ch.title;
+      /* Le titre devient celui de la slide, en texte modifiable : on ne le
+         garde pas en double dans l'image. */
+      const head = $(".eu-card-h", card);
+      if (head) head.remove();
+      await new Promise(r => requestAnimationFrame(() => r()));
+      const blob = await euCardPng(card, 2);
+      const bmp = await createImageBitmap(blob);
+      out.push({ id: it.id, title: title.trim(), w: bmp.width, h: bmp.height,
+                 bytes: new Uint8Array(await blob.arrayBuffer()) });
+      bmp.close && bmp.close();
+      box.remove();
+    }
+  } finally {
+    lang = prevLang;
+    if (typeof applyCountryNames === "function") applyCountryNames();
+    if (prevTheme) root.dataset.theme = prevTheme; else delete root.dataset.theme;
+    host.remove();
+  }
+  return out;
+}
+
+/* ---------- la vue d'ensemble europeenne ----------
+ * La deuxieme slide de chaque rapport, sur le modele de l'infographie
+ * « NIS 2 : current state and key updates on European transpositions » de
+ * l'equipe : transposition, referentiels, enregistrement et audits. Ses
+ * chiffres sont recalcules sur les pays du rapport, a partir du classeur, et
+ * elle est faite de formes PowerPoint : un anneau est un arc, un chiffre une
+ * zone de texte. Seule la carte est une image, dessinee pour ces memes pays.
+ */
+const DG_OV = { bg: "451DC7", band: "250F6B", green: "04F06A", white: "FFFFFF",
+  ontime: "04F06A", late: "4682B4", todo: "FF2A49", pub: "04F06A", draft: "FFCA4A",
+  reg: "4682B4", aud: "FFCA4A", track: "E9E5F9" };
+
+/* Une forme quelconque : rectangle, ellipse, arc (blockArc), anneau (donut),
+   avec ou sans texte. Les angles sont en 60 000e de degre, 0 a trois heures,
+   dans le sens des aiguilles d'une montre. */
+function dgSp(s, x, y, w, h, o){
+  o = o || {};
+  const id = s.id++;
+  const gd = (o.adj || []).map(([n, v]) => `<a:gd name="${n}" fmla="val ${Math.round(v)}"/>`).join("");
+  const fill = o.fill ? `<a:solidFill><a:srgbClr val="${o.fill}"/></a:solidFill>` : "<a:noFill/>";
+  const ln = o.line ? `<a:ln w="${o.lineW || 12700}"><a:solidFill><a:srgbClr val="${o.line}"/></a:solidFill></a:ln>` : "<a:ln><a:noFill/></a:ln>";
+  const paras = (o.paras || []).map(p => `<a:p><a:pPr algn="${p.align || "l"}"><a:lnSpc><a:spcPct val="100000"/></a:lnSpc>`
+    + `<a:spcBef><a:spcPts val="${p.space || 0}"/></a:spcBef><a:buNone/></a:pPr>`
+    + p.runs.map(r => rptRunXml(Object.assign({ b: false, i: false }, r))).join("") + "</a:p>").join("") || "<a:p/>";
+  const ins = o.inset == null ? 0 : o.inset;
+  s.shapes.push(`<p:sp><p:nvSpPr><p:cNvPr id="${id}" name="ov${id}"/><p:cNvSpPr/><p:nvPr/></p:nvSpPr>`
+    + `<p:spPr><a:xfrm><a:off x="${Math.round(x)}" y="${Math.round(y)}"/><a:ext cx="${Math.round(w)}" cy="${Math.round(h)}"/></a:xfrm>`
+    + `<a:prstGeom prst="${o.prst || "rect"}"><a:avLst>${gd}</a:avLst></a:prstGeom>${fill}${ln}</p:spPr>`
+    + `<p:txBody><a:bodyPr wrap="square" lIns="${ins}" tIns="${ins}" rIns="${ins}" bIns="${ins}" anchor="${o.anchor || "t"}"><a:noAutofit/></a:bodyPr>`
+    + `<a:lstStyle/>${paras}</p:txBody></p:sp>`);
+}
+/* Un texte : des morceaux { t, b, color, sz }, sur une ou plusieurs lignes. */
+const dgOvP = (runs, sz, align) => ({ align: align, runs: runs.map(r => Object.assign({ sz: sz, color: DG_OV.white }, r)) });
+
+/* L'anneau : un disque blanc, une piste, l'arc de la part, et « n / total ». */
+function dgOvRing(s, x, y, d, n, total, color){
+  const E = rptEmu;
+  dgSp(s, E(x), E(y), E(d), E(d), { prst: "ellipse", fill: DG_OV.white });
+  const th = 11000;
+  dgSp(s, E(x + d * .06), E(y + d * .06), E(d * .88), E(d * .88), { prst: "donut", fill: DG_OV.track, adj: [["adj", th]] });
+  const frac = total ? n / total : 0;
+  if (frac >= 1) dgSp(s, E(x + d * .06), E(y + d * .06), E(d * .88), E(d * .88), { prst: "donut", fill: color, adj: [["adj", th]] });
+  else if (frac > 0) dgSp(s, E(x + d * .06), E(y + d * .06), E(d * .88), E(d * .88), { prst: "blockArc", fill: color,
+    adj: [["adj1", 16200000], ["adj2", (16200000 + frac * 21600000) % 21600000], ["adj3", th]] });
+  dgSp(s, E(x), E(y), E(d), E(d), { anchor: "ctr", paras: [{ align: "ctr", runs: [
+    { t: String(n), sz: Math.round(d * 2300), b: true, color: RPT_DEEP },
+    { t: " /" + total, sz: Math.round(d * 1000), color: "8C8C8C" }] }] });
+}
+
+/* Les chiffres, recalcules sur les pays du rapport. Les libelles des sources
+   viennent de l'interface (t) : la langue de l'ecran passe a celle du rapport
+   le temps de les lire. */
+function dgOverviewData(cs, L){
+  const n = cs.length;
+  const tr = { ontime: [], late: [], todo: [] };
+  cs.forEach(c => tr[euTrState(c).k].push(c));
+  const pub = cs.filter(c => c.fw === "final" || c.fw === "reference").length;
+  const draft = cs.filter(c => c.fw === "temporary").length;
+  /* Les exigences, comme le graphique de la vue europeenne : un referentiel
+     hors d'echelle (l'E-ITS estonien) est ecarte des moyennes et des extremes. */
+  const items = cs.map(c => ({ ee: euNum(euCell(c.iso, "fw", "L")), ie: euNum(euCell(c.iso, "fw", "M")) }))
+    .filter(x => x.ee != null || x.ie != null);
+  const sorted = items.map(x => x.ee || 0).sort((a, b) => a - b);
+  const med = sorted[Math.floor(sorted.length / 2)] || 1;
+  const kept = items.filter(x => Math.max(x.ee || 0, x.ie || 0) <= med * 4);
+  const stat = k => {
+    const v = kept.map(x => x[k]).filter(v => v != null && v > 0);
+    return v.length ? { avg: Math.round(v.reduce((a, b) => a + b, 0) / v.length), max: Math.max(...v), min: Math.min(...v) } : null;
+  };
+  const prev = lang;
+  let srcs = [];
+  try {
+    lang = L ? "en" : "fr";
+    srcs = ["P", "R", "T", "U", "V", "Q", "S", "W", "Y"]
+      .map(col => ({ label: euSrcLabel(col), n: cs.filter(c => euYes(euCell(c.iso, "fw", col))).length }))
+      /* « Autre guide », « autre cadre » : des categories, pas des sources. */
+      .filter(x => x.n && !/^(autres?|other)\b/i.test(x.label)).sort((a, b) => b.n - a.n).slice(0, 4).map(x => x.label);
+  } finally { lang = prev; }
+  const regOpen = cs.filter(c => euYes(euCell(c.iso, "reg", "D"))).length;
+  const delays = cs.map(c => euNum(euCell(c.iso, "reg", "J"))).filter(v => v != null && v > 0);
+  const audM = cs.map(c => { const v = euCell(c.iso, "aud", "M"); return /^\s*\d/.test(v || "") ? euNum(v) : null; })
+    .filter(v => v != null && v > 0);
+  return { n, tr, pub, draft, analysed: items.length, ee: stat("ee"), ie: stat("ie"), srcs,
+    regOpen, delay: delays.length ? [Math.min(...delays), Math.max(...delays)] : null,
+    aud: audM.length, audRange: audM.length ? [Math.min(...audM), Math.max(...audM)] : null };
+}
+function dgOvMonths(m, L){
+  if (m < 1) { const d = Math.round(m * 30); return L ? d + " days" : d + " jours"; }
+  const r = Math.round(m * 10) / 10;
+  return L ? r + (r > 1 ? " months" : " month") : String(r).replace(".", ",") + " mois";
+}
+function dgOvFreq(m, L){
+  if (m === 12) return L ? "once a year" : "une fois par an";
+  if (m % 12 === 0) return L ? "every " + m / 12 + " years" : "tous les " + m / 12 + " ans";
+  return L ? "every " + m + " months" : "tous les " + m + " mois";
+}
+
+/* La carte des pays du rapport, en image : les formes d'un pays ne se
+   redessinent pas en PowerPoint. Fond transparent, pour le violet de la slide. */
+async function dgOverviewMap(cs){
+  if (typeof MAP_DATA === "undefined") return null;
+  const col = { ontime: "#" + DG_OV.ontime, late: "#" + DG_OV.late, todo: "#" + DG_OV.todo };
+  const sel = new Map(cs.map(c => [c.iso, col[euTrState(c).k]]));
+  const vb = MAP_DATA.viewBox.split(/\s+/).map(Number);
+  const paths = Object.entries(MAP_DATA.paths).map(([iso, d]) => sel.has(iso)
+    ? `<path d="${d}" fill="${sel.get(iso)}" stroke="#451DC7" stroke-width=".8"/>`
+    : `<path d="${d}" fill="#FFFFFF" fill-opacity=".2" stroke="#451DC7" stroke-width=".6"/>`).join("");
+  const W = 900, H = Math.round(W * vb[3] / vb[2]);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.join(" ")}" width="${W}" height="${H}">${paths}</svg>`;
+  const img = new Image();
+  await new Promise((ok, ko) => { img.onload = ok; img.onerror = ko;
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg); });
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  cv.getContext("2d").drawImage(img, 0, 0, W, H);
+  const blob = await new Promise((ok, ko) => cv.toBlob(b => b ? ok(b) : ko(new Error("toBlob")), "image/png"));
+  return { w: W, h: H, bytes: new Uint8Array(await blob.arrayBuffer()) };
+}
+
+function dgOverviewSlide(ctx){
+  const L = ctx.lang === "en", E = rptEmu, cs = ctx.cs;
+  const D = dgOverviewData(cs, L);
+  const s = { shapes: [], id: 10, media: [] };
+  const P = (x, y, w, h, paras, o) => dgSp(s, E(x), E(y), E(w), E(h), Object.assign({ paras: paras }, o || {}));
+  const B = t_ => ({ t: t_, b: true });
+
+  /* Le fond violet s'arrete au-dessus du pied de page, qui reste lisible. */
+  dgSp(s, 0, 0, RPT_W, E(6.95), { fill: DG_OV.bg });
+  P(0.45, 0.28, 12.4, 0.5, [dgOvP([B(L ? "NIS 2: where " : "NIS 2 : où en sont les "),
+    { t: L ? "European transpositions" : "transpositions européennes", b: true, color: DG_OV.green },
+    B(L ? " stand" : " ?")], 2000)]);
+  P(0.45, 0.78, 12.4, 0.3, [dgOvP([{ t: (L ? "Report perimeter: " : "Périmètre du rapport : ")
+    + (cs.length > 8 ? cs.length + (L ? " countries" : " pays") : cs.map(dgName).join(", ")) }], 1000)]);
+
+  /* --- transposition --- */
+  P(0.45, 1.2, 6.1, 0.35, [dgOvP([Object.assign(B(L ? "What is the current state of national transpositions?" : "Où en sont les transpositions nationales ?"), { color: DG_OV.green })], 1300)]);
+  const rings = [
+    [D.tr.ontime.length, DG_OV.ontime, L ? ["Countries that have ", "transposed on time"] : ["Pays ayant transposé ", "dans les délais"]],
+    [D.tr.late.length, DG_OV.late, L ? ["Countries that have transposed ", "after the EU deadline"] : ["Pays ayant transposé ", "après l'échéance européenne"]],
+    [D.tr.todo.length, DG_OV.todo, L ? ["Countries that have ", "not yet transposed"] : ["Pays n'ayant ", "pas encore transposé"]]
+  ];
+  rings.forEach(([n, color, txt], i) => {
+    const y = 1.7 + i * 1.2;
+    dgOvRing(s, 0.55, y, 0.92, n, D.n, color);
+    P(1.65, y + 0.12, 2.0, 0.7, [dgOvP([{ t: txt[0] }, B(txt[1])], 1100)]);
+  });
+  if (D.tr.todo.length)
+    P(1.65, 1.7 + 2 * 1.2 + 0.62, 2.0, 0.45, [dgOvP([{ t: D.tr.todo.map(dgName).join(", ") }], 850)]);
+  if (ctx.ovMap) {
+    const bw = 2.85, bh = 3.35, k = Math.min(bw / ctx.ovMap.w, bh / ctx.ovMap.h);
+    const w = ctx.ovMap.w * k, h = ctx.ovMap.h * k, x = 3.75 + (bw - w) / 2, y = 1.62;
+    const id = s.id++, rid = "rIdOvMap";
+    s.media.push({ rid: rid, bytes: ctx.ovMap.bytes });
+    s.shapes.push(`<p:pic><p:nvPicPr><p:cNvPr id="${id}" name="Map ${id}" descr="Map"/><p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr>`
+      + `<p:blipFill><a:blip r:embed="${rid}"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>`
+      + `<p:spPr><a:xfrm><a:off x="${Math.round(E(x))}" y="${Math.round(E(y))}"/><a:ext cx="${Math.round(E(w))}" cy="${Math.round(E(h))}"/></a:xfrm>`
+      + '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>');
+    [[DG_OV.ontime, L ? "On time" : "Dans les délais", 0], [DG_OV.late, L ? "After the deadline" : "Après l'échéance", 1.0],
+     [DG_OV.todo, L ? "Not yet" : "Pas encore", 2.15]].forEach(([c, lab, dx]) => {
+      dgSp(s, E(3.75 + dx), E(5.0), E(0.11), E(0.11), { fill: c });
+      P(3.9 + dx, 4.96, 1.05, 0.2, [dgOvP([{ t: lab }], 800)]);
+    });
+  }
+  dgSp(s, E(6.75), E(1.2), E(0.02), E(3.75), { fill: DG_OV.white });
+
+  /* --- referentiels --- */
+  P(7.0, 1.2, 5.9, 0.35, [dgOvP([Object.assign(B(L ? "Where do we stand on cybersecurity frameworks?" : "Où en sont les référentiels de cybersécurité ?"), { color: DG_OV.green })], 1300)]);
+  dgOvRing(s, 7.05, 1.65, 0.92, D.pub, D.n, DG_OV.pub);
+  P(8.1, 1.72, 1.95, 0.8, [dgOvP(L ? [{ t: "Officially published a " }, B("NIS 2 framework"), { t: " or recommend an existing one" }]
+    : [{ t: "Ont publié un " }, B("référentiel NIS 2"), { t: " ou en recommandent un existant" }], 1050)]);
+  dgOvRing(s, 10.15, 1.65, 0.92, D.draft, D.n, DG_OV.draft);
+  P(11.2, 1.82, 1.75, 0.6, [dgOvP(L ? [{ t: "Shared a " }, B("draft or partial framework")] : [{ t: "Ont partagé un " }, B("référentiel provisoire ou partiel")], 1050)]);
+  P(7.0, 2.78, 5.9, 0.32, [dgOvP([B(D.analysed > 1
+    ? (L ? D.analysed + " national frameworks analysed: no clear common trend" : D.analysed + " référentiels nationaux analysés : pas de tendance commune")
+    : (L ? "Requirements published by the national frameworks" : "Exigences publiées par les référentiels nationaux"))], 1150)]);
+  const rowLab = (y, txt) => P(7.0, y, 1.75, 0.45, [dgOvP([{ t: txt, i: true }], 1000)], { anchor: "ctr" });
+  rowLab(3.22, L ? "A varying number of requirements" : "Un nombre d'exigences variable");
+  [["ee", L ? "EE" : "EE"], ["ie", L ? "IE" : "EI"]].forEach(([k, lab], r) => {
+    const st = D[k];
+    [["avg", L ? "Average" : "Moyenne"], ["max", "Max"], ["min", "Min"]].forEach(([f, fl], c) => {
+      P(8.85 + c * 1.37, 3.2 + r * 0.38, 1.28, 0.3, [dgOvP([{ t: fl + " " + lab + " : " }, B(st ? String(st[f]) : "-")], 950, "ctr")],
+        { line: DG_OV.green, lineW: 9525, anchor: "ctr" });
+    });
+  });
+  const chips = (y, lab, list, fill) => {
+    rowLab(y, lab);
+    list.forEach((txt, i) => P(8.85 + i * 0.81, y + 0.02, 0.76, 0.42,
+      [dgOvP([{ t: txt.length > 22 ? txt.slice(0, 21) + "…" : txt }], 750, "ctr")], { fill: fill, anchor: "ctr", inset: E(0.03) }));
+  };
+  chips(4.0, L ? "Multiple sources of inspiration" : "Des sources d'inspiration multiples", D.srcs.concat(["…"]), DG_OV.band);
+  chips(4.55, L ? "Common topics, different granularity" : "Des thèmes communs, une granularité différente",
+    (L ? ["IAM", "Detection", "Audits", "Recovery"] : ["IAM", "Détection", "Audits", "Reprise"]).concat(["…"]), "4682B4");
+
+  /* --- enregistrement et audits --- */
+  dgSp(s, 0, E(5.15), RPT_W, E(1.25), { fill: DG_OV.band });
+  P(0.45, 5.2, 12.4, 0.3, [dgOvP([Object.assign(B(L ? "Where do we stand on registration and audits?" : "Où en sont l'enregistrement et les audits ?"), { color: DG_OV.green })], 1300, "ctr")]);
+  dgOvRing(s, 0.9, 5.52, 0.8, D.regOpen, D.n, DG_OV.reg);
+  P(1.85, 5.6, 2.4, 0.65, [dgOvP(L ? [B("Registration"), { t: " or pre-registration modalities available" }]
+    : [{ t: "Modalités d'" }, B("enregistrement"), { t: " ou de pré-enregistrement disponibles" }], 1050)]);
+  P(4.55, 5.6, 2.8, 0.65, [dgOvP(D.delay
+    ? (L ? [B("Registration time"), { t: " ranges from " }, B(dgOvMonths(D.delay[0], true)), { t: " to " }, B(dgOvMonths(D.delay[1], true))]
+         : [B("Délai d'enregistrement"), { t: " : de " }, B(dgOvMonths(D.delay[0], false)), { t: " à " }, B(dgOvMonths(D.delay[1], false))])
+    : [{ t: L ? "No registration time set in these countries" : "Aucun délai d'enregistrement fixé dans ces pays" }], 1050)], { anchor: "ctr" });
+  dgOvRing(s, 7.65, 5.52, 0.8, D.aud, D.n, DG_OV.aud);
+  P(8.6, 5.6, 1.95, 0.65, [dgOvP(L ? [{ t: "Shared " }, B("specific audit frequencies"), { t: " for EE" }]
+    : [{ t: "Ont fixé une " }, B("fréquence d'audit"), { t: " pour les EE" }], 1050)]);
+  P(10.65, 5.6, 2.3, 0.65, [dgOvP(D.audRange
+    ? (D.audRange[0] === D.audRange[1]
+      ? (L ? [B("Audits"), { t: " " + dgOvFreq(D.audRange[0], true) }] : [B("Audits"), { t: " " + dgOvFreq(D.audRange[0], false) }])
+      : (L ? [B("Audit frequency"), { t: " from " }, B(dgOvFreq(D.audRange[0], true)), { t: " to " }, B(dgOvFreq(D.audRange[1], true))]
+           : [B("Fréquence des audits"), { t: " : de " }, B(dgOvFreq(D.audRange[0], false)), { t: " à " }, B(dgOvFreq(D.audRange[1], false))]))
+    : [{ t: L ? "No audit frequency set yet" : "Aucune fréquence d'audit encore fixée" }], 1050)], { anchor: "ctr" });
+
+  /* --- la phrase de conclusion, tiree des chiffres --- */
+  const done = D.tr.ontime.length + D.tr.late.length;
+  P(0.45, 6.45, 12.4, 0.42, [dgOvP([{ t: "→ " }, B(done === D.n
+      ? (L ? "Every country in this report has transposed NIS 2" : "Tous les pays de ce rapport ont transposé NIS 2")
+      : (L ? done + " of the " + D.n + " countries in this report have transposed NIS 2" : done + " des " + D.n + " pays de ce rapport ont transposé NIS 2")),
+    { t: L ? ": compliance is increasingly time-bound." : " : la mise en conformité devient de plus en plus contrainte dans le temps." }], 1300, "ctr")],
+    { anchor: "ctr" });
+  return s;
+}
+
+const dgXml = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+/* Une slide par graphique : le titre en zone de texte, l'image ajustee a la
+   zone de contenu sans deformation. */
+function dgChartSlide(img, ctx){
+  const s = dgSlide(img.title, ctx.scopeLine);
+  const maxW = DG_W, maxH = DG_BOT - DG_TOP;
+  const k = Math.min(maxW / img.w, maxH / img.h);
+  const w = Math.round(img.w * k), h = Math.round(img.h * k);
+  const x = DG_X + Math.round((maxW - w) / 2), y = DG_TOP;
+  const id = s.id++, rid = "rIdImg" + id;
+  s.media = [{ rid: rid, bytes: img.bytes }];
+  s.shapes.push(`<p:pic><p:nvPicPr><p:cNvPr id="${id}" name="Chart ${id}" descr="${dgXml(img.title)}"/>`
+    + '<p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr>'
+    + `<p:blipFill><a:blip r:embed="${rid}"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>`
+    + `<p:spPr><a:xfrm><a:off x="${x}" y="${y}"/><a:ext cx="${w}" cy="${h}"/></a:xfrm>`
+    + '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>');
+  return s;
+}
+
+/* ---------- l'impact environnemental d'une analyse ----------
+ * Aucun fournisseur ne publie la consommation d'une requete sur Azure OpenAI.
+ * L'estimation est donc un ordre de grandeur, affiche comme tel, a partir de
+ * deux mesures publiques : Google (aout 2025) mesure 0,24 Wh pour une requete
+ * texte mediane de Gemini, et Epoch AI (2025) estime une requete GPT-4o
+ * courante a environ 0,3 Wh. On en tire une energie par millier de jetons
+ * rediges selon la taille du modele ; la lecture des donnees (jetons d'entree)
+ * compte pour un dixieme ; les modeles qui raisonnent (GPT-5, serie o)
+ * redigent des jetons invisibles, comptes de 1,5 a 4 fois. Le carbone suit
+ * avec 250 g CO2e par kWh, l'ordre de grandeur du mix electrique europeen.
+ */
+const DG_IMPACT = [
+  /* Les plus grands modeles du marche (Claude Opus, par exemple) : quelques
+     fois un GPT-4o. */
+  { re: /opus/i, wh: [0.6, 2.4] },
+  { re: /nano/i, wh: [0.03, 0.12] },
+  { re: /mini|small|haiku|flash|lite/i, wh: [0.08, 0.35] },
+  { re: /./, wh: [0.3, 1.2] }
+];
+const DG_REASONING = /^(o\d|gpt-5)|opus/i;
+const DG_G_PER_WH = 0.25;
+const DG_PHONE_WH = 15;   /* une recharge complete de smartphone */
+function dgImpact(model, inTok, outTok){
+  const p = DG_IMPACT.find(x => x.re.test(model || "")) || DG_IMPACT[2];
+  const r = DG_REASONING.test(model || "") ? [1.5, 4] : [1, 1];
+  const wh = [0, 1].map(i => (outTok * r[i] / 1000) * p.wh[i] + (inTok / 1000) * p.wh[i] * 0.1);
+  return { wh: wh, g: wh.map(v => v * DG_G_PER_WH), phone: wh.map(v => 100 * v / DG_PHONE_WH) };
+}
+/* Les jetons d'un rapport : ce que le modele lira (les chiffres de chaque
+   rubrique, en JSON) et ce qu'il redigera (quelques phrases par rubrique). */
+function dgTokens(plan, cs){
+  const ctx = { plan: plan, lang: plan.lang, cs: cs, ai: {} };
+  const facts = {};
+  plan.blocks.forEach(id => { const b = dgBlock(id); if (b && b.ask) { try { facts[id] = b.ask(ctx); } catch (e) {} } });
+  const want = Object.keys(facts).length;
+  return { inTok: Math.round(JSON.stringify(facts).length / 3.5) + 450, outTok: 160 * want };
+}
+/* Les modeles annonces mais pas encore deployes. Ils sont montres avec leur
+   estimation : le consultant voit d'avance ce qu'un modele plus grand couterait. */
+const DG_MODELS_SOON = ["Claude Opus 5.5"];
+/* La couleur d'un choix suit son impact. Ne pas utiliser l'IA est l'option
+   verte ; un modele est jaune tant que son estimation haute reste sous 2 Wh,
+   rouge au-dela. Le but est assume : faire se demander, avant de cliquer, si
+   le rapport a vraiment besoin d'un modele, et duquel. */
+function dgEcoLevel(im){ return im.wh[1] < 2 ? "mid" : "high"; }
+
+function dgFmt(v){
+  const n = v >= 10 ? Math.round(v) : v >= 1 ? Math.round(v * 10) / 10 : Number(v.toPrecision(1));
+  return n.toLocaleString(lang === "fr" ? "fr-FR" : "en-GB");
 }
 
 /* ---------- lecture du classeur, avec ses propres intitules ----------
@@ -602,13 +971,9 @@ function dgCover(ctx){
      fallu refaire a la main avant de la montrer. */
   s.shapes.push(rptRect(s.id++, RPT_SPLIT, 0, RPT_W - RPT_SPLIT, RPT_H, RPT_GREY));
 
-  const title = plan.title || (L ? "NIS 2 transposition across Europe"
-                                 : "Transposition de NIS 2 en Europe");
+  const title = L ? "NIS 2 transposition across Europe" : "Transposition de NIS 2 en Europe";
   s.shapes.push(rptTextBox(s.id++, DG_X, rptEmu(0.62), rptEmu(5.5), rptH(1, 9, 0),
-    [{ runs: [{ t: (plan.purpose === "client"
-        ? (L ? "Client report" : "Support client")
-        : (L ? "Internal note" : "Note interne"))
-        + (plan.audience ? " \u00b7 " + plan.audience : ""),
+    [{ runs: [{ t: L ? "NIS 2 watch report" : "Rapport de veille NIS 2",
       sz: 900, b: true, color: RPT_VIOLET }] }]));
   s.shapes.push(rptTextBox(s.id++, DG_X, rptEmu(0.92), rptEmu(5.5), rptH(3, 28, 0),
     [{ runs: [{ t: title, sz: 2800, b: true, color: RPT_VIOLET }] }]));
@@ -655,12 +1020,12 @@ function dgCover(ctx){
   s.shapes.push(rptTextBox(s.id++, rx, ry, rw, nH,
     [{ runs: [{ t: names, sz: 950, b: false, color: "262626" }], align: "just", space: 0 }]));
   ry = head(ry + nH + rptEmu(0.2), L ? "Contents" : "Sommaire");
+  const contents = ctx.plan.blocks.map(id => { const b = dgBlock(id); return b ? dgT(b.tKey) : id; });
+  contents.unshift(L ? "NIS 2 across Europe: the overview" : "NIS 2 en Europe : la vue d'ensemble");
+  if (ctx.charts && ctx.charts.length)
+    contents.splice(1, 0, (L ? "European view charts (" : "Graphiques de la vue européenne (") + ctx.charts.length + ")");
   s.shapes.push(rptTextBox(s.id++, rx, ry, rw, DG_BOT - ry,
-    ctx.plan.blocks.map(id => {
-      const b = dgBlock(id);
-      return { runs: [{ t: b ? dgT(b.tKey) : id, sz: 950, b: false, color: "262626" }],
-               bullet: true, space: 30 };
-    })));
+    contents.map(txt => ({ runs: [{ t: txt, sz: 950, b: false, color: "262626" }], bullet: true, space: 30 }))));
   return s;
 }
 
@@ -678,6 +1043,7 @@ async function dgAnalyse(plan, ctx, want){
   const out = {};
   if (!plan.ai || !want.length || typeof chatReady !== "function" || !chatReady()) return out;
   const L = plan.lang === "en";
+  const model = plan.model ? { model: plan.model } : {};
   const facts = {};
   want.forEach(id => { const b = dgBlock(id); if (b && b.ask) facts[id] = b.ask(ctx); });
   const sys = (L
@@ -695,16 +1061,17 @@ async function dgAnalyse(plan, ctx, want){
            : " Le lecteur est un client : dis ce que les chiffres impliquent pour une entreprise qui opère dans ces pays.")
       : (L ? " The reader is an internal team: point out what has moved and what deserves a check."
            : " Le lecteur est une équipe interne : signale ce qui a bougé et ce qui mérite une vérification."));
-  const user = JSON.stringify({ sections: want, perimeter: ctx.cs.map(dgName), data: facts });
+  const user = JSON.stringify({ sections: want, perimeter: ctx.cs.map(dgName), data: facts,
+    chartsShownToTheReader: (ctx.charts || []).map(c => c.title) });
   const msgs = [{ role: "system", content: sys }, { role: "user", content: user }];
   let text = "";
   try {
-    const data = await chatPost(msgs, { response_format: { type: "json_object" } }, 1500);
+    const data = await chatPost(msgs, Object.assign({ response_format: { type: "json_object" } }, model), 1500);
     text = ((data.choices || [])[0] || {}).message.content || "";
   } catch (e) {
     /* Tous les points de terminaison ne connaissent pas response_format : on
        redemande sans, et on lit le JSON dans la reponse. */
-    const data = await chatPost(msgs, null, 1500);
+    const data = await chatPost(msgs, Object.assign({}, model), 1500);
     text = ((data.choices || [])[0] || {}).message.content || "";
   }
   let obj = null;
@@ -729,10 +1096,14 @@ function dgScopeLine(plan, cs){
   return cs.map(dgName).join(", ");
 }
 
-async function dgGenerate(plan, onStep){
+/* Les slides du rapport, sans les emballer. L'apercu du questionnaire et la
+   generation passent par ici : ce que l'on voit avant de telecharger est ce
+   qui sera dans le fichier. En apercu, l'IA n'est pas appelee - l'encadre de
+   l'analyse porte un texte d'attente a sa place, a la bonne taille. */
+let dgChartCache = null;
+async function dgBuild(plan, onStep, preview){
   const cs = dgCountries(plan);
   if (!cs.length) throw new Error(t("dg.errNoCountry"));
-  if (!plan.blocks.length) throw new Error(t("dg.errNoBlock"));
   const step = onStep || function(){};
 
   /* Le contenu redige suit la langue du rapport le temps de la generation, comme
@@ -742,7 +1113,7 @@ async function dgGenerate(plan, onStep){
   dgLang = plan.lang;
   rptDraftUsed = false;
   rptNoReco = plan.purpose === "client";
-  const ctx = { plan: plan, lang: plan.lang, cs: cs, ai: {}, usedAi: false,
+  const ctx = { plan: plan, lang: plan.lang, cs: cs, ai: {}, usedAi: false, charts: [],
                 scopeLine: dgScopeLine(plan, cs), slideCount: 0 };
 
   /* L'analyse d'abord : elle occupe de la place sur les slides, donc les slides
@@ -754,17 +1125,40 @@ async function dgGenerate(plan, onStep){
        construction, l'analyse comprise : le modele lit les memes phrases que
        celles qui paraitront sur les slides. */
     if (typeof applyContentLang === "function") applyContentLang(plan.lang);
-    if (wantAi.length) {
+    if (plan.charts.length) {
+      /* Les captures de l'apercu resservent a la generation : meme langue,
+         memes pays, memes graphiques. */
+      const key = JSON.stringify([plan.lang, cs.map(c => c.iso), plan.charts, store.euText || {}]);
+      if (!dgChartCache || dgChartCache.key !== key) {
+        step(t("dg.stepCharts"));
+        dgChartCache = { key: key, imgs: await dgChartImages(plan, cs) };
+      }
+      ctx.charts = dgChartCache.imgs;
+    }
+    ctx.ovMap = await dgOverviewMap(cs).catch(e => { console.error("carte", e); return null; });
+    if (wantAi.length && preview) {
+      const ph = plan.lang === "en"
+        ? "The AI analysis will be drafted here when the report is generated, from the figures of this slide."
+        : "L'analyse de l'IA sera rédigée ici à la génération du rapport, à partir des chiffres de cette slide.";
+      wantAi.forEach(id => { ctx.ai[id] = ph; });
+      ctx.usedAi = true;
+    } else if (wantAi.length) {
       step(t("dg.stepAi"));
       try { ctx.ai = await dgAnalyse(plan, ctx, wantAi); }
       catch (e) { ctx.ai = {}; console.error(e); }
       ctx.usedAi = Object.keys(ctx.ai).length > 0;
     }
     step(t("dg.stepSlides"));
-    plan.blocks.forEach(id => {
+    plan.blocks.forEach((id, i) => {
       const b = dgBlock(id);
       if (b) slides.push.apply(slides, b.slides(ctx));
+      /* Les graphiques suivent la synthese : ils en sont l'illustration. */
+      if (i === 0) ctx.charts.forEach(img => slides.push(dgChartSlide(img, ctx)));
     });
+    /* La vue d'ensemble europeenne ouvre chaque rapport, juste apres la
+       couverture, recalculee sur les pays du rapport. */
+    const ov = dgOverviewSlide(ctx);
+    if (ov) slides.unshift(ov);
     ctx.slideCount = slides.length + 1;
     slides.unshift(dgCover(ctx));
     /* Le pied de page est pose ici, avant que la langue ne revienne a celle de
@@ -787,50 +1181,149 @@ async function dgGenerate(plan, onStep){
       rptTextBox(9000, rptEmu(4.2), RPT_H - rptEmu(0.36), rptEmu(5.2), rptH(1, 7.5, 0),
         [{ runs: [{ t: note, sz: 750, b: true, color: "FF2A49" }] }])));
   }
+  return slides;
+}
 
+async function dgGenerate(plan, onStep){
+  const step = onStep || function(){};
+  const slides = await dgBuild(plan, step, false);
   step(t("dg.stepPack"));
   const blob = await rptPackage(slides);
-  const name = (plan.title || (plan.lang === "en" ? "NIS 2 report" : "Rapport NIS 2"))
-    .replace(/[\\/:*?"<>|]/g, " ").replace(/\s+/g, " ").trim();
+  const name = plan.lang === "en" ? "NIS 2 report" : "Rapport NIS 2";
   return { blob: blob, slides: slides.length,
            filename: "RegWatch - " + name + " - " + new Date().toISOString().slice(0, 10) + ".pptx" };
 }
 
-/* ================= le questionnaire =================
- * Quatre questions, une par ecran, puis un recapitulatif. Le bouton principal
- * avance ; on peut revenir. Chaque ecran dit ce qu'il change, et le
- * recapitulatif annonce le nombre de slides avant de lancer : c'est ce chiffre
- * qui fait retirer un bloc plutot que de decouvrir un fichier de soixante pages.
+/* ---------- l'apercu d'une slide ----------
+ * Un rendu HTML des formes que ce module ecrit, et d'elles seulement : zones de
+ * texte, rectangles, filets, tableaux, images. Il lit le XML de la slide tel
+ * qu'il partira dans le fichier, si bien qu'un defaut de mise en page se voit
+ * ici avant de se voir dans PowerPoint. Le gabarit Wavestone (logo, pied de
+ * page du masque) n'est pas redessine : l'apercu le dit.
  */
-const DG_STEPS = ["purpose", "scope", "blocks", "ai", "recap"];
+const DG_NS_A = "http://schemas.openxmlformats.org/drawingml/2006/main";
+const DG_NS_R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+function dgSlideHTML(slide, W, urls){
+  const k = W / RPT_W;
+  const px = v => (Number(v || 0) * k).toFixed(2) + "px";
+  const fpx = sz => (Number(sz || 1000) / 100 * 12700 * k).toFixed(2) + "px";
+  const doc = new DOMParser().parseFromString(rptSlideXml(slide), "application/xml");
+  const A = (el, name) => el ? el.getElementsByTagNameNS(DG_NS_A, name)[0] : null;
+  const kids = (el, name) => el ? [...el.children].filter(c => c.localName === name) : [];
+  const box = el => {
+    const off = A(el, "off"), ext = A(el, "ext");
+    return `left:${px(off && off.getAttribute("x"))};top:${px(off && off.getAttribute("y"))};`
+      + `width:${px(ext && ext.getAttribute("cx"))};height:${px(ext && ext.getAttribute("cy"))};`;
+  };
+  const fillOf = el => {
+    const f = el && [...el.children].find(c => c.localName === "solidFill");
+    const c = f && A(f, "srgbClr");
+    return c ? "#" + c.getAttribute("val") : "";
+  };
+  const runs = p => kids(p, "r").map(r => {
+    const pr = A(r, "rPr"), c = pr && A(pr, "srgbClr");
+    const tt = A(r, "t");
+    return `<span style="font-size:${fpx(pr && pr.getAttribute("sz"))};font-weight:${pr && pr.getAttribute("b") === "1" ? 700 : 400};`
+      + `${pr && pr.getAttribute("i") === "1" ? "font-style:italic;" : ""}color:${c ? "#" + c.getAttribute("val") : "#000"}">`
+      + esc(tt ? tt.textContent : "") + "</span>";
+  }).join("");
+  const paras = body => kids(body, "p").map(p => {
+    const pr = kids(p, "pPr")[0];
+    const al = { ctr: "center", r: "right", just: "justify" }[pr && pr.getAttribute("algn")] || "left";
+    const bu = pr && A(pr, "buChar");
+    const sb = pr && A(pr, "spcPts");
+    return `<p style="margin:${sb ? (Number(sb.getAttribute("val")) / 100 * 12700 * k).toFixed(2) : 0}px 0 0;text-align:${al};line-height:1.2;`
+      + `${bu ? `padding-left:${px(rptEmu(0.16))};text-indent:-${px(rptEmu(0.16))};` : ""}">`
+      + (bu ? `<span style="color:#${RPT_VIOLET}">${esc(bu.getAttribute("char"))}&nbsp;</span>` : "")
+      + (runs(p) || "&nbsp;") + "</p>";
+  }).join("");
+  const out = [];
+  const tree = doc.getElementsByTagNameNS("*", "spTree")[0];
+  [...(tree ? tree.children : [])].forEach(el => {
+    const n = el.localName;
+    if (n === "sp") {
+      const sp = kids(el, "spPr")[0];
+      const fill = fillOf(sp);
+      const ln = sp && kids(sp, "ln")[0];
+      const lc = ln && fillOf(ln);
+      const lw = ln && ln.getAttribute("w") ? Math.max(1, Number(ln.getAttribute("w")) * k) : 1;
+      const body = kids(el, "txBody")[0];
+      const bp = body && A(body, "bodyPr");
+      const geom = A(sp, "prstGeom"), prst = geom ? geom.getAttribute("prst") : "rect";
+      const adj = {};
+      [...(geom ? geom.getElementsByTagNameNS(DG_NS_A, "gd") : [])].forEach(g =>
+        { adj[g.getAttribute("name")] = Number((g.getAttribute("fmla") || "").replace(/^val\s+/, "")); });
+      const ext = A(el, "ext"), wpx = Number(ext.getAttribute("cx")) * k, hpx = Number(ext.getAttribute("cy")) * k;
+      /* Les anneaux et les arcs, dessines en SVG avec les memes reglages. */
+      let shape = "";
+      if (prst === "donut" || prst === "blockArc") {
+        const th = (adj.adj3 || adj.adj || 25000) / 100000 * Math.min(wpx, hpx);
+        const r = Math.min(wpx, hpx) / 2 - th / 2, cx = wpx / 2, cy = hpx / 2;
+        if (prst === "donut") shape = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${fill}" stroke-width="${th}"/>`;
+        else {
+          const a0 = (adj.adj1 || 0) / 60000 * Math.PI / 180, a1 = (adj.adj2 || 0) / 60000 * Math.PI / 180;
+          let sweep = a1 - a0; if (sweep <= 0) sweep += 2 * Math.PI;
+          const p = a => (cx + r * Math.cos(a)).toFixed(2) + " " + (cy + r * Math.sin(a)).toFixed(2);
+          shape = `<path d="M${p(a0)} A${r} ${r} 0 ${sweep > Math.PI ? 1 : 0} 1 ${p(a0 + sweep)}" fill="none" stroke="${fill}" stroke-width="${th}"/>`;
+        }
+        out.push(`<svg class="dgp-sp" style="${box(el)}overflow:visible" viewBox="0 0 ${wpx} ${hpx}">${shape}</svg>`);
+        return;
+      }
+      const anchor = bp && bp.getAttribute("anchor");
+      const flex = anchor === "ctr" ? "display:flex;flex-direction:column;justify-content:center;" : anchor === "b" ? "display:flex;flex-direction:column;justify-content:flex-end;" : "";
+      const ins = bp && bp.getAttribute("lIns") ? Number(bp.getAttribute("lIns")) * k : 0;
+      out.push(`<div class="dgp-sp" style="${box(el)}${flex}${ins ? "padding:" + ins + "px;" : ""}${fill ? "background:" + fill + ";" : ""}`
+        + `${prst === "ellipse" ? "border-radius:50%;" : ""}${lc ? "outline:" + lw.toFixed(1) + "px solid " + lc + ";outline-offset:-" + lw.toFixed(1) + "px;" : ""}">`
+        + (body ? paras(body) : "") + "</div>");
+    } else if (n === "cxnSp") {
+      const ln = A(el, "ln");
+      out.push(`<div class="dgp-sp" style="${box(el)}height:0;border-top:1.5px dotted ${fillOf(ln) || "#451DC7"}"></div>`);
+    } else if (n === "graphicFrame") {
+      const tbl = A(el, "tbl");
+      if (!tbl) return;
+      const cols = [...tbl.getElementsByTagNameNS(DG_NS_A, "gridCol")].map(g => px(g.getAttribute("w")));
+      const rows = [...tbl.getElementsByTagNameNS(DG_NS_A, "tr")];
+      out.push(`<table class="dgp-tbl" style="${box(el)}height:auto"><colgroup>${cols.map(w => `<col style="width:${w}">`).join("")}</colgroup>`
+        + rows.map(tr => `<tr style="height:${px(tr.getAttribute("h"))}">` + kids(tr, "tc").map(tc => {
+          const pr = kids(tc, "tcPr")[0];
+          return `<td style="background:${fillOf(pr) || "transparent"};padding:${px(rptEmu(0.03))} ${px(rptEmu(0.07))}">${paras(kids(tc, "txBody")[0])}</td>`;
+        }).join("") + "</tr>").join("") + "</table>");
+    } else if (n === "pic") {
+      const blip = A(el, "blip");
+      const rid = blip && blip.getAttributeNS(DG_NS_R, "embed");
+      const m = (slide.media || []).find(x => x.rid === rid);
+      if (!m) return;
+      if (!m.url) { m.url = URL.createObjectURL(new Blob([m.bytes], { type: "image/png" })); urls && urls.push(m.url); }
+      out.push(`<img class="dgp-sp" alt="" src="${m.url}" style="${box(el)}">`);
+    }
+  });
+  return `<div class="dgp" style="width:${W}px;height:${(RPT_H * k).toFixed(1)}px">${out.join("")}</div>`;
+}
+
+/* ================= le questionnaire =================
+ * Quatre ecrans, puis la generation. Le bouton principal avance ; on peut
+ * revenir. Le recapitulatif annonce le nombre de slides avant de lancer.
+ */
+const DG_STEPS = ["scope", "charts", "ai", "preview"];
+const DG_ICON_ZOOM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M11 8v6M8 11h6"/></svg>';
 
 function docgenDialog(){
   const old = document.getElementById("dgDlg");
   if (old) old.remove();
   const plan = dgPlan();
   let step = 0;
+  /* Les modeles proposes, lus une fois aupres du proxy a l'arrivee sur
+     l'ecran de l'analyse. */
+  let models = null;
+  /* L'onglet de graphiques ouvert. */
+  let chartSec = null;
+  /* Les slides de l'apercu et les adresses d'images a liberer a la fermeture. */
+  let prevSlides = null, prevSeq = 0;
+  const prevUrls = [];
 
   const dlg = document.createElement("dialog");
   dlg.id = "dgDlg";
   document.body.appendChild(dlg);
-
-  /* Le nombre de slides annonce : la somme des blocs, plus la couverture. Les
-     tableaux sont comptes par page, avec la meme regle que dgPaged. */
-  function slideEstimate(){
-    const cs = dgCountries(plan);
-    let n = 1;
-    plan.blocks.forEach(id => {
-      if (DG_PER_COUNTRY[id]) { n += DG_PER_COUNTRY[id] * cs.length; return; }
-      if (id === "synth" || id === "news" || id === "sources") { n += 1; return; }
-      /* Une estimation, pas un compte : les lignes d'un tableau n'ont pas
-         toutes la meme hauteur, et le chiffre sert a decider d'une rubrique,
-         pas a numeroter les slides. On compte une ligne et demie en moyenne. */
-      const rowH = rptH(1.5, 9, 4);
-      const room = DG_BOT - DG_TOP - (plan.ai ? rptEmu(1.4) : 0);
-      n += Math.max(1, Math.ceil(cs.length / Math.max(3, Math.floor(room / rowH))));
-    });
-    return n;
-  }
 
   function flagsGrid(){
     const all = COUNTRIES.slice().sort((a, b) => a.name.localeCompare(b.name, lang));
@@ -840,69 +1333,107 @@ function docgenDialog(){
         <i class="fi">${flagSvg(c.iso)}</i><span>${esc(c.name)}</span></button>`).join("")}</div>`;
   }
 
+  /* Un graphique en vignette : la carte de la vue europeenne elle-meme, reduite.
+     La vignette ne sert qu'a reconnaitre le graphique ; la loupe l'ouvre en
+     grand pour verifier que c'est le bon. */
+  function chartTile(it, cs){
+    const on = plan.charts.includes(it.id);
+    const w = it.ch.wide ? 1100 : 620;
+    return `<div class="dg-chart" data-c="${esc(it.id)}" role="button" tabindex="0" aria-pressed="${on}">
+      <div class="dg-chart-prev"><div class="dg-chart-in" style="width:${w}px;zoom:${(170 / w).toFixed(4)}">${euCard(it.ch, cs)}</div></div>
+      <div class="dg-chart-f"><span class="dg-chk" aria-hidden="true"></span>
+        <b>${esc(dgChartTitle(it))}</b>
+        <button type="button" class="dg-zoom" data-z="${esc(it.id)}" title="${esc(t("dg.zoom"))}" aria-label="${esc(t("dg.zoom"))}">${DG_ICON_ZOOM}</button></div>
+    </div>`;
+  }
+
+  /* Un seul choix, trois issues : sans IA (vert), un modele deploye, un modele
+     a venir. Chaque carte porte son estimation et une jauge a la meme echelle :
+     l'ecart entre les options se voit avant de se lire. */
+  function aiChoices(cs){
+    const ready = typeof chatReady !== "function" || chatReady();
+    const tok = dgTokens(plan, cs);
+    const live = ready && models ? models.list : [];
+    const opts = live.map(m => ({ m: m, im: dgImpact(m, tok.inTok, tok.outTok), soon: false }))
+      .concat(DG_MODELS_SOON.filter(m => !live.includes(m))
+        .map(m => ({ m: m, im: dgImpact(m, tok.inTok, tok.outTok), soon: true })));
+    const max = Math.max(...opts.map(o => o.im.wh[1]), 0.001);
+    const gauge = (im, lvl) => `<span class="dg-gauge"><span class="dg-gauge-f ${lvl}" style="width:${Math.max(4, 100 * im.wh[1] / max).toFixed(1)}%"></span></span>`;
+    const card = o => {
+      const lvl = dgEcoLevel(o.im);
+      const on = !o.soon && plan.ai && plan.model === o.m;
+      return `<button type="button" class="dg-ai ${lvl}${o.soon ? " soon" : ""}" data-m="${esc(o.m)}" aria-pressed="${on}"${o.soon ? " disabled" : ""}>
+        <span class="dg-ai-h"><b>${esc(o.m)}</b>
+          ${o.soon ? `<span class="dg-pill soon">${t("dg.soon")}</span>` : ""}
+          <span class="dg-pill ${lvl}">${t(lvl === "high" ? "dg.ecoHigh" : "dg.ecoMid")}</span></span>
+        <span class="dg-eco">${t("dg.ecoWh", { a: dgFmt(o.im.wh[0]), b: dgFmt(o.im.wh[1]) })} · ${t("dg.ecoG", { a: dgFmt(o.im.g[0]), b: dgFmt(o.im.g[1]) })}
+          <em>${t("dg.ecoPhone", { a: dgFmt(o.im.phone[0]), b: dgFmt(o.im.phone[1]) })}</em></span>
+        ${gauge(o.im, lvl)}</button>`;
+    };
+    return `<div class="dg-ais">
+        <button type="button" class="dg-ai none" data-m="" aria-pressed="${!plan.ai}">
+          <span class="dg-ai-h"><b>${t("dg.aiOff")}</b><span class="dg-pill none">${t("dg.ecoNone")}</span></span>
+          <span class="dg-eco">${t("dg.ecoZero")}</span>
+          <span class="dg-gauge"><span class="dg-gauge-f none" style="width:0"></span></span></button>
+        ${ready && !models ? `<p class="q-note">${t("dg.modelsLoading")}</p>` : ""}
+        ${opts.map(card).join("")}
+      </div>
+      ${!ready ? `<p class="q-note">${t("dg.aiNoKey")}</p>` : ""}
+      <details class="dg-eco-how"><summary>${t("dg.ecoHowT")}</summary>
+        <p>${t("dg.ecoHow", { inT: tok.inTok.toLocaleString(), outT: tok.outTok.toLocaleString() })}</p></details>`;
+  }
+
   function screen(){
     const k = DG_STEPS[step];
     const cs = dgCountries(plan);
-    if (k === "purpose") return `
-      <p class="dg-q">${t("dg.q1")}</p>
-      <div class="rpt-set" data-k="purpose"><div class="rpt-opts">
-        <button class="rpt-opt" type="button" data-v="internal" aria-pressed="${plan.purpose === "internal"}">${t("dg.internal")}</button>
-        <button class="rpt-opt" type="button" data-v="client" aria-pressed="${plan.purpose === "client"}">${t("dg.client")}</button>
-      </div></div>
-      <p class="q-note">${t(plan.purpose === "client" ? "dg.clientNote" : "dg.internalNote")}</p>
-      <label class="dg-f"><span>${t("dg.titleField")}</span>
-        <input id="dgTitle" type="text" value="${esc(plan.title)}" placeholder="${esc(t("dg.titlePh"))}"></label>
-      <label class="dg-f"><span>${t("dg.audienceField")}</span>
-        <input id="dgAud" type="text" value="${esc(plan.audience)}" placeholder="${esc(t("dg.audiencePh"))}"></label>
+    if (k === "scope") return `
+      <p class="dg-q">${t("dg.q2")}</p>
       <div class="rpt-set" data-k="lang"><span class="rpt-lab">${t("rpt.lang")}</span><div class="rpt-opts">
         <button class="rpt-opt" type="button" data-v="fr" aria-pressed="${plan.lang === "fr"}">Français</button>
         <button class="rpt-opt" type="button" data-v="en" aria-pressed="${plan.lang === "en"}">English</button>
-      </div></div>`;
-    if (k === "scope") return `
-      <p class="dg-q">${t("dg.q2")}</p>
-      <div class="rpt-set" data-k="scope"><div class="rpt-opts">
-        ${[["sel", t("dg.scopeSel")], ["eu", t("dg.scopeEu")], ["done", t("dg.scopeDone")],
-           ["todo", t("dg.scopeTodo")], ["pick", t("dg.scopePick")]]
-          .map(([v, l]) => `<button class="rpt-opt" type="button" data-v="${v}" aria-pressed="${plan.scope === v}">${l}</button>`).join("")}
       </div></div>
-      ${plan.scope === "pick" ? flagsGrid() : ""}
-      <p class="q-note">${t("dg.scopeCount", { n: cs.length })}${cs.length
-        ? " · " + esc(cs.slice(0, 8).map(c => c.name).join(", ")) + (cs.length > 8 ? "…" : "")
-        : ""}</p>`;
-    if (k === "blocks") return `
-      <p class="dg-q">${t("dg.q3")}</p>
-      <div class="dg-blocks">${DG_BLOCKS.map(b => {
-        const on = plan.blocks.includes(b.id);
-        const per = DG_PER_COUNTRY[b.id];
-        return `<button type="button" class="dg-block" data-b="${b.id}" aria-pressed="${on}">
-          <b>${t(b.tKey)}</b><span>${t("dg.d." + b.id)}</span>
-          ${per ? `<em>${t("dg.perCountry", { n: per * cs.length })}</em>` : ""}</button>`;
-      }).join("")}</div>`;
+      <span class="rpt-lab dg-lab">${t("dg.countriesLab")}</span>
+      ${flagsGrid()}
+      <p class="q-note" id="dgScopeN">${scopeNote(cs)}</p>`;
+    if (k === "charts") {
+      const cat = dgChartCatalog(cs);
+      if (!cat.length) return `<p class="dg-q">${t("dg.qCharts")}</p><p class="q-note">${t("dg.noCharts")}</p>`;
+      const secs = [];
+      cat.forEach(it => {
+        let g = secs.find(x => x.sec === it.sec);
+        if (!g) secs.push(g = { sec: it.sec, items: [] });
+        g.items.push(it);
+      });
+      if (!secs.some(g => g.sec.key === chartSec)) chartSec = secs[0].sec.key;
+      const cur = secs.find(g => g.sec.key === chartSec);
+      return `<p class="dg-q">${t("dg.qCharts")}</p>
+        <p class="q-note">${t("dg.chartsNote")} <b id="dgChartsN">${t("dg.chartsN", { n: plan.charts.length })}</b></p>
+        <div class="dg-tabs" role="tablist">${secs.map(g => {
+          const n = g.items.filter(it => plan.charts.includes(it.id)).length;
+          return `<button type="button" role="tab" class="dg-tab" data-sec="${g.sec.key}" aria-selected="${g.sec.key === chartSec}">
+            ${t(g.sec.tKey)}<em data-n="${g.sec.key}"${n ? "" : " hidden"}>${n}</em></button>`;
+        }).join("")}</div>
+        <div class="dg-charts" role="tabpanel">${cur.items.map(it => chartTile(it, cs)).join("")}</div>`;
+    }
     if (k === "ai") return `
       <p class="dg-q">${t("dg.q4")}</p>
-      <div class="rpt-set" data-k="ai"><div class="rpt-opts">
-        <button class="rpt-opt" type="button" data-v="1" aria-pressed="${plan.ai}">${t("dg.aiOn")}</button>
-        <button class="rpt-opt" type="button" data-v="0" aria-pressed="${!plan.ai}">${t("dg.aiOff")}</button>
-      </div></div>
-      <div class="rpt-note">${t("dg.aiNote")}</div>
-      ${plan.ai && typeof chatReady === "function" && !chatReady()
-        ? `<p class="q-note">${t("dg.aiNoKey")}</p>` : ""}`;
-    const blocks = plan.blocks.map(id => t(dgBlock(id).tKey)).join(", ");
+      ${aiChoices(cs)}`;
+    /* L'apercu : les slides elles-memes, construites comme a la generation.
+       Elles arrivent apres l'ecran (la capture des graphiques prend un
+       instant) dans #dgPrev. */
     return `
-      <p class="dg-q">${t("dg.q5")}</p>
-      <dl class="dg-recap">
-        <dt>${t("dg.rPurpose")}</dt><dd>${t(plan.purpose === "client" ? "dg.client" : "dg.internal")}${plan.audience ? " · " + esc(plan.audience) : ""}</dd>
-        <dt>${t("dg.rTitle")}</dt><dd>${esc(plan.title || t("dg.titleDefault"))}</dd>
-        <dt>${t("dg.rScope")}</dt><dd>${t("dg.scopeCount", { n: cs.length })}${cs.length && cs.length <= 12 ? " · " + esc(cs.map(c => c.name).join(", ")) : ""}</dd>
-        <dt>${t("dg.rBlocks")}</dt><dd>${blocks || "-"}</dd>
-        <dt>${t("dg.rAi")}</dt><dd>${t(plan.ai ? "dg.aiOn" : "dg.aiOff")}</dd>
-        <dt>${t("dg.rSlides")}</dt><dd>${slideEstimate()}</dd>
-      </dl>
-      <div class="rpt-note">${t("dg.recapNote")}</div>`;
+      <p class="dg-q">${t("dg.qPreview")}</p>
+      <div class="dg-prev" id="dgPrev"><p class="q-note">${t("dg.prevLoading")}</p></div>
+      <p class="q-note">${t("dg.prevNote")}</p>`;
+  }
+  function scopeNote(cs){
+    return t("dg.scopeCount", { n: cs.length }) + (cs.length
+      ? " · " + esc(cs.slice(0, 8).map(c => c.name).join(", ")) + (cs.length > 8 ? "…" : "") : "");
   }
 
   function render(){
     const last = step === DG_STEPS.length - 1;
+    dlg.classList.toggle("wide", DG_STEPS[step] === "charts" || DG_STEPS[step] === "preview");
     dlg.innerHTML = `
       <div class="rpt-box dg-box">
         <div class="rpt-h"><h2>${t("dg.title")}</h2>
@@ -920,12 +1451,116 @@ function docgenDialog(){
         </div>
       </div>`;
     wire();
+    if (DG_STEPS[step] === "preview") loadPreview();
+    if (DG_STEPS[step] === "ai" && !models && typeof chatModels === "function"
+        && (typeof chatReady !== "function" || chatReady())) {
+      chatModels().then(m => {
+        models = m;
+        if (!m.list.includes(plan.model)) plan.model = plan.ai ? (m.def || m.list[0] || "") : "";
+        if (!plan.model) plan.ai = false;
+        dgSavePlan(plan);
+        if (DG_STEPS[step] === "ai") render();
+      });
+    }
+  }
+
+  async function loadPreview(){
+    const seq = ++prevSeq;
+    const box = dlg.querySelector("#dgPrev");
+    try {
+      const slides = await dgBuild(plan, msg => {
+        const b = dlg.querySelector("#dgPrev");
+        if (b && seq === prevSeq) b.innerHTML = `<p class="q-note">${esc(msg)}</p>`;
+      }, true);
+      if (seq !== prevSeq || DG_STEPS[step] !== "preview") return;
+      prevSlides = slides;
+      const b = dlg.querySelector("#dgPrev");
+      if (!b) return;
+      b.innerHTML = `<p class="dg-prev-n">${t("dg.prevCount", { n: slides.length })}</p>
+        <div class="dg-prev-grid">${slides.map((sl, i) => `
+          <button type="button" class="dg-prev-s" data-i="${i}" title="${esc(t("dg.zoom"))}">
+            <!-- dessinee a 960 px puis reduite : en dessous de quelques pixels, les
+                 navigateurs agrandissent le texte et la mise en page se defait -->
+            <div class="dg-prev-z" style="zoom:${(230 / 960).toFixed(4)}">${dgSlideHTML(sl, 960, prevUrls)}</div><span>${i + 1}</span></button>`).join("")}</div>`;
+      b.querySelectorAll(".dg-prev-s").forEach(x => x.addEventListener("click", () => openSlide(+x.dataset.i)));
+    } catch (e) {
+      console.error(e);
+      if (box && seq === prevSeq) box.innerHTML = `<p class="q-note">${esc(t("rpt.failed") + " " + e.message)}</p>`;
+    }
+  }
+  /* Une slide en grand, avec de quoi passer a la suivante. */
+  function openSlide(i){
+    if (!prevSlides || !prevSlides[i]) return;
+    closeZoom();
+    const W = Math.min(1100, Math.round(window.innerWidth * 0.86));
+    const lb = document.createElement("div");
+    lb.className = "dg-lb"; lb.id = "dgLb";
+    lb.innerHTML = `<div class="dg-lb-in" role="dialog">
+      <div class="dg-lb-h"><b>${t("dg.prevSlide", { i: i + 1, n: prevSlides.length })}</b>
+        <button type="button" class="btn" id="dgLbPrev"${i ? "" : " disabled"}>‹</button>
+        <button type="button" class="btn" id="dgLbNext"${i < prevSlides.length - 1 ? "" : " disabled"}>›</button>
+        <button class="x" type="button" id="dgLbX" aria-label="${t("fiche.close")}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div class="dg-lb-b">${dgSlideHTML(prevSlides[i], W, prevUrls)}</div></div>`;
+    dlg.appendChild(lb);
+    lb.addEventListener("click", e => { if (e.target === lb) closeZoom(); });
+    lb.querySelector("#dgLbX").addEventListener("click", closeZoom);
+    lb.querySelector("#dgLbPrev").addEventListener("click", () => openSlide(i - 1));
+    lb.querySelector("#dgLbNext").addEventListener("click", () => openSlide(i + 1));
+    lb.tabIndex = -1;
+    lb.addEventListener("keydown", e => {
+      if (e.key === "ArrowLeft" && i) openSlide(i - 1);
+      if (e.key === "ArrowRight" && i < prevSlides.length - 1) openSlide(i + 1);
+    });
+    lb.focus();
+  }
+
+  /* La loupe : le graphique a sa taille de la vue europeenne, avec le bouton
+     pour le prendre ou le retirer sans revenir a la vignette. */
+  function openZoom(id){
+    const cs = dgCountries(plan);
+    const it = dgChartCatalog(cs).find(x => x.id === id);
+    if (!it) return;
+    closeZoom();
+    const lb = document.createElement("div");
+    lb.className = "dg-lb"; lb.id = "dgLb";
+    const on = () => plan.charts.includes(id);
+    lb.innerHTML = `<div class="dg-lb-in" role="dialog" aria-label="${esc(dgChartTitle(it))}">
+      <div class="dg-lb-h"><b>${esc(dgChartTitle(it))}</b>
+        <button type="button" class="btn${on() ? "" : " primary"}" id="dgLbPick">${t(on() ? "dg.unpick" : "dg.pick")}</button>
+        <button class="x" type="button" id="dgLbX" aria-label="${t("fiche.close")}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div class="dg-lb-b"><div class="dg-lb-card" style="width:${it.ch.wide ? 1100 : 640}px">${euCard(it.ch, cs)}</div></div>
+    </div>`;
+    dlg.appendChild(lb);
+    lb.addEventListener("click", e => { if (e.target === lb) closeZoom(); });
+    lb.querySelector("#dgLbX").addEventListener("click", closeZoom);
+    lb.querySelector("#dgLbPick").addEventListener("click", () => { toggleChart(id); closeZoom(); });
+    lb.querySelector("#dgLbX").focus();
+  }
+  function closeZoom(){ const lb = dlg.querySelector("#dgLb"); if (lb) lb.remove(); }
+  /* Echap ferme d'abord la loupe, pas tout le questionnaire. */
+  dlg.addEventListener("cancel", e => { if (dlg.querySelector("#dgLb")) { e.preventDefault(); closeZoom(); } });
+
+  function toggleChart(id){
+    plan.charts = plan.charts.includes(id) ? plan.charts.filter(x => x !== id) : plan.charts.concat([id]);
+    dgSavePlan(plan);
+    /* Sans re-rendre : reconstruire toutes les vignettes a chaque clic se voyait. */
+    const tile = [...dlg.querySelectorAll(".dg-chart")].find(x => x.dataset.c === id);
+    if (tile) tile.setAttribute("aria-pressed", String(plan.charts.includes(id)));
+    const n = dlg.querySelector("#dgChartsN");
+    if (n) n.textContent = t("dg.chartsN", { n: plan.charts.length });
+    const tab = dlg.querySelector('.dg-tab[aria-selected="true"] em');
+    if (tab) {
+      const k = dlg.querySelectorAll('.dg-chart[aria-pressed="true"]').length;
+      tab.textContent = k; tab.hidden = !k;
+    }
   }
 
   function wire(){
     dlg.querySelector("#dgX").addEventListener("click", () => dlg.close());
     const back = dlg.querySelector("#dgBack");
-    if (back) back.addEventListener("click", () => { read(); step--; render(); });
+    if (back) back.addEventListener("click", () => { step--; render(); });
 
     dlg.querySelectorAll(".rpt-set").forEach(set => set.addEventListener("click", e => {
       const b = e.target.closest(".rpt-opt");
@@ -933,35 +1568,45 @@ function docgenDialog(){
       const k = set.dataset.k;
       if (k === "ai") plan.ai = b.dataset.v === "1";
       else plan[k] = b.dataset.v;
-      read();
+      dgSavePlan(plan);
       render();
     }));
     dlg.querySelectorAll(".dg-flag").forEach(b => b.addEventListener("click", () => {
       const iso = b.dataset.iso;
       plan.isos = plan.isos.includes(iso) ? plan.isos.filter(i => i !== iso) : plan.isos.concat([iso]);
-      render();
+      dgSavePlan(plan);
+      b.setAttribute("aria-pressed", String(plan.isos.includes(iso)));
+      const n = dlg.querySelector("#dgScopeN");
+      if (n) n.innerHTML = scopeNote(dgCountries(plan));
     }));
-    dlg.querySelectorAll(".dg-block").forEach(b => b.addEventListener("click", () => {
-      const id = b.dataset.b;
-      /* L'ordre des blocs dans le rapport est celui de DG_BLOCKS, pas celui des
-         clics : un sommaire qui suit l'ordre des clics surprend son auteur. */
-      plan.blocks = plan.blocks.includes(id)
-        ? plan.blocks.filter(x => x !== id)
-        : DG_BLOCKS.filter(x => x.id === id || plan.blocks.includes(x.id)).map(x => x.id);
+    dlg.querySelectorAll(".dg-chart").forEach(tile => {
+      tile.addEventListener("click", e => {
+        const z = e.target.closest(".dg-zoom");
+        if (z) { e.stopPropagation(); openZoom(z.dataset.z); return; }
+        toggleChart(tile.dataset.c);
+      });
+      tile.addEventListener("keydown", e => {
+        if (e.target !== tile || (e.key !== "Enter" && e.key !== " ")) return;
+        e.preventDefault(); toggleChart(tile.dataset.c);
+      });
+    });
+    dlg.querySelectorAll(".dg-tab").forEach(b => b.addEventListener("click", () => {
+      chartSec = b.dataset.sec;
+      const body = dlg.querySelector(".dg-b"), top = body ? body.scrollTop : 0;
       render();
+      const nb = dlg.querySelector(".dg-b"); if (nb) nb.scrollTop = top;
+    }));
+    dlg.querySelectorAll(".dg-ai:not([disabled])").forEach(b => b.addEventListener("click", () => {
+      plan.model = b.dataset.m;
+      plan.ai = !!plan.model;
+      dgSavePlan(plan);
+      dlg.querySelectorAll(".dg-ai").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
     }));
     dlg.querySelector("#dgNext").addEventListener("click", () => {
-      read();
-      /* On ne laisse pas avancer sur un ecran dont la reponse est vide : la
-         faute se voyait cinq ecrans plus loin, au moment de generer, et il
-         fallait revenir en arriere pour comprendre laquelle. */
-      const k = DG_STEPS[step];
-      if (k === "scope" && !dgCountries(plan).length) {
+      /* On ne laisse pas avancer sans pays : la faute se voyait au moment de
+         generer, trois ecrans plus loin. */
+      if (DG_STEPS[step] === "scope" && !dgCountries(plan).length) {
         dlg.querySelector("#dgMsg").textContent = t("dg.errNoCountry");
-        return;
-      }
-      if (k === "blocks" && !plan.blocks.length) {
-        dlg.querySelector("#dgMsg").textContent = t("dg.errNoBlock");
         return;
       }
       if (step < DG_STEPS.length - 1) { step++; render(); return; }
@@ -969,16 +1614,14 @@ function docgenDialog(){
     });
   }
 
-  function read(){
-    const ti = dlg.querySelector("#dgTitle"), au = dlg.querySelector("#dgAud");
-    if (ti) plan.title = ti.value.trim();
-    if (au) plan.audience = au.value.trim();
-    dgSavePlan(plan);
-  }
-
   async function run(){
     const go = dlg.querySelector("#dgNext"), msg = dlg.querySelector("#dgMsg");
     go.disabled = true;
+    /* Les graphiques choisis sont ceux du perimetre au moment du choix : un pays
+       retire depuis peut faire disparaitre un graphique (« Mes visuels » qui ne
+       se calcule plus). On ne garde que ceux qui existent encore. */
+    const ids = dgChartCatalog(dgCountries(plan)).map(it => it.id);
+    plan.charts = plan.charts.filter(id => ids.includes(id));
     try {
       const { blob, filename, slides } = await dgGenerate(plan, s => { msg.textContent = s; });
       const url = URL.createObjectURL(blob);
@@ -999,6 +1642,7 @@ function docgenDialog(){
   }
 
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("close", () => { prevUrls.forEach(u => URL.revokeObjectURL(u)); prevUrls.length = 0; });
   render();
   if (dlg.showModal) dlg.showModal();
 }

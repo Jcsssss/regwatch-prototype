@@ -66,6 +66,7 @@ DIR = ROOT / "data" / "veille"
 SOURCES = DIR / "sources.json"
 RECORDS = DIR / "records.json"
 STATE = DIR / "state.json"
+USAGE = DIR / "usage.json"
 
 UA = {"User-Agent": "RegWatch-veille/1.0 (Wavestone; veille reglementaire NIS 2)"}
 TIMEOUT = 45
@@ -694,6 +695,13 @@ def cmd_run(args):
     print("\n" + " · ".join("%s %d" % (k, v) for k, v in n.items()))
     if model:
         print("jetons : %d en entrée, %d en sortie" % tuple(model.tokens))
+        # La consommation reelle de chaque passe, pour l'estimation d'impact
+        # carbone de l'outil (tools/carbon_to_js.py). Un essai --dry n'appelle
+        # pas le modele et n'est pas compte.
+        if not args.dry and any(model.tokens):
+            usage = load(USAGE, [])
+            usage.append({"date": today.isoformat(), "in": model.tokens[0], "out": model.tokens[1]})
+            save(USAGE, usage)
     return added
 
 
@@ -714,7 +722,7 @@ def cmd_pipeline(args):
         if check.returncode:
             print("\n!! La carte des cellules ne correspond plus au classeur (voir ci-dessus).")
             print("   Relancer : python3 tools/excel_cellmap.py \"%s\"\n" % wb.name)
-    steps = [[py, "tools/registry_to_js.py"],
+    steps = [[py, "tools/registry_to_js.py"], [py, "tools/carbon_to_js.py"],
              [py, "tools/fetch_excerpts.py"],
              [py, "agent-veille/translate_items.py", ".env"],
              [py, "tools/veille_to_watchitems.py"],

@@ -1,0 +1,2 @@
+/* Genere par tools/carbon_to_js.py - ne pas modifier a la main. */
+const CARBON_DATA = {"dev": {"out": 3254276, "fresh": 35637749, "cached": 1413716814, "days": 25, "from": "2026-08-17", "to": "2026-10-07"}, "agent": {"judged": 331, "written": 131, "measuredIn": 0, "measuredOut": 0, "passes": 0}, "i18n": {"texts": 2328}, "video": {"renders": 9}, "built": "2026-10-07"};

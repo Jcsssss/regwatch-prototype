@@ -88,7 +88,11 @@ appsettings set`):
 
     AZURE_OPENAI_API_KEY        the firm's key — set here, nowhere else
     AZURE_OPENAI_ENDPOINT       https://<resource>.services.ai.azure.com
-    AZURE_OPENAI_DEPLOYMENT     e.g. gpt-5.4-mini
+    AZURE_OPENAI_DEPLOYMENT     e.g. gpt-5.4-mini (the default model)
+    AZURE_OPENAI_DEPLOYMENTS    optional, comma-separated: the deployments a
+                                caller may pick by sending `model` (the report
+                                generator offers them). Anything else falls back
+                                to AZURE_OPENAI_DEPLOYMENT. Listed by /v1/health.
     AZURE_OPENAI_API_VERSION    optional, defaults below
     REGWATCH_ALLOWED_ORIGINS    comma-separated, e.g. https://jcsssss.github.io
                                 (a server-side check; the BROWSER-side CORS
@@ -140,9 +144,22 @@ def _settings():
         "key": os.environ.get("AZURE_OPENAI_API_KEY", ""),
         "endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT", "").rstrip("/"),
         "deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT", ""),
+        "deployments": deployments(),
         "version": os.environ.get("AZURE_OPENAI_API_VERSION", DEFAULT_API_VERSION),
         "missing": missing,
     }
+
+
+def deployments():
+    """The deployments a caller may choose, the default first.
+
+    Azure's data plane does not list the deployments of a resource (that is the
+    management API, with other credentials), so the list is a setting. It is
+    also an allowlist: a caller cannot point the firm's key at a deployment
+    nobody chose to expose."""
+    default = os.environ.get("AZURE_OPENAI_DEPLOYMENT", "")
+    extra = [d.strip() for d in os.environ.get("AZURE_OPENAI_DEPLOYMENTS", "").split(",") if d.strip()]
+    return [d for i, d in enumerate([default] + extra) if d and d not in ([default] + extra)[:i]]
 
 
 def allowed_origins():
@@ -175,7 +192,7 @@ def cors_headers(origin):
     value = origin if (origin and origin.rstrip("/") in allowed) else (allowed[0] if allowed else "")
     headers = {
         "Access-Control-Allow-Headers": "Content-Type, Authorization, api-key, x-regwatch-key",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Max-Age": "86400",
         "Vary": "Origin",
     }
@@ -238,11 +255,14 @@ def chat_completions(req: func.HttpRequest) -> func.HttpResponse:
         return error(400, "Body must be a chat-completions request with `messages`.", origin)
 
     # On Azure the deployment travels in the URL, not the body; leaving `model`
-    # in place makes some API versions reject the call.
-    payload.pop("model", None)
+    # in place makes some API versions reject the call. A `model` that names an
+    # allowed deployment selects it; any other value (the page sends a default
+    # model name with every chat turn) keeps the default deployment.
+    asked = payload.pop("model", None)
+    deployment = asked if asked in cfg["deployments"] else cfg["deployment"]
 
     url = "%s/openai/deployments/%s/chat/completions?api-version=%s" % (
-        cfg["endpoint"], cfg["deployment"], cfg["version"])
+        cfg["endpoint"], deployment, cfg["version"])
     request = urllib.request.Request(
         url, data=json.dumps(payload).encode("utf-8"),
         headers={"Content-Type": "application/json", "api-key": cfg["key"]})
@@ -271,6 +291,7 @@ def health(req: func.HttpRequest) -> func.HttpResponse:
         "ok": not cfg["missing"],
         "missing": cfg["missing"],
         "deployment": cfg["deployment"] or None,
+        "deployments": cfg["deployments"],
         "apiVersion": cfg["version"],
         "allowedOrigins": allowed_origins(),
         "sharedSecret": bool(os.environ.get("REGWATCH_SHARED_SECRET")),

@@ -358,7 +358,11 @@ async function chatPost(messages, extra, cap){
 
   const build = () => {
     const body = Object.assign({ messages }, extra || {});
-    if (c.mode !== "azure") body.model = c.model;
+    /* A caller may name a model (the report generator lets the consultant pick
+       one of the proxy's deployments). Direct Azure mode carries the deployment
+       in the URL, so a model in the body would only be rejected there. */
+    if (c.mode === "azure") delete body.model;
+    else if (!body.model) body.model = c.model;
     if (!q.noTemperature) body.temperature = 0.2;
     if (cap) body[q.tokenParam || "max_completion_tokens"] = cap;
     return JSON.stringify(body);
@@ -373,7 +377,12 @@ async function chatPost(messages, extra, cap){
          browser blocked the request before it left. */
       throw new Error("NETWORK:" + (e && e.message ? e.message : "failed"));
     }
-    if (res.ok) return res.json();
+    if (res.ok) {
+      const j = await res.json();
+      /* Les jetons reels de la reponse, pour l'impact carbone de l'outil. */
+      if (typeof carbonCount === "function") carbonCount(j.model || JSON.parse(build()).model || c.deployment, j.usage);
+      return j;
+    }
 
     let detail = "";
     try { const j = await res.json(); detail = (j.error && (j.error.message || j.error.code)) || JSON.stringify(j).slice(0, 300); }
@@ -382,6 +391,26 @@ async function chatPost(messages, extra, cap){
     throw new Error("HTTP:" + res.status + ":" + detail);
   }
   throw new Error("HTTP:400:the endpoint kept rejecting the request parameters");
+}
+
+/* The models the consultant may pick for a generated report. The proxy says
+   which deployments it exposes (/v1/health); a direct configuration has one
+   model and says so. Never throws: an unreachable health route still leaves
+   the configured model. */
+async function chatModels(){
+  const c = chatCfg();
+  const own = c.mode === "azure" ? c.deployment : c.model;
+  if (c.mode === "azure" || !c.endpoint) return { list: own ? [own] : [], def: own, proxy: false };
+  try {
+    const res = await fetch(c.endpoint.replace(/\/+$/, "") + "/health", { method: "GET" });
+    if (res.ok) {
+      const j = await res.json();
+      const list = Array.isArray(j.deployments) && j.deployments.length ? j.deployments
+                 : (j.deployment ? [j.deployment] : []);
+      if (list.length) return { list: list, def: j.deployment || list[0], proxy: true };
+    }
+  } catch (e) { /* not a RegWatch proxy, or offline: fall through */ }
+  return { list: own ? [own] : [], def: own, proxy: false };
 }
 
 async function chatCall(messages){

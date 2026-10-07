@@ -99,6 +99,23 @@ Puis publier :
 func azure functionapp publish regwatch-proxy --python
 ```
 
+### Proposer plusieurs modèles au générateur de rapports
+
+Le générateur de rapports laisse le consultant choisir le modèle qui rédige
+l'analyse, avec une estimation de son impact environnemental. Il lit la liste
+dans `/v1/health`. Azure ne permet pas au proxy de lister lui-même les
+déploiements d'une ressource (c'est l'API de gestion, avec d'autres droits) :
+la liste est donc un réglage, qui sert aussi de liste blanche. Un `model` qui
+n'y figure pas retombe sur `AZURE_OPENAI_DEPLOYMENT`.
+
+```sh
+az functionapp config appsettings set -n regwatch-proxy -g rg-regwatch --settings \
+  AZURE_OPENAI_DEPLOYMENTS="gpt-5.4-mini,gpt-5.4"
+```
+
+Chaque nom doit être un déploiement existant de la ressource Azure OpenAI.
+Sans ce réglage, seul le modèle par défaut est proposé.
+
 Ajoutez un secret partagé pour que l'endpoint ne soit pas ouvert à tous — le
 script Cloud Shell le fait automatiquement :
 

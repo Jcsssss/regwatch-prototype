@@ -57,7 +57,7 @@ class Handler(BaseHTTPRequestHandler):
         # The page may be opened from a file:// URL, whose origin is "null".
         self.send_header("Access-Control-Allow-Origin", self.headers.get("Origin", "*"))
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, api-key")
-        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Max-Age", "86400")
 
     def _send(self, code, payload, ctype="application/json"):
@@ -75,6 +75,13 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", "0")
         self.end_headers()
 
+    def do_GET(self):
+        # Same answer as the Azure Function's /v1/health: the report generator
+        # reads the deployments it may offer from here.
+        if not self.path.rstrip("/").endswith("/health"):
+            return self._send(404, {"error": {"message": "only /v1/health answers GET"}})
+        return self._send(200, {"ok": True, "deployment": DEPLOYMENT, "deployments": DEPLOYMENTS})
+
     def do_POST(self):
         if not self.path.rstrip("/").endswith("/chat/completions"):
             return self._send(404, {"error": {"message": "only /v1/chat/completions is proxied"}})
@@ -89,10 +96,13 @@ class Handler(BaseHTTPRequestHandler):
         except ValueError:
             return self._send(400, {"error": {"message": "body is not JSON"}})
         # `model` is the deployment on Azure; it travels in the URL, not the body.
-        payload.pop("model", None)
+        # An allowed deployment named in `model` is used; anything else keeps
+        # the default, as in the Azure Function.
+        asked = payload.pop("model", None)
+        deployment = asked if asked in DEPLOYMENTS else DEPLOYMENT
 
         url = "%s/openai/deployments/%s/chat/completions?api-version=%s" % (
-            ENDPOINT.rstrip("/"), DEPLOYMENT, API_VERSION)
+            ENDPOINT.rstrip("/"), deployment, API_VERSION)
         req = urllib.request.Request(
             url, data=json.dumps(payload).encode("utf-8"),
             headers={"Content-Type": "application/json", "api-key": KEY})
@@ -124,6 +134,8 @@ if __name__ == "__main__":
     KEY = os.environ.get("AZURE_OPENAI_API_KEY", "")
     ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT", "")
     DEPLOYMENT = os.environ.get("AZURE_OPENAI_DEPLOYMENT", "")
+    DEPLOYMENTS = [DEPLOYMENT] + [d.strip() for d in os.environ.get("AZURE_OPENAI_DEPLOYMENTS", "").split(",")
+                                  if d.strip() and d.strip() != DEPLOYMENT]
     missing = [n for n, v in [("AZURE_OPENAI_API_KEY", KEY),
                               ("AZURE_OPENAI_ENDPOINT", ENDPOINT),
                               ("AZURE_OPENAI_DEPLOYMENT", DEPLOYMENT)] if not v]

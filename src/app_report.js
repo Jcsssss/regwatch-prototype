@@ -753,6 +753,7 @@ async function rptPackage(wanted){
     kept.push({ name: name, method: 8, flags: 0, time: ZIP_TIME,
                 crc: crc32(out), rawSize: out.length, data: await deflateRaw(out) });
   }
+  let mediaN = 0;
   for (let i = 0; i < wanted.length; i++) {
     const xml = rptSlideXml(wanted[i]);
     /* Un identifiant de forme absent ou non numerique produit un fichier que
@@ -763,7 +764,21 @@ async function rptPackage(wanted){
     if (/(?:\bid)="(?:NaN|undefined|)"/.test(xml))
       throw new Error("slide " + (i + 1) + " : identifiant de forme invalide");
     await put("ppt/slides/slide" + (i + 1) + ".xml", xml);
-    await put("ppt/slides/_rels/slide" + (i + 1) + ".xml.rels", relsXml);
+    /* Les images d'une slide (les graphiques de la vue europeenne) : une
+       relation par image, et un fichier PNG range dans ppt/media sous un nom
+       qui ne peut pas rencontrer ceux du gabarit. Le type png est deja declare
+       par le gabarit. */
+    const media = wanted[i].media || [];
+    let rels = relsXml;
+    if (media.length) {
+      rels = rels.replace("</Relationships>", media.map(m => {
+        const name = "rw-img" + (++mediaN) + ".png";
+        kept.push({ name: "ppt/media/" + name, method: 0, flags: 0, time: ZIP_TIME,
+                    crc: crc32(m.bytes), rawSize: m.bytes.length, data: m.bytes });
+        return `<Relationship Id="${m.rid}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/${name}"/>`;
+      }).join("") + "</Relationships>");
+    }
+    await put("ppt/slides/_rels/slide" + (i + 1) + ".xml.rels", rels);
   }
 
   /* presentation.xml, ses relations et les types de contenu doivent decrire

@@ -236,5 +236,11 @@ function regLevelLabel(n){
    two regulations built from two different workbooks. */
 function regFooter(){
   const el = $("#footSrc");
-  if (el) el.textContent = t(regSpec().footKey);
+  if (!el) return;
+  /* Le module NIS 2 n'a plus de mention en pied de page : le pied se cache
+     plutot que de laisser une bande vide. */
+  const key = regSpec().footKey;
+  const txt = t(key) === key ? "" : t(key);   /* t() rend la cle d'un texte vide */
+  el.textContent = txt;
+  if (el.parentElement) el.parentElement.hidden = !txt;
 }
