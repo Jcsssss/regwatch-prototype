@@ -64,32 +64,32 @@ const COUNTRY_DOCS = {
   ]
  },
  "CZ": {
-  "country": "Czechia",
-  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
+  "country": "Czech Republic",
+  "folderUrl": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzech%20Republic&viewid=e125da37-0863-453d-9d78-4087d050d3a3",
   "folders": [
    {
     "key": "legislation",
     "label": "Approved legislation",
     "approx": true,
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzech%20Republic&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "framework",
     "label": "Framework",
     "approx": true,
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzech%20Republic&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "other",
     "label": "Other documents relating to NIS 2",
     "approx": false,
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzech%20Republic%2FOther%20documents%20relating%20to%20NIS%202&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    },
    {
     "key": "old",
     "label": "Old",
     "approx": true,
-    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzechia&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
+    "url": "https://digiplace.sharepoint.com/sites/WICCYB-DIGITALCOMPLIANCE/Documents%20partages/Forms/AllItems.aspx?id=%2Fsites%2FWICCYB-DIGITALCOMPLIANCE%2FDocuments%20partages%2F03%20-%20Critical%20infrastructure%20protection%20-%20LPM%20%26%20NIS%20compliance%2F02%20-%20KM%20%26%20Accelerators%2F03%20-%20NIS%202%20in%20Europe%2F02%20-%20Transposition%20per%20country%2FCzech%20Republic&viewid=e125da37-0863-453d-9d78-4087d050d3a3"
    }
   ]
  },

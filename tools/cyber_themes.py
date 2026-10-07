@@ -41,7 +41,7 @@ COUNTRY_COL = 3
 TOTAL = "total"
 
 # The sheet spells a few countries its own way.
-COUNTRY_FIX = {"Czech Republic": "Czechia", "UK": "United Kingdom"}
+COUNTRY_FIX = {"Czechia": "Czech Republic", "UK": "United Kingdom"}
 
 
 def clean(value):

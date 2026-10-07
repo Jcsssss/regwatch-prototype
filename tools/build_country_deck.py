@@ -42,7 +42,7 @@ BODY_INK = RGBColor(0x00, 0x00, 0x00)
 # Country name in French, for the slide title. English names come from the data.
 FR_NAME = {
     "AT": "Autriche", "BE": "Belgique", "BG": "Bulgarie", "CY": "Chypre",
-    "CZ": "Tchéquie", "DE": "Allemagne", "DK": "Danemark", "EE": "Estonie",
+    "CZ": "République tchèque", "DE": "Allemagne", "DK": "Danemark", "EE": "Estonie",
     "ES": "Espagne", "FI": "Finlande", "FR": "France", "GB": "Royaume-Uni",
     "GR": "Grèce", "HR": "Croatie", "HU": "Hongrie", "IE": "Irlande",
     "IT": "Italie", "LT": "Lituanie", "LU": "Luxembourg", "LV": "Lettonie",

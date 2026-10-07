@@ -36,7 +36,7 @@ OUT_JS = ROOT / "src" / "reg" / "nis2" / "data_registry.js"
 ZONE_ISO = {
     "france": "FR", "allemagne": "DE", "belgique": "BE", "italie": "IT", "espagne": "ES",
     "pays-bas": "NL", "luxembourg": "LU", "pologne": "PL", "portugal": "PT", "suede": "SE",
-    "suède": "SE", "tchequie": "CZ", "tchéquie": "CZ", "irlande": "IE", "autriche": "AT",
+    "suède": "SE", "république tchèque": "CZ", "republique tcheque": "CZ", "tchequie": "CZ", "tchéquie": "CZ", "irlande": "IE", "autriche": "AT",
     "danemark": "DK", "finlande": "FI", "grece": "GR", "grèce": "GR", "hongrie": "HU",
     "roumanie": "RO", "slovaquie": "SK", "slovenie": "SI", "slovénie": "SI", "bulgarie": "BG",
     "croatie": "HR", "chypre": "CY", "estonie": "EE", "lettonie": "LV", "lituanie": "LT",

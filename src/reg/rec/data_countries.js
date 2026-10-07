@@ -217,7 +217,7 @@ const REC_COUNTRIES = [
  },
  {
   "iso": "CZ",
-  "name": "Czechia",
+  "name": "Czech Republic",
   "nameFr": "République tchèque",
   "flag": "🇨🇿",
   "region": "East",

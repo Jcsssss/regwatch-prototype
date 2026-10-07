@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-30",
+ "generated": "2026-10-07",
  "active": 54,
  "sources": [
   {
@@ -47,10 +47,10 @@
    "last": "2026-09-30"
   },
   {
-   "name": "NUKIB Tchéquie - Aktuality",
+   "name": "NUKIB République tchèque - Aktuality",
    "url": "https://nukib.gov.cz/cs/infoservis/aktuality/",
    "kind": "page",
-   "zone": "Tchéquie",
+   "zone": "République tchèque",
    "iso": "CZ",
    "active": true,
    "trust": "Officielle",

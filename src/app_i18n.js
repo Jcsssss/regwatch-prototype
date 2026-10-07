@@ -2058,7 +2058,7 @@ function applyStaticI18n(){
 
    Un seul jeu de noms suffit : l'anglais est déjà dans les données. */
 const COUNTRY_FR = {
-  AT: "Autriche", BE: "Belgique", BG: "Bulgarie", CY: "Chypre", CZ: "Tchéquie",
+  AT: "Autriche", BE: "Belgique", BG: "Bulgarie", CY: "Chypre", CZ: "République tchèque",
   DE: "Allemagne", DK: "Danemark", EE: "Estonie", ES: "Espagne", FI: "Finlande",
   FR: "France", GB: "Royaume-Uni", GR: "Grèce", HR: "Croatie", HU: "Hongrie",
   IE: "Irlande", IT: "Italie", LT: "Lituanie", LU: "Luxembourg", LV: "Lettonie",

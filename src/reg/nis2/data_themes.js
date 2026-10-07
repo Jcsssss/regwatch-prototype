@@ -933,7 +933,7 @@ const CYBER_THEMES = {
    ]
   },
   "CZ": {
-   "country": "Czechia",
+   "country": "Czech Republic",
    "themesCovered": 23,
    "themesTotal": 62,
    "families": [

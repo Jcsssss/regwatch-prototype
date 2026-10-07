@@ -61,7 +61,7 @@ const COUNTRIES_1 = [
     { name:"ZSIS", url:"", type:"official" },
     { name:"Narodne novine (Official Gazette)", url:"https://narodne-novine.nn.hr", type:"official" } ] },
 
-{ iso:"CZ", name:"Czechia", flag:"🇨🇿", region:"East", eu:true, maturity:4, lastUpdate:"2026-07-06",
+{ iso:"CZ", name:"Czech Republic", flag:"🇨🇿", region:"East", eu:true, maturity:4, lastUpdate:"2026-07-06",
   transposed:true, onTime:false, delayMonths:12, lawInForce:"2025-11-01", fw:"final",
   law:"Cybersecurity Act No. 264/2025 Coll. + implementing decrees of 14 Oct 2025",
   fwName:"Tiered regime - higher obligations: 14 org. themes (169 measures) + 11 technical (127); lower: 13 themes (81 measures)",

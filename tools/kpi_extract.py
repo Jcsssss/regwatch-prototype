@@ -37,7 +37,7 @@ BLANK = {"", "nc", "n.c.", "n. c.", "na", "n/a", "n.a.", "tbc", "tbd",
 
 REGION_EN = {"Ouest": "West", "Est": "East", "Nord": "North", "Sud": "South"}
 # The KPI sheet spells a few countries differently from the rest of the workbook.
-COUNTRY_FIX = {"Czech Republic": "Czechia", "UK": "United Kingdom"}
+COUNTRY_FIX = {"Czechia": "Czech Republic", "UK": "United Kingdom"}
 
 
 def clean(value):

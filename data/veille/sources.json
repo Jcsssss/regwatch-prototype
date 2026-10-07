@@ -1038,7 +1038,7 @@
    "Anciens noms": ""
   },
   {
-   "Source": "NUKIB Tchéquie - Aktuality",
+   "Source": "NUKIB République tchèque - Aktuality",
    "Type": "Page web",
    "Fréquence": "",
    "URL / Endpoint": "https://nukib.gov.cz/cs/infoservis/aktuality/",
@@ -1049,7 +1049,7 @@
    "API url field": "",
    "API summary field": "",
    "Actif": "Oui",
-   "Pays / zone": "Tchéquie",
+   "Pays / zone": "République tchèque",
    "Réglementation suivie": "NIS2",
    "Statue source": "",
    "Score source IA": "",
@@ -1058,7 +1058,7 @@
    "Découvert par": "Ajout vérifié (assistant)",
    "Dernier test HTTP": "",
    "Fiabilité": "Officielle",
-   "Anciens noms": ""
+   "Anciens noms": "NUKIB Tchéquie - Aktuality"
   },
   {
    "Source": "ACN Italie - Portale (accueil)",
